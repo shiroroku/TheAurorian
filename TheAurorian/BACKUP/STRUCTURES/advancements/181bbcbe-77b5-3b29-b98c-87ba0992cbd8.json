@@ -1,0 +1,15 @@
+{
+  "minecraft:story/obtain_armor": {
+    "criteria": {
+      "iron_chestplate": "2019-10-25 23:12:46 -0700",
+      "iron_leggings": "2019-10-25 23:12:46 -0700"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "plains": "2019-10-25 23:12:46 -0700"
+    },
+    "done": false
+  }
+}

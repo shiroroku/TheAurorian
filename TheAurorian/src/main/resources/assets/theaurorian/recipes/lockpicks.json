@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I I",
+    "OO ",
+	"OOI"
+  ],
+  "key": {
+	"I": [
+      {
+        "item": "theaurorian:ceruleaningot",
+        "data": 0
+      }
+    ],
+	"O": [
+      {
+        "item": "theaurorian:silentwoodstick",
+        "data": 0
+      }
+    ]
+  },
+  "result": {
+    "item": "theaurorian:lockpicks",
+    "count": 1
+  }
+}

@@ -1,0 +1,18 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "theaurorian:runestone"
+	},
+	"variants": {
+		"normal": [
+			{
+				"model": "theaurorian:runestone"
+			}
+		],
+		"inventory": [
+			{
+				"model": "theaurorian:runestone"
+			}
+		]
+	}
+}

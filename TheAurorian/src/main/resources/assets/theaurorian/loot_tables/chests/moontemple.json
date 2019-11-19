@@ -1,0 +1,249 @@
+{
+	"pools": [
+		{
+			"name": "main",
+			"rolls": {
+				"min": 3,
+				"max": 5
+			},
+			"entries": [
+				{
+					"type": "item",
+					"name": "theaurorian:bepsi",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							}
+						}
+					],
+					"weight": 1
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:moontemplekey",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							}
+						}
+					],
+					"weight": 2
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:moonstonesword",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							},
+							"function": "set_damage",
+							"damage": {
+								"min": 0.1,
+								"max": 0.5
+							}
+						}
+					],
+					"weight": 8
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:moonstonesickle",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							},
+							"function": "set_damage",
+							"damage": {
+								"min": 0.1,
+								"max": 0.5
+							}
+						}
+					],
+					"weight": 8
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:moonstoneaxe",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							},
+							"function": "set_damage",
+							"damage": {
+								"min": 0.1,
+								"max": 0.5
+							}
+						}
+					],
+					"weight": 8
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:moonstonepickaxe",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							},
+							"function": "set_damage",
+							"damage": {
+								"min": 0.1,
+								"max": 0.5
+							}
+						}
+					],
+					"weight": 8
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:moonstonehoe",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							},
+							"function": "set_damage",
+							"damage": {
+								"min": 0.1,
+								"max": 0.5
+							}
+						}
+					],
+					"weight": 8
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:moonstoneshovel",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							},
+							"function": "set_damage",
+							"damage": {
+								"min": 0.1,
+								"max": 0.5
+							}
+						}
+					],
+					"weight": 8
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:silkberry",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 8
+							}
+						}
+					],
+					"weight": 20
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:moonstoneingot",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 3
+							}
+						}
+					],
+					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:ceruleaningot",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 3
+							}
+						}
+					],
+					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:silkberryrasin",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 6
+							}
+						}
+					],
+					"weight": 25
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:teasilkberry",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							}
+						}
+					],
+					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:tealavender",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							}
+						}
+					],
+					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "minecraft:book",
+					"weight": 20,
+					"functions": [
+						{
+							"function": "enchant_randomly"
+						}
+					]
+				}
+			]
+		}
+	]
+}

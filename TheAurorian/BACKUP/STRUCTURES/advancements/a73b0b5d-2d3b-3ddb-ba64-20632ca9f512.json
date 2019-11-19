@@ -1,0 +1,14 @@
+{
+  "minecraft:recipes/misc/lapis_lazuli": {
+    "criteria": {
+      "has_lapis_block": "2019-10-18 13:09:12 -0700"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "plains": "2019-10-18 12:54:29 -0700"
+    },
+    "done": false
+  }
+}

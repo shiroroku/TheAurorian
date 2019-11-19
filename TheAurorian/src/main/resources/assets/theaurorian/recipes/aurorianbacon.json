@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"#"
+	],
+	"key": {
+		"#": {
+			"item": "theaurorian:aurorianporkcooked",
+			"data": 0
+		}
+	},
+	"result": {
+		"item": "theaurorian:aurorianbacon",
+		"data": 0,
+		"count": 4
+	}
+}

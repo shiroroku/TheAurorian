@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "theaurorian:silentwoodladder"
+		},
+		"facing=east": {
+			"model": "theaurorian:silentwoodladder",
+			"y": 90
+		},
+		"facing=south": {
+			"model": "theaurorian:silentwoodladder",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "theaurorian:silentwoodladder",
+			"y": 270
+		}
+	}
+}

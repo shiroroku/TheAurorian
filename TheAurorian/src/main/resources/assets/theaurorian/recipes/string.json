@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "III",
+	"III"
+  ],
+  "key": {
+	"I": [
+      {
+        "item": "theaurorian:plantfiber",
+        "data": 0
+      }
+    ]
+  },
+  "result": {
+    "item": "minecraft:string",
+    "count": 1
+  }
+}

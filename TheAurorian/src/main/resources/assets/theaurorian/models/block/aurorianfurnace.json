@@ -1,0 +1,8 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "theaurorian:blocks/aurorianfurnacetop",
+        "front": "theaurorian:blocks/aurorianfurnacefaceoff",
+        "side": "theaurorian:blocks/aurorianfurnaceside"
+    }
+}

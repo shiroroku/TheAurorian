@@ -1,0 +1,6 @@
+{
+	"parent": "block/orientable",
+	"textures": {
+		"wall": "theaurorian:blocks/aurorianfurnacechimney"
+	}
+}

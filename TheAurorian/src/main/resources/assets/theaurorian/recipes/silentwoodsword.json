@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+	"I"
+  ],
+  "key": {
+    "#": [
+      {
+        "item": "theaurorian:silentwoodplanks",
+        "data": 0
+      }
+    ],
+	"I": [
+      {
+        "item": "theaurorian:silentwoodstick",
+        "data": 0
+      }
+    ]
+  },
+  "result": {
+    "item": "theaurorian:silentwoodsword",
+    "count": 1
+  }
+}

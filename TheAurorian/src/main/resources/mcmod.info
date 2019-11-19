@@ -1,0 +1,16 @@
+[
+{
+  "modid": "theaurorian",
+  "name": "The Aurorian",
+  "description": "Explore a land beyond this world, bathed in moonlight and shrouded in nature.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["(Elise)Elseytd"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

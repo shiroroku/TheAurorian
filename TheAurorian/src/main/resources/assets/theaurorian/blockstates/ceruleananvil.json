@@ -1,0 +1,49 @@
+{
+    "variants": {
+        "damage=0,facing=south": {
+            "model": "theaurorian:ceruleananvilundamaged"
+        },
+        "damage=0,facing=west": {
+            "model": "theaurorian:ceruleananvilundamaged",
+            "y": 90
+        },
+        "damage=0,facing=north": {
+            "model": "theaurorian:ceruleananvilundamaged",
+            "y": 180
+        },
+        "damage=0,facing=east": {
+            "model": "theaurorian:ceruleananvilundamaged",
+            "y": 270
+        },
+        "damage=1,facing=south": {
+            "model": "theaurorian:ceruleananvildamaged"
+        },
+        "damage=1,facing=west": {
+            "model": "theaurorian:ceruleananvildamaged",
+            "y": 90
+        },
+        "damage=1,facing=north": {
+            "model": "theaurorian:ceruleananvildamaged",
+            "y": 180
+        },
+        "damage=1,facing=east": {
+            "model": "theaurorian:ceruleananvildamaged",
+            "y": 270
+        },
+        "damage=2,facing=south": {
+            "model": "theaurorian:ceruleananvilverydamaged"
+        },
+        "damage=2,facing=west": {
+            "model": "theaurorian:ceruleananvilverydamaged",
+            "y": 90
+        },
+        "damage=2,facing=north": {
+            "model": "theaurorian:ceruleananvilverydamaged",
+            "y": 180
+        },
+        "damage=2,facing=east": {
+            "model": "theaurorian:ceruleananvilverydamaged",
+            "y": 270
+        }
+    }
+}

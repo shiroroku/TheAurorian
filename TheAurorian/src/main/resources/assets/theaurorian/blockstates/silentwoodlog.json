@@ -1,0 +1,25 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "inventory": [
+            {
+                "model": "theaurorian:silentwoodlog"
+            }
+        ],
+        "axis=y": {
+            "model": "theaurorian:silentwoodlog"
+        },
+        "axis=z": {
+            "model": "theaurorian:silentwoodlog",
+            "x": 90
+        },
+        "axis=x": {
+            "model": "theaurorian:silentwoodlog",
+            "x": 90,
+            "y": 90
+        },
+        "axis=none": {
+            "model": "theaurorian:silentwoodlog"
+        }
+    }
+}

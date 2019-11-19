@@ -1,0 +1,18 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "theaurorian:silentwoodplanks"
+	},
+	"variants": {
+		"normal": [
+			{
+				"model": "theaurorian:silentwoodplanks"
+			}
+		],
+		"inventory": [
+			{
+				"model": "theaurorian:silentwoodplanks"
+			}
+		]
+	}
+}

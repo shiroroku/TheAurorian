@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "minecraft:crafting_table",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "theaurorian:silentwoodcraftingtable",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "minecraft:crafting_table",
+    "data": 0,
+    "count": 1
+  }
+}
