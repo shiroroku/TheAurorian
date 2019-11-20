@@ -49,7 +49,6 @@ import com.elseytd.theaurorian.Items.TAItem_Tool_Special_Lockpicks;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Special_MoonTempleBreaker;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Special_RunestoneBreaker;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -88,10 +87,6 @@ public class TAItems {
 	public static TAItem_Tool_Cerulean_Shield ceruleanshield;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Cerulean_Bucket.ITEMNAME)
 	public static TAItem_Tool_Cerulean_Bucket ceruleanbucket;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Cerulean_Bucket.ITEMNAME + "water")
-	public static TAItem_Tool_Cerulean_Bucket ceruleanbucketwater;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Cerulean_Bucket.ITEMNAME + "lava")
-	public static TAItem_Tool_Cerulean_Bucket ceruleanbucketlava;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Seeds.ITEMNAME_LAVENDER)
 	public static TAItem_Seeds lavenderseeds;
 
@@ -221,8 +216,6 @@ public class TAItems {
 		moontemplebreaker.initModel();
 		ceruleanshield.initModel();
 		ceruleanbucket.initModel();
-		ceruleanbucketwater.initModel();
-		ceruleanbucketlava.initModel();
 		lavenderseeds.initModel();
 
 		// FOOD
@@ -292,7 +285,6 @@ public class TAItems {
 	}
 
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-	
 		// SPECIAL
 		event.getRegistry().register(new TAItem_Special_KeeperAmulet());
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_RUNESTONE));
@@ -302,9 +294,7 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Tool_Special_RunestoneBreaker());
 		event.getRegistry().register(new TAItem_Tool_Special_MoonTempleBreaker());
 		event.getRegistry().register(new TAItem_Tool_Cerulean_Shield());
-		event.getRegistry().register(new TAItem_Tool_Cerulean_Bucket(Blocks.AIR, ""));
-		event.getRegistry().register(new TAItem_Tool_Cerulean_Bucket(Blocks.FLOWING_WATER, "water"));
-		event.getRegistry().register(new TAItem_Tool_Cerulean_Bucket(Blocks.FLOWING_LAVA, "lava"));
+		event.getRegistry().register(new TAItem_Tool_Cerulean_Bucket());
 		event.getRegistry().register(new TAItem_Seeds(TAItem_Seeds.ITEMNAME_LAVENDER));
 
 		// FOODS

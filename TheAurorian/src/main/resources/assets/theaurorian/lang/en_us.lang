@@ -1,3 +1,7 @@
+
+item.theaurorian.ceruleanbucket.name=Cerulean Bucket
+item.theaurorian.ceruleanbucket.filled.name=%s Cerulean Bucket
+
 enchantment.theaurorian.lightning.desc=Does extra damage depending on how  much armor the target is wearing
 enchantment.theaurorian.lightning=Lighting
 enchantment.theaurorian.lightningresistance.desc=Negates damage that would have been done by lightning enchantment
@@ -27,9 +31,6 @@ item.theaurorian.aurorianstonesickle.name=Aurorian Stone Sickle
 item.theaurorian.aurorianstonesword.name=Aurorian Stone Sword
 item.theaurorian.bepsi.name=Bepsi
 item.theaurorian.ceruleanboots.name=Cerulean Boots
-item.theaurorian.ceruleanbucket.name=Cerulean Bucket
-item.theaurorian.ceruleanbucketlava.name=Cerulean Lava Bucket
-item.theaurorian.ceruleanbucketwater.name=Cerulean Water Bucket 
 item.theaurorian.ceruleanchestplate.name=Cerulean Chestplate
 item.theaurorian.ceruleanhelmet.name=Cerulean Helmet
 item.theaurorian.ceruleaningot.name=Cerulean Ingot
