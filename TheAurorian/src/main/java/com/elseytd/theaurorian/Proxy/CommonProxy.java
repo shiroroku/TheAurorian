@@ -4,6 +4,7 @@ import java.io.File;
 
 import com.elseytd.theaurorian.TABiomes;
 import com.elseytd.theaurorian.TABlocks;
+import com.elseytd.theaurorian.TACompat;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TADimensions;
 import com.elseytd.theaurorian.TAEntities;
@@ -38,6 +39,7 @@ public class CommonProxy {
 		TAMod.CONFIG = new Configuration(new File(directory.getPath(), "theaurorian.cfg"));
 		TAConfig.readConfig();
 		TADimensions.init();
+		TACompat.preInit(e);
 	}
 
 	public void init(FMLInitializationEvent e) {
@@ -46,11 +48,14 @@ public class CommonProxy {
 		NetworkRegistry.INSTANCE.registerGuiHandler(TAMod.INSTANCE, new TAGuis());
 		TABiomes.initBiomeManagerAndDictionary();
 		TAEntities.init();
+		TABlocks.registerOreDictionary();
+		TACompat.init(e);
 	}
 
 	public void postInit(FMLPostInitializationEvent e) {
 		if (TAMod.CONFIG.hasChanged()) {
 			TAMod.CONFIG.save();
 		}
+		TACompat.postInit(e);
 	}
 }

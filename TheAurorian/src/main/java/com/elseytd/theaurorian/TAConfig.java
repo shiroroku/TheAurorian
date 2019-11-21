@@ -4,6 +4,9 @@ import net.minecraftforge.common.config.Configuration;
 
 public class TAConfig {
 
+	//Compat
+	public static boolean Config_EnableTinkersConstructCompatibility = true;
+	
 	//Blocks
 	public static int Config_MaximumChimneys = 10;
 	public static int Config_ChimneySpeedDiscount = 25;
@@ -41,6 +44,7 @@ public class TAConfig {
 		Configuration cfg = TAMod.CONFIG;
 		try {
 			cfg.load();
+			initCompatConfig(cfg);
 			initBlocksConfig(cfg);
 			initDimensionConfig(cfg);
 			initStructureConfig(cfg);
@@ -53,13 +57,19 @@ public class TAConfig {
 		}
 	}
 
+	private static void initCompatConfig(Configuration cfg) {
+		String name = "compatibility";
+		cfg.addCustomCategoryComment(name, "Compatibility configuration");		
+		
+		Config_EnableTinkersConstructCompatibility = cfg.getBoolean("EnableTinkersConstructCompatibility", name, Config_EnableTinkersConstructCompatibility, "Set to false to disable Tinkers Construct integration for Cerulean and Moonstone Tinkers materials");
+	}
+	
 	private static void initBlocksConfig(Configuration cfg) {
 		String name = "blocks";
 		cfg.addCustomCategoryComment(name, "Blocks configuration");		
 		
 		Config_MaximumChimneys = cfg.getInt("MaximumChimneys", name, Config_MaximumChimneys, 0, 255, "Maximum number of chimneys able to be stacked on Aurorian Furnace that enable the discount");
 		Config_ChimneySpeedDiscount = cfg.getInt("ChimneySpeedDiscount", name, Config_ChimneySpeedDiscount, 0, 2000, "Changes how much a chimney speeds up the Aurorian Furnace (Every chimney is 5% less effective)");
-
 	}
 	
 	private static void initGenerationConfig(Configuration cfg) {

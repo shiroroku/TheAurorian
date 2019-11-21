@@ -1,15 +1,6 @@
 package com.elseytd.theaurorian;
 
 import com.elseytd.theaurorian.Blocks.TABlockFluid_Moonwater;
-import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianCobblestone;
-import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianDirt;
-import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianFarmTile;
-import com.elseytd.theaurorian.Blocks.TABlock_Furnace;
-import com.elseytd.theaurorian.Blocks.TABlock_FurnaceChimney;
-import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianGrass;
-import com.elseytd.theaurorian.Blocks.TABlock_Portal;
-import com.elseytd.theaurorian.Blocks.TABlock_PortalframeBricks;
-import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianStone;
 import com.elseytd.theaurorian.Blocks.TABlock_Aurorian_Stone_Brick;
 import com.elseytd.theaurorian.Blocks.TABlock_DungeonStone;
 import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneBars;
@@ -17,9 +8,10 @@ import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneGate;
 import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneGateKeyhole;
 import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneLamp;
 import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneSmooth;
+import com.elseytd.theaurorian.Blocks.TABlock_Furnace;
+import com.elseytd.theaurorian.Blocks.TABlock_FurnaceChimney;
 import com.elseytd.theaurorian.Blocks.TABlock_Material;
 import com.elseytd.theaurorian.Blocks.TABlock_MoonGem;
-import com.elseytd.theaurorian.Blocks.TABlock_Terrain_Moonsand;
 import com.elseytd.theaurorian.Blocks.TABlock_Ore_AurorianCoal;
 import com.elseytd.theaurorian.Blocks.TABlock_Ore_Cerulean;
 import com.elseytd.theaurorian.Blocks.TABlock_Ore_Geode;
@@ -29,6 +21,8 @@ import com.elseytd.theaurorian.Blocks.TABlock_Plant_Lavender;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Silentwood_Sapling;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Silkberry;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Tallgrass;
+import com.elseytd.theaurorian.Blocks.TABlock_Portal;
+import com.elseytd.theaurorian.Blocks.TABlock_PortalframeBricks;
 import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Ladder;
 import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Leaves;
 import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Log;
@@ -37,7 +31,17 @@ import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Torch;
 import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Workbench;
 import com.elseytd.theaurorian.Blocks.TABlock_Spawner_Boss;
 import com.elseytd.theaurorian.Blocks.TABlock_Stairs;
+import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianCobblestone;
+import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianDirt;
+import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianFarmTile;
+import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianGrass;
+import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianStone;
+import com.elseytd.theaurorian.Blocks.TABlock_Terrain_Moonsand;
 import com.elseytd.theaurorian.Blocks.TAFluid_Moonwater;
+import com.elseytd.theaurorian.Compat.TABlockFluid_MoltenCerulean;
+import com.elseytd.theaurorian.Compat.TABlockFluid_MoltenMoonstone;
+import com.elseytd.theaurorian.Compat.TAFluid_MoltenCerulean;
+import com.elseytd.theaurorian.Compat.TAFluid_MoltenMoonstone;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -49,15 +53,22 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 @Mod.EventBusSubscriber
 public class TABlocks {
 
 	public static TAFluid_Moonwater MOONWATER = new TAFluid_Moonwater();
+	public static TAFluid_MoltenCerulean MOLTENCERULEAN = new TAFluid_MoltenCerulean();
+	public static TAFluid_MoltenMoonstone MOLTENMOONSTONE = new TAFluid_MoltenMoonstone();
 	
 
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAFluid_Moonwater.FLUIDNAME)
 	public static TABlockFluid_Moonwater moonwaterblock;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAFluid_MoltenCerulean.FLUIDNAME)
+	public static TABlockFluid_MoltenCerulean moltenceruleanblock;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAFluid_MoltenMoonstone.FLUIDNAME)
+	public static TABlockFluid_MoltenMoonstone moltenmoonstoneblock;
 
 	// SPECIAL
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Furnace.BLOCKNAME)
@@ -185,6 +196,8 @@ public class TABlocks {
 	public static void initModels() {
 
 		moonwaterblock.initModel();
+		moltenceruleanblock.initModel();
+		moltenmoonstoneblock.initModel();
 
 		// SPECIAL
 		aurorianfurnace.initModel();
@@ -268,6 +281,14 @@ public class TABlocks {
 		FluidRegistry.addBucketForFluid(MOONWATER);
 		event.getRegistry().register(new TABlockFluid_Moonwater());
 
+		FluidRegistry.registerFluid(MOLTENCERULEAN);
+		FluidRegistry.addBucketForFluid(MOLTENCERULEAN);
+		event.getRegistry().register(new TABlockFluid_MoltenCerulean());
+		
+		FluidRegistry.registerFluid(MOLTENMOONSTONE);
+		FluidRegistry.addBucketForFluid(MOLTENMOONSTONE);
+		event.getRegistry().register(new TABlockFluid_MoltenMoonstone());
+
 		// SPECIAL
 		event.getRegistry().register(new TABlock_Furnace(false));
 		event.getRegistry().register(new TABlock_Furnace(true));
@@ -335,13 +356,15 @@ public class TABlocks {
 		event.getRegistry().register(new TABlock_Stairs(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_RUNESTONE), TABlock_Stairs.BLOCKNAME_RUNESTONE));
 		event.getRegistry().register(new TABlock_Stairs(new TABlock_Silentwood_Planks(), TABlock_Stairs.BLOCKNAME_SILENTWOOD));
 		event.getRegistry().register(new TABlock_Stairs(new TABlock_Aurorian_Stone_Brick(), TABlock_Stairs.BLOCKNAME_AURORIANSTONE));
-
+		
 		TATileEntities.registerTileEntities(event);
 	}
 
 	public static void registerItemblocks(RegistryEvent.Register<Item> event) {
 		itemblockQuickReg(event, TABlocks.moonwaterblock);
-
+		itemblockQuickReg(event, TABlocks.moltenceruleanblock);
+		itemblockQuickReg(event, TABlocks.moltenmoonstoneblock);
+		
 		// SPECIAL 
 		itemblockQuickReg(event, TABlocks.aurorianfurnace);
 		itemblockQuickReg(event, TABlocks.aurorianfurnacechimney);
@@ -412,4 +435,16 @@ public class TABlocks {
 		itemblockQuickReg(event, TABlocks.aurorianstonestairs);
 	}
 
+	public static void registerOreDictionary() {
+		OreDictionary.registerOre("oreCerulean", TABlocks.ceruleanore);
+		OreDictionary.registerOre("blockCerulean", TABlocks.ceruleanblock);
+		OreDictionary.registerOre("ingotCerulean", TAItems.ceruleaningot);
+		OreDictionary.registerOre("nuggetCerulean", TAItems.ceruleannugget);
+		
+		OreDictionary.registerOre("oreMoonstone", TABlocks.moonstoneore);
+		OreDictionary.registerOre("blockMoonstone", TABlocks.moonstoneblock);
+		OreDictionary.registerOre("ingotMoonstone", TAItems.moonstoneingot);
+		OreDictionary.registerOre("nuggetMoonstone", TAItems.moonstonenugget);
+	}
+	
 }

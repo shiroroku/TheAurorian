@@ -20,6 +20,13 @@ compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
 
+repositories { 
+	maven {
+		name 'DVS1 Maven FS'
+		url 'http://dvs1.progwml6.com/files/maven'
+	}
+}
+
 minecraft {
     version = "1.12.2-14.23.5.2847"
     runDir = "run"
@@ -50,6 +57,9 @@ dependencies {
     // except that these dependencies get remapped to your current MCP mappings
     //deobfCompile 'com.mod-buildcraft:buildcraft:6.0.8:dev'
     //deobfProvided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
+	
+	deobfCompile"slimeknights.mantle:Mantle:1.12-1.3.3.52"
+    deobfCompile"slimeknights:TConstruct:1.12.2-2.13.0.171"
 
     // for more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html

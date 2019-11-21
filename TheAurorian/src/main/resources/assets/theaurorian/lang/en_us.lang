@@ -1,7 +1,13 @@
-
+modifier.aurorianempowered.name=Aurorian Empowered
+modifier.aurorianempowered.desc=Power of The Aurorian flows through this tool, it's faster in The Aurorian.
+modifier.tamoonlit.name=Moonlit
+modifier.tamoonlit.desc=Has a 50% chance to not take duribility when it's night but 50% to take more during the day!
+material.cerulean.name=Cerulean
+material.moonstone.name=Moonstone
+material.silentwood.name=Silentwood
+material.aurorianstone.name=Aurorian Stone
 item.theaurorian.ceruleanbucket.name=Cerulean Bucket
 item.theaurorian.ceruleanbucket.filled.name=%s Cerulean Bucket
-
 enchantment.theaurorian.lightning.desc=Does extra damage depending on how  much armor the target is wearing
 enchantment.theaurorian.lightning=Lighting
 enchantment.theaurorian.lightningresistance.desc=Negates damage that would have been done by lightning enchantment
@@ -16,6 +22,8 @@ entity.theaurorian.moonqueen.name=Moon Queen
 entity.theaurorian.runestonedungeonkeeper.name=Runestone Dungeon Keeper
 entity.theaurorian.undeadknight.name=Undead Knight
 fluid.tamoonwater=Moonwater
+fluid.tamoltencerulean=Molten Cerulean
+fluid.tamoltenmoonstone=Molten Moonstone
 item.theaurorian.aurorianbacon.name=Aurorian Bacon
 item.theaurorian.auroriancoal.name=Aurorian Coal
 item.theaurorian.auroriancoalnugget.name=Aurorian Coal Nugget
