@@ -4,7 +4,6 @@ import com.elseytd.theaurorian.Items.TAItem;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Cerulean;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Knight;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_AurorianCoal;
-import com.elseytd.theaurorian.Items.TAItem_Crafting_AurorianPortalframeBrick;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_Crystal;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_Cup;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_Lavender;
@@ -111,8 +110,6 @@ public class TAItems {
 	public static TAItem_Food_Tea teaseedy;
 
 	// CRAFTING
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_AurorianPortalframeBrick.ITEMNAME)
-	public static TAItem_Crafting_AurorianPortalframeBrick aurorianportalframebrick;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_SilentwoodStick.ITEMNAME)
 	public static TAItem_Crafting_SilentwoodStick silentwoodstick;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_PlantFiber.ITEMNAME)
@@ -230,7 +227,6 @@ public class TAItems {
 		teaseedy.initModel();
 
 		// CRAFTING
-		aurorianportalframebrick.initModel();
 		silentwoodstick.initModel();
 		plantfiber.initModel();
 		lavender.initModel();
@@ -309,7 +305,6 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.ITEMNAME_SEEDY));
 
 		// CRAFTING
-		event.getRegistry().register(new TAItem_Crafting_AurorianPortalframeBrick());
 		event.getRegistry().register(new TAItem_Crafting_SilentwoodStick());
 		event.getRegistry().register(new TAItem_Crafting_PlantFiber());
 		event.getRegistry().register(new TAItem_Crafting_Lavender());

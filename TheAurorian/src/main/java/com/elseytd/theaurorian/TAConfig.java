@@ -61,7 +61,7 @@ public class TAConfig {
 		String name = "compatibility";
 		cfg.addCustomCategoryComment(name, "Compatibility configuration");		
 		
-		Config_EnableTinkersConstructCompatibility = cfg.getBoolean("EnableTinkersConstructCompatibility", name, Config_EnableTinkersConstructCompatibility, "Set to false to disable Tinkers Construct integration for Cerulean and Moonstone Tinkers materials");
+		Config_EnableTinkersConstructCompatibility = cfg.getBoolean("EnableTinkersConstructCompatibility", name, Config_EnableTinkersConstructCompatibility, "Set to false to disable Tinkers Construct integration");
 	}
 	
 	private static void initBlocksConfig(Configuration cfg) {
