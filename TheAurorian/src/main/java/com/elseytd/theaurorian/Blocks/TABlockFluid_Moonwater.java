@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TABlockFluid_Moonwater extends BlockFluidClassic {
 
 	public TABlockFluid_Moonwater() {
-		super(TABlocks.MOONWATER, Material.WATER);
+		super(TABlocks.FLUID_MOONWATER, Material.WATER);
 		this.canCreateSources = true;
 		this.setRegistryName(TAFluid_Moonwater.FLUIDNAME);
 		this.setUnlocalizedName(TAFluid_Moonwater.FLUIDNAME);

@@ -1,9 +1,9 @@
 package com.elseytd.theaurorian.Blocks;
 
-import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -26,7 +26,11 @@ public class TABlock_DungeonStoneGateKeyhole extends Block {
 	public static final String BLOCKNAME_RUNESTONE = "runestonegatekeyhole";
 	public static final String BLOCKNAME_MOONTEMPLE = "moontemplegatekeyhole";
 	public static final String BLOCKNAME_MOONTEMPLECELL = "moontemplecellgatekeyhole";
-	public static final int maxBlocksFromKeyhole = 2;
+
+	private boolean Lockpickable = false;
+	private TABlock_DungeonStoneGate gateBlock = null;
+	private TAItem_Special_DungeonKey keyItem = null;
+	private int maxBlocksFromKeyhole = 2;
 
 	public TABlock_DungeonStoneGateKeyhole(String blockname) {
 		super(Material.ROCK);
@@ -37,6 +41,75 @@ public class TABlock_DungeonStoneGateKeyhole extends Block {
 		this.setRegistryName(blockname);
 	}
 
+	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, String keyitemname) {
+		this(blockname);
+		this.setGate(new TABlock_DungeonStoneGate(gateblockname));
+		this.setKey(new TAItem_Special_DungeonKey(keyitemname));
+	}
+
+	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, String keyitemname, int maxdistance) {
+		this(blockname, gateblockname, keyitemname);
+		this.setMaxGateDistance(maxdistance);
+	}
+
+	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, String keyitemname, boolean islockpickable) {
+		this(blockname, gateblockname, keyitemname);
+		this.setLockpickable(islockpickable);
+	}
+
+	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, String keyitemname, int maxdistance, boolean islockpickable) {
+		this(blockname, gateblockname, keyitemname, maxdistance);
+		this.setLockpickable(islockpickable);
+	}
+
+	public void setLockpickable(boolean islockpickable) {
+		this.Lockpickable = islockpickable;
+	}
+
+	public boolean isLockpickable() {
+		return this.Lockpickable;
+	}
+
+	public int getMaxGateDistance() {
+		return this.maxBlocksFromKeyhole;
+	}
+
+	public void setMaxGateDistance(int dist) {
+		this.maxBlocksFromKeyhole = dist;
+	}
+
+	public TABlock_DungeonStoneGate getGate() {
+		return this.gateBlock;
+	}
+
+	public void setGate(TABlock_DungeonStoneGate gateblock) {
+		this.gateBlock = gateblock;
+	}
+
+	public boolean isGate(Block bcheck) {
+		if (getGate().getRegistryName().equals(bcheck.getRegistryName())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public TAItem_Special_DungeonKey getKey() {
+		return this.keyItem;
+	}
+
+	public void setKey(TAItem_Special_DungeonKey keyitem) {
+		this.keyItem = keyitem;
+	}
+
+	public boolean isKey(Item icheck) {
+		if (getKey().getRegistryName().equals(icheck.getRegistryName())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	@SideOnly(Side.CLIENT)
 	public void initModel() {
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
@@ -44,23 +117,14 @@ public class TABlock_DungeonStoneGateKeyhole extends Block {
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		Item key = null;
-		if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_RUNESTONE)) {
-			key = TAItems.runestonekey;
-		} else if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_MOONTEMPLE)) {
-			key = TAItems.moontemplekey;
-		} else if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_MOONTEMPLECELL)) {
-			key = TAItems.moontemplecellkey;
-		}
-
-		if (!playerIn.isSneaking() && playerIn.getHeldItem(hand).getItem() == key) {
+		if (!playerIn.isSneaking() && this.isKey(playerIn.getHeldItem(hand).getItem())) {
 			playerIn.getHeldItem(hand).damageItem(2, playerIn);
 			this.breakGateBlocks(worldIn, pos);
 			if (!worldIn.isRemote) {
 				worldIn.destroyBlock(pos, false);
 			}
 			playerIn.playSound(SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, 1F, 1F);
-		} else if (!playerIn.isSneaking() && playerIn.getHeldItem(hand).getItem() == TAItems.lockpicks && this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_RUNESTONE)) {
+		} else if (!playerIn.isSneaking() && playerIn.getHeldItem(hand).getItem() == TAItems.lockpicks && this.isLockpickable()) {
 			playerIn.getHeldItem(hand).damageItem(1, playerIn);
 			if (TAUtil.randomChanceOf(0.33F)) {
 				this.breakGateBlocks(worldIn, pos);
@@ -76,53 +140,26 @@ public class TABlock_DungeonStoneGateKeyhole extends Block {
 	}
 
 	public void breakGateBlocks(World worldIn, BlockPos pos) {
-		for (int x = -maxBlocksFromKeyhole; x <= maxBlocksFromKeyhole; x++) {
-			for (int y = -maxBlocksFromKeyhole; y <= maxBlocksFromKeyhole; y++) {
+		int gated = getMaxGateDistance();
+		for (int x = -gated; x <= gated; x++) {
+			for (int y = -gated; y <= gated; y++) {
 				BlockPos blkpos = new BlockPos(pos.getX() - x, pos.getY() - y, pos.getZ());
 				IBlockState blk = worldIn.getBlockState(blkpos);
-				if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_RUNESTONE)) {
-					if (blk == TABlocks.runestonegate.getDefaultState()) {
-						if (!worldIn.isRemote) {
-							worldIn.destroyBlock(blkpos, false);
-						}
-					}
-				} else if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_MOONTEMPLE)) {
-					if (blk == TABlocks.moontemplegate.getDefaultState()) {
-						if (!worldIn.isRemote) {
-							worldIn.destroyBlock(blkpos, false);
-						}
-					}
-				} else if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_MOONTEMPLECELL)) {
-					if (blk == TABlocks.moontemplecellgate.getDefaultState()) {
-						if (!worldIn.isRemote) {
-							worldIn.destroyBlock(blkpos, false);
-						}
+				if (this.isGate(blk.getBlock())) {
+					if (!worldIn.isRemote) {
+						worldIn.destroyBlock(blkpos, false);
 					}
 				}
 			}
 		}
 
-		for (int z = -maxBlocksFromKeyhole; z <= maxBlocksFromKeyhole; z++) {
-			for (int y = -maxBlocksFromKeyhole; y <= maxBlocksFromKeyhole; y++) {
+		for (int z = -gated; z <= gated; z++) {
+			for (int y = -gated; y <= gated; y++) {
 				BlockPos blkpos = new BlockPos(pos.getX(), pos.getY() - y, pos.getZ() - z);
 				IBlockState blk = worldIn.getBlockState(blkpos);
-				if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_RUNESTONE)) {
-					if (blk == TABlocks.runestonegate.getDefaultState()) {
-						if (!worldIn.isRemote) {
-							worldIn.destroyBlock(blkpos, false);
-						}
-					}
-				} else if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_MOONTEMPLE)) {
-					if (blk == TABlocks.moontemplegate.getDefaultState()) {
-						if (!worldIn.isRemote) {
-							worldIn.destroyBlock(blkpos, false);
-						}
-					}
-				} else if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_MOONTEMPLECELL)) {
-					if (blk == TABlocks.moontemplecellgate.getDefaultState()) {
-						if (!worldIn.isRemote) {
-							worldIn.destroyBlock(blkpos, false);
-						}
+				if (this.isGate(blk.getBlock())) {
+					if (!worldIn.isRemote) {
+						worldIn.destroyBlock(blkpos, false);
 					}
 				}
 			}

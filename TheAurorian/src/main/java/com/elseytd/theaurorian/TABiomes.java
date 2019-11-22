@@ -28,11 +28,11 @@ public class TABiomes {
 
 	public static void initBiomeManagerAndDictionary() {
 		BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(aurorianforest, 0));
-		BiomeManager.addSpawnBiome(aurorianforest);
+		//BiomeManager.addSpawnBiome(aurorianforest);
 		BiomeDictionary.addTypes(aurorianforest, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MAGICAL);
 
 		BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(aurorianplains, 0));
-		BiomeManager.addSpawnBiome(aurorianplains);
+		//BiomeManager.addSpawnBiome(aurorianplains);
 		BiomeDictionary.addTypes(aurorianplains, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MAGICAL);
 	}
 }

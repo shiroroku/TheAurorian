@@ -1,6 +1,7 @@
 package com.elseytd.theaurorian.World;
 
 import com.elseytd.theaurorian.TADimensions;
+import com.elseytd.theaurorian.World.Biomes.TABiomeProvider;
 import com.elseytd.theaurorian.World.Biomes.TABiomeProviderForest;
 
 import net.minecraft.util.math.BlockPos;
@@ -15,7 +16,7 @@ public class TAWorldProvider extends WorldProvider {
 	@Override
 	public void init() {
 		this.hasSkyLight = true;
-		this.biomeProvider = new TABiomeProviderForest();
+		this.biomeProvider = new TABiomeProviderForest();//new TABiomeProvider(this.world.getWorldInfo());
 	}
 
 	@Override

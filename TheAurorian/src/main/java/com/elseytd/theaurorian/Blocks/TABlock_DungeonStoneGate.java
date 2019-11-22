@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.block.Block;
@@ -29,6 +28,8 @@ public class TABlock_DungeonStoneGate extends Block {
 	public static final String BLOCKNAME_MOONTEMPLE = "moontemplegate";
 	public static final String BLOCKNAME_MOONTEMPLECELL = "moontemplecellgate";
 
+	private TABlock_DungeonStoneGateKeyhole keyholeBlock = null;
+
 	public TABlock_DungeonStoneGate(String blockname) {
 		super(Material.ROCK);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
@@ -36,6 +37,32 @@ public class TABlock_DungeonStoneGate extends Block {
 		this.setSoundType(SoundType.STONE);
 		this.setUnlocalizedName(TAMod.MODID + "." + blockname);
 		this.setRegistryName(blockname);
+	}
+
+	public TABlock_DungeonStoneGate(String blockname, String keyholeblockname) {
+		this(blockname);
+		this.setKeyhole(new TABlock_DungeonStoneGateKeyhole(keyholeblockname));
+	}
+
+	@Override
+	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
+		return this.isInKeyholeRange(worldIn, pos);
+	}
+
+	public void setKeyhole(TABlock_DungeonStoneGateKeyhole keyholename) {
+		this.keyholeBlock = keyholename;
+	}
+
+	public TABlock_DungeonStoneGateKeyhole getKeyhole() {
+		return this.keyholeBlock;
+	}
+
+	public boolean isKeyhole(Block bcheck) {
+		if (getKeyhole().getRegistryName().equals(bcheck.getRegistryName())) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -48,55 +75,29 @@ public class TABlock_DungeonStoneGate extends Block {
 		if (!GuiScreen.isShiftKeyDown()) {
 			tooltip.add(TextFormatting.ITALIC + "Hold shift for more info" + TextFormatting.RESET);
 		} else {
-			tooltip.add("Can only be placed up to " + TABlock_DungeonStoneGateKeyhole.maxBlocksFromKeyhole + " blocks away from the gate's keyhole on the X or Z axis.");
+			tooltip.add("Can only be placed up to " + getKeyhole().getMaxGateDistance() + " blocks away from the gate's keyhole on the X or Z axis.");
 		}
 	}
 
 	public boolean isInKeyholeRange(World worldIn, BlockPos pos) {
-		int maxBlocksFromKeyhole = TABlock_DungeonStoneGateKeyhole.maxBlocksFromKeyhole;
-
+		int maxBlocksFromKeyhole = getKeyhole().getMaxGateDistance();
 		for (int x = -maxBlocksFromKeyhole; x <= maxBlocksFromKeyhole; x++) {
 			for (int y = -maxBlocksFromKeyhole; y <= maxBlocksFromKeyhole; y++) {
 				IBlockState blk = worldIn.getBlockState(new BlockPos(pos.getX() - x, pos.getY() - y, pos.getZ()));
-				if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_RUNESTONE)) {
-					if (blk == TABlocks.runestonegatekeyhole.getDefaultState()) {
-						return true;
-					}
-				} else if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_MOONTEMPLE)) {
-					if (blk == TABlocks.moontemplegatekeyhole.getDefaultState()) {
-						return true;
-					}
-				} else if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_MOONTEMPLECELL)) {
-					if (blk == TABlocks.moontemplecellgatekeyhole.getDefaultState()) {
-						return true;
-					}
+				if (this.isKeyhole(blk.getBlock())) {
+					return true;
 				}
 			}
 		}
 		for (int z = -maxBlocksFromKeyhole; z <= maxBlocksFromKeyhole; z++) {
 			for (int y = -maxBlocksFromKeyhole; y <= maxBlocksFromKeyhole; y++) {
 				IBlockState blk = worldIn.getBlockState(new BlockPos(pos.getX(), pos.getY() - y, pos.getZ() - z));
-				if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_RUNESTONE)) {
-					if (blk == TABlocks.runestonegatekeyhole.getDefaultState()) {
-						return true;
-					}
-				} else if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_MOONTEMPLE)) {
-					if (blk == TABlocks.moontemplegatekeyhole.getDefaultState()) {
-						return true;
-					}
-				} else if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_MOONTEMPLECELL)) {
-					if (blk == TABlocks.moontemplecellgatekeyhole.getDefaultState()) {
-						return true;
-					}
+				if (this.isKeyhole(blk.getBlock())) {
+					return true;
 				}
 			}
 		}
 		return false;
-	}
-
-	@Override
-	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
-		return this.isInKeyholeRange(worldIn, pos);
 	}
 
 }

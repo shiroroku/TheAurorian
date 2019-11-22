@@ -42,6 +42,7 @@ import com.elseytd.theaurorian.Compat.TABlockFluid_MoltenCerulean;
 import com.elseytd.theaurorian.Compat.TABlockFluid_MoltenMoonstone;
 import com.elseytd.theaurorian.Compat.TAFluid_MoltenCerulean;
 import com.elseytd.theaurorian.Compat.TAFluid_MoltenMoonstone;
+import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -58,10 +59,10 @@ import net.minecraftforge.oredict.OreDictionary;
 @Mod.EventBusSubscriber
 public class TABlocks {
 
-	public static TAFluid_Moonwater MOONWATER = new TAFluid_Moonwater();
-	public static TAFluid_MoltenCerulean MOLTENCERULEAN = new TAFluid_MoltenCerulean();
-	public static TAFluid_MoltenMoonstone MOLTENMOONSTONE = new TAFluid_MoltenMoonstone();
-	
+	// FLUID
+	public static TAFluid_Moonwater FLUID_MOONWATER = new TAFluid_Moonwater();
+	public static TAFluid_MoltenCerulean FLUID_MOLTENCERULEAN = new TAFluid_MoltenCerulean();
+	public static TAFluid_MoltenMoonstone FLUID_MOLTENMOONSTONE = new TAFluid_MoltenMoonstone();
 
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAFluid_Moonwater.FLUIDNAME)
 	public static TABlockFluid_Moonwater moonwaterblock;
@@ -277,16 +278,16 @@ public class TABlocks {
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		// FLUID
-		FluidRegistry.registerFluid(MOONWATER);
-		FluidRegistry.addBucketForFluid(MOONWATER);
+		FluidRegistry.registerFluid(FLUID_MOONWATER);
+		FluidRegistry.addBucketForFluid(FLUID_MOONWATER);
 		event.getRegistry().register(new TABlockFluid_Moonwater());
 
-		FluidRegistry.registerFluid(MOLTENCERULEAN);
-		FluidRegistry.addBucketForFluid(MOLTENCERULEAN);
+		FluidRegistry.registerFluid(FLUID_MOLTENCERULEAN);
+		FluidRegistry.addBucketForFluid(FLUID_MOLTENCERULEAN);
 		event.getRegistry().register(new TABlockFluid_MoltenCerulean());
-		
-		FluidRegistry.registerFluid(MOLTENMOONSTONE);
-		FluidRegistry.addBucketForFluid(MOLTENMOONSTONE);
+
+		FluidRegistry.registerFluid(FLUID_MOLTENMOONSTONE);
+		FluidRegistry.addBucketForFluid(FLUID_MOLTENMOONSTONE);
 		event.getRegistry().register(new TABlockFluid_MoltenMoonstone());
 
 		// SPECIAL
@@ -299,6 +300,7 @@ public class TABlocks {
 		event.getRegistry().register(new TABlock_Silentwood_Workbench());
 		event.getRegistry().register(new TABlock_Spawner_Boss(TABlock_Spawner_Boss.BLOCKNAME_KEEPER));
 		event.getRegistry().register(new TABlock_Spawner_Boss(TABlock_Spawner_Boss.BLOCKNAME_MOONQUEEN));
+
 		// TERRAIN
 		event.getRegistry().register(new TABlock_Terrain_AurorianCobblestone());
 		event.getRegistry().register(new TABlock_Aurorian_Stone_Brick());
@@ -319,18 +321,18 @@ public class TABlocks {
 		// RUNESTONE
 		event.getRegistry().register(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_RUNESTONE));
 		event.getRegistry().register(new TABlock_DungeonStoneBars(TABlock_DungeonStoneBars.BLOCKNAME_RUNESTONE));
-		event.getRegistry().register(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONE));
-		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONE));
+		event.getRegistry().register(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONE, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONE));
+		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONE, TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONE, TAItem_Special_DungeonKey.ITEMNAME_RUNESTONE, true));
 		event.getRegistry().register(new TABlock_DungeonStoneLamp(TABlock_DungeonStoneLamp.BLOCKNAME_RUNESTONE));
 		event.getRegistry().register(new TABlock_DungeonStoneSmooth(TABlock_DungeonStoneSmooth.BLOCKNAME_RUNESTONE));
 
 		// MOONTEMPLE
 		event.getRegistry().register(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_MOONTEMPLE));
 		event.getRegistry().register(new TABlock_DungeonStoneBars(TABlock_DungeonStoneBars.BLOCKNAME_MOONTEMPLE));
-		event.getRegistry().register(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLE));
-		event.getRegistry().register(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLECELL));
-		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLE));
-		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLECELL));
+		event.getRegistry().register(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLE, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLE));
+		event.getRegistry().register(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLECELL, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLECELL));
+		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLE, TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLE, TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLE));
+		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLECELL, TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLECELL, TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLECELL));
 		event.getRegistry().register(new TABlock_DungeonStoneLamp(TABlock_DungeonStoneLamp.BLOCKNAME_MOONTEMPLE));
 		event.getRegistry().register(new TABlock_DungeonStoneSmooth(TABlock_DungeonStoneSmooth.BLOCKNAME_MOONTEMPLE));
 		event.getRegistry().register(new TABlock_MoonGem());
@@ -356,15 +358,16 @@ public class TABlocks {
 		event.getRegistry().register(new TABlock_Stairs(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_RUNESTONE), TABlock_Stairs.BLOCKNAME_RUNESTONE));
 		event.getRegistry().register(new TABlock_Stairs(new TABlock_Silentwood_Planks(), TABlock_Stairs.BLOCKNAME_SILENTWOOD));
 		event.getRegistry().register(new TABlock_Stairs(new TABlock_Aurorian_Stone_Brick(), TABlock_Stairs.BLOCKNAME_AURORIANSTONE));
-		
+
 		TATileEntities.registerTileEntities(event);
 	}
 
 	public static void registerItemblocks(RegistryEvent.Register<Item> event) {
+		// FLUID
 		itemblockQuickReg(event, TABlocks.moonwaterblock);
 		itemblockQuickReg(event, TABlocks.moltenceruleanblock);
 		itemblockQuickReg(event, TABlocks.moltenmoonstoneblock);
-		
+
 		// SPECIAL 
 		itemblockQuickReg(event, TABlocks.aurorianfurnace);
 		itemblockQuickReg(event, TABlocks.aurorianfurnacechimney);
@@ -436,15 +439,21 @@ public class TABlocks {
 	}
 
 	public static void registerOreDictionary() {
+		OreDictionary.registerOre("treeLeaves", TABlocks.silentwoodplanks);
+		OreDictionary.registerOre("stickWood", TAItems.silentwoodstick);
+
+		OreDictionary.registerOre("oreAurorianCoal", TABlocks.auroriancoalore);
+		OreDictionary.registerOre("oreAurorianGeode", TABlocks.geodeore);
+
 		OreDictionary.registerOre("oreCerulean", TABlocks.ceruleanore);
 		OreDictionary.registerOre("blockCerulean", TABlocks.ceruleanblock);
 		OreDictionary.registerOre("ingotCerulean", TAItems.ceruleaningot);
 		OreDictionary.registerOre("nuggetCerulean", TAItems.ceruleannugget);
-		
+
 		OreDictionary.registerOre("oreMoonstone", TABlocks.moonstoneore);
 		OreDictionary.registerOre("blockMoonstone", TABlocks.moonstoneblock);
 		OreDictionary.registerOre("ingotMoonstone", TAItems.moonstoneingot);
 		OreDictionary.registerOre("nuggetMoonstone", TAItems.moonstonenugget);
 	}
-	
+
 }
