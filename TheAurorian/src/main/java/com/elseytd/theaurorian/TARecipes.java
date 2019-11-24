@@ -12,6 +12,7 @@ public class TARecipes {
 		GameRegistry.addSmelting(TABlocks.moonstoneore, new ItemStack(TAItems.moonstoneingot), 1F);
 		GameRegistry.addSmelting(TAItems.silkberry, new ItemStack(TAItems.silkberryrasin), 0.1F);
 		GameRegistry.addSmelting(TAItems.aurorianpork, new ItemStack(TAItems.aurorianporkcooked), 0.1F);
+		GameRegistry.addSmelting(TABlocks.moonglass, new ItemStack(TABlocks.moonsand), 0.1F);
 
 		// RECYCLING
 		GameRegistry.addSmelting(TAItems.moonstonesword, new ItemStack(TAItems.moonstonenugget, 4), 0F);
