@@ -1,13 +1,11 @@
-package com.elseytd.theaurorian;
+package com.elseytd.theaurorian.Compat;
 
 import static slimeknights.tconstruct.library.utils.HarvestLevels.IRON;
 
 import java.awt.Color;
 
-import com.elseytd.theaurorian.Compat.TAFluid_MoltenCerulean;
-import com.elseytd.theaurorian.Compat.TAFluid_MoltenMoonstone;
-import com.elseytd.theaurorian.Compat.TATinkersTrait_AurorianEmpowered;
-import com.elseytd.theaurorian.Compat.TATinkersTrait_Moonlit;
+import com.elseytd.theaurorian.TABlocks;
+import com.elseytd.theaurorian.TAItems;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
