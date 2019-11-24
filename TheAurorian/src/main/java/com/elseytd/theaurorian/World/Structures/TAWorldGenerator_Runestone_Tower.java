@@ -81,8 +81,8 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator {
 		}
 
 		boolean gen = false;
-		int x = chunkX * 16;
-		int z = chunkZ * 16;
+		int x = chunkX * 16 + 8;
+		int z = chunkZ * 16 + 8;
 		int y = 86;
 		int toplevel = y + (6 * (FLOOR_COUNT + 1));
 

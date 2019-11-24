@@ -65,8 +65,8 @@ public class TAWorldGenerator_MoonTemple extends WorldGenerator {
 
 	public boolean generateTemple(World world, int chunkX, int chunkZ, Random rand) {
 		boolean gen = false;
-		int x = chunkX * 16;
-		int z = chunkZ * 16;
+		int x = chunkX * 16 + 8;
+		int z = chunkZ * 16 + 8;
 		int y = 200;
 
 		final PlacementSettings settings = new PlacementSettings().setRotation(Rotation.NONE).setReplacedBlock(TABlocks.aurorianstone);
