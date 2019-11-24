@@ -84,7 +84,7 @@ public class TAChunkGenerator implements IChunkGenerator {
 		}
 
 		//BIOMES
-		Biome biome = this.worldObj.getBiome(blockpos.add(16, 0, 16));
+		Biome biome = this.worldObj.getBiome(blockpos.add(0, 0, 0));
 		biome.decorate(this.worldObj, this.random, blockpos);
 
 		//ENTITIES

@@ -82,8 +82,8 @@ public class TABiomeDecoratorPlains extends BiomeDecorator {
 				int k14 = worldIn.getHeight(this.chunkPos.add(j7, 0, i11)).getY() * 2;
 				if (k14 > 0) {
 					int l17 = random.nextInt(k14);
-					if (biomeIn instanceof TABiomeAurorianForest) {
-						TABiomeAurorianForest bio = (TABiomeAurorianForest) biomeIn;
+					if (biomeIn instanceof TABiomeAurorianPlains) {
+						TABiomeAurorianPlains bio = (TABiomeAurorianPlains) biomeIn;
 						bio.getRandomWorldGenForLavender(random).generate(worldIn, random, this.chunkPos.add(j7, l17, i11));
 					}
 				}
@@ -98,8 +98,8 @@ public class TABiomeDecoratorPlains extends BiomeDecorator {
 				int k14 = worldIn.getHeight(this.chunkPos.add(j7, 0, i11)).getY() * 2;
 				if (k14 > 0) {
 					int l17 = random.nextInt(k14);
-					if (biomeIn instanceof TABiomeAurorianForest) {
-						TABiomeAurorianForest bio = (TABiomeAurorianForest) biomeIn;
+					if (biomeIn instanceof TABiomeAurorianPlains) {
+						TABiomeAurorianPlains bio = (TABiomeAurorianPlains) biomeIn;
 						bio.getRandomWorldGenForSilkberry(random).generate(worldIn, random, this.chunkPos.add(j7, l17, i11));
 					}
 				}

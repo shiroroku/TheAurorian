@@ -17,7 +17,6 @@ import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
@@ -30,7 +29,7 @@ public class TABiomeAurorianForest extends Biome {
 	Block stoneBlock = TABlocks.aurorianstone;
 
 	public TABiomeAurorianForest() {
-		super(new BiomeProperties("aurorianforest").setBaseHeight(1.0F).setHeightVariation(0.8F).setRainDisabled().setTemperature(0.2F));
+		super(new BiomeProperties("aurorianforest").setBaseHeight(0.8F).setHeightVariation(1F).setRainDisabled().setTemperature(0.2F));
 
 		this.topBlock = TABlocks.auroriangrass.getDefaultState();
 		this.fillerBlock = TABlocks.auroriandirt.getDefaultState();
@@ -71,14 +70,14 @@ public class TABiomeAurorianForest extends Biome {
 
 	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
-		int i = worldIn.getSeaLevel();
+		int i = 69;//TATerrainGenerator:l207 
 		IBlockState iblockstate = this.topBlock;
 		IBlockState iblockstate1 = this.fillerBlock;
+		IBlockState iblockstatesand = TABlocks.moonsand.getDefaultState();
 		int j = -1;
 		int k = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
 		int l = x & 15;
 		int i1 = z & 15;
-		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
 		for (int j1 = 255; j1 >= 0; --j1) {
 			if (j1 <= rand.nextInt(5)) {
@@ -97,15 +96,6 @@ public class TABiomeAurorianForest extends Biome {
 							iblockstate = this.topBlock;
 							iblockstate1 = this.fillerBlock;
 						}
-
-						if (j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR)) {
-							if (this.getTemperature(blockpos$mutableblockpos.setPos(x, j1, z)) < 0.15F) {
-								iblockstate = ICE;
-							} else {
-								iblockstate = WATER;
-							}
-						}
-
 						j = k;
 
 						if (j1 >= i - 1) {
@@ -113,9 +103,9 @@ public class TABiomeAurorianForest extends Biome {
 						} else if (j1 < i - 7 - k) {
 							iblockstate = AIR;
 							iblockstate1 = stoneBlock.getDefaultState();
-							chunkPrimerIn.setBlockState(i1, j1, l, GRAVEL);
-						} else {
 							chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
+						} else {
+							chunkPrimerIn.setBlockState(i1, j1, l, iblockstatesand);
 						}
 					} else if (j > 0) {
 						--j;

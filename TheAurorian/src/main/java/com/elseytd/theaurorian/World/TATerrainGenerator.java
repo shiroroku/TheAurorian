@@ -204,6 +204,8 @@ public class TATerrainGenerator {
 									primer.setBlockState(x4 * 4 + x, height32 * 8 + h, z4 * 4 + z, Blocks.BEDROCK.getDefaultState());
 								} else if ((d15 += d16) > 0.0D) {
 									primer.setBlockState(x4 * 4 + x, height32 * 8 + h, z4 * 4 + z, TABlocks.aurorianstone.getDefaultState());
+								} else if (height < 68 && height > 30) {
+									primer.setBlockState(x4 * 4 + x, height32 * 8 + h, z4 * 4 + z, TABlocks.moonwaterblock.getDefaultState());
 								}
 							}
 

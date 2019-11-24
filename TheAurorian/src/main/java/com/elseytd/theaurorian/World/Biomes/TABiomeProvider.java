@@ -11,7 +11,6 @@ import net.minecraft.world.storage.WorldInfo;
 
 public class TABiomeProvider extends BiomeProvider {
 
-
 	public TABiomeProvider(WorldInfo inf) {
 		super(inf);
 		getBiomesToSpawnIn().clear();
@@ -19,25 +18,18 @@ public class TABiomeProvider extends BiomeProvider {
 		allowedBiomes.add(TABiomes.aurorianforest);
 		allowedBiomes.add(TABiomes.aurorianplains);
 	}
-	
+
 	@Override
-    public GenLayer[] getModdedBiomeGenerators(WorldType worldType, long seed, GenLayer[] original) {
-        GenLayer biomes = new TABiomesGenLayer(1);
+	public GenLayer[] getModdedBiomeGenerators(WorldType worldType, long seed, GenLayer[] original) {
+		GenLayer biomes = new TABiomesGenLayer(1);
 
-        biomes = new GenLayerZoom(1000, biomes);
-        biomes = new GenLayerZoom(1000, biomes);
-        biomes = new GenLayerZoom(1001, biomes);
-        biomes = new GenLayerZoom(1002, biomes);
-        biomes = new GenLayerZoom(1003, biomes);
-        biomes = new GenLayerZoom(1004, biomes);
+		biomes = new GenLayerZoom(1000, biomes);
+		biomes = new GenLayerZoom(1000, biomes);
 
-        GenLayer biomeIndexLayer = new GenLayerVoronoiZoom(10L, biomes);
-        biomeIndexLayer.initWorldGenSeed(seed);
+		GenLayer biomeIndexLayer = new GenLayerVoronoiZoom(10L, biomes);
+		biomeIndexLayer.initWorldGenSeed(seed);
 
-        return new GenLayer[]{
-                biomes,
-                biomeIndexLayer
-        };
-    }
+		return new GenLayer[] { biomes, biomeIndexLayer };
+	}
 
 }
