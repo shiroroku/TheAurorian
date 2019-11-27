@@ -74,19 +74,19 @@ public class TAWorldGenerator_MoonTemple extends WorldGenerator {
 
 		if (isValidChunkForGen(chunkX, chunkZ, 0, 0)) {
 			final Template temple_connector = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_CONNECTOR);
-			temple_connector.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
+			temple_connector.addBlocksToWorld(world, new BlockPos(x, y, z), settings, 3);
 
 			final Template temple_terrain = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_TERRAIN);
-			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings);
+			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings, 3);
 			gen = true;
 		}
 
 		if (isValidChunkForGen(chunkX, chunkZ, 1, 0)) {
 			final Template temple_tower = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_TOWER);
-			temple_tower.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
+			temple_tower.addBlocksToWorld(world, new BlockPos(x, y, z), settings, 3);
 
 			final Template temple_terrain = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_TERRAIN);
-			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings);
+			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings, 3);
 			gen = true;
 		}
 
@@ -101,19 +101,19 @@ public class TAWorldGenerator_MoonTemple extends WorldGenerator {
 
 		if (isValidChunkForGen(chunkX, chunkZ, 0, 1)) {
 			final Template temple_courtyard = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_COURTYARD);
-			temple_courtyard.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
+			temple_courtyard.addBlocksToWorld(world, new BlockPos(x, y, z), settings, 3);
 
 			final Template temple_terrain = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_TERRAIN);
-			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings);
+			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings, 3);
 			gen = true;
 		}
 
 		if (isValidChunkForGen(chunkX, chunkZ, 0, -1)) {
 			final Template temple_room = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_ROOM);
-			temple_room.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
+			temple_room.addBlocksToWorld(world, new BlockPos(x, y, z), settings, 3);
 
 			final Template temple_terrain = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_TERRAIN);
-			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings);
+			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings, 3);
 			gen = true;
 		}
 
@@ -161,7 +161,7 @@ public class TAWorldGenerator_MoonTemple extends WorldGenerator {
 	public void genIsland(World world, int x, int y, int z, Random rand) {
 		final PlacementSettings settings = new PlacementSettings().setRotation(Rotation.NONE).setReplacedBlock(Blocks.AIR);
 		final Template temple_island = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_ISLAND);
-		temple_island.addBlocksToWorld(world, new BlockPos(x, y - 27 + rand.nextInt(10), z), settings);
+		temple_island.addBlocksToWorld(world, new BlockPos(x, y - 27 + rand.nextInt(10), z), settings, 3);
 	}
 
 	public void genSpiralPath(World world, int chunkX, int chunkZ, int x, int y, int z) {

@@ -30,6 +30,7 @@ public class TAChunkGenerator implements IChunkGenerator {
 
 	private MapGenBase caveGenerator = new TAMapGenCaves();
 	private TATerrainGenerator terraingen = new TATerrainGenerator();
+	
 	private TAWorldGenerator_Runestone_Tower towergen = new TAWorldGenerator_Runestone_Tower();
 	private TAWorldGenerator_Ruins ruingen = new TAWorldGenerator_Ruins();
 	private TAWorldGenerator_MoonTemple templegen = new TAWorldGenerator_MoonTemple();
@@ -45,11 +46,11 @@ public class TAChunkGenerator implements IChunkGenerator {
 	@Override
 	public Chunk generateChunk(int x, int z) {
 		ChunkPrimer chunkprimer = new ChunkPrimer();
-		this.biomes = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomes, x * 4 - 2, z * 4 - 2, 10, 10);//X
-		this.terraingen.setBiomes(biomes);//X
+		this.biomes = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomes, x * 4 - 2, z * 4 - 2, 10, 10);
+		this.terraingen.setBiomes(biomes);
 		this.terraingen.generate(x, z, chunkprimer);
 
-		this.biomes = this.worldObj.getBiomeProvider().getBiomes(this.biomes, x * 16, z * 16, 16, 16);//X
+		this.biomes = this.worldObj.getBiomeProvider().getBiomes(this.biomes, x * 16, z * 16, 16, 16);
 		this.terraingen.replaceBiomeBlocks(x, z, chunkprimer, this, biomes);
 
 		this.caveGenerator.generate(this.worldObj, x, z, chunkprimer);

@@ -21,6 +21,7 @@ import com.elseytd.theaurorian.Items.TAItem_Ingot_Cerulean;
 import com.elseytd.theaurorian.Items.TAItem_Ingot_Moonstone;
 import com.elseytd.theaurorian.Items.TAItem_Seeds;
 import com.elseytd.theaurorian.Items.TAItem_Special_Bepsi;
+import com.elseytd.theaurorian.Items.TAItem_Special_DarkAmulet;
 import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
 import com.elseytd.theaurorian.Items.TAItem_Special_KeeperAmulet;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Axe;
@@ -68,6 +69,8 @@ public class TAItems {
 	public static ArmorMaterial TA_KNIGHT_ARMOR = EnumHelper.addArmorMaterial("TA_KNIGHT_ARMOR", "theaurorian:knight", 30, new int[] { 2, 3, 2, 1 }, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0);
 
 	// SPECIAL
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_DarkAmulet.ITEMNAME)
+	public static TAItem_Special_DarkAmulet darkamulet;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_KeeperAmulet.ITEMNAME)
 	public static TAItem_Special_KeeperAmulet keeperamulet;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_DungeonKey.ITEMNAME_RUNESTONE)
@@ -76,6 +79,8 @@ public class TAItems {
 	public static TAItem_Special_DungeonKey moontemplekey;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLECELL)
 	public static TAItem_Special_DungeonKey moontemplecellkey;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_DungeonKey.ITEMNAME_DARKSTONE)
+	public static TAItem_Special_DungeonKey darkstonekey;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Special_Lockpicks.ITEMNAME)
 	public static TAItem_Tool_Special_Lockpicks lockpicks;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Special_RunestoneBreaker.ITEMNAME)
@@ -204,10 +209,12 @@ public class TAItems {
 	@SideOnly(Side.CLIENT)
 	public static void initModels() {
 		// SPECIAL
+		darkamulet.initModel();
 		keeperamulet.initModel();
 		runestonekey.initModel();
 		moontemplekey.initModel();
 		moontemplecellkey.initModel();
+		darkstonekey.initModel();
 		lockpicks.initModel();
 		runestonebreaker.initModel();
 		moontemplebreaker.initModel();
@@ -282,10 +289,12 @@ public class TAItems {
 
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		// SPECIAL
+		event.getRegistry().register(new TAItem_Special_DarkAmulet());
 		event.getRegistry().register(new TAItem_Special_KeeperAmulet());
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_RUNESTONE));
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLE));
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLECELL));
+		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_DARKSTONE));
 		event.getRegistry().register(new TAItem_Tool_Special_Lockpicks());
 		event.getRegistry().register(new TAItem_Tool_Special_RunestoneBreaker());
 		event.getRegistry().register(new TAItem_Tool_Special_MoonTempleBreaker());

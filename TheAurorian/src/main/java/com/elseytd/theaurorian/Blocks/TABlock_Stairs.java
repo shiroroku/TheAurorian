@@ -17,6 +17,7 @@ public class TABlock_Stairs extends BlockStairs {
 	public static final String BLOCKNAME_RUNESTONE = "runestonestairs";
 	public static final String BLOCKNAME_MOONTEMPLE = "moontemplestairs";
 	public static final String BLOCKNAME_AURORIANSTONE = "aurorianstonestairs";
+	public static final String BLOCKNAME_DARK = "darkstonestairs";
 
 	public TABlock_Stairs(Block blockbase, String name) {
 		super(blockbase.getDefaultState());
@@ -26,7 +27,7 @@ public class TABlock_Stairs extends BlockStairs {
 		this.setRegistryName(name);
 		if (name == BLOCKNAME_AURORIANCOBBLESTONE || name == BLOCKNAME_AURORIANSTONE) {
 			this.setHarvestLevel("pickaxe", 0);
-		} else if (name == BLOCKNAME_MOONTEMPLE || name == BLOCKNAME_RUNESTONE) {
+		} else if (name == BLOCKNAME_MOONTEMPLE || name == BLOCKNAME_RUNESTONE || name ==  BLOCKNAME_DARK) {
 			this.setHardness(500F);
 		}
 	}

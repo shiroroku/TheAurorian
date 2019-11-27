@@ -7,6 +7,7 @@ import com.elseytd.theaurorian.Entities.AurorianPig.TAEntity_AurorianPig;
 import com.elseytd.theaurorian.Entities.AurorianRabbit.TAEntity_AurorianRabbit;
 import com.elseytd.theaurorian.Entities.AurorianSheep.TAEntity_AurorianSheep;
 import com.elseytd.theaurorian.Entities.Hollow.TAEntity_DisturbedHollow;
+import com.elseytd.theaurorian.World.TATerrainGenerator;
 import com.elseytd.theaurorian.World.TAWorldGenerator_Lavender;
 import com.elseytd.theaurorian.World.TAWorldGenerator_Silkberry;
 import com.elseytd.theaurorian.World.TAWorldGenerator_Tallgrass;
@@ -27,9 +28,9 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class TABiome extends Biome {
 
 	Block stoneBlock = TABlocks.aurorianstone;
-
+	
 	public TABiome(Biome.BiomeProperties properties) {
-		super(properties);
+		super(properties.setRainDisabled().setTemperature(0.2F));
 		this.topBlock = TABlocks.auroriangrass.getDefaultState();
 		this.fillerBlock = TABlocks.auroriandirt.getDefaultState();
 		this.spawnableCaveCreatureList.clear();
@@ -67,7 +68,7 @@ public class TABiome extends Biome {
 
 	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
-		int i = 69;//TATerrainGenerator:l207 
+		int i = TATerrainGenerator.waterLevel + 1;
 		IBlockState iblockstate = this.topBlock;
 		IBlockState iblockstate1 = this.fillerBlock;
 		IBlockState iblockstatesand = TABlocks.moonsand.getDefaultState();
@@ -81,7 +82,6 @@ public class TABiome extends Biome {
 				chunkPrimerIn.setBlockState(i1, j1, l, BEDROCK);
 			} else {
 				IBlockState iblockstate2 = chunkPrimerIn.getBlockState(i1, j1, l);
-
 				if (iblockstate2.getMaterial() == Material.AIR) {
 					j = -1;
 				} else if (iblockstate2.getBlock() == stoneBlock) {
@@ -107,7 +107,6 @@ public class TABiome extends Biome {
 					} else if (j > 0) {
 						--j;
 						chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
-
 						if (j == 0 && iblockstate1.getBlock() == Blocks.SAND && k > 1) {
 							j = rand.nextInt(4) + Math.max(0, j1 - 63);
 							iblockstate1 = iblockstate1.getValue(BlockSand.VARIANT) == BlockSand.EnumType.RED_SAND ? RED_SANDSTONE : SANDSTONE;

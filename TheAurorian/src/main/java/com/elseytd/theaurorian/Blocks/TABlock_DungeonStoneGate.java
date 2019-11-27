@@ -27,6 +27,7 @@ public class TABlock_DungeonStoneGate extends Block {
 	public static final String BLOCKNAME_RUNESTONE = "runestonegate";
 	public static final String BLOCKNAME_MOONTEMPLE = "moontemplegate";
 	public static final String BLOCKNAME_MOONTEMPLECELL = "moontemplecellgate";
+	public static final String BLOCKNAME_DARK = "darkstonegate";
 
 	private TABlock_DungeonStoneGateKeyhole keyholeBlock = null;
 

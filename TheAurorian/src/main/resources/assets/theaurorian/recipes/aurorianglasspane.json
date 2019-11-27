@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": [
+      {
+        "item": "theaurorian:aurorianglass",
+        "data": 0
+      }
+    ]
+  },
+  "result": {
+    "item": "theaurorian:aurorianglasspane",
+    "count": 16
+  }
+}

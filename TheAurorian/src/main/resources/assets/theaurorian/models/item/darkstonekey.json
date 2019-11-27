@@ -1,0 +1,6 @@
+{
+	"parent": "theaurorian:item/key",
+	"textures": {
+		"layer0": "theaurorian:items/darkstonekey"
+	}
+}

@@ -165,6 +165,20 @@ public class TABlocks {
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_DungeonStoneLamp.BLOCKNAME_MOONTEMPLE)
 	public static TABlock_DungeonStoneLamp moontemplelamp;
 
+	// DARKSTONE
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_DungeonStone.BLOCKNAME_DARK)
+	public static TABlock_DungeonStone darkstonebricks;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_DungeonStone.BLOCKNAME_DARK_FANCY)
+	public static TABlock_DungeonStone darkstonefancy;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_DungeonStone.BLOCKNAME_DARK_LAYERS)
+	public static TABlock_DungeonStone darkstonelayers;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_DungeonStoneGateKeyhole.BLOCKNAME_DARK)
+	public static TABlock_DungeonStoneGateKeyhole darkstonegatekeyhole;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_DungeonStoneGate.BLOCKNAME_DARK)
+	public static TABlock_DungeonStoneGate darkstonegate;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_DungeonStoneLamp.BLOCKNAME_DARK)
+	public static TABlock_DungeonStoneLamp darkstonelamp;
+	
 	// SILENTWOOD
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Silentwood_Ladder.BLOCKNAME)
 	public static TABlock_Silentwood_Ladder silentwoodladder;
@@ -202,6 +216,8 @@ public class TABlocks {
 	public static TABlock_Stairs silentwoodstairs;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Stairs.BLOCKNAME_AURORIANSTONE)
 	public static TABlock_Stairs aurorianstonestairs;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Stairs.BLOCKNAME_DARK)
+	public static TABlock_Stairs darkstonestairs;
 
 	@SideOnly(Side.CLIENT)
 	public static void initModels() {
@@ -261,6 +277,14 @@ public class TABlocks {
 		moontemplegatekeyhole.initModel();
 		moontemplelamp.initModel();
 
+		// DARKSTONE
+		darkstonebricks.initModel();
+		darkstonefancy.initModel();
+		darkstonelayers.initModel();
+		darkstonegate.initModel();
+		darkstonegatekeyhole.initModel();
+		darkstonelamp.initModel();
+		
 		// SILENTWOOD
 		silentwoodladder.initModel();
 		silentwoodleaves.initModel();
@@ -282,6 +306,7 @@ public class TABlocks {
 		runestonestairs.initModel();
 		silentwoodstairs.initModel();
 		aurorianstonestairs.initModel();
+		darkstonestairs.initModel();
 
 	}
 
@@ -355,6 +380,14 @@ public class TABlocks {
 		event.getRegistry().register(new TABlock_DungeonStoneSmooth(TABlock_DungeonStoneSmooth.BLOCKNAME_MOONTEMPLE));
 		event.getRegistry().register(new TABlock_MoonGem());
 
+		// DARKSTONE
+		event.getRegistry().register(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK));
+		event.getRegistry().register(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK_FANCY));
+		event.getRegistry().register(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK_LAYERS));
+		event.getRegistry().register(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_DARK, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_DARK));
+		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_DARK, TABlock_DungeonStoneGate.BLOCKNAME_DARK, TAItem_Special_DungeonKey.ITEMNAME_DARKSTONE));
+		event.getRegistry().register(new TABlock_DungeonStoneLamp(TABlock_DungeonStoneLamp.BLOCKNAME_DARK));
+		
 		// SILENTWOOD
 		event.getRegistry().register(new TABlock_Silentwood_Ladder());
 		event.getRegistry().register(new TABlock_Silentwood_Leaves());
@@ -376,6 +409,7 @@ public class TABlocks {
 		event.getRegistry().register(new TABlock_Stairs(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_RUNESTONE), TABlock_Stairs.BLOCKNAME_RUNESTONE));
 		event.getRegistry().register(new TABlock_Stairs(new TABlock_Silentwood_Planks(), TABlock_Stairs.BLOCKNAME_SILENTWOOD));
 		event.getRegistry().register(new TABlock_Stairs(new TABlock_Aurorian_Stone_Brick(), TABlock_Stairs.BLOCKNAME_AURORIANSTONE));
+		event.getRegistry().register(new TABlock_Stairs(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK), TABlock_Stairs.BLOCKNAME_DARK));
 
 		TATileEntities.registerTileEntities(event);
 	}
@@ -437,6 +471,14 @@ public class TABlocks {
 		itemblockQuickReg(event, TABlocks.moontemplegatekeyhole);
 		itemblockQuickReg(event, TABlocks.moontemplelamp);
 
+		// DARKSTONE
+		itemblockQuickReg(event, TABlocks.darkstonebricks);
+		itemblockQuickReg(event, TABlocks.darkstonelayers);
+		itemblockQuickReg(event, TABlocks.darkstonefancy);
+		itemblockQuickReg(event, TABlocks.darkstonegate);
+		itemblockQuickReg(event, TABlocks.darkstonegatekeyhole);
+		itemblockQuickReg(event, TABlocks.darkstonelamp);
+		
 		// SILENTWOOD
 		itemblockQuickReg(event, TABlocks.silentwoodladder);
 		itemblockQuickReg(event, TABlocks.silentwoodleaves);
@@ -458,11 +500,14 @@ public class TABlocks {
 		itemblockQuickReg(event, TABlocks.runestonestairs);
 		itemblockQuickReg(event, TABlocks.silentwoodstairs);
 		itemblockQuickReg(event, TABlocks.aurorianstonestairs);
+		itemblockQuickReg(event, TABlocks.darkstonestairs);
 	}
 
 	public static void registerOreDictionary() {
 		OreDictionary.registerOre("treeLeaves", TABlocks.silentwoodplanks);
 		OreDictionary.registerOre("stickWood", TAItems.silentwoodstick);
+		OreDictionary.registerOre("logSilentwood", TABlocks.silentwoodlog);
+		OreDictionary.registerOre("plankSilentwood", TABlocks.silentwoodplanks);
 
 		OreDictionary.registerOre("oreAurorianCoal", TABlocks.auroriancoalore);
 		OreDictionary.registerOre("oreAurorianGeode", TABlocks.geodeore);

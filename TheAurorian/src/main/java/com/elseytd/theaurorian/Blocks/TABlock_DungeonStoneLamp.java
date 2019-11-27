@@ -15,6 +15,7 @@ public class TABlock_DungeonStoneLamp extends Block {
 
 	public static final String BLOCKNAME_RUNESTONE = "runestonelamp";
 	public static final String BLOCKNAME_MOONTEMPLE = "moontemplelamp";
+	public static final String BLOCKNAME_DARK = "darkstonelamp";
 
 	public TABlock_DungeonStoneLamp(String blockname) {
 		super(Material.ROCK);

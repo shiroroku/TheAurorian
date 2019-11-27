@@ -15,6 +15,7 @@ import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraftforge.event.ForgeEventFactory;
 
 public class TATerrainGenerator {
+	public static final int waterLevel = 68;
 	private World world;
 	private Random random;
 
@@ -147,7 +148,7 @@ public class TATerrainGenerator {
 					double d7 = this.minLimitRegion[l] / 512.0D;
 					double d8 = this.maxLimitRegion[l] / 512.0D;
 					double d9 = (this.mainNoiseRegion[l] / 10.0D + 1.0D) / 2.0D;
-					double d10 = MathHelper.clamp(d7, d8, d9) - d6;//denormalizeClamp
+					double d10 = MathHelper.clamp(d7, d8, d9) - d6;
 
 					if (j2 > 29) {
 						double d11 = ((j2 - 29) / 3.0F);
@@ -163,8 +164,6 @@ public class TATerrainGenerator {
 
 	public void generate(int chunkX, int chunkZ, ChunkPrimer primer) {
 		generateHeightmap(chunkX * 4, 0, chunkZ * 4);
-
-		//byte waterLevel = 63;
 		for (int x4 = 0; x4 < 4; ++x4) {
 			int l = x4 * 5;
 			int i1 = (x4 + 1) * 5;
@@ -204,7 +203,7 @@ public class TATerrainGenerator {
 									primer.setBlockState(x4 * 4 + x, height32 * 8 + h, z4 * 4 + z, Blocks.BEDROCK.getDefaultState());
 								} else if ((d15 += d16) > 0.0D) {
 									primer.setBlockState(x4 * 4 + x, height32 * 8 + h, z4 * 4 + z, TABlocks.aurorianstone.getDefaultState());
-								} else if (height < 68 && height > 30) {
+								} else if (height < waterLevel && height > 30) {
 									primer.setBlockState(x4 * 4 + x, height32 * 8 + h, z4 * 4 + z, TABlocks.moonwaterblock.getDefaultState());
 								}
 							}
@@ -223,7 +222,7 @@ public class TATerrainGenerator {
 		}
 	}
 
-	public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, IChunkGenerator generator, Biome[] biomes) {//biome
+	public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, IChunkGenerator generator, Biome[] biomes) {
 		if (!ForgeEventFactory.onReplaceBiomeBlocks(generator, x, z, primer, world)) {
 			return;
 		}
@@ -231,7 +230,7 @@ public class TATerrainGenerator {
 
 		for (int xInChunk = 0; xInChunk < 16; ++xInChunk) {
 			for (int zInChunk = 0; zInChunk < 16; ++zInChunk) {
-				Biome biome = biomes[zInChunk + xInChunk * 16];//X
+				Biome biome = biomes[zInChunk + xInChunk * 16];
 				biome.genTerrainBlocks(world, random, primer, x * 16 + xInChunk, z * 16 + zInChunk, depthBuffer[zInChunk + xInChunk * 16]);
 			}
 		}

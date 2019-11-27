@@ -22,6 +22,7 @@ public class TAItem_Special_DungeonKey extends Item {
 	public static final String ITEMNAME_RUNESTONE = "runestonekey";
 	public static final String ITEMNAME_MOONTEMPLE = "moontemplekey";
 	public static final String ITEMNAME_MOONTEMPLECELL = "moontemplecellkey";
+	public static final String ITEMNAME_DARKSTONE = "darkstonekey";
 
 	public TAItem_Special_DungeonKey(String name) {
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
@@ -49,6 +50,9 @@ public class TAItem_Special_DungeonKey extends Item {
 			}
 			if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + ITEMNAME_MOONTEMPLE)) {
 				tooltip.add("Used to unlock Moon Temple Gates. Single use!");
+			}
+			if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + ITEMNAME_DARKSTONE)) {
+				tooltip.add("Used to unlock the forbidden...");
 			}
 		}
 	}
