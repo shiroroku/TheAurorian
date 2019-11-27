@@ -21,7 +21,7 @@ import net.minecraft.util.text.TextFormatting;
 public class TACommandBase_TPTA extends CommandBase {
 
 	//Used for debugging only, thanks to: https://wiki.mcjty.eu/modding/index.php?title=Commands-1.12
-	
+
 	public TACommandBase_TPTA() {
 		aliases = Lists.newArrayList(TAMod.MODID, "TPTA", "tpta");
 	}
@@ -61,7 +61,9 @@ public class TACommandBase_TPTA extends CommandBase {
 		}
 
 		if (sender instanceof EntityPlayer) {
-			TATeleport.teleportToDimension((EntityPlayer) sender, dim, 0, 100, 0);
+			if (((EntityPlayer) sender).isCreative()) {
+				TATeleport.teleportToDimension((EntityPlayer) sender, dim, 0, 100, 0);
+			}
 		}
 	}
 
