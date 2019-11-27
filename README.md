@@ -1,5 +1,5 @@
 # The Aurorian
-A Minecraft mod that adds a new dimension with new bosses, tools, and other neat items to use and explore.
+A Minecraft mod for 1.12.2 that adds a new dimension with new bosses, tools, and other neat items to use and explore.
 
 Check [The Aurorian Discord](https://discord.gg/8tczsgx) for more information, changelogs, and other development stuff.
 
