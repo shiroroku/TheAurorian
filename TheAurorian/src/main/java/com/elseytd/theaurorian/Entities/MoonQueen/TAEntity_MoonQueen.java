@@ -2,6 +2,7 @@ package com.elseytd.theaurorian.Entities.MoonQueen;
 
 import javax.annotation.Nullable;
 
+import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.entity.Entity;
@@ -19,8 +20,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.BossInfo;
@@ -40,6 +44,10 @@ public class TAEntity_MoonQueen extends EntityMob {
 		setSize(0.6F * MobScale, 1.95F * MobScale);
 		this.experienceValue = 500;
 		this.isImmuneToFire = true;
+		this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(TAItems.moonstonesword));
+		this.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(TAItems.knightchestplate));
+		this.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(TAItems.knightleggings));
+		this.setItemStackToSlot(EntityEquipmentSlot.FEET, new ItemStack(TAItems.knightboots));
 	}
 
 	@Override
