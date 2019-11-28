@@ -86,4 +86,9 @@ public class TAWorldProvider extends WorldProvider {
 		return false;
 	}
 
+	@Override
+	public boolean canRespawnHere() {
+		return false;
+	}
+
 }
