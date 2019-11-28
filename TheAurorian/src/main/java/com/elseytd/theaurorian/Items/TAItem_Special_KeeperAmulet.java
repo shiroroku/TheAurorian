@@ -50,7 +50,7 @@ public class TAItem_Special_KeeperAmulet extends Item {
 		if (!GuiScreen.isShiftKeyDown()) {
 			tooltip.add(TextFormatting.ITALIC + "Hold shift for more info" + TextFormatting.RESET);
 		} else {
-			tooltip.add("Pulsates with corrupted power.");
+			tooltip.add("Pulsates with corrupted power. Used for crafting the Moontemple Key or the Runestone Breaker.");
 		}
 	}
 }
