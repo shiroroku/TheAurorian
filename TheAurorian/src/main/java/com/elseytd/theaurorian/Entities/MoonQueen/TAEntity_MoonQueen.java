@@ -156,4 +156,7 @@ public class TAEntity_MoonQueen extends EntityMob {
 		return SoundEvents.ENTITY_IRONGOLEM_STEP;
 	}
 
+	@Override
+	protected void despawnEntity() {
+	}
 }

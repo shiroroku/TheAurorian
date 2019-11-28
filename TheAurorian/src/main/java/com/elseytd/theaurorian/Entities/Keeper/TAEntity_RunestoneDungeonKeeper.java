@@ -199,4 +199,8 @@ public class TAEntity_RunestoneDungeonKeeper extends EntityMob implements IRange
 	@Override
 	public void setSwingingArms(boolean swingingArms) {
 	}
+
+	@Override
+	protected void despawnEntity() {
+	}
 }
