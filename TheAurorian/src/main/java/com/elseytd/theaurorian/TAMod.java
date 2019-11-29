@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 public class TAMod {
 	public static final String MODID = "theaurorian";
 	public static final String NAME = "The Aurorian";
-	public static final String VERSION = "1.12.2-Alpha";
+	public static final String VERSION = "1.12.2-Beta";
 	public static final String VERSION_MINECRAFT = "[1.12.2]";
 	public static final String VERSION_FORGE = "before:tconstruct;required-after:forge@[14.23.5.2847,)";
 
