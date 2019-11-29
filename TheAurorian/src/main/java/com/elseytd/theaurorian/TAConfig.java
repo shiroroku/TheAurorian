@@ -17,7 +17,7 @@ public class TAConfig {
 	//Structures
 	public static boolean Config_GenerateRunestoneTower = true;
 	public static int Config_DungeonDensity = 32;
-	public static int Config_RunestoneTowerFloors = 7;
+	public static int Config_RunestoneTowerFloors = 4;
 	public static boolean Config_GenerateRuins = true;
 	public static boolean Config_GenerateMoonTemple = true;
 	public static boolean Config_GenerateMoonTemplePath = true;
@@ -100,7 +100,7 @@ public class TAConfig {
 
 		Config_GenerateRunestoneTower = cfg.getBoolean("GenerateRunestoneTower", name, Config_GenerateRunestoneTower, "Set to false to disable ruinstonetowers (Why would anyone do this? :c )");
 		Config_DungeonDensity = cfg.getInt("DungeonDensity", name, Config_DungeonDensity, 16, 256, "How many chunks away until another ruinstonetower can generate, also affects moontemple generation");
-		Config_RunestoneTowerFloors = cfg.getInt("RunestoneTowerFloors", name, Config_RunestoneTowerFloors, 1, 17, "How many floors each ruinstonetower has, code only accepts odd numbers! Evens will have +1 added");
+		Config_RunestoneTowerFloors = cfg.getInt("RunestoneTowerFloors", name, Config_RunestoneTowerFloors, 1, 17, "How many floors each ruinstonetower has, including double sized floors, code only accepts odd numbers! Evens will have +1 added");
 		Config_GenerateRuins = cfg.getBoolean("GenerateRuins", name, Config_GenerateRuins, "Set to false to disable ruin structures (like destroyed houses or small underground structures)");
 		Config_GenerateMoonTemple = cfg.getBoolean("GenerateMoonTemple", name, Config_GenerateMoonTemple, "Set to false to disable moon temples");		
 		Config_GenerateMoonTemplePath = cfg.getBoolean("GenerateMoonTemplePath", name, Config_GenerateMoonTemplePath, "Set to false to disable moon temple's spiral path up");

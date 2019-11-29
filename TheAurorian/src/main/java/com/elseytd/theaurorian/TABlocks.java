@@ -140,6 +140,10 @@ public class TABlocks {
 	public static TABlock_DungeonStoneGate runestonegate;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONE)
 	public static TABlock_DungeonStoneGateKeyhole runestonegatekeyhole;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONELOOT)
+	public static TABlock_DungeonStoneGate runestonelootgate;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONELOOT)
+	public static TABlock_DungeonStoneGateKeyhole runestonelootgatekeyhole;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_DungeonStoneLamp.BLOCKNAME_RUNESTONE)
 	public static TABlock_DungeonStoneLamp runestonelamp;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_DungeonStoneSmooth.BLOCKNAME_RUNESTONE)
@@ -263,6 +267,8 @@ public class TABlocks {
 		runestonebars.initModel();
 		runestonegate.initModel();
 		runestonegatekeyhole.initModel();
+		runestonelootgate.initModel();
+		runestonelootgatekeyhole.initModel();
 		runestonelamp.initModel();
 		runestonesmooth.initModel();
 
@@ -366,6 +372,8 @@ public class TABlocks {
 		event.getRegistry().register(new TABlock_DungeonStoneBars(TABlock_DungeonStoneBars.BLOCKNAME_RUNESTONE));
 		event.getRegistry().register(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONE, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONE));
 		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONE, TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONE, TAItem_Special_DungeonKey.ITEMNAME_RUNESTONE, true));
+		event.getRegistry().register(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONELOOT, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONELOOT));
+		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONELOOT, TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONELOOT, TAItem_Special_DungeonKey.ITEMNAME_RUNESTONELOOT));
 		event.getRegistry().register(new TABlock_DungeonStoneLamp(TABlock_DungeonStoneLamp.BLOCKNAME_RUNESTONE));
 		event.getRegistry().register(new TABlock_DungeonStoneSmooth(TABlock_DungeonStoneSmooth.BLOCKNAME_RUNESTONE));
 
@@ -457,6 +465,8 @@ public class TABlocks {
 		itemblockQuickReg(event, TABlocks.runestonebars);
 		itemblockQuickReg(event, TABlocks.runestonegate);
 		itemblockQuickReg(event, TABlocks.runestonegatekeyhole);
+		itemblockQuickReg(event, TABlocks.runestonelootgate);
+		itemblockQuickReg(event, TABlocks.runestonelootgatekeyhole);
 		itemblockQuickReg(event, TABlocks.runestonelamp);
 		itemblockQuickReg(event, TABlocks.runestonesmooth);
 

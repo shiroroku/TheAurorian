@@ -44,6 +44,26 @@ public class TAUtil {
 		}
 	}
 
+	public static void populateChestsInChunkAtHeight(Chunk c, int y, Random rand, ResourceLocation loot, boolean ignorechestempty) {
+		Map<BlockPos, TileEntity> entry = c.getTileEntityMap();
+		for (TileEntity e : entry.values()) {
+			if (e != null) {
+				if (e instanceof TileEntityChest) {
+					TileEntityChest chest = (TileEntityChest) e;
+					if (chest.getPos().getY() == y) {
+						if (ignorechestempty) {
+							chest.setLootTable(loot, rand.nextLong());
+						} else {
+							if (chest.isEmpty()) {
+								chest.setLootTable(loot, rand.nextLong());
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
 	/**
 	 * Finds all empty chests in the chunk and applies the given loot table to
 	 * them.

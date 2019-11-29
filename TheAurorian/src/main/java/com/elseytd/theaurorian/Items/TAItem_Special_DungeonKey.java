@@ -20,6 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TAItem_Special_DungeonKey extends Item {
 
 	public static final String ITEMNAME_RUNESTONE = "runestonekey";
+	public static final String ITEMNAME_RUNESTONELOOT = "runestonelootkey";
 	public static final String ITEMNAME_MOONTEMPLE = "moontemplekey";
 	public static final String ITEMNAME_MOONTEMPLECELL = "moontemplecellkey";
 	public static final String ITEMNAME_DARKSTONE = "darkstonekey";
@@ -53,6 +54,9 @@ public class TAItem_Special_DungeonKey extends Item {
 			}
 			if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + ITEMNAME_DARKSTONE)) {
 				tooltip.add("Used to unlock the forbidden...");
+			}
+			if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + ITEMNAME_RUNESTONELOOT)) {
+				tooltip.add("Used to unlock Runestone Dungeon's loot room.");
 			}
 		}
 	}

@@ -24,6 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TABlock_DungeonStoneGateKeyhole extends Block {
 
 	public static final String BLOCKNAME_RUNESTONE = "runestonegatekeyhole";
+	public static final String BLOCKNAME_RUNESTONELOOT = "runestonelootgatekeyhole";
 	public static final String BLOCKNAME_MOONTEMPLE = "moontemplegatekeyhole";
 	public static final String BLOCKNAME_MOONTEMPLECELL = "moontemplecellgatekeyhole";
 	public static final String BLOCKNAME_DARK = "darkstonegatekeyhole";

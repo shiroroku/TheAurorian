@@ -75,6 +75,8 @@ public class TAItems {
 	public static TAItem_Special_KeeperAmulet keeperamulet;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_DungeonKey.ITEMNAME_RUNESTONE)
 	public static TAItem_Special_DungeonKey runestonekey;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_DungeonKey.ITEMNAME_RUNESTONELOOT)
+	public static TAItem_Special_DungeonKey runestonelootkey;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLE)
 	public static TAItem_Special_DungeonKey moontemplekey;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLECELL)
@@ -212,6 +214,7 @@ public class TAItems {
 		darkamulet.initModel();
 		keeperamulet.initModel();
 		runestonekey.initModel();
+		runestonelootkey.initModel();
 		moontemplekey.initModel();
 		moontemplecellkey.initModel();
 		darkstonekey.initModel();
@@ -292,6 +295,7 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Special_DarkAmulet());
 		event.getRegistry().register(new TAItem_Special_KeeperAmulet());
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_RUNESTONE));
+		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_RUNESTONELOOT));
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLE));
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLECELL));
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_DARKSTONE));
