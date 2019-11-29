@@ -7,6 +7,9 @@ import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TAUtil;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -75,6 +78,37 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator {
 		return false;
 	}
 
+	private int getDungeonBaseHeight(World world, int x, int z, int part) {
+		int x1 = x;
+		int i = world.getHeight();
+		int z1 = z;
+
+		switch (part) {
+		case 1:
+			x1 = x1 + 30;
+			break;
+		case 2:
+			x1 = x1 + 30;
+			z1 = z1 + 17;
+			break;
+		case 3:
+			x1 = x1 + 15;
+			break;
+		case 4:
+			x1 = x1 + 15;
+			z1 = z1 + 15;
+			break;
+		}
+
+		Block blk = world.getBlockState(new BlockPos(x1, i, z1)).getBlock();
+		while (blk == Blocks.AIR || blk == TABlocks.silentwoodleaves || blk == TABlocks.silentwoodlog && i > 0) {
+			i--;
+			blk = world.getBlockState(new BlockPos(x1, i, z1)).getBlock();
+		}
+
+		return i + 1;
+	}
+
 	public boolean generateTower(World world, int chunkX, int chunkZ) {
 		if (FLOOR_COUNT % 2 != 0) {
 			FLOOR_COUNT = FLOOR_COUNT + 1;
@@ -84,7 +118,6 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator {
 		int x = chunkX * 16 + 8;
 		int z = chunkZ * 16 + 8;
 		int y = 86;
-		int toplevel = y + (6 * (FLOOR_COUNT + 1));
 
 		final PlacementSettings settings = new PlacementSettings().setRotation(Rotation.NONE).setReplacedBlock(TABlocks.aurorianstone);
 		final PlacementSettings settingsrotated = new PlacementSettings().setRotation(Rotation.CLOCKWISE_180).setReplacedBlock(TABlocks.aurorianstone);
@@ -98,6 +131,8 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator {
 			final Template terrain_tl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TERRAIN_TL);
 			final Template base_tl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_BASE_TL);
 			final Template top_tl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TOP_TL);
+			y = getDungeonBaseHeight(world, x + 1, z, 1);
+			int toplevel = y + (6 * (FLOOR_COUNT + 1));
 
 			for (int i = y; i >= 50; i--) {
 				terrain_tl.addBlocksToWorld(world, new BlockPos(x + 1, i - 1, z), settings);
@@ -118,6 +153,8 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator {
 			final Template terrain_tr = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TERRAIN_TR);
 			final Template base_tr = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_BASE_TR);
 			final Template top_tr = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TOP_TR);
+			y = getDungeonBaseHeight(world, x + 1, z - 1, 2);
+			int toplevel = y + (6 * (FLOOR_COUNT + 1));
 
 			for (int i = y; i >= 50; i--) {
 				terrain_tr.addBlocksToWorld(world, new BlockPos(x + 1, i - 1, z + 1), settings);
@@ -138,6 +175,8 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator {
 			final Template terrain_bl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TERRAIN_BL);
 			final Template base_bl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_BASE_BL);
 			final Template top_bl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TOP_BL);
+			y = getDungeonBaseHeight(world, x, z, 3);
+			int toplevel = y + (6 * (FLOOR_COUNT + 1));
 
 			for (int i = y; i >= 50; i--) {
 				terrain_bl.addBlocksToWorld(world, new BlockPos(x, i - 1, z), settings);
@@ -158,6 +197,8 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator {
 			final Template terrain_br = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TERRAIN_BR);
 			final Template base_br = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_BASE_BR);
 			final Template top_br = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TOP_BR);
+			y = getDungeonBaseHeight(world, x, z + 1, 4);
+			int toplevel = y + (6 * (FLOOR_COUNT + 1));
 
 			for (int i = y; i >= 50; i--) {
 				terrain_br.addBlocksToWorld(world, new BlockPos(x, i, z + 1), settings);
