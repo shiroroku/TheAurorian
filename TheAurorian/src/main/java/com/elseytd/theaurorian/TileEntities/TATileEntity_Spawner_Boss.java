@@ -63,6 +63,7 @@ public class TATileEntity_Spawner_Boss extends TileEntity implements ITickable {
 	}
 
 	public boolean isPlayerInRange() {
-		return world.isAnyPlayerWithinRangeAt(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, 8);
+		int dist = 8;
+		return world.isAnyPlayerWithinRangeAt(pos.getX() + 0.5D, pos.getY() + 0.5D + dist - 1, pos.getZ() + 0.5D, dist);
 	}
 }
