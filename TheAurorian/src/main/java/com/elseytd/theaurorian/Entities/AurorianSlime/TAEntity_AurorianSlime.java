@@ -5,6 +5,9 @@ import javax.annotation.Nullable;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -19,11 +22,13 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
@@ -55,7 +60,7 @@ public class TAEntity_AurorianSlime extends EntityLiving implements IMob {
 	protected void setSlimeSize(int size, boolean resetHealth) {
 		this.setSize(0.51000005F * (float) size, 0.51000005F * (float) size);
 		this.setPosition(this.posX, this.posY, this.posZ);
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((double) (5));
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((double) (6));
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) (0.2F + 0.1F * (float) 3));
 		if (resetHealth) {
 			this.setHealth(this.getMaxHealth());
@@ -87,6 +92,33 @@ public class TAEntity_AurorianSlime extends EntityLiving implements IMob {
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
 		this.wasOnGround = compound.getBoolean("wasOnGround");
+	}
+
+	@Override
+	public void fall(float distance, float damageMultiplier) {
+		float[] ret = net.minecraftforge.common.ForgeHooks.onLivingFall(this, distance, damageMultiplier);
+		if (ret == null)
+			return;
+		distance = ret[0];
+		damageMultiplier = ret[1];
+		super.fall(distance, damageMultiplier);
+		PotionEffect potioneffect = this.getActivePotionEffect(MobEffects.JUMP_BOOST);
+		float f = potioneffect == null ? 0.0F : (float) (potioneffect.getAmplifier() + 1);
+		int i = MathHelper.ceil((distance - 3.0F - f) * damageMultiplier);
+
+		if (i > 0) {
+			this.playSound(this.getFallSound(i), 1.0F, 1.0F);
+			//this.attackEntityFrom(DamageSource.FALL, (float) i);
+			int j = MathHelper.floor(this.posX);
+			int k = MathHelper.floor(this.posY - 0.20000000298023224D);
+			int l = MathHelper.floor(this.posZ);
+			IBlockState iblockstate = this.world.getBlockState(new BlockPos(j, k, l));
+
+			if (iblockstate.getMaterial() != Material.AIR) {
+				SoundType soundtype = iblockstate.getBlock().getSoundType(iblockstate, world, new BlockPos(j, k, l), this);
+				this.playSound(soundtype.getFallSound(), soundtype.getVolume() * 0.5F, soundtype.getPitch() * 0.75F);
+			}
+		}
 	}
 
 	@Override
