@@ -6,11 +6,11 @@ public class TAConfig {
 
 	//Compat
 	public static boolean Config_EnableTinkersConstructCompatibility = true;
-	
+
 	//Blocks
 	public static int Config_MaximumChimneys = 10;
 	public static int Config_ChimneySpeedDiscount = 25;
-	
+
 	//Dimensions
 	public static int Config_AurorianDimId = 24;
 
@@ -40,6 +40,10 @@ public class TAConfig {
 	public static int Config_GeodeOre_HeightMin = 5;
 	public static int Config_GeodeOre_HeightMax = 128;
 
+	//Misc
+	public static String[] Config_PortalLighter = new String[] { "minecraft:flint_and_steel" };
+	public static boolean Config_SticksMakeFire = true;
+
 	public static void readConfig() {
 		Configuration cfg = TAMod.CONFIG;
 		try {
@@ -49,6 +53,7 @@ public class TAConfig {
 			initDimensionConfig(cfg);
 			initStructureConfig(cfg);
 			initGenerationConfig(cfg);
+			initMiscConfig(cfg);
 		} catch (Exception e1) {
 		} finally {
 			if (cfg.hasChanged()) {
@@ -57,21 +62,29 @@ public class TAConfig {
 		}
 	}
 
+	private static void initMiscConfig(Configuration cfg) {
+		String name = "misc";
+		cfg.addCustomCategoryComment(name, "Misc configuration");
+
+		Config_PortalLighter = cfg.getStringList("PortalLighter", name, Config_PortalLighter, "Can change the item(s) used to light the portal here (Uses item's unlocalized name)");
+		Config_SticksMakeFire = cfg.getBoolean("SticksMakeFire", name, Config_SticksMakeFire, "Set to false to disable Silentwood Sticks making Fire or lighting Portal");
+	}
+
 	private static void initCompatConfig(Configuration cfg) {
 		String name = "compatibility";
-		cfg.addCustomCategoryComment(name, "Compatibility configuration");		
-		
+		cfg.addCustomCategoryComment(name, "Compatibility configuration");
+
 		Config_EnableTinkersConstructCompatibility = cfg.getBoolean("EnableTinkersConstructCompatibility", name, Config_EnableTinkersConstructCompatibility, "Set to false to disable Tinkers Construct integration");
 	}
-	
+
 	private static void initBlocksConfig(Configuration cfg) {
 		String name = "blocks";
-		cfg.addCustomCategoryComment(name, "Blocks configuration");		
-		
+		cfg.addCustomCategoryComment(name, "Blocks configuration");
+
 		Config_MaximumChimneys = cfg.getInt("MaximumChimneys", name, Config_MaximumChimneys, 0, 255, "Maximum number of chimneys able to be stacked on Aurorian Furnace that enable the discount");
 		Config_ChimneySpeedDiscount = cfg.getInt("ChimneySpeedDiscount", name, Config_ChimneySpeedDiscount, 0, 2000, "Changes how much a chimney speeds up the Aurorian Furnace (Every chimney is 5% less effective)");
 	}
-	
+
 	private static void initGenerationConfig(Configuration cfg) {
 		String name = "generation";
 		cfg.addCustomCategoryComment(name, "Generation configuration");
@@ -102,7 +115,7 @@ public class TAConfig {
 		Config_DungeonDensity = cfg.getInt("DungeonDensity", name, Config_DungeonDensity, 16, 256, "How many chunks away until another ruinstonetower can generate, also affects moontemple generation");
 		Config_RunestoneTowerFloors = cfg.getInt("RunestoneTowerFloors", name, Config_RunestoneTowerFloors, 1, 17, "How many floors each ruinstonetower has, including double sized floors, code only accepts odd numbers! Evens will have +1 added");
 		Config_GenerateRuins = cfg.getBoolean("GenerateRuins", name, Config_GenerateRuins, "Set to false to disable ruin structures (like destroyed houses or small underground structures)");
-		Config_GenerateMoonTemple = cfg.getBoolean("GenerateMoonTemple", name, Config_GenerateMoonTemple, "Set to false to disable moon temples");		
+		Config_GenerateMoonTemple = cfg.getBoolean("GenerateMoonTemple", name, Config_GenerateMoonTemple, "Set to false to disable moon temples");
 		Config_GenerateMoonTemplePath = cfg.getBoolean("GenerateMoonTemplePath", name, Config_GenerateMoonTemplePath, "Set to false to disable moon temple's spiral path up");
 	}
 

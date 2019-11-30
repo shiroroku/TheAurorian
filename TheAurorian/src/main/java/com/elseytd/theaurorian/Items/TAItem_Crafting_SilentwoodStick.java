@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 
@@ -64,7 +65,7 @@ public class TAItem_Crafting_SilentwoodStick extends Item {
 			ItemStack itemstack = player.getHeldItem(hand);
 			if (!player.canPlayerEdit(pos, facing, itemstack)) {
 				return EnumActionResult.FAIL;
-			} else {
+			} else if (TAConfig.Config_SticksMakeFire) {
 				if (worldIn.isAirBlock(pos)) {
 					worldIn.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
 					worldIn.setBlockState(pos, Blocks.FIRE.getDefaultState(), 11);
