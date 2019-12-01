@@ -9,6 +9,7 @@ import com.elseytd.theaurorian.TAMod;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -36,6 +37,11 @@ public class TAItem_Special_DungeonKey extends Item {
 	@SideOnly(Side.CLIENT)
 	public void initModel() {
 		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
+	}
+	
+	@Override
+	public net.minecraftforge.common.IRarity getForgeRarity(ItemStack stack) {
+		return EnumRarity.UNCOMMON;
 	}
 
 	@SideOnly(Side.CLIENT)
