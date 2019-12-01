@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
+import com.elseytd.theaurorian.World.TAWorldGenerator_UnderWater;
 import com.google.common.base.Predicate;
 
 import net.minecraft.block.state.IBlockState;
@@ -54,6 +55,24 @@ public class TABiomeDecorator extends BiomeDecorator {
 		this.generateOres(worldIn, random);
 
 		TABiome modbiome = (TABiome) biomeIn;
+
+		//==Under Water Blocks==
+		if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.CLAY)) {
+			for (int i1 = 0; i1 < 4; ++i1) {
+				int l1 = random.nextInt(16) + 8;
+				int i6 = random.nextInt(16) + 8;
+				TAWorldGenerator_UnderWater gen = new TAWorldGenerator_UnderWater(5, TABlocks.auroriandirt);
+				gen.generate(worldIn, random, worldIn.getTopSolidOrLiquidBlock(this.chunkPos.add(l1, 0, i6)));
+			}
+		}
+		if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.CLAY)) {
+			for (int i1 = 0; i1 < 4; ++i1) {
+				int l1 = random.nextInt(16) + 8;
+				int i6 = random.nextInt(16) + 8;
+				TAWorldGenerator_UnderWater gen = new TAWorldGenerator_UnderWater(5, TABlocks.aurorianstone);
+				gen.generate(worldIn, random, worldIn.getTopSolidOrLiquidBlock(this.chunkPos.add(l1, 0, i6)));
+			}
+		}
 
 		//=========TREES=======
 		//trees per chunk
