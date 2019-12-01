@@ -1,5 +1,7 @@
 package com.elseytd.theaurorian;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -12,11 +14,28 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class TAUtil {
 
 	public static final DamageSource LIGHTNING = (new DamageSource("lightning"));
-
+	
+	/**
+	 * Contains all ores and modded ores in the ore dictionary, populated postInit
+	 */
+	public static List<ItemStack> Ores = null;
+	
+	public static List<ItemStack> getOres(){
+		String[] names = OreDictionary.getOreNames();
+		List<ItemStack> ores = new ArrayList<ItemStack>();
+		for(String s : names) {
+			if(s.startsWith("ore")) {
+				ores.addAll(OreDictionary.getOres(s));
+			}
+		}
+		return ores;
+	}
+	
 	/**
 	 * Finds all chests in the chunk and applies the given loot table to them.
 	 * 

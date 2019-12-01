@@ -43,6 +43,8 @@ public class TAConfig {
 	//Misc
 	public static String[] Config_PortalLighter = new String[] { "minecraft:flint_and_steel" };
 	public static boolean Config_SticksMakeFire = true;
+	public static int Config_AurorianiteSwordCooldown = 600;
+	public static int Config_StrangeMeatUses = 10;
 
 	public static void readConfig() {
 		Configuration cfg = TAMod.CONFIG;
@@ -67,7 +69,10 @@ public class TAConfig {
 		cfg.addCustomCategoryComment(name, "Misc configuration");
 
 		Config_PortalLighter = cfg.getStringList("PortalLighter", name, Config_PortalLighter, "Can change the item(s) used to light the portal here (Uses item's unlocalized name)");
-		Config_SticksMakeFire = cfg.getBoolean("SticksMakeFire", name, Config_SticksMakeFire, "Set to false to disable Silentwood Sticks making Fire or lighting Portal");
+		Config_SticksMakeFire = cfg.getBoolean("SticksMakeFire", name, Config_SticksMakeFire, "Set to false to disable Silentwood Sticks making Fire or lighting Portal");		
+		Config_AurorianiteSwordCooldown = cfg.getInt("AurorianiteSwordCooldown", name, Config_AurorianiteSwordCooldown, 0, 72000, "Cooldown in ticks for the swords levitate ability. 600 ticks = 30 seconds");
+		Config_StrangeMeatUses = cfg.getInt("StrangeMeatUses", name, Config_StrangeMeatUses, 1, 72000, "How many uses Strange Meat has");
+
 	}
 
 	private static void initCompatConfig(Configuration cfg) {

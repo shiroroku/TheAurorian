@@ -3,6 +3,7 @@ package com.elseytd.theaurorian;
 import com.elseytd.theaurorian.Items.TAItem;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Cerulean;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Knight;
+import com.elseytd.theaurorian.Items.TAItem_Armor_Spiked;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_AurorianCoal;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_Crystal;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_Cup;
@@ -16,10 +17,12 @@ import com.elseytd.theaurorian.Items.TAItem_Food_AurorianPork;
 import com.elseytd.theaurorian.Items.TAItem_Food_CookedAurorianPork;
 import com.elseytd.theaurorian.Items.TAItem_Food_Silkberry;
 import com.elseytd.theaurorian.Items.TAItem_Food_SilkberryRasin;
+import com.elseytd.theaurorian.Items.TAItem_Food_StrangeMeat;
 import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
 import com.elseytd.theaurorian.Items.TAItem_Ingot_Cerulean;
 import com.elseytd.theaurorian.Items.TAItem_Ingot_Moonstone;
 import com.elseytd.theaurorian.Items.TAItem_Seeds;
+import com.elseytd.theaurorian.Items.TAItem_Special_AbsorptionOrb;
 import com.elseytd.theaurorian.Items.TAItem_Special_Bepsi;
 import com.elseytd.theaurorian.Items.TAItem_Special_DarkAmulet;
 import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
@@ -30,8 +33,11 @@ import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Shovel;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Sickle;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Sword;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorianite_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorianite_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Bucket;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Crystalline_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Axe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Hoe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Pickaxe;
@@ -64,8 +70,10 @@ public class TAItems {
 	public static Item.ToolMaterial TA_SILENTWOOD = EnumHelper.addToolMaterial("TA_SILENTWOOD", 0, 59, 3.0F, 0.0F, 20);
 	public static Item.ToolMaterial TA_AURORIANSTONE = EnumHelper.addToolMaterial("TA_AURORIANSTONE", 1, 131, 4.5F, 1.5F, 14);
 	public static Item.ToolMaterial TA_MOONSTONE = EnumHelper.addToolMaterial("TA_MOONSTONE", 2, 250, 7.0F, 2.5F, 14);
+	public static Item.ToolMaterial TA_AURORIANITE = EnumHelper.addToolMaterial("TA_AURORIANITE", 3, 1000, 8.0F, 3.0F, 20);
 
 	public static ArmorMaterial TA_CERULEAN_ARMOR = EnumHelper.addArmorMaterial("TA_CERULEAN_ARMOR", "theaurorian:cerulean", 20, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
+	public static ArmorMaterial TA_SPIKED_ARMOR = EnumHelper.addArmorMaterial("TA_SPIKED_ARMOR", "theaurorian:spiked", 50, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
 	public static ArmorMaterial TA_KNIGHT_ARMOR = EnumHelper.addArmorMaterial("TA_KNIGHT_ARMOR", "theaurorian:knight", 30, new int[] { 2, 3, 2, 1 }, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0);
 
 	// SPECIAL
@@ -95,6 +103,16 @@ public class TAItems {
 	public static TAItem_Tool_Cerulean_Bucket ceruleanbucket;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Seeds.ITEMNAME_LAVENDER)
 	public static TAItem_Seeds lavenderseeds;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Aurorianite_Pickaxe.ITEMNAME)
+	public static TAItem_Tool_Aurorianite_Pickaxe aurorianitepickaxe;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_AbsorptionOrb.ITEMNAME)
+	public static TAItem_Special_AbsorptionOrb absorptionorb;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Aurorianite_Sword.ITEMNAME)
+	public static TAItem_Tool_Aurorianite_Sword aurorianitesword;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Crystalline_Shield.ITEMNAME)
+	public static TAItem_Tool_Crystalline_Shield crystallineshield;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "spikedchestplate")
+	public static TAItem_Armor_Spiked spikedchestplate;
 
 	// FOODS
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_AurorianBacon.ITEMNAME)
@@ -115,6 +133,8 @@ public class TAItems {
 	public static TAItem_Food_Tea teasilkberry;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_Tea.ITEMNAME_SEEDY)
 	public static TAItem_Food_Tea teaseedy;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_StrangeMeat.ITEMNAME)
+	public static TAItem_Food_StrangeMeat strangemeat;
 
 	// CRAFTING
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_SilentwoodStick.ITEMNAME)
@@ -224,6 +244,11 @@ public class TAItems {
 		ceruleanshield.initModel();
 		ceruleanbucket.initModel();
 		lavenderseeds.initModel();
+		aurorianitepickaxe.initModel();
+		absorptionorb.initModel();
+		aurorianitesword.initModel();
+		crystallineshield.initModel();
+		spikedchestplate.initModel();
 
 		// FOOD
 		aurorianbacon.initModel();
@@ -235,6 +260,7 @@ public class TAItems {
 		tealavender.initModel();
 		teasilkberry.initModel();
 		teaseedy.initModel();
+		strangemeat.initModel();
 
 		// CRAFTING
 		silentwoodstick.initModel();
@@ -305,6 +331,12 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Tool_Cerulean_Shield());
 		event.getRegistry().register(new TAItem_Tool_Cerulean_Bucket());
 		event.getRegistry().register(new TAItem_Seeds(TAItem_Seeds.ITEMNAME_LAVENDER));
+		event.getRegistry().register(new TAItem_Tool_Aurorianite_Pickaxe());
+		event.getRegistry().register(new TAItem_Special_AbsorptionOrb());
+		event.getRegistry().register(new TAItem_Tool_Aurorianite_Sword());
+		event.getRegistry().register(new TAItem_Food_StrangeMeat());
+		event.getRegistry().register(new TAItem_Tool_Crystalline_Shield());
+		event.getRegistry().register(new TAItem_Armor_Spiked(EntityEquipmentSlot.CHEST, "spikedchestplate"));
 
 		// FOODS
 		event.getRegistry().register(new TAItem_Food_AurorianBacon());

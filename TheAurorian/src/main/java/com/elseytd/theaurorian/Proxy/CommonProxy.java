@@ -13,6 +13,7 @@ import com.elseytd.theaurorian.TAGuis;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TARecipes;
+import com.elseytd.theaurorian.TAUtil;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
@@ -57,5 +58,6 @@ public class CommonProxy {
 			TAMod.CONFIG.save();
 		}
 		TACompat.postInit(e);
+		TAUtil.Ores = TAUtil.getOres();
 	}
 }

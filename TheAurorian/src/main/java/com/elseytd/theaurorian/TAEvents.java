@@ -1,16 +1,13 @@
 package com.elseytd.theaurorian;
 
-import java.util.Random;
-
 import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Crystalline_Shield;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
@@ -23,7 +20,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class TAEvents {
 
 	/**
-	 * Handles Cerulean shield damage and Lightning enchant particles
+	 * Handles shield damage
 	 */
 	@SubscribeEvent
 	public void attackEvent(LivingAttackEvent e) {
@@ -36,20 +33,15 @@ public class TAEvents {
 				activeItemStack = player.getActiveItemStack();
 				if (damage > 0.0F && activeItemStack != null && activeItemStack.getItem() instanceof TAItem_Tool_Cerulean_Shield) {
 					activeItemStack.damageItem(1, player);
+				} else if (damage > 0.0F && activeItemStack != null && activeItemStack.getItem() instanceof TAItem_Tool_Crystalline_Shield) {
+					activeItemStack.damageItem(1, player);
+					if (player.getHeldItemMainhand().getItemDamage() < player.getHeldItemMainhand().getMaxDamage() && player.getHeldItemMainhand().isItemStackDamageable()) {
+						player.getHeldItemMainhand().setItemDamage(player.getHeldItemMainhand().getItemDamage() - 1);
+					}
+					player.getCooldownTracker().setCooldown(activeItemStack.getItem(), 20);
 				}
 			}
 		}
-
-		if (e.getSource() == TAUtil.LIGHTNING) {//TODO fix this somehow
-			EntityLivingBase targ = e.getEntityLiving();
-			Random rand = new Random();
-			double motionX = rand.nextGaussian() * 0.02D;
-			double motionY = rand.nextGaussian() * 0.1D;
-			double motionZ = rand.nextGaussian() * 0.02D;
-			targ.world.spawnParticle(EnumParticleTypes.CRIT_MAGIC, targ.posX + rand.nextFloat(), targ.posY + rand.nextFloat() * targ.height, targ.posZ + rand.nextFloat(), motionX, motionY, motionZ);
-
-		}
-
 	}
 
 	/**
