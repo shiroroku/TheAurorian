@@ -1,7 +1,7 @@
 package com.elseytd.theaurorian;
 
 import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Shield;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Crystalline_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Special_Crystalline_Shield;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,7 +33,7 @@ public class TAEvents {
 				activeItemStack = player.getActiveItemStack();
 				if (damage > 0.0F && activeItemStack != null && activeItemStack.getItem() instanceof TAItem_Tool_Cerulean_Shield) {
 					activeItemStack.damageItem(1, player);
-				} else if (damage > 0.0F && activeItemStack != null && activeItemStack.getItem() instanceof TAItem_Tool_Crystalline_Shield) {
+				} else if (damage > 0.0F && activeItemStack != null && activeItemStack.getItem() instanceof TAItem_Special_Crystalline_Shield) {
 					activeItemStack.damageItem(1, player);
 					if (player.getHeldItemMainhand().getItemDamage() < player.getHeldItemMainhand().getMaxDamage() && player.getHeldItemMainhand().isItemStackDamageable()) {
 						player.getHeldItemMainhand().setItemDamage(player.getHeldItemMainhand().getItemDamage() - 1);

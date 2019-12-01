@@ -28,11 +28,11 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TAItem_Tool_Crystalline_Shield extends Item {
+public class TAItem_Special_Crystalline_Shield extends Item {
 
 	public static final String ITEMNAME = "crystallineshield";
 
-	public TAItem_Tool_Crystalline_Shield() {
+	public TAItem_Special_Crystalline_Shield() {
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);

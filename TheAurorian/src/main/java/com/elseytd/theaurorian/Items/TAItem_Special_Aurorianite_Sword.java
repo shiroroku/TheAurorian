@@ -28,10 +28,10 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TAItem_Tool_Aurorianite_Sword extends ItemSword {
+public class TAItem_Special_Aurorianite_Sword extends ItemSword {
 	public static final String ITEMNAME = "aurorianitesword";
 
-	public TAItem_Tool_Aurorianite_Sword() {
+	public TAItem_Special_Aurorianite_Sword() {
 		super(TAItems.TA_AURORIANITE);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);

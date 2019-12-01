@@ -25,10 +25,10 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TAItem_Tool_Aurorianite_Pickaxe extends ItemPickaxe {
+public class TAItem_Special_Aurorianite_Pickaxe extends ItemPickaxe {
 	public static final String ITEMNAME = "aurorianitepickaxe";
 
-	public TAItem_Tool_Aurorianite_Pickaxe() {
+	public TAItem_Special_Aurorianite_Pickaxe() {
 		super(TAItems.TA_AURORIANITE);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);

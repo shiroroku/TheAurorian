@@ -28,11 +28,11 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TAItem_Food_StrangeMeat extends ItemFood {
+public class TAItem_Special_StrangeMeat extends ItemFood {
 
 	public static final String ITEMNAME = "strangemeat";
 
-	public TAItem_Food_StrangeMeat() {
+	public TAItem_Special_StrangeMeat() {
 		super(8, 0.9F, true);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);

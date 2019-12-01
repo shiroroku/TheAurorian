@@ -22,11 +22,11 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TAItem_Tool_Special_RunestoneBreaker extends ItemPickaxe {
+public class TAItem_Special_MoonTempleBreaker extends ItemPickaxe {
 
-	public static final String ITEMNAME = "runestonebreaker";
+	public static final String ITEMNAME = "moontemplebreaker";
 
-	public TAItem_Tool_Special_RunestoneBreaker() {
+	public TAItem_Special_MoonTempleBreaker() {
 		super(TAItems.TA_MOONSTONE);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
@@ -41,7 +41,7 @@ public class TAItem_Tool_Special_RunestoneBreaker extends ItemPickaxe {
 	@Override
 	public float getDestroySpeed(@Nonnull ItemStack stack, IBlockState state) {
 		float destroySpeed = super.getDestroySpeed(stack, state);
-		Block[] b = { TABlocks.runestonebars, TABlocks.runestone, TABlocks.runestonesmooth, TABlocks.runestonestairs, TABlocks.runestonegate, TABlocks.runestonegatekeyhole, TABlocks.runestonelamp };
+		Block[] b = { TABlocks.moontemplebars, TABlocks.moontemplebricks, TABlocks.moontemplebrickssmooth, TABlocks.moontemplestairs, TABlocks.moontemplegate, TABlocks.moontemplegatekeyhole, TABlocks.moontemplelamp, TABlocks.moontemplecellgate, TABlocks.moontemplecellgatekeyhole };
 
 		for (Block block : b) {
 			if (state.getBlock() == block) {
@@ -56,7 +56,7 @@ public class TAItem_Tool_Special_RunestoneBreaker extends ItemPickaxe {
 		if (!GuiScreen.isShiftKeyDown()) {
 			tooltip.add(TextFormatting.ITALIC + "Hold shift for more info" + TextFormatting.RESET);
 		} else {
-			tooltip.add("This pickaxe has the ability to mine Runestone Dungeon blocks.");
+			tooltip.add("This pickaxe has the ability to mine Moon Temple Dungeon blocks.");
 		}
 	}
 
