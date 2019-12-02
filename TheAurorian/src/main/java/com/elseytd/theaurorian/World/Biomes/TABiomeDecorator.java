@@ -75,7 +75,6 @@ public class TABiomeDecorator extends BiomeDecorator {
 		}
 
 		//=========TREES=======
-		//trees per chunk
 		if (biomeIn.getRandomTreeFeature(random) != null) {
 			int tp = 10;
 			if (random.nextFloat() < this.extraTreeChance) {
@@ -99,7 +98,6 @@ public class TABiomeDecorator extends BiomeDecorator {
 		}
 
 		//=========TALLGRASS=======
-		//grass per chunk
 		if (biomeIn.getRandomWorldGenForGrass(random) != null) {
 			int gp = 6;
 			if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS)) {
@@ -135,7 +133,7 @@ public class TABiomeDecorator extends BiomeDecorator {
 			//=========SILKBERRY=======
 			if (modbiome.getRandomWorldGenForSilkberry(random) != null) {
 				int sp = 2;
-				if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.FLOWERS)) {
+				if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS)) {
 					for (int i3 = 0; i3 < sp; ++i3) {
 						int x = random.nextInt(16) + 8;
 						int z = random.nextInt(16) + 8;
@@ -143,6 +141,22 @@ public class TABiomeDecorator extends BiomeDecorator {
 						if (k14 > 0) {
 							int l17 = random.nextInt(k14);
 							modbiome.getRandomWorldGenForSilkberry(random).generate(worldIn, random, this.chunkPos.add(x, l17, z));
+						}
+					}
+				}
+			}
+
+			//=========PETUNIA=======
+			if (modbiome.getRandomWorldGenForPetunia(random) != null) {
+				int sp = 2;
+				if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS)) {
+					for (int i3 = 0; i3 < sp; ++i3) {
+						int x = random.nextInt(16) + 8;
+						int z = random.nextInt(16) + 8;
+						int k14 = worldIn.getHeight(this.chunkPos.add(x, 0, z)).getY() * 2;
+						if (k14 > 0) {
+							int l17 = random.nextInt(k14);
+							modbiome.getRandomWorldGenForPetunia(random).generate(worldIn, random, this.chunkPos.add(x, l17, z));
 						}
 					}
 				}

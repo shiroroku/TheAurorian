@@ -20,6 +20,7 @@ import com.elseytd.theaurorian.Blocks.TABlock_Ore_Geode;
 import com.elseytd.theaurorian.Blocks.TABlock_Ore_Moonstone;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Crops;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Lavender;
+import com.elseytd.theaurorian.Blocks.TABlock_Plant_Petunia;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Silentwood_Sapling;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Silkberry;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Tallgrass;
@@ -114,6 +115,8 @@ public class TABlocks {
 	public static TABlock_Plant_Silentwood_Sapling silentwoodsapling;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Plant_Silkberry.BLOCKNAME)
 	public static TABlock_Plant_Silkberry silkberryplant;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Plant_Petunia.BLOCKNAME)
+	public static TABlock_Plant_Petunia petuniaplant;
 
 	// TERRAIN
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Terrain_AurorianCobblestone.BLOCKNAME)
@@ -252,6 +255,7 @@ public class TABlocks {
 		lavenderplant.initModel();
 		silentwoodsapling.initModel();
 		silkberryplant.initModel();
+		petuniaplant.initModel();
 
 		// TERRAIN
 		auroriancobblestone.initModel();
@@ -366,6 +370,7 @@ public class TABlocks {
 		event.getRegistry().register(new TABlock_Plant_Silentwood_Sapling());
 		event.getRegistry().register(new TABlock_Plant_Silkberry());
 		event.getRegistry().register(new TABlock_Plant_Tallgrass());
+		event.getRegistry().register(new TABlock_Plant_Petunia());
 
 		// RUNESTONE
 		event.getRegistry().register(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_RUNESTONE));
@@ -459,6 +464,7 @@ public class TABlocks {
 		itemblockQuickReg(event, TABlocks.lavenderplant);
 		itemblockQuickReg(event, TABlocks.silentwoodsapling);
 		itemblockQuickReg(event, TABlocks.silkberryplant);
+		itemblockQuickReg(event, TABlocks.petuniaplant);
 
 		// RUNESTONE
 		itemblockQuickReg(event, TABlocks.runestone);

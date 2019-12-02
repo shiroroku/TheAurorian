@@ -8,9 +8,7 @@ import com.elseytd.theaurorian.Entities.AurorianRabbit.TAEntity_AurorianRabbit;
 import com.elseytd.theaurorian.Entities.AurorianSheep.TAEntity_AurorianSheep;
 import com.elseytd.theaurorian.Entities.Hollow.TAEntity_DisturbedHollow;
 import com.elseytd.theaurorian.World.TATerrainGenerator;
-import com.elseytd.theaurorian.World.TAWorldGenerator_Lavender;
-import com.elseytd.theaurorian.World.TAWorldGenerator_Silkberry;
-import com.elseytd.theaurorian.World.TAWorldGenerator_Tallgrass;
+import com.elseytd.theaurorian.World.TAWorldGenerator_Plant;
 import com.elseytd.theaurorian.World.TAWorldGenerator_Trees;
 
 import net.minecraft.block.Block;
@@ -45,15 +43,19 @@ public class TABiome extends Biome {
 
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-		return new TAWorldGenerator_Tallgrass();
+		return new TAWorldGenerator_Plant(TABlocks.auroriantallgrass.getDefaultState(), 1f);
 	}
 
 	public WorldGenerator getRandomWorldGenForSilkberry(Random rand) {
-		return new TAWorldGenerator_Silkberry();
+		return new TAWorldGenerator_Plant(TABlocks.silkberryplant.getDefaultState(), 0.25f);
 	}
 
 	public WorldGenerator getRandomWorldGenForLavender(Random rand) {
-		return new TAWorldGenerator_Lavender();
+		return new TAWorldGenerator_Plant(TABlocks.lavenderplant.getDefaultState(), 1f);
+	}
+	
+	public WorldGenerator getRandomWorldGenForPetunia(Random rand) {
+		return new TAWorldGenerator_Plant(TABlocks.petuniaplant.getDefaultState(), 0.25f);
 	}
 
 	@Override
