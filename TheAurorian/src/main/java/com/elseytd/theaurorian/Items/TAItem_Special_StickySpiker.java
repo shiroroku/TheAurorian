@@ -66,7 +66,7 @@ public class TAItem_Special_StickySpiker extends Item {
 		if (!GuiScreen.isShiftKeyDown()) {
 			tooltip.add(TextFormatting.ITALIC + "Hold shift for more info" + TextFormatting.RESET);
 		} else {
-			tooltip.add("Does poison damage it hits an entity.");
+			tooltip.add("Does poison damage when it hits an entity.");
 		}
 	}
 
