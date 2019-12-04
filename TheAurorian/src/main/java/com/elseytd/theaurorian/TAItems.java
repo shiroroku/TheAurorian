@@ -17,28 +17,32 @@ import com.elseytd.theaurorian.Items.TAItem_Food_AurorianPork;
 import com.elseytd.theaurorian.Items.TAItem_Food_CookedAurorianPork;
 import com.elseytd.theaurorian.Items.TAItem_Food_Silkberry;
 import com.elseytd.theaurorian.Items.TAItem_Food_SilkberryRasin;
-import com.elseytd.theaurorian.Items.TAItem_Special_StrangeMeat;
 import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
 import com.elseytd.theaurorian.Items.TAItem_Ingot_Cerulean;
 import com.elseytd.theaurorian.Items.TAItem_Ingot_Moonstone;
 import com.elseytd.theaurorian.Items.TAItem_Seeds;
 import com.elseytd.theaurorian.Items.TAItem_Special_AbsorptionOrb;
+import com.elseytd.theaurorian.Items.TAItem_Special_Aurorianite_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Special_Aurorianite_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Special_Bepsi;
 import com.elseytd.theaurorian.Items.TAItem_Special_Crystalline_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Special_Crystalline_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Special_DarkAmulet;
 import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
 import com.elseytd.theaurorian.Items.TAItem_Special_KeeperAmulet;
+import com.elseytd.theaurorian.Items.TAItem_Special_Lockpicks;
+import com.elseytd.theaurorian.Items.TAItem_Special_MoonTempleBreaker;
+import com.elseytd.theaurorian.Items.TAItem_Special_RunestoneBreaker;
+import com.elseytd.theaurorian.Items.TAItem_Special_StickySpiker;
+import com.elseytd.theaurorian.Items.TAItem_Special_StrangeMeat;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Axe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Hoe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Shovel;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Sickle;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Sword;
-import com.elseytd.theaurorian.Items.TAItem_Special_Aurorianite_Pickaxe;
-import com.elseytd.theaurorian.Items.TAItem_Special_Aurorianite_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Bucket;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Shield;
-import com.elseytd.theaurorian.Items.TAItem_Special_Crystalline_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Axe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Hoe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Pickaxe;
@@ -52,9 +56,6 @@ import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Shovel;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Sickle;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Sword;
-import com.elseytd.theaurorian.Items.TAItem_Special_Lockpicks;
-import com.elseytd.theaurorian.Items.TAItem_Special_MoonTempleBreaker;
-import com.elseytd.theaurorian.Items.TAItem_Special_RunestoneBreaker;
 
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -115,6 +116,8 @@ public class TAItems {
 	public static TAItem_Special_Crystalline_Shield crystallineshield;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Crystalline_Pickaxe.ITEMNAME)
 	public static TAItem_Special_Crystalline_Pickaxe crystallinepickaxe;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_StickySpiker.ITEMNAME)
+	public static TAItem_Special_StickySpiker stickyspiker;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "spikedchestplate")
 	public static TAItem_Armor_Spiked spikedchestplate;
 
@@ -253,6 +256,7 @@ public class TAItems {
 		aurorianitesword.initModel();
 		crystallineshield.initModel();
 		crystallinepickaxe.initModel();
+		stickyspiker.initModel();
 		spikedchestplate.initModel();
 
 		// FOOD
@@ -342,6 +346,7 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Special_StrangeMeat());
 		event.getRegistry().register(new TAItem_Special_Crystalline_Shield());
 		event.getRegistry().register(new TAItem_Special_Crystalline_Pickaxe());
+		event.getRegistry().register(new TAItem_Special_StickySpiker());
 		event.getRegistry().register(new TAItem_Armor_Spiked(EntityEquipmentSlot.CHEST, "spikedchestplate"));
 
 		// FOODS

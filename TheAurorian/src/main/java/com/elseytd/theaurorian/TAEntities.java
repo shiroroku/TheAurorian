@@ -1,5 +1,7 @@
 package com.elseytd.theaurorian;
 
+import com.elseytd.theaurorian.Entities.TAEntityRender_StickySpiker;
+import com.elseytd.theaurorian.Entities.TAEntity_StickySpiker;
 import com.elseytd.theaurorian.Entities.AurorianPig.TAEntityRender_AurorianPig;
 import com.elseytd.theaurorian.Entities.AurorianPig.TAEntity_AurorianPig;
 import com.elseytd.theaurorian.Entities.AurorianRabbit.TAEntityRender_AurorianRabbit;
@@ -39,12 +41,16 @@ public class TAEntities {
 		quickRegEntity(TAEntity_AurorianSheep.class, TAEntity_AurorianSheep.EntityName, id++);
 		quickRegEntity(TAEntity_AurorianPig.class, TAEntity_AurorianPig.EntityName, id++);
 		quickRegEntity(TAEntity_AurorianSlime.class, TAEntity_AurorianSlime.EntityName, id++);
+		quickRegNonlivingEntity(TAEntity_StickySpiker.class, TAEntity_StickySpiker.EntityName, id++);
 
-		//LootTableList.register(TAEntity_DisturbedHollow.LOOT);
 	}
 
 	private static void quickRegEntity(Class<? extends Entity> mob, String mobname, int id) {
 		EntityRegistry.registerModEntity(new ResourceLocation(TAMod.MODID, mobname), mob, TAMod.MODID + "." + mobname, id, TAMod.INSTANCE, 64, 3, true, 0xade0f5, 0x3b4759);
+	}
+
+	private static void quickRegNonlivingEntity(Class<? extends Entity> mob, String mobname, int id) {
+		EntityRegistry.registerModEntity(new ResourceLocation(TAMod.MODID, mobname), mob, TAMod.MODID + "." + mobname, id, TAMod.INSTANCE, 64, 3, true);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -58,5 +64,6 @@ public class TAEntities {
 		RenderingRegistry.registerEntityRenderingHandler(TAEntity_AurorianSheep.class, TAEntityRender_AurorianSheep.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(TAEntity_AurorianPig.class, TAEntityRender_AurorianPig.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(TAEntity_AurorianSlime.class, TAEntityRender_AurorianSlime.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(TAEntity_StickySpiker.class, TAEntityRender_StickySpiker.FACTORY);
 	}
 }

@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
+import com.elseytd.theaurorian.TAParticles;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -24,7 +25,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
@@ -132,14 +132,7 @@ public class TAEntity_AurorianSlime extends EntityLiving implements IMob {
 		if (this.onGround && !this.wasOnGround) {
 			int i = 1;
 			for (int j = 0; j < i * 8; ++j) {
-				float f = this.rand.nextFloat() * ((float) Math.PI * 2F);
-				float f1 = this.rand.nextFloat() * 0.5F + 0.5F;
-				float f2 = MathHelper.sin(f) * (float) i * 0.5F * f1;
-				float f3 = MathHelper.cos(f) * (float) i * 0.5F * f1;
-				World world = this.world;
-				double d0 = this.posX + (double) f2;
-				double d1 = this.posZ + (double) f3;
-				world.spawnParticle(EnumParticleTypes.ITEM_CRACK, d0, this.getEntityBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D, Item.getIdFromItem(TAItems.aurorianslimeball));
+				TAParticles.spawn(TAParticles.Particles.AURORIANSLIME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 			}
 			this.playSound(this.getSquishSound(), this.getSoundVolume(), ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) / 0.8F);
 			this.squishAmount = -0.5F;
