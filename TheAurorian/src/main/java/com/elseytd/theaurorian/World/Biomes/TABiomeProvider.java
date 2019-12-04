@@ -21,7 +21,7 @@ public class TABiomeProvider extends BiomeProvider {
 
 	@Override
 	public GenLayer[] getModdedBiomeGenerators(WorldType worldType, long seed, GenLayer[] original) {
-		GenLayer biomes = new TABiomesGenLayer(1);
+		GenLayer biomes = new TAGenLayer(1);
 
 		biomes = new GenLayerZoom(1000, biomes);
 		biomes = new GenLayerZoom(1000, biomes);
