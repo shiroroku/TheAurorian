@@ -19,23 +19,48 @@ import net.minecraftforge.oredict.OreDictionary;
 public class TAUtil {
 
 	public static final DamageSource LIGHTNING = (new DamageSource("lightning"));
-	
+
 	/**
-	 * Contains all ores and modded ores in the ore dictionary, populated postInit
+	 * Contains all ores and modded ores in the ore dictionary, populated
+	 * postInit
 	 */
 	public static List<ItemStack> Ores = null;
-	
-	public static List<ItemStack> getOres(){
+
+	public static List<ItemStack> populateOrelocallist() {
 		String[] names = OreDictionary.getOreNames();
 		List<ItemStack> ores = new ArrayList<ItemStack>();
-		for(String s : names) {
-			if(s.startsWith("ore")) {
+		for (String s : names) {
+			if (s.startsWith("ore")) {
 				ores.addAll(OreDictionary.getOres(s));
 			}
 		}
 		return ores;
 	}
-	
+
+	public static boolean isOre(ItemStack itemIn) {
+		for (ItemStack i : TAUtil.Ores) {
+			if (ItemStack.areItemsEqual(i, itemIn)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static ItemStack getTypeFromOre(ItemStack itemIn, String type) {
+		List<ItemStack> nuggets = new ArrayList<ItemStack>();
+		for (int i : OreDictionary.getOreIDs(itemIn)) {
+			String orename = OreDictionary.getOreName(i);
+			String nuggetnamewouldbe = type + orename.substring(3);
+			nuggets = OreDictionary.getOres(nuggetnamewouldbe);
+			if (nuggets != null) {
+				if (!nuggets.isEmpty()) {
+					return nuggets.get(0);
+				}
+			}
+		}
+		return null;
+	}
+
 	/**
 	 * Finds all chests in the chunk and applies the given loot table to them.
 	 * 
