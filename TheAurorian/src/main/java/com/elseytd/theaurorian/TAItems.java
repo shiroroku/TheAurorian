@@ -24,6 +24,7 @@ import com.elseytd.theaurorian.Items.TAItem_Ingot_Moonstone;
 import com.elseytd.theaurorian.Items.TAItem_Seeds;
 import com.elseytd.theaurorian.Items.TAItem_Special_AbsorptionOrb;
 import com.elseytd.theaurorian.Items.TAItem_Special_Bepsi;
+import com.elseytd.theaurorian.Items.TAItem_Special_Crystalline_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Special_DarkAmulet;
 import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
 import com.elseytd.theaurorian.Items.TAItem_Special_KeeperAmulet;
@@ -71,6 +72,7 @@ public class TAItems {
 	public static Item.ToolMaterial TA_AURORIANSTONE = EnumHelper.addToolMaterial("TA_AURORIANSTONE", 1, 131, 4.5F, 1.5F, 14);
 	public static Item.ToolMaterial TA_MOONSTONE = EnumHelper.addToolMaterial("TA_MOONSTONE", 2, 250, 7.0F, 2.5F, 14);
 	public static Item.ToolMaterial TA_AURORIANITE = EnumHelper.addToolMaterial("TA_AURORIANITE", 3, 1000, 8.0F, 3.0F, 20);
+	public static Item.ToolMaterial TA_CRYSTALLINE = EnumHelper.addToolMaterial("TA_CRYSTALLINE", 2, 600, 7.5F, 2.5F, 30);
 
 	public static ArmorMaterial TA_CERULEAN_ARMOR = EnumHelper.addArmorMaterial("TA_CERULEAN_ARMOR", "theaurorian:cerulean", 20, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
 	public static ArmorMaterial TA_SPIKED_ARMOR = EnumHelper.addArmorMaterial("TA_SPIKED_ARMOR", "theaurorian:spiked", 65, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
@@ -111,6 +113,8 @@ public class TAItems {
 	public static TAItem_Special_Aurorianite_Sword aurorianitesword;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Crystalline_Shield.ITEMNAME)
 	public static TAItem_Special_Crystalline_Shield crystallineshield;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Crystalline_Pickaxe.ITEMNAME)
+	public static TAItem_Special_Crystalline_Pickaxe crystallinepickaxe;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "spikedchestplate")
 	public static TAItem_Armor_Spiked spikedchestplate;
 
@@ -248,6 +252,7 @@ public class TAItems {
 		absorptionorb.initModel();
 		aurorianitesword.initModel();
 		crystallineshield.initModel();
+		crystallinepickaxe.initModel();
 		spikedchestplate.initModel();
 
 		// FOOD
@@ -336,6 +341,7 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Special_Aurorianite_Sword());
 		event.getRegistry().register(new TAItem_Special_StrangeMeat());
 		event.getRegistry().register(new TAItem_Special_Crystalline_Shield());
+		event.getRegistry().register(new TAItem_Special_Crystalline_Pickaxe());
 		event.getRegistry().register(new TAItem_Armor_Spiked(EntityEquipmentSlot.CHEST, "spikedchestplate"));
 
 		// FOODS
