@@ -30,6 +30,7 @@ import com.elseytd.theaurorian.Items.TAItem_Special_Crystalline_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Special_DarkAmulet;
 import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
 import com.elseytd.theaurorian.Items.TAItem_Special_KeeperAmulet;
+import com.elseytd.theaurorian.Items.TAItem_Special_LivingDiviningRod;
 import com.elseytd.theaurorian.Items.TAItem_Special_Lockpicks;
 import com.elseytd.theaurorian.Items.TAItem_Special_MoonTempleBreaker;
 import com.elseytd.theaurorian.Items.TAItem_Special_RunestoneBreaker;
@@ -118,6 +119,8 @@ public class TAItems {
 	public static TAItem_Special_Crystalline_Pickaxe crystallinepickaxe;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_StickySpiker.ITEMNAME)
 	public static TAItem_Special_StickySpiker stickyspiker;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_LivingDiviningRod.ITEMNAME)
+	public static TAItem_Special_LivingDiviningRod livingdiviningrod;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "spikedchestplate")
 	public static TAItem_Armor_Spiked spikedchestplate;
 
@@ -257,6 +260,7 @@ public class TAItems {
 		crystallineshield.initModel();
 		crystallinepickaxe.initModel();
 		stickyspiker.initModel();
+		livingdiviningrod.initModel();
 		spikedchestplate.initModel();
 
 		// FOOD
@@ -347,6 +351,7 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Special_Crystalline_Shield());
 		event.getRegistry().register(new TAItem_Special_Crystalline_Pickaxe());
 		event.getRegistry().register(new TAItem_Special_StickySpiker());
+		event.getRegistry().register(new TAItem_Special_LivingDiviningRod());
 		event.getRegistry().register(new TAItem_Armor_Spiked(EntityEquipmentSlot.CHEST, "spikedchestplate"));
 
 		// FOODS
