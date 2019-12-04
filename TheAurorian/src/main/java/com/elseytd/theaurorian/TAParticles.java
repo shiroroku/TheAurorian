@@ -12,6 +12,17 @@ public class TAParticles {
 		AURORIANSLIME, STICKYSPIKER
 	}
 
+	private static Particle getParticle(Particles type, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
+		switch (type) {
+		case AURORIANSLIME:
+			return new TAParticle_AurorianSlime(mcinstance.world, xCoordIn, yCoordIn, zCoordIn);
+		case STICKYSPIKER:
+			return new TAParticle_StickySpiker(mcinstance.world, xCoordIn, yCoordIn, zCoordIn);
+		default:
+			return null;
+		}
+	}
+
 	private static Minecraft mcinstance = Minecraft.getMinecraft();
 
 	public static Particle spawn(Particles type, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
@@ -24,7 +35,7 @@ public class TAParticles {
 
 			double boundsx = mcinstance.getRenderViewEntity().posX - xCoordIn;
 			double boundsy = mcinstance.getRenderViewEntity().posY - yCoordIn;
-			double boundsz = mcinstance.getRenderViewEntity().posZ - zCoordIn;;
+			double boundsz = mcinstance.getRenderViewEntity().posZ - zCoordIn;
 			double bound = 16.0D;
 
 			if (boundsx * boundsx + boundsy * boundsy + boundsz * boundsz > bound * bound) {
@@ -32,18 +43,7 @@ public class TAParticles {
 			} else if (particlesetting > 1) {
 				return null;
 			} else {
-				Particle particle = null;
-				switch (type) {
-				case AURORIANSLIME:
-					particle = new TAParticle_AurorianSlime(mcinstance.world, xCoordIn, yCoordIn, zCoordIn);
-					break;
-				case STICKYSPIKER:
-					particle = new TAParticle_StickySpiker(mcinstance.world, xCoordIn, yCoordIn, zCoordIn);
-					break;
-				default:
-					particle = null;
-					break;
-				}
+				Particle particle = getParticle(type, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
 				mcinstance.effectRenderer.addEffect(particle);
 				return particle;
 			}
