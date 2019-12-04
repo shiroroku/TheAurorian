@@ -5,11 +5,11 @@
   "description": "Explore a land beyond this world, bathed in moonlight and shrouded in nature.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://github.com/elseytd/TheAurorian",
   "updateUrl": "",
   "authorList": ["(Elise)Elseytd"],
   "credits": "",
-  "logoFile": "",
+  "logoFile": "banner.png",
   "screenshots": [],
   "dependencies": []
 }
