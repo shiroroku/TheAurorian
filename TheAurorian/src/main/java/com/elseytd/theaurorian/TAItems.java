@@ -43,6 +43,7 @@ import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Shovel;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Sickle;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Sword;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Arrow;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Bucket;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Axe;
@@ -106,6 +107,8 @@ public class TAItems {
 	public static TAItem_Tool_Cerulean_Shield ceruleanshield;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Cerulean_Bucket.ITEMNAME)
 	public static TAItem_Tool_Cerulean_Bucket ceruleanbucket;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Cerulean_Arrow.ITEMNAME)
+	public static TAItem_Tool_Cerulean_Arrow ceruleanarrow;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Seeds.ITEMNAME_LAVENDER)
 	public static TAItem_Seeds lavenderseeds;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Aurorianite_Pickaxe.ITEMNAME)
@@ -256,6 +259,7 @@ public class TAItems {
 		moontemplebreaker.initModel();
 		ceruleanshield.initModel();
 		ceruleanbucket.initModel();
+		ceruleanarrow.initModel();
 		lavenderseeds.initModel();
 		aurorianitepickaxe.initModel();
 		absorptionorb.initModel();
@@ -347,6 +351,7 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Special_MoonTempleBreaker());
 		event.getRegistry().register(new TAItem_Tool_Cerulean_Shield());
 		event.getRegistry().register(new TAItem_Tool_Cerulean_Bucket());
+		event.getRegistry().register(new TAItem_Tool_Cerulean_Arrow());
 		event.getRegistry().register(new TAItem_Seeds(TAItem_Seeds.ITEMNAME_LAVENDER));
 		event.getRegistry().register(new TAItem_Special_Aurorianite_Pickaxe());
 		event.getRegistry().register(new TAItem_Special_AbsorptionOrb());
