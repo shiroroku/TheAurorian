@@ -3,7 +3,7 @@
   "pattern": [
     "#I#",
     "#I#",
-	"#I#"
+    "#I#"
   ],
   "key": {
     "#": [
@@ -12,7 +12,7 @@
         "data": 0
       }
     ],
-	"I": [
+    "I": [
       {
         "item": "theaurorian:ceruleaningot",
         "data": 0

@@ -9,10 +9,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class TAEntityRender_AurorianSheep extends RenderLiving<TAEntity_AurorianSheep> {
-
-	//private ResourceLocation mobTexture = new ResourceLocation(TAMod.MODID, "textures/entity/" + TAEntity_AurorianSheep.EntityName + ".png");
+	
 	private ResourceLocation mobTexture = new ResourceLocation("textures/entity/sheep/sheep.png");
-
 	public static final Factory FACTORY = new Factory();
 
 	public TAEntityRender_AurorianSheep(RenderManager rendermanagerIn) {
