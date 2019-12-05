@@ -22,6 +22,7 @@ import com.elseytd.theaurorian.Items.TAItem_Ingot_Cerulean;
 import com.elseytd.theaurorian.Items.TAItem_Ingot_Moonstone;
 import com.elseytd.theaurorian.Items.TAItem_Seeds;
 import com.elseytd.theaurorian.Items.TAItem_Special_AbsorptionOrb;
+import com.elseytd.theaurorian.Items.TAItem_Special_Aurorianite_Axe;
 import com.elseytd.theaurorian.Items.TAItem_Special_Aurorianite_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Special_Aurorianite_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Special_Bepsi;
@@ -121,6 +122,8 @@ public class TAItems {
 	public static TAItem_Special_StickySpiker stickyspiker;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_LivingDiviningRod.ITEMNAME)
 	public static TAItem_Special_LivingDiviningRod livingdiviningrod;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Aurorianite_Axe.ITEMNAME)
+	public static TAItem_Special_Aurorianite_Axe aurorianiteaxe;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "spikedchestplate")
 	public static TAItem_Armor_Spiked spikedchestplate;
 
@@ -261,6 +264,7 @@ public class TAItems {
 		crystallinepickaxe.initModel();
 		stickyspiker.initModel();
 		livingdiviningrod.initModel();
+		aurorianiteaxe.initModel();
 		spikedchestplate.initModel();
 
 		// FOOD
@@ -352,6 +356,7 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Special_Crystalline_Pickaxe());
 		event.getRegistry().register(new TAItem_Special_StickySpiker());
 		event.getRegistry().register(new TAItem_Special_LivingDiviningRod());
+		event.getRegistry().register(new TAItem_Special_Aurorianite_Axe());
 		event.getRegistry().register(new TAItem_Armor_Spiked(EntityEquipmentSlot.CHEST, "spikedchestplate"));
 
 		// FOODS
