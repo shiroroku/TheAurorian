@@ -520,7 +520,7 @@ public class TABlocks {
 	}
 
 	public static void registerOreDictionary() {
-		OreDictionary.registerOre("treeLeaves", TABlocks.silentwoodplanks);
+		OreDictionary.registerOre("treeLeaves", TABlocks.silentwoodleaves);
 		OreDictionary.registerOre("stickWood", TAItems.silentwoodstick);
 		OreDictionary.registerOre("logSilentwood", TABlocks.silentwoodlog);
 		OreDictionary.registerOre("plankSilentwood", TABlocks.silentwoodplanks);
