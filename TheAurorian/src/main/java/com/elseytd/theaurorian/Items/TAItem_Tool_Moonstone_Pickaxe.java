@@ -27,7 +27,7 @@ public class TAItem_Tool_Moonstone_Pickaxe extends ItemPickaxe {
 	public static final String ITEMNAME = "moonstonepickaxe";
 
 	public TAItem_Tool_Moonstone_Pickaxe() {
-		super(TAItems.TA_MOONSTONE);
+		super(TAItems.Materials.MOONSTONE);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);

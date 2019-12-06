@@ -27,7 +27,7 @@ public class TAItem_Tool_Aurorian_Stone_Axe extends ItemAxe {
 	public static final String ITEMNAME = "aurorianstoneaxe";
 
 	public TAItem_Tool_Aurorian_Stone_Axe() {
-		super(TAItems.TA_AURORIANSTONE, 8.0F, -3.2F);
+		super(TAItems.Materials.AURORIANSTONE, 8.0F, -3.2F);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);

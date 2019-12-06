@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TABlockFluid_MoltenMoonstone extends BlockFluidClassic {
 
 	public TABlockFluid_MoltenMoonstone() {
-		super(TABlocks.FLUID_MOLTENMOONSTONE, Material.LAVA);
+		super(TABlocks.Fluids.MOLTENMOONSTONE, Material.LAVA);
 		this.setRegistryName(TAFluid_MoltenMoonstone.FLUIDNAME);
 		this.setUnlocalizedName(TAFluid_MoltenMoonstone.FLUIDNAME);
 	}

@@ -36,7 +36,7 @@ public class TAItem_Tool_Moonstone_Shovel extends ItemSpade {
 	public static final String ITEMNAME = "moonstoneshovel";
 
 	public TAItem_Tool_Moonstone_Shovel() {
-		super(TAItems.TA_MOONSTONE);
+		super(TAItems.Materials.MOONSTONE);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);

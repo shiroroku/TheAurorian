@@ -28,7 +28,7 @@ public class TAItem_Tool_Silentwood_Axe extends ItemAxe {
 	public static final String ITEMNAME = "silentwoodaxe";
 
 	public TAItem_Tool_Silentwood_Axe() {
-		super(TAItems.TA_SILENTWOOD, 6.0F, -3.2F);
+		super(TAItems.Materials.SILENTWOOD, 6.0F, -3.2F);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);

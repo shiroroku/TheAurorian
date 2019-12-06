@@ -62,11 +62,13 @@ import net.minecraftforge.oredict.OreDictionary;
 @Mod.EventBusSubscriber
 public class TABlocks {
 
-	// FLUID
-	public static TAFluid_Moonwater FLUID_MOONWATER = new TAFluid_Moonwater();
-	public static TAFluid_MoltenCerulean FLUID_MOLTENCERULEAN = new TAFluid_MoltenCerulean();
-	public static TAFluid_MoltenMoonstone FLUID_MOLTENMOONSTONE = new TAFluid_MoltenMoonstone();
+	public static class Fluids {
+		public static TAFluid_Moonwater MOONWATER = new TAFluid_Moonwater();
+		public static TAFluid_MoltenCerulean MOLTENCERULEAN = new TAFluid_MoltenCerulean();
+		public static TAFluid_MoltenMoonstone MOLTENMOONSTONE = new TAFluid_MoltenMoonstone();
+	}
 
+	// FLUID
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAFluid_Moonwater.FLUIDNAME)
 	public static TABlockFluid_Moonwater moonwaterblock;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAFluid_MoltenCerulean.FLUIDNAME)
@@ -185,7 +187,7 @@ public class TABlocks {
 	public static TABlock_DungeonStoneGate darkstonegate;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_DungeonStoneLamp.BLOCKNAME_DARK)
 	public static TABlock_DungeonStoneLamp darkstonelamp;
-	
+
 	// SILENTWOOD
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Silentwood_Ladder.BLOCKNAME)
 	public static TABlock_Silentwood_Ladder silentwoodladder;
@@ -229,6 +231,7 @@ public class TABlocks {
 	@SideOnly(Side.CLIENT)
 	public static void initModels() {
 
+		// FLUIDS
 		moonwaterblock.initModel();
 		moltenceruleanblock.initModel();
 		moltenmoonstoneblock.initModel();
@@ -294,7 +297,7 @@ public class TABlocks {
 		darkstonegate.initModel();
 		darkstonegatekeyhole.initModel();
 		darkstonelamp.initModel();
-		
+
 		// SILENTWOOD
 		silentwoodladder.initModel();
 		silentwoodleaves.initModel();
@@ -327,16 +330,16 @@ public class TABlocks {
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		// FLUID
-		FluidRegistry.registerFluid(FLUID_MOONWATER);
-		FluidRegistry.addBucketForFluid(FLUID_MOONWATER);
+		FluidRegistry.registerFluid(Fluids.MOONWATER);
+		FluidRegistry.addBucketForFluid(Fluids.MOONWATER);
 		event.getRegistry().register(new TABlockFluid_Moonwater());
 
-		FluidRegistry.registerFluid(FLUID_MOLTENCERULEAN);
-		FluidRegistry.addBucketForFluid(FLUID_MOLTENCERULEAN);
+		FluidRegistry.registerFluid(Fluids.MOLTENCERULEAN);
+		FluidRegistry.addBucketForFluid(Fluids.MOLTENCERULEAN);
 		event.getRegistry().register(new TABlockFluid_MoltenCerulean());
 
-		FluidRegistry.registerFluid(FLUID_MOLTENMOONSTONE);
-		FluidRegistry.addBucketForFluid(FLUID_MOLTENMOONSTONE);
+		FluidRegistry.registerFluid(Fluids.MOLTENMOONSTONE);
+		FluidRegistry.addBucketForFluid(Fluids.MOLTENMOONSTONE);
 		event.getRegistry().register(new TABlockFluid_MoltenMoonstone());
 
 		// SPECIAL
@@ -400,7 +403,7 @@ public class TABlocks {
 		event.getRegistry().register(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_DARK, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_DARK));
 		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_DARK, TABlock_DungeonStoneGate.BLOCKNAME_DARK, TAItem_Special_DungeonKey.ITEMNAME_DARKSTONE));
 		event.getRegistry().register(new TABlock_DungeonStoneLamp(TABlock_DungeonStoneLamp.BLOCKNAME_DARK));
-		
+
 		// SILENTWOOD
 		event.getRegistry().register(new TABlock_Silentwood_Ladder());
 		event.getRegistry().register(new TABlock_Silentwood_Leaves());
@@ -494,7 +497,7 @@ public class TABlocks {
 		itemblockQuickReg(event, TABlocks.darkstonegate);
 		itemblockQuickReg(event, TABlocks.darkstonegatekeyhole);
 		itemblockQuickReg(event, TABlocks.darkstonelamp);
-		
+
 		// SILENTWOOD
 		itemblockQuickReg(event, TABlocks.silentwoodladder);
 		itemblockQuickReg(event, TABlocks.silentwoodleaves);

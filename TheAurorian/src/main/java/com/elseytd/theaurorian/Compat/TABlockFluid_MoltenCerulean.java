@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TABlockFluid_MoltenCerulean extends BlockFluidClassic {
 
 	public TABlockFluid_MoltenCerulean() {
-		super(TABlocks.FLUID_MOLTENCERULEAN, Material.LAVA);
+		super(TABlocks.Fluids.MOLTENCERULEAN, Material.LAVA);
 		this.setRegistryName(TAFluid_MoltenCerulean.FLUIDNAME);
 		this.setUnlocalizedName(TAFluid_MoltenCerulean.FLUIDNAME);
 	}

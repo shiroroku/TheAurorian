@@ -32,7 +32,7 @@ public class TAItem_Special_Aurorianite_Sword extends ItemSword {
 	public static final String ITEMNAME = "aurorianitesword";
 
 	public TAItem_Special_Aurorianite_Sword() {
-		super(TAItems.TA_AURORIANITE);
+		super(TAItems.Materials.AURORIANITE);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);

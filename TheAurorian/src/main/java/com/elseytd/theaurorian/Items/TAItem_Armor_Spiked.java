@@ -31,7 +31,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TAItem_Armor_Spiked extends ItemArmor {
 
 	public TAItem_Armor_Spiked(EntityEquipmentSlot equipmentSlotIn, String name) {
-		super(TAItems.TA_SPIKED_ARMOR, 0, equipmentSlotIn);
+		super(TAItems.Materials.SPIKED_ARMOR, 0, equipmentSlotIn);
 		this.setRegistryName(name);
 		this.setUnlocalizedName(TAMod.MODID + "." + name);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);

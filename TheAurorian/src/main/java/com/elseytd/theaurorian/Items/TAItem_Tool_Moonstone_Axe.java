@@ -27,7 +27,7 @@ public class TAItem_Tool_Moonstone_Axe extends ItemAxe {
 	public static final String ITEMNAME = "moonstoneaxe";
 
 	public TAItem_Tool_Moonstone_Axe() {
-		super(TAItems.TA_MOONSTONE, 8.0F, -3.2F);
+		super(TAItems.Materials.MOONSTONE, 8.0F, -3.2F);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);

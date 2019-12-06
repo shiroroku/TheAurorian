@@ -29,7 +29,7 @@ public class TAItem_Special_Crystalline_Pickaxe extends ItemPickaxe {
 	public static final String ITEMNAME = "crystallinepickaxe";
 
 	public TAItem_Special_Crystalline_Pickaxe() {
-		super(TAItems.TA_CRYSTALLINE);
+		super(TAItems.Materials.CRYSTALLINE);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);

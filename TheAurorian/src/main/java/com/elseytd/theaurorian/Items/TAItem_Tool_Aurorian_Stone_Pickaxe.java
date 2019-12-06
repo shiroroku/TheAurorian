@@ -28,7 +28,7 @@ public class TAItem_Tool_Aurorian_Stone_Pickaxe extends ItemPickaxe {
 	public static final String ITEMNAME = "aurorianstonepickaxe";
 
 	public TAItem_Tool_Aurorian_Stone_Pickaxe() {
-		super(TAItems.TA_AURORIANSTONE);
+		super(TAItems.Materials.AURORIANSTONE);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);

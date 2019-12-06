@@ -70,11 +70,11 @@ public class TACompat_Tinkers {
 
 		cerulean = new Material("cerulean", new Color(50, 157, 255).getRGB());
 		TinkerRegistry.addMaterialStats(cerulean, new HeadMaterialStats(270, 7.00f, 3.00f, HarvestLevels.DIAMOND), new HandleMaterialStats(1f, 50), new ExtraMaterialStats(75), new BowMaterialStats(0.2f, 0.4f, -1f));
-		TinkerRegistry.integrate(cerulean, TABlocks.FLUID_MOLTENCERULEAN, "Cerulean").toolforge().preInit();
+		TinkerRegistry.integrate(cerulean, TABlocks.Fluids.MOLTENCERULEAN, "Cerulean").toolforge().preInit();
 
 		moonstone = new Material("moonstone", new Color(240, 242, 232).getRGB());
 		TinkerRegistry.addMaterialStats(moonstone, new HeadMaterialStats(320, 5.50f, 3.5f, HarvestLevels.IRON), new HandleMaterialStats(0.75f, 50), new ExtraMaterialStats(120), new BowMaterialStats(0.2f, 0.4f, -1f));
-		TinkerRegistry.integrate(moonstone, TABlocks.FLUID_MOLTENMOONSTONE, "Moonstone").toolforge().preInit();
+		TinkerRegistry.integrate(moonstone, TABlocks.Fluids.MOLTENMOONSTONE, "Moonstone").toolforge().preInit();
 
 		silentwood = new Material("silentwood", new Color(182, 207, 233).getRGB());
 		TinkerRegistry.addMaterialStats(silentwood, new HeadMaterialStats(35, 1.75f, 2.00f, HarvestLevels.STONE), new HandleMaterialStats(1.25f, 30), new ExtraMaterialStats(15), new BowMaterialStats(1f, 1.25f, 0));

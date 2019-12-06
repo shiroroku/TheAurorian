@@ -27,7 +27,7 @@ public class TAItem_Special_MoonTempleBreaker extends ItemPickaxe {
 	public static final String ITEMNAME = "moontemplebreaker";
 
 	public TAItem_Special_MoonTempleBreaker() {
-		super(TAItems.TA_MOONSTONE);
+		super(TAItems.Materials.MOONSTONE);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);

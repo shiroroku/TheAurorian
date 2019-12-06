@@ -26,7 +26,7 @@ public class TAItem_Special_Aurorianite_Axe extends ItemAxe {
 	public static final String ITEMNAME = "aurorianiteaxe";
 
 	public TAItem_Special_Aurorianite_Axe() {
-		super(TAItems.TA_AURORIANITE, 12.0F, -3.5F);
+		super(TAItems.Materials.AURORIANITE, 12.0F, -3.5F);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);

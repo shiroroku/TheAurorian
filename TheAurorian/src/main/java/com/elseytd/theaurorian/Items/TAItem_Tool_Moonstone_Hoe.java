@@ -30,7 +30,7 @@ public class TAItem_Tool_Moonstone_Hoe extends ItemHoe {
 	public static final String ITEMNAME = "moonstonehoe";
 
 	public TAItem_Tool_Moonstone_Hoe() {
-		super(TAItems.TA_MOONSTONE);
+		super(TAItems.Materials.MOONSTONE);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);

@@ -27,7 +27,7 @@ public class TAItem_Tool_Silentwood_Pickaxe extends ItemPickaxe {
 	public static final String ITEMNAME = "silentwoodpickaxe";
 
 	public TAItem_Tool_Silentwood_Pickaxe() {
-		super(TAItems.TA_SILENTWOOD);
+		super(TAItems.Materials.SILENTWOOD);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);

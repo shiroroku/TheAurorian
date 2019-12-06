@@ -29,7 +29,7 @@ public class TAItem_Special_Aurorianite_Pickaxe extends ItemPickaxe {
 	public static final String ITEMNAME = "aurorianitepickaxe";
 
 	public TAItem_Special_Aurorianite_Pickaxe() {
-		super(TAItems.TA_AURORIANITE);
+		super(TAItems.Materials.AURORIANITE);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);
