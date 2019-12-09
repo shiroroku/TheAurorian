@@ -1,8 +1,10 @@
 package com.elseytd.theaurorian;
 
 import com.elseytd.theaurorian.Entities.TAEntityRender_CeruleanArrow;
+import com.elseytd.theaurorian.Entities.TAEntityRender_CrystallineSprite;
 import com.elseytd.theaurorian.Entities.TAEntityRender_StickySpiker;
 import com.elseytd.theaurorian.Entities.TAEntity_CeruleanArrow;
+import com.elseytd.theaurorian.Entities.TAEntity_CrystallineSprite;
 import com.elseytd.theaurorian.Entities.TAEntity_StickySpiker;
 import com.elseytd.theaurorian.Entities.AurorianPig.TAEntityRender_AurorianPig;
 import com.elseytd.theaurorian.Entities.AurorianPig.TAEntity_AurorianPig;
@@ -45,6 +47,7 @@ public class TAEntities {
 		quickRegEntity(TAEntity_AurorianSlime.class, TAEntity_AurorianSlime.EntityName, id++);
 		quickRegNonlivingEntity(TAEntity_StickySpiker.class, TAEntity_StickySpiker.EntityName, id++);
 		quickRegNonlivingEntity(TAEntity_CeruleanArrow.class, TAEntity_CeruleanArrow.EntityName, id++);
+		quickRegNonlivingEntity(TAEntity_CrystallineSprite.class, TAEntity_CrystallineSprite.EntityName, id++);
 
 	}
 
@@ -69,5 +72,6 @@ public class TAEntities {
 		RenderingRegistry.registerEntityRenderingHandler(TAEntity_AurorianSlime.class, TAEntityRender_AurorianSlime.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(TAEntity_StickySpiker.class, TAEntityRender_StickySpiker.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(TAEntity_CeruleanArrow.class, TAEntityRender_CeruleanArrow.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(TAEntity_CrystallineSprite.class, TAEntityRender_CrystallineSprite.FACTORY);
 	}
 }

@@ -12,6 +12,7 @@ import com.elseytd.theaurorian.Items.TAItem_Crafting_MoonTempleCellKeyFragment;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_Nugget;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_PlantFiber;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_SilentwoodStick;
+import com.elseytd.theaurorian.Items.TAItem_CrystallineSprite;
 import com.elseytd.theaurorian.Items.TAItem_Food_AurorianBacon;
 import com.elseytd.theaurorian.Items.TAItem_Food_AurorianPork;
 import com.elseytd.theaurorian.Items.TAItem_Food_CookedAurorianPork;
@@ -84,7 +85,6 @@ public class TAItems {
 		public static ArmorMaterial KNIGHT_ARMOR = EnumHelper.addArmorMaterial("TA_KNIGHT_ARMOR", "theaurorian:knight", 30, new int[] { 2, 3, 2, 1 }, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0);
 	}
 
-	
 	// SPECIAL
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "spikedchestplate")
 	public static TAItem_Armor_Spiked spikedchestplate;
@@ -102,6 +102,8 @@ public class TAItems {
 	public static TAItem_Special_Crystalline_Pickaxe crystallinepickaxe;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Crystalline_Shield.ITEMNAME)
 	public static TAItem_Special_Crystalline_Shield crystallineshield;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_CrystallineSprite.ITEMNAME)
+	public static TAItem_CrystallineSprite crystallinesprite;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_DarkAmulet.ITEMNAME)
 	public static TAItem_Special_DarkAmulet darkamulet;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_DungeonKey.ITEMNAME_DARKSTONE)
@@ -259,6 +261,7 @@ public class TAItems {
 		ceruleanshield.initModel();
 		crystallinepickaxe.initModel();
 		crystallineshield.initModel();
+		crystallinesprite.initModel();
 		darkamulet.initModel();
 		darkstonekey.initModel();
 		keeperamulet.initModel();
@@ -350,6 +353,7 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Special_Aurorianite_Sword());
 		event.getRegistry().register(new TAItem_Special_Crystalline_Pickaxe());
 		event.getRegistry().register(new TAItem_Special_Crystalline_Shield());
+		event.getRegistry().register(new TAItem_CrystallineSprite());
 		event.getRegistry().register(new TAItem_Special_DarkAmulet());
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_DARKSTONE));
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLE));
