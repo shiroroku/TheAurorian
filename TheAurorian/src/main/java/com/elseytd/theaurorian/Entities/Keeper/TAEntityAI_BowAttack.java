@@ -10,7 +10,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 
-public class TAEntityAI_RangedAttack extends EntityAIBase {
+public class TAEntityAI_BowAttack extends EntityAIBase {
 
 	public final EntityLiving entityHost;
 	public final IRangedAttackMob rangedAttackEntityHost;
@@ -24,11 +24,11 @@ public class TAEntityAI_RangedAttack extends EntityAIBase {
 	public final float attackRadius;
 	public final float maxAttackDistance;
 
-	public TAEntityAI_RangedAttack(IRangedAttackMob attacker, double movespeed, int maxAttackTime, float maxAttackDistanceIn) {
+	public TAEntityAI_BowAttack(IRangedAttackMob attacker, double movespeed, int maxAttackTime, float maxAttackDistanceIn) {
 		this(attacker, movespeed, maxAttackTime, maxAttackTime, maxAttackDistanceIn);
 	}
 
-	public TAEntityAI_RangedAttack(IRangedAttackMob attacker, double movespeed, int p_i1650_4_, int maxAttackTime, float maxAttackDistanceIn) {
+	public TAEntityAI_BowAttack(IRangedAttackMob attacker, double movespeed, int p_i1650_4_, int maxAttackTime, float maxAttackDistanceIn) {
 		this.rangedAttackTime = -1;
 		if (!(attacker instanceof EntityLivingBase)) {
 			throw new IllegalArgumentException("ArrowAttackGoal requires Mob implements RangedAttackMob");

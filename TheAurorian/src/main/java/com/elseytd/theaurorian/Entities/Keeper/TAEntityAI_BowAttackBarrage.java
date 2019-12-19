@@ -4,9 +4,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.util.math.MathHelper;
 
-public class TAEntityAI_RangedAttackBarrage extends TAEntityAI_RangedAttack {
+public class TAEntityAI_BowAttackBarrage extends TAEntityAI_BowAttack {
 
-	public TAEntityAI_RangedAttackBarrage(IRangedAttackMob attacker, double movespeed, int maxAttackTime, float maxAttackDistanceIn) {
+	public TAEntityAI_BowAttackBarrage(IRangedAttackMob attacker, double movespeed, int maxAttackTime, float maxAttackDistanceIn) {
 		super(attacker, movespeed, maxAttackTime, maxAttackTime, maxAttackDistanceIn);
 	}
 

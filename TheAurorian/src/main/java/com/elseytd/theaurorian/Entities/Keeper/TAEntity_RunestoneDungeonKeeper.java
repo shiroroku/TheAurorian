@@ -74,8 +74,8 @@ public class TAEntity_RunestoneDungeonKeeper extends EntityMob implements IRange
 	@Override
 	protected void initEntityAI() {
 		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(1, new TAEntityAI_RangedAttackBarrage(this, 0.25F, 2, 40F));
-		this.tasks.addTask(2, new TAEntityAI_RangedAttack(this, 0.85F, 20, 40F));
+		this.tasks.addTask(1, new TAEntityAI_BowAttackBarrage(this, 0.25F, 2, 40F));
+		this.tasks.addTask(2, new TAEntityAI_BowAttack(this, 0.85F, 20, 40F));
 		this.tasks.addTask(3, new EntityAIAttackMelee(this, 1.0D, false) {
 			@Override
 			public void startExecuting() {
