@@ -1,4 +1,4 @@
-package com.elseytd.theaurorian.Entities;
+package com.elseytd.theaurorian.Entities.CrystallineSprite;
 
 import javax.annotation.Nonnull;
 

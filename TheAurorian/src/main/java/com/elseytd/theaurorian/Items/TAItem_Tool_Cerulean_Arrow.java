@@ -1,7 +1,7 @@
 package com.elseytd.theaurorian.Items;
 
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.Entities.TAEntity_CeruleanArrow;
+import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_CeruleanArrow;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;

@@ -6,7 +6,9 @@ import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.Entities.AurorianPig.TAEntity_AurorianPig;
 import com.elseytd.theaurorian.Entities.AurorianRabbit.TAEntity_AurorianRabbit;
 import com.elseytd.theaurorian.Entities.AurorianSheep.TAEntity_AurorianSheep;
+import com.elseytd.theaurorian.Entities.CrystallineSprite.TAEntity_CrystallineSprite;
 import com.elseytd.theaurorian.Entities.Hollow.TAEntity_DisturbedHollow;
+import com.elseytd.theaurorian.Entities.MoonAcolyte.TAEntity_MoonAcolyte;
 import com.elseytd.theaurorian.World.TATerrainGenerator;
 import com.elseytd.theaurorian.World.TAWorldGenerator_Plant;
 import com.elseytd.theaurorian.World.TAWorldGenerator_Trees;
@@ -35,10 +37,17 @@ public class TABiome extends Biome {
 		this.spawnableCreatureList.clear();
 		this.spawnableMonsterList.clear();
 		this.spawnableWaterCreatureList.clear();
+		
+		//Ambient mobs
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(TAEntity_DisturbedHollow.class, 95, 1, 4));
 		this.spawnableCreatureList.add(new Biome.SpawnListEntry(TAEntity_AurorianRabbit.class, 4, 1, 2));
 		this.spawnableCreatureList.add(new Biome.SpawnListEntry(TAEntity_AurorianSheep.class, 5, 1, 3));
 		this.spawnableCreatureList.add(new Biome.SpawnListEntry(TAEntity_AurorianPig.class, 5, 1, 3));
+		
+		//Moontemple mobs
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(TAEntity_CrystallineSprite.class, 65, 2, 2));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(TAEntity_MoonAcolyte.class, 35, 1, 4));
+		
 	}
 
 	@Override

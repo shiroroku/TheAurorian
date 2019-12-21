@@ -1,4 +1,4 @@
-package com.elseytd.theaurorian.Entities;
+package com.elseytd.theaurorian.Entities.CrystallineSprite;
 
 import com.elseytd.theaurorian.TAItems;
 

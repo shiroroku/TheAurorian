@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.Entities.TAEntity_StickySpiker;
+import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_StickySpiker;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

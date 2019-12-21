@@ -69,12 +69,11 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator {
 
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
-		Chunk c = worldIn.getChunkFromBlockCoords(new BlockPos(position.getX() + 8, position.getY(), position.getZ() + 8));
+		Chunk c = worldIn.getChunkFromBlockCoords(position);
 
 		generateTower(worldIn, c, rand);
 
 		return true;
-
 	}
 
 	private static boolean isValidChunkForGen(int chunkX, int chunkZ, int offsetX, int offsetZ) {

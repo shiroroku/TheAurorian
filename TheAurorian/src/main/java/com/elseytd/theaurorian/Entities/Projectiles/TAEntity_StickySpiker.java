@@ -1,4 +1,4 @@
-package com.elseytd.theaurorian.Entities;
+package com.elseytd.theaurorian.Entities.Projectiles;
 
 import com.elseytd.theaurorian.TAParticles;
 

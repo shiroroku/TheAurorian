@@ -1,4 +1,4 @@
-package com.elseytd.theaurorian.Entities;
+package com.elseytd.theaurorian.Entities.Projectiles;
 
 import javax.annotation.Nonnull;
 
@@ -14,17 +14,17 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-public class TAEntityRender_CrystallineBeam extends Render<TAEntity_CrystallineBeam> {
+public class TAEntityRender_CeruleanArrow extends Render<TAEntity_CeruleanArrow> {
 	
-	private ResourceLocation mobTexture = new ResourceLocation(TAMod.MODID, "textures/entity/crystallinebeam.png");
+	private ResourceLocation mobTexture = new ResourceLocation(TAMod.MODID, "textures/entity/ceruleanarrow.png");
 	public static final Factory FACTORY = new Factory();
 
-	public TAEntityRender_CrystallineBeam(RenderManager rendermanagerIn) {
+	public TAEntityRender_CeruleanArrow(RenderManager rendermanagerIn) {
 		super(rendermanagerIn);
 	}
 
 	@Override
-	public void doRender(TAEntity_CrystallineBeam entity, double x, double y, double z, float entityYaw, float partialTicks) {
+	public void doRender(TAEntity_CeruleanArrow entity, double x, double y, double z, float entityYaw, float partialTicks) {
 		this.bindEntityTexture(entity);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.pushMatrix();
@@ -90,15 +90,15 @@ public class TAEntityRender_CrystallineBeam extends Render<TAEntity_CrystallineB
 
 	@Override
 	@Nonnull
-	protected ResourceLocation getEntityTexture(@Nonnull TAEntity_CrystallineBeam entity) {
+	protected ResourceLocation getEntityTexture(@Nonnull TAEntity_CeruleanArrow entity) {
 		return mobTexture;
 	}
 
-	public static class Factory implements IRenderFactory<TAEntity_CrystallineBeam> {
+	public static class Factory implements IRenderFactory<TAEntity_CeruleanArrow> {
 
 		@Override
-		public Render<? super TAEntity_CrystallineBeam> createRenderFor(RenderManager manager) {
-			return new TAEntityRender_CrystallineBeam(manager);
+		public Render<? super TAEntity_CeruleanArrow> createRenderFor(RenderManager manager) {
+			return new TAEntityRender_CeruleanArrow(manager);
 		}
 
 	}

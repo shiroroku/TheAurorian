@@ -19,13 +19,17 @@ import net.minecraft.world.gen.structure.template.Template;
 
 public class TAWorldGenerator_MoonTemple extends WorldGenerator {
 
-	private static final ResourceLocation MOONTEMPLE_LOOTTABLE = new ResourceLocation(TAMod.MODID, "chests/moontemple");
-
+	private static final ResourceLocation MOONTEMPLE_LOOTTABLE_LOW = new ResourceLocation(TAMod.MODID, "chests/moontemplelow");
+	private static final ResourceLocation MOONTEMPLE_LOOTTABLE_MED = new ResourceLocation(TAMod.MODID, "chests/moontemplemed");
+	
 	private static final ResourceLocation MOONTEMPLE_TERRAIN = new ResourceLocation(TAMod.MODID, "moontemple/moontemple_terrain");
-	private static final ResourceLocation MOONTEMPLE_COURTYARD = new ResourceLocation(TAMod.MODID, "moontemple/moontemple_courtyard");
-	private static final ResourceLocation MOONTEMPLE_CONNECTOR = new ResourceLocation(TAMod.MODID, "moontemple/moontemple_connector");
-	private static final ResourceLocation MOONTEMPLE_TOWER = new ResourceLocation(TAMod.MODID, "moontemple/moontemple_tower");
-	private static final ResourceLocation MOONTEMPLE_ROOM = new ResourceLocation(TAMod.MODID, "moontemple/moontemple_room");
+	private static final ResourceLocation MOONTEMPLE_COURTYARD = new ResourceLocation(TAMod.MODID, "moontemple/moontemplev2_courtyard");
+	private static final ResourceLocation MOONTEMPLE_COURTYARD_LEFT = new ResourceLocation(TAMod.MODID, "moontemple/moontemplev2_courtyardl");
+	private static final ResourceLocation MOONTEMPLE_COURTYARD_RIGHT = new ResourceLocation(TAMod.MODID, "moontemple/moontemplev2_courtyardr");
+	private static final ResourceLocation MOONTEMPLE_CONNECTOR = new ResourceLocation(TAMod.MODID, "moontemple/moontemplev2_center");
+	private static final ResourceLocation MOONTEMPLE_TOWER_LEFT = new ResourceLocation(TAMod.MODID, "moontemple/moontemplev2_left");
+	private static final ResourceLocation MOONTEMPLE_TOWER_RIGHT = new ResourceLocation(TAMod.MODID, "moontemple/moontemplev2_right");
+	private static final ResourceLocation MOONTEMPLE_ROOM = new ResourceLocation(TAMod.MODID, "moontemple/moontemplev2_room");
 	private static final ResourceLocation MOONTEMPLE_ISLAND = new ResourceLocation(TAMod.MODID, "moontemple/moontemple_island");
 	private static final ResourceLocation MOONTEMPLE_PATH_TURN = new ResourceLocation(TAMod.MODID, "moontemple/moontemple_path_turn");
 	private static final ResourceLocation MOONTEMPLE_PATH_STRAIGHT = new ResourceLocation(TAMod.MODID, "moontemple/moontemple_path_straight");
@@ -36,9 +40,13 @@ public class TAWorldGenerator_MoonTemple extends WorldGenerator {
 
 	//==================
 	// TERRAIN 		   - The bottom part of structures with dirt that makes it look like a floating island.
-	// COURTYARD	   - The walled platform in front of the entrance.
-	// CONNECTOR       - The middle hallway that connects the whole temple.
-	// ROOM            - The boss room of the temple.
+	// COURTYARD	   - Platform in front of the entrance.
+	// COURTYARD LEFT  - Border blocks for front of left tower.
+	// COURTYARD RIGHT - Border blocks for front of right tower.
+	// CONNECTOR       - The middle of the temple.
+	// TOWER LEFT 	   - Left side of the temple.
+	// TOWER RIGHT 	   - Right side of the temple.
+	// ROOM            - The back parkour room.
 	// ISLAND          - The floating pillar islands around the temple.
 	// PATH            - The floating path that leads in a spiral down to the surface.
 	//==================
@@ -46,16 +54,33 @@ public class TAWorldGenerator_MoonTemple extends WorldGenerator {
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
 		Chunk c = worldIn.getChunkFromBlockCoords(position);
-
-		if (generateTemple(worldIn, c.x, c.z, rand)) {
-			TAUtil.populateChestsInChunk(c, rand, MOONTEMPLE_LOOTTABLE);
-			//c.markDirty();
+		int height = 200;
+		
+		if(generateTemple(worldIn, c, height, rand)) {
+			//Populate loot in a 4x4 chunk since the structure is offset
+			Chunk c1 = worldIn.getChunkFromChunkCoords(c.x + 1, c.z + 1);
+			Chunk c2 = worldIn.getChunkFromChunkCoords(c.x + 1, c.z);
+			Chunk c3 = worldIn.getChunkFromChunkCoords(c.x, c.z + 1);
+			
+			populateChests(c, height, height + 12, MOONTEMPLE_LOOTTABLE_LOW, rand);
+			populateChests(c, height + 12, height + 30, MOONTEMPLE_LOOTTABLE_MED, rand);
+			populateChests(c1, height, height + 12, MOONTEMPLE_LOOTTABLE_LOW, rand);
+			populateChests(c1, height + 12, height + 30, MOONTEMPLE_LOOTTABLE_MED, rand);
+			populateChests(c2, height, height + 12, MOONTEMPLE_LOOTTABLE_LOW, rand);
+			populateChests(c2, height + 12, height + 30, MOONTEMPLE_LOOTTABLE_MED, rand);
+			populateChests(c3, height, height + 12, MOONTEMPLE_LOOTTABLE_LOW, rand);
+			populateChests(c3, height + 12, height + 30, MOONTEMPLE_LOOTTABLE_MED, rand);
 		}
-
+		
 		return true;
-
 	}
 
+	private void populateChests(Chunk c, int heightmin, int heightmax, ResourceLocation loot, Random r) {
+		for (int y = heightmin; y <= heightmax; y++) {
+			TAUtil.populateChestsInChunkAtHeight(c, y, r, loot, false);
+		}
+	}
+	
 	public static boolean isValidChunkForGen(int chunkX, int chunkZ, int offsetX, int offsetZ) {
 		if ((chunkX + offsetX + (TAConfig.Config_DungeonDensity / 2)) % CHUNKS_BETWEEN_TEMPLES == 0 && (chunkZ + offsetZ + (TAConfig.Config_DungeonDensity / 2)) % CHUNKS_BETWEEN_TEMPLES == 0) {
 			return true;
@@ -63,99 +88,105 @@ public class TAWorldGenerator_MoonTemple extends WorldGenerator {
 		return false;
 	}
 
-	public boolean generateTemple(World world, int chunkX, int chunkZ, Random rand) {
-		boolean gen = false;
+	public boolean generateTemple(World world, Chunk c, int height, Random rand) {
+		boolean populateChests = false;
+		int chunkX = c.x;
+		int chunkZ = c.z;
 		int x = chunkX * 16 + 8;
 		int z = chunkZ * 16 + 8;
-		int y = 200;
+		int y = height;
 
 		final PlacementSettings settings = new PlacementSettings().setRotation(Rotation.NONE).setReplacedBlock(TABlocks.aurorianstone);
-		final PlacementSettings settingsrotated = new PlacementSettings().setRotation(Rotation.CLOCKWISE_180).setReplacedBlock(TABlocks.aurorianstone);
 
 		if (isValidChunkForGen(chunkX, chunkZ, 0, 0)) {
 			final Template temple_connector = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_CONNECTOR);
-			temple_connector.addBlocksToWorld(world, new BlockPos(x, y, z), settings, 3);
-
-			final Template temple_terrain = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_TERRAIN);
-			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings, 3);
-			gen = true;
-		}
-
-		if (isValidChunkForGen(chunkX, chunkZ, 1, 0)) {
-			final Template temple_tower = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_TOWER);
-			temple_tower.addBlocksToWorld(world, new BlockPos(x, y, z), settings, 3);
-
-			final Template temple_terrain = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_TERRAIN);
-			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings, 3);
-			gen = true;
-		}
-
-		if (isValidChunkForGen(chunkX, chunkZ, -1, 0)) {
-			final Template temple_tower = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_TOWER);
-			temple_tower.addBlocksToWorld(world, new BlockPos(x + 15, y, z + 15), settingsrotated);
+			temple_connector.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
 
 			final Template temple_terrain = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_TERRAIN);
 			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings);
-			gen = true;
+			populateChests = true;
+		}
+
+		if (isValidChunkForGen(chunkX, chunkZ, -1, 0)) {
+			final Template temple_tower = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_TOWER_LEFT);
+			temple_tower.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
+
+			final Template temple_terrain = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_TERRAIN);
+			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings);
+			populateChests = true;
+		}
+
+		if (isValidChunkForGen(chunkX, chunkZ, 1, 0)) {
+			final Template temple_tower = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_TOWER_RIGHT);
+			temple_tower.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
+
+			final Template temple_terrain = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_TERRAIN);
+			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings);
+			populateChests = true;
 		}
 
 		if (isValidChunkForGen(chunkX, chunkZ, 0, 1)) {
 			final Template temple_courtyard = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_COURTYARD);
-			temple_courtyard.addBlocksToWorld(world, new BlockPos(x, y, z), settings, 3);
+			temple_courtyard.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
 
 			final Template temple_terrain = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_TERRAIN);
-			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings, 3);
-			gen = true;
+			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings);
+			populateChests = true;
+		}
+
+		if (isValidChunkForGen(chunkX, chunkZ, -1, 1)) {
+			final Template temple_courtyard = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_COURTYARD_LEFT);
+			temple_courtyard.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
+			populateChests = true;
+		}
+
+		if (isValidChunkForGen(chunkX, chunkZ, 1, 1)) {
+			final Template temple_courtyard = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_COURTYARD_RIGHT);
+			temple_courtyard.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
+			populateChests = true;
 		}
 
 		if (isValidChunkForGen(chunkX, chunkZ, 0, -1)) {
 			final Template temple_room = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_ROOM);
-			temple_room.addBlocksToWorld(world, new BlockPos(x, y, z), settings, 3);
+			temple_room.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
 
 			final Template temple_terrain = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), MOONTEMPLE_TERRAIN);
-			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings, 3);
-			gen = true;
+			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings);
+			populateChests = true;
 		}
-
+		
 		//ISLANDS
 		if (isValidChunkForGen(chunkX, chunkZ, -1, -3)) {
 			genIsland(world, x, y, z, rand);
-			gen = true;
 		}
 		if (isValidChunkForGen(chunkX, chunkZ, 1, -3)) {
 			genIsland(world, x, y, z, rand);
-			gen = true;
 		}
 		if (isValidChunkForGen(chunkX, chunkZ, -1, 3)) {
 			genIsland(world, x, y, z, rand);
-			gen = true;
 		}
 		if (isValidChunkForGen(chunkX, chunkZ, 1, 3)) {
 			genIsland(world, x, y, z, rand);
-			gen = true;
 		}
 		if (isValidChunkForGen(chunkX, chunkZ, -3, -1)) {
 			genIsland(world, x, y, z, rand);
-			gen = true;
 		}
 		if (isValidChunkForGen(chunkX, chunkZ, -3, 1)) {
 			genIsland(world, x, y, z, rand);
-			gen = true;
 		}
 		if (isValidChunkForGen(chunkX, chunkZ, 3, -1)) {
 			genIsland(world, x, y, z, rand);
-			gen = true;
 		}
 		if (isValidChunkForGen(chunkX, chunkZ, 3, 1)) {
 			genIsland(world, x, y, z, rand);
-			gen = true;
 		}
 
 		//PATH
 		if (GENERATE_TEMPLES_PATH) {
 			genSpiralPath(world, chunkX, chunkZ, x, y, z);
 		}
-		return gen;
+		
+		return populateChests;
 	}
 
 	public void genIsland(World world, int x, int y, int z, Random rand) {

@@ -1,4 +1,8 @@
-package com.elseytd.theaurorian.Entities;
+package com.elseytd.theaurorian.Entities.CrystallineSprite;
+
+import com.elseytd.theaurorian.TABlocks;
+import com.elseytd.theaurorian.TAConfig;
+import com.elseytd.theaurorian.Entities.TAEntityAI_RangedAttack;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -14,6 +18,7 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
@@ -28,6 +33,15 @@ public class TAEntity_CrystallineSprite extends EntityMob implements IRangedAtta
 		this.experienceValue = 25;
 		this.setSize(1F, 1.5F);
 		this.setSilent(true);
+	}
+
+	@Override
+	public boolean getCanSpawnHere() {
+		int i = MathHelper.floor(this.posX);
+		int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+		int k = MathHelper.floor(this.posZ);
+		BlockPos blockpos = new BlockPos(i, j, k);
+		return this.world.getBlockState(blockpos.down()).getBlock() == TABlocks.moontemplebricks && this.dimension == TAConfig.Config_AurorianDimId && super.getCanSpawnHere();
 	}
 
 	@Override
@@ -101,7 +115,7 @@ public class TAEntity_CrystallineSprite extends EntityMob implements IRangedAtta
 		TAEntity_CrystallineBeam entitytippedarrow = new TAEntity_CrystallineBeam(this.world, this);
 		return entitytippedarrow;
 	}
-	
+
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		return SoundEvents.ENTITY_GENERIC_HURT;
