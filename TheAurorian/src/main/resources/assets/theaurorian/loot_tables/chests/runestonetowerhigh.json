@@ -23,6 +23,20 @@
 				},
 				{
 					"type": "item",
+					"name": "theaurorian:ceruleanarrow",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 5
+							}
+						}
+					],
+					"weight": 20
+				},
+				{
+					"type": "item",
 					"name": "theaurorian:bepsi",
 					"functions": [
 						{
@@ -126,7 +140,7 @@
 							}
 						}
 					],
-					"weight": 20
+					"weight": 10
 				},
 				{
 					"type": "item",
@@ -140,7 +154,7 @@
 							}
 						}
 					],
-					"weight": 20
+					"weight": 10
 				},
 				{
 					"type": "item",
@@ -154,7 +168,7 @@
 							}
 						}
 					],
-					"weight": 20
+					"weight": 15
 				},
 				{
 					"type": "item",
@@ -182,7 +196,7 @@
 							}
 						}
 					],
-					"weight": 40
+					"weight": 35
 				},
 				{
 					"type": "item",
@@ -196,7 +210,7 @@
 							}
 						}
 					],
-					"weight": 20
+					"weight": 15
 				}
 			]
 		},
@@ -233,7 +247,7 @@
 							}
 						}
 					],
-					"weight": 25
+					"weight": 10
 				},
 				{
 					"type": "item",
@@ -247,7 +261,7 @@
 							}
 						}
 					],
-					"weight": 20
+					"weight": 15
 				}
 			]
 		},
