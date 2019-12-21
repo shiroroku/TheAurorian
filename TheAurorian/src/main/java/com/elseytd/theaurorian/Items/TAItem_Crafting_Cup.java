@@ -16,7 +16,7 @@ public class TAItem_Crafting_Cup extends Item {
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);
-		this.setMaxStackSize(4);
+		this.setMaxStackSize(16);
 	}
 
 	@SideOnly(Side.CLIENT)

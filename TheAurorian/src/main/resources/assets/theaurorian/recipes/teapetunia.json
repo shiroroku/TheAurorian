@@ -1,0 +1,45 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "theaurorian:cup",
+			"data": 0
+		},
+		{
+			"item": "theaurorian:petuniaplant",
+			"data": 0
+		},
+		{
+			"item": "theaurorian:petuniaplant",
+			"data": 0
+		},
+		{
+			"item": "theaurorian:petuniaplant",
+			"data": 0
+		},
+		{
+			"item": "theaurorian:petuniaplant",
+			"data": 0
+		},
+		{
+			"item": "theaurorian:petuniaplant",
+			"data": 0
+		},
+		{
+			"item": "theaurorian:petuniaplant",
+			"data": 0
+		},
+		{
+			"item": "theaurorian:petuniaplant",
+			"data": 0
+		},
+		{
+			"item": "theaurorian:petuniaplant",
+			"data": 0
+		}
+	],
+	"result": {
+		"item": "theaurorian:teapetunia",
+		"count": 1
+	}
+}

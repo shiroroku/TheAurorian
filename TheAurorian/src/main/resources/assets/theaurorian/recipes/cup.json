@@ -1,13 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "I I",
+    "# #",
     " I "
   ],
   "key": {
-	"I": [
+    "I": [
       {
         "item": "theaurorian:ceruleaningot",
+        "data": 0
+      }
+    ],
+    "#": [
+      {
+        "item": "theaurorian:ceruleannugget",
         "data": 0
       }
     ]

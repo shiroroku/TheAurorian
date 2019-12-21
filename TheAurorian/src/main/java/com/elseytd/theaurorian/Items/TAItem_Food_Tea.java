@@ -27,6 +27,7 @@ public class TAItem_Food_Tea extends Item {
 	public static final String ITEMNAME_LAVENDER = "tealavender";
 	public static final String ITEMNAME_SILKBERRY = "teasilkberry";
 	public static final String ITEMNAME_SEEDY = "teaseedy";
+	public static final String ITEMNAME_PETUNIA = "teapetunia";
 
 	private PotionEffect potionId;
 	private float potionEffectProbability;
@@ -37,11 +38,13 @@ public class TAItem_Food_Tea extends Item {
 		this.setUnlocalizedName(TAMod.MODID + "." + name);
 		this.setMaxStackSize(1);
 		if (name == ITEMNAME_LAVENDER) {
-			this.setPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 900), 1F);
+			this.setPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 300), 1F);
 		} else if (name == ITEMNAME_SILKBERRY) {
-			this.setPotionEffect(new PotionEffect(MobEffects.REGENERATION, 900), 1F);
+			this.setPotionEffect(new PotionEffect(MobEffects.REGENERATION, 100), 1F);
 		}else if (name == ITEMNAME_SEEDY) {
 			this.setPotionEffect(new PotionEffect(MobEffects.SPEED, 200), 1F);
+		}else if (name == ITEMNAME_PETUNIA) {
+			this.setPotionEffect(new PotionEffect(MobEffects.STRENGTH, 300), 1F);
 		}
 	}
 

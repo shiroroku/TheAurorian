@@ -148,6 +148,8 @@ public class TAItems {
 	public static TAItem_Food_SilkberryRasin silkberryrasin;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_Tea.ITEMNAME_LAVENDER)
 	public static TAItem_Food_Tea tealavender;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_Tea.ITEMNAME_PETUNIA)
+	public static TAItem_Food_Tea teapetunia;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_Tea.ITEMNAME_SEEDY)
 	public static TAItem_Food_Tea teaseedy;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_Tea.ITEMNAME_SILKBERRY)
@@ -286,6 +288,7 @@ public class TAItems {
 		silkberryrasin.initModel();
 		strangemeat.initModel();
 		tealavender.initModel();
+		teapetunia.initModel();
 		teaseedy.initModel();
 		teasilkberry.initModel();
 
@@ -378,6 +381,7 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Food_Silkberry());
 		event.getRegistry().register(new TAItem_Food_SilkberryRasin());
 		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.ITEMNAME_LAVENDER));
+		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.ITEMNAME_PETUNIA));
 		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.ITEMNAME_SEEDY));
 		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.ITEMNAME_SILKBERRY));
 		event.getRegistry().register(new TAItem_Special_Bepsi());
