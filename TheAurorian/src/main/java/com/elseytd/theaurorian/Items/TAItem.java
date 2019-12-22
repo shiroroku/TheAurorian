@@ -11,6 +11,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TAItem extends Item {
 
 	public static final String ITEMNAME_AURORIANSLIMEBALL = "aurorianslimeball";
+	public static final String ITEMNAME_SCRAP_AURORIANITE = "scrapaurorianite";
+	public static final String ITEMNAME_SCRAP_CRYSTALLINE = "scrapcrystalline";
+	public static final String ITEMNAME_SCRAP_UMBRA = "scrapumbra";
 
 	public TAItem(String name) {
 		this.setCreativeTab(TAMod.CREATIVE_TAB);

@@ -50,6 +50,7 @@ public class CommonProxy {
 		TABiomes.initBiomeManagerAndDictionary();
 		TAEntities.init();
 		TABlocks.registerOreDictionary();
+		TAItems.Materials.initRepairMaterials();
 		TACompat.init(e);
 	}
 

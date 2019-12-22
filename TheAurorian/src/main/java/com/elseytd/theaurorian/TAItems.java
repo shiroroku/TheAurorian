@@ -21,6 +21,7 @@ import com.elseytd.theaurorian.Items.TAItem_Food_SilkberryRasin;
 import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
 import com.elseytd.theaurorian.Items.TAItem_Ingot_Cerulean;
 import com.elseytd.theaurorian.Items.TAItem_Ingot_Moonstone;
+import com.elseytd.theaurorian.Items.TAItem_Ingot_Special;
 import com.elseytd.theaurorian.Items.TAItem_Seeds;
 import com.elseytd.theaurorian.Items.TAItem_Special_AbsorptionOrb;
 import com.elseytd.theaurorian.Items.TAItem_Special_Aurorianite_Axe;
@@ -65,6 +66,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -83,6 +85,17 @@ public class TAItems {
 		public static ArmorMaterial CERULEAN_ARMOR = EnumHelper.addArmorMaterial("TA_CERULEAN_ARMOR", "theaurorian:cerulean", 20, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
 		public static ArmorMaterial SPIKED_ARMOR = EnumHelper.addArmorMaterial("TA_SPIKED_ARMOR", "theaurorian:spiked", 65, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
 		public static ArmorMaterial KNIGHT_ARMOR = EnumHelper.addArmorMaterial("TA_KNIGHT_ARMOR", "theaurorian:knight", 30, new int[] { 2, 3, 2, 1 }, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0);
+	
+		public static void initRepairMaterials() {
+			SILENTWOOD.setRepairItem(new ItemStack(TABlocks.silentwoodplanks));
+			AURORIANSTONE.setRepairItem(new ItemStack(TABlocks.auroriancobblestone));
+			MOONSTONE.setRepairItem(new ItemStack(TAItems.moonstoneingot));
+			AURORIANITE.setRepairItem(new ItemStack(TAItems.aurorianiteingot));
+			CRYSTALLINE.setRepairItem(new ItemStack(TAItems.crystallineingot));
+			
+			CERULEAN_ARMOR.setRepairItem(new ItemStack(TAItems.ceruleaningot));
+			SPIKED_ARMOR.setRepairItem(new ItemStack(TAItems.umbraingot));
+		}
 	}
 
 	// SPECIAL
@@ -186,6 +199,20 @@ public class TAItems {
 	public static TAItem_Ingot_Cerulean ceruleaningot;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Ingot_Moonstone.ITEMNAME)
 	public static TAItem_Ingot_Moonstone moonstoneingot;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem.ITEMNAME_SCRAP_AURORIANITE)
+	public static TAItem scrapaurorianite;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem.ITEMNAME_SCRAP_CRYSTALLINE)
+	public static TAItem scrapcrystalline;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem.ITEMNAME_SCRAP_UMBRA)
+	public static TAItem scrapumbra;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Ingot_Special.ITEMNAME_AURORIANITE)
+	public static TAItem_Ingot_Special aurorianiteingot;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Ingot_Special.ITEMNAME_CRYSTALLINE)
+	public static TAItem_Ingot_Special crystallineingot;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Ingot_Special.ITEMNAME_UMBRA)
+	public static TAItem_Ingot_Special umbraingot;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Ingot_Special.ITEMNAME_AURORIANSTEEL)
+	public static TAItem_Ingot_Special auroriansteel;
 
 	// CERULEAN ARMOR
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "ceruleanhelmet")
@@ -306,6 +333,13 @@ public class TAItems {
 		moontemplecellkeyfragment.initModel();
 		plantfiber.initModel();
 		silentwoodstick.initModel();
+		scrapaurorianite.initModel();
+		scrapcrystalline.initModel();
+		scrapumbra.initModel();
+		aurorianiteingot.initModel();
+		crystallineingot.initModel();
+		umbraingot.initModel();
+		auroriansteel.initModel();
 
 		// CERULEAN ARMOR
 		ceruleanhelmet.initModel();
@@ -347,6 +381,7 @@ public class TAItems {
 	}
 
 	public static void registerItems(RegistryEvent.Register<Item> event) {
+		
 		// SPECIAL
 		event.getRegistry().register(new TAItem_Armor_Spiked(EntityEquipmentSlot.CHEST, "spikedchestplate"));
 		event.getRegistry().register(new TAItem_Seeds(TAItem_Seeds.ITEMNAME_LAVENDER));
@@ -400,6 +435,13 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Crafting_SilentwoodStick());
 		event.getRegistry().register(new TAItem_Ingot_Cerulean());
 		event.getRegistry().register(new TAItem_Ingot_Moonstone());
+		event.getRegistry().register(new TAItem(TAItem.ITEMNAME_SCRAP_AURORIANITE));
+		event.getRegistry().register(new TAItem(TAItem.ITEMNAME_SCRAP_CRYSTALLINE));
+		event.getRegistry().register(new TAItem(TAItem.ITEMNAME_SCRAP_UMBRA));
+		event.getRegistry().register(new TAItem_Ingot_Special(TAItem_Ingot_Special.ITEMNAME_AURORIANITE));
+		event.getRegistry().register(new TAItem_Ingot_Special(TAItem_Ingot_Special.ITEMNAME_CRYSTALLINE));
+		event.getRegistry().register(new TAItem_Ingot_Special(TAItem_Ingot_Special.ITEMNAME_UMBRA));
+		event.getRegistry().register(new TAItem_Ingot_Special(TAItem_Ingot_Special.ITEMNAME_AURORIANSTEEL));
 
 		// CERULEAN ARMOR
 		event.getRegistry().register(new TAItem_Armor_Cerulean(EntityEquipmentSlot.HEAD, "ceruleanhelmet"));

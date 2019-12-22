@@ -26,6 +26,14 @@ public class TARecipes {
 		GameRegistry.addSmelting(TAItems.ceruleanleggings, new ItemStack(TAItems.ceruleannugget, 14), 0F);
 		GameRegistry.addSmelting(TAItems.ceruleanhelmet, new ItemStack(TAItems.ceruleannugget, 10), 0F);
 
+		// SPECIAL RECYCLING
+		GameRegistry.addSmelting(TAItems.aurorianitesword, new ItemStack(TAItems.scrapaurorianite, 2), 2F);
+		GameRegistry.addSmelting(TAItems.aurorianitepickaxe, new ItemStack(TAItems.scrapaurorianite, 3), 2F);
+		GameRegistry.addSmelting(TAItems.aurorianiteaxe, new ItemStack(TAItems.scrapaurorianite, 3), 2F);
+		GameRegistry.addSmelting(TAItems.crystallinepickaxe, new ItemStack(TAItems.scrapcrystalline, 3), 2F);
+		GameRegistry.addSmelting(TAItems.crystallineshield, new ItemStack(TAItems.scrapcrystalline, 5), 2F);
+		GameRegistry.addSmelting(TAItems.absorptionorb, new ItemStack(TAItems.scrapcrystalline, 4), 2F);
+		GameRegistry.addSmelting(TAItems.livingdiviningrod, new ItemStack(TAItems.scrapcrystalline, 2), 2F);
+		GameRegistry.addSmelting(TAItems.spikedchestplate, new ItemStack(TAItems.scrapumbra, 8), 2F);
 	}
-
 }
