@@ -88,10 +88,8 @@ public class TABiomeDecorator extends BiomeDecorator {
 
 					worldgenabstracttree.setDecorationDefaults();
 					BlockPos blockpos = worldIn.getHeight(this.chunkPos.add(x, 0, z));
-					if (blockpos.getY() >= 80) {
-						if (worldgenabstracttree.generate(worldIn, random, blockpos)) {
-							worldgenabstracttree.generateSaplings(worldIn, random, blockpos);
-						}
+					if (worldgenabstracttree.generate(worldIn, random, blockpos)) {
+						worldgenabstracttree.generateSaplings(worldIn, random, blockpos);
 					}
 				}
 			}
