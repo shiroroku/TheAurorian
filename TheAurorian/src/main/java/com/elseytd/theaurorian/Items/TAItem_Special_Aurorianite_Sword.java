@@ -40,26 +40,31 @@ public class TAItem_Special_Aurorianite_Sword extends ItemSword {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		double width = 9;
-		double height = 3;
-		double x = playerIn.posX;
-		double y = playerIn.posY;
-		double z = playerIn.posZ;
-		double boxsx = x - (width / 2);
-		double boxsy = y - 1;
-		double boxsz = z - (width / 2);
-		double boxex = x + (width / 2);
-		double boxey = y + height;
-		double boxez = z + (width / 2);
+		if (playerIn.getHeldItemOffhand().isEmpty() || playerIn.isSneaking()) {
+			double width = 9;
+			double height = 3;
+			double x = playerIn.posX;
+			double y = playerIn.posY;
+			double z = playerIn.posZ;
+			double boxsx = x - (width / 2);
+			double boxsy = y - 1;
+			double boxsz = z - (width / 2);
+			double boxex = x + (width / 2);
+			double boxey = y + height;
+			double boxez = z + (width / 2);
 
-		List<EntityLivingBase> entities = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(boxsx, boxsy, boxsz, boxex, boxey, boxez));
-		for (EntityLivingBase e : entities) {
-			e.addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 60));
-			e.motionY =	e.motionY + 0.5D;
+			List<EntityLivingBase> entities = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(boxsx, boxsy, boxsz, boxex, boxey, boxez));
+			for (EntityLivingBase e : entities) {
+				e.addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 60));
+				e.motionY = e.motionY + 0.5D;
+			}
+			
+			playerIn.getHeldItemMainhand().damageItem(5, playerIn);
+			playerIn.getCooldownTracker().setCooldown(this, TAConfig.Config_AurorianiteSwordCooldown);
+			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 		}
-		playerIn.getHeldItemMainhand().damageItem(5, playerIn);
-		playerIn.getCooldownTracker().setCooldown(this, TAConfig.Config_AurorianiteSwordCooldown);
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
+		
+		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
 	}
 
 	@SideOnly(Side.CLIENT)
