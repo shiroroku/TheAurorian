@@ -10,14 +10,14 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TAItem_Ingot_Special extends Item {
+public class TAItem_Crafting_Ingot_Special extends Item {
 
 	public static final String ITEMNAME_AURORIANITE = "aurorianiteingot";
 	public static final String ITEMNAME_CRYSTALLINE = "crystallineingot";
 	public static final String ITEMNAME_UMBRA = "umbraingot";
 	public static final String ITEMNAME_AURORIANSTEEL = "auroriansteel";
 	
-	public TAItem_Ingot_Special(String itemname) {
+	public TAItem_Crafting_Ingot_Special(String itemname) {
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(itemname);
 		this.setUnlocalizedName(TAMod.MODID + "." + itemname);

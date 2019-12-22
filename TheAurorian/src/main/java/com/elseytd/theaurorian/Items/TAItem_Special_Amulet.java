@@ -18,15 +18,40 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TAItem_Special_KeeperAmulet extends Item {
+public class TAItem_Special_Amulet extends Item {
 
-	public static final String ITEMNAME = "keeperamulet";
-
-	public TAItem_Special_KeeperAmulet() {
+	public static final String ITEMNAME_KEEPERAMULET = "keeperamulet";
+	public static final String ITEMNAME_DARKAMULET = "darkamulet";
+	
+	public enum Amulets {
+		KEEPERAMULET(ITEMNAME_KEEPERAMULET, "Pulsates with corrupted power. Used for crafting the Moontemple Key or the Runestone Breaker."),
+		DARKAMULET(ITEMNAME_DARKAMULET, "Has a faint dreadful aura.");
+		
+		private String ITEMNAME;
+		private String INFO;
+		
+		Amulets(String itemname, String info){
+			this.ITEMNAME = itemname;
+			this.INFO = info;
+		}
+		
+		public String getName() {
+			return ITEMNAME;
+		}
+		
+		public String getInfo() {
+			return INFO;
+		}
+	}
+	
+	private Amulets itemAmulet;
+	
+	public TAItem_Special_Amulet(Amulets amulet) {
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
-		this.setRegistryName(ITEMNAME);
-		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);
+		this.setRegistryName(amulet.getName());
+		this.setUnlocalizedName(TAMod.MODID + "." + amulet.getName());
 		this.setMaxStackSize(1);
+		this.itemAmulet = amulet;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -50,7 +75,7 @@ public class TAItem_Special_KeeperAmulet extends Item {
 		if (!GuiScreen.isShiftKeyDown()) {
 			tooltip.add(TextFormatting.ITALIC + "Hold shift for more info" + TextFormatting.RESET);
 		} else {
-			tooltip.add("Pulsates with corrupted power. Used for crafting the Moontemple Key or the Runestone Breaker.");
+			tooltip.add(this.itemAmulet.getInfo());
 		}
 	}
 }

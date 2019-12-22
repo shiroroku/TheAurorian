@@ -1,12 +1,13 @@
 package com.elseytd.theaurorian;
 
-import com.elseytd.theaurorian.Items.TAItem;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Cerulean;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Knight;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Spiked;
+import com.elseytd.theaurorian.Items.TAItem_Crafting;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_AurorianCoal;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_Crystal;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_Cup;
+import com.elseytd.theaurorian.Items.TAItem_Crafting_Ingot_Special;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_Lavender;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_MoonTempleCellKeyFragment;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_Nugget;
@@ -19,20 +20,16 @@ import com.elseytd.theaurorian.Items.TAItem_Food_CookedAurorianPork;
 import com.elseytd.theaurorian.Items.TAItem_Food_Silkberry;
 import com.elseytd.theaurorian.Items.TAItem_Food_SilkberryRasin;
 import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
-import com.elseytd.theaurorian.Items.TAItem_Ingot_Cerulean;
-import com.elseytd.theaurorian.Items.TAItem_Ingot_Moonstone;
-import com.elseytd.theaurorian.Items.TAItem_Ingot_Special;
 import com.elseytd.theaurorian.Items.TAItem_Seeds;
 import com.elseytd.theaurorian.Items.TAItem_Special_AbsorptionOrb;
+import com.elseytd.theaurorian.Items.TAItem_Special_Amulet;
 import com.elseytd.theaurorian.Items.TAItem_Special_Aurorianite_Axe;
 import com.elseytd.theaurorian.Items.TAItem_Special_Aurorianite_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Special_Aurorianite_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Special_Bepsi;
 import com.elseytd.theaurorian.Items.TAItem_Special_Crystalline_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Special_Crystalline_Shield;
-import com.elseytd.theaurorian.Items.TAItem_Special_DarkAmulet;
 import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
-import com.elseytd.theaurorian.Items.TAItem_Special_KeeperAmulet;
 import com.elseytd.theaurorian.Items.TAItem_Special_LivingDiviningRod;
 import com.elseytd.theaurorian.Items.TAItem_Special_Lockpicks;
 import com.elseytd.theaurorian.Items.TAItem_Special_MoonTempleBreaker;
@@ -117,8 +114,8 @@ public class TAItems {
 	public static TAItem_Special_Crystalline_Shield crystallineshield;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_CrystallineSprite.ITEMNAME)
 	public static TAItem_CrystallineSprite crystallinesprite;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_DarkAmulet.ITEMNAME)
-	public static TAItem_Special_DarkAmulet darkamulet;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Amulet.ITEMNAME_DARKAMULET)
+	public static TAItem_Special_Amulet darkamulet;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_DungeonKey.ITEMNAME_DARKSTONE)
 	public static TAItem_Special_DungeonKey darkstonekey;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLECELL)
@@ -129,8 +126,8 @@ public class TAItems {
 	public static TAItem_Special_DungeonKey runestonekey;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_DungeonKey.ITEMNAME_RUNESTONELOOT)
 	public static TAItem_Special_DungeonKey runestonelootkey;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_KeeperAmulet.ITEMNAME)
-	public static TAItem_Special_KeeperAmulet keeperamulet;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Amulet.ITEMNAME_KEEPERAMULET)
+	public static TAItem_Special_Amulet keeperamulet;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_LivingDiviningRod.ITEMNAME)
 	public static TAItem_Special_LivingDiviningRod livingdiviningrod;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Lockpicks.ITEMNAME)
@@ -173,8 +170,8 @@ public class TAItems {
 	public static TAItem_Special_StrangeMeat strangemeat;
 
 	// CRAFTING
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem.ITEMNAME_AURORIANSLIMEBALL)
-	public static TAItem aurorianslimeball;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting.ITEMNAME_AURORIANSLIMEBALL)
+	public static TAItem_Crafting aurorianslimeball;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_AurorianCoal.ITEMNAME)
 	public static TAItem_Crafting_AurorianCoal auroriancoal;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_Crystal.ITEMNAME)
@@ -195,24 +192,24 @@ public class TAItems {
 	public static TAItem_Crafting_PlantFiber plantfiber;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_SilentwoodStick.ITEMNAME)
 	public static TAItem_Crafting_SilentwoodStick silentwoodstick;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Ingot_Cerulean.ITEMNAME)
-	public static TAItem_Ingot_Cerulean ceruleaningot;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Ingot_Moonstone.ITEMNAME)
-	public static TAItem_Ingot_Moonstone moonstoneingot;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem.ITEMNAME_SCRAP_AURORIANITE)
-	public static TAItem scrapaurorianite;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem.ITEMNAME_SCRAP_CRYSTALLINE)
-	public static TAItem scrapcrystalline;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem.ITEMNAME_SCRAP_UMBRA)
-	public static TAItem scrapumbra;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Ingot_Special.ITEMNAME_AURORIANITE)
-	public static TAItem_Ingot_Special aurorianiteingot;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Ingot_Special.ITEMNAME_CRYSTALLINE)
-	public static TAItem_Ingot_Special crystallineingot;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Ingot_Special.ITEMNAME_UMBRA)
-	public static TAItem_Ingot_Special umbraingot;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Ingot_Special.ITEMNAME_AURORIANSTEEL)
-	public static TAItem_Ingot_Special auroriansteel;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting.ITEMNAME_INGOT_CERULEAN)
+	public static TAItem_Crafting ceruleaningot;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting.ITEMNAME_INGOT_MOONSTONE)
+	public static TAItem_Crafting moonstoneingot;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting.ITEMNAME_SCRAP_AURORIANITE)
+	public static TAItem_Crafting scrapaurorianite;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting.ITEMNAME_SCRAP_CRYSTALLINE)
+	public static TAItem_Crafting scrapcrystalline;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting.ITEMNAME_SCRAP_UMBRA)
+	public static TAItem_Crafting scrapumbra;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_Ingot_Special.ITEMNAME_AURORIANITE)
+	public static TAItem_Crafting_Ingot_Special aurorianiteingot;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_Ingot_Special.ITEMNAME_CRYSTALLINE)
+	public static TAItem_Crafting_Ingot_Special crystallineingot;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_Ingot_Special.ITEMNAME_UMBRA)
+	public static TAItem_Crafting_Ingot_Special umbraingot;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_Ingot_Special.ITEMNAME_AURORIANSTEEL)
+	public static TAItem_Crafting_Ingot_Special auroriansteel;
 
 	// CERULEAN ARMOR
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "ceruleanhelmet")
@@ -392,13 +389,13 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Special_Crystalline_Pickaxe());
 		event.getRegistry().register(new TAItem_Special_Crystalline_Shield());
 		event.getRegistry().register(new TAItem_CrystallineSprite());
-		event.getRegistry().register(new TAItem_Special_DarkAmulet());
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_DARKSTONE));
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLE));
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLECELL));
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_RUNESTONE));
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_RUNESTONELOOT));
-		event.getRegistry().register(new TAItem_Special_KeeperAmulet());
+		event.getRegistry().register(new TAItem_Special_Amulet(TAItem_Special_Amulet.Amulets.DARKAMULET));
+		event.getRegistry().register(new TAItem_Special_Amulet(TAItem_Special_Amulet.Amulets.KEEPERAMULET));
 		event.getRegistry().register(new TAItem_Special_LivingDiviningRod());
 		event.getRegistry().register(new TAItem_Special_Lockpicks());
 		event.getRegistry().register(new TAItem_Special_MoonTempleBreaker());
@@ -415,14 +412,14 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Food_CookedAurorianPork());
 		event.getRegistry().register(new TAItem_Food_Silkberry());
 		event.getRegistry().register(new TAItem_Food_SilkberryRasin());
-		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.ITEMNAME_LAVENDER));
-		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.ITEMNAME_PETUNIA));
-		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.ITEMNAME_SEEDY));
-		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.ITEMNAME_SILKBERRY));
+		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.LAVENDER));
+		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.PETUNIA));
+		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.SEEDY));
+		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.SILKBERRY));
 		event.getRegistry().register(new TAItem_Special_Bepsi());
 
 		// CRAFTING
-		event.getRegistry().register(new TAItem(TAItem.ITEMNAME_AURORIANSLIMEBALL));
+		event.getRegistry().register(new TAItem_Crafting(TAItem_Crafting.ITEMNAME_AURORIANSLIMEBALL));
 		event.getRegistry().register(new TAItem_Crafting_AurorianCoal());
 		event.getRegistry().register(new TAItem_Crafting_Crystal());
 		event.getRegistry().register(new TAItem_Crafting_Cup());
@@ -433,15 +430,15 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Crafting_Nugget(TAItem_Crafting_Nugget.ITEMNAME_MOONSTONE));
 		event.getRegistry().register(new TAItem_Crafting_PlantFiber());
 		event.getRegistry().register(new TAItem_Crafting_SilentwoodStick());
-		event.getRegistry().register(new TAItem_Ingot_Cerulean());
-		event.getRegistry().register(new TAItem_Ingot_Moonstone());
-		event.getRegistry().register(new TAItem(TAItem.ITEMNAME_SCRAP_AURORIANITE));
-		event.getRegistry().register(new TAItem(TAItem.ITEMNAME_SCRAP_CRYSTALLINE));
-		event.getRegistry().register(new TAItem(TAItem.ITEMNAME_SCRAP_UMBRA));
-		event.getRegistry().register(new TAItem_Ingot_Special(TAItem_Ingot_Special.ITEMNAME_AURORIANITE));
-		event.getRegistry().register(new TAItem_Ingot_Special(TAItem_Ingot_Special.ITEMNAME_CRYSTALLINE));
-		event.getRegistry().register(new TAItem_Ingot_Special(TAItem_Ingot_Special.ITEMNAME_UMBRA));
-		event.getRegistry().register(new TAItem_Ingot_Special(TAItem_Ingot_Special.ITEMNAME_AURORIANSTEEL));
+		event.getRegistry().register(new TAItem_Crafting(TAItem_Crafting.ITEMNAME_INGOT_CERULEAN));
+		event.getRegistry().register(new TAItem_Crafting(TAItem_Crafting.ITEMNAME_INGOT_MOONSTONE));
+		event.getRegistry().register(new TAItem_Crafting(TAItem_Crafting.ITEMNAME_SCRAP_AURORIANITE));
+		event.getRegistry().register(new TAItem_Crafting(TAItem_Crafting.ITEMNAME_SCRAP_CRYSTALLINE));
+		event.getRegistry().register(new TAItem_Crafting(TAItem_Crafting.ITEMNAME_SCRAP_UMBRA));
+		event.getRegistry().register(new TAItem_Crafting_Ingot_Special(TAItem_Crafting_Ingot_Special.ITEMNAME_AURORIANITE));
+		event.getRegistry().register(new TAItem_Crafting_Ingot_Special(TAItem_Crafting_Ingot_Special.ITEMNAME_CRYSTALLINE));
+		event.getRegistry().register(new TAItem_Crafting_Ingot_Special(TAItem_Crafting_Ingot_Special.ITEMNAME_UMBRA));
+		event.getRegistry().register(new TAItem_Crafting_Ingot_Special(TAItem_Crafting_Ingot_Special.ITEMNAME_AURORIANSTEEL));
 
 		// CERULEAN ARMOR
 		event.getRegistry().register(new TAItem_Armor_Cerulean(EntityEquipmentSlot.HEAD, "ceruleanhelmet"));
