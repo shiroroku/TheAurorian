@@ -1,7 +1,5 @@
 package com.elseytd.theaurorian.World;
 
-import java.util.Random;
-
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TADimensions;
 import com.elseytd.theaurorian.Blocks.TABlock_Portal;
@@ -9,6 +7,8 @@ import com.elseytd.theaurorian.Blocks.TABlock_Portal;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
+import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -24,26 +24,26 @@ import net.minecraftforge.common.ForgeHooks;
 public class TATeleporter extends Teleporter {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private final Long2ObjectMap<Teleporter.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap(4096);
+	private final Long2ObjectMap<TATeleporter.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap(4096);
 
-	private final Random random;
 	private final WorldServer WSInstance;
 
 	public TATeleporter(WorldServer worldIn) {
 		super(worldIn);
-		this.random = new Random(worldIn.getSeed());
 		this.WSInstance = worldIn;
 	}
 
 	public static void transferEntity(Entity entity, int dimto) {
 		Teleporter teleporter = new TATeleporter(entity.getServer().getWorld(dimto));
 		if (entity instanceof EntityPlayerMP) {
-			if (!ForgeHooks.onTravelToDimension(entity, TADimensions.DIMENSION_ID))
+			if (!ForgeHooks.onTravelToDimension(entity, TADimensions.DIMENSION_ID)) {
 				return;
+			}
 
 			((EntityPlayerMP) entity).mcServer.getPlayerList().transferPlayerToDimension((EntityPlayerMP) entity, dimto, teleporter);
-		} else
+		} else {
 			entity.changeDimension(dimto, teleporter);
+		}
 	}
 
 	@Override
@@ -54,6 +54,7 @@ public class TATeleporter extends Teleporter {
 		}
 	}
 
+	@Override
 	public boolean placeInExistingPortal(Entity entityIn, float rotationYaw) {
 		double d0 = -1.0D;
 		int i = MathHelper.floor(entityIn.posX);
@@ -119,16 +120,16 @@ public class TATeleporter extends Teleporter {
 			if (enumfacing != null) {
 				EnumFacing enumfacing2 = enumfacing.rotateYCCW();
 				BlockPos blockpos2 = ((BlockPos) object).offset(enumfacing);
-				boolean flag2 = func_180265_a(blockpos2);
-				boolean flag3 = func_180265_a(blockpos2.offset(enumfacing2));
+				boolean flag2 = isBlockAirAndAbove(blockpos2);
+				boolean flag3 = isBlockAirAndAbove(blockpos2.offset(enumfacing2));
 
 				if (flag3 && flag2) {
 					object = ((BlockPos) object).offset(enumfacing2);
 					enumfacing = enumfacing.getOpposite();
 					enumfacing2 = enumfacing2.getOpposite();
 					BlockPos blockpos3 = ((BlockPos) object).offset(enumfacing);
-					flag2 = func_180265_a(blockpos3);
-					flag3 = func_180265_a(blockpos3.offset(enumfacing2));
+					flag2 = isBlockAirAndAbove(blockpos3);
+					flag3 = isBlockAirAndAbove(blockpos3.offset(enumfacing2));
 				}
 
 				float f6 = 0.5F;
@@ -179,175 +180,72 @@ public class TATeleporter extends Teleporter {
 			return false;
 	}
 
-	private boolean func_180265_a(BlockPos p_180265_1_) {
-		return !WSInstance.isAirBlock(p_180265_1_) || !WSInstance.isAirBlock(p_180265_1_.up());
+	private boolean isBlockAirAndAbove(BlockPos pos) {
+		return !WSInstance.isAirBlock(pos) || !WSInstance.isAirBlock(pos.up());
 	}
 
 	@Override
 	public boolean makePortal(Entity entityIn) {
-		double d0 = -1.0D;
-		int j = MathHelper.floor(entityIn.posX);
-		int k = MathHelper.floor(entityIn.posY);
-		int l = MathHelper.floor(entityIn.posZ);
-		int i1 = j;
-		int j1 = k;
-		int k1 = l;
-		int l1 = 0;
-		int i2 = this.random.nextInt(4);
-		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-
-		int testing4 = 4;//4 - 5
-		int testing3 = testing4 - 1;
-		int testing2 = testing4 - 2;
-
-		for (int j2 = j - 16; j2 <= j + 16; ++j2) {
-
-			double d1 = (double) j2 + 0.5D - entityIn.posX;
-
-			for (int l2 = l - 16; l2 <= l + 16; ++l2) {
-				double d2 = (double) l2 + 0.5D - entityIn.posZ;
-				label293:
-
-				for (int j3 = this.world.getActualHeight() - 1; j3 >= 0; --j3) {
-					if (this.world.isAirBlock(blockpos$mutableblockpos.setPos(j2, j3, l2))) {
-						while (j3 > 0 && this.world.isAirBlock(blockpos$mutableblockpos.setPos(j2, j3 - 1, l2))) {
-							--j3;
-						}
-
-						for (int k3 = i2; k3 < i2 + testing4; ++k3) {
-							int l3 = k3 % testing2;
-							int i4 = 1 - l3;
-
-							if (k3 % testing4 >= testing2) {
-								l3 = -l3;
-								i4 = -i4;
-							}
-
-							for (int j4 = 0; j4 < testing3; ++j4) {
-								for (int k4 = 0; k4 < testing4; ++k4) {
-									for (int l4 = -1; l4 < testing4; ++l4) {
-										int i5 = j2 + (k4 - 1) * l3 + j4 * i4;
-										int j5 = j3 + l4;
-										int k5 = l2 + (k4 - 1) * i4 - j4 * l3;
-										blockpos$mutableblockpos.setPos(i5, j5, k5);
-
-										if (l4 < 0 && !this.world.getBlockState(blockpos$mutableblockpos).getMaterial().isSolid() || l4 >= 0 && !this.world.isAirBlock(blockpos$mutableblockpos)) {
-											continue label293;
-										}
-									}
-								}
-							}
-
-							double d5 = (double) j3 + 0.5D - entityIn.posY;
-							double d7 = d1 * d1 + d5 * d5 + d2 * d2;
-
-							if (d0 < 0.0D || d7 < d0) {
-								d0 = d7;
-								i1 = j2;
-								j1 = j3;
-								k1 = l2;
-								l1 = k3 % testing4;
-							}
-						}
-					}
-				}
+		boolean platform = true;
+		int x = MathHelper.floor(entityIn.posX);
+		int y = MathHelper.floor(entityIn.posY);
+		int z = MathHelper.floor(entityIn.posZ);
+		
+		for (int h = this.world.getHeight() - 20; h > 0; h--) {
+			IBlockState blk = this.world.getBlockState(new BlockPos(x, h, z));
+			if (!this.world.isAirBlock(new BlockPos(x, h, z)) && blk != TABlocks.silentwoodlog && !(blk.getBlock() instanceof BlockLeaves) && !(blk.getBlock() instanceof BlockBush)) {
+				y = h + 2;
+				break;
 			}
 		}
 
-		if (d0 < 0.0D) {
-			for (int l5 = j - 16; l5 <= j + 16; ++l5) {
-				double d3 = (double) l5 + 0.5D - entityIn.posX;
+		int testing4 = 4;
+		int testing3 = 3;
+		int testing2 = 2;
 
-				for (int j6 = l - 16; j6 <= l + 16; ++j6) {
-					double d4 = (double) j6 + 0.5D - entityIn.posZ;
-					label231:
+		int x1 = x;
+		int y1 = y;
+		int z1 = z;
+		int direction = 0 % testing2;
+		int directionmirr = 1 - direction;
 
-					for (int i7 = this.world.getActualHeight() - 1; i7 >= 0; --i7) {
-						if (this.world.isAirBlock(blockpos$mutableblockpos.setPos(l5, i7, j6))) {
-							while (i7 > 0 && this.world.isAirBlock(blockpos$mutableblockpos.setPos(l5, i7 - 1, j6))) {
-								--i7;
-							}
-
-							for (int k7 = i2; k7 < i2 + testing2; ++k7) {
-								int j8 = k7 % testing2;
-								int j9 = 1 - j8;
-
-								for (int j10 = 0; j10 < testing4; ++j10) {
-									for (int j11 = -1; j11 < testing4; ++j11) {
-										int j12 = l5 + (j10 - 1) * j8;
-										int i13 = i7 + j11;
-										int j13 = j6 + (j10 - 1) * j9;
-										blockpos$mutableblockpos.setPos(j12, i13, j13);
-
-										if (j11 < 0 && !this.world.getBlockState(blockpos$mutableblockpos).getMaterial().isSolid() || j11 >= 0 && !this.world.isAirBlock(blockpos$mutableblockpos)) {
-											continue label231;
-										}
-									}
-								}
-
-								double d6 = (double) i7 + 0.5D - entityIn.posY;
-								double d8 = d3 * d3 + d6 * d6 + d4 * d4;
-
-								if (d0 < 0.0D || d8 < d0) {
-									d0 = d8;
-									i1 = l5;
-									j1 = i7;
-									k1 = j6;
-									l1 = k7 % testing2;
-								}
-							}
-						}
-					}
-				}
-			}
+		if (0 % testing4 >= testing2) {
+			direction = -direction;
+			directionmirr = -directionmirr;
 		}
 
-		int i6 = i1;
-		int k2 = j1;
-		int z6 = k1;
-		int l6 = l1 % testing2;
-		int i3 = 1 - l6;
-
-		if (l1 % testing4 >= testing2) {
-			l6 = -l6;
-			i3 = -i3;
-		}
-
-		if (d0 < 0.0D) {
-			j1 = MathHelper.clamp(j1, 70, this.world.getActualHeight() - 10);
-			k2 = j1;
-
+		if (platform) {
 			for (int j7 = -1; j7 <= 1; ++j7) {
 				for (int l7 = 1; l7 < testing3; ++l7) {
 					for (int k8 = -1; k8 < testing3; ++k8) {
-						int x9 = i6 + (l7 - 1) * l6 + j7 * i3;
-						int y10 = k2 + k8;
-						int z11 = z6 + (l7 - 1) * i3 - j7 * l6;
+						int x9 = x1 + (l7 - 1) * direction + j7 * directionmirr;
+						int y10 = y1 + k8;
+						int z11 = z1 + (l7 - 1) * directionmirr - j7 * direction;
 						boolean flag = k8 < 0;
-						this.world.setBlockState(new BlockPos(x9, y10, z11), flag ? TABlocks.aurorianportalframebricks.getDefaultState() : Blocks.AIR.getDefaultState());
+						this.world.setBlockState(new BlockPos(x9, y10, z11), flag ? TABlocks.aurorianstonebrick.getDefaultState() : Blocks.AIR.getDefaultState());
 					}
 				}
 			}
 		}
 
-		IBlockState iblockstate = TABlocks.aurorianportal.getDefaultState().withProperty(TABlock_Portal.AXIS, l6 == 0 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
+		IBlockState portalBlock = TABlocks.aurorianportal.getDefaultState().withProperty(TABlock_Portal.AXIS, direction == 0 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
 
 		for (int i8 = 0; i8 < testing4; ++i8) {
 			for (int l8 = 0; l8 < testing4; ++l8) {
 				for (int l9 = -1; l9 < testing4; ++l9) {
-					int l10 = i6 + (l8 - 1) * l6;
-					int l11 = k2 + l9;
-					int k12 = z6 + (l8 - 1) * i3;
+					int xPort = x1 + (l8 - 1) * direction;
+					int yPort = y1 + l9;
+					int zPort = z1 + (l8 - 1) * directionmirr;
 					boolean flag1 = l8 == 0 || l8 == testing3 || l9 == -1 || l9 == testing3;
-					this.world.setBlockState(new BlockPos(l10, l11, k12), flag1 ? TABlocks.aurorianportalframebricks.getDefaultState() : iblockstate, 2);
+					this.world.setBlockState(new BlockPos(xPort, yPort, zPort), flag1 ? TABlocks.aurorianportalframebricks.getDefaultState() : portalBlock, 2);
 				}
 			}
 
 			for (int i9 = 0; i9 < testing4; ++i9) {
 				for (int i10 = -1; i10 < testing4; ++i10) {
-					int i11 = i6 + (i9 - 1) * l6;
-					int i12 = k2 + i10;
-					int l12 = z6 + (i9 - 1) * i3;
+					int i11 = x1 + (i9 - 1) * direction;
+					int i12 = y1 + i10;
+					int l12 = z1 + (i9 - 1) * directionmirr;
 					BlockPos blockpos = new BlockPos(i11, i12, l12);
 					this.world.notifyNeighborsOfStateChange(blockpos, this.world.getBlockState(blockpos).getBlock(), false);
 				}
