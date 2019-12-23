@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#O#",
+    " I ",
+    " I "
+  ],
+  "key": {
+    "#": {
+      "item": "theaurorian:darkamulet"
+    },
+    "O": {
+      "item": "theaurorian:crystal"
+    },
+    "I": {
+      "item": "theaurorian:silentwoodstick"
+    }
+  },
+  "result": {
+    "item": "theaurorian:moontemplebreaker"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "I"
+  ],
+  "key": {
+    "#": {
+      "item": "theaurorian:auroriancobblestone"
+    },
+    "I": {
+      "item": "theaurorian:silentwoodstick"
+    }
+  },
+  "result": {
+    "item": "theaurorian:aurorianstonesword"
+  }
+}

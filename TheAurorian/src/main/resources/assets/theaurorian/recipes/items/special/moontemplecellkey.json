@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"#O#"
+	],
+	"key": {
+		"#": {
+			"item": "theaurorian:moontemplecellkeyfragment"
+		},
+		"O": {
+			"item": "theaurorian:moongem"
+		}
+	},
+	"result": {
+		"item": "theaurorian:moontemplecellkey"
+	}
+}

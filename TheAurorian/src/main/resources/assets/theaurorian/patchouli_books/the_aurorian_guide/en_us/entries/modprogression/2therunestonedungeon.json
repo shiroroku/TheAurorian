@@ -1,0 +1,33 @@
+{
+    "name": "Runestone Dungeon",
+    "icon": "theaurorian:runestonekey",
+    "category": "2modprogression",
+    "sortnum": "1",
+    "readbydefault": true,
+    "pages": [
+        {
+            "type": "image",
+            "title": "Runestone Dungeon",
+            "text": "",
+            "images": [
+                "theaurorian:patchouli_books/the_aurorian_guide/en_us/entries/aurorianbasics/runestone.png"
+            ]
+        },
+        {
+            "type": "text",
+            "text": "$(#008cff)The Runestone Dungeon$() can be found throughout The Aurorian, they always spawn along the X and Z axis. And is home to $(#8800ff)The Runestone Dungeon Keeper$()!$(br2)It's recommended to bring a shield, at least Cerulean or Iron armor, and plenty of inventory space for loot!$(br2)Like all the other dungeons in this mod, $(#008cff)The Runestone Dungeon's$() bricks cannot be broken by any pickaxe other than the $(#008cff)Runestone Breaker$()."
+        },
+        {
+            "type": "spotlight",
+            "title": "Runestone Key",
+            "item": "theaurorian:runestonekey",
+            "text": "Used to open $(#008cff)Runestone Gates$(). Only found as loot."
+        },
+        {
+            "type": "crafting",
+            "name": "Runestone Breaker",
+            "recipe": "theaurorian:items/special/runestonebreaker",
+            "text": "The only pickaxe that can mine $(#008cff)Runestone Dungeon Bricks$(). Can be crafted once you kill the $(#8800ff)The Runestone Dungeon Keeper$() and obtain the $(#008cff)Keeper's Amulet$() twice!"
+        }
+    ]
+}

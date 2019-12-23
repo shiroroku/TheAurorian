@@ -527,6 +527,7 @@ public class TABlocks {
 		OreDictionary.registerOre("stickWood", TAItems.silentwoodstick);
 		OreDictionary.registerOre("logSilentwood", TABlocks.silentwoodlog);
 		OreDictionary.registerOre("plankSilentwood", TABlocks.silentwoodplanks);
+		OreDictionary.registerOre("treeSapling", TABlocks.silentwoodsapling);
 
 		OreDictionary.registerOre("oreAurorianCoal", TABlocks.auroriancoalore);
 		OreDictionary.registerOre("oreAurorianGeode", TABlocks.geodeore);

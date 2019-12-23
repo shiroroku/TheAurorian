@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "#",
+    "Y"
+  ],
+  "key": {
+    "#": {
+      "item": "theaurorian:silentwoodstick"
+    },
+    "X": {
+      "item": "theaurorian:ceruleannugget"
+    },
+    "Y": {
+      "item": "theaurorian:silentwoodleaves"
+    }
+  },
+  "result": {
+    "item": "theaurorian:ceruleanarrow"
+  }
+}

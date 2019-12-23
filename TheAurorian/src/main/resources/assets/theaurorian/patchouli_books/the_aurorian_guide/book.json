@@ -1,0 +1,9 @@
+{
+    "name": "The Aurorian Guide",
+    "landing_text": "Everything you need to know about this mod and how to progress!",
+    "version": 1,
+    "model": "theaurorian:theaurorianguide",
+    "creative_tab": "theaurorian",
+    "show_progress": false,
+    "nameplate_color": "008cff"
+}
