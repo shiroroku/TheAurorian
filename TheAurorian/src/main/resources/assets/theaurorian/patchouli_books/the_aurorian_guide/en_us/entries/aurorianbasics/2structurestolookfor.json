@@ -35,7 +35,7 @@
         },
         {
             "type": "image",
-            "title": "Moon Temple Dungeon",
+            "title": "Moon Temple",
             "text": "Second dungeon you can enter once you defeat the Runestone Dungeon boss.",
             "images": [
                 "theaurorian:patchouli_books/the_aurorian_guide/en_us/entries/aurorianbasics/moontemple.png"

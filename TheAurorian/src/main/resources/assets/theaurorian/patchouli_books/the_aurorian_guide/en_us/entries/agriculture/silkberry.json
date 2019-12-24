@@ -1,0 +1,19 @@
+{
+    "name": "Silkberries",
+    "icon": "theaurorian:silkberry",
+    "category": "4agriculture",
+    "readbydefault": true,
+    "pages": [
+        {
+            "type": "spotlight",
+            "item": "theaurorian:silkberry",
+            "text": "$(#008cff)Silkberries$() are found all around The Aurorian! They can be aten raw, cooked in a furnace to make rasins, or even planted in farmland!"
+        },
+        {
+            "type": "crafting",
+            "name": "Silkberry Tea",
+            "recipe": "theaurorian:items/tea/teasilkberry",
+            "text": "$(#008cff)Silkberries$() can also be made into tea that gives a short regeneration buff."
+        }
+    ]
+}
