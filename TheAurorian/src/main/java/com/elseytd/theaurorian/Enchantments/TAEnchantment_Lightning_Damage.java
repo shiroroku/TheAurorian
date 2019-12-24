@@ -4,7 +4,6 @@ import java.util.Map;
 
 import com.elseytd.theaurorian.TAEnchantments;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -15,6 +14,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 
 public class TAEnchantment_Lightning_Damage extends Enchantment {
 
@@ -86,19 +86,11 @@ public class TAEnchantment_Lightning_Damage extends Enchantment {
 			int time = entitylivingbase.hurtResistantTime;
 			entitylivingbase.hurtResistantTime = 0;
 			float resistscale = (time / 20);
-			
+
 			float damagescale = 0.25F * resistscale;
 			float extradamage = armorconductivecount * damagescale;
 
-			entitylivingbase.attackEntityFrom(TAUtil.LIGHTNING, extradamage + extradamage);
-		
-			/*
-			 * if (entitylivingbase.getCreatureAttribute() ==
-			 * EnumCreatureAttribute.ARTHROPOD) { int i = 20 +
-			 * user.getRNG().nextInt(10 * level);
-			 * entitylivingbase.addPotionEffect(new
-			 * PotionEffect(MobEffects.SLOWNESS, i, 3)); }
-			 */
+			entitylivingbase.attackEntityFrom(DamageSource.GENERIC, extradamage + extradamage);
 		}
 	}
 

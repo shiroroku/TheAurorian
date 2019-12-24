@@ -34,7 +34,7 @@ public class TAWorldGenerator_Ruins extends WorldGenerator {
 			int i = rand.nextInt(2) + 4;
 			int j = rand.nextInt(2) + 4;
 			BlockPos pos = worldIn.getHeight(position.add(i, 128, j)).up();
-			if (TAUtil.isTerrainFlat(worldIn, position, 3)) {
+			if (TAUtil.WorldAndGen.isTerrainFlat(worldIn, position, 3)) {
 				generateRuins(worldIn, pos);
 				gen = true;
 			}
@@ -49,7 +49,7 @@ public class TAWorldGenerator_Ruins extends WorldGenerator {
 		}
 
 		if (gen) {
-			TAUtil.populateChestsInChunk(worldIn.getChunkFromBlockCoords(position), rand, RUIN_LOOTTABLE);
+			TAUtil.WorldAndGen.populateChestsInChunk(worldIn.getChunkFromBlockCoords(position), rand, RUIN_LOOTTABLE);
 		}
 		return true;
 	}

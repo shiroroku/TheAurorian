@@ -40,7 +40,7 @@ public class TAItem_Tool_Moonstone_Sword extends ItemSword {
 
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
-		TAUtil.handleMoonstoneAbility(stack, attacker.world, attacker);
+		TAUtil.Moonstone.handleMoonstoneDurability(stack, attacker.world, attacker);
 		return true;
 	}
 
@@ -49,7 +49,7 @@ public class TAItem_Tool_Moonstone_Sword extends ItemSword {
 		if (!GuiScreen.isShiftKeyDown()) {
 			tooltip.add(TextFormatting.ITALIC + "Hold shift for more info" + TextFormatting.RESET);
 		} else {
-			tooltip.add("Moonstone loves the moon! They consume less durability at night and more at day.");
+			tooltip.add(TAUtil.Moonstone.getMoonstoneTooltip());
 		}
 	}
 

@@ -41,7 +41,7 @@ public class TAItem_Tool_Moonstone_Axe extends ItemAxe {
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
 		if (!worldIn.isRemote && (double) state.getBlockHardness(worldIn, pos) != 0.0D) {
-			TAUtil.handleMoonstoneAbility(stack, worldIn, entityLiving);
+			TAUtil.Moonstone.handleMoonstoneDurability(stack, worldIn, entityLiving);
 		}
 		return true;
 	}
@@ -51,7 +51,7 @@ public class TAItem_Tool_Moonstone_Axe extends ItemAxe {
 		if (!GuiScreen.isShiftKeyDown()) {
 			tooltip.add(TextFormatting.ITALIC + "Hold shift for more info" + TextFormatting.RESET);
 		} else {
-			tooltip.add("Moonstone loves the moon! They consume less durability at night and more at day.");
+			tooltip.add(TAUtil.Moonstone.getMoonstoneTooltip());
 		}
 	}
 

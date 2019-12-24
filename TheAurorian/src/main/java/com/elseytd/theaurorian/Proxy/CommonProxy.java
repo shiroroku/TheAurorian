@@ -59,6 +59,6 @@ public class CommonProxy {
 			TAMod.CONFIG.save();
 		}
 		TACompat.postInit(e);
-		TAUtil.Ores = TAUtil.populateOrelocallist();
+		TAUtil.LocalOreDictionary.Ores = TAUtil.LocalOreDictionary.populateOrelist();
 	}
 }

@@ -49,7 +49,7 @@ public class TAItem_Special_Aurorianite_Pickaxe extends ItemPickaxe {
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
 		if (!worldIn.isRemote && (double) state.getBlockHardness(worldIn, pos) != 0.0D) {
 			ItemStack s = new ItemStack(worldIn.getBlockState(pos).getBlock());
-			if (TAUtil.isOre(s)) {
+			if (TAUtil.LocalOreDictionary.isOre(s)) {
 				entityLiving.addPotionEffect(new PotionEffect(MobEffects.HASTE, 100));
 				stack.damageItem(1, entityLiving);
 				return true;

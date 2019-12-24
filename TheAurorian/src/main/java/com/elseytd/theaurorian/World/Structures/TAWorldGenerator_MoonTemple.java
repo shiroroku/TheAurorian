@@ -77,7 +77,7 @@ public class TAWorldGenerator_MoonTemple extends WorldGenerator {
 
 	private void populateChests(Chunk c, int heightmin, int heightmax, ResourceLocation loot, Random r) {
 		for (int y = heightmin; y <= heightmax; y++) {
-			TAUtil.populateChestsInChunkAtHeight(c, y, r, loot, false);
+			TAUtil.WorldAndGen.populateChestsInChunkAtHeight(c, y, r, loot, false);
 		}
 	}
 	

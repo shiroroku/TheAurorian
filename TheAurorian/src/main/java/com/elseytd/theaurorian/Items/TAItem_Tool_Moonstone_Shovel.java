@@ -63,7 +63,7 @@ public class TAItem_Tool_Moonstone_Shovel extends ItemSpade {
 
 				if (!worldIn.isRemote) {
 					worldIn.setBlockState(pos, iblockstate1, 11);
-					TAUtil.handleMoonstoneAbility(itemstack, worldIn, player);
+					TAUtil.Moonstone.handleMoonstoneDurability(itemstack, worldIn, player);
 				}
 
 				return EnumActionResult.SUCCESS;
@@ -76,8 +76,7 @@ public class TAItem_Tool_Moonstone_Shovel extends ItemSpade {
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
 		if (!worldIn.isRemote && (double) state.getBlockHardness(worldIn, pos) != 0.0D) {
-			TAUtil.handleMoonstoneAbility(stack, worldIn, entityLiving);
-
+			TAUtil.Moonstone.handleMoonstoneDurability(stack, worldIn, entityLiving);
 		}
 		return true;
 	}
@@ -87,7 +86,7 @@ public class TAItem_Tool_Moonstone_Shovel extends ItemSpade {
 		if (!GuiScreen.isShiftKeyDown()) {
 			tooltip.add(TextFormatting.ITALIC + "Hold shift for more info" + TextFormatting.RESET);
 		} else {
-			tooltip.add("Moonstone loves the moon! They consume less durability at night and more at day.");
+			tooltip.add(TAUtil.Moonstone.getMoonstoneTooltip());
 		}
 	}
 }
