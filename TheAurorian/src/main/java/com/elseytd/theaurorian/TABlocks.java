@@ -14,6 +14,7 @@ import com.elseytd.theaurorian.Blocks.TABlock_Glass;
 import com.elseytd.theaurorian.Blocks.TABlock_GlassPane;
 import com.elseytd.theaurorian.Blocks.TABlock_Material;
 import com.elseytd.theaurorian.Blocks.TABlock_MoonGem;
+import com.elseytd.theaurorian.Blocks.TABlock_MysticalBarrier;
 import com.elseytd.theaurorian.Blocks.TABlock_Ore_AurorianCoal;
 import com.elseytd.theaurorian.Blocks.TABlock_Ore_Cerulean;
 import com.elseytd.theaurorian.Blocks.TABlock_Ore_Geode;
@@ -103,6 +104,8 @@ public class TABlocks {
 	public static TABlock_GlassPane moonglasspane;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_GlassPane.BLOCKNAME_AURORIAN)
 	public static TABlock_GlassPane aurorianglasspane;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_MysticalBarrier.BLOCKNAME)
+	public static TABlock_MysticalBarrier mysticalbarrier;
 
 	// PLANTS
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Plant_Tallgrass.BLOCKNAME)
@@ -250,6 +253,7 @@ public class TABlocks {
 		aurorianglass.initModel();
 		moonglasspane.initModel();
 		aurorianglasspane.initModel();
+		mysticalbarrier.initModel();
 
 		// PLANTS
 		auroriantallgrass.initModel();
@@ -356,6 +360,7 @@ public class TABlocks {
 		event.getRegistry().register(new TABlock_Glass(TABlock_Glass.BLOCKNAME_AURORIAN));
 		event.getRegistry().register(new TABlock_GlassPane(TABlock_GlassPane.BLOCKNAME_MOONGLASS));
 		event.getRegistry().register(new TABlock_GlassPane(TABlock_GlassPane.BLOCKNAME_AURORIAN));
+		event.getRegistry().register(new TABlock_MysticalBarrier());
 
 		// TERRAIN
 		event.getRegistry().register(new TABlock_Terrain_AurorianCobblestone());
@@ -450,6 +455,7 @@ public class TABlocks {
 		itemblockQuickReg(event, TABlocks.aurorianglass);
 		itemblockQuickReg(event, TABlocks.moonglasspane);
 		itemblockQuickReg(event, TABlocks.aurorianglasspane);
+		itemblockQuickReg(event, TABlocks.mysticalbarrier);
 
 		// TERRAIN
 		itemblockQuickReg(event, TABlocks.auroriancobblestone);

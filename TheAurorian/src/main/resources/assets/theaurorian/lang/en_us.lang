@@ -108,6 +108,7 @@ modifier.aurorianempowered.name=Aurorian Empowered
 modifier.tamoonlit.desc=Has a 50% chance to not take duribility when it's night but 50% to take more during the day!
 modifier.tamoonlit.name=Moonlit
 tile.tamoonwater.name=Moonwater
+tile.theaurorian.mysticalbarrier.name=Mystical Barrier
 tile.theaurorian.auroriancoalblock.name=Aurorian Coal Block
 tile.theaurorian.auroriancoalore.name=Aurorian Coal Ore
 tile.theaurorian.auroriancobblestone.name=Aurorian Cobblestone

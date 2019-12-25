@@ -2,6 +2,7 @@ package com.elseytd.theaurorian.Entities.MoonQueen;
 
 import javax.annotation.Nullable;
 
+import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 
@@ -27,6 +28,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
@@ -58,6 +60,26 @@ public class TAEntity_MoonQueen extends EntityMob {
 	@Override
 	protected void dropEquipment(boolean wasRecentlyHit, int lootingModifier) {
 		//Drop nothing held
+	}
+
+	@Override
+	public void onDeath(DamageSource cause) {
+		super.onDeath(cause);
+		
+		int distance = 50;
+		
+		for(int x = 0; x <= distance; x++) {
+			for(int y = 0; y <= distance; y++) {
+				for(int z = 0; z <= distance; z++) {
+					int offs = distance / 2;
+					BlockPos p = new BlockPos(x + this.getPosition().getX() - offs, y + this.getPosition().getY() - offs, z + this.getPosition().getZ() - offs);
+					if(this.world.getBlockState(p).getBlock() == TABlocks.mysticalbarrier){
+						this.world.destroyBlock(p, false);
+					}
+				}
+			}
+		}
+		
 	}
 
 	@Override
