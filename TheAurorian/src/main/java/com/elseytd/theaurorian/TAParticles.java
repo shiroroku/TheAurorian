@@ -5,11 +5,16 @@ import com.elseytd.theaurorian.Particles.TAParticle_StickySpiker;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class TAParticles {
 
+	private static Minecraft mcinstance = Minecraft.getMinecraft();
+	
 	public enum Particles {
-		AURORIANSLIME, STICKYSPIKER
+		AURORIANSLIME, STICKYSPIKER;
 	}
 
 	private static Particle getParticle(Particles type, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
@@ -23,9 +28,7 @@ public class TAParticles {
 		}
 	}
 
-	private static Minecraft mcinstance = Minecraft.getMinecraft();
-
-	public static Particle spawn(Particles type, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
+	public static Particle spawnParticle(Particles type, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
 		if (mcinstance != null && mcinstance.getRenderViewEntity() != null && mcinstance.effectRenderer != null) {
 			int particlesetting = mcinstance.gameSettings.particleSetting;
 
