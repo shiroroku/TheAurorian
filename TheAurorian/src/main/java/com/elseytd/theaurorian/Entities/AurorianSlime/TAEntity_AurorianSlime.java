@@ -127,7 +127,9 @@ public class TAEntity_AurorianSlime extends EntityLiving implements IMob {
 		if (this.onGround && !this.wasOnGround) {
 			int i = 1;
 			for (int j = 0; j < i * 8; ++j) {
-				TAParticles.spawn(TAParticles.Particles.AURORIANSLIME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+				if (this.world.isRemote) {
+					TAParticles.spawn(TAParticles.Particles.AURORIANSLIME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+				}
 			}
 			this.playSound(this.getSquishSound(), this.getSoundVolume(), ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) / 0.8F);
 			this.squishAmount = -0.5F;

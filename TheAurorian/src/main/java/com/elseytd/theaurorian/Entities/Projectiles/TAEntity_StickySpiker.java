@@ -1,7 +1,5 @@
 package com.elseytd.theaurorian.Entities.Projectiles;
 
-import com.elseytd.theaurorian.TAParticles;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.MobEffects;
@@ -38,9 +36,12 @@ public class TAEntity_StickySpiker extends EntityThrowable {
 				}
 			}
 
-			for (int i = 0; i < 8; ++i) {
-				TAParticles.spawn(TAParticles.Particles.STICKYSPIKER, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
-			}
+			/*
+			if (this.world.isRemote) {
+				for (int i = 0; i < 8; ++i) {
+					TAParticles.spawn(TAParticles.Particles.STICKYSPIKER, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+				}
+			}*/
 
 			this.setDead();
 		}
