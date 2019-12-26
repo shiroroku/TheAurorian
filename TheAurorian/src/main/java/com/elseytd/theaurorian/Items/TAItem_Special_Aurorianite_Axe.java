@@ -1,9 +1,11 @@
 package com.elseytd.theaurorian.Items;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 
@@ -40,14 +42,64 @@ public class TAItem_Special_Aurorianite_Axe extends ItemAxe {
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
 		if (!worldIn.isRemote && (double) state.getBlockHardness(worldIn, pos) != 0.0D) {
-			int y = 1;
-			while (worldIn.getBlockState(new BlockPos(pos.getX(), pos.getY() + y, pos.getZ())).getBlock().isWood(worldIn, pos) && stack.getItemDamage() <= (stack.getMaxDamage() - 3)) {
-				worldIn.destroyBlock(new BlockPos(pos.getX(), pos.getY() + y, pos.getZ()), true);
-				stack.damageItem(1, entityLiving);
-				y++;
+			if (state.getBlock().isWood(worldIn, pos)) {
+				chopTree(worldIn, pos, stack, entityLiving);
+			} else {
+				super.onBlockDestroyed(stack, worldIn, state, pos, entityLiving);
 			}
 		}
 		return true;
+	}
+
+	private void chopTree(World worldIn, BlockPos pos, ItemStack stack, EntityLivingBase entityLiving) {
+
+		boolean isDone = false;
+		int maxLogs = TAConfig.Config_AurorianiteAxeMaxChopSize;
+		int logCount = 0;
+		List<BlockPos> notSearchedWood = new ArrayList<BlockPos>();
+		List<BlockPos> searchedWood = new ArrayList<BlockPos>();
+
+		//Set our first block to be the log we mined
+		BlockPos currentPos = pos;
+
+		while (!isDone) {
+
+			//for loops for getting a 3x3 on the same level of the block and 3x3 a level above
+			for (int x = -1; x <= 1; x++) {
+				for (int y = 0; y <= 1; y++) {
+					for (int z = -1; z <= 1; z++) {
+						BlockPos p = currentPos.add(x, y, z);
+						//If any block we find is wood and is not already searched or in our list, we add it.
+						if (worldIn.getBlockState(p).getBlock().isWood(worldIn, p)) {
+							if (!notSearchedWood.contains(p) && !searchedWood.contains(p)) {
+								notSearchedWood.add(p);
+								logCount++;
+							}
+						}
+					}
+				}
+			}
+
+			//Move the block we just searched from our unsearched list to a list for later breaking
+			searchedWood.add(currentPos);
+			if (notSearchedWood.contains(currentPos)) {
+				notSearchedWood.remove(currentPos);
+			}
+
+			//If no more blocks are found we are done, else we set our next block from the first in the list unless we reach the max log count
+			if (notSearchedWood.isEmpty() || logCount >= maxLogs) {
+				isDone = true;
+			} else {
+				currentPos = notSearchedWood.get(0);
+			}
+		}
+
+		for (BlockPos p : searchedWood) {
+			worldIn.destroyBlock(p, true);
+			stack.damageItem(1, entityLiving);
+		}
+		System.out.println(logCount);
+
 	}
 
 	@SideOnly(Side.CLIENT)

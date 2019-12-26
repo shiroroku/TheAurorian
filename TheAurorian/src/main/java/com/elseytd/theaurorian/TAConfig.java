@@ -45,6 +45,7 @@ public class TAConfig {
 	public static boolean Config_SticksMakeFire = true;
 	public static int Config_AurorianiteSwordCooldown = 600;
 	public static int Config_StrangeMeatUses = 10;
+	public static int Config_AurorianiteAxeMaxChopSize = 256;
 
 	public static void readConfig() {
 		Configuration cfg = TAMod.CONFIG;
@@ -72,7 +73,7 @@ public class TAConfig {
 		Config_SticksMakeFire = cfg.getBoolean("SticksMakeFire", name, Config_SticksMakeFire, "Set to false to disable Silentwood Sticks making Fire or lighting Portal");		
 		Config_AurorianiteSwordCooldown = cfg.getInt("AurorianiteSwordCooldown", name, Config_AurorianiteSwordCooldown, 0, 72000, "Cooldown in ticks for the swords levitate ability. 600 ticks = 30 seconds");
 		Config_StrangeMeatUses = cfg.getInt("StrangeMeatUses", name, Config_StrangeMeatUses, 1, 72000, "How many uses Strange Meat has");
-
+		Config_AurorianiteAxeMaxChopSize = cfg.getInt("AurorianiteAxeMaxChopSize", name, Config_AurorianiteAxeMaxChopSize, 0, 72000, "How many total connected log blocks can the Aurorianite Axe chop at once");
 	}
 
 	private static void initCompatConfig(Configuration cfg) {
