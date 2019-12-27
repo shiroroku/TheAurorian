@@ -8,6 +8,7 @@ import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
@@ -24,8 +25,8 @@ public class TAItem_Special_Amulet extends Item {
 	public static final String ITEMNAME_DARKAMULET = "darkamulet";
 	
 	public enum Amulets {
-		KEEPERAMULET(ITEMNAME_KEEPERAMULET, "Pulsates with corrupted power. Used for crafting the Moontemple Key or the Runestone Breaker."),
-		DARKAMULET(ITEMNAME_DARKAMULET, "Has a faint dreadful aura.");
+		KEEPERAMULET(ITEMNAME_KEEPERAMULET, "string.theaurorian.tooltip.amuletkeeper"),
+		DARKAMULET(ITEMNAME_DARKAMULET, "string.theaurorian.tooltip.amuletdark");
 		
 		private String ITEMNAME;
 		private String INFO;
@@ -73,9 +74,9 @@ public class TAItem_Special_Amulet extends Item {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {
-			tooltip.add(TextFormatting.ITALIC + "Hold shift for more info" + TextFormatting.RESET);
+			tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
 		} else {
-			tooltip.add(this.itemAmulet.getInfo());
+			tooltip.add(I18n.format(this.itemAmulet.getInfo()));
 		}
 	}
 }

@@ -10,6 +10,7 @@ import com.elseytd.theaurorian.TAMod;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -99,9 +100,9 @@ public class TAItem_Special_StrangeMeat extends ItemFood {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {
-			tooltip.add(TextFormatting.ITALIC + "Hold shift for more info" + TextFormatting.RESET);
+			tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
 		} else {
-			tooltip.add("Huge chunk of meat, will take a while to eat! Finishing it will give you a random buff!");
+			tooltip.add(I18n.format("string.theaurorian.tooltip.strangemeat"));
 		}
 	}
 

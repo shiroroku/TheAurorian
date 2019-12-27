@@ -10,12 +10,14 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,7 +39,7 @@ public class TABlock_DungeonStoneGateKeyhole extends Block {
 	public TABlock_DungeonStoneGateKeyhole(String blockname) {
 		super(Material.ROCK);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
-		this.setHardness(500F);
+		this.setBlockUnbreakable();
 		this.setSoundType(SoundType.STONE);
 		this.setUnlocalizedName(TAMod.MODID + "." + blockname);
 		this.setRegistryName(blockname);
@@ -137,6 +139,8 @@ public class TABlock_DungeonStoneGateKeyhole extends Block {
 			} else {
 				playerIn.playSound(SoundEvents.ENTITY_ITEM_BREAK, 0.5F, 1F);
 			}
+		} else {
+			playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.block.dungeonstonekeyhole1") + (this.isLockpickable() ? " " + I18n.format("string.theaurorian.block.dungeonstonekeyhole2") : "")), true);
 		}
 		return true;
 	}

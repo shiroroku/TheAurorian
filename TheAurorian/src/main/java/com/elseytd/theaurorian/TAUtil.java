@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -13,6 +14,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class TAUtil {
@@ -202,8 +205,9 @@ public class TAUtil {
 		/**
 		 * Tooltip for all Moonstone tools.
 		 */
+		@SideOnly(Side.CLIENT)
 		public static String getMoonstoneTooltip() {
-			return "Moonstone loves the moon! They consume less durability at night and more at day.";
+			return I18n.format("string.theaurorian.tooltip.moonstonetools");
 		}
 
 		/**

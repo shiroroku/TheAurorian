@@ -17,7 +17,7 @@
         },
         {
             "type": "text",
-            "text": "$(#8800ff)The Runestone Dungeon Keeper$() is the boss of $(#008cff)The Runestone Dungeon$(). He is a ranged boss that uses melee and knockback to hit you away when you get close.$(br2)It's recommended to bring a shield as he loves to use his arrows (especially when he's panicked).$(br2)When killed he will drop a $(#008cff)Keeper Amulet$() which can be used for $(#008cff)The Runestone Breaker$() or to access the next dungeon!"
+            "text": "$(#8800ff)The Runestone Dungeon Keeper$() is the boss of $(#008cff)The Runestone Dungeon$(). He is a ranged boss that uses melee and knockback to hit you away when you get close.$(br2)It's recommended to bring a shield as he loves to use his arrows (especially when he's panicked).$(br2)When killed he will drop a $(#008cff)Keeper Amulet$() which can be used to access the next dungeon!"
         },
         {
             "type": "entity",

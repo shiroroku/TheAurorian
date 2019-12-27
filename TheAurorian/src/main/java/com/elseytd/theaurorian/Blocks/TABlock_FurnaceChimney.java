@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.block.Block;
@@ -13,6 +14,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -44,9 +46,9 @@ public class TABlock_FurnaceChimney extends Block {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {
-			tooltip.add(TextFormatting.ITALIC + "Hold shift for more info" + TextFormatting.RESET);
+			tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
 		} else {
-			tooltip.add("When placed on top of an Aurorian Furnace, it speeds up it's smelting speed! Max chimneys per furnace is 10. Rightclick furnace with chimneys to auto stack them on top.");
+			tooltip.add(I18n.format("string.theaurorian.tooltip.furnacechimney1") + " " + TAConfig.Config_MaximumChimneys + I18n.format("string.theaurorian.tooltip.furnacechimney2"));
 		}
 	}
 

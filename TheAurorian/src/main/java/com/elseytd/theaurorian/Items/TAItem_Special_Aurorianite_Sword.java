@@ -10,6 +10,7 @@ import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -58,12 +59,12 @@ public class TAItem_Special_Aurorianite_Sword extends ItemSword {
 				e.addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 60));
 				e.motionY = e.motionY + 0.5D;
 			}
-			
+
 			playerIn.getHeldItemMainhand().damageItem(5, playerIn);
 			playerIn.getCooldownTracker().setCooldown(this, TAConfig.Config_AurorianiteSwordCooldown);
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 		}
-		
+
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
 	}
 
@@ -80,9 +81,9 @@ public class TAItem_Special_Aurorianite_Sword extends ItemSword {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {
-			tooltip.add(TextFormatting.ITALIC + "Hold shift for more info" + TextFormatting.RESET);
+			tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
 		} else {
-			tooltip.add("Magical power shines in this metal. Has the ability to levitate everyone nearby!");
+			tooltip.add(I18n.format("string.theaurorian.tooltip.aurorianitesword"));
 		}
 	}
 }

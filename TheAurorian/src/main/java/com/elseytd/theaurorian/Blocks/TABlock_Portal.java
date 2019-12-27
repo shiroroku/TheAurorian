@@ -191,7 +191,7 @@ public class TABlock_Portal extends BlockBreakable {
 				if (entityIn.timeUntilPortal > 0) {
 					entityIn.timeUntilPortal = entityIn.getPortalCooldown();
 				} else {
-					entityIn.timeUntilPortal = 100;
+					entityIn.timeUntilPortal = 500;
 					if (entityIn.dimension == 0) {
 						TATeleporter.transferEntity(entityIn, TADimensions.DIMENSION_ID);
 					} else {

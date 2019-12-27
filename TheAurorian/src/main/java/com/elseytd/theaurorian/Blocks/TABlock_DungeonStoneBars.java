@@ -17,7 +17,7 @@ public class TABlock_DungeonStoneBars extends BlockPane {
 
 	public TABlock_DungeonStoneBars(String blockname) {
 		super(Material.IRON, false);
-		this.setHardness(500F);
+		this.setBlockUnbreakable();
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(blockname);
 		this.setUnlocalizedName(TAMod.MODID + "." + blockname);

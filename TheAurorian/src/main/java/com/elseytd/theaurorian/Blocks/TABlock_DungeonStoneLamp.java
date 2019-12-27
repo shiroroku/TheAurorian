@@ -20,7 +20,7 @@ public class TABlock_DungeonStoneLamp extends Block {
 	public TABlock_DungeonStoneLamp(String blockname) {
 		super(Material.ROCK);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
-		this.setHardness(500F);
+		this.setBlockUnbreakable();
 		this.setSoundType(SoundType.STONE);
 		this.setUnlocalizedName(TAMod.MODID + "." + blockname);
 		this.setRegistryName(blockname);

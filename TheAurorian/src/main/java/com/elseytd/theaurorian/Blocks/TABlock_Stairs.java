@@ -28,7 +28,7 @@ public class TABlock_Stairs extends BlockStairs {
 		if (name == BLOCKNAME_AURORIANCOBBLESTONE || name == BLOCKNAME_AURORIANSTONE) {
 			this.setHarvestLevel("pickaxe", 0);
 		} else if (name == BLOCKNAME_MOONTEMPLE || name == BLOCKNAME_RUNESTONE || name ==  BLOCKNAME_DARK) {
-			this.setHardness(500F);
+			this.setBlockUnbreakable();
 		}
 	}
 

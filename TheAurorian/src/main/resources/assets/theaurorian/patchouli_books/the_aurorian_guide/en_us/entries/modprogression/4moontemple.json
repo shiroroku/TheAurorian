@@ -20,8 +20,7 @@
         {
             "type": "crafting",
             "title": "Moon Temple Key",
-            "recipe": "theaurorian:items/special/moontemplekey",
-            "recipe2": "theaurorian:items/special/moontemplebreaker"
+            "recipe": "theaurorian:items/special/moontemplekey"
         },
         {
             "type": "spotlight",

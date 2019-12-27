@@ -11,6 +11,7 @@ import com.elseytd.theaurorian.TAMod;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemAxe;
@@ -58,9 +59,9 @@ public class TAItem_Tool_Aurorian_Stone_Axe extends ItemAxe {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {
-			tooltip.add(TextFormatting.ITALIC + "Hold shift for more info" + TextFormatting.RESET);
+			tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
 		} else {
-			tooltip.add("Aurorian Stone can fell whole Silentwood Trees at the cost of extra durability!");
+			tooltip.add(I18n.format("string.theaurorian.tooltip.aurorianstoneaxe"));
 		}
 	}
 }

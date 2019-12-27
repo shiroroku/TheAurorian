@@ -32,8 +32,6 @@ import com.elseytd.theaurorian.Items.TAItem_Special_Crystalline_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
 import com.elseytd.theaurorian.Items.TAItem_Special_LivingDiviningRod;
 import com.elseytd.theaurorian.Items.TAItem_Special_Lockpicks;
-import com.elseytd.theaurorian.Items.TAItem_Special_MoonTempleBreaker;
-import com.elseytd.theaurorian.Items.TAItem_Special_RunestoneBreaker;
 import com.elseytd.theaurorian.Items.TAItem_Special_StickySpiker;
 import com.elseytd.theaurorian.Items.TAItem_Special_StrangeMeat;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Axe;
@@ -132,10 +130,6 @@ public class TAItems {
 	public static TAItem_Special_LivingDiviningRod livingdiviningrod;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Lockpicks.ITEMNAME)
 	public static TAItem_Special_Lockpicks lockpicks;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_MoonTempleBreaker.ITEMNAME)
-	public static TAItem_Special_MoonTempleBreaker moontemplebreaker;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_RunestoneBreaker.ITEMNAME)
-	public static TAItem_Special_RunestoneBreaker runestonebreaker;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_StickySpiker.ITEMNAME)
 	public static TAItem_Special_StickySpiker stickyspiker;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Cerulean_Arrow.ITEMNAME)
@@ -294,10 +288,8 @@ public class TAItems {
 		lavenderseeds.initModel();
 		livingdiviningrod.initModel();
 		lockpicks.initModel();
-		moontemplebreaker.initModel();
 		moontemplecellkey.initModel();
 		moontemplekey.initModel();
-		runestonebreaker.initModel();
 		runestonekey.initModel();
 		runestonelootkey.initModel();
 		spikedchestplate.initModel();
@@ -398,8 +390,6 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Special_Amulet(TAItem_Special_Amulet.Amulets.KEEPERAMULET));
 		event.getRegistry().register(new TAItem_Special_LivingDiviningRod());
 		event.getRegistry().register(new TAItem_Special_Lockpicks());
-		event.getRegistry().register(new TAItem_Special_MoonTempleBreaker());
-		event.getRegistry().register(new TAItem_Special_RunestoneBreaker());
 		event.getRegistry().register(new TAItem_Special_StickySpiker());
 		event.getRegistry().register(new TAItem_Special_StrangeMeat());
 		event.getRegistry().register(new TAItem_Tool_Cerulean_Arrow());

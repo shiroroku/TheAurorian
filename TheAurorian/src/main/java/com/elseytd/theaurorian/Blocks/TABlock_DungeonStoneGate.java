@@ -12,6 +12,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -35,7 +36,7 @@ public class TABlock_DungeonStoneGate extends Block {
 	public TABlock_DungeonStoneGate(String blockname) {
 		super(Material.ROCK);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
-		this.setHardness(500F);
+		this.setBlockUnbreakable();
 		this.setSoundType(SoundType.STONE);
 		this.setUnlocalizedName(TAMod.MODID + "." + blockname);
 		this.setRegistryName(blockname);
@@ -75,9 +76,9 @@ public class TABlock_DungeonStoneGate extends Block {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {
-			tooltip.add(TextFormatting.ITALIC + "Hold shift for more info" + TextFormatting.RESET);
+			tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
 		} else {
-			tooltip.add("Can only be placed up to " + getKeyhole().getMaxGateDistance() + " blocks away from the gate's keyhole on the X or Z axis.");
+			tooltip.add(I18n.format("string.theaurorian.tooltip.dungeonstonegate1") + " " + getKeyhole().getMaxGateDistance() + " " + I18n.format("string.theaurorian.tooltip.dungeonstonegate2"));
 		}
 	}
 
