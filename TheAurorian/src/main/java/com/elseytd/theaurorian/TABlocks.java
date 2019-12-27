@@ -384,9 +384,9 @@ public class TABlocks {
 		event.getRegistry().register(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_RUNESTONE));
 		event.getRegistry().register(new TABlock_DungeonStoneBars(TABlock_DungeonStoneBars.BLOCKNAME_RUNESTONE));
 		event.getRegistry().register(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONE, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONE));
-		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONE, TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONE, TAItem_Special_DungeonKey.ITEMNAME_RUNESTONE, true));
+		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONE, TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONE, TAItem_Special_DungeonKey.Keys.RUNESTONE, true));
 		event.getRegistry().register(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONELOOT, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONELOOT));
-		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONELOOT, TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONELOOT, TAItem_Special_DungeonKey.ITEMNAME_RUNESTONELOOT));
+		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONELOOT, TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONELOOT, TAItem_Special_DungeonKey.Keys.RUNESTONELOOT));
 		event.getRegistry().register(new TABlock_DungeonStoneLamp(TABlock_DungeonStoneLamp.BLOCKNAME_RUNESTONE));
 		event.getRegistry().register(new TABlock_DungeonStoneSmooth(TABlock_DungeonStoneSmooth.BLOCKNAME_RUNESTONE));
 
@@ -395,8 +395,8 @@ public class TABlocks {
 		event.getRegistry().register(new TABlock_DungeonStoneBars(TABlock_DungeonStoneBars.BLOCKNAME_MOONTEMPLE));
 		event.getRegistry().register(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLE, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLE));
 		event.getRegistry().register(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLECELL, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLECELL));
-		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLE, TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLE, TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLE));
-		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLECELL, TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLECELL, TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLECELL));
+		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLE, TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLE, TAItem_Special_DungeonKey.Keys.MOONTEMPLE));
+		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLECELL, TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLECELL, TAItem_Special_DungeonKey.Keys.MOONTEMPLECELL));
 		event.getRegistry().register(new TABlock_DungeonStoneLamp(TABlock_DungeonStoneLamp.BLOCKNAME_MOONTEMPLE));
 		event.getRegistry().register(new TABlock_DungeonStoneSmooth(TABlock_DungeonStoneSmooth.BLOCKNAME_MOONTEMPLE));
 		event.getRegistry().register(new TABlock_MoonGem());
@@ -406,7 +406,7 @@ public class TABlocks {
 		event.getRegistry().register(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK_FANCY));
 		event.getRegistry().register(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK_LAYERS));
 		event.getRegistry().register(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_DARK, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_DARK));
-		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_DARK, TABlock_DungeonStoneGate.BLOCKNAME_DARK, TAItem_Special_DungeonKey.ITEMNAME_DARKSTONE));
+		event.getRegistry().register(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_DARK, TABlock_DungeonStoneGate.BLOCKNAME_DARK, TAItem_Special_DungeonKey.Keys.DARKSTONE));
 		event.getRegistry().register(new TABlock_DungeonStoneLamp(TABlock_DungeonStoneLamp.BLOCKNAME_DARK));
 
 		// SILENTWOOD

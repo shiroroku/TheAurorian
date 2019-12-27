@@ -27,19 +27,46 @@ public class TAItem_Special_DungeonKey extends Item {
 	public static final String ITEMNAME_MOONTEMPLECELL = "moontemplecellkey";
 	public static final String ITEMNAME_DARKSTONE = "darkstonekey";
 
-	public TAItem_Special_DungeonKey(String name) {
+	public enum Keys {
+		RUNESTONE(ITEMNAME_RUNESTONE, "string.theaurorian.tooltip.keyrunestone"),
+		RUNESTONELOOT(ITEMNAME_RUNESTONELOOT, "string.theaurorian.tooltip.keyrunestoneloot"),
+		MOONTEMPLE(ITEMNAME_MOONTEMPLE, "string.theaurorian.tooltip.keymoontemple"),
+		MOONTEMPLECELL(ITEMNAME_MOONTEMPLECELL, "string.theaurorian.tooltip.keymoontemplecell"),
+		DARKSTONE(ITEMNAME_DARKSTONE, "string.theaurorian.tooltip.keydarkstone");
+
+		private String ITEMNAME;
+		private String INFO;
+
+		Keys(String itemname, String info) {
+			this.ITEMNAME = itemname;
+			this.INFO = info;
+		}
+
+		public String getName() {
+			return ITEMNAME;
+		}
+
+		public String getInfo() {
+			return INFO;
+		}
+	}
+
+	private Keys itemKey;
+
+	public TAItem_Special_DungeonKey(Keys key) {
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
-		this.setRegistryName(name);
+		this.setRegistryName(key.getName());
 		this.setMaxStackSize(1);
-		this.setUnlocalizedName(TAMod.MODID + "." + name);
+		this.setUnlocalizedName(TAMod.MODID + "." + key.getName());
 		this.setMaxDamage(1);
+		this.itemKey = key;
 	}
 
 	@SideOnly(Side.CLIENT)
 	public void initModel() {
 		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
 	}
-	
+
 	@Override
 	public net.minecraftforge.common.IRarity getForgeRarity(ItemStack stack) {
 		return EnumRarity.UNCOMMON;
@@ -50,21 +77,7 @@ public class TAItem_Special_DungeonKey extends Item {
 		if (!GuiScreen.isShiftKeyDown()) {
 			tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
 		} else {
-			if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + ITEMNAME_MOONTEMPLECELL)) {
-				tooltip.add(I18n.format("string.theaurorian.tooltip.keymoontemplecell"));
-			}
-			if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + ITEMNAME_RUNESTONE)) {
-				tooltip.add(I18n.format("string.theaurorian.tooltip.keyrunestone"));
-			}
-			if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + ITEMNAME_MOONTEMPLE)) {
-				tooltip.add(I18n.format("string.theaurorian.tooltip.keymoontemple"));
-			}
-			if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + ITEMNAME_DARKSTONE)) {
-				tooltip.add(I18n.format("string.theaurorian.tooltip.keydarkstone"));
-			}
-			if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + ITEMNAME_RUNESTONELOOT)) {
-				tooltip.add(I18n.format("string.theaurorian.tooltip.keyrunestoneloot"));
-			}
+			tooltip.add(I18n.format(this.itemKey.getInfo()));
 		}
 	}
 }

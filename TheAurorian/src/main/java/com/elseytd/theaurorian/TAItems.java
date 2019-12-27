@@ -381,11 +381,11 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Special_Crystalline_Pickaxe());
 		event.getRegistry().register(new TAItem_Special_Crystalline_Shield());
 		event.getRegistry().register(new TAItem_CrystallineSprite());
-		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_DARKSTONE));
-		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLE));
-		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_MOONTEMPLECELL));
-		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_RUNESTONE));
-		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.ITEMNAME_RUNESTONELOOT));
+		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.DARKSTONE));
+		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.MOONTEMPLE));
+		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.MOONTEMPLECELL));
+		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.RUNESTONE));
+		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.RUNESTONELOOT));
 		event.getRegistry().register(new TAItem_Special_Amulet(TAItem_Special_Amulet.Amulets.DARKAMULET));
 		event.getRegistry().register(new TAItem_Special_Amulet(TAItem_Special_Amulet.Amulets.KEEPERAMULET));
 		event.getRegistry().register(new TAItem_Special_LivingDiviningRod());

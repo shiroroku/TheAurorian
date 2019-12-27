@@ -21,15 +21,11 @@ public class TABlock_Stairs extends BlockStairs {
 
 	public TABlock_Stairs(Block blockbase, String name) {
 		super(blockbase.getDefaultState());
-        this.setLightOpacity(0);
+		this.setLightOpacity(0);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setUnlocalizedName(TAMod.MODID + "." + name);
 		this.setRegistryName(name);
-		if (name == BLOCKNAME_AURORIANCOBBLESTONE || name == BLOCKNAME_AURORIANSTONE) {
-			this.setHarvestLevel("pickaxe", 0);
-		} else if (name == BLOCKNAME_MOONTEMPLE || name == BLOCKNAME_RUNESTONE || name ==  BLOCKNAME_DARK) {
-			this.setBlockUnbreakable();
-		}
+		this.setHarvestLevel(blockbase.getHarvestTool(blockbase.getDefaultState()), blockbase.getHarvestLevel(blockbase.getDefaultState()));
 	}
 
 	@SideOnly(Side.CLIENT)

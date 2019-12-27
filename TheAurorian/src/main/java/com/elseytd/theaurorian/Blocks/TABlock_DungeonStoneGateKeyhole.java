@@ -45,23 +45,23 @@ public class TABlock_DungeonStoneGateKeyhole extends Block {
 		this.setRegistryName(blockname);
 	}
 
-	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, String keyitemname) {
+	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, TAItem_Special_DungeonKey.Keys keyitemname) {
 		this(blockname);
 		this.setGate(new TABlock_DungeonStoneGate(gateblockname));
 		this.setKey(new TAItem_Special_DungeonKey(keyitemname));
 	}
 
-	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, String keyitemname, int maxdistance) {
+	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, TAItem_Special_DungeonKey.Keys keyitemname, int maxdistance) {
 		this(blockname, gateblockname, keyitemname);
 		this.setMaxGateDistance(maxdistance);
 	}
 
-	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, String keyitemname, boolean islockpickable) {
+	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, TAItem_Special_DungeonKey.Keys keyitemname, boolean islockpickable) {
 		this(blockname, gateblockname, keyitemname);
 		this.setLockpickable(islockpickable);
 	}
 
-	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, String keyitemname, int maxdistance, boolean islockpickable) {
+	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, TAItem_Special_DungeonKey.Keys keyitemname, int maxdistance, boolean islockpickable) {
 		this(blockname, gateblockname, keyitemname, maxdistance);
 		this.setLockpickable(islockpickable);
 	}
