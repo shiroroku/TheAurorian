@@ -35,7 +35,7 @@ public class TABiomeDecorator extends BiomeDecorator {
 
 	@Override
 	protected void generateOres(World worldIn, Random random) {
-		oreQuickGen(worldIn, random, TABlocks.ceruleanore.getDefaultState(), TAConfig.Config_CeruleanOre_Size, TAConfig.Config_CeruleanOre_Count, TAConfig.Config_MoonstoneOre_HeightMin, TAConfig.Config_MoonstoneOre_HeightMax);
+		oreQuickGen(worldIn, random, TABlocks.ceruleanore.getDefaultState(), TAConfig.Config_CeruleanOre_Size, TAConfig.Config_CeruleanOre_Count, TAConfig.Config_CeruleanOre_HeightMin, TAConfig.Config_CeruleanOre_HeightMax);
 		oreQuickGen(worldIn, random, TABlocks.moonstoneore.getDefaultState(), TAConfig.Config_MoonstoneOre_Size, TAConfig.Config_MoonstoneOre_Count, TAConfig.Config_MoonstoneOre_HeightMin, TAConfig.Config_MoonstoneOre_HeightMax);
 		oreQuickGen(worldIn, random, TABlocks.auroriancoalore.getDefaultState(), TAConfig.Config_AurorianCoalOre_Size, TAConfig.Config_AurorianCoalOre_Count, TAConfig.Config_AurorianCoalOre_HeightMin, TAConfig.Config_AurorianCoalOre_HeightMax);
 		oreQuickGen(worldIn, random, TABlocks.geodeore.getDefaultState(), TAConfig.Config_GeodeOre_Size, TAConfig.Config_GeodeOre_Count, TAConfig.Config_GeodeOre_HeightMin, TAConfig.Config_GeodeOre_HeightMax);
