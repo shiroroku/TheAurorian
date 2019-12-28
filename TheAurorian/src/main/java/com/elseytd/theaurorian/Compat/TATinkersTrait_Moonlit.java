@@ -16,7 +16,7 @@ public class TATinkersTrait_Moonlit extends AbstractTrait {
 
 	@Override
 	public int onToolDamage(ItemStack tool, int damage, int newDamage, EntityLivingBase entity) {
-		if (entity.dimension == TAConfig.Config_AurorianDimId || (entity.dimension == 0 && !entity.world.isDaytime())) {
+		if (entity.dimension == TAConfig.Config_AurorianDimID || (entity.dimension == 0 && !entity.world.isDaytime())) {
 			if (TAUtil.randomChanceOf(0.50F)) {
 				newDamage = 0;
 			} else {

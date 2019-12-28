@@ -55,7 +55,7 @@ public class TAEntity_MoonAcolyte extends EntityMob {
 		int j = MathHelper.floor(this.getEntityBoundingBox().minY);
 		int k = MathHelper.floor(this.posZ);
 		BlockPos blockpos = new BlockPos(i, j, k);
-		return this.world.getBlockState(blockpos.down()).getBlock() == TABlocks.moontemplebricks && this.dimension == TAConfig.Config_AurorianDimId && super.getCanSpawnHere();
+		return this.world.getBlockState(blockpos.down()).getBlock() == TABlocks.moontemplebricks && this.dimension == TAConfig.Config_AurorianDimID && super.getCanSpawnHere();
 	}
 	
 	@Override

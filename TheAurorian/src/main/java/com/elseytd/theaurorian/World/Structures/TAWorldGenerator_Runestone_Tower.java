@@ -63,9 +63,9 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator {
 	//BR = 0, 0
 	//==================
 
-	public static int FLOOR_COUNT = TAConfig.Config_RunestoneTowerFloors;
+	public static int FLOOR_COUNT = TAConfig.Config_RunestoneDungeonFloors;
 	public static int CHUNKS_BETWEEN_TOWERS = TAConfig.Config_DungeonDensity;
-	public static boolean GENERATE_TOWERS = TAConfig.Config_GenerateRunestoneTower;
+	public static boolean GENERATE_TOWERS = TAConfig.Config_GenerateRunestoneDungeon;
 
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {

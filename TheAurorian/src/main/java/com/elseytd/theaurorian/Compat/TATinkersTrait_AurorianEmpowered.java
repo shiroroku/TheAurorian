@@ -15,7 +15,7 @@ public class TATinkersTrait_AurorianEmpowered extends AbstractTrait {
 
 	@Override
 	public void miningSpeed(ItemStack tool, PlayerEvent.BreakSpeed event) {
-		if (event.getEntityPlayer().dimension == TAConfig.Config_AurorianDimId) {
+		if (event.getEntityPlayer().dimension == TAConfig.Config_AurorianDimID) {
 			event.setNewSpeed(event.getNewSpeed() * 1.5F);
 		}else {
 			event.setNewSpeed(event.getNewSpeed());

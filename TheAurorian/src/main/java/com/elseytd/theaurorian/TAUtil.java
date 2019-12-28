@@ -214,7 +214,7 @@ public class TAUtil {
 		 * Called whenever Moonstone tools take damage.
 		 */
 		public static void handleMoonstoneDurability(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
-			if (entityLiving.dimension == TAConfig.Config_AurorianDimId || (entityLiving.dimension == 0 && !entityLiving.world.isDaytime())) {
+			if (entityLiving.dimension == TAConfig.Config_AurorianDimID || (entityLiving.dimension == 0 && !entityLiving.world.isDaytime())) {
 				if (TAUtil.randomChanceOf(0.50F)) {
 					stack.damageItem(1, entityLiving);
 				}

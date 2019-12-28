@@ -7,7 +7,7 @@ import net.minecraftforge.common.DimensionManager;
 
 public class TADimensions {
 	public static DimensionType theauroriandimension;
-	public static int DIMENSION_ID = TAConfig.Config_AurorianDimId;
+	public static int DIMENSION_ID = TAConfig.Config_AurorianDimID;
 
 	public static void init() {
 		registerDimensionTypes();
