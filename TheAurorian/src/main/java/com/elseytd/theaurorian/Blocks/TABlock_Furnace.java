@@ -49,9 +49,6 @@ public class TABlock_Furnace extends BlockContainer {
 	private final boolean isBurning;
 	private static boolean keepInventory;
 
-	private static final int chimneySpeedDiscount = TAConfig.Config_ChimneySpeedDiscount;
-	public static final int maxChimneys = TAConfig.Config_MaximumChimneys;
-
 	public TABlock_Furnace(boolean isBurning) {
 		super(Material.ROCK);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
@@ -67,18 +64,6 @@ public class TABlock_Furnace extends BlockContainer {
 			this.setUnlocalizedName(TAMod.MODID + "." + BLOCKNAME);
 			this.setCreativeTab(TAMod.CREATIVE_TAB);
 		}
-	}
-
-	public int getChimneysDiscount(World worldIn, BlockPos pos) {
-		int y = 1;
-		int chimcount = 0;
-		float discountfalloff = chimneySpeedDiscount;
-		while (worldIn.getBlockState(new BlockPos(pos.getX(), pos.getY() + y, pos.getZ())) == TABlocks.aurorianfurnacechimney.getDefaultState() && y <= TABlock_Furnace.maxChimneys) {
-			y++;
-			chimcount++;
-			discountfalloff = discountfalloff * 0.95F;
-		}
-		return (int) (discountfalloff * chimcount);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -155,7 +140,7 @@ public class TABlock_Furnace extends BlockContainer {
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
 		if (Block.getBlockFromItem(playerIn.getHeldItem(hand).getItem()) == TABlocks.aurorianfurnacechimney) {
-			for (int h = 0; h <= TABlock_Furnace.maxChimneys; h++) {
+			for (int h = 0; h <= TAConfig.Config_MaximumChimneys; h++) {
 				if (worldIn.getBlockState(pos.up(h)).getBlock() == Blocks.AIR) {
 					worldIn.setBlockState(new BlockPos(pos.up(h)), TABlocks.aurorianfurnacechimney.getDefaultState(), 11);
 					if (!playerIn.isCreative()) {
@@ -167,14 +152,6 @@ public class TABlock_Furnace extends BlockContainer {
 		}
 
 		TileEntity tileentity = worldIn.getTileEntity(pos);
-		if (tileentity instanceof TATileEntity_Aurorian_Furnace) {
-			TATileEntity_Aurorian_Furnace tile = (TATileEntity_Aurorian_Furnace) tileentity;
-			if (this.getChimneysDiscount(worldIn, pos) - 200 <= 0) {
-				tile.setSmeltTime(200 - this.getChimneysDiscount(worldIn, pos));
-			} else {
-				tile.setSmeltTime(1);
-			}
-		}
 		if (worldIn.isRemote) {
 			return true;
 		} else {
@@ -227,14 +204,6 @@ public class TABlock_Furnace extends BlockContainer {
 		if (stack.hasDisplayName()) {
 			if (tileentity instanceof TATileEntity_Aurorian_Furnace) {
 				((TATileEntity_Aurorian_Furnace) tileentity).setCustomInventoryName(stack.getDisplayName());
-			}
-		}
-		if (tileentity instanceof TATileEntity_Aurorian_Furnace) {
-			TATileEntity_Aurorian_Furnace tile = (TATileEntity_Aurorian_Furnace) tileentity;
-			if (this.getChimneysDiscount(worldIn, pos) - 200 <= 0) {
-				tile.setSmeltTime(200 - this.getChimneysDiscount(worldIn, pos));
-			} else {
-				tile.setSmeltTime(1);
 			}
 		}
 	}

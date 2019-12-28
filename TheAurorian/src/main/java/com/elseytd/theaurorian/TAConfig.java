@@ -9,7 +9,7 @@ public class TAConfig {
 
 	//Blocks
 	public static int Config_MaximumChimneys = 10;
-	public static int Config_ChimneySpeedDiscount = 25;
+	public static float Config_ChimneySpeedMuliplier = 0.5F;
 
 	//Dimensions
 	public static int Config_AurorianDimId = 24;
@@ -86,9 +86,9 @@ public class TAConfig {
 	private static void initBlocksConfig(Configuration cfg) {
 		String name = "blocks";
 		cfg.addCustomCategoryComment(name, "Blocks configuration");
-
-		Config_MaximumChimneys = cfg.getInt("MaximumChimneys", name, Config_MaximumChimneys, 0, 255, "Maximum number of chimneys able to be stacked on Aurorian Furnace that enable the discount");
-		Config_ChimneySpeedDiscount = cfg.getInt("ChimneySpeedDiscount", name, Config_ChimneySpeedDiscount, 0, 2000, "Changes how much a chimney speeds up the Aurorian Furnace (Every chimney is 5% less effective)");
+		
+		Config_MaximumChimneys = cfg.getInt("MaximumChimneys", name, Config_MaximumChimneys, 0, 255, "Maximum number of chimneys able to be stacked on Aurorian Furnace");
+		Config_ChimneySpeedMuliplier = cfg.getFloat("ChimneySpeedMuliplier", name, Config_ChimneySpeedMuliplier, 0, 1, "Changes how much chimneys speed up the Aurorian Furnace when at maximum number (0.5 is + 50%)");
 	}
 
 	private static void initGenerationConfig(Configuration cfg) {

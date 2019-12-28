@@ -1,10 +1,9 @@
 package com.elseytd.theaurorian.TileEntities.Furnace;
 
-import com.elseytd.theaurorian.TAItems;
+import com.elseytd.theaurorian.TABlocks;
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.Blocks.TABlock_Furnace;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
@@ -15,12 +14,7 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.SlotFurnaceFuel;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBoat;
-import net.minecraft.item.ItemDoor;
-import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityLockable;
@@ -45,6 +39,16 @@ public class TATileEntity_Aurorian_Furnace extends TileEntityLockable implements
 	private String furnaceCustomName;
 	private int smeltTime = 200;
 
+	public float getChimneySpeedMultiplier() {
+		int y = 1;
+		int chimcount = 0;
+		while (this.world.getBlockState(pos.add(0, y, 0)).getBlock() == TABlocks.aurorianfurnacechimney && y <= TAConfig.Config_MaximumChimneys) {
+			y++;
+			chimcount++;
+		}
+		return (chimcount / TAConfig.Config_MaximumChimneys) * TAConfig.Config_ChimneySpeedMuliplier;
+	}
+
 	@Override
 	public void update() {
 		boolean flag = this.isBurning();
@@ -59,7 +63,7 @@ public class TATileEntity_Aurorian_Furnace extends TileEntityLockable implements
 
 			if (this.isBurning() || !itemstack.isEmpty() && !this.furnaceItemStacks.get(0).isEmpty()) {
 				if (!this.isBurning() && this.canSmelt()) {
-					this.furnaceBurnTime = getItemBurnTime(itemstack) * 2;
+					this.furnaceBurnTime = (int) (getItemBurnTime(itemstack) - (getItemBurnTime(itemstack) * getChimneySpeedMultiplier()));
 					this.currentItemBurnTime = this.furnaceBurnTime;
 
 					if (this.isBurning()) {
@@ -280,11 +284,11 @@ public class TATileEntity_Aurorian_Furnace extends TileEntityLockable implements
 	}
 
 	public int getSmeltTime(ItemStack stack) {
-		return smeltTime;
+		return (int) (this.smeltTime - this.smeltTime * getChimneySpeedMultiplier());
 	}
-	
+
 	public void setSmeltTime(int time) {
-		smeltTime = time;
+		this.smeltTime = time;
 	}
 
 	private boolean canSmelt() {
@@ -340,54 +344,8 @@ public class TATileEntity_Aurorian_Furnace extends TileEntityLockable implements
 			if (burnTime >= 0) {
 				return burnTime;
 			}
-			Item item = stack.getItem();
-
-			if (item == Item.getItemFromBlock(Blocks.WOODEN_SLAB)) {
-				return 150;
-			} else if (item == Item.getItemFromBlock(Blocks.WOOL)) {
-				return 100;
-			} else if (item == Item.getItemFromBlock(Blocks.CARPET)) {
-				return 67;
-			} else if (item == TAItems.auroriancoal) {
-				return 200;
-			}else if (item == Item.getItemFromBlock(Blocks.LADDER)) {
-				return 300;
-			} else if (item == Item.getItemFromBlock(Blocks.WOODEN_BUTTON)) {
-				return 100;
-			} else if (Block.getBlockFromItem(item).getDefaultState().getMaterial() == Material.WOOD) {
-				return 300;
-			} else if (item == Item.getItemFromBlock(Blocks.COAL_BLOCK)) {
-				return 16000;
-			} else if (item instanceof ItemTool && "WOOD".equals(((ItemTool) item).getToolMaterialName())) {
-				return 200;
-			} else if (item instanceof ItemSword && "WOOD".equals(((ItemSword) item).getToolMaterialName())) {
-				return 200;
-			} else if (item instanceof ItemHoe && "WOOD".equals(((ItemHoe) item).getMaterialName())) {
-				return 200;
-			} else if (item == Items.STICK) {
-				return 100;
-			} else if (item != Items.BOW && item != Items.FISHING_ROD) {
-				if (item == Items.SIGN) {
-					return 200;
-				} else if (item == Items.COAL || item == TAItems.auroriancoal) {
-					return 1600;
-				} else if (item == Items.LAVA_BUCKET) {
-					return 20000;
-				} else if (item != Item.getItemFromBlock(Blocks.SAPLING) && item != Items.BOWL) {
-					if (item == Items.BLAZE_ROD) {
-						return 2400;
-					} else if (item instanceof ItemDoor && item != Items.IRON_DOOR) {
-						return 200;
-					} else {
-						return item instanceof ItemBoat ? 400 : 0;
-					}
-				} else {
-					return 100;
-				}
-			} else {
-				return 300;
-			}
 		}
+		return 0;
 	}
 
 	public static boolean isItemFuel(ItemStack stack) {
