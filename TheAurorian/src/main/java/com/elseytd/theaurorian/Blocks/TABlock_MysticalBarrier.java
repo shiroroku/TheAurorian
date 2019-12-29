@@ -41,7 +41,7 @@ public class TABlock_MysticalBarrier extends BlockBreakable {
 		super(Material.GLASS, false);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setBlockUnbreakable();
-		this.setSoundType(SoundType.GLASS);
+		this.setSoundType(SoundType.METAL);
 		this.setRegistryName(BLOCKNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + BLOCKNAME);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
