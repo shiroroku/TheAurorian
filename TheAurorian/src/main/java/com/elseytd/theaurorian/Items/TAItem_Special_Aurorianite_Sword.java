@@ -56,8 +56,10 @@ public class TAItem_Special_Aurorianite_Sword extends ItemSword {
 
 			List<EntityLivingBase> entities = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(boxsx, boxsy, boxsz, boxex, boxey, boxez));
 			for (EntityLivingBase e : entities) {
-				e.addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 60));
-				e.motionY = e.motionY + 0.5D;
+				if (e.isNonBoss()) {
+					e.addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 60));
+					e.motionY = e.motionY + 0.5D;
+				}
 			}
 
 			playerIn.getHeldItemMainhand().damageItem(5, playerIn);
