@@ -22,8 +22,8 @@ public class TAEntityRender_MoonQueen extends RenderLiving<TAEntity_MoonQueen> {
 
 	public TAEntityRender_MoonQueen(RenderManager rendermanagerIn) {
 		super(rendermanagerIn, new TAEntityModel_MoonQueen(), 0.5F);
-		addLayer(new LayerHeldItem(this));
-		addLayer(new LayerBipedArmor(this));
+		this.addLayer(new LayerHeldItem(this));
+		this.addLayer(new LayerBipedArmor(this));
 	}
 
 	@Override

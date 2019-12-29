@@ -24,15 +24,22 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TAEntity_MoonQueen extends EntityMob {
 
@@ -40,6 +47,9 @@ public class TAEntity_MoonQueen extends EntityMob {
 	public static final ResourceLocation LOOT = new ResourceLocation(TAMod.MODID, "entities/" + EntityName);
 	public static final float MobScale = 0.9F;
 	private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(this.getDisplayName(), BossInfo.Color.WHITE, BossInfo.Overlay.PROGRESS)).setDarkenSky(false);
+	private static final DataParameter<Boolean> CHARGING = EntityDataManager.createKey(TAEntity_MoonQueen.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> WINDINGUPCHARGE = EntityDataManager.createKey(TAEntity_MoonQueen.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> CHARGEHIT = EntityDataManager.createKey(TAEntity_MoonQueen.class, DataSerializers.BOOLEAN);
 
 	public TAEntity_MoonQueen(World worldIn) {
 		super(worldIn);
@@ -47,6 +57,7 @@ public class TAEntity_MoonQueen extends EntityMob {
 		setSize(0.6F * MobScale, 1.95F * MobScale);
 		this.experienceValue = 500;
 		this.isImmuneToFire = true;
+		this.stepHeight = 1F;
 		this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(TAItems.moonstonesword));
 		this.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(TAItems.knightchestplate));
 		this.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(TAItems.knightleggings));
@@ -54,10 +65,83 @@ public class TAEntity_MoonQueen extends EntityMob {
 	}
 
 	@Override
-	protected void entityInit() {
-		super.entityInit();
+	protected void applyEntityAttributes() {
+		super.applyEntityAttributes();
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(120.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(8.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.85D);
 	}
 
+	@Override
+	protected void initEntityAI() {
+		this.tasks.addTask(0, new EntityAISwimming(this));
+		this.tasks.addTask(1, new TAEntityAI_MoonQueenCharge(this, true));
+		this.tasks.addTask(2, new TAEntityAI_MoonQueenSideStrafe(this));
+		this.tasks.addTask(3, new EntityAIAttackMelee(this, 1.35D, false));
+		this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
+		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
+		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		this.tasks.addTask(8, new EntityAILookIdle(this));
+		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
+	}
+
+	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.getDataManager().register(WINDINGUPCHARGE, Boolean.valueOf(false));
+		this.getDataManager().register(CHARGING, Boolean.valueOf(false));
+		this.getDataManager().register(CHARGEHIT, Boolean.valueOf(false));
+	}
+
+	@Override
+	public void onEntityUpdate() {
+		super.onEntityUpdate();
+		if (this.world.isRemote && this.ticksExisted % 2 == 0 && isWindingUpCharge()) {
+			double motionX = this.getRNG().nextGaussian() * 0.02D;
+			double motionY = this.getRNG().nextGaussian() * 0.1D;
+			double motionZ = this.getRNG().nextGaussian() * 0.02D;
+			this.world.spawnParticle(EnumParticleTypes.VILLAGER_ANGRY, this.posX + this.getRNG().nextFloat(), this.posY + this.getRNG().nextFloat() * this.height, this.posZ + this.getRNG().nextFloat(), motionX, motionY, motionZ);
+		}
+
+		if (didChargeHit()) {
+			if (this.world.isRemote) {
+				this.world.playSound(this.posX, this.posY, this.posZ, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.PLAYERS, 1F, 1.5F, false);
+			}
+			this.setChargeHit(false);
+		}
+	}
+
+	public void setWindingUpCharge(boolean bool) {
+		this.getDataManager().set(WINDINGUPCHARGE, Boolean.valueOf(bool));
+	}
+
+	@SideOnly(Side.CLIENT)
+	public boolean isWindingUpCharge() {
+		return this.getDataManager().get(WINDINGUPCHARGE).booleanValue();
+	}
+
+	public void setCharging(boolean bool) {
+		this.getDataManager().set(CHARGING, Boolean.valueOf(bool));
+	}
+
+	@SideOnly(Side.CLIENT)
+	public boolean isCharging() {
+		return this.getDataManager().get(CHARGING).booleanValue();
+	}
+	
+	public void setChargeHit(boolean bool) {
+		this.getDataManager().set(CHARGEHIT, Boolean.valueOf(bool));
+	}
+
+	@SideOnly(Side.CLIENT)
+	public boolean didChargeHit() {
+		return this.getDataManager().get(CHARGEHIT).booleanValue();
+	}
+	
 	@Override
 	protected void dropEquipment(boolean wasRecentlyHit, int lootingModifier) {
 		//Drop nothing held
@@ -66,43 +150,19 @@ public class TAEntity_MoonQueen extends EntityMob {
 	@Override
 	public void onDeath(DamageSource cause) {
 		super.onDeath(cause);
-		
 		int distance = 50;
-		
-		for(int x = 0; x <= distance; x++) {
-			for(int y = 0; y <= distance; y++) {
-				for(int z = 0; z <= distance; z++) {
+		for (int x = 0; x <= distance; x++) {
+			for (int y = 0; y <= distance; y++) {
+				for (int z = 0; z <= distance; z++) {
 					int offs = distance / 2;
 					BlockPos p = new BlockPos(x + this.getPosition().getX() - offs, y + this.getPosition().getY() - offs, z + this.getPosition().getZ() - offs);
-					if(this.world.getBlockState(p).getBlock() == TABlocks.mysticalbarrier){
+					if (this.world.getBlockState(p).getBlock() == TABlocks.mysticalbarrier) {
 						this.world.destroyBlock(p, false);
 					}
 				}
 			}
 		}
-		
-	}
 
-	@Override
-	protected void applyEntityAttributes() {
-		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(80.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20D);
-		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(8.0D);
-	}
-
-	@Override
-	protected void initEntityAI() {
-		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, false));
-		this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
-		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(8, new EntityAILookIdle(this));
-		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
 	}
 
 	@Override
@@ -163,7 +223,10 @@ public class TAEntity_MoonQueen extends EntityMob {
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundEvents.ENTITY_GHAST_HURT;
+		if(this.isActiveItemStackBlocking()) {
+			return SoundEvents.BLOCK_ANVIL_PLACE;
+		}
+		return SoundEvents.ENTITY_IRONGOLEM_HURT;
 	}
 
 	@Override

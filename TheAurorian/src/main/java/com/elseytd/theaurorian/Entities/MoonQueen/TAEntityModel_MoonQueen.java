@@ -9,10 +9,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class TAEntityModel_MoonQueen extends ModelBiped {
 
-	private static float modelSize = 0.5F;
-
-	public TAEntityModel_MoonQueen() {
-		super(modelSize, 0.0F, 64, 64);
+	public TAEntityModel_MoonQueen(float size) {
+		super(size, 0.0F, 64, 64);
+		float modelSize = size;
 		this.bipedHead = new ModelRenderer(this, 0, 0);
 		this.bipedHead.addBox(-4.0F, -9.0F, -4.0F, 8, 8, 8, modelSize);
 		this.bipedHead.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -37,6 +36,10 @@ public class TAEntityModel_MoonQueen extends ModelBiped {
 		this.bipedLeftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, modelSize);
 		this.bipedLeftLeg.setRotationPoint(1.9F, 12.0F, 0.0F);
 
+	}
+
+	public TAEntityModel_MoonQueen() {
+		this(0.5F);
 	}
 
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
