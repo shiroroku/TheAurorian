@@ -119,7 +119,7 @@ public class TAEntityAI_MoonQueenCharge extends EntityAIBase {
 		this.chargeTime = this.maxChargeTime;
 
 		//Set held item to shield and block
-		this.entity.setHeldItem(EnumHand.OFF_HAND, new ItemStack(TAItems.crystallineshield));
+		this.entity.setHeldItem(EnumHand.OFF_HAND, new ItemStack(TAItems.moonshield));
 		this.entity.setActiveHand(EnumHand.OFF_HAND);
 		//Start windup timer
 		this.chargeWindup = 40 - this.entity.getRNG().nextInt(10);

@@ -51,7 +51,7 @@ public class TAEntityAI_MoonQueenSideStrafe extends EntityAIBase {
 		this.entity.getNavigator().clearPath();
 		this.strafeDirection = getRandomDirection();
 		this.strafeTimer = 10;
-		this.entity.setHeldItem(EnumHand.OFF_HAND, new ItemStack(TAItems.crystallineshield));
+		this.entity.setHeldItem(EnumHand.OFF_HAND, new ItemStack(TAItems.moonshield));
 		this.entity.setActiveHand(EnumHand.OFF_HAND);
 	}
 

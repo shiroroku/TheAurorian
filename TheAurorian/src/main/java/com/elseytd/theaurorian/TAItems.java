@@ -32,6 +32,7 @@ import com.elseytd.theaurorian.Items.TAItem_Special_Crystalline_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
 import com.elseytd.theaurorian.Items.TAItem_Special_LivingDiviningRod;
 import com.elseytd.theaurorian.Items.TAItem_Special_Lockpicks;
+import com.elseytd.theaurorian.Items.TAItem_Special_MoonShield;
 import com.elseytd.theaurorian.Items.TAItem_Special_StickySpiker;
 import com.elseytd.theaurorian.Items.TAItem_Special_StrangeMeat;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Axe;
@@ -94,6 +95,8 @@ public class TAItems {
 	}
 
 	// SPECIAL
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_MoonShield.ITEMNAME)
+	public static TAItem_Special_MoonShield moonshield;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "spikedchestplate")
 	public static TAItem_Armor_Spiked spikedchestplate;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Seeds.ITEMNAME_LAVENDER)
@@ -288,6 +291,7 @@ public class TAItems {
 		lavenderseeds.initModel();
 		livingdiviningrod.initModel();
 		lockpicks.initModel();
+		moonshield.initModel();
 		moontemplecellkey.initModel();
 		moontemplekey.initModel();
 		runestonekey.initModel();
@@ -381,6 +385,7 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Special_Crystalline_Pickaxe());
 		event.getRegistry().register(new TAItem_Special_Crystalline_Shield());
 		event.getRegistry().register(new TAItem_CrystallineSprite());
+		event.getRegistry().register(new TAItem_Special_MoonShield());
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.DARKSTONE));
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.MOONTEMPLE));
 		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.MOONTEMPLECELL));

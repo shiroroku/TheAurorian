@@ -1,15 +1,11 @@
 package com.elseytd.theaurorian;
 
 import com.elseytd.theaurorian.Enchantments.TAEnchantment_Lightning_Damage;
-import com.elseytd.theaurorian.Items.TAItem_Special_Crystalline_Shield;
-import com.elseytd.theaurorian.Items.TAItem_Special_MoonShield;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Shield;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -27,31 +23,9 @@ public class TAEvents {
 		TAEnchantment_Lightning_Damage.handleDamageEvent(e);
 	}
 
-	/**
-	 * Handles shield damage
-	 */
 	@SubscribeEvent
 	public void attackEvent(LivingAttackEvent e) {
-		float damage = e.getAmount();
-		ItemStack activeItemStack;
-		EntityPlayer player;
-		if (e.getEntityLiving() instanceof EntityPlayer) {
-			player = (EntityPlayer) e.getEntityLiving();
-			if (player.getActiveItemStack() != null) {
-				activeItemStack = player.getActiveItemStack();
-				if (damage > 0.0F && activeItemStack != null && activeItemStack.getItem() instanceof TAItem_Tool_Cerulean_Shield) {
-					activeItemStack.damageItem(1, player);
-				} else if (damage > 0.0F && activeItemStack != null && activeItemStack.getItem() instanceof TAItem_Special_Crystalline_Shield) {
-					activeItemStack.damageItem(1, player);
-					if (player.getHeldItemMainhand().getItemDamage() < player.getHeldItemMainhand().getMaxDamage() && player.getHeldItemMainhand().isItemStackDamageable()) {
-						player.getHeldItemMainhand().setItemDamage(player.getHeldItemMainhand().getItemDamage() - 1);
-					}
-					player.getCooldownTracker().setCooldown(activeItemStack.getItem(), 20);
-				} else if (damage > 0.0F && activeItemStack != null && activeItemStack.getItem() instanceof TAItem_Special_MoonShield) {
-					activeItemStack.damageItem(1, player);
-				}
-			}
-		}
+		TAItem_Tool_Shield.handleDamageEvent(e);
 	}
 
 	/**
