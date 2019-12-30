@@ -1,7 +1,9 @@
 package com.elseytd.theaurorian;
 
-import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Shield;
+import com.elseytd.theaurorian.Enchantments.TAEnchantment_Lightning_Damage;
 import com.elseytd.theaurorian.Items.TAItem_Special_Crystalline_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Special_MoonShield;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Shield;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -18,6 +21,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @EventBusSubscriber
 public class TAEvents {
+
+	@SubscribeEvent
+	public void damageEvent(LivingDamageEvent e) {
+		TAEnchantment_Lightning_Damage.handleDamageEvent(e);
+	}
 
 	/**
 	 * Handles shield damage
@@ -39,6 +47,8 @@ public class TAEvents {
 						player.getHeldItemMainhand().setItemDamage(player.getHeldItemMainhand().getItemDamage() - 1);
 					}
 					player.getCooldownTracker().setCooldown(activeItemStack.getItem(), 20);
+				} else if (damage > 0.0F && activeItemStack != null && activeItemStack.getItem() instanceof TAItem_Special_MoonShield) {
+					activeItemStack.damageItem(1, player);
 				}
 			}
 		}

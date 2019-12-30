@@ -2,19 +2,20 @@ package com.elseytd.theaurorian.Enchantments;
 
 import java.util.Map;
 
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAEnchantments;
 import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSource;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 public class TAEnchantment_Lightning_Damage extends Enchantment {
 
@@ -55,42 +56,42 @@ public class TAEnchantment_Lightning_Damage extends Enchantment {
 		return stack.getItem() instanceof ItemAxe ? true : super.canApply(stack);
 	}
 
-	/**
-	 * Called whenever a mob is damaged with an item that has this enchantment
-	 * on it.
-	 */
-	@Override
-	public void onEntityDamaged(EntityLivingBase user, Entity target, int level) {
-		if (target instanceof EntityLivingBase) {
-			EntityLivingBase entitylivingbase = (EntityLivingBase) target;
+	public static void handleDamageEvent(LivingDamageEvent e) {
+		if (e.getSource() instanceof EntityDamageSource) {
+			EntityDamageSource source = (EntityDamageSource) e.getSource();
+			if (!(source.getTrueSource() instanceof EntityLivingBase)) {
+				return;
+			}
+			EntityLivingBase attacker = (EntityLivingBase) source.getTrueSource();
+			EntityLivingBase target = e.getEntityLiving();
 
-			//if the target is wearing armor, and is not leather, scale up the damage per armor piece
-			int armorconductivecount = 0;
-			for (ItemStack piece : entitylivingbase.getArmorInventoryList()) {
-				if (piece.getItem() instanceof ItemArmor) {
-					boolean hasresist = false;
-					Map<Enchantment, Integer> e = EnchantmentHelper.getEnchantments(piece);
-					if (e.get(TAEnchantments.lightningresistance) != null) {
-						hasresist = true;
-					}
+			if (attacker == null || target == null) {
+				return;
+			}
 
-					ItemArmor armorpart = (ItemArmor) piece.getItem();
-					if (armorpart.getArmorMaterial() != ItemArmor.ArmorMaterial.LEATHER && !hasresist) {
-						if (armorconductivecount < level) {
-							armorconductivecount++;
+			ItemStack attackersword = attacker.getHeldItemMainhand();
+			Map<Enchantment, Integer> swordenchants = EnchantmentHelper.getEnchantments(attackersword);
+			if (swordenchants.get(TAEnchantments.lightning) != null) {
+				int level = EnchantmentHelper.getEnchantmentLevel(TAEnchantments.lightning, attackersword);
+				float extradamage = 0;
+				for (ItemStack piece : target.getArmorInventoryList()) {
+					if (piece.getItem() instanceof ItemArmor) {
+						boolean hasresist = false;
+						Map<Enchantment, Integer> enchants = EnchantmentHelper.getEnchantments(piece);
+						if (enchants.get(TAEnchantments.lightningresistance) != null) {
+							hasresist = true;
+						}
+
+						ItemArmor armorpart = (ItemArmor) piece.getItem();
+						if (armorpart.getArmorMaterial() != ItemArmor.ArmorMaterial.LEATHER && !hasresist) {
+							if (extradamage <= level) {
+								extradamage++;
+							}
 						}
 					}
 				}
+				e.setAmount(e.getAmount() + (extradamage * TAConfig.Config_LightningEnchantmentMulitplier));
 			}
-
-			int time = entitylivingbase.hurtResistantTime;
-			entitylivingbase.hurtResistantTime = 0;
-			float resistscale = (time / 20);
-
-			float damagescale = 0.25F * resistscale;
-			float extradamage = armorconductivecount * damagescale;
-
-			entitylivingbase.attackEntityFrom(DamageSource.GENERIC, extradamage + extradamage);
 		}
 	}
 
