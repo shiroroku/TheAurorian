@@ -46,6 +46,7 @@ public class TAConfig {
 	public static int Config_AurorianiteSwordCooldown = 600;
 	public static int Config_StrangeMeatUses = 10;
 	public static int Config_AurorianiteAxeMaxChopSize = 256;
+	public static float Config_LightningEnchantmentMulitplier = 0.20F;
 
 	public static void readConfig() {
 		Configuration cfg = TAMod.CONFIG;
@@ -74,6 +75,7 @@ public class TAConfig {
 		Config_AurorianiteSwordCooldown = cfg.getInt("AurorianiteSwordCooldown", name, Config_AurorianiteSwordCooldown, 0, 72000, "Cooldown in ticks for the swords levitate ability. 600 ticks = 30 seconds");
 		Config_StrangeMeatUses = cfg.getInt("StrangeMeatUses", name, Config_StrangeMeatUses, 1, 72000, "How many uses Strange Meat has");
 		Config_AurorianiteAxeMaxChopSize = cfg.getInt("AurorianiteAxeMaxChopSize", name, Config_AurorianiteAxeMaxChopSize, 0, 72000, "How many total connected log blocks can the Aurorianite Axe chop at once");
+		Config_LightningEnchantmentMulitplier = cfg.getFloat("LightningEnchantmentMulitplier", name, Config_LightningEnchantmentMulitplier, 0F, 10F, "How much damage per armor piece the lightning enchantment should add (this multiplied by # of worn armor)");
 	}
 
 	private static void initCompatConfig(Configuration cfg) {
