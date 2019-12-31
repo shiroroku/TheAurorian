@@ -47,6 +47,8 @@ public class TAConfig {
 	public static int Config_StrangeMeatUses = 10;
 	public static int Config_AurorianiteAxeMaxChopSize = 256;
 	public static float Config_LightningEnchantmentMulitplier = 0.20F;
+	public static int Config_UmbraShieldTimeUntilOverheat = 60;
+	public static int Config_UmbraShieldOverheatCooldown = 60;
 
 	public static void readConfig() {
 		Configuration cfg = TAMod.CONFIG;
@@ -71,11 +73,13 @@ public class TAConfig {
 		cfg.addCustomCategoryComment(name, "Misc configuration");
 
 		Config_PortalLighter = cfg.getStringList("PortalLighter", name, Config_PortalLighter, "Can change the item(s) used to light the portal here (Uses item's unlocalized name)");
-		Config_SticksMakeFire = cfg.getBoolean("SticksMakeFire", name, Config_SticksMakeFire, "Set to false to disable Silentwood Sticks making Fire or lighting Portal");		
+		Config_SticksMakeFire = cfg.getBoolean("SticksMakeFire", name, Config_SticksMakeFire, "Set to false to disable Silentwood Sticks making Fire or lighting Portal");
 		Config_AurorianiteSwordCooldown = cfg.getInt("AurorianiteSwordCooldown", name, Config_AurorianiteSwordCooldown, 0, 72000, "Cooldown in ticks for the swords levitate ability. 600 ticks = 30 seconds");
 		Config_StrangeMeatUses = cfg.getInt("StrangeMeatUses", name, Config_StrangeMeatUses, 1, 72000, "How many uses Strange Meat has");
 		Config_AurorianiteAxeMaxChopSize = cfg.getInt("AurorianiteAxeMaxChopSize", name, Config_AurorianiteAxeMaxChopSize, 0, 72000, "How many total connected log blocks can the Aurorianite Axe chop at once");
 		Config_LightningEnchantmentMulitplier = cfg.getFloat("LightningEnchantmentMulitplier", name, Config_LightningEnchantmentMulitplier, 0F, 10F, "How much damage per armor piece the lightning enchantment should add (this multiplied by # of worn armor)");
+		Config_UmbraShieldTimeUntilOverheat = cfg.getInt("UmbraShieldTimeUntilOverheat", name, Config_UmbraShieldTimeUntilOverheat, 0, 72000, "How long can the player use the shields fire ability until it overheats");
+		Config_UmbraShieldOverheatCooldown = cfg.getInt("UmbraShieldOverheatCooldown", name, Config_UmbraShieldOverheatCooldown, 0, 72000, "Cooldown in ticks for the player to be able to use the shield again after it overheats");
 	}
 
 	private static void initCompatConfig(Configuration cfg) {
@@ -88,7 +92,7 @@ public class TAConfig {
 	private static void initBlocksConfig(Configuration cfg) {
 		String name = "blocks";
 		cfg.addCustomCategoryComment(name, "Blocks configuration");
-		
+
 		Config_MaximumChimneys = cfg.getInt("MaximumChimneys", name, Config_MaximumChimneys, 0, 255, "Maximum number of chimneys able to be stacked on Aurorian Furnace");
 		Config_ChimneySpeedMuliplier = cfg.getFloat("ChimneySpeedMuliplier", name, Config_ChimneySpeedMuliplier, 0, 1, "Changes how much chimneys speed up the Aurorian Furnace when at maximum number (0.5 is + 50%)");
 	}

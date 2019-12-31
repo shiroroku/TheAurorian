@@ -35,6 +35,7 @@ import com.elseytd.theaurorian.Items.TAItem_Special_Lockpicks;
 import com.elseytd.theaurorian.Items.TAItem_Special_MoonShield;
 import com.elseytd.theaurorian.Items.TAItem_Special_StickySpiker;
 import com.elseytd.theaurorian.Items.TAItem_Special_StrangeMeat;
+import com.elseytd.theaurorian.Items.TAItem_Special_Umbra_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Axe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Hoe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Pickaxe;
@@ -95,6 +96,8 @@ public class TAItems {
 	}
 
 	// SPECIAL
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Umbra_Shield.ITEMNAME)
+	public static TAItem_Special_Umbra_Shield umbrashield;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_MoonShield.ITEMNAME)
 	public static TAItem_Special_MoonShield moonshield;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "spikedchestplate")
@@ -298,6 +301,7 @@ public class TAItems {
 		runestonelootkey.initModel();
 		spikedchestplate.initModel();
 		stickyspiker.initModel();
+		umbrashield.initModel();
 
 		// FOOD
 		aurorianbacon.initModel();
@@ -400,6 +404,7 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Tool_Cerulean_Arrow());
 		event.getRegistry().register(new TAItem_Tool_Cerulean_Bucket());
 		event.getRegistry().register(new TAItem_Tool_Cerulean_Shield());
+		event.getRegistry().register(new TAItem_Special_Umbra_Shield());
 
 		// FOODS
 		event.getRegistry().register(new TAItem_Food_AurorianBacon());

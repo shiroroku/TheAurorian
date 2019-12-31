@@ -14,7 +14,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
 @Mod(modid = TAMod.MODID, name = TAMod.NAME, version = TAMod.VERSION, dependencies = TAMod.VERSION_FORGE, acceptedMinecraftVersions = TAMod.VERSION_MINECRAFT)
 public class TAMod {
@@ -28,8 +27,6 @@ public class TAMod {
 	public static TAMod INSTANCE;
 	public static final TACreativeTab CREATIVE_TAB = new TACreativeTab(MODID);
 	public static Configuration CONFIG;
-	public static SimpleNetworkWrapper NETWORK;
-	public static final String NETWORK_CHANNEL_NAME = MODID;
 
 	@SidedProxy(clientSide = "com.elseytd.theaurorian.Proxy.ClientProxy", serverSide = "com.elseytd.theaurorian.Proxy.ServerProxy")
 	public static CommonProxy proxy;

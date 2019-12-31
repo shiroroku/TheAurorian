@@ -55,6 +55,7 @@ public class TAItem_Tool_Shield extends Item {
 
 	/**
 	 * Called when the player is attacked when blocking with the shield.
+	 * 
 	 * @param shield
 	 * @param player
 	 */

@@ -35,5 +35,6 @@ public class TARecipes {
 		GameRegistry.addSmelting(TAItems.absorptionorb, new ItemStack(TAItems.scrapcrystalline, 4), 2F);
 		GameRegistry.addSmelting(TAItems.livingdiviningrod, new ItemStack(TAItems.scrapcrystalline, 2), 2F);
 		GameRegistry.addSmelting(TAItems.spikedchestplate, new ItemStack(TAItems.scrapumbra, 8), 2F);
+		GameRegistry.addSmelting(TAItems.umbrashield, new ItemStack(TAItems.scrapumbra, 5), 2F);
 	}
 }

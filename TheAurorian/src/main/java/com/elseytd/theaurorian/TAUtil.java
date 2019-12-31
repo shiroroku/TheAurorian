@@ -10,7 +10,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
@@ -21,8 +23,8 @@ import net.minecraftforge.oredict.OreDictionary;
 public class TAUtil {
 
 	/**
-	 * Will return true a given percentage of the time. Example: 0.75F will return true
-	 * 75% of the time.
+	 * Will return true a given percentage of the time. Example: 0.75F will
+	 * return true 75% of the time.
 	 */
 	public static boolean randomChanceOf(float percent) {
 		Random r = new Random();
@@ -31,6 +33,33 @@ public class TAUtil {
 			return true;
 		}
 		return false;
+	}
+
+	public static class Debugging {
+
+		/**
+		 * Draws some particles to show where an aabb is.
+		 */
+		public static void renderAABBBounds(World worldIn, AxisAlignedBB aabb) {
+			if (worldIn.isRemote && worldIn.getTotalWorldTime() % 5 == 0) {
+				for (double ix = aabb.minX; ix <= aabb.maxX; ix = ix + 0.1D) {
+					for (double iy = aabb.minY; iy <= aabb.maxY; iy = iy + 0.1D) {
+						for (double iz = aabb.minZ; iz <= aabb.maxZ; iz = iz + 0.1D) {
+							if (ix == aabb.minX || ix == aabb.maxX) {
+								worldIn.spawnParticle(EnumParticleTypes.FLAME, ix, iy, iz, 0, 0, 0);
+							}
+							if (iy == aabb.minY || iy == aabb.maxY) {
+								worldIn.spawnParticle(EnumParticleTypes.FLAME, ix, iy, iz, 0, 0, 0);
+							}
+							if (iz == aabb.minZ || iz == aabb.maxZ) {
+								worldIn.spawnParticle(EnumParticleTypes.FLAME, ix, iy, iz, 0, 0, 0);
+							}
+						}
+					}
+				}
+			}
+		}
+
 	}
 
 	public static class LocalOreDictionary {
