@@ -20,6 +20,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -28,6 +29,8 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
@@ -45,6 +48,7 @@ public class TAEntity_MoonQueen extends EntityMob {
 
 	public static final String EntityName = "moonqueen";
 	public static final ResourceLocation LOOT = new ResourceLocation(TAMod.MODID, "entities/" + EntityName);
+	public static final ResourceLocation CHEST_LOOT = new ResourceLocation(TAMod.MODID, "chests/moontemplehigh");
 	public static final float MobScale = 0.9F;
 	private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(this.getDisplayName(), BossInfo.Color.WHITE, BossInfo.Overlay.PROGRESS)).setDarkenSky(false);
 	private static final DataParameter<Boolean> CHARGING = EntityDataManager.createKey(TAEntity_MoonQueen.class, DataSerializers.BOOLEAN);
@@ -132,7 +136,7 @@ public class TAEntity_MoonQueen extends EntityMob {
 	public boolean isCharging() {
 		return this.getDataManager().get(CHARGING).booleanValue();
 	}
-	
+
 	public void setChargeHit(boolean bool) {
 		this.getDataManager().set(CHARGEHIT, Boolean.valueOf(bool));
 	}
@@ -141,7 +145,7 @@ public class TAEntity_MoonQueen extends EntityMob {
 	public boolean didChargeHit() {
 		return this.getDataManager().get(CHARGEHIT).booleanValue();
 	}
-	
+
 	@Override
 	protected void dropEquipment(boolean wasRecentlyHit, int lootingModifier) {
 		//Drop nothing held
@@ -161,6 +165,16 @@ public class TAEntity_MoonQueen extends EntityMob {
 					}
 				}
 			}
+		}
+
+		this.world.setBlockState(this.getPosition(), Blocks.CHEST.getDefaultState());
+		TileEntity te = this.world.getTileEntity(this.getPosition());
+		if (te != null) {
+			if (te instanceof TileEntityChest) {
+				((TileEntityChest) te).setLootTable(TAEntity_MoonQueen.CHEST_LOOT, this.getRNG().nextLong());
+			}
+		} else {
+			System.err.println("Failed to spawn Moon Queen loot box!");
 		}
 
 	}
@@ -223,7 +237,7 @@ public class TAEntity_MoonQueen extends EntityMob {
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		if(this.isActiveItemStackBlocking()) {
+		if (this.isActiveItemStackBlocking()) {
 			return SoundEvents.BLOCK_ANVIL_PLACE;
 		}
 		return SoundEvents.ENTITY_IRONGOLEM_HURT;
