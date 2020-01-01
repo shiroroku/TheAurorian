@@ -1,4 +1,4 @@
-package com.elseytd.theaurorian.Entities.CrystallineSprite;
+package com.elseytd.theaurorian.Entities.Projectiles;
 
 import com.elseytd.theaurorian.TAItems;
 
@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class TAEntity_CrystallineBeam extends EntityArrow {
 	public static final String EntityName = "crystallinebeam";
 
-	private static final double arrowDamage = 2.5D;
+	private static final double arrowDamage = 2D;
 	private static final float arrowVelocity = 0.5f;
 	
 	private void setStats() {

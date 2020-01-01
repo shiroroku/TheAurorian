@@ -12,9 +12,9 @@ import net.minecraft.world.World;
 public class TAEntity_CeruleanArrow extends EntityArrow {
 	public static final String EntityName = "ceruleanarrow";
 
-	private static final double arrowDamage = 2.5D;
+	private static final double arrowDamage = 1D;
 	private static final float arrowVelocity = 1.5f;
-	
+
 	private void setStats() {
 		this.setDamage(arrowDamage);
 	}

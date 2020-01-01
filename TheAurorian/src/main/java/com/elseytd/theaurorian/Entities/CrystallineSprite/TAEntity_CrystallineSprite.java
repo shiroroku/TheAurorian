@@ -3,6 +3,7 @@ package com.elseytd.theaurorian.Entities.CrystallineSprite;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.Entities.TAEntityAI_RangedAttack;
+import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_CrystallineBeam;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;

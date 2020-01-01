@@ -10,7 +10,6 @@ import com.elseytd.theaurorian.Entities.AurorianSlime.TAEntityRender_AurorianSli
 import com.elseytd.theaurorian.Entities.AurorianSlime.TAEntity_AurorianSlime;
 import com.elseytd.theaurorian.Entities.CrystallineSprite.TAEntityRender_CrystallineBeam;
 import com.elseytd.theaurorian.Entities.CrystallineSprite.TAEntityRender_CrystallineSprite;
-import com.elseytd.theaurorian.Entities.CrystallineSprite.TAEntity_CrystallineBeam;
 import com.elseytd.theaurorian.Entities.CrystallineSprite.TAEntity_CrystallineSprite;
 import com.elseytd.theaurorian.Entities.Hollow.TAEntityRender_DisturbedHollow;
 import com.elseytd.theaurorian.Entities.Hollow.TAEntity_DisturbedHollow;
@@ -23,6 +22,7 @@ import com.elseytd.theaurorian.Entities.MoonQueen.TAEntity_MoonQueen;
 import com.elseytd.theaurorian.Entities.Projectiles.TAEntityRender_CeruleanArrow;
 import com.elseytd.theaurorian.Entities.Projectiles.TAEntityRender_StickySpiker;
 import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_CeruleanArrow;
+import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_CrystallineBeam;
 import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_StickySpiker;
 import com.elseytd.theaurorian.Entities.UndeadKnight.TAEntityRender_UndeadKnight;
 import com.elseytd.theaurorian.Entities.UndeadKnight.TAEntity_UndeadKnight;

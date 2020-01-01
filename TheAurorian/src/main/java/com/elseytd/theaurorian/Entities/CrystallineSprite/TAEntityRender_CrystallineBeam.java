@@ -3,6 +3,7 @@ package com.elseytd.theaurorian.Entities.CrystallineSprite;
 import javax.annotation.Nonnull;
 
 import com.elseytd.theaurorian.TAMod;
+import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_CrystallineBeam;
 
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
