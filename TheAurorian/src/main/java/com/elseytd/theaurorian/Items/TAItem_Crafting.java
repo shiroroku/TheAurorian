@@ -12,7 +12,6 @@ public class TAItem_Crafting extends Item {
 
 	public static final String ITEMNAME_INGOT_CERULEAN = "ceruleaningot";
 	public static final String ITEMNAME_INGOT_MOONSTONE = "moonstoneingot";
-	public static final String ITEMNAME_AURORIANSLIMEBALL = "aurorianslimeball";
 	public static final String ITEMNAME_SCRAP_AURORIANITE = "scrapaurorianite";
 	public static final String ITEMNAME_SCRAP_CRYSTALLINE = "scrapcrystalline";
 	public static final String ITEMNAME_SCRAP_UMBRA = "scrapumbra";

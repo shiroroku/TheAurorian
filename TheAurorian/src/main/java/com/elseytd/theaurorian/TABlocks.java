@@ -58,7 +58,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
 
 @Mod.EventBusSubscriber
 public class TABlocks {
@@ -526,27 +525,6 @@ public class TABlocks {
 		itemblockQuickReg(event, TABlocks.silentwoodstairs);
 		itemblockQuickReg(event, TABlocks.aurorianstonestairs);
 		itemblockQuickReg(event, TABlocks.darkstonestairs);
-	}
-
-	public static void registerOreDictionary() {
-		OreDictionary.registerOre("treeLeaves", TABlocks.silentwoodleaves);
-		OreDictionary.registerOre("stickWood", TAItems.silentwoodstick);
-		OreDictionary.registerOre("logSilentwood", TABlocks.silentwoodlog);
-		OreDictionary.registerOre("plankSilentwood", TABlocks.silentwoodplanks);
-		OreDictionary.registerOre("treeSapling", TABlocks.silentwoodsapling);
-
-		OreDictionary.registerOre("oreAurorianCoal", TABlocks.auroriancoalore);
-		OreDictionary.registerOre("oreAurorianGeode", TABlocks.geodeore);
-
-		OreDictionary.registerOre("oreCerulean", TABlocks.ceruleanore);
-		OreDictionary.registerOre("blockCerulean", TABlocks.ceruleanblock);
-		OreDictionary.registerOre("ingotCerulean", TAItems.ceruleaningot);
-		OreDictionary.registerOre("nuggetCerulean", TAItems.ceruleannugget);
-
-		OreDictionary.registerOre("oreMoonstone", TABlocks.moonstoneore);
-		OreDictionary.registerOre("blockMoonstone", TABlocks.moonstoneblock);
-		OreDictionary.registerOre("ingotMoonstone", TAItems.moonstoneingot);
-		OreDictionary.registerOre("nuggetMoonstone", TAItems.moonstonenugget);
 	}
 
 }

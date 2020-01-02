@@ -14,11 +14,8 @@ import com.elseytd.theaurorian.Items.TAItem_Crafting_Nugget;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_PlantFiber;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_SilentwoodStick;
 import com.elseytd.theaurorian.Items.TAItem_CrystallineSprite;
-import com.elseytd.theaurorian.Items.TAItem_Food_AurorianBacon;
-import com.elseytd.theaurorian.Items.TAItem_Food_AurorianPork;
-import com.elseytd.theaurorian.Items.TAItem_Food_CookedAurorianPork;
+import com.elseytd.theaurorian.Items.TAItem_Food;
 import com.elseytd.theaurorian.Items.TAItem_Food_Silkberry;
-import com.elseytd.theaurorian.Items.TAItem_Food_SilkberryRasin;
 import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
 import com.elseytd.theaurorian.Items.TAItem_Seeds;
 import com.elseytd.theaurorian.Items.TAItem_Special_AbsorptionOrb;
@@ -78,18 +75,18 @@ public class TAItems {
 		public static Item.ToolMaterial MOONSTONE = EnumHelper.addToolMaterial("TA_MOONSTONE", 2, 250, 7.0F, 2.5F, 14);
 		public static Item.ToolMaterial AURORIANITE = EnumHelper.addToolMaterial("TA_AURORIANITE", 3, 1000, 8.0F, 3.0F, 20);
 		public static Item.ToolMaterial CRYSTALLINE = EnumHelper.addToolMaterial("TA_CRYSTALLINE", 2, 600, 7.5F, 2.5F, 30);
-		
+
 		public static ArmorMaterial CERULEAN_ARMOR = EnumHelper.addArmorMaterial("TA_CERULEAN_ARMOR", "theaurorian:cerulean", 20, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
 		public static ArmorMaterial SPIKED_ARMOR = EnumHelper.addArmorMaterial("TA_SPIKED_ARMOR", "theaurorian:spiked", 65, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
 		public static ArmorMaterial KNIGHT_ARMOR = EnumHelper.addArmorMaterial("TA_KNIGHT_ARMOR", "theaurorian:knight", 30, new int[] { 2, 3, 2, 1 }, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0);
-	
+
 		public static void initRepairMaterials() {
 			SILENTWOOD.setRepairItem(new ItemStack(TABlocks.silentwoodplanks));
 			AURORIANSTONE.setRepairItem(new ItemStack(TABlocks.auroriancobblestone));
 			MOONSTONE.setRepairItem(new ItemStack(TAItems.moonstoneingot));
 			AURORIANITE.setRepairItem(new ItemStack(TAItems.aurorianiteingot));
 			CRYSTALLINE.setRepairItem(new ItemStack(TAItems.crystallineingot));
-			
+
 			CERULEAN_ARMOR.setRepairItem(new ItemStack(TAItems.ceruleaningot));
 			SPIKED_ARMOR.setRepairItem(new ItemStack(TAItems.umbraingot));
 		}
@@ -146,16 +143,16 @@ public class TAItems {
 	public static TAItem_Tool_Cerulean_Shield ceruleanshield;
 
 	// FOODS
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_AurorianBacon.ITEMNAME)
-	public static TAItem_Food_AurorianBacon aurorianbacon;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_AurorianPork.ITEMNAME)
-	public static TAItem_Food_AurorianPork aurorianpork;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_CookedAurorianPork.ITEMNAME)
-	public static TAItem_Food_CookedAurorianPork aurorianporkcooked;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_AURORIANBACON)
+	public static TAItem_Food aurorianbacon;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_AURORIANPORK)
+	public static TAItem_Food aurorianpork;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_COOKEDAURORIANPORK)
+	public static TAItem_Food aurorianporkcooked;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_Silkberry.ITEMNAME)
 	public static TAItem_Food_Silkberry silkberry;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_SilkberryRasin.ITEMNAME)
-	public static TAItem_Food_SilkberryRasin silkberryrasin;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_SILKBERRYRASIN)
+	public static TAItem_Food silkberryrasin;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_Tea.ITEMNAME_LAVENDER)
 	public static TAItem_Food_Tea tealavender;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_Tea.ITEMNAME_PETUNIA)
@@ -170,8 +167,8 @@ public class TAItems {
 	public static TAItem_Special_StrangeMeat strangemeat;
 
 	// CRAFTING
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting.ITEMNAME_AURORIANSLIMEBALL)
-	public static TAItem_Crafting aurorianslimeball;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_AURORIANSLIMEBALL)
+	public static TAItem_Food aurorianslimeball;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_AurorianCoal.ITEMNAME)
 	public static TAItem_Crafting_AurorianCoal auroriancoal;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_Crystal.ITEMNAME)
@@ -378,7 +375,7 @@ public class TAItems {
 	}
 
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		
+
 		// SPECIAL
 		event.getRegistry().register(new TAItem_Armor_Spiked(EntityEquipmentSlot.CHEST, "spikedchestplate"));
 		event.getRegistry().register(new TAItem_Seeds(TAItem_Seeds.ITEMNAME_LAVENDER));
@@ -407,11 +404,12 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Special_Umbra_Shield());
 
 		// FOODS
-		event.getRegistry().register(new TAItem_Food_AurorianBacon());
-		event.getRegistry().register(new TAItem_Food_AurorianPork());
-		event.getRegistry().register(new TAItem_Food_CookedAurorianPork());
+		event.getRegistry().register(new TAItem_Food(TAItem_Food.Foods.AURORIANBACON));
+		event.getRegistry().register(new TAItem_Food(TAItem_Food.Foods.AURORIANPORK));
+		event.getRegistry().register(new TAItem_Food(TAItem_Food.Foods.COOKEDAURORIANPORK));
+		event.getRegistry().register(new TAItem_Food(TAItem_Food.Foods.AURORIANSLIMEBALL));
+		event.getRegistry().register(new TAItem_Food(TAItem_Food.Foods.SILKBERRYRASIN));
 		event.getRegistry().register(new TAItem_Food_Silkberry());
-		event.getRegistry().register(new TAItem_Food_SilkberryRasin());
 		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.LAVENDER));
 		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.PETUNIA));
 		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.SEEDY));
@@ -419,7 +417,6 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Special_Bepsi());
 
 		// CRAFTING
-		event.getRegistry().register(new TAItem_Crafting(TAItem_Crafting.ITEMNAME_AURORIANSLIMEBALL));
 		event.getRegistry().register(new TAItem_Crafting_AurorianCoal());
 		event.getRegistry().register(new TAItem_Crafting_Crystal());
 		event.getRegistry().register(new TAItem_Crafting_Cup());

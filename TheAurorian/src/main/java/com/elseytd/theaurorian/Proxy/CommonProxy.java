@@ -49,7 +49,7 @@ public class CommonProxy {
 		NetworkRegistry.INSTANCE.registerGuiHandler(TAMod.INSTANCE, new TAGuis());
 		TABiomes.initBiomeManagerAndDictionary();
 		TAEntities.init();
-		TABlocks.registerOreDictionary();
+		TARecipes.registerOreDictionary();
 		TAItems.Materials.initRepairMaterials();
 		TACompat.init(e);
 	}
