@@ -14,6 +14,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
@@ -35,24 +36,54 @@ public class TAUtil {
 		return false;
 	}
 
+	public static class Entity {
+
+		/**
+		 * Returns true when the looker is looking at the target.
+		 * 
+		 * @param accuracy How close does the looker have to look at the target
+		 */
+		public static boolean isLookingAt(EntityLivingBase looker, EntityLivingBase target, double accuracy) {
+			Vec3d lookvec = target.getLook(1.0F).normalize();
+			Vec3d vec = new Vec3d(looker.posX - target.posX, looker.getEntityBoundingBox().minY + (double) looker.getEyeHeight() - (target.posY + (double) target.getEyeHeight()), looker.posZ - target.posZ);
+			double leng = vec.lengthVector();
+			vec = vec.normalize();
+			double mult = lookvec.dotProduct(vec);
+			return mult > 1.0D - accuracy / leng ? target.canEntityBeSeen(looker) : false;
+		}
+
+		public static List<EntityLivingBase> getEntitiesAround(World worldIn, double x, double y, double z, double distance, boolean debugRender) {
+			return getEntitiesAround(worldIn, x, y, z, distance, distance, debugRender);
+		}
+
+		public static List<EntityLivingBase> getEntitiesAround(World worldIn, double x, double y, double z, double distance, double height, boolean debugRender) {
+			AxisAlignedBB aabb = new AxisAlignedBB(x - distance, y - height, z - distance, x + distance, y + height, z + distance);
+			if (debugRender) {
+				TAUtil.Debugging.renderAABBBounds(worldIn, aabb);
+			}
+			return worldIn.getEntitiesWithinAABB(EntityLivingBase.class, aabb);
+		}
+	}
+
 	public static class Debugging {
 
 		/**
 		 * Draws some particles to show where an aabb is.
 		 */
 		public static void renderAABBBounds(World worldIn, AxisAlignedBB aabb) {
-			if (worldIn.isRemote && worldIn.getTotalWorldTime() % 5 == 0) {
-				for (double ix = aabb.minX; ix <= aabb.maxX; ix = ix + 0.1D) {
-					for (double iy = aabb.minY; iy <= aabb.maxY; iy = iy + 0.1D) {
-						for (double iz = aabb.minZ; iz <= aabb.maxZ; iz = iz + 0.1D) {
+			if (worldIn.isRemote) {
+				for (double ix = aabb.minX; ix <= aabb.maxX; ix++) {
+					for (double iy = aabb.minY; iy <= aabb.maxY; iy++) {
+						for (double iz = aabb.minZ; iz <= aabb.maxZ; iz++) {
+							EnumParticleTypes particle = EnumParticleTypes.CLOUD;
 							if (ix == aabb.minX || ix == aabb.maxX) {
-								worldIn.spawnParticle(EnumParticleTypes.FLAME, ix, iy, iz, 0, 0, 0);
+								worldIn.spawnParticle(particle, ix, iy, iz, 0, 0, 0);
 							}
 							if (iy == aabb.minY || iy == aabb.maxY) {
-								worldIn.spawnParticle(EnumParticleTypes.FLAME, ix, iy, iz, 0, 0, 0);
+								worldIn.spawnParticle(particle, ix, iy, iz, 0, 0, 0);
 							}
 							if (iz == aabb.minZ || iz == aabb.maxZ) {
-								worldIn.spawnParticle(EnumParticleTypes.FLAME, ix, iy, iz, 0, 0, 0);
+								worldIn.spawnParticle(particle, ix, iy, iz, 0, 0, 0);
 							}
 						}
 					}

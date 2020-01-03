@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
+import com.elseytd.theaurorian.TAUtil;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -22,7 +23,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
@@ -42,19 +42,8 @@ public class TAItem_Special_Aurorianite_Sword extends ItemSword {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		if (playerIn.getHeldItemOffhand().isEmpty() || playerIn.isSneaking()) {
-			double width = 9;
-			double height = 3;
-			double x = playerIn.posX;
-			double y = playerIn.posY;
-			double z = playerIn.posZ;
-			double boxsx = x - (width / 2);
-			double boxsy = y - 1;
-			double boxsz = z - (width / 2);
-			double boxex = x + (width / 2);
-			double boxey = y + height;
-			double boxez = z + (width / 2);
-
-			List<EntityLivingBase> entities = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(boxsx, boxsy, boxsz, boxex, boxey, boxez));
+				
+			List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(worldIn, playerIn.posX, playerIn.posY + 2.5D, playerIn.posZ, 5, 2.5D, false);
 			for (EntityLivingBase e : entities) {
 				if (e.isNonBoss()) {
 					e.addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 60));

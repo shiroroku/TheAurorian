@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
+import com.elseytd.theaurorian.TAUtil;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -20,7 +21,6 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -75,17 +75,17 @@ public class TAItem_Special_Umbra_Shield extends TAItem_Tool_Shield {
 		if (entityIn instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) entityIn;
 			if (stack == player.getActiveItemStack() && !player.isSneaking()) {
-				double x = -MathHelper.sin(player.rotationYawHead * 0.017453292F) * MathHelper.cos(player.rotationPitch * 0.017453292F);
-				double y = -MathHelper.sin((player.rotationPitch) * 0.017453292F);
-				double z = MathHelper.cos(player.rotationYawHead * 0.017453292F) * MathHelper.cos(player.rotationPitch * 0.017453292F);
+				double x = -MathHelper.sin((float) Math.toRadians(player.rotationYawHead)) * MathHelper.cos((float) Math.toRadians(player.rotationPitch));
+				double y = -MathHelper.sin((float) Math.toRadians(player.rotationPitch));
+				double z = MathHelper.cos((float) Math.toRadians(player.rotationYawHead)) * MathHelper.cos((float) Math.toRadians(player.rotationPitch));
 
 				if (worldIn.isRemote) {
 					if (player.ticksExisted % 6 == 0) {
 						worldIn.playSound(player.posX + 0.5D, player.posY, player.posZ + 0.5D, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, 0.75F, false);
 					}
 					Random rand = player.getRNG();
-					double spread = 20D;
-					double distance = 0.25D;
+					double spread = 50D;
+					double distance = 0.1D;
 					int density = 50;
 
 					for (int i = -1; i < rand.nextInt(density); i++) {
@@ -105,21 +105,12 @@ public class TAItem_Special_Umbra_Shield extends TAItem_Tool_Shield {
 					}
 				}
 
-				double distance = 3;
-				x = x * distance + player.posX;
-				y = y * distance + player.posY;
-				z = z * distance + player.posZ;
+				double reach = 1.5;
+				x = x * reach + player.posX;
+				y = y * reach + player.posY;
+				z = z * reach + player.posZ;
 
-				double width = 3;
-				double height = 3;
-				double boxsx = x - (width / 2);
-				double boxsy = y - 1;
-				double boxsz = z - (width / 2);
-				double boxex = x + (width / 2);
-				double boxey = y + height;
-				double boxez = z + (width / 2);
-
-				List<EntityLivingBase> entities = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(boxsx, boxsy, boxsz, boxex, boxey, boxez));
+				List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(worldIn, x, y + 1.5, z, 1, false);
 				for (EntityLivingBase e : entities) {
 					if (e.isNonBoss() && e != player) {
 						if (e instanceof EntityPlayer) {

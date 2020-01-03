@@ -22,18 +22,40 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TABlock_Spawner_Boss extends Block implements ITileEntityProvider {
 
 	public static final String BLOCKNAME_KEEPER = "bossspawnerkeeper";
-	public String BOSS_KEEPER = TAEntity_RunestoneDungeonKeeper.EntityName;
-
 	public static final String BLOCKNAME_MOONQUEEN = "bossspawnermoonqueen";
-	public String BOSS_MOONQUEEN = TAEntity_MoonQueen.EntityName;
 
-	public TABlock_Spawner_Boss(String name) {
+	public enum Bosses {
+		KEEPER(BLOCKNAME_KEEPER, TAEntity_RunestoneDungeonKeeper.EntityName),
+		MOONQUEEN(BLOCKNAME_MOONQUEEN, TAEntity_MoonQueen.EntityName);
+
+		private String BLOCKNAME;
+		private String BOSS;
+
+		Bosses(String blockname, String boss) {
+			this.BLOCKNAME = blockname;
+			this.BOSS = boss;
+		}
+
+		public String getName() {
+			return BLOCKNAME;
+		}
+
+		public String getBoss() {
+			return BOSS;
+		}
+
+	}
+
+	private Bosses blockBoss;
+
+	public TABlock_Spawner_Boss(Bosses boss) {
 		super(Material.ROCK);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setBlockUnbreakable();
 		this.setSoundType(SoundType.STONE);
-		this.setUnlocalizedName(TAMod.MODID + "." + name);
-		this.setRegistryName(name);
+		this.setUnlocalizedName(TAMod.MODID + "." + boss.getName());
+		this.setRegistryName(boss.getName());
+		this.blockBoss = boss;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -51,18 +73,12 @@ public class TABlock_Spawner_Boss extends Block implements ITileEntityProvider {
 		return false;
 	}
 
+	//
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		if (this.getRegistryName().toString().contains("theaurorian:" + BLOCKNAME_KEEPER)) {
-			TATileEntity_Spawner_Boss te = new TATileEntity_Spawner_Boss();
-			te.bossEntity = BOSS_KEEPER;
-			return te;
-		}else if (this.getRegistryName().toString().contains("theaurorian:" + BLOCKNAME_MOONQUEEN)) {
-			TATileEntity_Spawner_Boss te = new TATileEntity_Spawner_Boss();
-			te.bossEntity = BOSS_MOONQUEEN;
-			return te;
-		}
-		return null;
+		TATileEntity_Spawner_Boss te = new TATileEntity_Spawner_Boss();
+		te.bossEntity = this.blockBoss.getBoss();
+		return te;
 	}
 
 }

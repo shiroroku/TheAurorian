@@ -353,8 +353,8 @@ public class TABlocks {
 		event.getRegistry().register(new TABlock_PortalframeBricks());
 		event.getRegistry().register(new TABlock_Silentwood_Torch());
 		event.getRegistry().register(new TABlock_Silentwood_Workbench());
-		event.getRegistry().register(new TABlock_Spawner_Boss(TABlock_Spawner_Boss.BLOCKNAME_KEEPER));
-		event.getRegistry().register(new TABlock_Spawner_Boss(TABlock_Spawner_Boss.BLOCKNAME_MOONQUEEN));
+		event.getRegistry().register(new TABlock_Spawner_Boss(TABlock_Spawner_Boss.Bosses.KEEPER));
+		event.getRegistry().register(new TABlock_Spawner_Boss(TABlock_Spawner_Boss.Bosses.MOONQUEEN));
 		event.getRegistry().register(new TABlock_Glass(TABlock_Glass.BLOCKNAME_MOONGLASS));
 		event.getRegistry().register(new TABlock_Glass(TABlock_Glass.BLOCKNAME_AURORIAN));
 		event.getRegistry().register(new TABlock_GlassPane(TABlock_GlassPane.BLOCKNAME_MOONGLASS));

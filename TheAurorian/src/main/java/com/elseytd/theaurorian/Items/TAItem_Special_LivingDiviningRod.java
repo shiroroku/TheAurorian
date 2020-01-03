@@ -21,7 +21,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
@@ -47,19 +46,7 @@ public class TAItem_Special_LivingDiviningRod extends Item {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		double width = 18;
-		double height = 18;
-		double x = playerIn.posX;
-		double y = playerIn.posY;
-		double z = playerIn.posZ;
-		double boxsx = x - (width / 2);
-		double boxsy = y - (height / 2);
-		double boxsz = z - (width / 2);
-		double boxex = x + (width / 2);
-		double boxey = y + (height / 2);
-		double boxez = z + (width / 2);
-
-		List<EntityLivingBase> entities = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(boxsx, boxsy, boxsz, boxex, boxey, boxez));
+		List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, 18, false);
 		for (EntityLivingBase e : entities) {
 			if (TAUtil.randomChanceOf(0.75f)) {
 				e.addPotionEffect(new PotionEffect(MobEffects.GLOWING, 120));

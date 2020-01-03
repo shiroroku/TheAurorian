@@ -24,6 +24,8 @@ import com.elseytd.theaurorian.Entities.Projectiles.TAEntityRender_StickySpiker;
 import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_CeruleanArrow;
 import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_CrystallineBeam;
 import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_StickySpiker;
+import com.elseytd.theaurorian.Entities.Spirit.TAEntityRender_Spirit;
+import com.elseytd.theaurorian.Entities.Spirit.TAEntity_Spirit;
 import com.elseytd.theaurorian.Entities.UndeadKnight.TAEntityRender_UndeadKnight;
 import com.elseytd.theaurorian.Entities.UndeadKnight.TAEntity_UndeadKnight;
 
@@ -51,6 +53,7 @@ public class TAEntities {
 		quickRegNonlivingEntity(TAEntity_CeruleanArrow.class, TAEntity_CeruleanArrow.EntityName, id++);
 		quickRegEntity(TAEntity_CrystallineSprite.class, TAEntity_CrystallineSprite.EntityName, id++);
 		quickRegNonlivingEntity(TAEntity_CrystallineBeam.class, TAEntity_CrystallineBeam.EntityName, id++);
+		quickRegEntity(TAEntity_Spirit.class, TAEntity_Spirit.EntityName, id++);
 
 	}
 
@@ -77,5 +80,6 @@ public class TAEntities {
 		RenderingRegistry.registerEntityRenderingHandler(TAEntity_CeruleanArrow.class, TAEntityRender_CeruleanArrow.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(TAEntity_CrystallineSprite.class, TAEntityRender_CrystallineSprite.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(TAEntity_CrystallineBeam.class, TAEntityRender_CrystallineBeam.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(TAEntity_Spirit.class, TAEntityRender_Spirit.FACTORY);
 	}
 }
