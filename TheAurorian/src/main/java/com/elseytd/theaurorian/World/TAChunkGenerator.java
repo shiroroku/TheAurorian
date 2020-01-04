@@ -9,6 +9,7 @@ import com.elseytd.theaurorian.TABiomes;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_MoonTemple;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Ruins;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Runestone_Tower;
+import com.fluke.worleycaves.world.WorleyCaveGenerator;
 
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.math.BlockPos;
@@ -28,7 +29,7 @@ public class TAChunkGenerator implements IChunkGenerator {
 	private Random random;
 	private Biome[] biomes = new Biome[] { TABiomes.aurorianforest, TABiomes.aurorianplains };
 
-	private MapGenBase caveGenerator = new TAMapGenCaves();
+	private MapGenBase caveGenerator = new WorleyCaveGenerator();
 	private TATerrainGenerator terraingen = new TATerrainGenerator();
 	
 	private TAWorldGenerator_Runestone_Tower towergen = new TAWorldGenerator_Runestone_Tower();
