@@ -1,4 +1,4 @@
-package com.elseytd.theaurorian.Proxy;
+package com.elseytd.theaurorian.Network;
 
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAEntities;

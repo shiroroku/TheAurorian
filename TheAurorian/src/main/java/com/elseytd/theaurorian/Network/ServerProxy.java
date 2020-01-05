@@ -1,4 +1,4 @@
-package com.elseytd.theaurorian.Proxy;
+package com.elseytd.theaurorian.Network;
 
 public class ServerProxy extends CommonProxy {
 

@@ -2,7 +2,7 @@ package com.elseytd.theaurorian;
 
 import com.elseytd.theaurorian.Misc.TACommandBase_TPTA;
 import com.elseytd.theaurorian.Misc.TACreativeTab;
-import com.elseytd.theaurorian.Proxy.CommonProxy;
+import com.elseytd.theaurorian.Network.CommonProxy;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -28,7 +28,7 @@ public class TAMod {
 	public static final TACreativeTab CREATIVE_TAB = new TACreativeTab(MODID);
 	public static Configuration CONFIG;
 
-	@SidedProxy(clientSide = "com.elseytd.theaurorian.Proxy.ClientProxy", serverSide = "com.elseytd.theaurorian.Proxy.ServerProxy")
+	@SidedProxy(clientSide = "com.elseytd.theaurorian.Network.ClientProxy", serverSide = "com.elseytd.theaurorian.Network.ServerProxy")
 	public static CommonProxy proxy;
 
 	static {

@@ -1,4 +1,4 @@
-package com.elseytd.theaurorian.Proxy;
+package com.elseytd.theaurorian.Network;
 
 import java.io.File;
 
@@ -41,6 +41,7 @@ public class CommonProxy {
 		TAConfig.readConfig();
 		TADimensions.init();
 		TACompat.preInit(e);
+		TAPacketHandler.registerMessages();
 	}
 
 	public void init(FMLInitializationEvent e) {

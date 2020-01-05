@@ -12,12 +12,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TAParticles {
 
 	private static Minecraft mcinstance = Minecraft.getMinecraft();
-	
+
 	public enum Particles {
-		AURORIANSLIME, STICKYSPIKER;
+		AURORIANSLIME(111240),
+		STICKYSPIKER(111241);
+
+		int ID;
+
+		private Particles(int particleID) {
+			this.ID = particleID;
+		}
+
+		public int getID() {
+			return ID;
+		}
 	}
 
-	private static Particle getParticle(Particles type, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
+	private static Particle getParticleFromType(Particles type, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
 		switch (type) {
 		case AURORIANSLIME:
 			return new TAParticle_AurorianSlime(mcinstance.world, xCoordIn, yCoordIn, zCoordIn);
@@ -46,7 +57,7 @@ public class TAParticles {
 			} else if (particlesetting > 1) {
 				return null;
 			} else {
-				Particle particle = getParticle(type, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
+				Particle particle = getParticleFromType(type, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
 				mcinstance.effectRenderer.addEffect(particle);
 				return particle;
 			}

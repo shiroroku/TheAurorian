@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Network.TAPacketHandler;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -83,26 +84,27 @@ public class TAItem_Special_Umbra_Shield extends TAItem_Tool_Shield {
 					if (player.ticksExisted % 6 == 0) {
 						worldIn.playSound(player.posX + 0.5D, player.posY, player.posZ + 0.5D, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, 0.75F, false);
 					}
-					Random rand = player.getRNG();
-					double spread = 50D;
-					double distance = 0.1D;
-					int density = 50;
+				}
 
-					for (int i = -1; i < rand.nextInt(density); i++) {
+				Random rand = player.getRNG();
+				double particlespread = 50D;
+				double particledistance = 0.1D;
+				int particledensity = 50;
 
-						float f = MathHelper.sqrt(x * x + y * y + z * z);
-						double particlex = x / (double) f;
-						double particley = y / (double) f;
-						double particlez = z / (double) f;
-						particlex = particlex + rand.nextGaussian() * 0.007499999832361937D * spread;
-						particley = particley + rand.nextGaussian() * 0.007499999832361937D * spread;
-						particlez = particlez + rand.nextGaussian() * 0.007499999832361937D * spread;
-						particlex = particlex * distance;
-						particley = particley * distance;
-						particlez = particlez * distance;
+				for (int i = -1; i < rand.nextInt(particledensity); i++) {
 
-						worldIn.spawnParticle(EnumParticleTypes.FLAME, entityIn.posX + x, entityIn.posY + y + entityIn.height / 2, entityIn.posZ + z, particlex, particley, particlez);
-					}
+					float f = MathHelper.sqrt(x * x + y * y + z * z);
+					double particlex = x / (double) f;
+					double particley = y / (double) f;
+					double particlez = z / (double) f;
+					particlex = particlex + rand.nextGaussian() * 0.007499999832361937D * particlespread;
+					particley = particley + rand.nextGaussian() * 0.007499999832361937D * particlespread;
+					particlez = particlez + rand.nextGaussian() * 0.007499999832361937D * particlespread;
+					particlex = particlex * particledistance;
+					particley = particley * particledistance;
+					particlez = particlez * particledistance;
+
+					TAPacketHandler.spawnParticle(worldIn, EnumParticleTypes.FLAME.getParticleID(), entityIn.posX + x, entityIn.posY + y + entityIn.height / 2, entityIn.posZ + z, particlex, particley, particlez);
 				}
 
 				double reach = 1.5;
