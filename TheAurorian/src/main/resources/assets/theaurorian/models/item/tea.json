@@ -1,0 +1,7 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "theaurorian:items/cup",
+		"layer1": "theaurorian:items/tea"
+	}
+}
