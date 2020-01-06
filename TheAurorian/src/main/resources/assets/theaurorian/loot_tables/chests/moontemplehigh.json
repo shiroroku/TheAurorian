@@ -15,7 +15,7 @@
 							"function": "set_count",
 							"count": {
 								"min": 1,
-								"max": 5
+								"max": 10
 							}
 						}
 					],
@@ -51,20 +51,6 @@
 				},
 				{
 					"type": "item",
-					"name": "theaurorian:moonstonenugget",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 8
-							}
-						}
-					],
-					"weight": 20
-				},
-				{
-					"type": "item",
 					"name": "theaurorian:ceruleaningot",
 					"functions": [
 						{
@@ -76,28 +62,14 @@
 						}
 					],
 					"weight": 15
-				},
-				{
-					"type": "item",
-					"name": "theaurorian:ceruleannugget",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 10
-							}
-						}
-					],
-					"weight": 20
 				}
 			]
 		},
 		{
 			"name": "main",
 			"rolls": {
-				"min": 1,
-				"max": 4
+				"min": 2,
+				"max": 3
 			},
 			"entries": [
 				{
@@ -112,7 +84,7 @@
 							}
 						}
 					],
-					"weight": 10
+					"weight": 5
 				},
 				{
 					"type": "item",
@@ -158,20 +130,6 @@
 				},
 				{
 					"type": "item",
-					"name": "theaurorian:aurorianitesword",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 1
-							}
-						}
-					],
-					"weight": 10
-				},
-				{
-					"type": "item",
 					"name": "theaurorian:spikedchestplate",
 					"functions": [
 						{
@@ -189,7 +147,7 @@
 		{
 			"name": "main",
 			"rolls": {
-				"min": 1,
+				"min": 2,
 				"max": 4
 			},
 			"entries": [
@@ -205,7 +163,7 @@
 							}
 						}
 					],
-					"weight": 25
+					"weight": 50
 				},
 				{
 					"type": "item",
@@ -242,6 +200,100 @@
 			"rolls": {
 				"min": 2,
 				"max": 3
+			},
+			"entries": [
+				{
+					"type": "item",
+					"name": "theaurorian:spikedchestplate",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							}
+						},
+						{
+							"function": "enchant_randomly"
+						}
+					],
+					"weight": 5
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:aurorianiteaxe",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							}
+						},
+						{
+							"function": "enchant_randomly"
+						}
+					],
+					"weight": 5
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:aurorianitesword",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							}
+						},
+						{
+							"function": "enchant_randomly"
+						}
+					],
+					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:moonstonesword",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							}
+						},
+						{
+							"function": "enchant_randomly"
+						}
+					],
+					"weight": 5
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:moonstonepickaxe",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 0,
+								"max": 1
+							}
+						},
+						{
+							"function": "enchant_randomly"
+						}
+					],
+					"weight": 5
+				}
+			]
+		},
+		{
+			"name": "main",
+			"rolls": {
+				"min": 2,
+				"max": 5
 			},
 			"entries": [
 				{
