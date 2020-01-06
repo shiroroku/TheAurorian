@@ -49,6 +49,8 @@ public class TAConfig {
 	public static float Config_LightningEnchantmentMulitplier = 0.20F;
 	public static int Config_UmbraShieldTimeUntilOverheat = 60;
 	public static int Config_UmbraShieldOverheatCooldown = 60;
+	public static int Config_OrbOfAbsorptionWhitelistBlacklist = 0;
+	public static String[] Config_OrbOfAbsorptionList = new String[] {};
 
 	public static void readConfig() {
 		Configuration cfg = TAMod.CONFIG;
@@ -80,6 +82,9 @@ public class TAConfig {
 		Config_LightningEnchantmentMulitplier = cfg.getFloat("LightningEnchantmentMulitplier", name, Config_LightningEnchantmentMulitplier, 0F, 10F, "How much damage per armor piece the lightning enchantment should add (this multiplied by # of worn armor)");
 		Config_UmbraShieldTimeUntilOverheat = cfg.getInt("UmbraShieldTimeUntilOverheat", name, Config_UmbraShieldTimeUntilOverheat, 0, 72000, "How long can the player use the shields fire ability until it overheats");
 		Config_UmbraShieldOverheatCooldown = cfg.getInt("UmbraShieldOverheatCooldown", name, Config_UmbraShieldOverheatCooldown, 0, 72000, "Cooldown in ticks for the player to be able to use the shield again after it overheats");
+		Config_OrbOfAbsorptionWhitelistBlacklist = cfg.getInt("OrbOfAbsorptionWhitelistBlacklist", name, Config_OrbOfAbsorptionWhitelistBlacklist, 0, 2, "Decides how to treat OrbOfAbsorptionList, 0 - ignored (Orb of Absorption can repair any damaged object), 1 - whitelist (can only repair items in the list), 2 - blacklist (repairs everything but items in the list)");
+		Config_OrbOfAbsorptionList = cfg.getStringList("OrbOfAbsorptionList", name, Config_OrbOfAbsorptionList, "List of items, use is decided by OrbOfAbsorptionWhitelistBlacklist, you can also specify mod ids to whitelist or blacklist whole mods, ex: (tconstruct, minecraft:elytra)");
+
 	}
 
 	private static void initCompatConfig(Configuration cfg) {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.client.gui.GuiScreen;
@@ -46,11 +47,58 @@ public class TAItem_Special_AbsorptionOrb extends Item {
 			if (p.getHeldItem(EnumHand.OFF_HAND).getItem() == this) {
 				ItemStack offhand = p.getHeldItem(EnumHand.OFF_HAND);
 				ItemStack mainhand = p.getHeldItem(EnumHand.MAIN_HAND);
-				if (mainhand.isItemStackDamageable() && mainhand.isItemDamaged()) {
-					if (!p.isCreative()) {
-						offhand.damageItem(1, p);
+				switch (TAConfig.Config_OrbOfAbsorptionWhitelistBlacklist) {
+				case 0:
+				default:
+					if (mainhand.isItemStackDamageable() && mainhand.isItemDamaged()) {
+						if (!p.isCreative()) {
+							offhand.damageItem(1, p);
+						}
+						mainhand.setItemDamage(mainhand.getItemDamage() - 1);
+						return;
 					}
-					mainhand.setItemDamage(mainhand.getItemDamage() - 1);
+					break;
+				case 1:
+					for (String i : TAConfig.Config_OrbOfAbsorptionList) {
+						if (Item.getByNameOrId(i) == mainhand.getItem()) {
+							if (mainhand.isItemStackDamageable() && mainhand.isItemDamaged()) {
+								if (!p.isCreative()) {
+									offhand.damageItem(1, p);
+								}
+								mainhand.setItemDamage(mainhand.getItemDamage() - 1);
+								return;
+							}
+						} else if (!i.contains(":")) {
+							if (i.equals(mainhand.getItem().getRegistryName().getResourceDomain())) {
+								if (mainhand.isItemStackDamageable() && mainhand.isItemDamaged()) {
+									if (!p.isCreative()) {
+										offhand.damageItem(1, p);
+									}
+									mainhand.setItemDamage(mainhand.getItemDamage() - 1);
+									return;
+								}
+							}
+						}
+					}
+					break;
+				case 2:
+					for (String i : TAConfig.Config_OrbOfAbsorptionList) {
+						if (Item.getByNameOrId(i) == mainhand.getItem()) {
+							return;
+						} else if (!i.contains(":")) {
+							if (i.equals(mainhand.getItem().getRegistryName().getResourceDomain())) {
+								return;
+							}
+						}
+					}
+					if (mainhand.isItemStackDamageable() && mainhand.isItemDamaged()) {
+						if (!p.isCreative()) {
+							offhand.damageItem(1, p);
+						}
+						mainhand.setItemDamage(mainhand.getItemDamage() - 1);
+						return;
+					}
+					break;
 				}
 			}
 		}
