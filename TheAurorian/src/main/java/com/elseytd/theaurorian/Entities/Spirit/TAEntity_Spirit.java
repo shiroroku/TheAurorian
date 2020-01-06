@@ -6,6 +6,7 @@ import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
@@ -54,7 +55,7 @@ public class TAEntity_Spirit extends EntityMob {
 
 	public void setArmsRaised(boolean armsRaised) {
 		this.getDataManager().set(ARMS_RAISED, Boolean.valueOf(armsRaised));
-	}
+	}	
 
 	@SideOnly(Side.CLIENT)
 	public boolean isArmsRaised() {
@@ -71,7 +72,8 @@ public class TAEntity_Spirit extends EntityMob {
 		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
-		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
 	}
 
 	@Override
@@ -96,9 +98,9 @@ public class TAEntity_Spirit extends EntityMob {
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		if(this.getRNG().nextBoolean()) {
+		if (this.getRNG().nextBoolean()) {
 			return SoundEvents.AMBIENT_CAVE;
-		}else {
+		} else {
 			return SoundEvents.ENTITY_VEX_AMBIENT;
 		}
 	}
