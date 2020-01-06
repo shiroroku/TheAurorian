@@ -5,8 +5,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_MoonTemple;
+import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Runestone_Tower;
+
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
@@ -15,6 +19,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
@@ -155,6 +161,70 @@ public class TAUtil {
 	}
 
 	public static class WorldAndGen {
+
+		public static void listNearbyRunestoneDungeon(EntityPlayer player, BlockPos pos) {
+			if (player.world.isRemote) {
+				int playerchunkX = player.chunkCoordX;
+				int playerchunkZ = player.chunkCoordZ;
+				int distance = TAConfig.Config_DungeonDensity * 2;
+				if (player.dimension == TAConfig.Config_AurorianDimID) {
+					player.sendMessage(new TextComponentString(TextFormatting.AQUA + "Nearby Runestone Dungeons:"));
+					for (int x = -(distance / 2); x < (distance / 2); x++) {
+						for (int z = -(distance / 2); z < (distance / 2); z++) {
+							if (TAWorldGenerator_Runestone_Tower.isValidChunkForGen(playerchunkX + x, playerchunkZ + z, 0, 0)) {
+								int blocksaway = (int) player.getDistance((playerchunkX + x) * 16, player.posY, (playerchunkZ + z) * 16);
+								TextFormatting color = TextFormatting.GRAY;
+								int scale = 128;
+								if (blocksaway <= scale) {
+									color = TextFormatting.GREEN;
+								} else if (blocksaway > scale && blocksaway <= scale * 2) {
+									color = TextFormatting.YELLOW;
+								} else if (blocksaway > scale * 2 && blocksaway <= scale * 4) {
+									color = TextFormatting.RED;
+								} else if (blocksaway > scale * 4) {
+									color = TextFormatting.DARK_RED;
+								}
+								player.sendMessage(new TextComponentString(TextFormatting.GRAY + "[" + (playerchunkX + x) * 16 + "," + (playerchunkZ + z) * 16 + "] Blocks away: " + color + blocksaway));
+							}
+						}
+					}
+				} else {
+					player.sendMessage(new TextComponentString("Runestone Dungeons are only in The Aurorian!"));
+				}
+			}
+		}
+
+		public static void listNearbyMoonTemples(EntityPlayer player, BlockPos pos) {
+			if (player.world.isRemote) {
+				int playerchunkX = player.chunkCoordX;
+				int playerchunkZ = player.chunkCoordZ;
+				int distance = TAConfig.Config_DungeonDensity * 4;
+				if (player.dimension == TAConfig.Config_AurorianDimID) {
+					player.sendMessage(new TextComponentString(TextFormatting.AQUA + "Nearby Moon Temples:"));
+					for (int x = -(distance / 2); x < (distance / 2); x++) {
+						for (int z = -(distance / 2); z < (distance / 2); z++) {
+							if (TAWorldGenerator_MoonTemple.isValidChunkForGen(playerchunkX + x, playerchunkZ + z, 0, 0)) {
+								int blocksaway = (int) player.getDistance((playerchunkX + x) * 16, player.posY, (playerchunkZ + z) * 16);
+								TextFormatting color = TextFormatting.GRAY;
+								int scale = 128 * 2;
+								if (blocksaway <= scale) {
+									color = TextFormatting.GREEN;
+								} else if (blocksaway > scale && blocksaway <= scale * 2) {
+									color = TextFormatting.YELLOW;
+								} else if (blocksaway > scale * 2 && blocksaway <= scale * 4) {
+									color = TextFormatting.RED;
+								} else if (blocksaway > scale * 4) {
+									color = TextFormatting.DARK_RED;
+								}
+								player.sendMessage(new TextComponentString(TextFormatting.GRAY + "[" + (playerchunkX + x) * 16 + "," + (playerchunkZ + z) * 16 + "] Blocks away: " + color + blocksaway));
+							}
+						}
+					}
+				} else {
+					player.sendMessage(new TextComponentString("Moon Temples are only in The Aurorian!"));
+				}
+			}
+		}
 
 		/**
 		 * Finds all chests in the chunk and applies the given loot table to

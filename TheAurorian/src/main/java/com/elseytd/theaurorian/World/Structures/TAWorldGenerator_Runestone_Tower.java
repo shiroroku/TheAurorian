@@ -76,7 +76,7 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator {
 		return true;
 	}
 
-	private static boolean isValidChunkForGen(int chunkX, int chunkZ, int offsetX, int offsetZ) {
+	public static boolean isValidChunkForGen(int chunkX, int chunkZ, int offsetX, int offsetZ) {
 		if ((chunkX + offsetX) % CHUNKS_BETWEEN_TOWERS == 0 && (chunkZ + offsetZ) % CHUNKS_BETWEEN_TOWERS == 0) {
 			return true;
 		}
