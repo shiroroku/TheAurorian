@@ -73,6 +73,7 @@ public class TAItem_Food_Tea extends Item {
 		this.itemTea = tea;
 	}
 
+	@SideOnly(Side.CLIENT)
 	public static void registerItemColorHandler(ColorHandlerEvent.Item event) {
 		event.getItemColors().registerItemColorHandler(new IItemColor() {
 			@Override

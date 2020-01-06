@@ -15,6 +15,8 @@ import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @EventBusSubscriber
@@ -30,6 +32,7 @@ public class TAEvents {
 		TAItem_Tool_Shield.handleDamageEvent(e);
 	}
 
+	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void registerItemHandlers(ColorHandlerEvent.Item event) {
 		TAItem_Food_Tea.registerItemColorHandler(event);
