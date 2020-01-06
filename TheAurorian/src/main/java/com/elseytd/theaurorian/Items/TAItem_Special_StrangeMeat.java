@@ -96,6 +96,11 @@ public class TAItem_Special_StrangeMeat extends ItemFood {
 	public net.minecraftforge.common.IRarity getForgeRarity(ItemStack stack) {
 		return EnumRarity.EPIC;
 	}
+	
+	@Override
+	public int getMaxItemUseDuration(ItemStack stack) {
+		return 64;
+	}
 
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
