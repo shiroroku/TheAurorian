@@ -2,6 +2,8 @@ package com.elseytd.theaurorian.Entities.Spirit;
 
 import javax.annotation.Nullable;
 
+import com.elseytd.theaurorian.TABlocks;
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -22,6 +24,8 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -78,6 +82,15 @@ public class TAEntity_Spirit extends EntityMob {
 
 	@Override
 	public void fall(float distance, float damageMultiplier) {
+	}
+	
+	@Override
+	public boolean getCanSpawnHere() {
+		int i = MathHelper.floor(this.posX);
+		int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+		int k = MathHelper.floor(this.posZ);
+		BlockPos blockpos = new BlockPos(i, j, k);
+		return this.world.getBlockState(blockpos.down()).getBlock() == TABlocks.auroriangrass && this.dimension == TAConfig.Config_AurorianDimID && super.getCanSpawnHere();
 	}
 
 	@Override
