@@ -30,13 +30,13 @@ import net.minecraftforge.oredict.OreDictionary;
 public class TAUtil {
 
 	/**
-	 * Will return true a given percentage of the time. Example: 0.75F will
+	 * Will return true a given percentage of the time. Example: 0.75D will
 	 * return true 75% of the time.
 	 */
-	public static boolean randomChanceOf(float percent) {
+	public static boolean randomChanceOf(double percent) {
 		Random r = new Random();
-		float gen = (float) r.nextInt(100) + 1F;
-		if (gen <= (percent * 100F)) {
+		double gen = (double) r.nextInt(100) + 1D;
+		if (gen <= (percent * 100D)) {
 			return true;
 		}
 		return false;
@@ -161,6 +161,44 @@ public class TAUtil {
 	}
 
 	public static class WorldAndGen {
+
+		public static boolean isNearRunestoneDungeon(World worldIn, BlockPos pos, int range) {
+			int chunkX = worldIn.getChunkFromBlockCoords(pos).x;
+			int chunkZ = worldIn.getChunkFromBlockCoords(pos).z;
+			int searchdistance = TAConfig.Config_DungeonDensity * 2;
+			if (worldIn.provider.getDimension() == TAConfig.Config_AurorianDimID) {
+				for (int x = -(searchdistance / 2); x < (searchdistance / 2); x++) {
+					for (int z = -(searchdistance / 2); z < (searchdistance / 2); z++) {
+						if (TAWorldGenerator_Runestone_Tower.isValidChunkForGen(chunkX + x, chunkZ + z, 0, 0)) {
+							int blocksaway = (int) pos.getDistance((chunkX + x) * 16, pos.getY(), (chunkZ + z) * 16);
+							if (blocksaway <= range) {
+								return true;
+							}
+						}
+					}
+				}
+			}
+			return false;
+		}
+
+		public static boolean isNearMoonTemple(World worldIn, BlockPos pos, int range) {
+			int chunkX = worldIn.getChunkFromBlockCoords(pos).x;
+			int chunkZ = worldIn.getChunkFromBlockCoords(pos).z;
+			int searchdistance = TAConfig.Config_DungeonDensity * 4;
+			if (worldIn.provider.getDimension() == TAConfig.Config_AurorianDimID) {
+				for (int x = -(searchdistance / 2); x < (searchdistance / 2); x++) {
+					for (int z = -(searchdistance / 2); z < (searchdistance / 2); z++) {
+						if (TAWorldGenerator_MoonTemple.isValidChunkForGen(chunkX + x, chunkZ + z, 0, 0)) {
+							int blocksaway = (int) pos.getDistance((chunkX + x) * 16, pos.getY(), (chunkZ + z) * 16);
+							if (blocksaway <= range) {
+								return true;
+							}
+						}
+					}
+				}
+			}
+			return false;
+		}
 
 		public static void listNearbyRunestoneDungeon(EntityPlayer player, BlockPos pos) {
 			if (player.world.isRemote) {

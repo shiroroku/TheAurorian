@@ -9,6 +9,7 @@ import com.elseytd.theaurorian.TABiomes;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_MoonTemple;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Ruins;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Runestone_Tower;
+import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_UmbraTower;
 import com.fluke.worleycaves.world.WorleyCaveGenerator;
 
 import net.minecraft.entity.EnumCreatureType;
@@ -35,6 +36,7 @@ public class TAChunkGenerator implements IChunkGenerator {
 	private TAWorldGenerator_Runestone_Tower towergen = new TAWorldGenerator_Runestone_Tower();
 	private TAWorldGenerator_Ruins ruingen = new TAWorldGenerator_Ruins();
 	private TAWorldGenerator_MoonTemple templegen = new TAWorldGenerator_MoonTemple();
+	private TAWorldGenerator_UmbraTower umbratowergen = new TAWorldGenerator_UmbraTower();
 
 	public TAChunkGenerator(World worldObj) {
 		this.worldObj = worldObj;
@@ -85,6 +87,10 @@ public class TAChunkGenerator implements IChunkGenerator {
 			templegen.generate(this.worldObj, this.random, blockpos);
 		}
 
+		if (TAWorldGenerator_UmbraTower.GENERATE_TOWERS) {
+			umbratowergen.generate(this.worldObj, this.random, blockpos);
+		}
+		
 		//BIOMES
 		Biome biome = this.worldObj.getBiome(blockpos.add(0, 0, 0));
 		biome.decorate(this.worldObj, this.random, blockpos);

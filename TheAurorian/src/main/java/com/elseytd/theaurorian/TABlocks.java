@@ -41,6 +41,7 @@ import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianFarmTile;
 import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianGrass;
 import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianStone;
 import com.elseytd.theaurorian.Blocks.TABlock_Terrain_Moonsand;
+import com.elseytd.theaurorian.Blocks.TABlock_UmbraStone;
 import com.elseytd.theaurorian.Blocks.TAFluid_Moonwater;
 import com.elseytd.theaurorian.Compat.TABlockFluid_MoltenCerulean;
 import com.elseytd.theaurorian.Compat.TABlockFluid_MoltenMoonstone;
@@ -137,6 +138,12 @@ public class TABlocks {
 	public static TABlock_Terrain_AurorianStone aurorianstone;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Terrain_Moonsand.BLOCKNAME)
 	public static TABlock_Terrain_Moonsand moonsand;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_UmbraStone.BLOCKNAME_UMBRASTONE)
+	public static TABlock_UmbraStone umbrastone;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_UmbraStone.BLOCKNAME_UMBRASTONECRACKED)
+	public static TABlock_UmbraStone umbrastonecracked;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_UmbraStone.BLOCKNAME_UMBRASTONEROOFTILES)
+	public static TABlock_UmbraStone umbrastonerooftiles;
 
 	// RUNESTONE
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_DungeonStone.BLOCKNAME_RUNESTONE)
@@ -229,6 +236,8 @@ public class TABlocks {
 	public static TABlock_Stairs aurorianstonestairs;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Stairs.BLOCKNAME_DARK)
 	public static TABlock_Stairs darkstonestairs;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Stairs.BLOCKNAME_UMBRASTONEROOFTILES)
+	public static TABlock_Stairs umbrastoneroofstairs;
 
 	@SideOnly(Side.CLIENT)
 	public static void initModels() {
@@ -271,6 +280,9 @@ public class TABlocks {
 		auroriangrass.initModel();
 		aurorianstone.initModel();
 		moonsand.initModel();
+		umbrastone.initModel();
+		umbrastonecracked.initModel();
+		umbrastonerooftiles.initModel();
 
 		// RUNESTONE
 		runestone.initModel();
@@ -323,6 +335,7 @@ public class TABlocks {
 		silentwoodstairs.initModel();
 		aurorianstonestairs.initModel();
 		darkstonestairs.initModel();
+		umbrastoneroofstairs.initModel();
 
 	}
 
@@ -369,6 +382,9 @@ public class TABlocks {
 		event.getRegistry().register(new TABlock_Terrain_AurorianGrass());
 		event.getRegistry().register(new TABlock_Terrain_AurorianStone());
 		event.getRegistry().register(new TABlock_Terrain_Moonsand());
+		event.getRegistry().register(new TABlock_UmbraStone(TABlock_UmbraStone.BLOCKNAME_UMBRASTONE));
+		event.getRegistry().register(new TABlock_UmbraStone(TABlock_UmbraStone.BLOCKNAME_UMBRASTONECRACKED));
+		event.getRegistry().register(new TABlock_UmbraStone(TABlock_UmbraStone.BLOCKNAME_UMBRASTONEROOFTILES));
 
 		// PLANTS
 		event.getRegistry().register(new TABlock_Plant_Crops(TABlock_Plant_Crops.BLOCKNAME_SILKBERRY));
@@ -430,6 +446,7 @@ public class TABlocks {
 		event.getRegistry().register(new TABlock_Stairs(new TABlock_Silentwood_Planks(), TABlock_Stairs.BLOCKNAME_SILENTWOOD));
 		event.getRegistry().register(new TABlock_Stairs(new TABlock_Aurorian_Stone_Brick(), TABlock_Stairs.BLOCKNAME_AURORIANSTONE));
 		event.getRegistry().register(new TABlock_Stairs(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK), TABlock_Stairs.BLOCKNAME_DARK));
+		event.getRegistry().register(new TABlock_Stairs(new TABlock_UmbraStone(TABlock_UmbraStone.BLOCKNAME_UMBRASTONEROOFTILES), TABlock_Stairs.BLOCKNAME_UMBRASTONEROOFTILES));
 
 		TATileEntities.registerTileEntities(event);
 	}
@@ -464,6 +481,9 @@ public class TABlocks {
 		itemblockQuickReg(event, TABlocks.auroriangrass);
 		itemblockQuickReg(event, TABlocks.aurorianstone);
 		itemblockQuickReg(event, TABlocks.moonsand);
+		itemblockQuickReg(event, TABlocks.umbrastone);
+		itemblockQuickReg(event, TABlocks.umbrastonecracked);
+		itemblockQuickReg(event, TABlocks.umbrastonerooftiles);
 
 		// PLANTS
 		itemblockQuickReg(event, TABlocks.auroriantallgrass);
@@ -525,6 +545,7 @@ public class TABlocks {
 		itemblockQuickReg(event, TABlocks.silentwoodstairs);
 		itemblockQuickReg(event, TABlocks.aurorianstonestairs);
 		itemblockQuickReg(event, TABlocks.darkstonestairs);
+		itemblockQuickReg(event, TABlocks.umbrastoneroofstairs);
 	}
 
 }

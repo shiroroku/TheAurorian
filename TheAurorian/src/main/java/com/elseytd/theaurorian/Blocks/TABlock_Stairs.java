@@ -18,6 +18,7 @@ public class TABlock_Stairs extends BlockStairs {
 	public static final String BLOCKNAME_MOONTEMPLE = "moontemplestairs";
 	public static final String BLOCKNAME_AURORIANSTONE = "aurorianstonestairs";
 	public static final String BLOCKNAME_DARK = "darkstonestairs";
+	public static final String BLOCKNAME_UMBRASTONEROOFTILES = "umbrastoneroofstairs";
 
 	public TABlock_Stairs(Block blockbase, String name) {
 		super(blockbase.getDefaultState());
