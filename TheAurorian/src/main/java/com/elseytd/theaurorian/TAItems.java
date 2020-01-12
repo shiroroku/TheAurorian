@@ -29,6 +29,7 @@ import com.elseytd.theaurorian.Items.TAItem_Special_MoonShield;
 import com.elseytd.theaurorian.Items.TAItem_Special_StickySpiker;
 import com.elseytd.theaurorian.Items.TAItem_Special_StrangeMeat;
 import com.elseytd.theaurorian.Items.TAItem_Special_Umbra_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Special_Umbra_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Axe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Hoe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Pickaxe;
@@ -70,6 +71,7 @@ public class TAItems {
 		public static Item.ToolMaterial AURORIANSTONE = EnumHelper.addToolMaterial("TA_AURORIANSTONE", 1, 131, 4.5F, 1.5F, 14);
 		public static Item.ToolMaterial MOONSTONE = EnumHelper.addToolMaterial("TA_MOONSTONE", 2, 250, 7.0F, 2.5F, 14);
 		public static Item.ToolMaterial AURORIANITE = EnumHelper.addToolMaterial("TA_AURORIANITE", 3, 1000, 8.0F, 3.0F, 20);
+		public static Item.ToolMaterial UMBRA = EnumHelper.addToolMaterial("TA_UMBRA", 3, 800, 5F, 3.0F, 10);
 		public static Item.ToolMaterial CRYSTALLINE = EnumHelper.addToolMaterial("TA_CRYSTALLINE", 2, 600, 7.5F, 2.5F, 30);
 
 		public static ArmorMaterial CERULEAN_ARMOR = EnumHelper.addArmorMaterial("TA_CERULEAN_ARMOR", "theaurorian:cerulean", 20, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
@@ -82,6 +84,7 @@ public class TAItems {
 			MOONSTONE.setRepairItem(new ItemStack(TAItems.moonstoneingot));
 			AURORIANITE.setRepairItem(new ItemStack(TAItems.aurorianiteingot));
 			CRYSTALLINE.setRepairItem(new ItemStack(TAItems.crystallineingot));
+			UMBRA.setRepairItem(new ItemStack(TAItems.umbraingot));
 
 			CERULEAN_ARMOR.setRepairItem(new ItemStack(TAItems.ceruleaningot));
 			SPIKED_ARMOR.setRepairItem(new ItemStack(TAItems.umbraingot));
@@ -89,6 +92,8 @@ public class TAItems {
 	}
 
 	// SPECIAL
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Umbra_Sword.ITEMNAME)
+	public static TAItem_Special_Umbra_Sword umbrasword;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Umbra_Shield.ITEMNAME)
 	public static TAItem_Special_Umbra_Shield umbrashield;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_MoonShield.ITEMNAME)
@@ -295,6 +300,7 @@ public class TAItems {
 		spikedchestplate.initModel();
 		stickyspiker.initModel();
 		umbrashield.initModel();
+		umbrasword.initModel();
 
 		// FOOD
 		aurorianbacon.initModel();
@@ -398,6 +404,7 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Tool_Cerulean_Bucket());
 		event.getRegistry().register(new TAItem_Tool_Cerulean_Shield());
 		event.getRegistry().register(new TAItem_Special_Umbra_Shield());
+		event.getRegistry().register(new TAItem_Special_Umbra_Sword());
 
 		// FOODS
 		event.getRegistry().register(new TAItem_Food(TAItem_Food.Foods.AURORIANBACON));

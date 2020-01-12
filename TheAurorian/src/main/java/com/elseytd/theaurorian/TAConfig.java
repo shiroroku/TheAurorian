@@ -52,6 +52,7 @@ public class TAConfig {
 	public static int Config_UmbraShieldOverheatCooldown = 60;
 	public static int Config_OrbOfAbsorptionWhitelistBlacklist = 0;
 	public static String[] Config_OrbOfAbsorptionList = new String[] {};
+	public static int Config_UmbraSwordCooldown = 900;
 
 	public static void readConfig() {
 		Configuration cfg = TAMod.CONFIG;
@@ -85,6 +86,7 @@ public class TAConfig {
 		Config_UmbraShieldOverheatCooldown = cfg.getInt("UmbraShieldOverheatCooldown", name, Config_UmbraShieldOverheatCooldown, 0, 72000, "Cooldown in ticks for the player to be able to use the shield again after it overheats");
 		Config_OrbOfAbsorptionWhitelistBlacklist = cfg.getInt("OrbOfAbsorptionWhitelistBlacklist", name, Config_OrbOfAbsorptionWhitelistBlacklist, 0, 2, "Decides how to treat OrbOfAbsorptionList, 0 - ignored (Orb of Absorption can repair any damaged object), 1 - whitelist (can only repair items in the list), 2 - blacklist (repairs everything but items in the list)");
 		Config_OrbOfAbsorptionList = cfg.getStringList("OrbOfAbsorptionList", name, Config_OrbOfAbsorptionList, "List of items, use is decided by OrbOfAbsorptionWhitelistBlacklist, you can also specify mod ids to whitelist or blacklist whole mods, ex: (tconstruct, minecraft:elytra)");
+		Config_UmbraSwordCooldown = cfg.getInt("UmbraSwordCooldown", name, Config_UmbraSwordCooldown, 0, 72000, "Cooldown in ticks for the Umbra Swords ability");
 
 	}
 
