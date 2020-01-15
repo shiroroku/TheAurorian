@@ -74,7 +74,7 @@
 			"entries": [
 				{
 					"type": "item",
-					"name": "theaurorian:strangemeat",
+					"name": "theaurorian:umbrasword",
 					"functions": [
 						{
 							"function": "set_count",
@@ -84,21 +84,7 @@
 							}
 						}
 					],
-					"weight": 5
-				},
-				{
-					"type": "item",
-					"name": "theaurorian:absorptionorb",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 1
-							}
-						}
-					],
-					"weight": 5
+					"weight": 20
 				},
 				{
 					"type": "item",
