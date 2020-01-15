@@ -38,6 +38,7 @@ public class TARecipes {
 		GameRegistry.addSmelting(TAItems.livingdiviningrod, new ItemStack(TAItems.scrapcrystalline, 2), 2F);
 		GameRegistry.addSmelting(TAItems.spikedchestplate, new ItemStack(TAItems.scrapumbra, 8), 2F);
 		GameRegistry.addSmelting(TAItems.umbrashield, new ItemStack(TAItems.scrapumbra, 5), 2F);
+		GameRegistry.addSmelting(TAItems.umbrasword, new ItemStack(TAItems.scrapumbra, 2), 2F);
 	}
 
 	public static void registerOreDictionary() {
