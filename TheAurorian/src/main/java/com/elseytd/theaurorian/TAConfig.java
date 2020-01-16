@@ -21,7 +21,7 @@ public class TAConfig {
 	public static boolean Config_GenerateRuins = true;
 	public static boolean Config_GenerateMoonTemple = true;
 	public static boolean Config_GenerateMoonTemplePath = true;
-	public static boolean Config_GenerateUmbraTower = true;
+	public static boolean Config_GenerateUmbraTower = false;
 
 	//Generation
 	public static int Config_AurorianCoalOre_Size = 12;
