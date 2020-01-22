@@ -16,6 +16,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -42,7 +43,6 @@ public class TAItem_Special_Aurorianite_Sword extends ItemSword {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		if (playerIn.getHeldItemOffhand().isEmpty() || playerIn.isSneaking()) {
-				
 			List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(worldIn, playerIn.posX, playerIn.posY + 2.5D, playerIn.posZ, 5, 2.5D, false);
 			for (EntityLivingBase e : entities) {
 				if (e.isNonBoss()) {
@@ -50,7 +50,9 @@ public class TAItem_Special_Aurorianite_Sword extends ItemSword {
 					e.motionY = e.motionY + 0.5D;
 				}
 			}
-
+			if (worldIn.isRemote) {
+				playerIn.playSound(SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, 1f, 2f);
+			}
 			playerIn.getHeldItemMainhand().damageItem(5, playerIn);
 			playerIn.getCooldownTracker().setCooldown(this, TAConfig.Config_AurorianiteSwordCooldown);
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
