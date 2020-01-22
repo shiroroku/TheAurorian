@@ -1,9 +1,13 @@
 package com.elseytd.theaurorian.Entities.UndeadKnight;
 
+import java.util.List;
+
 import javax.annotation.Nullable;
 
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
+import com.elseytd.theaurorian.TAUtil;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -33,7 +37,8 @@ public class TAEntity_UndeadKnight extends EntityMob {
 	public static final String EntityName = "undeadknight";
 	public static final ResourceLocation LOOT = new ResourceLocation(TAMod.MODID, "entities/" + EntityName);
 	public static final float MobScale = 1.3F;
-
+	public int maxNearby = 3 * TAConfig.Config_RunestoneDungeonMobDensity;
+	
 	public TAEntity_UndeadKnight(World worldIn) {
 		super(worldIn);
 		setSize(0.6F * MobScale, 1.95F * MobScale);
@@ -85,6 +90,19 @@ public class TAEntity_UndeadKnight extends EntityMob {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public boolean getCanSpawnHere() {
+		List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 6, false);
+		int maxcount = maxNearby;
+		int count = 0;
+		for (EntityLivingBase e : entities) {
+			if (e instanceof TAEntity_UndeadKnight) {
+				count++;
+			}
+		}
+		return count <= maxcount && super.getCanSpawnHere();
 	}
 
 	@Override

@@ -1,7 +1,10 @@
 package com.elseytd.theaurorian.Entities.CrystallineSprite;
 
+import java.util.List;
+
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
+import com.elseytd.theaurorian.TAUtil;
 import com.elseytd.theaurorian.Entities.TAEntityAI_RangedAttack;
 import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_CrystallineBeam;
 
@@ -28,6 +31,7 @@ public class TAEntity_CrystallineSprite extends EntityMob implements IRangedAtta
 	public static final String EntityName = "crystallinesprite";
 	private float heightOffset = 0.5F;
 	private int heightOffsetUpdateTime;
+	public int maxNearby = 5 * TAConfig.Config_MoonTempleMobDensity;
 
 	public TAEntity_CrystallineSprite(World worldIn) {
 		super(worldIn);
@@ -42,7 +46,15 @@ public class TAEntity_CrystallineSprite extends EntityMob implements IRangedAtta
 		int j = MathHelper.floor(this.getEntityBoundingBox().minY);
 		int k = MathHelper.floor(this.posZ);
 		BlockPos blockpos = new BlockPos(i, j, k);
-		return this.world.getBlockState(blockpos.down()).getBlock() == TABlocks.moontemplebricks && this.dimension == TAConfig.Config_AurorianDimID && super.getCanSpawnHere();
+		List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 30, false);
+		int maxcount = maxNearby;
+		int count = 0;
+		for (EntityLivingBase e : entities) {
+			if (e instanceof TAEntity_CrystallineSprite) {
+				count++;
+			}
+		}
+		return count <= maxcount && this.world.getBlockState(blockpos.down()).getBlock() == TABlocks.moontemplebricks && this.dimension == TAConfig.Config_AurorianDimID && super.getCanSpawnHere();
 	}
 
 	@Override

@@ -23,6 +23,10 @@ public class TAConfig {
 	public static boolean Config_GenerateMoonTemplePath = true;
 	public static boolean Config_GenerateUmbraTower = false;
 
+	//Entities
+	public static int Config_RunestoneDungeonMobDensity = 1;
+	public static int Config_MoonTempleMobDensity = 1;
+	
 	//Generation
 	public static int Config_AurorianCoalOre_Size = 12;
 	public static int Config_AurorianCoalOre_Count = 13;
@@ -62,6 +66,7 @@ public class TAConfig {
 			initBlocksConfig(cfg);
 			initDimensionConfig(cfg);
 			initStructureConfig(cfg);
+			initEntityConfig(cfg);
 			initGenerationConfig(cfg);
 			initMiscConfig(cfg);
 		} catch (Exception e1) {
@@ -126,7 +131,7 @@ public class TAConfig {
 		Config_GeodeOre_HeightMin = cfg.getInt("GeodeOreHeightMin", name, Config_GeodeOre_HeightMin, 0, 255, "Changes the min height of ore vein");
 		Config_GeodeOre_HeightMax = cfg.getInt("GeodeOreHeightMax", name, Config_GeodeOre_HeightMax, 0, 255, "Changes the max height of ore vein");
 	}
-
+	
 	private static void initStructureConfig(Configuration cfg) {
 		String name = "structures";
 		cfg.addCustomCategoryComment(name, "Structure configuration");
@@ -138,6 +143,15 @@ public class TAConfig {
 		Config_GenerateMoonTemple = cfg.getBoolean("GenerateMoonTemple", name, Config_GenerateMoonTemple, "Set to false to disable Moon Temples");
 		Config_GenerateMoonTemplePath = cfg.getBoolean("GenerateMoonTemplePath", name, Config_GenerateMoonTemplePath, "Set to false to disable Moon Temple's spiral path up");
 		Config_GenerateUmbraTower = cfg.getBoolean("GenerateUmbraTower", name, Config_GenerateUmbraTower, "Set to false to disable Umbra Towers");
+
+	}
+
+	private static void initEntityConfig(Configuration cfg) {
+		String name = "entity";
+		cfg.addCustomCategoryComment(name, "Entity configuration");
+
+		Config_RunestoneDungeonMobDensity = cfg.getInt("RunestoneDungeonMobDensity", name, Config_RunestoneDungeonMobDensity, 0, 10, "Density of mobs spawning in the Runestone Dungeon, 2 for twice as many mobs, etc");
+		Config_MoonTempleMobDensity = cfg.getInt("MoonTempleMobDensity", name, Config_MoonTempleMobDensity, 0, 10, "Density of mobs spawning in the Moon Temple, 2 for twice as many mobs, etc");
 
 	}
 

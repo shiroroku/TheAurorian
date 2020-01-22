@@ -1,10 +1,14 @@
 package com.elseytd.theaurorian.Entities.AurorianSlime;
 
+import java.util.List;
+
 import javax.annotation.Nullable;
 
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TAParticles;
+import com.elseytd.theaurorian.TAUtil;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -36,6 +40,7 @@ public class TAEntity_AurorianSlime extends EntityLiving implements IMob {
 	public float squishFactor;
 	public float prevSquishFactor;
 	private boolean wasOnGround;
+	public int maxNearby = 5 * TAConfig.Config_RunestoneDungeonMobDensity;
 
 	public TAEntity_AurorianSlime(World worldIn) {
 		super(worldIn);
@@ -62,6 +67,20 @@ public class TAEntity_AurorianSlime extends EntityLiving implements IMob {
 		this.experienceValue = 3;
 	}
 
+	@Override
+	public boolean getCanSpawnHere() {
+		List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 6, false);
+		int maxcount = maxNearby;
+		int count = 0;
+		for (EntityLivingBase e : entities) {
+			if (e instanceof TAEntity_AurorianSlime) {
+				count++;
+			}
+		}
+		return count <= maxcount && super.getCanSpawnHere();
+	}
+
+	
 	@Override
 	public int getMaxSpawnedInChunk() {
 		return 6;

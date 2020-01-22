@@ -41,7 +41,7 @@ public class TABiome extends Biome {
 
 		//Ambient mobs
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(TAEntity_DisturbedHollow.class, 95, 1, 4));
-		this.spawnableMonsterList.add(new Biome.SpawnListEntry(TAEntity_Spirit.class, 10, 1, 2));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(TAEntity_Spirit.class, 2, 1, 2));
 		this.spawnableCreatureList.add(new Biome.SpawnListEntry(TAEntity_AurorianRabbit.class, 4, 1, 2));
 		this.spawnableCreatureList.add(new Biome.SpawnListEntry(TAEntity_AurorianSheep.class, 5, 1, 3));
 		this.spawnableCreatureList.add(new Biome.SpawnListEntry(TAEntity_AurorianPig.class, 5, 1, 3));

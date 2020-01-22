@@ -1,11 +1,14 @@
 package com.elseytd.theaurorian.Entities.MoonAcolyte;
 
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
+import com.elseytd.theaurorian.TAUtil;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -40,6 +43,7 @@ public class TAEntity_MoonAcolyte extends EntityMob {
 	public static final String EntityName = "moonacolyte";
 	public static final ResourceLocation LOOT = new ResourceLocation(TAMod.MODID, "entities/" + EntityName);
 	public static final float MobScale = 1F;
+	public int maxNearby = 4 * TAConfig.Config_MoonTempleMobDensity;
 
 	public TAEntity_MoonAcolyte(World worldIn) {
 		super(worldIn);
@@ -55,9 +59,17 @@ public class TAEntity_MoonAcolyte extends EntityMob {
 		int j = MathHelper.floor(this.getEntityBoundingBox().minY);
 		int k = MathHelper.floor(this.posZ);
 		BlockPos blockpos = new BlockPos(i, j, k);
-		return this.world.getBlockState(blockpos.down()).getBlock() == TABlocks.moontemplebricks && this.dimension == TAConfig.Config_AurorianDimID && super.getCanSpawnHere();
+		List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 30, false);
+		int maxcount = maxNearby;
+		int count = 0;
+		for (EntityLivingBase e : entities) {
+			if (e instanceof TAEntity_MoonAcolyte) {
+				count++;
+			}
+		}
+		return count <= maxcount && this.world.getBlockState(blockpos.down()).getBlock() == TABlocks.moontemplebricks && this.dimension == TAConfig.Config_AurorianDimID && super.getCanSpawnHere();
 	}
-	
+
 	@Override
 	protected void entityInit() {
 		super.entityInit();
