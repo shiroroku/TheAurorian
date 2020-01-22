@@ -26,7 +26,9 @@ public class TAConfig {
 	//Entities
 	public static int Config_RunestoneDungeonMobDensity = 1;
 	public static int Config_MoonTempleMobDensity = 1;
-	
+	public static float Config_RunestoneKeeperHealthMuliplier = 1;
+	public static float Config_MoonQueenHealthMuliplier = 1;
+
 	//Generation
 	public static int Config_AurorianCoalOre_Size = 12;
 	public static int Config_AurorianCoalOre_Count = 13;
@@ -131,7 +133,7 @@ public class TAConfig {
 		Config_GeodeOre_HeightMin = cfg.getInt("GeodeOreHeightMin", name, Config_GeodeOre_HeightMin, 0, 255, "Changes the min height of ore vein");
 		Config_GeodeOre_HeightMax = cfg.getInt("GeodeOreHeightMax", name, Config_GeodeOre_HeightMax, 0, 255, "Changes the max height of ore vein");
 	}
-	
+
 	private static void initStructureConfig(Configuration cfg) {
 		String name = "structures";
 		cfg.addCustomCategoryComment(name, "Structure configuration");
@@ -152,6 +154,8 @@ public class TAConfig {
 
 		Config_RunestoneDungeonMobDensity = cfg.getInt("RunestoneDungeonMobDensity", name, Config_RunestoneDungeonMobDensity, 0, 10, "Density of mobs spawning in the Runestone Dungeon, 2 for twice as many mobs, etc");
 		Config_MoonTempleMobDensity = cfg.getInt("MoonTempleMobDensity", name, Config_MoonTempleMobDensity, 0, 10, "Density of mobs spawning in the Moon Temple, 2 for twice as many mobs, etc");
+		Config_RunestoneKeeperHealthMuliplier = cfg.getFloat("RunestoneKeeperHealthMuliplier", name, Config_RunestoneKeeperHealthMuliplier, 0, 100, "");
+		Config_MoonQueenHealthMuliplier = cfg.getFloat("MoonQueenHealthMuliplier", name, Config_MoonQueenHealthMuliplier, 0, 100, "");
 
 	}
 

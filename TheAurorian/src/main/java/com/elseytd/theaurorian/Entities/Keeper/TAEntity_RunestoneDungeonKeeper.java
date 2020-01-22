@@ -2,6 +2,7 @@ package com.elseytd.theaurorian.Entities.Keeper;
 
 import javax.annotation.Nullable;
 
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAEnchantments;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
@@ -65,7 +66,7 @@ public class TAEntity_RunestoneDungeonKeeper extends EntityMob implements IRange
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(80.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(80.0D * TAConfig.Config_RunestoneKeeperHealthMuliplier);
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(50.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30D);
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
