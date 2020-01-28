@@ -1,6 +1,7 @@
 package com.elseytd.theaurorian;
 
 import com.elseytd.theaurorian.Enchantments.TAEnchantment_Lightning_Damage;
+import com.elseytd.theaurorian.Items.TAItem_Armor_SlimeBoots;
 import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Shield;
 
@@ -11,13 +12,15 @@ import net.minecraft.util.SoundCategory;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @EventBusSubscriber
 public class TAEvents {
@@ -25,6 +28,16 @@ public class TAEvents {
 	@SubscribeEvent
 	public void damageEvent(LivingDamageEvent e) {
 		TAEnchantment_Lightning_Damage.handleDamageEvent(e);
+	}
+
+	@SubscribeEvent
+	public void jumpEvent(LivingJumpEvent e) {
+		TAItem_Armor_SlimeBoots.handleJumpEvent(e);
+	}
+
+	@SubscribeEvent
+	public void fallEvent(LivingFallEvent e) {
+		TAItem_Armor_SlimeBoots.handleFallEvent(e);
 	}
 
 	@SubscribeEvent

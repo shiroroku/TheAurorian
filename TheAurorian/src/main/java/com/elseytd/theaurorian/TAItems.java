@@ -2,6 +2,7 @@ package com.elseytd.theaurorian;
 
 import com.elseytd.theaurorian.Items.TAItem_Armor_Cerulean;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Knight;
+import com.elseytd.theaurorian.Items.TAItem_Armor_SlimeBoots;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Spiked;
 import com.elseytd.theaurorian.Items.TAItem_Basic;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_AurorianCoal;
@@ -10,6 +11,7 @@ import com.elseytd.theaurorian.Items.TAItem_Crafting_MoonTempleCellKeyFragment;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_Nugget;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_SilentwoodStick;
 import com.elseytd.theaurorian.Items.TAItem_CrystallineSprite;
+import com.elseytd.theaurorian.Items.TAItem_Debug;
 import com.elseytd.theaurorian.Items.TAItem_Food;
 import com.elseytd.theaurorian.Items.TAItem_Food_Silkberry;
 import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
@@ -77,6 +79,7 @@ public class TAItems {
 		public static ArmorMaterial CERULEAN_ARMOR = EnumHelper.addArmorMaterial("TA_CERULEAN_ARMOR", "theaurorian:cerulean", 20, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
 		public static ArmorMaterial SPIKED_ARMOR = EnumHelper.addArmorMaterial("TA_SPIKED_ARMOR", "theaurorian:spiked", 65, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
 		public static ArmorMaterial KNIGHT_ARMOR = EnumHelper.addArmorMaterial("TA_KNIGHT_ARMOR", "theaurorian:knight", 30, new int[] { 2, 3, 2, 1 }, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0);
+		public static ArmorMaterial AURORIAN_SLIME = EnumHelper.addArmorMaterial("TA_AURORIAN_SLIME", "theaurorian:aurorianslime", 120, new int[] { 1, 2, 3, 1 }, 20, SoundEvents.ENTITY_SLIME_SQUISH, 0);
 
 		public static void initRepairMaterials() {
 			SILENTWOOD.setRepairItem(new ItemStack(TABlocks.silentwoodplanks));
@@ -88,6 +91,7 @@ public class TAItems {
 
 			CERULEAN_ARMOR.setRepairItem(new ItemStack(TAItems.ceruleaningot));
 			SPIKED_ARMOR.setRepairItem(new ItemStack(TAItems.umbraingot));
+			AURORIAN_SLIME.setRepairItem(new ItemStack(TAItems.aurorianslimeball));
 		}
 	}
 
@@ -100,6 +104,8 @@ public class TAItems {
 	public static TAItem_Special_MoonShield moonshield;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "spikedchestplate")
 	public static TAItem_Armor_Spiked spikedchestplate;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "aurorianslimeboots")
+	public static TAItem_Armor_SlimeBoots aurorianslimeboots;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Seeds.ITEMNAME_LAVENDER)
 	public static TAItem_Seeds lavenderseeds;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_AbsorptionOrb.ITEMNAME)
@@ -142,6 +148,8 @@ public class TAItems {
 	public static TAItem_Tool_Cerulean_Bucket ceruleanbucket;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Cerulean_Shield.ITEMNAME)
 	public static TAItem_Tool_Cerulean_Shield ceruleanshield;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Debug.ITEMNAME)
+	public static TAItem_Debug debugger;
 
 	// FOODS
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_AURORIANBACON)
@@ -276,6 +284,7 @@ public class TAItems {
 	@SideOnly(Side.CLIENT)
 	public static void initModels() {
 		// SPECIAL
+		aurorianslimeboots.initModel();
 		absorptionorb.initModel();
 		aurorianiteaxe.initModel();
 		aurorianitepickaxe.initModel();
@@ -301,6 +310,7 @@ public class TAItems {
 		stickyspiker.initModel();
 		umbrashield.initModel();
 		umbrasword.initModel();
+		debugger.initModel();
 
 		// FOOD
 		aurorianbacon.initModel();
@@ -380,6 +390,7 @@ public class TAItems {
 
 		// SPECIAL
 		event.getRegistry().register(new TAItem_Armor_Spiked(EntityEquipmentSlot.CHEST, "spikedchestplate"));
+		event.getRegistry().register(new TAItem_Armor_SlimeBoots(EntityEquipmentSlot.FEET, "aurorianslimeboots"));
 		event.getRegistry().register(new TAItem_Seeds(TAItem_Seeds.ITEMNAME_LAVENDER));
 		event.getRegistry().register(new TAItem_Special_AbsorptionOrb());
 		event.getRegistry().register(new TAItem_Special_Aurorianite_Axe());
@@ -405,6 +416,7 @@ public class TAItems {
 		event.getRegistry().register(new TAItem_Tool_Cerulean_Shield());
 		event.getRegistry().register(new TAItem_Special_Umbra_Shield());
 		event.getRegistry().register(new TAItem_Special_Umbra_Sword());
+		event.getRegistry().register(new TAItem_Debug());
 
 		// FOODS
 		event.getRegistry().register(new TAItem_Food(TAItem_Food.Foods.AURORIANBACON));

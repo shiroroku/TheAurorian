@@ -1,7 +1,0 @@
-{
-    "parent": "block/door_top",
-    "textures": {
-        "bottom": "theaurorian:blocks/silentwooddoorlower",
-        "top": "theaurorian:blocks/silentwooddoorupper"
-    }
-}

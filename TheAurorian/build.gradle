@@ -11,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = "1.12.2-beta"
+version = version_theaurorian
 group = "com.elseytd.theaurorian" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "theaurorian"
 
@@ -28,10 +28,18 @@ repositories {
 	maven { 
 		url 'https://maven.blamejared.com' 
 	}
+	maven {
+		name = "Progwml6 maven"
+		url = "https://dvs1.progwml6.com/files/maven/"
+	}
+	maven {
+		name = "ModMaven"
+		url = "https://modmaven.k-4u.nl"
+	}
 }
 
 minecraft {
-    version = "1.12.2-14.23.5.2847"
+    version = version_forge
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -61,10 +69,10 @@ dependencies {
     //deobfCompile 'com.mod-buildcraft:buildcraft:6.0.8:dev'
     //deobfProvided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
 	
-	deobfCompile"slimeknights.mantle:Mantle:1.12-1.3.3.52"
-    deobfCompile"slimeknights:TConstruct:1.12.2-2.13.0.171"
-	
-	compile "vazkii.patchouli:Patchouli:1.0-+"
+	deobfCompile"slimeknights.mantle:Mantle:${version_mantle}"
+    deobfCompile"slimeknights:TConstruct:${version_tconstruct}"
+	compile "vazkii.patchouli:Patchouli:${version_patchouli}"
+    deobfCompile "mezz.jei:jei_${version_jei}"
 
     // for more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html

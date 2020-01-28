@@ -21,7 +21,7 @@ public class TAConfig {
 	public static boolean Config_GenerateRuins = true;
 	public static boolean Config_GenerateMoonTemple = true;
 	public static boolean Config_GenerateMoonTemplePath = true;
-	public static boolean Config_GenerateUmbraTower = false;
+	public static boolean Config_GenerateUmbraTower = true;
 
 	//Entities
 	public static int Config_RunestoneDungeonMobDensity = 1;
@@ -59,6 +59,7 @@ public class TAConfig {
 	public static int Config_OrbOfAbsorptionWhitelistBlacklist = 0;
 	public static String[] Config_OrbOfAbsorptionList = new String[] {};
 	public static int Config_UmbraSwordCooldown = 900;
+	public static int Config_SlimeBootsCooldown = 100;
 
 	public static void readConfig() {
 		Configuration cfg = TAMod.CONFIG;
@@ -94,7 +95,7 @@ public class TAConfig {
 		Config_OrbOfAbsorptionWhitelistBlacklist = cfg.getInt("OrbOfAbsorptionWhitelistBlacklist", name, Config_OrbOfAbsorptionWhitelistBlacklist, 0, 2, "Decides how to treat OrbOfAbsorptionList, 0 - ignored (Orb of Absorption can repair any damaged object), 1 - whitelist (can only repair items in the list), 2 - blacklist (repairs everything but items in the list)");
 		Config_OrbOfAbsorptionList = cfg.getStringList("OrbOfAbsorptionList", name, Config_OrbOfAbsorptionList, "List of items, use is decided by OrbOfAbsorptionWhitelistBlacklist, you can also specify mod ids to whitelist or blacklist whole mods, ex: (tconstruct, minecraft:elytra)");
 		Config_UmbraSwordCooldown = cfg.getInt("UmbraSwordCooldown", name, Config_UmbraSwordCooldown, 0, 72000, "Cooldown in ticks for the Umbra Swords ability");
-
+		Config_SlimeBootsCooldown = cfg.getInt("SlimeBootsCooldown", name, Config_SlimeBootsCooldown, 0, 72000, "Cooldown in ticks for the Aurorian Slime Boots jump ability");
 	}
 
 	private static void initCompatConfig(Configuration cfg) {

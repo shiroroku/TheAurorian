@@ -20,7 +20,7 @@ public class TABlock_Terrain_Moonsand extends BlockFalling {
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setHardness(0.5F);
 		this.setHarvestLevel("shovel", 0);
-		this.setSoundType(SoundType.GROUND);
+		this.setSoundType(SoundType.SAND);
 		this.setUnlocalizedName(TAMod.MODID + "." + BLOCKNAME);
 		this.setRegistryName(BLOCKNAME);
 	}
