@@ -5,6 +5,7 @@ import java.util.Random;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.World.TAWorldGenerator_UnderWater;
+import com.elseytd.theaurorian.World.TAWorldGenerator_Urns;
 import com.google.common.base.Predicate;
 
 import net.minecraft.block.state.IBlockState;
@@ -71,6 +72,23 @@ public class TABiomeDecorator extends BiomeDecorator {
 				int i6 = random.nextInt(16) + 8;
 				TAWorldGenerator_UnderWater gen = new TAWorldGenerator_UnderWater(5, TABlocks.aurorianstone);
 				gen.generate(worldIn, random, worldIn.getTopSolidOrLiquidBlock(this.chunkPos.add(l1, 0, i6)));
+			}
+		}
+
+		//=========URNS========
+		if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.CUSTOM)) {
+			if (TAConfig.Config_GenerateUrns) {
+				for (int i = 0; i < random.nextInt(2) + 1; i++) {
+					int x = random.nextInt(16) + 8;
+					int ymin = random.nextInt(40);
+					int ymax = ymin + random.nextInt(40);
+					int z = random.nextInt(16) + 8;
+
+					for (int y = ymin; y <= ymax; y++) {
+						TAWorldGenerator_Urns gen = new TAWorldGenerator_Urns();
+						gen.generate(worldIn, random, this.chunkPos.add(x, y, z));
+					}
+				}
 			}
 		}
 

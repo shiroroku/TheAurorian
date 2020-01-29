@@ -156,6 +156,7 @@ string.theaurorian.tooltip.stickyspiker=Does poison damage when it hits an entit
 string.theaurorian.tooltip.strangemeat=Huge chunk of meat, will take a while to eat! Finishing it will give you a random buff!
 string.theaurorian.tooltip.umbrashield=Lights whoever is in front of you on fire when blocking! Blocking for too long will cause it to overheat.
 tile.tamoonwater.name=Moonwater
+tile.theaurorian.urn.name=Urn
 tile.theaurorian.umbrastone.name=Umbra Stone
 tile.theaurorian.umbrastonecracked.name=Cracked Umbra Stone
 tile.theaurorian.umbrastonerooftiles.name=Umbra Stone Roof Tiles

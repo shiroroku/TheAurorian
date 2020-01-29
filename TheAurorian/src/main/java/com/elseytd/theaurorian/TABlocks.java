@@ -42,6 +42,7 @@ import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianGrass;
 import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianStone;
 import com.elseytd.theaurorian.Blocks.TABlock_Terrain_Moonsand;
 import com.elseytd.theaurorian.Blocks.TABlock_UmbraStone;
+import com.elseytd.theaurorian.Blocks.TABlock_Urn;
 import com.elseytd.theaurorian.Blocks.TAFluid_Moonwater;
 import com.elseytd.theaurorian.Compat.TABlockFluid_MoltenCerulean;
 import com.elseytd.theaurorian.Compat.TABlockFluid_MoltenMoonstone;
@@ -78,6 +79,8 @@ public class TABlocks {
 	public static TABlockFluid_MoltenMoonstone moltenmoonstoneblock;
 
 	// SPECIAL
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Urn.BLOCKNAME)
+	public static TABlock_Urn urn;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Furnace.BLOCKNAME)
 	public static TABlock_Furnace aurorianfurnace;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_FurnaceChimney.BLOCKNAME)
@@ -248,6 +251,7 @@ public class TABlocks {
 		moltenmoonstoneblock.initModel();
 
 		// SPECIAL
+		urn.initModel();
 		aurorianfurnace.initModel();
 		aurorianfurnacechimney.initModel();
 		aurorianfurnacelit.initModel();
@@ -359,6 +363,7 @@ public class TABlocks {
 		event.getRegistry().register(new TABlockFluid_MoltenMoonstone());
 
 		// SPECIAL
+		event.getRegistry().register(new TABlock_Urn());
 		event.getRegistry().register(new TABlock_Furnace(false));
 		event.getRegistry().register(new TABlock_Furnace(true));
 		event.getRegistry().register(new TABlock_FurnaceChimney());
@@ -458,6 +463,7 @@ public class TABlocks {
 		itemblockQuickReg(event, TABlocks.moltenmoonstoneblock);
 
 		// SPECIAL 
+		itemblockQuickReg(event, TABlocks.urn);
 		itemblockQuickReg(event, TABlocks.aurorianfurnace);
 		itemblockQuickReg(event, TABlocks.aurorianfurnacechimney);
 		itemblockQuickReg(event, TABlocks.aurorianfurnacelit);

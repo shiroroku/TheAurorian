@@ -46,6 +46,7 @@ public class TAConfig {
 	public static int Config_GeodeOre_Count = 8;
 	public static int Config_GeodeOre_HeightMin = 5;
 	public static int Config_GeodeOre_HeightMax = 128;
+	public static boolean Config_GenerateUrns = true;
 
 	//Misc
 	public static String[] Config_PortalLighter = new String[] { "minecraft:flint_and_steel" };
@@ -133,6 +134,8 @@ public class TAConfig {
 		Config_GeodeOre_Count = cfg.getInt("GeodeOreCount", name, Config_GeodeOre_Count, 0, 50, "Changes the size of ore vein");
 		Config_GeodeOre_HeightMin = cfg.getInt("GeodeOreHeightMin", name, Config_GeodeOre_HeightMin, 0, 255, "Changes the min height of ore vein");
 		Config_GeodeOre_HeightMax = cfg.getInt("GeodeOreHeightMax", name, Config_GeodeOre_HeightMax, 0, 255, "Changes the max height of ore vein");
+		Config_GenerateUrns = cfg.getBoolean("GenerateUrns", name, Config_GenerateUrns, "Set to false to disable Urns that spawn underground");
+
 	}
 
 	private static void initStructureConfig(Configuration cfg) {
