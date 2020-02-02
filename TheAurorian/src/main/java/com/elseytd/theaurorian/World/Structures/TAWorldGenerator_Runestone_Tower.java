@@ -117,8 +117,14 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator {
 	}
 
 	private void populateFloorChests(Chunk c, int heightmin, int heightmax, ResourceLocation loot, Random r) {
+		Chunk c1 = c.getWorld().getChunkFromChunkCoords(c.x + 1, c.z + 1);
+		Chunk c2 = c.getWorld().getChunkFromChunkCoords(c.x + 1, c.z);
+		Chunk c3 = c.getWorld().getChunkFromChunkCoords(c.x, c.z + 1);
 		for (int y = heightmin; y <= heightmax; y++) {
 			TAUtil.WorldAndGen.populateChestsInChunkAtHeight(c, y, r, loot, false);
+			TAUtil.WorldAndGen.populateChestsInChunkAtHeight(c1, y, r, loot, false);
+			TAUtil.WorldAndGen.populateChestsInChunkAtHeight(c2, y, r, loot, false);
+			TAUtil.WorldAndGen.populateChestsInChunkAtHeight(c3, y, r, loot, false);
 		}
 	}
 
@@ -130,8 +136,8 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator {
 		boolean gen = false;
 		int chunkX = c.x;
 		int chunkZ = c.z;
-		int x = chunkX * 16;
-		int z = chunkZ * 16;
+		int x = chunkX * 16 + 8;
+		int z = chunkZ * 16 + 8;
 		int y = 86;
 
 		final PlacementSettings settings = new PlacementSettings().setRotation(Rotation.NONE).setReplacedBlock(TABlocks.aurorianstone);
