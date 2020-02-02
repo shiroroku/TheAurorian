@@ -28,7 +28,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class TABiome extends Biome {
 
-	Block stoneBlock = TABlocks.aurorianstone;
+	private Block stoneBlock = TABlocks.aurorianstone;
+	private int genChance = 1;
 
 	public TABiome(Biome.BiomeProperties properties) {
 		super(properties.setRainDisabled().setTemperature(0.2F));
@@ -50,6 +51,14 @@ public class TABiome extends Biome {
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(TAEntity_CrystallineSprite.class, 65, 2, 2));
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(TAEntity_MoonAcolyte.class, 35, 1, 4));
 
+	}
+
+	public int getSpawnWeight() {
+		return genChance;
+	}
+
+	public void setSpawnWeight(int genChance) {
+		this.genChance = genChance;
 	}
 
 	@Override

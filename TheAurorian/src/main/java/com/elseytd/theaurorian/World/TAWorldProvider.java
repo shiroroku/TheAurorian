@@ -4,6 +4,7 @@ import com.elseytd.theaurorian.TADimensions;
 import com.elseytd.theaurorian.World.Biomes.TABiomeProvider;
 
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -27,6 +28,15 @@ public class TAWorldProvider extends WorldProvider {
 	@Override
 	public float getSunBrightnessFactor(float par1) {
 		return 0.75F;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public Vec3d getSkyColor(net.minecraft.entity.Entity cameraEntity, float partialTicks) {
+		double r = 0;
+		double g = 1;
+		double b = 2;
+		double muli = 0.15;
+		return new Vec3d(r * muli, g * muli, b * muli);
 	}
 
 	@Override

@@ -8,6 +8,7 @@ public class TABiomeAurorianPlains extends TABiome {
 
 	public TABiomeAurorianPlains() {
 		super(new BiomeProperties("aurorianplains").setBaseHeight(0.125F).setHeightVariation(0.6F));
+		this.setSpawnWeight(50);
 	}
 
 	@Override

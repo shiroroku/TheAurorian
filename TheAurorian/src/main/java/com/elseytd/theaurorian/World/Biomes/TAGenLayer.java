@@ -1,14 +1,12 @@
 package com.elseytd.theaurorian.World.Biomes;
 
-import com.elseytd.theaurorian.TABiomes;
-
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 
 public class TAGenLayer extends GenLayer {
 
-	protected Biome[] allowedBiomes = { TABiomes.aurorianforest, TABiomes.aurorianplains };
+	protected TABiome[] allowedBiomes = TABiomeProvider.biomes;
 
 	public TAGenLayer(long seed, GenLayer genlayer) {
 		super(seed);
@@ -25,10 +23,25 @@ public class TAGenLayer extends GenLayer {
 		for (int bx = 0; bx < depth; bx++) {
 			for (int bz = 0; bz < width; bz++) {
 				initChunkSeed(bx + x, bz + z);
-				biomes[bx + bz * width] = Biome.getIdForBiome(allowedBiomes[nextInt(allowedBiomes.length)]);
+				biomes[bx + bz * width] = getBiomeByWeight();
 			}
 		}
 		return biomes;
+	}
+
+	private int getBiomeByWeight() {
+		int total = 0;
+		for (TABiome b : allowedBiomes) {
+			total = total + b.getSpawnWeight();
+		}
+		int weight = this.nextInt(total) + 1;
+		for (TABiome b : allowedBiomes) {
+			weight = weight - b.getSpawnWeight();
+			if (weight <= 0) {
+				return Biome.getIdForBiome(b);
+			}
+		}
+		return Biome.getIdForBiome(allowedBiomes[0]);
 	}
 
 }

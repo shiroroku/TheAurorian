@@ -5,7 +5,6 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.elseytd.theaurorian.TABiomes;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_MoonTemple;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Ruins;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Runestone_Tower;
@@ -28,11 +27,11 @@ public class TAChunkGenerator implements IChunkGenerator {
 
 	private final World worldObj;
 	private Random random;
-	private Biome[] biomes = new Biome[] { TABiomes.aurorianforest, TABiomes.aurorianplains };
+	private Biome[] biomes;
 
 	private MapGenBase caveGenerator = new WorleyCaveGenerator();
 	private TATerrainGenerator terraingen = new TATerrainGenerator();
-	
+
 	private TAWorldGenerator_Runestone_Tower towergen = new TAWorldGenerator_Runestone_Tower();
 	private TAWorldGenerator_Ruins ruingen = new TAWorldGenerator_Ruins();
 	private TAWorldGenerator_MoonTemple templegen = new TAWorldGenerator_MoonTemple();
@@ -90,7 +89,7 @@ public class TAChunkGenerator implements IChunkGenerator {
 		if (TAWorldGenerator_UmbraTower.GENERATE_TOWERS) {
 			umbratowergen.generate(this.worldObj, this.random, blockpos);
 		}
-		
+
 		//BIOMES
 		Biome biome = this.worldObj.getBiome(blockpos.add(0, 0, 0));
 		biome.decorate(this.worldObj, this.random, blockpos);
