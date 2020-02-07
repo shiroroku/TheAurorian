@@ -55,11 +55,13 @@ import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Shovel;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Sickle;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Sword;
 
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -95,7 +97,6 @@ public class TAItems {
 		}
 	}
 
-	// SPECIAL
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Umbra_Sword.ITEMNAME)
 	public static TAItem_Special_Umbra_Sword umbrasword;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Umbra_Shield.ITEMNAME)
@@ -150,8 +151,6 @@ public class TAItems {
 	public static TAItem_Tool_Cerulean_Shield ceruleanshield;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Debug.ITEMNAME)
 	public static TAItem_Debug debugger;
-
-	// FOODS
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_AURORIANBACON)
 	public static TAItem_Food aurorianbacon;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_AURORIANPORK)
@@ -174,8 +173,6 @@ public class TAItems {
 	public static TAItem_Special_Bepsi bepsi;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_StrangeMeat.ITEMNAME)
 	public static TAItem_Special_StrangeMeat strangemeat;
-
-	// CRAFTING
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_AURORIANSLIMEBALL)
 	public static TAItem_Food aurorianslimeball;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_AurorianCoal.ITEMNAME)
@@ -216,8 +213,6 @@ public class TAItems {
 	public static TAItem_Basic umbraingot;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_INGOT_AURORIANSTEEL)
 	public static TAItem_Basic auroriansteel;
-
-	// CERULEAN ARMOR
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "ceruleanhelmet")
 	public static TAItem_Armor_Cerulean ceruleanhelmet;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "ceruleanchestplate")
@@ -226,8 +221,6 @@ public class TAItems {
 	public static TAItem_Armor_Cerulean ceruleanleggings;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "ceruleanboots")
 	public static TAItem_Armor_Cerulean ceruleanboots;
-
-	// KNIGHT ARMOR
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "knighthelmet")
 	public static TAItem_Armor_Knight knighthelmet;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "knightchestplate")
@@ -236,8 +229,6 @@ public class TAItems {
 	public static TAItem_Armor_Knight knightleggings;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "knightboots")
 	public static TAItem_Armor_Knight knightboots;
-
-	// MOONSTONE TOOLS
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Moonstone_Axe.ITEMNAME)
 	public static TAItem_Tool_Moonstone_Axe moonstoneaxe;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Moonstone_Hoe.ITEMNAME)
@@ -250,8 +241,6 @@ public class TAItems {
 	public static TAItem_Tool_Moonstone_Sickle moonstonesickle;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Moonstone_Sword.ITEMNAME)
 	public static TAItem_Tool_Moonstone_Sword moonstonesword;
-
-	// AURORIAN STONE TOOLS
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Aurorian_Stone_Axe.ITEMNAME)
 	public static TAItem_Tool_Aurorian_Stone_Axe aurorianstoneaxe;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Aurorian_Stone_Hoe.ITEMNAME)
@@ -264,8 +253,6 @@ public class TAItems {
 	public static TAItem_Tool_Aurorian_Stone_Sickle aurorianstonesickle;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Aurorian_Stone_Sword.ITEMNAME)
 	public static TAItem_Tool_Aurorian_Stone_Sword aurorianstonesword;
-
-	// SILENTWOOD TOOLS
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Silentwood_Axe.ITEMNAME)
 	public static TAItem_Tool_Silentwood_Axe silentwoodaxe;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Silentwood_Bow.ITEMNAME)
@@ -281,212 +268,137 @@ public class TAItems {
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Silentwood_Sword.ITEMNAME)
 	public static TAItem_Tool_Silentwood_Sword silentwoodsword;
 
+	private enum TAItemRegistry {
+		ABSORPTIONORB(new TAItem_Special_AbsorptionOrb()),
+		AMULETDARK(new TAItem_Special_Amulet(TAItem_Special_Amulet.Amulets.DARKAMULET)),
+		AMULETKEEPER(new TAItem_Special_Amulet(TAItem_Special_Amulet.Amulets.KEEPERAMULET)),
+		AURORIANBACON(new TAItem_Food(TAItem_Food.Foods.AURORIANBACON)),
+		AURORIANCOAL(new TAItem_Crafting_AurorianCoal()),
+		AURORIANITEAXE(new TAItem_Special_Aurorianite_Axe()),
+		AURORIANITEPICKAXE(new TAItem_Special_Aurorianite_Pickaxe()),
+		AURORIANITESWORD(new TAItem_Special_Aurorianite_Sword()),
+		AURORIANPORK(new TAItem_Food(TAItem_Food.Foods.AURORIANPORK)),
+		AURORIANPORKCOOKED(new TAItem_Food(TAItem_Food.Foods.COOKEDAURORIANPORK)),
+		AURORIANSLIMEBALL(new TAItem_Food(TAItem_Food.Foods.AURORIANSLIMEBALL)),
+		AURORIANSLIMEBOOTS(new TAItem_Armor_SlimeBoots(EntityEquipmentSlot.FEET, "aurorianslimeboots")),
+		AURORIANSTONEAXE(new TAItem_Tool_Aurorian_Stone_Axe()),
+		AURORIANSTONEHOE(new TAItem_Tool_Aurorian_Stone_Hoe()),
+		AURORIANSTONEPICKAXE(new TAItem_Tool_Aurorian_Stone_Pickaxe()),
+		AURORIANSTONESHOVEL(new TAItem_Tool_Aurorian_Stone_Shovel()),
+		AURORIANSTONESICKLE(new TAItem_Tool_Aurorian_Stone_Sickle()),
+		AURORIANSTONESWORD(new TAItem_Tool_Aurorian_Stone_Sword()),
+		BEPSI(new TAItem_Special_Bepsi()),
+		CERULEANARMORBOOTS(new TAItem_Armor_Cerulean(EntityEquipmentSlot.FEET, "ceruleanboots")),
+		CERULEANARMORCHESTPLATE(new TAItem_Armor_Cerulean(EntityEquipmentSlot.CHEST, "ceruleanchestplate")),
+		CERULEANARMORHELMET(new TAItem_Armor_Cerulean(EntityEquipmentSlot.HEAD, "ceruleanhelmet")),
+		CERULEANARMORLEGGINGS(new TAItem_Armor_Cerulean(EntityEquipmentSlot.LEGS, "ceruleanleggings")),
+		CERULEANARROW(new TAItem_Tool_Cerulean_Arrow()),
+		CERULEANBUCKET(new TAItem_Tool_Cerulean_Bucket()),
+		CERULEANSHIELD(new TAItem_Tool_Cerulean_Shield()),
+		CRYSTAL(new TAItem_Basic(TAItem_Basic.Items.CRYSTAL)),
+		CRYSTALLINEPICKAXE(new TAItem_Special_Crystalline_Pickaxe()),
+		CRYSTALLINESHIELD(new TAItem_Special_Crystalline_Shield()),
+		CRYSTALLINESPRITE(new TAItem_CrystallineSprite()),
+		CUP(new TAItem_Basic(TAItem_Basic.Items.CUP)),
+		DEBUGGER(new TAItem_Debug()),
+		INGOTAURORIANITE(new TAItem_Basic(TAItem_Basic.Items.INGOT_AURORIANITE)),
+		INGOTAURORIANSTEEL(new TAItem_Basic(TAItem_Basic.Items.INGOT_AURORIANSTEEL)),
+		INGOTCERULEAN(new TAItem_Basic(TAItem_Basic.Items.INGOT_CERULEAN)),
+		INGOTCRYSTALLINE(new TAItem_Basic(TAItem_Basic.Items.INGOT_CRYSTALLINE)),
+		INGOTMOONSTONE(new TAItem_Basic(TAItem_Basic.Items.INGOT_MOONSTONE)),
+		INGOTUMBRA(new TAItem_Basic(TAItem_Basic.Items.INGOT_UMBRA)),
+		KEYDARKSTONE(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.DARKSTONE)),
+		KEYMOONTEMPLE(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.MOONTEMPLE)),
+		KEYMOONTEMPLECELL(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.MOONTEMPLECELL)),
+		KEYRUNESTONE(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.RUNESTONE)),
+		KEYRUNESTONELOOT(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.RUNESTONELOOT)),
+		KNIGHTARMORBOOTS(new TAItem_Armor_Knight(EntityEquipmentSlot.FEET, "knightboots")),
+		KNIGHTARMORCHESTPLATE(new TAItem_Armor_Knight(EntityEquipmentSlot.CHEST, "knightchestplate")),
+		KNIGHTARMORHELMET(new TAItem_Armor_Knight(EntityEquipmentSlot.HEAD, "knighthelmet")),
+		KNIGHTARMORLEGGINGS(new TAItem_Armor_Knight(EntityEquipmentSlot.LEGS, "knightleggings")),
+		LAVENDER(new TAItem_Crafting_Lavender()),
+		LIVINGDIVININGROD(new TAItem_Special_LivingDiviningRod()),
+		LOCKPICKS(new TAItem_Special_Lockpicks()),
+		MOONSHIELD(new TAItem_Special_MoonShield()),
+		MOONSTONEAXE(new TAItem_Tool_Moonstone_Axe()),
+		MOONSTONEHOE(new TAItem_Tool_Moonstone_Hoe()),
+		MOONSTONEPICKAXE(new TAItem_Tool_Moonstone_Pickaxe()),
+		MOONSTONESHOVEL(new TAItem_Tool_Moonstone_Shovel()),
+		MOONSTONESICKLE(new TAItem_Tool_Moonstone_Sickle()),
+		MOONSTONESWORD(new TAItem_Tool_Moonstone_Sword()),
+		MOONTEMPLECELLKEYFRAGMENT(new TAItem_Crafting_MoonTempleCellKeyFragment()),
+		NUGGETCERULEAN(new TAItem_Crafting_Nugget(TAItem_Crafting_Nugget.ITEMNAME_CERULEAN)),
+		NUGGETCOAL(new TAItem_Crafting_Nugget(TAItem_Crafting_Nugget.ITEMNAME_COAL)),
+		NUGGETMOONSTONE(new TAItem_Crafting_Nugget(TAItem_Crafting_Nugget.ITEMNAME_MOONSTONE)),
+		PLANTFIBER(new TAItem_Basic(TAItem_Basic.Items.PLANTFIBER)),
+		SCRAPAURORIANITE(new TAItem_Basic(TAItem_Basic.Items.SCRAP_AURORIANITE)),
+		SCRAPCRYSTALLINE(new TAItem_Basic(TAItem_Basic.Items.SCRAP_CRYSTALLINE)),
+		SCRAPUMBRA(new TAItem_Basic(TAItem_Basic.Items.SCRAP_UMBRA)),
+		SEEDSLAVENDER(new TAItem_Seeds(TAItem_Seeds.ITEMNAME_LAVENDER)),
+		SILENTWOODAXE(new TAItem_Tool_Silentwood_Axe()),
+		SILENTWOODBOW(new TAItem_Tool_Silentwood_Bow()),
+		SILENTWOODHOE(new TAItem_Tool_Silentwood_Hoe()),
+		SILENTWOODPICKAXE(new TAItem_Tool_Silentwood_Pickaxe()),
+		SILENTWOODSHOVEL(new TAItem_Tool_Silentwood_Shovel()),
+		SILENTWOODSICKLE(new TAItem_Tool_Silentwood_Sickle()),
+		SILENTWOODSTICK(new TAItem_Crafting_SilentwoodStick()),
+		SILENTWOODSWORD(new TAItem_Tool_Silentwood_Sword()),
+		SILKBERRY(new TAItem_Food_Silkberry()),
+		SILKBERRYRASIN(new TAItem_Food(TAItem_Food.Foods.SILKBERRYRASIN)),
+		SPIKEDCHESTPLATE(new TAItem_Armor_Spiked(EntityEquipmentSlot.CHEST, "spikedchestplate")),
+		STICKYSPIKER(new TAItem_Special_StickySpiker()),
+		STRANGEMEAT(new TAItem_Special_StrangeMeat()),
+		TEALAVENDER(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.LAVENDER)),
+		TEAPETUNIA(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.PETUNIA)),
+		TEASEEDY(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.SEEDY)),
+		TEASILKBERRY(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.SILKBERRY)),
+		UMBRASHIELD(new TAItem_Special_Umbra_Shield()),
+		UMBRASWORD(new TAItem_Special_Umbra_Sword());
+
+		private Item modItem;
+
+		TAItemRegistry(Item i) {
+			this.modItem = i;
+		}
+
+		public void InitModel() {
+			ModelLoader.setCustomModelResourceLocation(modItem, 0, new ModelResourceLocation(modItem.getRegistryName(), "inventory"));
+		}
+
+		public void Register(RegistryEvent.Register<Item> event) {
+			event.getRegistry().register(this.modItem);
+		}
+
+		public boolean hasSpecialModel() {
+			if (this.modItem instanceof ISpecialModel) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+
 	@SideOnly(Side.CLIENT)
 	public static void initModels() {
-		// SPECIAL
-		aurorianslimeboots.initModel();
-		absorptionorb.initModel();
-		aurorianiteaxe.initModel();
-		aurorianitepickaxe.initModel();
-		aurorianitesword.initModel();
-		ceruleanarrow.initModel();
-		ceruleanbucket.initModel();
-		ceruleanshield.initModel();
-		crystallinepickaxe.initModel();
-		crystallineshield.initModel();
-		crystallinesprite.initModel();
-		darkamulet.initModel();
-		darkstonekey.initModel();
-		keeperamulet.initModel();
-		lavenderseeds.initModel();
-		livingdiviningrod.initModel();
-		lockpicks.initModel();
-		moonshield.initModel();
-		moontemplecellkey.initModel();
-		moontemplekey.initModel();
-		runestonekey.initModel();
-		runestonelootkey.initModel();
-		spikedchestplate.initModel();
-		stickyspiker.initModel();
-		umbrashield.initModel();
-		umbrasword.initModel();
-		debugger.initModel();
+		for (TAItemRegistry i : TAItemRegistry.values()) {
+			if (!i.hasSpecialModel()) {
+				i.InitModel();
+			} else {
+				ISpecialModel model = (ISpecialModel) i.modItem;
+				model.initModel();
+			}
+		}
+	}
 
-		// FOOD
-		aurorianbacon.initModel();
-		aurorianpork.initModel();
-		aurorianporkcooked.initModel();
-		bepsi.initModel();
-		silkberry.initModel();
-		silkberryrasin.initModel();
-		strangemeat.initModel();
-		tealavender.initModel();
-		teapetunia.initModel();
-		teaseedy.initModel();
-		teasilkberry.initModel();
-
-		// CRAFTING
-		auroriancoal.initModel();
-		auroriancoalnugget.initModel();
-		aurorianslimeball.initModel();
-		ceruleaningot.initModel();
-		ceruleannugget.initModel();
-		crystal.initModel();
-		cup.initModel();
-		lavender.initModel();
-		moonstoneingot.initModel();
-		moonstonenugget.initModel();
-		moontemplecellkeyfragment.initModel();
-		plantfiber.initModel();
-		silentwoodstick.initModel();
-		scrapaurorianite.initModel();
-		scrapcrystalline.initModel();
-		scrapumbra.initModel();
-		aurorianiteingot.initModel();
-		crystallineingot.initModel();
-		umbraingot.initModel();
-		auroriansteel.initModel();
-
-		// CERULEAN ARMOR
-		ceruleanhelmet.initModel();
-		ceruleanchestplate.initModel();
-		ceruleanleggings.initModel();
-		ceruleanboots.initModel();
-
-		// KNIGHT ARMOR
-		knighthelmet.initModel();
-		knightchestplate.initModel();
-		knightleggings.initModel();
-		knightboots.initModel();
-
-		// MOONSTONE TOOLS
-		moonstoneaxe.initModel();
-		moonstonehoe.initModel();
-		moonstonepickaxe.initModel();
-		moonstoneshovel.initModel();
-		moonstonesickle.initModel();
-		moonstonesword.initModel();
-
-		// AURORIAN STONE TOOLS
-		aurorianstoneaxe.initModel();
-		aurorianstonehoe.initModel();
-		aurorianstonepickaxe.initModel();
-		aurorianstoneshovel.initModel();
-		aurorianstonesickle.initModel();
-		aurorianstonesword.initModel();
-
-		// SILENTWOOD TOOLS
-		silentwoodaxe.initModel();
-		silentwoodbow.initModel();
-		silentwoodhoe.initModel();
-		silentwoodpickaxe.initModel();
-		silentwoodshovel.initModel();
-		silentwoodsickle.initModel();
-		silentwoodsword.initModel();
-
+	public interface ISpecialModel {
+		@SideOnly(Side.CLIENT)
+		public void initModel();
 	}
 
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-
-		// SPECIAL
-		event.getRegistry().register(new TAItem_Armor_Spiked(EntityEquipmentSlot.CHEST, "spikedchestplate"));
-		event.getRegistry().register(new TAItem_Armor_SlimeBoots(EntityEquipmentSlot.FEET, "aurorianslimeboots"));
-		event.getRegistry().register(new TAItem_Seeds(TAItem_Seeds.ITEMNAME_LAVENDER));
-		event.getRegistry().register(new TAItem_Special_AbsorptionOrb());
-		event.getRegistry().register(new TAItem_Special_Aurorianite_Axe());
-		event.getRegistry().register(new TAItem_Special_Aurorianite_Pickaxe());
-		event.getRegistry().register(new TAItem_Special_Aurorianite_Sword());
-		event.getRegistry().register(new TAItem_Special_Crystalline_Pickaxe());
-		event.getRegistry().register(new TAItem_Special_Crystalline_Shield());
-		event.getRegistry().register(new TAItem_CrystallineSprite());
-		event.getRegistry().register(new TAItem_Special_MoonShield());
-		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.DARKSTONE));
-		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.MOONTEMPLE));
-		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.MOONTEMPLECELL));
-		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.RUNESTONE));
-		event.getRegistry().register(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.RUNESTONELOOT));
-		event.getRegistry().register(new TAItem_Special_Amulet(TAItem_Special_Amulet.Amulets.DARKAMULET));
-		event.getRegistry().register(new TAItem_Special_Amulet(TAItem_Special_Amulet.Amulets.KEEPERAMULET));
-		event.getRegistry().register(new TAItem_Special_LivingDiviningRod());
-		event.getRegistry().register(new TAItem_Special_Lockpicks());
-		event.getRegistry().register(new TAItem_Special_StickySpiker());
-		event.getRegistry().register(new TAItem_Special_StrangeMeat());
-		event.getRegistry().register(new TAItem_Tool_Cerulean_Arrow());
-		event.getRegistry().register(new TAItem_Tool_Cerulean_Bucket());
-		event.getRegistry().register(new TAItem_Tool_Cerulean_Shield());
-		event.getRegistry().register(new TAItem_Special_Umbra_Shield());
-		event.getRegistry().register(new TAItem_Special_Umbra_Sword());
-		event.getRegistry().register(new TAItem_Debug());
-
-		// FOODS
-		event.getRegistry().register(new TAItem_Food(TAItem_Food.Foods.AURORIANBACON));
-		event.getRegistry().register(new TAItem_Food(TAItem_Food.Foods.AURORIANPORK));
-		event.getRegistry().register(new TAItem_Food(TAItem_Food.Foods.COOKEDAURORIANPORK));
-		event.getRegistry().register(new TAItem_Food(TAItem_Food.Foods.AURORIANSLIMEBALL));
-		event.getRegistry().register(new TAItem_Food(TAItem_Food.Foods.SILKBERRYRASIN));
-		event.getRegistry().register(new TAItem_Food_Silkberry());
-		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.LAVENDER));
-		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.PETUNIA));
-		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.SEEDY));
-		event.getRegistry().register(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.SILKBERRY));
-		event.getRegistry().register(new TAItem_Special_Bepsi());
-
-		// CRAFTING
-		event.getRegistry().register(new TAItem_Crafting_AurorianCoal());
-		event.getRegistry().register(new TAItem_Crafting_Lavender());
-		event.getRegistry().register(new TAItem_Crafting_MoonTempleCellKeyFragment());
-		event.getRegistry().register(new TAItem_Crafting_Nugget(TAItem_Crafting_Nugget.ITEMNAME_CERULEAN));
-		event.getRegistry().register(new TAItem_Crafting_Nugget(TAItem_Crafting_Nugget.ITEMNAME_COAL));
-		event.getRegistry().register(new TAItem_Crafting_Nugget(TAItem_Crafting_Nugget.ITEMNAME_MOONSTONE));
-		event.getRegistry().register(new TAItem_Crafting_SilentwoodStick());
-		event.getRegistry().register(new TAItem_Basic(TAItem_Basic.Items.CRYSTAL));
-		event.getRegistry().register(new TAItem_Basic(TAItem_Basic.Items.CUP));
-		event.getRegistry().register(new TAItem_Basic(TAItem_Basic.Items.INGOT_CERULEAN));
-		event.getRegistry().register(new TAItem_Basic(TAItem_Basic.Items.INGOT_MOONSTONE));
-		event.getRegistry().register(new TAItem_Basic(TAItem_Basic.Items.INGOT_AURORIANITE));
-		event.getRegistry().register(new TAItem_Basic(TAItem_Basic.Items.INGOT_CRYSTALLINE));
-		event.getRegistry().register(new TAItem_Basic(TAItem_Basic.Items.INGOT_UMBRA));
-		event.getRegistry().register(new TAItem_Basic(TAItem_Basic.Items.INGOT_AURORIANSTEEL));
-		event.getRegistry().register(new TAItem_Basic(TAItem_Basic.Items.PLANTFIBER));
-		event.getRegistry().register(new TAItem_Basic(TAItem_Basic.Items.SCRAP_AURORIANITE));
-		event.getRegistry().register(new TAItem_Basic(TAItem_Basic.Items.SCRAP_CRYSTALLINE));
-		event.getRegistry().register(new TAItem_Basic(TAItem_Basic.Items.SCRAP_UMBRA));
-
-		// CERULEAN ARMOR
-		event.getRegistry().register(new TAItem_Armor_Cerulean(EntityEquipmentSlot.HEAD, "ceruleanhelmet"));
-		event.getRegistry().register(new TAItem_Armor_Cerulean(EntityEquipmentSlot.CHEST, "ceruleanchestplate"));
-		event.getRegistry().register(new TAItem_Armor_Cerulean(EntityEquipmentSlot.LEGS, "ceruleanleggings"));
-		event.getRegistry().register(new TAItem_Armor_Cerulean(EntityEquipmentSlot.FEET, "ceruleanboots"));
-
-		// KNIGHT ARMOR
-		event.getRegistry().register(new TAItem_Armor_Knight(EntityEquipmentSlot.HEAD, "knighthelmet"));
-		event.getRegistry().register(new TAItem_Armor_Knight(EntityEquipmentSlot.CHEST, "knightchestplate"));
-		event.getRegistry().register(new TAItem_Armor_Knight(EntityEquipmentSlot.LEGS, "knightleggings"));
-		event.getRegistry().register(new TAItem_Armor_Knight(EntityEquipmentSlot.FEET, "knightboots"));
-
-		// MOONSTONE STONE TOOLS
-		event.getRegistry().register(new TAItem_Tool_Moonstone_Axe());
-		event.getRegistry().register(new TAItem_Tool_Moonstone_Hoe());
-		event.getRegistry().register(new TAItem_Tool_Moonstone_Pickaxe());
-		event.getRegistry().register(new TAItem_Tool_Moonstone_Shovel());
-		event.getRegistry().register(new TAItem_Tool_Moonstone_Sickle());
-		event.getRegistry().register(new TAItem_Tool_Moonstone_Sword());
-
-		// AURORIAN STONE TOOLS
-		event.getRegistry().register(new TAItem_Tool_Aurorian_Stone_Axe());
-		event.getRegistry().register(new TAItem_Tool_Aurorian_Stone_Hoe());
-		event.getRegistry().register(new TAItem_Tool_Aurorian_Stone_Pickaxe());
-		event.getRegistry().register(new TAItem_Tool_Aurorian_Stone_Shovel());
-		event.getRegistry().register(new TAItem_Tool_Aurorian_Stone_Sickle());
-		event.getRegistry().register(new TAItem_Tool_Aurorian_Stone_Sword());
-
-		// SILENTWOOD TOOLS
-		event.getRegistry().register(new TAItem_Tool_Silentwood_Axe());
-		event.getRegistry().register(new TAItem_Tool_Silentwood_Bow());
-		event.getRegistry().register(new TAItem_Tool_Silentwood_Hoe());
-		event.getRegistry().register(new TAItem_Tool_Silentwood_Pickaxe());
-		event.getRegistry().register(new TAItem_Tool_Silentwood_Shovel());
-		event.getRegistry().register(new TAItem_Tool_Silentwood_Sickle());
-		event.getRegistry().register(new TAItem_Tool_Silentwood_Sword());
+		for (TAItemRegistry i : TAItemRegistry.values()) {
+			i.Register(event);
+		}
 	}
+
 }

@@ -5,14 +5,12 @@ import javax.annotation.Nullable;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -40,10 +38,5 @@ public class TAItem_Tool_Silentwood_Bow extends ItemBow {
 				return entityIn != null && entityIn.isHandActive() && entityIn.getActiveItemStack() == stack ? 1.0F : 0.0F;
 			}
 		});
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void initModel() {
-		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
 	}
 }

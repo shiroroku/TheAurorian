@@ -9,7 +9,6 @@ import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
@@ -25,7 +24,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -44,11 +42,6 @@ public class TAItem_Armor_Spiked extends ItemArmor {
 		return TAMod.MODID + ":textures/armor/spikedchestplate.png";
 	}
 
-	@SideOnly(Side.CLIENT)
-	public void initModel() {
-		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
-	}
-	
 	@Override
 	public net.minecraftforge.common.IRarity getForgeRarity(ItemStack stack) {
 		return EnumRarity.EPIC;

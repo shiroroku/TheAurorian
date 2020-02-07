@@ -8,7 +8,6 @@ import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -25,7 +24,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -66,11 +64,6 @@ public class TAItem_Special_Bepsi extends Item {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		playerIn.setActiveHand(handIn);
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void initModel() {
-		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
 	}
 
 	@SideOnly(Side.CLIENT)

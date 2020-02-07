@@ -26,7 +26,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TAItem_Food_Tea extends Item {
+public class TAItem_Food_Tea extends Item implements TAItems.ISpecialModel{
 
 	public static final String PARENT_MODEL = "tea";
 	public static final String ITEMNAME_LAVENDER = "tealavender";

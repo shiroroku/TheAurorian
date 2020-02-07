@@ -3,7 +3,6 @@ package com.elseytd.theaurorian.Items;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAMod;
 
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
@@ -15,9 +14,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TAItem_Food_Silkberry extends ItemSeedFood {
 
@@ -42,11 +38,6 @@ public class TAItem_Food_Silkberry extends ItemSeedFood {
 		} else {
 			return EnumActionResult.FAIL;
 		}
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void initModel() {
-		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
 	}
 
 }

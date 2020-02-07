@@ -3,14 +3,10 @@ package com.elseytd.theaurorian.Items;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TAItem_Armor_Knight extends ItemArmor {
 	
@@ -29,10 +25,5 @@ public class TAItem_Armor_Knight extends ItemArmor {
 		} else {
 			return TAMod.MODID + ":textures/armor/knightarmorlayer2.png";
 		}
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void initModel() {
-		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
 	}
 }
