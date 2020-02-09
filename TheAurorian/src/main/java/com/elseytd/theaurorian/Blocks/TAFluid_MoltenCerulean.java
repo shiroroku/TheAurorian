@@ -1,4 +1,4 @@
-package com.elseytd.theaurorian.Compat;
+package com.elseytd.theaurorian.Blocks;
 
 import com.elseytd.theaurorian.TAMod;
 

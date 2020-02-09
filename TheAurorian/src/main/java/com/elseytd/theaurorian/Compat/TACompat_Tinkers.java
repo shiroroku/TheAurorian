@@ -6,6 +6,8 @@ import java.awt.Color;
 
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAItems;
+import com.elseytd.theaurorian.Blocks.TAFluid_MoltenCerulean;
+import com.elseytd.theaurorian.Blocks.TAFluid_MoltenMoonstone;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
