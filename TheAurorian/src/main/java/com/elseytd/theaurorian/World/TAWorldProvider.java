@@ -53,7 +53,13 @@ public class TAWorldProvider extends WorldProvider {
 
 	@Override
 	public int getMoonPhase(long worldTime) {
-		return 2;
+		float rot = worldTime * 0.0025f;
+		return (int) ((int) 8 - (rot % 8));
+	}
+
+	@Override
+	public float calculateCelestialAngle(long worldTime, float partialTicks) {
+		return 0.4f;
 	}
 
 	@Override
@@ -81,10 +87,9 @@ public class TAWorldProvider extends WorldProvider {
 		return false;
 	}
 
-	@Override
-	public long getWorldTime() {
-		return 16000;
-	}
+	/*
+	 * @Override public long getWorldTime() { return 16000; }
+	 */
 
 	@Override
 	public boolean canDoLightning(net.minecraft.world.chunk.Chunk chunk) {
