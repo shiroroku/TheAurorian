@@ -20,11 +20,12 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
+@SuppressWarnings("deprecation")
 public class TATeleporter extends Teleporter {
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private final Long2ObjectMap<TATeleporter.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap(4096);
+	private static final Long2ObjectMap<TATeleporter.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap<PortalPosition>(4096);
 
 	private final WorldServer WSInstance;
 
@@ -36,11 +37,15 @@ public class TATeleporter extends Teleporter {
 	public static void transferEntity(Entity entity, int dimto) {
 		Teleporter teleporter = new TATeleporter(entity.getServer().getWorld(dimto));
 		if (entity instanceof EntityPlayerMP) {
+			EntityPlayerMP player = (EntityPlayerMP) entity;
+			if (!player.isCreative()) {
+				ReflectionHelper.setPrivateValue(EntityPlayerMP.class, player, true, "invulnerableDimensionChange", "field_184851_cj");
+			}
+
 			if (!ForgeHooks.onTravelToDimension(entity, TADimensions.DIMENSION_ID)) {
 				return;
 			}
-
-			((EntityPlayerMP) entity).mcServer.getPlayerList().transferPlayerToDimension((EntityPlayerMP) entity, dimto, teleporter);
+			player.mcServer.getPlayerList().transferPlayerToDimension(player, dimto, teleporter);
 		} else {
 			entity.changeDimension(dimto, teleporter);
 		}
@@ -71,36 +76,36 @@ public class TATeleporter extends Teleporter {
 			flag1 = false;
 		} else {
 			BlockPos blockpos4 = new BlockPos(entityIn);
-
 			for (int l = -128; l <= 128; ++l) {
 				BlockPos blockpos1;
 
-				for (int i1 = -128; i1 <= 128; ++i1)
+				for (int i1 = -128; i1 <= 128; ++i1) {
 					for (BlockPos blockpos = blockpos4.add(l, WSInstance.getActualHeight() - 1 - blockpos4.getY(), i1); blockpos.getY() >= 0; blockpos = blockpos1) {
 						blockpos1 = blockpos.down();
-
 						if (WSInstance.getBlockState(blockpos).getBlock() == TABlocks.aurorianportal) {
-							while (WSInstance.getBlockState(blockpos1 = blockpos.down()).getBlock() == TABlocks.aurorianportal)
+							while (WSInstance.getBlockState(blockpos1 = blockpos.down()).getBlock() == TABlocks.aurorianportal) {
 								blockpos = blockpos1;
-
+							}
 							double d1 = blockpos.distanceSq(blockpos4);
-
 							if (d0 < 0.0D || d1 < d0) {
 								d0 = d1;
 								object = blockpos;
 							}
 						}
 					}
+				}
 			}
 		}
 
 		if (d0 >= 0.0D) {
-			if (flag1)
+			if (flag1) {
 				destinationCoordinateCache.put(k, new Teleporter.PortalPosition((BlockPos) object, WSInstance.getTotalWorldTime()));
+			}
 
 			double d4 = ((BlockPos) object).getX() + 0.5D;
 			double d5 = ((BlockPos) object).getY() + 0.5D;
 			double d6 = ((BlockPos) object).getZ() + 0.5D;
+
 			EnumFacing enumfacing = null;
 
 			if (WSInstance.getBlockState(((BlockPos) object).west()).getBlock() == TABlocks.aurorianportal)
@@ -171,13 +176,14 @@ public class TATeleporter extends Teleporter {
 				entityIn.motionX = d2 * f2 + d3 * f5;
 				entityIn.motionZ = d2 * f4 + d3 * f3;
 				entityIn.rotationYaw = rotationYaw - enumfacing1.getHorizontalIndex() * 90 + enumfacing.getHorizontalIndex() * 90;
-			} else
+			} else {
 				entityIn.motionX = entityIn.motionY = entityIn.motionZ = 0.0D;
-
+			}
 			entityIn.setLocationAndAngles(d4, d5, d6, entityIn.rotationYaw, entityIn.rotationPitch);
 			return true;
-		} else
+		} else {
 			return false;
+		}
 	}
 
 	private boolean isBlockAirAndAbove(BlockPos pos) {
@@ -190,7 +196,7 @@ public class TATeleporter extends Teleporter {
 		int x = MathHelper.floor(entityIn.posX);
 		int y = MathHelper.floor(entityIn.posY);
 		int z = MathHelper.floor(entityIn.posZ);
-		
+
 		for (int h = this.world.getHeight() - 20; h > 0; h--) {
 			IBlockState blk = this.world.getBlockState(new BlockPos(x, h, z));
 			if (!this.world.isAirBlock(new BlockPos(x, h, z)) && blk != TABlocks.silentwoodlog && !(blk.getBlock() instanceof BlockLeaves) && !(blk.getBlock() instanceof BlockBush)) {
@@ -259,7 +265,7 @@ public class TATeleporter extends Teleporter {
 	public void removeStalePortalLocations(long worldTime) {
 		if (worldTime % 100L == 0L) {
 			long i = worldTime - 300L;
-			ObjectIterator<TATeleporter.PortalPosition> objectiterator = this.destinationCoordinateCache.values().iterator();
+			ObjectIterator<TATeleporter.PortalPosition> objectiterator = TATeleporter.destinationCoordinateCache.values().iterator();
 
 			while (objectiterator.hasNext()) {
 				TATeleporter.PortalPosition teleporter$portalposition = (TATeleporter.PortalPosition) objectiterator.next();
