@@ -4,17 +4,22 @@ import java.util.Random;
 
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAMod;
+import com.elseytd.theaurorian.TAUtil;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TABlock_Terrain_AurorianGrass extends Block {
 
@@ -52,10 +57,28 @@ public class TABlock_Terrain_AurorianGrass extends Block {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		if (worldIn.isRemote && (worldIn.isAirBlock(pos.up()) || worldIn.getBlockState(pos.up()).getBlock() instanceof BlockBush)) {
+			if (TAUtil.randomChanceOf(0.01) && TAUtil.randomChanceOf(0.5)) {
+				double d0 = (double) pos.getX() + 0.5D;
+				double d1 = (double) pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
+				double d2 = (double) pos.getZ() + 0.5D;
+				double d3 = 4 * rand.nextDouble();
+				double mo = 0.1D * rand.nextDouble();
+				worldIn.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, d0, d1 + 4 + d3, d2, mo, 0.0D, mo);
+			}
+			System.out.println(true);
+		}
+	}
+
+	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 		if (!worldIn.isRemote) {
-			if (!worldIn.isAreaLoaded(pos, 3))
+			if (!worldIn.isAreaLoaded(pos, 3)) {
 				return;
+			}
+
 			if (worldIn.getLightFromNeighbors(pos.up()) < 4 && worldIn.getBlockState(pos.up()).getLightOpacity(worldIn, pos.up()) > 2) {
 				worldIn.setBlockState(pos, TABlocks.auroriandirt.getDefaultState());
 			} else {
