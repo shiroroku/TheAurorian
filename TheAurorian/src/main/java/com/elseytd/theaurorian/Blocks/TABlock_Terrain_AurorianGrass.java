@@ -68,7 +68,6 @@ public class TABlock_Terrain_AurorianGrass extends Block {
 				double mo = 0.1D * rand.nextDouble();
 				worldIn.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, d0, d1 + 4 + d3, d2, mo, 0.0D, mo);
 			}
-			System.out.println(true);
 		}
 	}
 
