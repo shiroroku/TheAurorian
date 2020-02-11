@@ -26,6 +26,7 @@ import com.elseytd.theaurorian.Items.TAItem_Special_Crystalline_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Special_Crystalline_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
 import com.elseytd.theaurorian.Items.TAItem_Special_LivingDiviningRod;
+import com.elseytd.theaurorian.Items.TAItem_Special_Locator;
 import com.elseytd.theaurorian.Items.TAItem_Special_Lockpicks;
 import com.elseytd.theaurorian.Items.TAItem_Special_MoonShield;
 import com.elseytd.theaurorian.Items.TAItem_Special_StickySpiker;
@@ -97,6 +98,8 @@ public class TAItems {
 		}
 	}
 
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Locator.ITEMNAME)
+	public static TAItem_Special_Locator locator;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Umbra_Sword.ITEMNAME)
 	public static TAItem_Special_Umbra_Sword umbrasword;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Umbra_Shield.ITEMNAME)
@@ -318,6 +321,7 @@ public class TAItems {
 		KNIGHTARMORLEGGINGS(new TAItem_Armor_Knight(EntityEquipmentSlot.LEGS, "knightleggings")),
 		LAVENDER(new TAItem_Crafting_Lavender()),
 		LIVINGDIVININGROD(new TAItem_Special_LivingDiviningRod()),
+		LOCATOR(new TAItem_Special_Locator()),
 		LOCKPICKS(new TAItem_Special_Lockpicks()),
 		MOONSHIELD(new TAItem_Special_MoonShield()),
 		MOONSTONEAXE(new TAItem_Tool_Moonstone_Axe()),
