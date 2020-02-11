@@ -54,7 +54,11 @@ public class TAWorldProvider extends WorldProvider {
 	@Override
 	public int getMoonPhase(long worldTime) {
 		float rot = worldTime * 0.0025f;
-		return (int) ((int) 8 - (rot % 8));
+		int phase = (int) ((int) 8 - (rot % 8));
+		if (phase >= 8) {
+			return 7;
+		}
+		return phase;
 	}
 
 	@Override
@@ -86,10 +90,6 @@ public class TAWorldProvider extends WorldProvider {
 	public boolean isDaytime() {
 		return false;
 	}
-
-	/*
-	 * @Override public long getWorldTime() { return 16000; }
-	 */
 
 	@Override
 	public boolean canDoLightning(net.minecraft.world.chunk.Chunk chunk) {
