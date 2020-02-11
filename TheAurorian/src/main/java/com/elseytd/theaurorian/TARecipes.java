@@ -43,7 +43,6 @@ public class TARecipes {
 
 	public static void registerOreDictionary() {
 		OreDictionary.registerOre("treeLeaves", TABlocks.silentwoodleaves);
-		OreDictionary.registerOre("stickWood", TAItems.silentwoodstick);
 		OreDictionary.registerOre("stairWood", TABlocks.silentwoodstairs);
 		OreDictionary.registerOre("treeSapling", TABlocks.silentwoodsapling);
 		OreDictionary.registerOre("paneGlass", TABlocks.moonglasspane);
