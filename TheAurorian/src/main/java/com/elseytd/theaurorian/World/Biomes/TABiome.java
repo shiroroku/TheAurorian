@@ -10,9 +10,10 @@ import com.elseytd.theaurorian.Entities.CrystallineSprite.TAEntity_CrystallineSp
 import com.elseytd.theaurorian.Entities.Hollow.TAEntity_DisturbedHollow;
 import com.elseytd.theaurorian.Entities.MoonAcolyte.TAEntity_MoonAcolyte;
 import com.elseytd.theaurorian.Entities.Spirit.TAEntity_Spirit;
+import com.elseytd.theaurorian.World.TABiomeDecorator;
 import com.elseytd.theaurorian.World.TATerrainGenerator;
-import com.elseytd.theaurorian.World.TAWorldGenerator_Plant;
-import com.elseytd.theaurorian.World.TAWorldGenerator_Trees_Silentwood;
+import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_Plant;
+import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_Trees_Silentwood;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;

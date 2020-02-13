@@ -1,4 +1,4 @@
-package com.elseytd.theaurorian.World;
+package com.elseytd.theaurorian.World.Feature;
 
 import java.util.Random;
 

@@ -1,11 +1,12 @@
-package com.elseytd.theaurorian.World.Biomes;
+package com.elseytd.theaurorian.World;
 
 import java.util.Random;
 
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
-import com.elseytd.theaurorian.World.TAWorldGenerator_UnderWater;
-import com.elseytd.theaurorian.World.TAWorldGenerator_Urns;
+import com.elseytd.theaurorian.World.Biomes.TABiome;
+import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_UnderWater;
+import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_Urns;
 import com.google.common.base.Predicate;
 
 import net.minecraft.block.state.IBlockState;

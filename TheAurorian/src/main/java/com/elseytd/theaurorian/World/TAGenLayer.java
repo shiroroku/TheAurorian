@@ -1,4 +1,6 @@
-package com.elseytd.theaurorian.World.Biomes;
+package com.elseytd.theaurorian.World;
+
+import com.elseytd.theaurorian.World.Biomes.TABiome;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;

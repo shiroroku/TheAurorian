@@ -3,7 +3,7 @@ package com.elseytd.theaurorian.World.Biomes;
 import java.util.Random;
 
 import com.elseytd.theaurorian.TABlocks;
-import com.elseytd.theaurorian.World.TAWorldGenerator_Trees_WeepingWillow;
+import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_Trees_WeepingWillow;
 
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;

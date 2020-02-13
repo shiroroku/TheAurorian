@@ -42,7 +42,7 @@ public class TATerrainGenerator {
 		this.biomeWeights = new float[25];
 		for (int j = -2; j <= 2; ++j) {
 			for (int k = -2; k <= 2; ++k) {
-				float f = 10.0F / MathHelper.sqrt((j * j + k * k) + 0.2F);//sqrt_float
+				float f = 10.0F / MathHelper.sqrt((float)(j * j + k * k) + 0.2F);//sqrt_float
 				this.biomeWeights[j + 2 + (k + 2) * 5] = f;
 			}
 		}
@@ -88,14 +88,21 @@ public class TATerrainGenerator {
 				float f1 = 0.0F;
 				float f2 = 0.0F;
 				byte b0 = 2;
+                Biome biome1 = this.containedBiomes[j1 + 2 + (k1 + 2) * 10];
 
 				for (int l1 = -b0; l1 <= b0; ++l1) {
 					for (int i2 = -b0; i2 <= b0; ++i2) {
-						Biome biome = this.containedBiomes[j1 + 2 + (k1 + 2) * 10];//TABiomes.aurorian;
-						float baseHeight = biome.getBaseHeight();
-						float variation = biome.getHeightVariation();
+						Biome biome2 = this.containedBiomes[j1 + 2 + (k1 + 2) * 10];
+						float baseHeight = biome2.getBaseHeight();
+						float variation = biome2.getHeightVariation();
 
 						float f5 = biomeWeights[l1 + 2 + (i2 + 2) * 5] / (baseHeight + 2.0F);
+						
+						if (biome1.getBaseHeight() > biome2.getBaseHeight())
+                        {
+							f5 /= 2.0F;
+                        }
+						
 						f += variation * f5;
 						f1 += baseHeight * f5;
 						f2 += f5;
@@ -148,8 +155,8 @@ public class TATerrainGenerator {
 					double d7 = this.minLimitRegion[l] / 512.0D;
 					double d8 = this.maxLimitRegion[l] / 512.0D;
 					double d9 = (this.mainNoiseRegion[l] / 10.0D + 1.0D) / 2.0D;
-					double d10 = MathHelper.clamp(d7, d8, d9) - d6;
-
+					double d10 = MathHelper.clampedLerp(d7, d8, d9) - d6;
+					
 					if (j2 > 29) {
 						double d11 = ((j2 - 29) / 3.0F);
 						d10 = d10 * (1.0D - d11) + -10.0D * d11;

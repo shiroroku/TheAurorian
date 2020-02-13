@@ -3,7 +3,7 @@ package com.elseytd.theaurorian.Blocks;
 import java.util.Random;
 
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.World.TAWorldGenerator_Trees_Silentwood;
+import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_Trees_Silentwood;
 
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
