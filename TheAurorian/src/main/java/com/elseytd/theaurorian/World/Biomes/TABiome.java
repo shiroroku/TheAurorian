@@ -12,7 +12,7 @@ import com.elseytd.theaurorian.Entities.MoonAcolyte.TAEntity_MoonAcolyte;
 import com.elseytd.theaurorian.Entities.Spirit.TAEntity_Spirit;
 import com.elseytd.theaurorian.World.TATerrainGenerator;
 import com.elseytd.theaurorian.World.TAWorldGenerator_Plant;
-import com.elseytd.theaurorian.World.TAWorldGenerator_Trees;
+import com.elseytd.theaurorian.World.TAWorldGenerator_Trees_Silentwood;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;
@@ -80,7 +80,7 @@ public class TABiome extends Biome {
 
 	@Override
 	public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
-		return new TAWorldGenerator_Trees(false);
+		return new TAWorldGenerator_Trees_Silentwood(false);
 	}
 
 	@Override

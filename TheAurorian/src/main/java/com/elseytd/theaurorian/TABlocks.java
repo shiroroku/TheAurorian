@@ -28,6 +28,7 @@ import com.elseytd.theaurorian.Blocks.TABlock_Plant_Petunia;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Silentwood_Sapling;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Silkberry;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Tallgrass;
+import com.elseytd.theaurorian.Blocks.TABlock_Plant_WeepingWillow_Sapling;
 import com.elseytd.theaurorian.Blocks.TABlock_Portal;
 import com.elseytd.theaurorian.Blocks.TABlock_PortalframeBricks;
 import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Ladder;
@@ -46,6 +47,8 @@ import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianStone;
 import com.elseytd.theaurorian.Blocks.TABlock_Terrain_Moonsand;
 import com.elseytd.theaurorian.Blocks.TABlock_UmbraStone;
 import com.elseytd.theaurorian.Blocks.TABlock_Urn;
+import com.elseytd.theaurorian.Blocks.TABlock_WeepingWillow_Leaves;
+import com.elseytd.theaurorian.Blocks.TABlock_WeepingWillow_Log;
 import com.elseytd.theaurorian.Blocks.TAFluid_MoltenCerulean;
 import com.elseytd.theaurorian.Blocks.TAFluid_MoltenMoonstone;
 import com.elseytd.theaurorian.Blocks.TAFluid_Moonwater;
@@ -150,6 +153,8 @@ public class TABlocks {
 	public static TABlock_Terrain_AurorianFarmTile aurorianfarmtile;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Terrain_AurorianGrass.BLOCKNAME)
 	public static TABlock_Terrain_AurorianGrass auroriangrass;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Terrain_AurorianGrass.BLOCKNAME_LIGHT)
+	public static TABlock_Terrain_AurorianGrass auroriangrasslight;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Terrain_AurorianStone.BLOCKNAME)
 	public static TABlock_Terrain_AurorianStone aurorianstone;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Terrain_Moonsand.BLOCKNAME)
@@ -223,6 +228,14 @@ public class TABlocks {
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Silentwood_Planks.BLOCKNAME)
 	public static TABlock_Silentwood_Planks silentwoodplanks;
 
+	// WEEPING WILLOW
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_WeepingWillow_Leaves.BLOCKNAME)
+	public static TABlock_WeepingWillow_Leaves weepingwillowleaves;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_WeepingWillow_Log.BLOCKNAME)
+	public static TABlock_WeepingWillow_Log weepingwillowlog;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Plant_WeepingWillow_Sapling.BLOCKNAME)
+	public static TABlock_Plant_WeepingWillow_Sapling weepingwillowsapling;
+	
 	// MINEABLES
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Material.BLOCKNAME_COAL)
 	public static TABlock_Material auroriancoalblock;
@@ -263,7 +276,8 @@ public class TABlocks {
 		AURORIANFURNACECHIMNEY(new TABlock_FurnaceChimney()),
 		AURORIANFURNACEOFF(new TABlock_Furnace(false)),
 		AURORIANFURNACEON(new TABlock_Furnace(true)),
-		AURORIANGRASS(new TABlock_Terrain_AurorianGrass()),
+		AURORIANGRASS(new TABlock_Terrain_AurorianGrass(TABlock_Terrain_AurorianGrass.BLOCKNAME_LIGHT)),
+		AURORIANGRASSLIGHT(new TABlock_Terrain_AurorianGrass(TABlock_Terrain_AurorianGrass.BLOCKNAME)),
 		AURORIANPORTAL(new TABlock_Portal()),
 		AURORIANPORTALFRAME(new TABlock_PortalframeBricks()),
 		AURORIANSTONE(new TABlock_Terrain_AurorianStone()),
@@ -336,7 +350,10 @@ public class TABlocks {
 		UMBRASTONECRACKED(new TABlock_UmbraStone(TABlock_UmbraStone.BLOCKNAME_UMBRASTONECRACKED)),
 		UMBRASTONEROOFTILES(new TABlock_UmbraStone(TABlock_UmbraStone.BLOCKNAME_UMBRASTONEROOFTILES)),
 		UMBRASTONEROOFTILESSTAIRS(new TABlock_Stairs(new TABlock_UmbraStone(TABlock_UmbraStone.BLOCKNAME_UMBRASTONEROOFTILES), TABlock_Stairs.BLOCKNAME_UMBRASTONEROOFTILES)),
-		URN(new TABlock_Urn());
+		URN(new TABlock_Urn()),
+		WEEPINGWILLOWLEAVES(new TABlock_WeepingWillow_Leaves()),
+		WEEPINGWILLOWLOG(new TABlock_WeepingWillow_Log()),
+		WEEPINGWILLOWSAPLING(new TABlock_Plant_WeepingWillow_Sapling());
 
 		private Block modBlock;
 

@@ -58,10 +58,11 @@ public class TAChunkGenerator implements IChunkGenerator {
 		this.caveGenerator.generate(this.worldObj, x, z, chunkprimer);
 		Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
 
-		byte[] biomeArray = chunk.getBiomeArray();
-		for (int i = 0; i < biomeArray.length; ++i) {
-			biomeArray[i] = (byte) Biome.getIdForBiome(this.biomes[i]);
-		}
+		
+		//byte[] biomeArray = chunk.getBiomeArray();
+		//for (int i = 0; i < biomeArray.length; ++i) {
+		//	biomeArray[i] = (byte) Biome.getIdForBiome(this.biomes[i]);
+		//}
 
 		chunk.generateSkylightMap();
 		return chunk;

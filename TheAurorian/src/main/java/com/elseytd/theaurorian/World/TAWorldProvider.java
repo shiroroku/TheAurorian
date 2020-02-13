@@ -1,6 +1,7 @@
 package com.elseytd.theaurorian.World;
 
 import com.elseytd.theaurorian.TADimensions;
+import com.elseytd.theaurorian.TASounds;
 import com.elseytd.theaurorian.World.Biomes.TABiomeProvider;
 
 import net.minecraft.util.math.BlockPos;
@@ -17,6 +18,12 @@ public class TAWorldProvider extends WorldProvider {
 	public void init() {
 		this.hasSkyLight = true;
 		this.biomeProvider = new TABiomeProvider(this.world.getWorldInfo());
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public net.minecraft.client.audio.MusicTicker.MusicType getMusicType() {
+		return TASounds.MUSICTYPE;
 	}
 
 	@Override

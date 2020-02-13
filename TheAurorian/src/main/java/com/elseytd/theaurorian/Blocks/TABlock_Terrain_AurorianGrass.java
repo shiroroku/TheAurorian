@@ -24,16 +24,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TABlock_Terrain_AurorianGrass extends Block {
 
 	public static final String BLOCKNAME = "auroriangrass";
+	public static final String BLOCKNAME_LIGHT = "auroriangrasslight";
 
-	public TABlock_Terrain_AurorianGrass() {
+	public TABlock_Terrain_AurorianGrass(String name) {
 		super(Material.GRASS);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setHardness(0.5F);
 		this.setHarvestLevel("shovel", 0);
-		this.setRegistryName(BLOCKNAME);
+		this.setRegistryName(name);
 		this.setSoundType(SoundType.GROUND);
 		this.setTickRandomly(true);
-		this.setUnlocalizedName(TAMod.MODID + "." + BLOCKNAME);
+		this.setUnlocalizedName(TAMod.MODID + "." + name);
 	}
 
 	@Override
@@ -93,7 +94,7 @@ public class TABlock_Terrain_AurorianGrass extends Block {
 						IBlockState iblockstate1 = worldIn.getBlockState(blockpos);
 
 						if (iblockstate1.getBlock() == TABlocks.auroriandirt && worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate.getLightOpacity(worldIn, pos.up()) <= 2) {
-							worldIn.setBlockState(blockpos, TABlocks.auroriangrass.getDefaultState());
+							worldIn.setBlockState(blockpos, this.getDefaultState());
 						}
 					}
 				}

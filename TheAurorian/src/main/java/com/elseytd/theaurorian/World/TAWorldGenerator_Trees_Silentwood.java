@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
-public class TAWorldGenerator_Trees extends WorldGenAbstractTree {
+public class TAWorldGenerator_Trees_Silentwood extends WorldGenAbstractTree {
 
 	private IBlockState blockStateWood = TABlocks.silentwoodlog.getDefaultState();
 	private IBlockState blockStateLeaves = TABlocks.silentwoodleaves.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
@@ -19,7 +19,7 @@ public class TAWorldGenerator_Trees extends WorldGenAbstractTree {
 	private final int minTreeHeight = 13;
 	private final int minLeavesHeight = 5;
 
-	public TAWorldGenerator_Trees(boolean notify) {
+	public TAWorldGenerator_Trees_Silentwood(boolean notify) {
 		super(notify);
 	}
 

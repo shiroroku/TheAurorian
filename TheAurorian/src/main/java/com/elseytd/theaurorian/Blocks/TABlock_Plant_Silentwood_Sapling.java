@@ -3,7 +3,7 @@ package com.elseytd.theaurorian.Blocks;
 import java.util.Random;
 
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.World.TAWorldGenerator_Trees;
+import com.elseytd.theaurorian.World.TAWorldGenerator_Trees_Silentwood;
 
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
@@ -53,7 +53,7 @@ public class TABlock_Plant_Silentwood_Sapling extends BlockBush implements IGrow
 	public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 		if (!TerrainGen.saplingGrowTree(worldIn, rand, pos))
 			return;
-		WorldGenerator worldgenerator = new TAWorldGenerator_Trees(true);
+		WorldGenerator worldgenerator = new TAWorldGenerator_Trees_Silentwood(true);
 
 		worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
 

@@ -1,0 +1,18 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "theaurorian:auroriangrasslight"
+	},
+	"variants": {
+		"normal": [
+			{
+				"model": "theaurorian:auroriangrasslight"
+			}
+		],
+		"inventory": [
+			{
+				"model": "theaurorian:auroriangrasslight"
+			}
+		]
+	}
+}
