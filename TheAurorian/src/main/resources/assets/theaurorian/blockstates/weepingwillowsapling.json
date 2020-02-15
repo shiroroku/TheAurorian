@@ -10,7 +10,7 @@
 		],
 		"inventory": [
 			{
-				"model": "theaurorian:weepingwillowsapling"
+				"model": "theaurorian:items/weepingwillowsapling"
 			}
 		],
 		"stage=0": [

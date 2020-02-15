@@ -1,0 +1,17 @@
+{
+    "music": {
+        "sounds": [
+            {
+                "name": "theaurorian:music/aurorian_1",
+                "stream": true
+            }
+        ]
+    },
+    "weepingwillowbell": {
+        "sounds": [
+            {
+                "name": "theaurorian:weepingwillowbell"
+            }
+        ]
+    }
+}

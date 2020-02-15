@@ -1,6 +1,6 @@
 {
 	"parent": "block/cross",
-	"textures":{
+	"textures": {
 		"cross": "theaurorian:blocks/silentwoodsapling"
 	}
 }

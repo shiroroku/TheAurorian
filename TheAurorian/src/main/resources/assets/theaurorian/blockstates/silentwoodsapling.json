@@ -10,7 +10,7 @@
 		],
 		"inventory": [
 			{
-				"model": "theaurorian:silentowoodsapling"
+				"model": "theaurorian:items/silentwoodsapling"
 			}
 		],
 		"stage=0": [

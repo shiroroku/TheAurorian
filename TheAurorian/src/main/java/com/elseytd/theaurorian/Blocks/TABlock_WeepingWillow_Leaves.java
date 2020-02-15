@@ -5,6 +5,9 @@ import java.util.Random;
 
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAMod;
+import com.elseytd.theaurorian.TAParticles;
+import com.elseytd.theaurorian.TAParticles.Particles;
+import com.elseytd.theaurorian.TAUtil;
 
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks.EnumType;
@@ -37,6 +40,19 @@ public class TABlock_WeepingWillow_Leaves extends BlockLeaves {
 		this.setSoundType(SoundType.PLANT);
 		this.setLightOpacity(1);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)));
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		if (worldIn.isRemote && (worldIn.isAirBlock(pos.down()))) {
+			if (TAUtil.randomChanceOf(0.01)) {
+				double d0 = (double) pos.getX() + rand.nextDouble();
+				double d1 = (double) pos.getY() - 0.2D;
+				double d2 = (double) pos.getZ() + rand.nextDouble();
+				TAParticles.spawnParticle(Particles.WEEPINGWILLOWDRIP, d0, d1, d2, 0, 0, 0);
+			}
+		}
 	}
 
 	@Override
