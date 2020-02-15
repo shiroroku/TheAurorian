@@ -26,7 +26,7 @@ public class Configs {
 		public int[] blackListedDims = {};
 
 		//Caves will not attempt to generate above this y level. Range 1-256", "Default: 128"
-		public int maxCaveHeight = 80;
+		public int maxCaveHeight = 60;
 
 		//Caves will not attempt to generate below this y level. Range 1-256", "Default: 1"
 		public int minCaveHeight = 1;

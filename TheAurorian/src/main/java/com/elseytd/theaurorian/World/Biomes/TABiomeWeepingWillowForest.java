@@ -10,8 +10,10 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class TABiomeWeepingWillowForest extends TABiome {
 
+	public static final String BIOMENAME = "weepingwillowforest";
+	
 	public TABiomeWeepingWillowForest() {
-		super(new BiomeProperties("aurorianplains").setBaseHeight(0.125F).setHeightVariation(0.6F));
+		super(new BiomeProperties(BIOMENAME).setBaseHeight(0.6F).setHeightVariation(0.5F));
 		this.topBlock = TABlocks.auroriangrasslight.getDefaultState();
 		this.setSpawnWeight(10);
 	}

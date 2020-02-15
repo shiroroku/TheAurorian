@@ -16,10 +16,8 @@ import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_Plant;
 import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_Trees_Silentwood;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
@@ -92,48 +90,44 @@ public class TABiome extends Biome {
 	@Override
 	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
 		int i = TATerrainGenerator.waterLevel + 1;
-		IBlockState iblockstate = this.topBlock;
-		IBlockState iblockstate1 = this.fillerBlock;
-		IBlockState iblockstatesand = TABlocks.moonsand.getDefaultState();
+		IBlockState topblk = this.topBlock;
+		IBlockState fillerblk = this.fillerBlock;
+		IBlockState sandblk = TABlocks.moonsand.getDefaultState();
 		int j = -1;
 		int k = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
-		int l = x & 15;
-		int i1 = z & 15;
+		int zc = x & 15;
+		int xc = z & 15;
 
-		for (int j1 = 255; j1 >= 0; --j1) {
-			if (j1 <= rand.nextInt(5)) {
-				chunkPrimerIn.setBlockState(i1, j1, l, BEDROCK);
+		for (int y = 255; y >= 0; --y) {
+			if (y <= rand.nextInt(5)) {
+				chunkPrimerIn.setBlockState(xc, y, zc, BEDROCK);
 			} else {
-				IBlockState iblockstate2 = chunkPrimerIn.getBlockState(i1, j1, l);
+				IBlockState iblockstate2 = chunkPrimerIn.getBlockState(xc, y, zc);
 				if (iblockstate2.getMaterial() == Material.AIR) {
 					j = -1;
 				} else if (iblockstate2.getBlock() == stoneBlock) {
 					if (j == -1) {
 						if (k <= 0) {
-							iblockstate = AIR;
-							iblockstate1 = stoneBlock.getDefaultState();
-						} else if (j1 >= i - 4 && j1 <= i + 1) {
-							iblockstate = this.topBlock;
-							iblockstate1 = this.fillerBlock;
+							topblk = AIR;
+							fillerblk = stoneBlock.getDefaultState();
+						} else if (y >= i - 4 && y <= i + 1) {
+							topblk = this.topBlock;
+							fillerblk = this.fillerBlock;
 						}
 						j = k;
 
-						if (j1 >= i - 1) {
-							chunkPrimerIn.setBlockState(i1, j1, l, iblockstate);
-						} else if (j1 < i - 7 - k) {
-							iblockstate = AIR;
-							iblockstate1 = stoneBlock.getDefaultState();
-							chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
+						if (y >= i - 1) {
+							chunkPrimerIn.setBlockState(xc, y, zc, topblk);
+						} else if (y < i - 7 - k) {
+							topblk = AIR;
+							fillerblk = stoneBlock.getDefaultState();
+							chunkPrimerIn.setBlockState(xc, y, zc, fillerblk);
 						} else {
-							chunkPrimerIn.setBlockState(i1, j1, l, iblockstatesand);
+							chunkPrimerIn.setBlockState(xc, y, zc, sandblk);
 						}
 					} else if (j > 0) {
 						--j;
-						chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
-						if (j == 0 && iblockstate1.getBlock() == Blocks.SAND && k > 1) {
-							j = rand.nextInt(4) + Math.max(0, j1 - 63);
-							iblockstate1 = iblockstate1.getValue(BlockSand.VARIANT) == BlockSand.EnumType.RED_SAND ? RED_SANDSTONE : SANDSTONE;
-						}
+						chunkPrimerIn.setBlockState(xc, y, zc, fillerblk);
 					}
 				}
 			}

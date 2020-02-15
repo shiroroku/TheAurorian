@@ -13,9 +13,10 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
 
 public class TATerrainGenerator {
-	public static final int waterLevel = 68;
+	public static final int waterLevel = 65;
 	private World world;
 	private Random random;
 
@@ -29,8 +30,56 @@ public class TATerrainGenerator {
 	private NoiseGeneratorOctaves maxLimitPerlinNoise;
 	private NoiseGeneratorOctaves mainPerlinNoise;
 	private NoiseGeneratorPerlin surfaceNoise;
-
 	private NoiseGeneratorOctaves depthNoise;
+
+	//Main Noise Scale X:
+	//	stretches the terrain along the x-axis, consequently making the terrain more smooth. 
+	//	Larger values for smoother terrain.
+	//Main Noise Scale Y:
+	//	stretches the terrain along the y (height) axis. 
+	//	Larger values for smoother, higher and more hilly terrain. Ranges from 1 to 5000, and defaults to 160.
+	//Main Noise Scale Z:
+	//	stretches the terrain along the z-axis, consequently making the terrain more smooth. 
+	//	Larger values for smoother terrain. Ranges from 1 to 5000, and defaults to 80.
+	//Depth Noise Scale X:
+	//	changes the abruptness of terrain height along the x axis. 
+	//	It ranges from 1 to 2000, and defaults to 200.
+	//Depth Noise Scale Z:
+	//	changes the abruptness of terrain height along the z axis. 
+	//	It ranges from 1 to 2000, and defaults to 200.
+	//Depth Noise Exponent: 
+	//	ranges from 0.01 to 20, and defaults to 0.5. Not quite sure what it does.
+	//Depth Base Size:
+	//	changes the base height of land. It ranges from 1 to 25, and defaults to 8.5. 
+	//	1 in this value corresponds to 8 blocks, so the default is 8.5 * 8, which is 68.
+	//Coordinate Scale: 
+	//	Larger values sharpen and create more frequent hills without stretching the biome. 
+	//	It is best used last to tweak the terrain. Ranges from 1 to 6000, and defaults to 684.412.
+	//Height Scale:
+	//	stretches the base hills vertically before more details are made. 
+	//	It ranges from 1 to 6000, and defaults to 684.412.
+	//Height Stretch:
+	//	pulls terrain upward, with smaller values causing more extreme stretching. 
+	//	Ranges from 0.01 to 50, and defaults to 12.
+	//Upper Limit Scale:
+	//	makes terrain more solid/riddled with holes depending on how close the values are to the lower limit scale values. 
+	//	Ranges from 1 to 5000, and defaults to 512.
+	//Lower Limit Scale:
+	//	makes terrain more solid or riddled with holes depending on how close the values are to the upper limit scale values. 
+	//	Ranges from 1 to 5000, and defaults to 512.
+
+	private static final int mainNoiseScaleX = 80;
+	private static final int mainNoiseScaleY = 160;
+	private static final int mainNoiseScaleZ = 80;
+	private static final double depthNoiseScaleX = 200;
+	private static final double depthNoiseScaleZ = 200;
+	private static final double depthNoiseScaleExponent = 0.5;
+	private static final double depthBaseSize = 8.5;
+	private static final double coordScale = 800;
+	private static final double heightScale = 800;
+	private static final double heightStretch = 10;
+	private static final double lowerLimitScale = 512;
+	private static final double upperLimitScale = 512;
 
 	private Biome[] containedBiomes;
 	private final float[] biomeWeights;
@@ -42,7 +91,7 @@ public class TATerrainGenerator {
 		this.biomeWeights = new float[25];
 		for (int j = -2; j <= 2; ++j) {
 			for (int k = -2; k <= 2; ++k) {
-				float f = 10.0F / MathHelper.sqrt((float)(j * j + k * k) + 0.2F);//sqrt_float
+				float f = 10.0F / MathHelper.sqrt((float) (j * j + k * k) + 0.2F);
 				this.biomeWeights[j + 2 + (k + 2) * 5] = f;
 			}
 		}
@@ -60,12 +109,10 @@ public class TATerrainGenerator {
 		this.maxLimitPerlinNoise = new NoiseGeneratorOctaves(rand, 16);
 		this.mainPerlinNoise = new NoiseGeneratorOctaves(rand, 8);
 		this.surfaceNoise = new NoiseGeneratorPerlin(rand, 4);
-		NoiseGeneratorOctaves noiseGen5 = new NoiseGeneratorOctaves(rand, 10);
 		this.depthNoise = new NoiseGeneratorOctaves(rand, 16);
-		NoiseGeneratorOctaves mobSpawnerNoise = new NoiseGeneratorOctaves(rand, 8);
+		NoiseGeneratorOctaves noiseGen5 = new NoiseGeneratorOctaves(rand, 10);
 
-		net.minecraftforge.event.terraingen.InitNoiseGensEvent.ContextOverworld ctx = new net.minecraftforge.event.terraingen.InitNoiseGensEvent.ContextOverworld(minLimitPerlinNoise, maxLimitPerlinNoise, mainPerlinNoise, surfaceNoise, noiseGen5, depthNoise, mobSpawnerNoise);
-
+		InitNoiseGensEvent.ContextOverworld ctx = new InitNoiseGensEvent.ContextOverworld(minLimitPerlinNoise, maxLimitPerlinNoise, mainPerlinNoise, surfaceNoise, noiseGen5, depthNoise, null);
 		ctx = net.minecraftforge.event.terraingen.TerrainGen.getModdedNoiseGenerators(world, rand, ctx);
 		this.minLimitPerlinNoise = ctx.getLPerlin1();
 		this.maxLimitPerlinNoise = ctx.getLPerlin2();
@@ -75,10 +122,10 @@ public class TATerrainGenerator {
 	}
 
 	private void generateHeightmap(int chunkX4, int chunkY4, int chunkZ4) {
-		this.depthRegion = this.depthNoise.generateNoiseOctaves(this.depthRegion, chunkX4, chunkZ4, 5, 5, 200.0D, 200.0D, 0.5D);
-		this.mainNoiseRegion = this.mainPerlinNoise.generateNoiseOctaves(this.mainNoiseRegion, chunkX4, chunkY4, chunkZ4, 5, 33, 5, 8.55515D, 4.277575D, 8.55515D);
-		this.minLimitRegion = this.minLimitPerlinNoise.generateNoiseOctaves(this.minLimitRegion, chunkX4, chunkY4, chunkZ4, 5, 33, 5, 684.412D, 684.412D, 684.412D);
-		this.maxLimitRegion = this.maxLimitPerlinNoise.generateNoiseOctaves(this.maxLimitRegion, chunkX4, chunkY4, chunkZ4, 5, 33, 5, 684.412D, 684.412D, 684.412D);
+		this.depthRegion = this.depthNoise.generateNoiseOctaves(this.depthRegion, chunkX4, chunkZ4, 5, 5, depthNoiseScaleX, depthNoiseScaleZ, depthNoiseScaleExponent);
+		this.mainNoiseRegion = this.mainPerlinNoise.generateNoiseOctaves(this.mainNoiseRegion, chunkX4, chunkY4, chunkZ4, 5, 33, 5, coordScale / mainNoiseScaleX, heightScale / mainNoiseScaleY, coordScale / mainNoiseScaleZ);
+		this.minLimitRegion = this.minLimitPerlinNoise.generateNoiseOctaves(this.minLimitRegion, chunkX4, chunkY4, chunkZ4, 5, 33, 5, coordScale, heightScale, coordScale);
+		this.maxLimitRegion = this.maxLimitPerlinNoise.generateNoiseOctaves(this.maxLimitRegion, chunkX4, chunkY4, chunkZ4, 5, 33, 5, coordScale, heightScale, coordScale);
 		int l = 0;
 		int i1 = 0;
 
@@ -87,22 +134,20 @@ public class TATerrainGenerator {
 				float f = 0.0F;
 				float f1 = 0.0F;
 				float f2 = 0.0F;
-				byte b0 = 2;
-                Biome biome1 = this.containedBiomes[j1 + 2 + (k1 + 2) * 10];
+				Biome biome1 = this.containedBiomes[j1 + 2 + (k1 + 2) * 10];
 
-				for (int l1 = -b0; l1 <= b0; ++l1) {
-					for (int i2 = -b0; i2 <= b0; ++i2) {
-						Biome biome2 = this.containedBiomes[j1 + 2 + (k1 + 2) * 10];
+				for (int l1 = -2; l1 <= 2; ++l1) {
+					for (int i2 = -2; i2 <= 2; ++i2) {
+
+						Biome biome2 = this.containedBiomes[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
 						float baseHeight = biome2.getBaseHeight();
 						float variation = biome2.getHeightVariation();
 
 						float f5 = biomeWeights[l1 + 2 + (i2 + 2) * 5] / (baseHeight + 2.0F);
-						
-						if (biome1.getBaseHeight() > biome2.getBaseHeight())
-                        {
+						if (biome2.getBaseHeight() > biome1.getBaseHeight()) {
 							f5 /= 2.0F;
-                        }
-						
+						}
+
 						f += variation * f5;
 						f1 += baseHeight * f5;
 						f2 += f5;
@@ -142,21 +187,21 @@ public class TATerrainGenerator {
 				double d13 = f1;
 				double d14 = f;
 				d13 += d12 * 0.2D;
-				d13 = d13 * 8.5D / 8.0D;
-				double d5 = 8.5D + d13 * 4.0D;
+				d13 = d13 * depthBaseSize / 8.0D;
+				double d5 = depthBaseSize + d13 * 4.0D;
 
 				for (int j2 = 0; j2 < 33; ++j2) {
-					double d6 = (j2 - d5) * 12.0D * 128.0D / 256.0D / d14;
+					double d6 = (j2 - d5) * heightStretch * 128.0D / 256.0D / d14;
 
 					if (d6 < 0.0D) {
 						d6 *= 4.0D;
 					}
 
-					double d7 = this.minLimitRegion[l] / 512.0D;
-					double d8 = this.maxLimitRegion[l] / 512.0D;
+					double d7 = this.minLimitRegion[l] / lowerLimitScale;
+					double d8 = this.maxLimitRegion[l] / upperLimitScale;
 					double d9 = (this.mainNoiseRegion[l] / 10.0D + 1.0D) / 2.0D;
 					double d10 = MathHelper.clampedLerp(d7, d8, d9) - d6;
-					
+
 					if (j2 > 29) {
 						double d11 = ((j2 - 29) / 3.0F);
 						d10 = d10 * (1.0D - d11) + -10.0D * d11;
