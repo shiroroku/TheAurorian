@@ -28,6 +28,7 @@ import com.elseytd.theaurorian.Blocks.TABlock_Plant_Petunia;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Silentwood_Sapling;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Silkberry;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Tallgrass;
+import com.elseytd.theaurorian.Blocks.TABlock_Plant_Tallgrass_Light;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_WeepingWillow_Sapling;
 import com.elseytd.theaurorian.Blocks.TABlock_Portal;
 import com.elseytd.theaurorian.Blocks.TABlock_PortalframeBricks;
@@ -130,6 +131,8 @@ public class TABlocks {
 	// PLANTS
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Plant_Tallgrass.BLOCKNAME)
 	public static TABlock_Plant_Tallgrass auroriantallgrass;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Plant_Tallgrass_Light.BLOCKNAME)
+	public static TABlock_Plant_Tallgrass_Light auroriantallgrasslight;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Plant_Crops.BLOCKNAME_SILKBERRY)
 	public static TABlock_Plant_Crops silkberrycrop;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Plant_Crops.BLOCKNAME_LAVENDER)
@@ -342,6 +345,7 @@ public class TABlocks {
 		PLANTSILKBERRY(new TABlock_Plant_Silkberry()),
 		PLANTSILKBERRYCROP(new TABlock_Plant_Crops(TABlock_Plant_Crops.BLOCKNAME_SILKBERRY)),
 		PLANTTALLGRASS(new TABlock_Plant_Tallgrass()),
+		PLANTTALLGRASSLIGHT(new TABlock_Plant_Tallgrass_Light()),
 		SILENTWOODLADDER(new TABlock_Silentwood_Ladder()),
 		SILENTWOODLEAVES(new TABlock_Silentwood_Leaves()),
 		SILENTWOODLOG(new TABlock_Silentwood_Log()),
