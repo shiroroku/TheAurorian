@@ -1,10 +1,42 @@
 package com.elseytd.theaurorian;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class TARecipes {
+
+	public enum blockBurnTimes {
+		AURORIANCOALBLOCK(TABlocks.auroriancoalblock, 16000),
+		SILENTWOODPLANKS(TABlocks.silentwoodplanks, 200),
+		WEEPINGWILLOWPLANKS(TABlocks.weepingwillowplanks, 200),
+		SILENTWOODLOG(TABlocks.silentwoodlog, 300),
+		WEEPINGWILLOWLOG(TABlocks.weepingwillowlog, 300),
+		SILENTWOODSTAIRS(TABlocks.silentwoodstairs, 300);
+
+		Block block;
+		int burnTime;
+
+		blockBurnTimes(Block b, int bt) {
+			block = b;
+			burnTime = bt;
+		}
+
+		public Item getItemBlock() {
+			return Item.getItemFromBlock(this.block);
+		}
+	}
+
+	public static void registerBlockBurntime(FurnaceFuelBurnTimeEvent event) {
+		for (blockBurnTimes b : blockBurnTimes.values()) {
+			if (event.getItemStack().getItem() == b.getItemBlock()) {
+				event.setBurnTime(b.burnTime);
+			}
+		}
+	}
 
 	public static void registerFurnaceRecipes() {
 		// BASIC
@@ -67,4 +99,5 @@ public class TARecipes {
 		OreDictionary.registerOre("ingotMoonstone", TAItems.moonstoneingot);
 		OreDictionary.registerOre("nuggetMoonstone", TAItems.moonstonenugget);
 	}
+
 }

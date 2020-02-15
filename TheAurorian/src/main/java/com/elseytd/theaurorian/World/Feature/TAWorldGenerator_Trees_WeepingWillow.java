@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAMod;
+import com.elseytd.theaurorian.TAUtil;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -20,13 +21,21 @@ public class TAWorldGenerator_Trees_WeepingWillow extends WorldGenAbstractTree {
 	private static final ResourceLocation WILLOW_SMALL_1 = new ResourceLocation(TAMod.MODID, "weepingwillow/willow_s1");
 	private static final ResourceLocation WILLOW_SMALL_2 = new ResourceLocation(TAMod.MODID, "weepingwillow/willow_s2");
 	private static final ResourceLocation WILLOW_SMALL_3 = new ResourceLocation(TAMod.MODID, "weepingwillow/willow_s3");
+	private static final ResourceLocation WILLOW_LARGE_1 = new ResourceLocation(TAMod.MODID, "weepingwillow/willow_l1");
+	private static final ResourceLocation WILLOW_LARGE_2 = new ResourceLocation(TAMod.MODID, "weepingwillow/willow_l2");
 
-	public TAWorldGenerator_Trees_WeepingWillow(boolean notify, boolean small) {
+	public TAWorldGenerator_Trees_WeepingWillow(boolean notify) {
 		super(notify);
 	}
 
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
+		if (TAUtil.randomChanceOf(0.30D)) {
+			return false;
+		}
+
+		boolean isSmall = TAUtil.randomChanceOf(0.75D);
+
 		for (int i = 0; i <= 4; i++) {
 			if (!worldIn.isAirBlock(position.up(i))) {
 				return false;
@@ -40,12 +49,19 @@ public class TAWorldGenerator_Trees_WeepingWillow extends WorldGenAbstractTree {
 			return false;
 		}
 
-		final PlacementSettings settings = new PlacementSettings().setRotation(getRandomRotation(rand)).setReplacedBlock(Blocks.AIR);
-		ResourceLocation template = getRandomResource(rand, new ResourceLocation[] { WILLOW_SMALL_1, WILLOW_SMALL_2, WILLOW_SMALL_3 });
-		final Template willow = worldIn.getSaveHandler().getStructureTemplateManager().getTemplate(worldIn.getMinecraftServer(), template);
-		BlockPos p = getPositionForPlacement(position, settings.getRotation(), 3);
-
-		willow.addBlocksToWorld(worldIn, p, settings);
+		if (isSmall) {
+			final PlacementSettings settings = new PlacementSettings().setRotation(getRandomRotation(rand)).setReplacedBlock(Blocks.AIR);
+			ResourceLocation template = getRandomResource(rand, new ResourceLocation[] { WILLOW_SMALL_1, WILLOW_SMALL_2, WILLOW_SMALL_3 });
+			final Template willow = worldIn.getSaveHandler().getStructureTemplateManager().getTemplate(worldIn.getMinecraftServer(), template);
+			BlockPos p = getPositionForPlacement(position, settings.getRotation(), 3);
+			willow.addBlocksToWorld(worldIn, p, settings);
+		} else {
+			final PlacementSettings settings = new PlacementSettings().setRotation(getRandomRotation(rand)).setReplacedBlock(Blocks.AIR);
+			ResourceLocation template = getRandomResource(rand, new ResourceLocation[] { WILLOW_LARGE_1, WILLOW_LARGE_2 });
+			final Template willow = worldIn.getSaveHandler().getStructureTemplateManager().getTemplate(worldIn.getMinecraftServer(), template);
+			BlockPos p = getPositionForPlacement(position, settings.getRotation(), 4);
+			willow.addBlocksToWorld(worldIn, p, settings);
+		}
 
 		return true;
 	}

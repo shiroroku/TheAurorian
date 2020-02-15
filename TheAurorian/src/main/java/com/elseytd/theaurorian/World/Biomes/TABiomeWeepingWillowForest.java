@@ -11,16 +11,16 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class TABiomeWeepingWillowForest extends TABiome {
 
 	public static final String BIOMENAME = "weepingwillowforest";
-	
+
 	public TABiomeWeepingWillowForest() {
 		super(new BiomeProperties(BIOMENAME).setBaseHeight(0.6F).setHeightVariation(0.5F));
 		this.topBlock = TABlocks.auroriangrasslight.getDefaultState();
-		this.setSpawnWeight(10);
+		this.setSpawnWeight(20);
 	}
 
 	@Override
 	public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
-		return new TAWorldGenerator_Trees_WeepingWillow(false, true);
+		return new TAWorldGenerator_Trees_WeepingWillow(false);
 	}
 
 	@Override

@@ -53,7 +53,7 @@ public class TABlock_Plant_WeepingWillow_Sapling extends BlockBush implements IG
 	public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 		if (!TerrainGen.saplingGrowTree(worldIn, rand, pos))
 			return;
-		WorldGenerator worldgenerator = new TAWorldGenerator_Trees_WeepingWillow(true, true);
+		WorldGenerator worldgenerator = new TAWorldGenerator_Trees_WeepingWillow(true);
 
 		worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
 

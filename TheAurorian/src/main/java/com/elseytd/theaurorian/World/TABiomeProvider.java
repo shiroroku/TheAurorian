@@ -14,7 +14,7 @@ import net.minecraft.world.storage.WorldInfo;
 
 public class TABiomeProvider extends BiomeProvider {
 
-	public static TABiome[] biomes = new TABiome[] { TABiomes.aurorianplains, TABiomes.aurorianforest, TABiomes.aurorianforesthills, TABiomes.aurorianlakes };
+	public static TABiome[] biomes = new TABiome[] { TABiomes.aurorianplains, TABiomes.aurorianforest, TABiomes.aurorianforesthills, TABiomes.aurorianlakes, TABiomes.weepingwillowforest };
 
 	public TABiomeProvider(WorldInfo inf) {
 		super(inf);

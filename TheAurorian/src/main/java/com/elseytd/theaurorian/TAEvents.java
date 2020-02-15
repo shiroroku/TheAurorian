@@ -7,7 +7,6 @@ import com.elseytd.theaurorian.Items.TAItem_Tool_Shield;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -66,20 +65,8 @@ public class TAEvents {
 		}
 	}
 
-	/**
-	 * Adds burntime to blocks
-	 */
 	@SubscribeEvent
 	public static void TAFurnaceFuelBurnTimeEvent(FurnaceFuelBurnTimeEvent event) {
-		Item item = event.getItemStack().getItem();
-		if (item == Item.getItemFromBlock(TABlocks.auroriancoalblock)) {
-			event.setBurnTime(16000);
-		} else if (item == Item.getItemFromBlock(TABlocks.silentwoodplanks)) {
-			event.setBurnTime(200);
-		} else if (item == Item.getItemFromBlock(TABlocks.silentwoodlog)) {
-			event.setBurnTime(300);
-		} else if (item == Item.getItemFromBlock(TABlocks.silentwoodstairs)) {
-			event.setBurnTime(300);
-		}
+		TARecipes.registerBlockBurntime(event);
 	}
 }

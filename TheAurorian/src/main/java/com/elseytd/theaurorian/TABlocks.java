@@ -49,6 +49,7 @@ import com.elseytd.theaurorian.Blocks.TABlock_UmbraStone;
 import com.elseytd.theaurorian.Blocks.TABlock_Urn;
 import com.elseytd.theaurorian.Blocks.TABlock_WeepingWillow_Leaves;
 import com.elseytd.theaurorian.Blocks.TABlock_WeepingWillow_Log;
+import com.elseytd.theaurorian.Blocks.TABlock_WeepingWillow_Planks;
 import com.elseytd.theaurorian.Blocks.TAFluid_MoltenCerulean;
 import com.elseytd.theaurorian.Blocks.TAFluid_MoltenMoonstone;
 import com.elseytd.theaurorian.Blocks.TAFluid_Moonwater;
@@ -235,7 +236,9 @@ public class TABlocks {
 	public static TABlock_WeepingWillow_Log weepingwillowlog;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Plant_WeepingWillow_Sapling.BLOCKNAME)
 	public static TABlock_Plant_WeepingWillow_Sapling weepingwillowsapling;
-	
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_WeepingWillow_Planks.BLOCKNAME)
+	public static TABlock_WeepingWillow_Planks weepingwillowplanks;
+
 	// MINEABLES
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Material.BLOCKNAME_COAL)
 	public static TABlock_Material auroriancoalblock;
@@ -353,6 +356,7 @@ public class TABlocks {
 		URN(new TABlock_Urn()),
 		WEEPINGWILLOWLEAVES(new TABlock_WeepingWillow_Leaves()),
 		WEEPINGWILLOWLOG(new TABlock_WeepingWillow_Log()),
+		WEEPINGWILLOWPLANKS(new TABlock_WeepingWillow_Planks()),
 		WEEPINGWILLOWSAPLING(new TABlock_Plant_WeepingWillow_Sapling());
 
 		private Block modBlock;
