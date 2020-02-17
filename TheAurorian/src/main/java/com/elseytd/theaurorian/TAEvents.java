@@ -3,12 +3,15 @@ package com.elseytd.theaurorian;
 import com.elseytd.theaurorian.Enchantments.TAEnchantment_Lightning_Damage;
 import com.elseytd.theaurorian.Items.TAItem_Armor_SlimeBoots;
 import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
+import com.elseytd.theaurorian.Items.TAItem_Special_Umbra_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Shield;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.client.event.ColorHandlerEvent;
+import net.minecraftforge.client.event.DrawBlockHighlightEvent;
+import net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
@@ -42,6 +45,18 @@ public class TAEvents {
 	@SubscribeEvent
 	public void attackEvent(LivingAttackEvent e) {
 		TAItem_Tool_Shield.handleDamageEvent(e);
+	}
+
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public void drawScreenEvent(DrawScreenEvent.Pre e) {
+		TAItem_Special_Umbra_Pickaxe.renderSelectedBlock(e);
+	}
+
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public void drawBlockHighlightEvent(DrawBlockHighlightEvent e) {
+		TAItem_Special_Umbra_Pickaxe.renderBlockOutline(e);
 	}
 
 	@SideOnly(Side.CLIENT)

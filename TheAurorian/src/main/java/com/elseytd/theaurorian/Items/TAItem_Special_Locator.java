@@ -15,6 +15,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -23,6 +24,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -42,31 +44,82 @@ public class TAItem_Special_Locator extends Item {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		ChunkPos dungeon = TAUtil.WorldAndGen.getNearestRunestoneDungeon(playerIn);
-
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
-		worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-		if (dungeon != null) {
-			if (worldIn.isRemote) {
-				double lookx = 0.25D + -MathHelper.sin((float) Math.toRadians(playerIn.rotationYawHead)) * MathHelper.cos((float) Math.toRadians(playerIn.rotationPitch));
-				double looky = 0.25D + -MathHelper.sin((float) Math.toRadians(playerIn.rotationPitch));
-				double lookz = 0.25D + MathHelper.cos((float) Math.toRadians(playerIn.rotationYawHead)) * MathHelper.cos((float) Math.toRadians(playerIn.rotationPitch));
-
-				double y = (double) playerIn.posY + 1 + Item.itemRand.nextDouble() * 6.0D / 16.0D;
-				double speed = -0.005D;
-				double targetx = playerIn.posX - dungeon.x * 16;
-				double targetz = playerIn.posZ - dungeon.z * 16;
-				double originx = playerIn.posX;
-				double originz = playerIn.posZ;
-				for (int i = 0; i < 2; i++) {
-					worldIn.spawnParticle(EnumParticleTypes.CLOUD, originx + lookx, y + looky, originz + lookz, targetx * speed * Item.itemRand.nextDouble(), 0.25D, targetz * speed * Item.itemRand.nextDouble());
-					worldIn.spawnParticle(EnumParticleTypes.ITEM_CRACK, originx + lookx, y + looky, originz + lookz, targetx * speed * Item.itemRand.nextDouble(), 0.25D, targetz * speed * Item.itemRand.nextDouble(), Item.getIdFromItem(itemstack.getItem()), itemstack.getMetadata());
-				}
+		if (playerIn.isSneaking()) {
+			if (this.getSelectedDungeon(itemstack) == "Moontemple") {
+				this.setSelectedDungeon(itemstack, "Runestone");
+				playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator1")), true);
+			} else if (this.getSelectedDungeon(itemstack) == "Runestone") {
+				playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator2")), true);
+				this.setSelectedDungeon(itemstack, "Moontemple");
+			} else {
+				this.setSelectedDungeon(itemstack, "Runestone");
 			}
-			itemstack.damageItem(1, playerIn);
+		} else {
+			ChunkPos dungeon;
+			if (this.getSelectedDungeon(itemstack) == "Moontemple") {
+				dungeon = TAUtil.WorldAndGen.getNearestMoonTemple(playerIn);
+			}else {
+				dungeon = TAUtil.WorldAndGen.getNearestRunestoneDungeon(playerIn);
+			}
+			
+			worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+			if (dungeon != null) {
+				if (worldIn.isRemote) {
+					double lookx = 0.25D + -MathHelper.sin((float) Math.toRadians(playerIn.rotationYawHead)) * MathHelper.cos((float) Math.toRadians(playerIn.rotationPitch));
+					double looky = 0.25D + -MathHelper.sin((float) Math.toRadians(playerIn.rotationPitch));
+					double lookz = 0.25D + MathHelper.cos((float) Math.toRadians(playerIn.rotationYawHead)) * MathHelper.cos((float) Math.toRadians(playerIn.rotationPitch));
+
+					double y = (double) playerIn.posY + 1 + Item.itemRand.nextDouble() * 6.0D / 16.0D;
+					double speed = -0.005D;
+					double targetx = playerIn.posX - dungeon.x * 16;
+					double targetz = playerIn.posZ - dungeon.z * 16;
+					double originx = playerIn.posX;
+					double originz = playerIn.posZ;
+					for (int i = 0; i < 2; i++) {
+						worldIn.spawnParticle(EnumParticleTypes.CLOUD, originx + lookx, y + looky, originz + lookz, targetx * speed * Item.itemRand.nextDouble(), 0.25D, targetz * speed * Item.itemRand.nextDouble());
+						worldIn.spawnParticle(EnumParticleTypes.ITEM_CRACK, originx + lookx, y + looky, originz + lookz, targetx * speed * Item.itemRand.nextDouble(), 0.25D, targetz * speed * Item.itemRand.nextDouble(), Item.getIdFromItem(itemstack.getItem()), itemstack.getMetadata());
+					}
+				}
+				itemstack.damageItem(1, playerIn);
+			}
+			playerIn.addStat(StatList.getObjectUseStats(this));
+			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 		}
-		playerIn.addStat(StatList.getObjectUseStats(this));
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+		return new ActionResult<ItemStack>(EnumActionResult.PASS, itemstack);
+	}
+
+	private NBTTagCompound getNBT(ItemStack stack) {
+		NBTTagCompound nbt;
+		if (stack.hasTagCompound()) {
+			nbt = stack.getTagCompound();
+		} else {
+			nbt = new NBTTagCompound();
+			stack.setTagCompound(nbt);
+		}
+		return nbt;
+	}
+
+	private String getSelectedDungeon(ItemStack stack) {
+		String blockname = getNBT(stack).getString("dungeon");
+		if (blockname.isEmpty()) {
+			return "Runestone";
+		} else {
+			return blockname;
+		}
+	}
+
+	private boolean setSelectedDungeon(ItemStack stack, String dungeon) {
+		NBTTagCompound nbt = getNBT(stack);
+		if (dungeon == null) {
+			nbt.setString("dungeon", "Runestone");
+			return true;
+		}
+		if (dungeon != getSelectedDungeon(stack)) {
+			nbt.setString("dungeon", dungeon);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -80,6 +133,9 @@ public class TAItem_Special_Locator extends Item {
 			tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
 		} else {
 			tooltip.add(I18n.format("string.theaurorian.tooltip.locator"));
+		}
+		if (getSelectedDungeon(stack) != null) {
+			tooltip.add("[" + getSelectedDungeon(stack) + "]");
 		}
 	}
 

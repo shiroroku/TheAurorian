@@ -71,18 +71,22 @@ public class TARecipes {
 		GameRegistry.addSmelting(TAItems.spikedchestplate, new ItemStack(TAItems.scrapumbra, 8), 2F);
 		GameRegistry.addSmelting(TAItems.umbrashield, new ItemStack(TAItems.scrapumbra, 5), 2F);
 		GameRegistry.addSmelting(TAItems.umbrasword, new ItemStack(TAItems.scrapumbra, 2), 2F);
+		GameRegistry.addSmelting(TAItems.umbrapickaxe, new ItemStack(TAItems.scrapumbra, 3), 2F);
 	}
 
 	public static void registerOreDictionary() {
 		OreDictionary.registerOre("treeLeaves", TABlocks.silentwoodleaves);
+		OreDictionary.registerOre("treeLeaves", TABlocks.weepingwillowleaves);
 		OreDictionary.registerOre("stairWood", TABlocks.silentwoodstairs);
 		OreDictionary.registerOre("treeSapling", TABlocks.silentwoodsapling);
+		OreDictionary.registerOre("treeSapling", TABlocks.weepingwillowsapling);
 		OreDictionary.registerOre("paneGlass", TABlocks.moonglasspane);
 		OreDictionary.registerOre("paneGlass", TABlocks.aurorianglasspane);
 		OreDictionary.registerOre("slimeball", TAItems.aurorianslimeball);
 		OreDictionary.registerOre("string", TAItems.plantfiber);
 		OreDictionary.registerOre("dirt", TABlocks.auroriandirt);
 		OreDictionary.registerOre("grass", TABlocks.auroriangrass);
+		OreDictionary.registerOre("grass", TABlocks.auroriangrasslight);
 		OreDictionary.registerOre("torch", TABlocks.silentwoodtorch);
 		OreDictionary.registerOre("workbench", TABlocks.silentwoodworkbench);
 

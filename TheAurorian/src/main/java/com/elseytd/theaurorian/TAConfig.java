@@ -61,6 +61,7 @@ public class TAConfig {
 	public static String[] Config_OrbOfAbsorptionList = new String[] {};
 	public static int Config_UmbraSwordCooldown = 900;
 	public static int Config_SlimeBootsCooldown = 100;
+	public static float Config_UmbraPickaxeMiningSpeedMultiplier = 2.0f;
 
 	public static void readConfig() {
 		Configuration cfg = TAMod.CONFIG;
@@ -97,6 +98,8 @@ public class TAConfig {
 		Config_OrbOfAbsorptionList = cfg.getStringList("OrbOfAbsorptionList", name, Config_OrbOfAbsorptionList, "List of items, use is decided by OrbOfAbsorptionWhitelistBlacklist, you can also specify mod ids to whitelist or blacklist whole mods, ex: (tconstruct, minecraft:elytra)");
 		Config_UmbraSwordCooldown = cfg.getInt("UmbraSwordCooldown", name, Config_UmbraSwordCooldown, 0, 72000, "Cooldown in ticks for the Umbra Swords ability");
 		Config_SlimeBootsCooldown = cfg.getInt("SlimeBootsCooldown", name, Config_SlimeBootsCooldown, 0, 72000, "Cooldown in ticks for the Aurorian Slime Boots jump ability");
+		Config_UmbraPickaxeMiningSpeedMultiplier = cfg.getFloat("UmbraPickaxeMiningSpeedMultiplier", name, Config_UmbraPickaxeMiningSpeedMultiplier, 1F, 100F, "Speed multiplier for Umbra Pickaxe, 2F is twice as fast as it would mine regular blocks");
+
 	}
 
 	private static void initCompatConfig(Configuration cfg) {

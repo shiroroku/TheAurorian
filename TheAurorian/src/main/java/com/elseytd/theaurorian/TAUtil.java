@@ -201,6 +201,32 @@ public class TAUtil {
 			return false;
 		}
 
+		public static ChunkPos getNearestMoonTemple(EntityPlayer player) {
+			int playerchunkX = player.chunkCoordX;
+			int playerchunkZ = player.chunkCoordZ;
+			int distance = TAConfig.Config_DungeonDensity * 4;
+			ChunkPos closest = null;
+			int closestdist = 0;
+			if (player.dimension == TAConfig.Config_AurorianDimID) {
+				for (int x = -(distance / 2); x < (distance / 2); x++) {
+					for (int z = -(distance / 2); z < (distance / 2); z++) {
+						if (TAWorldGenerator_MoonTemple.isValidChunkForGen(playerchunkX + x, playerchunkZ + z, 0, 0)) {
+							int blocksaway = (int) player.getDistance((playerchunkX + x) * 16, player.posY, (playerchunkZ + z) * 16);
+							if (closest == null) {
+								closest = new ChunkPos(playerchunkX + x, playerchunkZ + z);
+								closestdist = blocksaway;
+							} else if (blocksaway < closestdist){
+								closest = new ChunkPos(playerchunkX + x, playerchunkZ + z);
+								closestdist = blocksaway;
+							}
+						}
+					}
+				}
+			}
+
+			return closest;
+		}
+		
 		public static ChunkPos getNearestRunestoneDungeon(EntityPlayer player) {
 			int playerchunkX = player.chunkCoordX;
 			int playerchunkZ = player.chunkCoordZ;
