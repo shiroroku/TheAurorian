@@ -18,12 +18,12 @@ import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
 import com.elseytd.theaurorian.Items.TAItem_Seeds;
 import com.elseytd.theaurorian.Items.TAItem_Special_AbsorptionOrb;
 import com.elseytd.theaurorian.Items.TAItem_Special_Amulet;
-import com.elseytd.theaurorian.Items.TAItem_Special_Aurorianite_Axe;
-import com.elseytd.theaurorian.Items.TAItem_Special_Aurorianite_Pickaxe;
-import com.elseytd.theaurorian.Items.TAItem_Special_Aurorianite_Sword;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorianite_Axe;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorianite_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorianite_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Special_Bepsi;
-import com.elseytd.theaurorian.Items.TAItem_Special_Crystalline_Pickaxe;
-import com.elseytd.theaurorian.Items.TAItem_Special_Crystalline_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Crystalline_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Crystalline_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
 import com.elseytd.theaurorian.Items.TAItem_Special_LivingDiviningRod;
 import com.elseytd.theaurorian.Items.TAItem_Special_Locator;
@@ -31,9 +31,9 @@ import com.elseytd.theaurorian.Items.TAItem_Special_Lockpicks;
 import com.elseytd.theaurorian.Items.TAItem_Special_MoonShield;
 import com.elseytd.theaurorian.Items.TAItem_Special_StickySpiker;
 import com.elseytd.theaurorian.Items.TAItem_Special_StrangeMeat;
-import com.elseytd.theaurorian.Items.TAItem_Special_Umbra_Pickaxe;
-import com.elseytd.theaurorian.Items.TAItem_Special_Umbra_Shield;
-import com.elseytd.theaurorian.Items.TAItem_Special_Umbra_Sword;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Axe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Hoe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Pickaxe;
@@ -101,12 +101,12 @@ public class TAItems {
 
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Locator.ITEMNAME)
 	public static TAItem_Special_Locator locator;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Umbra_Pickaxe.ITEMNAME)
-	public static TAItem_Special_Umbra_Pickaxe umbrapickaxe;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Umbra_Sword.ITEMNAME)
-	public static TAItem_Special_Umbra_Sword umbrasword;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Umbra_Shield.ITEMNAME)
-	public static TAItem_Special_Umbra_Shield umbrashield;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Umbra_Pickaxe.ITEMNAME)
+	public static TAItem_Tool_Umbra_Pickaxe umbrapickaxe;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Umbra_Sword.ITEMNAME)
+	public static TAItem_Tool_Umbra_Sword umbrasword;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Umbra_Shield.ITEMNAME)
+	public static TAItem_Tool_Umbra_Shield umbrashield;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_MoonShield.ITEMNAME)
 	public static TAItem_Special_MoonShield moonshield;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "spikedchestplate")
@@ -117,16 +117,16 @@ public class TAItems {
 	public static TAItem_Seeds lavenderseeds;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_AbsorptionOrb.ITEMNAME)
 	public static TAItem_Special_AbsorptionOrb absorptionorb;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Aurorianite_Axe.ITEMNAME)
-	public static TAItem_Special_Aurorianite_Axe aurorianiteaxe;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Aurorianite_Pickaxe.ITEMNAME)
-	public static TAItem_Special_Aurorianite_Pickaxe aurorianitepickaxe;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Aurorianite_Sword.ITEMNAME)
-	public static TAItem_Special_Aurorianite_Sword aurorianitesword;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Crystalline_Pickaxe.ITEMNAME)
-	public static TAItem_Special_Crystalline_Pickaxe crystallinepickaxe;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Crystalline_Shield.ITEMNAME)
-	public static TAItem_Special_Crystalline_Shield crystallineshield;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Aurorianite_Axe.ITEMNAME)
+	public static TAItem_Tool_Aurorianite_Axe aurorianiteaxe;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Aurorianite_Pickaxe.ITEMNAME)
+	public static TAItem_Tool_Aurorianite_Pickaxe aurorianitepickaxe;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Aurorianite_Sword.ITEMNAME)
+	public static TAItem_Tool_Aurorianite_Sword aurorianitesword;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Crystalline_Pickaxe.ITEMNAME)
+	public static TAItem_Tool_Crystalline_Pickaxe crystallinepickaxe;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Crystalline_Shield.ITEMNAME)
+	public static TAItem_Tool_Crystalline_Shield crystallineshield;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_CrystallineSprite.ITEMNAME)
 	public static TAItem_CrystallineSprite crystallinesprite;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Amulet.ITEMNAME_DARKAMULET)
@@ -280,9 +280,9 @@ public class TAItems {
 		AMULETKEEPER(new TAItem_Special_Amulet(TAItem_Special_Amulet.Amulets.KEEPERAMULET)),
 		AURORIANBACON(new TAItem_Food(TAItem_Food.Foods.AURORIANBACON)),
 		AURORIANCOAL(new TAItem_Crafting_AurorianCoal()),
-		AURORIANITEAXE(new TAItem_Special_Aurorianite_Axe()),
-		AURORIANITEPICKAXE(new TAItem_Special_Aurorianite_Pickaxe()),
-		AURORIANITESWORD(new TAItem_Special_Aurorianite_Sword()),
+		AURORIANITEAXE(new TAItem_Tool_Aurorianite_Axe()),
+		AURORIANITEPICKAXE(new TAItem_Tool_Aurorianite_Pickaxe()),
+		AURORIANITESWORD(new TAItem_Tool_Aurorianite_Sword()),
 		AURORIANPORK(new TAItem_Food(TAItem_Food.Foods.AURORIANPORK)),
 		AURORIANPORKCOOKED(new TAItem_Food(TAItem_Food.Foods.COOKEDAURORIANPORK)),
 		AURORIANSLIMEBALL(new TAItem_Food(TAItem_Food.Foods.AURORIANSLIMEBALL)),
@@ -302,8 +302,8 @@ public class TAItems {
 		CERULEANBUCKET(new TAItem_Tool_Cerulean_Bucket()),
 		CERULEANSHIELD(new TAItem_Tool_Cerulean_Shield()),
 		CRYSTAL(new TAItem_Basic(TAItem_Basic.Items.CRYSTAL)),
-		CRYSTALLINEPICKAXE(new TAItem_Special_Crystalline_Pickaxe()),
-		CRYSTALLINESHIELD(new TAItem_Special_Crystalline_Shield()),
+		CRYSTALLINEPICKAXE(new TAItem_Tool_Crystalline_Pickaxe()),
+		CRYSTALLINESHIELD(new TAItem_Tool_Crystalline_Shield()),
 		CRYSTALLINESPRITE(new TAItem_CrystallineSprite()),
 		CUP(new TAItem_Basic(TAItem_Basic.Items.CUP)),
 		DEBUGGER(new TAItem_Debug()),
@@ -359,9 +359,9 @@ public class TAItems {
 		TEAPETUNIA(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.PETUNIA)),
 		TEASEEDY(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.SEEDY)),
 		TEASILKBERRY(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.SILKBERRY)),
-		UMBRAPICKAXE(new TAItem_Special_Umbra_Pickaxe()),
-		UMBRASHIELD(new TAItem_Special_Umbra_Shield()),
-		UMBRASWORD(new TAItem_Special_Umbra_Sword());
+		UMBRAPICKAXE(new TAItem_Tool_Umbra_Pickaxe()),
+		UMBRASHIELD(new TAItem_Tool_Umbra_Shield()),
+		UMBRASWORD(new TAItem_Tool_Umbra_Sword());
 
 		private Item modItem;
 

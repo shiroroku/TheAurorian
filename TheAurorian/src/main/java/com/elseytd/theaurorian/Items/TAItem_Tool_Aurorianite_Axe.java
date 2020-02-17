@@ -23,11 +23,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TAItem_Special_Aurorianite_Axe extends ItemAxe {
+public class TAItem_Tool_Aurorianite_Axe extends ItemAxe {
 
 	public static final String ITEMNAME = "aurorianiteaxe";
 
-	public TAItem_Special_Aurorianite_Axe() {
+	public TAItem_Tool_Aurorianite_Axe() {
 		super(TAItems.Materials.AURORIANITE, 12.0F, -3.5F);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);

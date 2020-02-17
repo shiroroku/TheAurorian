@@ -27,11 +27,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TAItem_Special_Umbra_Shield extends TAItem_Tool_Shield {
+public class TAItem_Tool_Umbra_Shield extends TAItem_Tool_Shield {
 
 	public static final String ITEMNAME = "umbrashield";
 
-	public TAItem_Special_Umbra_Shield() {
+	public TAItem_Tool_Umbra_Shield() {
 		super();
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);

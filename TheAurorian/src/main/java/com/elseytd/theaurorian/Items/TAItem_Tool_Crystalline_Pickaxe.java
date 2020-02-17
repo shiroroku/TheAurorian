@@ -24,10 +24,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TAItem_Special_Crystalline_Pickaxe extends ItemPickaxe {
+public class TAItem_Tool_Crystalline_Pickaxe extends ItemPickaxe {
 	public static final String ITEMNAME = "crystallinepickaxe";
 
-	public TAItem_Special_Crystalline_Pickaxe() {
+	public TAItem_Tool_Crystalline_Pickaxe() {
 		super(TAItems.Materials.CRYSTALLINE);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);

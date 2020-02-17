@@ -3,7 +3,7 @@ package com.elseytd.theaurorian;
 import com.elseytd.theaurorian.Enchantments.TAEnchantment_Lightning_Damage;
 import com.elseytd.theaurorian.Items.TAItem_Armor_SlimeBoots;
 import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
-import com.elseytd.theaurorian.Items.TAItem_Special_Umbra_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Shield;
 
 import net.minecraft.block.Block;
@@ -50,13 +50,13 @@ public class TAEvents {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void drawScreenEvent(DrawScreenEvent.Pre e) {
-		TAItem_Special_Umbra_Pickaxe.renderSelectedBlock(e);
+		TAItem_Tool_Umbra_Pickaxe.renderSelectedBlock(e);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void drawBlockHighlightEvent(DrawBlockHighlightEvent e) {
-		TAItem_Special_Umbra_Pickaxe.renderBlockOutline(e);
+		TAItem_Tool_Umbra_Pickaxe.renderBlockOutline(e);
 	}
 
 	@SideOnly(Side.CLIENT)

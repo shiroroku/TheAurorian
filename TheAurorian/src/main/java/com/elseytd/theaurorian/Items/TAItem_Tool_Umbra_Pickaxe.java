@@ -43,10 +43,10 @@ import net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TAItem_Special_Umbra_Pickaxe extends ItemPickaxe {
+public class TAItem_Tool_Umbra_Pickaxe extends ItemPickaxe {
 	public static final String ITEMNAME = "umbrapickaxe";
 
-	public TAItem_Special_Umbra_Pickaxe() {
+	public TAItem_Tool_Umbra_Pickaxe() {
 		super(TAItems.Materials.UMBRA);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
@@ -82,9 +82,9 @@ public class TAItem_Special_Umbra_Pickaxe extends ItemPickaxe {
 	@SideOnly(Side.CLIENT)
 	public static void renderBlockOutline(DrawBlockHighlightEvent e) {
 		EntityPlayer player = e.getPlayer();
-		if (player.getHeldItemMainhand().getItem() instanceof TAItem_Special_Umbra_Pickaxe) {
+		if (player.getHeldItemMainhand().getItem() instanceof TAItem_Tool_Umbra_Pickaxe) {
 			ItemStack stack = player.getHeldItemMainhand();
-			TAItem_Special_Umbra_Pickaxe pick = (TAItem_Special_Umbra_Pickaxe) stack.getItem();
+			TAItem_Tool_Umbra_Pickaxe pick = (TAItem_Tool_Umbra_Pickaxe) stack.getItem();
 			Block b = pick.getSelectedBlock(stack);
 			if (b == null) {
 				return;
@@ -127,9 +127,9 @@ public class TAItem_Special_Umbra_Pickaxe extends ItemPickaxe {
 			for (Slot s : container.inventorySlots.inventorySlots) {
 				if (!s.getStack().isEmpty()) {
 					ItemStack stack = s.getStack();
-					if (stack.getItem() instanceof TAItem_Special_Umbra_Pickaxe) {
+					if (stack.getItem() instanceof TAItem_Tool_Umbra_Pickaxe) {
 						RenderItem itemRender = Minecraft.getMinecraft().getRenderItem();
-						TAItem_Special_Umbra_Pickaxe pick = (TAItem_Special_Umbra_Pickaxe) stack.getItem();
+						TAItem_Tool_Umbra_Pickaxe pick = (TAItem_Tool_Umbra_Pickaxe) stack.getItem();
 						Block b = pick.getSelectedBlock(stack);
 						if (b != null) {
 							int slotposx = container.getGuiLeft() + s.xPos;
