@@ -18,12 +18,7 @@ import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
 import com.elseytd.theaurorian.Items.TAItem_Seeds;
 import com.elseytd.theaurorian.Items.TAItem_Special_AbsorptionOrb;
 import com.elseytd.theaurorian.Items.TAItem_Special_Amulet;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorianite_Axe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorianite_Pickaxe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorianite_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Special_Bepsi;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Crystalline_Pickaxe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Crystalline_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
 import com.elseytd.theaurorian.Items.TAItem_Special_LivingDiviningRod;
 import com.elseytd.theaurorian.Items.TAItem_Special_Locator;
@@ -31,18 +26,21 @@ import com.elseytd.theaurorian.Items.TAItem_Special_Lockpicks;
 import com.elseytd.theaurorian.Items.TAItem_Special_MoonShield;
 import com.elseytd.theaurorian.Items.TAItem_Special_StickySpiker;
 import com.elseytd.theaurorian.Items.TAItem_Special_StrangeMeat;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Pickaxe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Shield;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Axe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Hoe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Shovel;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Sickle;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Sword;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorianite_Axe;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorianite_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorianite_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Arrow;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Bucket;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Crystalline_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Crystalline_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Crystalline_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Axe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Hoe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Pickaxe;
@@ -56,6 +54,9 @@ import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Shovel;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Sickle;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Sword;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Sword;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.SoundEvents;
@@ -127,6 +128,8 @@ public class TAItems {
 	public static TAItem_Tool_Crystalline_Pickaxe crystallinepickaxe;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Crystalline_Shield.ITEMNAME)
 	public static TAItem_Tool_Crystalline_Shield crystallineshield;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Crystalline_Sword.ITEMNAME)
+	public static TAItem_Tool_Crystalline_Sword crystallinesword;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_CrystallineSprite.ITEMNAME)
 	public static TAItem_CrystallineSprite crystallinesprite;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Amulet.ITEMNAME_DARKAMULET)
@@ -305,6 +308,7 @@ public class TAItems {
 		CRYSTALLINEPICKAXE(new TAItem_Tool_Crystalline_Pickaxe()),
 		CRYSTALLINESHIELD(new TAItem_Tool_Crystalline_Shield()),
 		CRYSTALLINESPRITE(new TAItem_CrystallineSprite()),
+		CRYSTALLINESWORD(new TAItem_Tool_Crystalline_Sword()),
 		CUP(new TAItem_Basic(TAItem_Basic.Items.CUP)),
 		DEBUGGER(new TAItem_Debug()),
 		INGOTAURORIANITE(new TAItem_Basic(TAItem_Basic.Items.INGOT_AURORIANITE)),
