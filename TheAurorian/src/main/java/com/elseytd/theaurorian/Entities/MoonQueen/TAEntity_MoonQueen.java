@@ -42,8 +42,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TAEntity_MoonQueen extends EntityMob {
 
@@ -124,7 +122,6 @@ public class TAEntity_MoonQueen extends EntityMob {
 		this.getDataManager().set(WINDINGUPCHARGE, Boolean.valueOf(bool));
 	}
 
-	@SideOnly(Side.CLIENT)
 	public boolean isWindingUpCharge() {
 		return this.getDataManager().get(WINDINGUPCHARGE).booleanValue();
 	}
@@ -133,7 +130,6 @@ public class TAEntity_MoonQueen extends EntityMob {
 		this.getDataManager().set(CHARGING, Boolean.valueOf(bool));
 	}
 
-	@SideOnly(Side.CLIENT)
 	public boolean isCharging() {
 		return this.getDataManager().get(CHARGING).booleanValue();
 	}
@@ -142,7 +138,6 @@ public class TAEntity_MoonQueen extends EntityMob {
 		this.getDataManager().set(CHARGEHIT, Boolean.valueOf(bool));
 	}
 
-	@SideOnly(Side.CLIENT)
 	public boolean didChargeHit() {
 		return this.getDataManager().get(CHARGEHIT).booleanValue();
 	}

@@ -72,8 +72,14 @@ public class TAEntityAI_MoonQueenCharge extends EntityAIBase {
 	public boolean shouldContinueExecuting() {
 		//If we have a path and a target that we can see and our charge isnt on cooldown
 		if (!this.entity.getNavigator().noPath() || this.entity.getAttackTarget() != null) {
-			if (this.entity.getEntitySenses().canSee(this.entity.getAttackTarget())) {
-				if (this.chargeCooldown == 0) {// && this.chargeTime != 0) {
+			if (this.entity.getAttackTarget() != null) {
+				if (this.entity.getEntitySenses().canSee(this.entity.getAttackTarget())) {
+					if (this.chargeCooldown == 0) {
+						return true;
+					}
+				}
+			} else {
+				if (this.chargeCooldown == 0) {
 					return true;
 				}
 			}
