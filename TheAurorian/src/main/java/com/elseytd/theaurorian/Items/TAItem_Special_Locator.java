@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Misc.GenerationHelper;
+import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_MoonTemple;
+import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Runestone_Tower;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
@@ -46,23 +49,29 @@ public class TAItem_Special_Locator extends Item {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
 		if (playerIn.isSneaking()) {
-			if (this.getSelectedDungeon(itemstack) == "Moontemple") {
+			switch (this.getSelectedDungeon(itemstack)) {
+			case "Moontemple":
 				this.setSelectedDungeon(itemstack, "Runestone");
 				playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator1")), true);
-			} else if (this.getSelectedDungeon(itemstack) == "Runestone") {
-				playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator2")), true);
+				break;
+			default:
+			case "Runestone":
 				this.setSelectedDungeon(itemstack, "Moontemple");
-			} else {
-				this.setSelectedDungeon(itemstack, "Runestone");
+				playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator2")), true);
+				break;
 			}
 		} else {
 			ChunkPos dungeon;
-			if (this.getSelectedDungeon(itemstack) == "Moontemple") {
-				dungeon = TAUtil.WorldAndGen.getNearestMoonTemple(playerIn);
-			}else {
-				dungeon = TAUtil.WorldAndGen.getNearestRunestoneDungeon(playerIn);
+			switch (this.getSelectedDungeon(itemstack)) {
+			case "Moontemple":
+				dungeon = GenerationHelper.getNearestStructure(new TAWorldGenerator_MoonTemple(), playerIn, TAConfig.Config_DungeonDensity * 4);
+				break;
+			default:
+			case "Runestone":
+				dungeon = GenerationHelper.getNearestStructure(new TAWorldGenerator_Runestone_Tower(), playerIn, TAConfig.Config_DungeonDensity * 2);
+				break;
 			}
-			
+
 			worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 			if (dungeon != null) {
 				if (worldIn.isRemote) {

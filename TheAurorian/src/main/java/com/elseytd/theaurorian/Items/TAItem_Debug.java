@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Items;
 
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -24,8 +23,7 @@ public class TAItem_Debug extends Item {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		TAUtil.WorldAndGen.listNearbyRunestoneDungeon(playerIn, playerIn.getPosition());
-		
+
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
 }

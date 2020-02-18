@@ -5,7 +5,7 @@ import java.util.Random;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Misc.GenerationHelper;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
@@ -17,7 +17,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 
-public class TAWorldGenerator_MoonTemple extends WorldGenerator {
+public class TAWorldGenerator_MoonTemple extends WorldGenerator implements GenerationHelper.IChunkSpecific{
 
 	private static final ResourceLocation MOONTEMPLE_LOOTTABLE_LOW = new ResourceLocation(TAMod.MODID, "chests/moontemplelow");
 	private static final ResourceLocation MOONTEMPLE_LOOTTABLE_MED = new ResourceLocation(TAMod.MODID, "chests/moontemplemed");
@@ -77,11 +77,12 @@ public class TAWorldGenerator_MoonTemple extends WorldGenerator {
 
 	private void populateChests(Chunk c, int heightmin, int heightmax, ResourceLocation loot, Random r) {
 		for (int y = heightmin; y <= heightmax; y++) {
-			TAUtil.WorldAndGen.populateChestsInChunkAtHeight(c, y, r, loot, false);
+			GenerationHelper.populateChestsInChunkAtHeight(c, y, r, loot, false);
 		}
 	}
 	
-	public static boolean isValidChunkForGen(int chunkX, int chunkZ, int offsetX, int offsetZ) {
+	@Override
+	public boolean isValidChunkForGen(int chunkX, int chunkZ, int offsetX, int offsetZ) {
 		if ((chunkX + offsetX + (TAConfig.Config_DungeonDensity / 2)) % CHUNKS_BETWEEN_TEMPLES == 0 && (chunkZ + offsetZ + (TAConfig.Config_DungeonDensity / 2)) % CHUNKS_BETWEEN_TEMPLES == 0) {
 			return true;
 		}

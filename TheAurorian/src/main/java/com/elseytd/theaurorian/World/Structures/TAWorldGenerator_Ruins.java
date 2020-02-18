@@ -6,6 +6,7 @@ import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Misc.GenerationHelper;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -34,7 +35,7 @@ public class TAWorldGenerator_Ruins extends WorldGenerator {
 			int i = rand.nextInt(2) + 4;
 			int j = rand.nextInt(2) + 4;
 			BlockPos pos = worldIn.getHeight(position.add(i, 128, j)).up();
-			if (TAUtil.WorldAndGen.isTerrainFlat(worldIn, position, 3)) {
+			if (GenerationHelper.isTerrainFlat(worldIn, position, 3)) {
 				generateRuins(worldIn, pos);
 				gen = true;
 			}
@@ -49,7 +50,7 @@ public class TAWorldGenerator_Ruins extends WorldGenerator {
 		}
 
 		if (gen) {
-			TAUtil.WorldAndGen.populateChestsInChunk(worldIn.getChunkFromBlockCoords(position), rand, RUIN_LOOTTABLE);
+			GenerationHelper.populateChestsInChunk(worldIn.getChunkFromBlockCoords(position), rand, RUIN_LOOTTABLE);
 		}
 		return true;
 	}

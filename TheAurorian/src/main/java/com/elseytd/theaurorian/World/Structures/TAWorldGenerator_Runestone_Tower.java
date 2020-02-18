@@ -5,7 +5,7 @@ import java.util.Random;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Misc.GenerationHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -19,7 +19,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 
-public class TAWorldGenerator_Runestone_Tower extends WorldGenerator {
+public class TAWorldGenerator_Runestone_Tower extends WorldGenerator implements GenerationHelper.IChunkSpecific {
 
 	private static final ResourceLocation RUNESTONETOWER_LOOTTABLELOW = new ResourceLocation(TAMod.MODID, "chests/runestonetowerlow");
 	private static final ResourceLocation RUNESTONETOWER_LOOTTABLEMED = new ResourceLocation(TAMod.MODID, "chests/runestonetowermed");
@@ -76,7 +76,8 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator {
 		return true;
 	}
 
-	public static boolean isValidChunkForGen(int chunkX, int chunkZ, int offsetX, int offsetZ) {
+	@Override
+	public boolean isValidChunkForGen(int chunkX, int chunkZ, int offsetX, int offsetZ) {
 		if ((chunkX + offsetX) % CHUNKS_BETWEEN_TOWERS == 0 && (chunkZ + offsetZ) % CHUNKS_BETWEEN_TOWERS == 0) {
 			return true;
 		}
@@ -121,10 +122,10 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator {
 		Chunk c2 = c.getWorld().getChunkFromChunkCoords(c.x + 1, c.z);
 		Chunk c3 = c.getWorld().getChunkFromChunkCoords(c.x, c.z + 1);
 		for (int y = heightmin; y <= heightmax; y++) {
-			TAUtil.WorldAndGen.populateChestsInChunkAtHeight(c, y, r, loot, false);
-			TAUtil.WorldAndGen.populateChestsInChunkAtHeight(c1, y, r, loot, false);
-			TAUtil.WorldAndGen.populateChestsInChunkAtHeight(c2, y, r, loot, false);
-			TAUtil.WorldAndGen.populateChestsInChunkAtHeight(c3, y, r, loot, false);
+			GenerationHelper.populateChestsInChunkAtHeight(c, y, r, loot, false);
+			GenerationHelper.populateChestsInChunkAtHeight(c1, y, r, loot, false);
+			GenerationHelper.populateChestsInChunkAtHeight(c2, y, r, loot, false);
+			GenerationHelper.populateChestsInChunkAtHeight(c3, y, r, loot, false);
 		}
 	}
 

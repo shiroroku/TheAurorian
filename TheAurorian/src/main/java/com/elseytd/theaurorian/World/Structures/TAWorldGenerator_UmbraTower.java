@@ -6,6 +6,7 @@ import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Misc.GenerationHelper;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
@@ -32,7 +33,7 @@ public class TAWorldGenerator_UmbraTower extends WorldGenerator {
 
 		if (TAUtil.randomChanceOf(0.01D) && TAUtil.randomChanceOf(0.2D)) {
 			BlockPos pos = worldIn.getHeight(position.add(8, 128, 8)).up();
-			if (TAUtil.WorldAndGen.isTerrainFlat(worldIn, position, 8)) {
+			if (GenerationHelper.isTerrainFlat(worldIn, position, 8)) {
 				gen = generateUmbraTower(worldIn, pos);
 			}
 			if (gen) {
@@ -41,10 +42,10 @@ public class TAWorldGenerator_UmbraTower extends WorldGenerator {
 				Chunk c2 = worldIn.getChunkFromChunkCoords(c.x + 1, c.z);
 				Chunk c3 = worldIn.getChunkFromChunkCoords(c.x, c.z + 1);
 
-				TAUtil.WorldAndGen.populateChestsInChunk(c, rand, LOOT);
-				TAUtil.WorldAndGen.populateChestsInChunk(c1, rand, LOOT);
-				TAUtil.WorldAndGen.populateChestsInChunk(c2, rand, LOOT);
-				TAUtil.WorldAndGen.populateChestsInChunk(c3, rand, LOOT);
+				GenerationHelper.populateChestsInChunk(c, rand, LOOT);
+				GenerationHelper.populateChestsInChunk(c1, rand, LOOT);
+				GenerationHelper.populateChestsInChunk(c2, rand, LOOT);
+				GenerationHelper.populateChestsInChunk(c3, rand, LOOT);
 			}
 		}
 		return true;
@@ -60,7 +61,7 @@ public class TAWorldGenerator_UmbraTower extends WorldGenerator {
 		}
 		position = position.up(3);
 
-		if (TAUtil.WorldAndGen.isNearRunestoneDungeon(world, position, 64) || TAUtil.WorldAndGen.isNearMoonTemple(world, position, 128)) {
+		if (GenerationHelper.isNearStructure(new TAWorldGenerator_Runestone_Tower(), world, position, 64, TAConfig.Config_DungeonDensity * 2) || GenerationHelper.isNearStructure(new TAWorldGenerator_Runestone_Tower(), world, position, 128, TAConfig.Config_DungeonDensity * 4)) {
 			return false;
 		}
 
