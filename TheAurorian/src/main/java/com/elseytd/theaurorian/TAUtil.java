@@ -36,8 +36,8 @@ public class TAUtil {
 	 */
 	public static boolean randomChanceOf(double percent) {
 		Random r = new Random();
-		double gen = (double) r.nextInt(100) + 1D;
-		if (gen <= (percent * 100D)) {
+		double gen = (double) r.nextDouble();
+		if (gen <= percent) {
 			return true;
 		}
 		return false;
