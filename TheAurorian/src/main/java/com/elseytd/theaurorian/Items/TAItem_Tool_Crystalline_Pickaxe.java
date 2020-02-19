@@ -43,10 +43,6 @@ public class TAItem_Tool_Crystalline_Pickaxe extends ItemPickaxe {
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
 		if (!worldIn.isRemote && (double) state.getBlockHardness(worldIn, pos) != 0.0D) {
 			ItemStack block = new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state));
-<<<<<<< HEAD
-=======
-			//ItemStack block = ;
->>>>>>> refs/remotes/origin/master
 			if (TAUtil.LocalOreDictionary.isOre(block)) {
 				ItemStack nugget = TAUtil.LocalOreDictionary.getTypeFromOre(block, "nugget");
 				ItemStack ingot = TAUtil.LocalOreDictionary.getTypeFromOre(block, "ingot");
