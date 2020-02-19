@@ -153,7 +153,7 @@
 				},
 				{
 					"type": "item",
-					"name": "theaurorian:livingdiviningrod",
+					"name": "theaurorian:crystallinesword",
 					"functions": [
 						{
 							"function": "set_count",
@@ -167,7 +167,7 @@
 				},
 				{
 					"type": "item",
-					"name": "theaurorian:aurorianiteaxe",
+					"name": "theaurorian:umbrapickaxe",
 					"functions": [
 						{
 							"function": "set_count",

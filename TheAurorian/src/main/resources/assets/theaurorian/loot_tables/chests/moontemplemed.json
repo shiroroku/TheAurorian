@@ -88,7 +88,7 @@
 				},
 				{
 					"type": "item",
-					"name": "theaurorian:strangemeat",
+					"name": "theaurorian:crystallinepickaxe",
 					"functions": [
 						{
 							"function": "set_count",
@@ -98,7 +98,7 @@
 							}
 						}
 					],
-					"weight": 20
+					"weight": 15
 				},
 				{
 					"type": "item",
@@ -195,7 +195,7 @@
 				},
 				{
 					"type": "item",
-					"name": "theaurorian:livingdiviningrod",
+					"name": "theaurorian:umbrapickaxe",
 					"functions": [
 						{
 							"function": "set_count",
