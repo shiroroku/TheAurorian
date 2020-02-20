@@ -47,6 +47,7 @@ public class TABlock_Portal extends BlockBreakable {
 		this.setSoundType(SoundType.GLASS);
 		this.setUnlocalizedName(TAMod.MODID + "." + BLOCKNAME);
 		this.setLightLevel(1F);
+		this.setBlockUnbreakable();
 	}
 
 	@Override
