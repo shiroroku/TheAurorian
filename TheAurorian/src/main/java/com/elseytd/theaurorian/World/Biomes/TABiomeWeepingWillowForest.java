@@ -3,7 +3,6 @@ package com.elseytd.theaurorian.World.Biomes;
 import java.util.Random;
 
 import com.elseytd.theaurorian.TABlocks;
-import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_Plant;
 import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_Trees_WeepingWillow;
 
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -22,11 +21,6 @@ public class TABiomeWeepingWillowForest extends TABiome {
 	@Override
 	public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
 		return new TAWorldGenerator_Trees_WeepingWillow(false);
-	}
-
-	@Override
-	public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-		return new TAWorldGenerator_Plant(TABlocks.auroriantallgrasslight.getDefaultState(), 1f);
 	}
 
 	@Override

@@ -13,6 +13,7 @@ import com.elseytd.theaurorian.Entities.Spirit.TAEntity_Spirit;
 import com.elseytd.theaurorian.World.TABiomeDecorator;
 import com.elseytd.theaurorian.World.TATerrainGenerator;
 import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_Plant;
+import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_TallGrass;
 import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_Trees_Silentwood;
 
 import net.minecraft.block.Block;
@@ -62,7 +63,7 @@ public class TABiome extends Biome {
 
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random rand) {
-		return new TAWorldGenerator_Plant(TABlocks.auroriantallgrass.getDefaultState(), 1f);
+		return new TAWorldGenerator_TallGrass();
 	}
 
 	public WorldGenerator getRandomWorldGenForSilkberry(Random rand) {
