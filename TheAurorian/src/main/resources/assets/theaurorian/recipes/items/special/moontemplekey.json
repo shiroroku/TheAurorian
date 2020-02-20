@@ -1,19 +1,16 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"#IO"
-	],
-	"key": {
-		"I": {
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
 			"item": "theaurorian:keeperamulet"
 		},
-		"#": {
+		{
 			"item": "theaurorian:crystal"
 		},
-		"O": {
+		{
 			"item": "theaurorian:moongem"
 		}
-	},
+	],
 	"result": {
 		"item": "theaurorian:moontemplekey"
 	}
