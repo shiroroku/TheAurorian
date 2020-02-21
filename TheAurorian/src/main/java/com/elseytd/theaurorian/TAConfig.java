@@ -29,7 +29,7 @@ public class TAConfig {
 	public static float Config_RunestoneKeeperHealthMuliplier = 1;
 	public static float Config_MoonQueenHealthMuliplier = 1;
 
-	//Generation
+	//Generation, vanilla values found in net.minecraft.world.gen.ChunkGeneratorSettings.ChunkGeneratorSettings(Factory)
 	public static int Config_AurorianCoalOre_Size = 12;
 	public static int Config_AurorianCoalOre_Count = 13;
 	public static int Config_AurorianCoalOre_HeightMin = 40;
@@ -38,8 +38,8 @@ public class TAConfig {
 	public static int Config_CeruleanOre_Count = 13;
 	public static int Config_CeruleanOre_HeightMin = 5;
 	public static int Config_CeruleanOre_HeightMax = 60;
-	public static int Config_MoonstoneOre_Size = 5;
-	public static int Config_MoonstoneOre_Count = 10;
+	public static int Config_MoonstoneOre_Size = 9;
+	public static int Config_MoonstoneOre_Count = 2;
 	public static int Config_MoonstoneOre_HeightMin = 5;
 	public static int Config_MoonstoneOre_HeightMax = 30;
 	public static int Config_GeodeOre_Size = 5;
