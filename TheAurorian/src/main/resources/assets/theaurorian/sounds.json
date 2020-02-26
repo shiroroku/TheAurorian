@@ -8,6 +8,10 @@
             {
                 "name": "theaurorian:music/aurorian_2",
                 "stream": true
+            },
+            {
+                "name": "theaurorian:music/aurorian_3",
+                "stream": true
             }
         ]
     },
