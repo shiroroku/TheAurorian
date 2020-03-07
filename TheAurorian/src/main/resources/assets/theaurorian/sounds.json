@@ -12,6 +12,10 @@
             {
                 "name": "theaurorian:music/aurorian_3",
                 "stream": true
+            },
+            {
+                "name": "theaurorian:music/aurorian_4",
+                "stream": true
             }
         ]
     },
