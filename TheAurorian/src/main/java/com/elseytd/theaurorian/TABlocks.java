@@ -17,6 +17,9 @@ import com.elseytd.theaurorian.Blocks.TABlock_Glass;
 import com.elseytd.theaurorian.Blocks.TABlock_GlassPane;
 import com.elseytd.theaurorian.Blocks.TABlock_Material;
 import com.elseytd.theaurorian.Blocks.TABlock_MoonGem;
+import com.elseytd.theaurorian.Blocks.TABlock_Mushroom;
+import com.elseytd.theaurorian.Blocks.TABlock_MushroomCrystal;
+import com.elseytd.theaurorian.Blocks.TABlock_MushroomStem;
 import com.elseytd.theaurorian.Blocks.TABlock_MysticalBarrier;
 import com.elseytd.theaurorian.Blocks.TABlock_Ore_AurorianCoal;
 import com.elseytd.theaurorian.Blocks.TABlock_Ore_Cerulean;
@@ -24,6 +27,7 @@ import com.elseytd.theaurorian.Blocks.TABlock_Ore_Geode;
 import com.elseytd.theaurorian.Blocks.TABlock_Ore_Moonstone;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Crops;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Lavender;
+import com.elseytd.theaurorian.Blocks.TABlock_Plant_Mushroom;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Petunia;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Silentwood_Sapling;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_Silkberry;
@@ -127,6 +131,8 @@ public class TABlocks {
 	public static TABlock_GlassPane aurorianglasspane;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_MysticalBarrier.BLOCKNAME)
 	public static TABlock_MysticalBarrier mysticalbarrier;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_MushroomCrystal.BLOCKNAME)
+	public static TABlock_MushroomCrystal mushroomcrystal;
 
 	// PLANTS
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Plant_Tallgrass.BLOCKNAME)
@@ -145,6 +151,12 @@ public class TABlocks {
 	public static TABlock_Plant_Silkberry silkberryplant;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Plant_Petunia.BLOCKNAME)
 	public static TABlock_Plant_Petunia petuniaplant;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Mushroom.BLOCKNAME)
+	public static TABlock_Mushroom mushroom;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_MushroomStem.BLOCKNAME)
+	public static TABlock_MushroomStem mushroomstem;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Plant_Mushroom.BLOCKNAME)
+	public static TABlock_Plant_Mushroom mushroomsmall;
 
 	// TERRAIN
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Terrain_AurorianCobblestone.BLOCKNAME)
@@ -333,6 +345,10 @@ public class TABlocks {
 		MATERIALMOONSTONE(new TABlock_Material(TABlock_Material.BLOCKNAME_MOONSTONE)),
 		MOONGEM(new TABlock_MoonGem()),
 		MOONSAND(new TABlock_Terrain_Moonsand()),
+		MUSHROOM(new TABlock_Mushroom()),
+		MUSHROOMCRYSTAL(new TABlock_MushroomCrystal()),
+		MUSHROOMSMALL(new TABlock_Plant_Mushroom()),
+		MUSHROOMSTEM(new TABlock_MushroomStem()),
 		MYSTICALBARRIER(new TABlock_MysticalBarrier()),
 		OREAURORIANCOAL(new TABlock_Ore_AurorianCoal()),
 		ORECERULEAN(new TABlock_Ore_Cerulean()),

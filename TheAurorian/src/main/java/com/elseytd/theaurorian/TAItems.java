@@ -276,6 +276,8 @@ public class TAItems {
 	public static TAItem_Tool_Silentwood_Sickle silentwoodsickle;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Silentwood_Sword.ITEMNAME)
 	public static TAItem_Tool_Silentwood_Sword silentwoodsword;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_SILKSHROOMSTEW)
+	public static TAItem_Food silkshroomstew;
 
 	private enum TAItemRegistry {
 		ABSORPTIONORB(new TAItem_Special_AbsorptionOrb()),
@@ -356,6 +358,7 @@ public class TAItems {
 		SILENTWOODSWORD(new TAItem_Tool_Silentwood_Sword()),
 		SILKBERRY(new TAItem_Food_Silkberry()),
 		SILKBERRYRASIN(new TAItem_Food(TAItem_Food.Foods.SILKBERRYRASIN)),
+		SILKSHROOMSTEW(new TAItem_Food(TAItem_Food.Foods.SILKSHROOMSTEW)),
 		SPIKEDCHESTPLATE(new TAItem_Armor_Spiked(EntityEquipmentSlot.CHEST, "spikedchestplate")),
 		STICKYSPIKER(new TAItem_Special_StickySpiker()),
 		STRANGEMEAT(new TAItem_Special_StrangeMeat()),

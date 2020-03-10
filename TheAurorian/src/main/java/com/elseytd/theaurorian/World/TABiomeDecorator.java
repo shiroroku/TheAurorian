@@ -5,6 +5,7 @@ import java.util.Random;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.World.Biomes.TABiome;
+import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_UnderGround;
 import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_UnderWater;
 import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_Urns;
 import com.google.common.base.Predicate;
@@ -75,9 +76,10 @@ public class TABiomeDecorator extends BiomeDecorator {
 				gen.generate(worldIn, random, worldIn.getTopSolidOrLiquidBlock(this.chunkPos.add(l1, 0, i6)));
 			}
 		}
-		
-		//TAWorldGenerator_UnderGround fd = new TAWorldGenerator_UnderGround();
-		//fd.generate(worldIn, random, this.chunkPos);
+
+		//===MUSHROOM CAVES===
+		TAWorldGenerator_UnderGround fd = new TAWorldGenerator_UnderGround();
+		fd.generate(worldIn, random, this.chunkPos);
 
 		//=========URNS========
 		if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.CUSTOM)) {

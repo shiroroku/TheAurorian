@@ -1,5 +1,7 @@
 package com.elseytd.theaurorian.World.Feature;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import com.elseytd.theaurorian.TABlocks;
@@ -16,9 +18,9 @@ public class TAWorldGenerator_UnderGround extends WorldGenerator {
 
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
-		int distance = 512;
+		int distance = 320;
 		if (position.getX() % distance == 0 && position.getZ() % distance == 0) {
-			
+
 			BlockPos location = (new BlockPos(position.getX(), 30 + rand.nextInt(10), position.getZ())).add(8, 0, 8);
 			int size = 250;
 
@@ -30,6 +32,7 @@ public class TAWorldGenerator_UnderGround extends WorldGenerator {
 			double d4 = (double) (location.getY() + rand.nextInt(3) - 2);
 			double d5 = (double) (location.getY() + rand.nextInt(3) - 2);
 
+			List<BlockPos> blks = new ArrayList<BlockPos>();
 			for (int i = 0; i < size; ++i) {
 				float f1 = (float) i / (float) size;
 				double d6 = d0 + (d1 - d0) * (double) f1;
@@ -78,7 +81,7 @@ public class TAWorldGenerator_UnderGround extends WorldGenerator {
 										if (worldIn.getBlockState(blockpos.up()) == Blocks.AIR.getDefaultState()) {
 											if (worldIn.getBlockState(blockpos.down()) == TABlocks.aurorianstone.getDefaultState()) {
 												worldIn.setBlockState(blockpos, TABlocks.auroriangrass.getDefaultState(), 2);
-												decorateBlock(worldIn, rand, blockpos.up());
+												blks.add(blockpos);
 											}
 										}
 									}
@@ -89,27 +92,33 @@ public class TAWorldGenerator_UnderGround extends WorldGenerator {
 				}
 			}
 
+			for (BlockPos p : blks) {
+				decorateBlock(worldIn, rand, p.up());
+			}
+
 			return true;
 		}
 		return false;
 	}
 
 	private void decorateBlock(World worldIn, Random rand, BlockPos position) {
-		if(TAUtil.randomChanceOf(0.25)) {
-			if(!isTouchingOrAdjacent(worldIn, position, TABlocks.moonglass, 4)) {
-				for(int i = 0; i < 3; i++) {
-					worldIn.setBlockState(position.up(i), TABlocks.moonglass.getDefaultState());
-					//TODO mushrooms
+		if (TAUtil.randomChanceOf(0.10)) {
+			if (!isTouchingOrAdjacent(worldIn, position, TABlocks.mushroomstem, 6)) {
+				if (worldIn.getBlockState(position.down()) == TABlocks.auroriangrass.getDefaultState()) {
+					TAWorldGenerator_Mushroom worldgenabstracttree = new TAWorldGenerator_Mushroom(false);
+					worldgenabstracttree.generate(worldIn, rand, position);
 				}
 			}
 		}
 	}
-	
+
 	private boolean isTouchingOrAdjacent(World worldIn, BlockPos position, Block b, int distance) {
-		for(int x = -distance; x <= distance; x++) {
-			for(int z = -distance; z <= distance; z++) {
-				if(worldIn.getBlockState(position.add(x, 0, z)).getBlock() == b) {
-					return true;
+		for (int x = -distance; x <= distance; x++) {
+			for (int y = -distance; y <= distance; y++) {
+				for (int z = -distance; z <= distance; z++) {
+					if (worldIn.getBlockState(position.add(x, y, z)).getBlock() == b) {
+						return true;
+					}
 				}
 			}
 		}

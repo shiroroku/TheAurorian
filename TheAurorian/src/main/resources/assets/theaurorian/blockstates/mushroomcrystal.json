@@ -1,0 +1,18 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "theaurorian:mushroomcrystal"
+    },
+    "variants": {
+        "normal": [
+            {
+                "model": "theaurorian:mushroomcrystal"
+            }
+        ],
+        "inventory": [
+            {
+                "model": "theaurorian:mushroomcrystal"
+            }
+        ]
+    }
+}

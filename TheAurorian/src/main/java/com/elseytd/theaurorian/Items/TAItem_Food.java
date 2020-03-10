@@ -23,13 +23,15 @@ public class TAItem_Food extends ItemFood {
 	public static final String ITEMNAME_AURORIANBACON = "aurorianbacon";
 	public static final String ITEMNAME_COOKEDAURORIANPORK = "aurorianporkcooked";
 	public static final String ITEMNAME_AURORIANSLIMEBALL = "aurorianslimeball";
+	public static final String ITEMNAME_SILKSHROOMSTEW = "silkshroomstew";
 
 	public enum Foods {
 		SILKBERRYRASIN(ITEMNAME_SILKBERRYRASIN, 3, 0.2F, null),
 		AURORIANPORK(ITEMNAME_AURORIANPORK, 3, 0.3F, null),
 		AURORIANBACON(ITEMNAME_AURORIANBACON, 2, 0.8F, "string.theaurorian.tooltip.aurorianbacon"),
 		COOKEDAURORIANPORK(ITEMNAME_COOKEDAURORIANPORK, 8, 0.8F, "string.theaurorian.tooltip.aurorianporkcooked"),
-		AURORIANSLIMEBALL(ITEMNAME_AURORIANSLIMEBALL, 1, 0.2F, null);
+		AURORIANSLIMEBALL(ITEMNAME_AURORIANSLIMEBALL, 1, 0.2F, null),
+		SILKSHROOMSTEW(ITEMNAME_SILKSHROOMSTEW, 6, 1F, null);
 
 		private String ITEMNAME;
 		private String INFO;

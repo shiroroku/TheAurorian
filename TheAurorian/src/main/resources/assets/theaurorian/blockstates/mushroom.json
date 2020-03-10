@@ -1,0 +1,18 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "theaurorian:mushroom"
+	},
+	"variants": {
+		"normal": [
+			{
+				"model": "theaurorian:mushroom"
+			}
+		],
+		"inventory": [
+			{
+				"model": "theaurorian:mushroom"
+			}
+		]
+	}
+}

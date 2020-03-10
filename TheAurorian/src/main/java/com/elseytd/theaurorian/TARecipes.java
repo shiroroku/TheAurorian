@@ -15,7 +15,9 @@ public class TARecipes {
 		WEEPINGWILLOWPLANKS(TABlocks.weepingwillowplanks, 200),
 		SILENTWOODLOG(TABlocks.silentwoodlog, 300),
 		WEEPINGWILLOWLOG(TABlocks.weepingwillowlog, 300),
-		SILENTWOODSTAIRS(TABlocks.silentwoodstairs, 300);
+		SILENTWOODSTAIRS(TABlocks.silentwoodstairs, 300),
+		MUSHROOM(TABlocks.mushroom, 0),
+		MUSHROOMSTEM(TABlocks.mushroomstem, 0);
 
 		Block block;
 		int burnTime;
