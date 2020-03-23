@@ -22,6 +22,7 @@ public class TAConfig {
 	public static boolean Config_GenerateMoonTemple = true;
 	public static boolean Config_GenerateMoonTemplePath = true;
 	public static boolean Config_GenerateUmbraTower = true;
+	public static boolean Config_GenerateMushroomCaves = true;
 
 	//Entities
 	public static int Config_RunestoneDungeonMobDensity = 1;
@@ -152,6 +153,7 @@ public class TAConfig {
 		Config_GenerateMoonTemple = cfg.getBoolean("GenerateMoonTemple", name, Config_GenerateMoonTemple, "Set to false to disable Moon Temples");
 		Config_GenerateMoonTemplePath = cfg.getBoolean("GenerateMoonTemplePath", name, Config_GenerateMoonTemplePath, "Set to false to disable Moon Temple's spiral path up");
 		Config_GenerateUmbraTower = cfg.getBoolean("GenerateUmbraTower", name, Config_GenerateUmbraTower, "Set to false to disable Umbra Towers");
+		Config_GenerateMushroomCaves = cfg.getBoolean("GenerateMushroomCaves", name, Config_GenerateMushroomCaves, "Set to false to disable Mushroom Caves");
 
 	}
 

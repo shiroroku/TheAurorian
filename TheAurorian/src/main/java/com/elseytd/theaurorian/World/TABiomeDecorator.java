@@ -78,8 +78,10 @@ public class TABiomeDecorator extends BiomeDecorator {
 		}
 
 		//===MUSHROOM CAVES===
-		TAWorldGenerator_UnderGround fd = new TAWorldGenerator_UnderGround();
-		fd.generate(worldIn, random, this.chunkPos);
+		if (TAConfig.Config_GenerateMushroomCaves) {
+			TAWorldGenerator_UnderGround fd = new TAWorldGenerator_UnderGround();
+			fd.generate(worldIn, random, this.chunkPos);
+		}
 
 		//=========URNS========
 		if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.CUSTOM)) {
