@@ -6,10 +6,7 @@ import com.elseytd.theaurorian.TileEntities.Furnace.TATileEntity_Aurorian_Furnac
 import com.elseytd.theaurorian.TileEntities.Workbench.TAContainer_Silentwood_Workbench;
 import com.elseytd.theaurorian.TileEntities.Workbench.TAGui_Silentwood_Workbench;
 
-import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.ContainerChest;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
@@ -18,7 +15,6 @@ public class TAGuis implements IGuiHandler {
 
 	public static final int SILENTWOODCRAFTINGTABLE = 1;
 	public static final int AURORIANFURNACE = 2;
-	public static final int SILENTWOODCHEST = 3;
 
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
@@ -27,8 +23,6 @@ public class TAGuis implements IGuiHandler {
 			return new TAContainer_Silentwood_Workbench(player.inventory, world, new BlockPos(x, y, z));
 		case AURORIANFURNACE:
 			return new TAContainer_Aurorian_Furnace(player.inventory, (TATileEntity_Aurorian_Furnace) world.getTileEntity(new BlockPos(x, y, z)));
-		case SILENTWOODCHEST:
-			return new ContainerChest(player.inventory, (TileEntityChest) world.getTileEntity(new BlockPos(x, y, z)), player);
 		}
 		return null;
 	}
@@ -40,8 +34,6 @@ public class TAGuis implements IGuiHandler {
 			return new TAGui_Silentwood_Workbench(player.inventory, world, new BlockPos(x, y, z));
 		case AURORIANFURNACE:
 			return new TAGui_Aurorian_Furnace(player.inventory, (TATileEntity_Aurorian_Furnace) world.getTileEntity(new BlockPos(x, y, z)));
-		case SILENTWOODCHEST:
-			return new GuiChest(player.inventory, (TileEntityChest) world.getTileEntity(new BlockPos(x, y, z)));
 		}
 		return null;
 	}
