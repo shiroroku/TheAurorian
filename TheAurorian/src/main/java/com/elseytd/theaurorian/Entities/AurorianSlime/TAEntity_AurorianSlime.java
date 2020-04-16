@@ -44,6 +44,7 @@ public class TAEntity_AurorianSlime extends EntityLiving implements IMob {
 
 	public TAEntity_AurorianSlime(World worldIn) {
 		super(worldIn);
+		this.height = 0.75F;
 		this.moveHelper = new TAEntity_AurorianSlime.SlimeMoveHelper(this);
 	}
 
