@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.World.TABiomeDecorator.AurorianStonesPredicate.IAurorianStoneType;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -79,7 +80,7 @@ public class TAWorldGenerator_UnderGround extends WorldGenerator {
 									if (d12 * d12 + d13 * d13 + d14 * d14 < 1.0D) {
 										BlockPos blockpos = new BlockPos(x, y - 1, z);
 										if (worldIn.getBlockState(blockpos.up()) == Blocks.AIR.getDefaultState()) {
-											if (worldIn.getBlockState(blockpos.down()) == TABlocks.aurorianstone.getDefaultState()) {
+											if (worldIn.getBlockState(blockpos.down()).getBlock() instanceof IAurorianStoneType) {
 												worldIn.setBlockState(blockpos, TABlocks.auroriangrass.getDefaultState(), 2);
 												blks.add(blockpos);
 											}

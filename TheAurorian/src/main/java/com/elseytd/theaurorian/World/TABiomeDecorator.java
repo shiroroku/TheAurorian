@@ -30,6 +30,7 @@ public class TABiomeDecorator extends BiomeDecorator {
 			this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(worldIn.getWorldInfo().getGeneratorOptions()).build();
 			this.chunkPos = pos;
 
+			this.generateStones(worldIn, random);
 			this.generateOres(worldIn, random);
 			this.genDecorations(biome, worldIn, random);
 			this.decorating = false;
@@ -44,8 +45,12 @@ public class TABiomeDecorator extends BiomeDecorator {
 		oreQuickGen(worldIn, random, TABlocks.geodeore.getDefaultState(), TAConfig.Config_GeodeOre_Size, TAConfig.Config_GeodeOre_Count, TAConfig.Config_GeodeOre_HeightMin, TAConfig.Config_GeodeOre_HeightMax);
 	}
 
+	protected void generateStones(World worldIn, Random random) {
+		oreQuickGen(worldIn, random, TABlocks.aurorianperidotite.getDefaultState(), TAConfig.Config_Peridotite_Size, TAConfig.Config_Peridotite_Count, TAConfig.Config_Peridotite_HeightMin, TAConfig.Config_Peridotite_HeightMax);
+	}
+
 	private void oreQuickGen(World worldIn, Random random, IBlockState oreblock, int size, int count, int heightmin, int heightmax) {
-		WorldGenerator oregenerator = new WorldGenMinable(oreblock, size, new AurorianStonePredicate());
+		WorldGenerator oregenerator = new WorldGenMinable(oreblock, size, new AurorianStonesPredicate());
 		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, oregenerator, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM)) {
 			this.genStandardOre1(worldIn, random, count, oregenerator, heightmin, heightmax);
 		}
@@ -189,13 +194,17 @@ public class TABiomeDecorator extends BiomeDecorator {
 		net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.terraingen.DecorateBiomeEvent.Post(worldIn, random, forgeChunkPos));
 	}
 
-	static class AurorianStonePredicate implements Predicate<IBlockState> {
+	public static class AurorianStonesPredicate implements Predicate<IBlockState> {
 		public boolean apply(IBlockState blkin) {
-			if (blkin != null && blkin.getBlock() == TABlocks.aurorianstone) {
+			if (blkin != null && (blkin.getBlock() instanceof IAurorianStoneType)) {
 				return true;
 			} else {
 				return false;
 			}
+		}
+
+		public interface IAurorianStoneType {
+			//theres probably a better way to do this
 		}
 	}
 

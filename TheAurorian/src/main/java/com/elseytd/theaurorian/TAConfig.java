@@ -47,6 +47,10 @@ public class TAConfig {
 	public static int Config_GeodeOre_Count = 8;
 	public static int Config_GeodeOre_HeightMin = 5;
 	public static int Config_GeodeOre_HeightMax = 128;
+	public static int Config_Peridotite_Size = 33;
+	public static int Config_Peridotite_Count = 10;
+	public static int Config_Peridotite_HeightMin = 5;
+	public static int Config_Peridotite_HeightMax = 80;
 	public static boolean Config_GenerateUrns = true;
 
 	//Misc

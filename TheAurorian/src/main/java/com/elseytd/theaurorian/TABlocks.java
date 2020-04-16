@@ -49,6 +49,7 @@ import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianDirt;
 import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianFarmTile;
 import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianGrass;
 import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianStone;
+import com.elseytd.theaurorian.Blocks.TABlock_Terrain_Peridotite;
 import com.elseytd.theaurorian.Blocks.TABlock_Terrain_Moonsand;
 import com.elseytd.theaurorian.Blocks.TABlock_UmbraStone;
 import com.elseytd.theaurorian.Blocks.TABlock_Urn;
@@ -173,6 +174,10 @@ public class TABlocks {
 	public static TABlock_Terrain_AurorianGrass auroriangrasslight;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Terrain_AurorianStone.BLOCKNAME)
 	public static TABlock_Terrain_AurorianStone aurorianstone;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Terrain_Peridotite.BLOCKNAME)
+	public static TABlock_Terrain_Peridotite aurorianperidotite;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Terrain_Peridotite.BLOCKNAME_SMOOTH)
+	public static TABlock_Terrain_Peridotite aurorianperidotitesmooth;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Terrain_Moonsand.BLOCKNAME)
 	public static TABlock_Terrain_Moonsand moonsand;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_UmbraStone.BLOCKNAME_UMBRASTONE)
@@ -354,6 +359,8 @@ public class TABlocks {
 		ORECERULEAN(new TABlock_Ore_Cerulean()),
 		OREGEODE(new TABlock_Ore_Geode()),
 		OREMOONSTONE(new TABlock_Ore_Moonstone()),
+		PERIDOTITE(new TABlock_Terrain_Peridotite(TABlock_Terrain_Peridotite.BLOCKNAME)),
+		PERIDOTITESMOOTH(new TABlock_Terrain_Peridotite(TABlock_Terrain_Peridotite.BLOCKNAME_SMOOTH)),
 		PLANTLAVENDER(new TABlock_Plant_Lavender()),
 		PLANTLAVENDERCROP(new TABlock_Plant_Crops(TABlock_Plant_Crops.BLOCKNAME_LAVENDER)),
 		PLANTPETUNIA(new TABlock_Plant_Petunia()),
