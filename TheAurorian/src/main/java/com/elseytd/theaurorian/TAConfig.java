@@ -51,6 +51,10 @@ public class TAConfig {
 	public static int Config_Peridotite_Count = 10;
 	public static int Config_Peridotite_HeightMin = 5;
 	public static int Config_Peridotite_HeightMax = 80;
+	public static int Config_Dirt_Size = 33;
+	public static int Config_Dirt_Count = 10;
+	public static int Config_Dirt_HeightMin = 5;
+	public static int Config_Dirt_HeightMax = 256;
 	public static boolean Config_GenerateUrns = true;
 
 	//Misc
@@ -125,7 +129,6 @@ public class TAConfig {
 	private static void initGenerationConfig(Configuration cfg) {
 		String name = "generation";
 		cfg.addCustomCategoryComment(name, "Generation configuration");
-
 		Config_AurorianCoalOre_Size = cfg.getInt("AurorianCoalOreSize", name, Config_AurorianCoalOre_Size, 0, 50, "Changes the size of ore vein");
 		Config_AurorianCoalOre_Count = cfg.getInt("AurorianCoalOreCount", name, Config_AurorianCoalOre_Count, 0, 50, "Changes the size of ore vein");
 		Config_AurorianCoalOre_HeightMin = cfg.getInt("AurorianCoalOreHeightMin", name, Config_AurorianCoalOre_HeightMin, 0, 255, "Changes the min height of ore vein");
@@ -142,6 +145,14 @@ public class TAConfig {
 		Config_GeodeOre_Count = cfg.getInt("GeodeOreCount", name, Config_GeodeOre_Count, 0, 50, "Changes the size of ore vein");
 		Config_GeodeOre_HeightMin = cfg.getInt("GeodeOreHeightMin", name, Config_GeodeOre_HeightMin, 0, 255, "Changes the min height of ore vein");
 		Config_GeodeOre_HeightMax = cfg.getInt("GeodeOreHeightMax", name, Config_GeodeOre_HeightMax, 0, 255, "Changes the max height of ore vein");
+		Config_Peridotite_Size = cfg.getInt("PeridotiteSize", name, Config_Peridotite_Size, 0, 50, "Changes the size of ore vein");
+		Config_Peridotite_Count = cfg.getInt("PeridotiteCount", name, Config_Peridotite_Count, 0, 50, "Changes the size of ore vein");
+		Config_Peridotite_HeightMin = cfg.getInt("PeridotiteHeightMin", name, Config_Peridotite_HeightMin, 0, 255, "Changes the min height of ore vein");
+		Config_Peridotite_HeightMax = cfg.getInt("PeridotiteHeightMax", name, Config_Peridotite_HeightMax, 0, 255, "Changes the max height of ore vein");
+		Config_Dirt_Size = cfg.getInt("DirtSize", name, Config_Dirt_Size, 0, 50, "Changes the size of ore vein");
+		Config_Dirt_Count = cfg.getInt("DirtCount", name, Config_Dirt_Count, 0, 50, "Changes the size of ore vein");
+		Config_Dirt_HeightMin = cfg.getInt("DirtHeightMin", name, Config_Dirt_HeightMin, 0, 255, "Changes the min height of ore vein");
+		Config_Dirt_HeightMax = cfg.getInt("DirtHeightMax", name, Config_Dirt_HeightMax, 0, 255, "Changes the max height of ore vein");
 		Config_GenerateUrns = cfg.getBoolean("GenerateUrns", name, Config_GenerateUrns, "Set to false to disable Urns that spawn underground");
 
 	}

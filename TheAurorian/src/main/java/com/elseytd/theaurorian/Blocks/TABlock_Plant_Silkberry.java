@@ -62,7 +62,7 @@ public class TABlock_Plant_Silkberry extends BlockBush implements IShearable {
 
 	@Override
 	protected boolean canSustainBush(IBlockState state) {
-		return state.getBlock() == TABlocks.auroriangrass || state.getBlock() == TABlocks.auroriandirt;
+		return state.getBlock() == TABlocks.auroriangrass;
 	}
 
 	@Override

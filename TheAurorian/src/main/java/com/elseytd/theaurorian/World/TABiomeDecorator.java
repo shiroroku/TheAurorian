@@ -47,6 +47,7 @@ public class TABiomeDecorator extends BiomeDecorator {
 
 	protected void generateStones(World worldIn, Random random) {
 		oreQuickGen(worldIn, random, TABlocks.aurorianperidotite.getDefaultState(), TAConfig.Config_Peridotite_Size, TAConfig.Config_Peridotite_Count, TAConfig.Config_Peridotite_HeightMin, TAConfig.Config_Peridotite_HeightMax);
+		oreQuickGen(worldIn, random, TABlocks.auroriandirt.getDefaultState(), TAConfig.Config_Dirt_Size, TAConfig.Config_Dirt_Count, TAConfig.Config_Dirt_HeightMin, TAConfig.Config_Dirt_HeightMax);
 	}
 
 	private void oreQuickGen(World worldIn, Random random, IBlockState oreblock, int size, int count, int heightmin, int heightmax) {
@@ -91,15 +92,15 @@ public class TABiomeDecorator extends BiomeDecorator {
 		//=========URNS========
 		if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, forgeChunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.CUSTOM)) {
 			if (TAConfig.Config_GenerateUrns) {
-				for (int i = 0; i < random.nextInt(2) + 1; i++) {
-					int x = random.nextInt(16) + 8;
-					int ymin = random.nextInt(40);
-					int ymax = ymin + random.nextInt(40);
-					int z = random.nextInt(16) + 8;
+				int x = random.nextInt(16) + 8;
+				int ymin = random.nextInt(40);
+				int ymax = ymin + random.nextInt(40);
+				int z = random.nextInt(16) + 8;
 
-					for (int y = ymin; y <= ymax; y++) {
-						TAWorldGenerator_Urns gen = new TAWorldGenerator_Urns();
-						gen.generate(worldIn, random, this.chunkPos.add(x, y, z));
+				for (int y = ymin; y <= ymax; y++) {
+					TAWorldGenerator_Urns gen = new TAWorldGenerator_Urns();
+					if (gen.generate(worldIn, random, this.chunkPos.add(x, y, z))) {
+						break;
 					}
 				}
 			}

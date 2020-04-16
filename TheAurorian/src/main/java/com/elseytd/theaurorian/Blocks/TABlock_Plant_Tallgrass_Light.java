@@ -60,7 +60,7 @@ public class TABlock_Plant_Tallgrass_Light extends BlockBush implements IShearab
 
 	@Override
 	protected boolean canSustainBush(IBlockState state) {
-		return state.getBlock() == TABlocks.auroriangrasslight || state.getBlock() == TABlocks.auroriandirt;
+		return state.getBlock() == TABlocks.auroriangrasslight;
 	}
 
 	@Override
