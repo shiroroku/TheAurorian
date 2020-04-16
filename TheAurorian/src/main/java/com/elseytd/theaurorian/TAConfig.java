@@ -12,7 +12,7 @@ public class TAConfig {
 	public static float Config_ChimneySpeedMuliplier = 0.5F;
 
 	//Dimensions
-	public static int Config_AurorianDimID = 24;
+	public static int Config_AurorianDimID = 424;
 
 	//Structures
 	public static boolean Config_GenerateRunestoneDungeon = true;
