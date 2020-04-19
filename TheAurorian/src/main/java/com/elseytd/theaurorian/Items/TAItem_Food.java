@@ -18,31 +18,46 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TAItem_Food extends ItemFood {
 
-	public static final String ITEMNAME_SILKBERRYRASIN = "silkberryrasin";
+	public static final String ITEMNAME_SILKBERRYJAM = "silkberryjam";
+	public static final String ITEMNAME_SILKBERRYJAMSANDWICH = "silkberryjamsandwich";
 	public static final String ITEMNAME_AURORIANPORK = "aurorianpork";
 	public static final String ITEMNAME_AURORIANBACON = "aurorianbacon";
 	public static final String ITEMNAME_COOKEDAURORIANPORK = "aurorianporkcooked";
 	public static final String ITEMNAME_AURORIANSLIMEBALL = "aurorianslimeball";
 	public static final String ITEMNAME_SILKSHROOMSTEW = "silkshroomstew";
+	public static final String ITEMNAME_LAVENDERBREAD = "lavenderbread";
 
 	public enum Foods {
-		SILKBERRYRASIN(ITEMNAME_SILKBERRYRASIN, 3, 0.2F, null),
-		AURORIANPORK(ITEMNAME_AURORIANPORK, 3, 0.3F, null),
-		AURORIANBACON(ITEMNAME_AURORIANBACON, 2, 0.8F, "string.theaurorian.tooltip.aurorianbacon"),
-		COOKEDAURORIANPORK(ITEMNAME_COOKEDAURORIANPORK, 8, 0.8F, "string.theaurorian.tooltip.aurorianporkcooked"),
-		AURORIANSLIMEBALL(ITEMNAME_AURORIANSLIMEBALL, 1, 0.2F, null),
-		SILKSHROOMSTEW(ITEMNAME_SILKSHROOMSTEW, 6, 1F, null);
+		SILKBERRYJAM(ITEMNAME_SILKBERRYJAM, 2, 0.5F, 64),
+		SILKBERRYJAMSANDWICH(ITEMNAME_SILKBERRYJAMSANDWICH, 6, 0.9F, true),
+		AURORIANPORK(ITEMNAME_AURORIANPORK, 3, 0.3F),
+		AURORIANBACON(ITEMNAME_AURORIANBACON, 2, 0.8F, true),
+		COOKEDAURORIANPORK(ITEMNAME_COOKEDAURORIANPORK, 8, 0.8F, true),
+		AURORIANSLIMEBALL(ITEMNAME_AURORIANSLIMEBALL, 1, 0.2F, 40),
+		SILKSHROOMSTEW(ITEMNAME_SILKSHROOMSTEW, 6, 1F),
+		LAVENDERBREAD(ITEMNAME_LAVENDERBREAD, 4, 0.4F);
 
 		private String ITEMNAME;
 		private String INFO;
 		private int FEEDAMT;
 		private float SATURATION;
+		private int EATTIME;
 
-		Foods(String itemname, int feedamt, float saturation, String info) {
+		Foods(String itemname, int feedamt, float saturation, int eattime) {
+			this(itemname, feedamt, saturation, false);
+			this.EATTIME = eattime;
+		}
+
+		Foods(String itemname, int feedamt, float saturation) {
+			this(itemname, feedamt, saturation, false);
+		}
+
+		Foods(String itemname, int feedamt, float saturation, boolean info) {
 			this.ITEMNAME = itemname;
-			this.INFO = info;
+			this.INFO = info ? "string.theaurorian.tooltip." + itemname : null;
 			this.FEEDAMT = feedamt;
 			this.SATURATION = saturation;
+			this.EATTIME = 32;
 		}
 
 		public String getName() {
@@ -59,6 +74,10 @@ public class TAItem_Food extends ItemFood {
 
 		public float getSaturation() {
 			return SATURATION;
+		}
+
+		public int getEatTime() {
+			return EATTIME;
 		}
 	}
 
@@ -81,6 +100,11 @@ public class TAItem_Food extends ItemFood {
 				tooltip.add(I18n.format(this.itemFood.getInfo()));
 			}
 		}
+	}
+
+	@Override
+	public int getMaxItemUseDuration(ItemStack stack) {
+		return this.itemFood.getEatTime();
 	}
 
 }

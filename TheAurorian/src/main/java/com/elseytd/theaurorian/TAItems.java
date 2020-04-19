@@ -168,8 +168,12 @@ public class TAItems {
 	public static TAItem_Food aurorianporkcooked;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_Silkberry.ITEMNAME)
 	public static TAItem_Food_Silkberry silkberry;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_SILKBERRYRASIN)
-	public static TAItem_Food silkberryrasin;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_SILKBERRYJAM)
+	public static TAItem_Food silkberryjam;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_SILKBERRYJAMSANDWICH)
+	public static TAItem_Food silkberryjamsandwich;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_LAVENDERBREAD)
+	public static TAItem_Food lavenderbread;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_Tea.ITEMNAME_LAVENDER)
 	public static TAItem_Food_Tea tealavender;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food_Tea.ITEMNAME_PETUNIA)
@@ -329,6 +333,7 @@ public class TAItems {
 		KNIGHTARMORHELMET(new TAItem_Armor_Knight(EntityEquipmentSlot.HEAD, "knighthelmet")),
 		KNIGHTARMORLEGGINGS(new TAItem_Armor_Knight(EntityEquipmentSlot.LEGS, "knightleggings")),
 		LAVENDER(new TAItem_Crafting_Lavender()),
+		LAVENDERBREAD(new TAItem_Food(TAItem_Food.Foods.LAVENDERBREAD)),
 		LIVINGDIVININGROD(new TAItem_Special_LivingDiviningRod()),
 		LOCATOR(new TAItem_Special_Locator()),
 		LOCKPICKS(new TAItem_Special_Lockpicks()),
@@ -357,7 +362,8 @@ public class TAItems {
 		SILENTWOODSTICK(new TAItem_Crafting_SilentwoodStick()),
 		SILENTWOODSWORD(new TAItem_Tool_Silentwood_Sword()),
 		SILKBERRY(new TAItem_Food_Silkberry()),
-		SILKBERRYRASIN(new TAItem_Food(TAItem_Food.Foods.SILKBERRYRASIN)),
+		SILKBERRYJAM(new TAItem_Food(TAItem_Food.Foods.SILKBERRYJAM)),
+		SILKBERRYJAMSANDWICH(new TAItem_Food(TAItem_Food.Foods.SILKBERRYJAMSANDWICH)),
 		SILKSHROOMSTEW(new TAItem_Food(TAItem_Food.Foods.SILKSHROOMSTEW)),
 		SPIKEDCHESTPLATE(new TAItem_Armor_Spiked(EntityEquipmentSlot.CHEST, "spikedchestplate")),
 		STICKYSPIKER(new TAItem_Special_StickySpiker()),

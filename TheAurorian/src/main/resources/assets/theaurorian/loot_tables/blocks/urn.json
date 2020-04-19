@@ -51,7 +51,7 @@
 				},
 				{
 					"type": "item",
-					"name": "theaurorian:silkberry",
+					"name": "theaurorian:silkberryjam",
 					"functions": [
 						{
 							"function": "set_count",
