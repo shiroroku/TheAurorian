@@ -32,7 +32,7 @@ public class TABlock_Terrain_AurorianGrass extends Block {
 		this.setHardness(0.5F);
 		this.setHarvestLevel("shovel", 0);
 		this.setRegistryName(name);
-		this.setSoundType(SoundType.GROUND);
+		this.setSoundType(SoundType.PLANT);
 		this.setTickRandomly(true);
 		this.setUnlocalizedName(TAMod.MODID + "." + name);
 	}
