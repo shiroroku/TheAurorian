@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "theaurorian:blocks/aurorianperidotitesmooth",
+        "top": "theaurorian:blocks/aurorianperidotitesmooth",
+        "side": "theaurorian:blocks/aurorianperidotitesmooth"
+    }
+}

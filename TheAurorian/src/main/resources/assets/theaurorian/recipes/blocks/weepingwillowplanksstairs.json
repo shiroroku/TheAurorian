@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "theaurorian:weepingwillowplanks"
+    }
+  },
+  "result": {
+    "item": "theaurorian:weepingwillowplanksstairs",
+    "count": 4
+  }
+}

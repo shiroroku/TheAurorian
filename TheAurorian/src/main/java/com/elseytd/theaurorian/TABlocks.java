@@ -290,6 +290,8 @@ public class TABlocks {
 	public static TABlock_Stairs darkstonestairs;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Stairs.BLOCKNAME_UMBRASTONEROOFTILES)
 	public static TABlock_Stairs umbrastoneroofstairs;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Stairs.BLOCKNAME_WEEPINGWILLOWPLANKS)
+	public static TABlock_Stairs weepingwillowplanksstairs;
 
 	private enum TABlockRegistry {
 		AURORIANCOBBLESTONE(new TABlock_Terrain_AurorianCobblestone()),
@@ -361,6 +363,7 @@ public class TABlocks {
 		OREMOONSTONE(new TABlock_Ore_Moonstone()),
 		PERIDOTITE(new TABlock_Terrain_Peridotite(TABlock_Terrain_Peridotite.BLOCKNAME)),
 		PERIDOTITESMOOTH(new TABlock_Terrain_Peridotite(TABlock_Terrain_Peridotite.BLOCKNAME_SMOOTH)),
+		PERIDOTITESMOOTHSTAIRS(new TABlock_Stairs(new TABlock_Terrain_Peridotite(TABlock_Terrain_Peridotite.BLOCKNAME_SMOOTH), TABlock_Stairs.BLOCKNAME_PERIDOTITESMOOTH)),
 		PLANTLAVENDER(new TABlock_Plant_Lavender()),
 		PLANTLAVENDERCROP(new TABlock_Plant_Crops(TABlock_Plant_Crops.BLOCKNAME_LAVENDER)),
 		PLANTPETUNIA(new TABlock_Plant_Petunia()),
@@ -384,6 +387,7 @@ public class TABlocks {
 		WEEPINGWILLOWLEAVES(new TABlock_WeepingWillow_Leaves()),
 		WEEPINGWILLOWLOG(new TABlock_WeepingWillow_Log()),
 		WEEPINGWILLOWPLANKS(new TABlock_WeepingWillow_Planks()),
+		WEEPINGWILLOWPLANKSSTAIRS(new TABlock_Stairs(new TABlock_UmbraStone(TABlock_WeepingWillow_Planks.BLOCKNAME), TABlock_Stairs.BLOCKNAME_WEEPINGWILLOWPLANKS)),
 		WEEPINGWILLOWSAPLING(new TABlock_Plant_WeepingWillow_Sapling());
 
 		private Block modBlock;
