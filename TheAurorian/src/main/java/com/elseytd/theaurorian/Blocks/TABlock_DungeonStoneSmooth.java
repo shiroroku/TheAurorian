@@ -15,6 +15,7 @@ public class TABlock_DungeonStoneSmooth extends Block {
 		super(Material.ROCK);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setBlockUnbreakable();
+		this.setResistance(6000000.0F);
 		this.setSoundType(SoundType.STONE);
 		this.setUnlocalizedName(TAMod.MODID + "." + blockname);
 		this.setRegistryName(blockname);
