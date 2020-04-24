@@ -1,5 +1,7 @@
 package com.elseytd.theaurorian.Blocks;
 
+import java.util.Random;
+
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.Entities.Keeper.TAEntity_RunestoneDungeonKeeper;
 import com.elseytd.theaurorian.Entities.MoonQueen.TAEntity_MoonQueen;
@@ -12,6 +14,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -55,6 +59,7 @@ public class TABlock_Spawner_Boss extends Block implements ITileEntityProvider {
 		this.blockBoss = boss;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
@@ -65,7 +70,16 @@ public class TABlock_Spawner_Boss extends Block implements ITileEntityProvider {
 		return false;
 	}
 
-	//
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		double rx = pos.getX() + worldIn.rand.nextFloat();
+		double ry = pos.getY() + worldIn.rand.nextFloat();
+		double rz = pos.getZ() + worldIn.rand.nextFloat();
+		worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, rx, ry, rz, 0.0D, 0.0D, 0.0D);
+		worldIn.spawnParticle(EnumParticleTypes.FLAME, rx, ry, rz, 0.0D, 0.0D, 0.0D);
+	}
+
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		TATileEntity_Spawner_Boss te = new TATileEntity_Spawner_Boss();
