@@ -17,6 +17,7 @@ import com.elseytd.theaurorian.Blocks.TABlock_Glass;
 import com.elseytd.theaurorian.Blocks.TABlock_GlassPane;
 import com.elseytd.theaurorian.Blocks.TABlock_Material;
 import com.elseytd.theaurorian.Blocks.TABlock_MoonGem;
+import com.elseytd.theaurorian.Blocks.TABlock_MoonLightForge;
 import com.elseytd.theaurorian.Blocks.TABlock_Mushroom;
 import com.elseytd.theaurorian.Blocks.TABlock_MushroomCrystal;
 import com.elseytd.theaurorian.Blocks.TABlock_MushroomStem;
@@ -134,6 +135,8 @@ public class TABlocks {
 	public static TABlock_MysticalBarrier mysticalbarrier;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_MushroomCrystal.BLOCKNAME)
 	public static TABlock_MushroomCrystal mushroomcrystal;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_MoonLightForge.BLOCKNAME)
+	public static TABlock_MoonLightForge moonlightforge;
 
 	// PLANTS
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Plant_Tallgrass.BLOCKNAME)
@@ -351,6 +354,7 @@ public class TABlocks {
 		MATERIALCOAL(new TABlock_Material(TABlock_Material.BLOCKNAME_COAL)),
 		MATERIALMOONSTONE(new TABlock_Material(TABlock_Material.BLOCKNAME_MOONSTONE)),
 		MOONGEM(new TABlock_MoonGem()),
+		MOONLIGHTFORGE(new TABlock_MoonLightForge()),
 		MOONSAND(new TABlock_Terrain_Moonsand()),
 		MUSHROOM(new TABlock_Mushroom()),
 		MUSHROOMCRYSTAL(new TABlock_MushroomCrystal()),

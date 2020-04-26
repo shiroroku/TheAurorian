@@ -1,0 +1,361 @@
+{
+	"textures": {
+		"particle": "theaurorian:blocks/aurorianfurnacetop",
+		"top": "theaurorian:blocks/silentwoodcraftingtabletop",
+		"bottom": "theaurorian:blocks/aurorianfurnacetop",
+		"front": "theaurorian:blocks/aurorianfurnacefaceoff",
+		"sides": "theaurorian:blocks/aurorianfurnaceside",
+		"legs": "theaurorian:blocks/moongem",
+		"gem": "theaurorian:blocks/moongemoverlay"
+	},
+	"elements": [
+		{
+			"name": "base",
+			"from": [
+				0,
+				0,
+				0
+			],
+			"to": [
+				16,
+				10,
+				16
+			],
+			"color": 7,
+			"faces": {
+				"north": {
+					"uv": [
+						0,
+						0,
+						16,
+						10
+					],
+					"texture": "#front"
+				},
+				"east": {
+					"uv": [
+						0,
+						0,
+						16,
+						10
+					],
+					"texture": "#sides"
+				},
+				"south": {
+					"uv": [
+						0,
+						0,
+						16,
+						10
+					],
+					"texture": "#sides"
+				},
+				"west": {
+					"uv": [
+						0,
+						0,
+						16,
+						10
+					],
+					"texture": "#sides"
+				},
+				"up": {
+					"uv": [
+						0,
+						0,
+						16,
+						16
+					],
+					"texture": "#top"
+				},
+				"down": {
+					"uv": [
+						0,
+						0,
+						16,
+						16
+					],
+					"texture": "#bottom"
+				}
+			}
+		},
+		{
+			"name": "gem",
+			"from": [
+				2,
+				14,
+				2
+			],
+			"to": [
+				14,
+				16,
+				14
+			],
+			"color": 3,
+			"faces": {
+				"north": {
+					"uv": [
+						2,
+						0,
+						14,
+						2
+					],
+					"texture": "#legs"
+				},
+				"east": {
+					"uv": [
+						2,
+						0,
+						14,
+						2
+					],
+					"texture": "#legs"
+				},
+				"south": {
+					"uv": [
+						2,
+						0,
+						14,
+						2
+					],
+					"texture": "#legs"
+				},
+				"west": {
+					"uv": [
+						2,
+						0,
+						14,
+						2
+					],
+					"texture": "#legs"
+				},
+				"up": {
+					"uv": [
+						0,
+						0,
+						16,
+						16
+					],
+					"texture": "#gem"
+				},
+				"down": {
+					"uv": [
+						2,
+						2,
+						14,
+						14
+					],
+					"texture": "#gem"
+				}
+			}
+		},
+		{
+			"name": "gemleg1",
+			"from": [
+				2,
+				10,
+				2
+			],
+			"to": [
+				3,
+				14,
+				3
+			],
+			"color": 5,
+			"faces": {
+				"north": {
+					"uv": [
+						0,
+						0,
+						1,
+						4
+					],
+					"texture": "#legs"
+				},
+				"east": {
+					"uv": [
+						0,
+						0,
+						1,
+						4
+					],
+					"texture": "#legs"
+				},
+				"south": {
+					"uv": [
+						0,
+						0,
+						1,
+						4
+					],
+					"texture": "#legs"
+				},
+				"west": {
+					"uv": [
+						0,
+						0,
+						1,
+						4
+					],
+					"texture": "#legs"
+				}
+			}
+		},
+		{
+			"name": "gemleg2",
+			"from": [
+				2,
+				10,
+				13
+			],
+			"to": [
+				3,
+				14,
+				14
+			],
+			"color": 5,
+			"faces": {
+				"north": {
+					"uv": [
+						0,
+						0,
+						1,
+						4
+					],
+					"texture": "#legs"
+				},
+				"east": {
+					"uv": [
+						0,
+						0,
+						1,
+						4
+					],
+					"texture": "#legs"
+				},
+				"south": {
+					"uv": [
+						0,
+						0,
+						1,
+						4
+					],
+					"texture": "#legs"
+				},
+				"west": {
+					"uv": [
+						0,
+						0,
+						1,
+						4
+					],
+					"texture": "#legs"
+				}
+			}
+		},
+		{
+			"name": "gemleg3",
+			"from": [
+				13,
+				10,
+				13
+			],
+			"to": [
+				14,
+				14,
+				14
+			],
+			"color": 5,
+			"faces": {
+				"north": {
+					"uv": [
+						0,
+						0,
+						1,
+						4
+					],
+					"texture": "#legs"
+				},
+				"east": {
+					"uv": [
+						0,
+						0,
+						1,
+						4
+					],
+					"texture": "#legs"
+				},
+				"south": {
+					"uv": [
+						0,
+						0,
+						1,
+						4
+					],
+					"texture": "#legs"
+				},
+				"west": {
+					"uv": [
+						0,
+						0,
+						1,
+						4
+					],
+					"texture": "#legs"
+				}
+			}
+		},
+		{
+			"name": "gemleg4",
+			"from": [
+				13,
+				10,
+				2
+			],
+			"to": [
+				14,
+				14,
+				3
+			],
+			"color": 5,
+			"faces": {
+				"north": {
+					"uv": [
+						0,
+						0,
+						1,
+						4
+					],
+					"texture": "#legs"
+				},
+				"east": {
+					"uv": [
+						0,
+						0,
+						1,
+						4
+					],
+					"texture": "#legs"
+				},
+				"south": {
+					"uv": [
+						0,
+						0,
+						1,
+						4
+					],
+					"texture": "#legs"
+				},
+				"west": {
+					"uv": [
+						0,
+						0,
+						1,
+						4
+					],
+					"texture": "#legs"
+				}
+			}
+		}
+	]
+}

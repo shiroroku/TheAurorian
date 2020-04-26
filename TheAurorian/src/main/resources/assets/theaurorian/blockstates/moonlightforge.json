@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "theaurorian:moonlightforge"
+		},
+		"facing=south": {
+			"model": "theaurorian:moonlightforge",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "theaurorian:moonlightforge",
+			"y": 270
+		},
+		"facing=east": {
+			"model": "theaurorian:moonlightforge",
+			"y": 90
+		}
+	}
+}
