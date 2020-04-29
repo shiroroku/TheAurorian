@@ -32,6 +32,26 @@ public class TARecipes {
 		}
 	}
 
+	public enum MoonlightForgeRecipes {
+		AURORIANITESWORD(TAItems.moonstonesword, TAItems.aurorianiteingot, TAItems.aurorianitesword),
+		AURORIANITEAXE(TAItems.moonstoneaxe, TAItems.aurorianiteingot, TAItems.aurorianiteaxe),
+		AURORIANITEPICKAXE(TAItems.moonstonepickaxe, TAItems.aurorianiteingot, TAItems.aurorianitepickaxe),
+		CRYSTALLINESWORD(TAItems.moonstonesword, TAItems.crystallineingot, TAItems.crystallinesword),
+		CRYSTALLINEPICKAXE(TAItems.moonstonepickaxe, TAItems.crystallineingot, TAItems.crystallinepickaxe),
+		UMBRASWORD(TAItems.moonstonesword, TAItems.umbraingot, TAItems.umbrasword),
+		UMBRAPICKAXE(TAItems.moonstonepickaxe, TAItems.umbraingot, TAItems.umbrapickaxe);
+
+		public Item input1;
+		public Item input2;
+		public Item output;
+
+		MoonlightForgeRecipes(Item a, Item b, Item c) {
+			input1 = a;
+			input2 = b;
+			output = c;
+		}
+	}
+
 	public static void registerBlockBurntime(FurnaceFuelBurnTimeEvent event) {
 		for (blockBurnTimes b : blockBurnTimes.values()) {
 			if (event.getItemStack().getItem() == b.getItemBlock()) {
@@ -62,17 +82,18 @@ public class TARecipes {
 		GameRegistry.addSmelting(TAItems.ceruleanshield, new ItemStack(TAItems.ceruleannugget, 12), 0F);
 
 		// SPECIAL RECYCLING
-		GameRegistry.addSmelting(TAItems.aurorianitesword, new ItemStack(TAItems.scrapaurorianite, 2), 2F);
-		GameRegistry.addSmelting(TAItems.aurorianitepickaxe, new ItemStack(TAItems.scrapaurorianite, 3), 2F);
-		GameRegistry.addSmelting(TAItems.aurorianiteaxe, new ItemStack(TAItems.scrapaurorianite, 3), 2F);
-		GameRegistry.addSmelting(TAItems.crystallinepickaxe, new ItemStack(TAItems.scrapcrystalline, 3), 2F);
-		GameRegistry.addSmelting(TAItems.crystallineshield, new ItemStack(TAItems.scrapcrystalline, 5), 2F);
-		GameRegistry.addSmelting(TAItems.absorptionorb, new ItemStack(TAItems.scrapcrystalline, 4), 2F);
-		GameRegistry.addSmelting(TAItems.livingdiviningrod, new ItemStack(TAItems.scrapcrystalline, 2), 2F);
-		GameRegistry.addSmelting(TAItems.spikedchestplate, new ItemStack(TAItems.scrapumbra, 8), 2F);
-		GameRegistry.addSmelting(TAItems.umbrashield, new ItemStack(TAItems.scrapumbra, 5), 2F);
-		GameRegistry.addSmelting(TAItems.umbrasword, new ItemStack(TAItems.scrapumbra, 2), 2F);
-		GameRegistry.addSmelting(TAItems.umbrapickaxe, new ItemStack(TAItems.scrapumbra, 3), 2F);
+		GameRegistry.addSmelting(TAItems.aurorianitesword, new ItemStack(TAItems.scrapaurorianite, 2), 0F);
+		GameRegistry.addSmelting(TAItems.aurorianitepickaxe, new ItemStack(TAItems.scrapaurorianite, 3), 0F);
+		GameRegistry.addSmelting(TAItems.aurorianiteaxe, new ItemStack(TAItems.scrapaurorianite, 3), 0F);
+		GameRegistry.addSmelting(TAItems.crystallinesword, new ItemStack(TAItems.scrapcrystalline, 2), 0F);
+		GameRegistry.addSmelting(TAItems.crystallinepickaxe, new ItemStack(TAItems.scrapcrystalline, 3), 0F);
+		GameRegistry.addSmelting(TAItems.crystallineshield, new ItemStack(TAItems.scrapcrystalline, 5), 0F);
+		GameRegistry.addSmelting(TAItems.absorptionorb, new ItemStack(TAItems.scrapcrystalline, 4), 0F);
+		GameRegistry.addSmelting(TAItems.livingdiviningrod, new ItemStack(TAItems.scrapcrystalline, 2), 0F);
+		GameRegistry.addSmelting(TAItems.spikedchestplate, new ItemStack(TAItems.scrapumbra, 8), 0F);
+		GameRegistry.addSmelting(TAItems.umbrashield, new ItemStack(TAItems.scrapumbra, 5), 0F);
+		GameRegistry.addSmelting(TAItems.umbrasword, new ItemStack(TAItems.scrapumbra, 2), 0F);
+		GameRegistry.addSmelting(TAItems.umbrapickaxe, new ItemStack(TAItems.scrapumbra, 3), 0F);
 	}
 
 	public static void registerOreDictionary() {

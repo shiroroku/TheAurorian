@@ -1,85 +1,125 @@
 package com.elseytd.theaurorian.TileEntities.MoonLightForge;
 
-import com.elseytd.theaurorian.TAItems;
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
+import com.elseytd.theaurorian.TARecipes;
+import com.elseytd.theaurorian.TARecipes.MoonlightForgeRecipes;
 import com.elseytd.theaurorian.Blocks.TABlock_MoonLightForge;
 
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityLockable;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TATileEntity_MoonLightForge extends TileEntityLockable implements ITickable, ISidedInventory {
+public class TATileEntity_MoonLightForge extends TileEntityLockable implements ITickable {
 
-	private static final int[] SLOT = { 0, 1, 2 };
 	private NonNullList<ItemStack> heldItems = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
 	private int hasMoonLight = 0;
 	private int craftProgress = 0;
+	private int isPowered = 0;
 	private boolean isCrafting = false;
 
 	@Override
 	public void update() {
 		if (!this.getWorld().isRemote) {
-			//if (this.getWorld().getTotalWorldTime() % 20 == 0) {
-				this.setField(0, this.hasMoonlight() ? 1 : 0);
+			if (!this.getWorld().isBlockPowered(this.getPos())) {
+				this.isPowered = 0;
+				this.hasMoonLight = this.hasMoonlight() ? 1 : 0;
 
-				if (isCrafting) {
-					int newval = this.getField(1) + 1;
-					if (newval >= 100) {
-						stopCrafting();
-						doCraft();
+				if (this.isCrafting) {
+
+					int height = this.getPos().getY();
+					int worldheight = this.getWorld().getHeight();
+					float heightpercent = (float) height / (float) worldheight;
+					int tickinterval = 2;
+					if (heightpercent <= 0.25) {
+						tickinterval += 16;
+					} else if (heightpercent > 0.25 && heightpercent <= 0.5) {
+						tickinterval += 8;
+					} else if (heightpercent > 0.5 && heightpercent <= 0.75) {
+						tickinterval += 4;
+					}
+
+					if (this.getWorld().getTotalWorldTime() % tickinterval == 0) {
+						int newval = this.craftProgress + 1;
+
+						if (newval >= 100) {
+							this.stopCrafting();
+							this.doCraft();
+						} else {
+							this.craftProgress = newval;
+						}
+					}
+				}
+
+				ItemStack slot1 = this.heldItems.get(0);
+				ItemStack slot2 = this.heldItems.get(1);
+				ItemStack slot3output = this.heldItems.get(2);
+
+				if (getRecipeOutput(slot1, slot2) != null && this.hasMoonlight()) {
+					if (slot3output.isEmpty()) {
+						if (this.isCrafting != true) {
+							this.isCrafting = true;
+						}
 					} else {
-						this.setField(1, newval);
+						stopCrafting();
 					}
+				} else if (this.isCrafting) {
+					stopCrafting();
 				}
-			//}
-
-			ItemStack slot1 = this.heldItems.get(0);
-			ItemStack slot2 = this.heldItems.get(1);
-			ItemStack slot3output = this.heldItems.get(2);
-
-			if (getRecipeOutput(slot1, slot2) != null) {
-				//If recipe is valid
-				if (slot3output.isEmpty()) {
-					if (isCrafting != true) {
-						isCrafting = true;//If output empty start crafting
-					}
-				} else {
-					stopCrafting();//If output full stop crafting
-				}
-			} else if (isCrafting) {
-				//If recipe is not valid and we are crafting, stop
-				stopCrafting();
+			} else {
+				this.isPowered = 1;
 			}
 		}
 	}
 
-	private void doCraft() {
-		this.heldItems.set(2, new ItemStack(getRecipeOutput(this.heldItems.get(0), this.heldItems.get(1))));
-		this.heldItems.set(1, ItemStack.EMPTY);
-		this.heldItems.set(0, ItemStack.EMPTY);
+	@SideOnly(Side.CLIENT)
+	public boolean isCrafting() {
+		return this.isPowered == 0 && this.hasMoonLight == 1 && this.craftProgress > 0;
 	}
 
-	private void stopCrafting() {
-		isCrafting = false;
-		this.setField(1, 0);
-	}
+	public ItemStack getRecipeOutput(ItemStack input1, ItemStack input2) {
+		for (MoonlightForgeRecipes recipe : MoonlightForgeRecipes.values()) {
+			if (input1.getItem() == recipe.input1 && input2.getItem() == recipe.input2) {
 
-	private Item getRecipeOutput(ItemStack input1, ItemStack input2) {
+				ItemStack outputitem = new ItemStack(recipe.output);
+				if (outputitem.isItemStackDamageable() && input1.isItemStackDamageable() && input1.isItemDamaged()) {
+					outputitem.setItemDamage(input1.getItemDamage());
+				}
 
-		if (input1.getItem() == TAItems.moonstonepickaxe && input2.getItem() == TAItems.umbraingot) {
-			return TAItems.umbrapickaxe;
+				if (TAConfig.Config_MoonlightForgeTransfersEnchants) {
+					if (input1.isItemEnchanted() && outputitem.isItemEnchantable()) {
+						EnchantmentHelper.setEnchantments(EnchantmentHelper.getEnchantments(input1), outputitem);
+					}
+				}
+
+				return outputitem;
+			}
 		}
 
 		return null;
+	}
+
+	private void doCraft() {
+		ItemStack output = getRecipeOutput(this.heldItems.get(0), this.heldItems.get(1));
+		if (output != null) {
+			this.heldItems.get(0).shrink(1);
+			this.heldItems.get(1).shrink(1);
+			this.heldItems.set(2, output);
+		}
+	}
+
+	private void stopCrafting() {
+		this.isCrafting = false;
+		this.craftProgress = 0;
 	}
 
 	@Override
@@ -97,12 +137,14 @@ public class TATileEntity_MoonLightForge extends TileEntityLockable implements I
 		super.readFromNBT(nbt);
 		this.heldItems = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
 		ItemStackHelper.loadAllItems(nbt, this.heldItems);
+		this.craftProgress = nbt.getInteger("CraftProgress");
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		ItemStackHelper.saveAllItems(nbt, this.heldItems);
+		nbt.setInteger("CraftProgress", (short) this.craftProgress);
 		return nbt;
 	}
 
@@ -173,7 +215,25 @@ public class TATileEntity_MoonLightForge extends TileEntityLockable implements I
 
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		return true;
+		switch (index) {
+		case 0:
+			for (TARecipes.MoonlightForgeRecipes recipe : TARecipes.MoonlightForgeRecipes.values()) {
+				if (recipe.input1 == stack.getItem()) {
+					return true;
+				}
+			}
+			return false;
+		case 1:
+			for (TARecipes.MoonlightForgeRecipes recipe : TARecipes.MoonlightForgeRecipes.values()) {
+				if (recipe.input2 == stack.getItem()) {
+					return true;
+				}
+			}
+			return false;
+		default:
+		case 2:
+			return false;
+		}
 	}
 
 	@Override
@@ -189,21 +249,6 @@ public class TATileEntity_MoonLightForge extends TileEntityLockable implements I
 	@Override
 	public boolean hasCustomName() {
 		return false;
-	}
-
-	@Override
-	public int[] getSlotsForFace(EnumFacing side) {
-		return SLOT;
-	}
-
-	@Override
-	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
-		return this.isItemValidForSlot(index, itemStackIn);
-	}
-
-	@Override
-	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
-		return true;
 	}
 
 	private boolean hasMoonlight() {
@@ -223,6 +268,8 @@ public class TATileEntity_MoonLightForge extends TileEntityLockable implements I
 			return hasMoonLight;
 		case 1:
 			return craftProgress;
+		case 2:
+			return isPowered;
 		}
 	}
 
@@ -232,14 +279,19 @@ public class TATileEntity_MoonLightForge extends TileEntityLockable implements I
 		default:
 		case 0:
 			hasMoonLight = value;
+			break;
 		case 1:
 			craftProgress = value;
+			break;
+		case 2:
+			isPowered = value;
+			break;
 		}
 	}
 
 	@Override
 	public int getFieldCount() {
-		return 2;
+		return 3;
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.elseytd.theaurorian.Blocks;
 
+import java.util.Random;
+
 import com.elseytd.theaurorian.TAGuis;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TileEntities.MoonLightForge.TATileEntity_MoonLightForge;
@@ -21,6 +23,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -36,7 +39,7 @@ public class TABlock_MoonLightForge extends BlockContainer {
 	public TABlock_MoonLightForge() {
 		super(Material.IRON);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-		//this.setCreativeTab(TAMod.CREATIVE_TAB);
+		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setHardness(2.0F);
 		this.setHarvestLevel("pickaxe", 2);
 		this.setRegistryName(BLOCKNAME);
@@ -54,7 +57,24 @@ public class TABlock_MoonLightForge extends BlockContainer {
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
-	
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		TileEntity tileentity = worldIn.getTileEntity(pos);
+		if (tileentity != null) {
+			if (tileentity instanceof TATileEntity_MoonLightForge) {
+				TATileEntity_MoonLightForge tile = (TATileEntity_MoonLightForge) tileentity;
+				if (tile.isCrafting()) {
+					double d0 = (double) pos.getX() + rand.nextDouble();
+					double d1 = (double) pos.getY() + 4.2D;
+					double d2 = (double) pos.getZ() + rand.nextDouble();
+					worldIn.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, d0, d1, d2, 0, -0.1D, 0);
+				}
+			}
+		}
+	}
+
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state) {
 		return EnumBlockRenderType.MODEL;
@@ -144,7 +164,7 @@ public class TABlock_MoonLightForge extends BlockContainer {
 		}
 		super.breakBlock(worldIn, pos, state);
 	}
-	
+
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TATileEntity_MoonLightForge();

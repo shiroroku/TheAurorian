@@ -1,5 +1,7 @@
 package com.elseytd.theaurorian.TileEntities.MoonLightForge;
 
+import com.elseytd.theaurorian.TARecipes;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -14,14 +16,40 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TAContainer_MoonLightForge extends Container {
 
 	private final IInventory inventory;
-	private int hasMoonlight = 0;
-	private int progress = 0;
+	private int hasMoonlight;
+	private int progress;
+	private int isPowered;
 
 	public TAContainer_MoonLightForge(InventoryPlayer playerInventory, IInventory machineinv) {
 		this.inventory = machineinv;
-		this.addSlotToContainer(new Slot(machineinv, 0, 22, 35));
-		this.addSlotToContainer(new Slot(machineinv, 1, 84, 35));
-		this.addSlotToContainer(new SlotFurnaceOutput(playerInventory.player, machineinv, 2, 142, 35));
+		this.addSlotToContainer(new Slot(machineinv, 0, 22, 35) {
+			@Override
+			public boolean isItemValid(ItemStack stack) {
+				for (TARecipes.MoonlightForgeRecipes recipe : TARecipes.MoonlightForgeRecipes.values()) {
+					if (recipe.input1 == stack.getItem()) {
+						return true;
+					}
+				}
+				return false;
+			}
+		});
+		this.addSlotToContainer(new Slot(machineinv, 1, 84, 35) {
+			@Override
+			public boolean isItemValid(ItemStack stack) {
+				for (TARecipes.MoonlightForgeRecipes recipe : TARecipes.MoonlightForgeRecipes.values()) {
+					if (recipe.input2 == stack.getItem()) {
+						return true;
+					}
+				}
+				return false;
+			}
+		});
+		this.addSlotToContainer(new SlotFurnaceOutput(playerInventory.player, machineinv, 2, 142, 35) {
+			@Override
+			public boolean isItemValid(ItemStack stack) {
+				return false;
+			}
+		});
 		this.addPlayerInvSlots(playerInventory);
 	}
 
@@ -57,11 +85,15 @@ public class TAContainer_MoonLightForge extends Container {
 				icontainerlistener.sendWindowProperty(this, 0, this.inventory.getField(0));
 			}
 			if (progress != this.inventory.getField(1)) {
-				icontainerlistener.sendWindowProperty(this, 0, this.inventory.getField(1));
+				icontainerlistener.sendWindowProperty(this, 1, this.inventory.getField(1));
+			}
+			if (isPowered != this.inventory.getField(2)) {
+				icontainerlistener.sendWindowProperty(this, 2, this.inventory.getField(2));
 			}
 		}
 		hasMoonlight = this.inventory.getField(0);
 		progress = this.inventory.getField(1);
+		isPowered = this.inventory.getField(2);
 	}
 
 	@Override
