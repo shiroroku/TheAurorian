@@ -32,26 +32,6 @@ public class TARecipes {
 		}
 	}
 
-	public enum MoonlightForgeRecipes {
-		AURORIANITESWORD(TAItems.moonstonesword, TAItems.aurorianiteingot, TAItems.aurorianitesword),
-		AURORIANITEAXE(TAItems.moonstoneaxe, TAItems.aurorianiteingot, TAItems.aurorianiteaxe),
-		AURORIANITEPICKAXE(TAItems.moonstonepickaxe, TAItems.aurorianiteingot, TAItems.aurorianitepickaxe),
-		CRYSTALLINESWORD(TAItems.moonstonesword, TAItems.crystallineingot, TAItems.crystallinesword),
-		CRYSTALLINEPICKAXE(TAItems.moonstonepickaxe, TAItems.crystallineingot, TAItems.crystallinepickaxe),
-		UMBRASWORD(TAItems.moonstonesword, TAItems.umbraingot, TAItems.umbrasword),
-		UMBRAPICKAXE(TAItems.moonstonepickaxe, TAItems.umbraingot, TAItems.umbrapickaxe);
-
-		public Item input1;
-		public Item input2;
-		public Item output;
-
-		MoonlightForgeRecipes(Item a, Item b, Item c) {
-			input1 = a;
-			input2 = b;
-			output = c;
-		}
-	}
-
 	public static void registerBlockBurntime(FurnaceFuelBurnTimeEvent event) {
 		for (blockBurnTimes b : blockBurnTimes.values()) {
 			if (event.getItemStack().getItem() == b.getItemBlock()) {

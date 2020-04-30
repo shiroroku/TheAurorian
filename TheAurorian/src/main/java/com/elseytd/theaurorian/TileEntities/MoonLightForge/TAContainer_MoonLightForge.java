@@ -1,6 +1,7 @@
 package com.elseytd.theaurorian.TileEntities.MoonLightForge;
 
-import com.elseytd.theaurorian.TARecipes;
+import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipe;
+import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipeHandler;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -25,8 +26,8 @@ public class TAContainer_MoonLightForge extends Container {
 		this.addSlotToContainer(new Slot(machineinv, 0, 22, 35) {
 			@Override
 			public boolean isItemValid(ItemStack stack) {
-				for (TARecipes.MoonlightForgeRecipes recipe : TARecipes.MoonlightForgeRecipes.values()) {
-					if (recipe.input1 == stack.getItem()) {
+				for (MoonlightForgeRecipe recipe : MoonlightForgeRecipeHandler.allRecipes) {
+					if (recipe.getInput1() == stack.getItem()) {
 						return true;
 					}
 				}
@@ -36,8 +37,8 @@ public class TAContainer_MoonLightForge extends Container {
 		this.addSlotToContainer(new Slot(machineinv, 1, 84, 35) {
 			@Override
 			public boolean isItemValid(ItemStack stack) {
-				for (TARecipes.MoonlightForgeRecipes recipe : TARecipes.MoonlightForgeRecipes.values()) {
-					if (recipe.input2 == stack.getItem()) {
+				for (MoonlightForgeRecipe recipe : MoonlightForgeRecipeHandler.allRecipes) {
+					if (recipe.getInput2() == stack.getItem()) {
 						return true;
 					}
 				}

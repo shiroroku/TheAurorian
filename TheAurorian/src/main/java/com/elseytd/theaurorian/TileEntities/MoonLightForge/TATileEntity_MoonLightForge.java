@@ -2,9 +2,9 @@ package com.elseytd.theaurorian.TileEntities.MoonLightForge;
 
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TARecipes;
-import com.elseytd.theaurorian.TARecipes.MoonlightForgeRecipes;
 import com.elseytd.theaurorian.Blocks.TABlock_MoonLightForge;
+import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipe;
+import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipeHandler;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -87,10 +87,10 @@ public class TATileEntity_MoonLightForge extends TileEntityLockable implements I
 	}
 
 	public ItemStack getRecipeOutput(ItemStack input1, ItemStack input2) {
-		for (MoonlightForgeRecipes recipe : MoonlightForgeRecipes.values()) {
-			if (input1.getItem() == recipe.input1 && input2.getItem() == recipe.input2) {
+		for (MoonlightForgeRecipe recipe : MoonlightForgeRecipeHandler.allRecipes) {
+			if (input1.getItem() == recipe.getInput1() && input2.getItem() == recipe.getInput2()) {
 
-				ItemStack outputitem = new ItemStack(recipe.output);
+				ItemStack outputitem = new ItemStack(recipe.getOutput());
 				if (outputitem.isItemStackDamageable() && input1.isItemStackDamageable() && input1.isItemDamaged()) {
 					outputitem.setItemDamage(input1.getItemDamage());
 				}
@@ -217,15 +217,15 @@ public class TATileEntity_MoonLightForge extends TileEntityLockable implements I
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
 		switch (index) {
 		case 0:
-			for (TARecipes.MoonlightForgeRecipes recipe : TARecipes.MoonlightForgeRecipes.values()) {
-				if (recipe.input1 == stack.getItem()) {
+			for (MoonlightForgeRecipe recipe : MoonlightForgeRecipeHandler.allRecipes) {
+				if (recipe.getInput1() == stack.getItem()) {
 					return true;
 				}
 			}
 			return false;
 		case 1:
-			for (TARecipes.MoonlightForgeRecipes recipe : TARecipes.MoonlightForgeRecipes.values()) {
-				if (recipe.input2 == stack.getItem()) {
+			for (MoonlightForgeRecipe recipe : MoonlightForgeRecipeHandler.allRecipes) {
+				if (recipe.getInput2() == stack.getItem()) {
 					return true;
 				}
 			}
