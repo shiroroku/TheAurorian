@@ -1,5 +1,6 @@
 package com.elseytd.theaurorian;
 
+import com.elseytd.theaurorian.Items.TAItem_Armor_AurorianSteel;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Cerulean;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Knight;
 import com.elseytd.theaurorian.Items.TAItem_Armor_SlimeBoots;
@@ -26,6 +27,7 @@ import com.elseytd.theaurorian.Items.TAItem_Special_Lockpicks;
 import com.elseytd.theaurorian.Items.TAItem_Special_MoonShield;
 import com.elseytd.theaurorian.Items.TAItem_Special_StickySpiker;
 import com.elseytd.theaurorian.Items.TAItem_Special_StrangeMeat;
+import com.elseytd.theaurorian.Items.TAItem_Tool_AurorianSteel_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Axe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Hoe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Pickaxe;
@@ -80,8 +82,10 @@ public class TAItems {
 		public static Item.ToolMaterial AURORIANITE = EnumHelper.addToolMaterial("TA_AURORIANITE", 3, 1000, 8.0F, 3.0F, 20);
 		public static Item.ToolMaterial UMBRA = EnumHelper.addToolMaterial("TA_UMBRA", 3, 1000, 8.0F, 3.0F, 20);
 		public static Item.ToolMaterial CRYSTALLINE = EnumHelper.addToolMaterial("TA_CRYSTALLINE", 3, 1000, 8.0F, 3.0F, 20);
+		public static Item.ToolMaterial AURORIANSTEEL = EnumHelper.addToolMaterial("TA_AURORIANSTEEL", 3, 1500, 8.5F, 3.5F, 10);
 
 		public static ArmorMaterial CERULEAN_ARMOR = EnumHelper.addArmorMaterial("TA_CERULEAN_ARMOR", "theaurorian:cerulean", 20, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
+		public static ArmorMaterial AURORIANSTEEL_ARMOR = EnumHelper.addArmorMaterial("TA_CERULEAN_ARMOR", "theaurorian:auroriansteelarmor", 33, new int[] { 4, 7, 8, 4 }, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2);
 		public static ArmorMaterial SPIKED_ARMOR = EnumHelper.addArmorMaterial("TA_SPIKED_ARMOR", "theaurorian:spiked", 65, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
 		public static ArmorMaterial KNIGHT_ARMOR = EnumHelper.addArmorMaterial("TA_KNIGHT_ARMOR", "theaurorian:knight", 30, new int[] { 2, 3, 2, 1 }, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0);
 		public static ArmorMaterial AURORIAN_SLIME = EnumHelper.addArmorMaterial("TA_AURORIAN_SLIME", "theaurorian:aurorianslime", 120, new int[] { 1, 2, 3, 1 }, 20, SoundEvents.ENTITY_SLIME_SQUISH, 0);
@@ -93,10 +97,12 @@ public class TAItems {
 			AURORIANITE.setRepairItem(new ItemStack(TAItems.aurorianiteingot));
 			CRYSTALLINE.setRepairItem(new ItemStack(TAItems.crystallineingot));
 			UMBRA.setRepairItem(new ItemStack(TAItems.umbraingot));
+			AURORIANSTEEL.setRepairItem(new ItemStack(TAItems.auroriansteel));
 
 			CERULEAN_ARMOR.setRepairItem(new ItemStack(TAItems.ceruleaningot));
 			SPIKED_ARMOR.setRepairItem(new ItemStack(TAItems.umbraingot));
 			AURORIAN_SLIME.setRepairItem(new ItemStack(TAItems.aurorianslimeball));
+			AURORIANSTEEL_ARMOR.setRepairItem(new ItemStack(TAItems.auroriansteel));
 		}
 	}
 
@@ -204,6 +210,8 @@ public class TAItems {
 	public static TAItem_Crafting_Nugget ceruleannugget;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_Nugget.ITEMNAME_MOONSTONE)
 	public static TAItem_Crafting_Nugget moonstonenugget;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_Nugget.ITEMNAME_AURORIANSTEEL)
+	public static TAItem_Crafting_Nugget auroriansteelnugget;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_PLANTFIBER)
 	public static TAItem_Basic plantfiber;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_SilentwoodStick.ITEMNAME)
@@ -226,6 +234,14 @@ public class TAItems {
 	public static TAItem_Basic umbraingot;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_INGOT_AURORIANSTEEL)
 	public static TAItem_Basic auroriansteel;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "auroriansteelhelmet")
+	public static TAItem_Armor_AurorianSteel auroriansteelhelmet;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "auroriansteelchestplate")
+	public static TAItem_Armor_AurorianSteel auroriansteelchestplate;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "auroriansteelleggings")
+	public static TAItem_Armor_AurorianSteel auroriansteelleggings;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "auroriansteelboots")
+	public static TAItem_Armor_AurorianSteel auroriansteelboots;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "ceruleanhelmet")
 	public static TAItem_Armor_Cerulean ceruleanhelmet;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + "ceruleanchestplate")
@@ -266,6 +282,8 @@ public class TAItems {
 	public static TAItem_Tool_Aurorian_Stone_Sickle aurorianstonesickle;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Aurorian_Stone_Sword.ITEMNAME)
 	public static TAItem_Tool_Aurorian_Stone_Sword aurorianstonesword;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_AurorianSteel_Sword.ITEMNAME)
+	public static TAItem_Tool_AurorianSteel_Sword auroriansteelsword;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Silentwood_Axe.ITEMNAME)
 	public static TAItem_Tool_Silentwood_Axe silentwoodaxe;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Silentwood_Bow.ITEMNAME)
@@ -296,6 +314,12 @@ public class TAItems {
 		AURORIANPORKCOOKED(new TAItem_Food(TAItem_Food.Foods.COOKEDAURORIANPORK)),
 		AURORIANSLIMEBALL(new TAItem_Food(TAItem_Food.Foods.AURORIANSLIMEBALL)),
 		AURORIANSLIMEBOOTS(new TAItem_Armor_SlimeBoots(EntityEquipmentSlot.FEET, "aurorianslimeboots")),
+		AURORIANSTEELARMORBOOTS(new TAItem_Armor_AurorianSteel(EntityEquipmentSlot.FEET, "auroriansteelboots")),
+		AURORIANSTEELARMORCHESTPLATE(new TAItem_Armor_AurorianSteel(EntityEquipmentSlot.CHEST, "auroriansteelchestplate")),
+		AURORIANSTEELARMORHELMET(new TAItem_Armor_AurorianSteel(EntityEquipmentSlot.HEAD, "auroriansteelhelmet")),
+		AURORIANSTEELARMORLEGGINGS(new TAItem_Armor_AurorianSteel(EntityEquipmentSlot.LEGS, "auroriansteelleggings")),
+		AURORIANSTEELNUGGET(new TAItem_Crafting_Nugget(TAItem_Crafting_Nugget.ITEMNAME_AURORIANSTEEL)),
+		AURORIANSTEELSWORD(new TAItem_Tool_AurorianSteel_Sword()),
 		AURORIANSTONEAXE(new TAItem_Tool_Aurorian_Stone_Axe()),
 		AURORIANSTONEHOE(new TAItem_Tool_Aurorian_Stone_Hoe()),
 		AURORIANSTONEPICKAXE(new TAItem_Tool_Aurorian_Stone_Pickaxe()),

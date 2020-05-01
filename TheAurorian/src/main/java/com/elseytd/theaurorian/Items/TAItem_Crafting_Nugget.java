@@ -10,6 +10,7 @@ public class TAItem_Crafting_Nugget extends Item {
 	public static final String ITEMNAME_CERULEAN = "ceruleannugget";
 	public static final String ITEMNAME_MOONSTONE = "moonstonenugget";
 	public static final String ITEMNAME_COAL = "auroriancoalnugget";
+	public static final String ITEMNAME_AURORIANSTEEL = "auroriansteelnugget";
 
 	public TAItem_Crafting_Nugget(String name) {
 		this.setCreativeTab(TAMod.CREATIVE_TAB);

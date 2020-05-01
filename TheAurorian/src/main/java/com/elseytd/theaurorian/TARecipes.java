@@ -60,6 +60,11 @@ public class TARecipes {
 		GameRegistry.addSmelting(TAItems.ceruleanleggings, new ItemStack(TAItems.ceruleannugget, 14), 0F);
 		GameRegistry.addSmelting(TAItems.ceruleanhelmet, new ItemStack(TAItems.ceruleannugget, 10), 0F);
 		GameRegistry.addSmelting(TAItems.ceruleanshield, new ItemStack(TAItems.ceruleannugget, 12), 0F);
+		GameRegistry.addSmelting(TAItems.auroriansteelchestplate, new ItemStack(TAItems.auroriansteelnugget, 16), 0F);
+		GameRegistry.addSmelting(TAItems.auroriansteelleggings, new ItemStack(TAItems.auroriansteelnugget, 14), 0F);
+		GameRegistry.addSmelting(TAItems.auroriansteelhelmet, new ItemStack(TAItems.auroriansteelnugget, 10), 0F);
+		GameRegistry.addSmelting(TAItems.auroriansteelboots, new ItemStack(TAItems.auroriansteelnugget, 8), 0F);
+
 
 		// SPECIAL RECYCLING
 		GameRegistry.addSmelting(TAItems.aurorianitesword, new ItemStack(TAItems.scrapaurorianite, 2), 0F);
@@ -80,6 +85,7 @@ public class TARecipes {
 		OreDictionary.registerOre("treeLeaves", TABlocks.silentwoodleaves);
 		OreDictionary.registerOre("treeLeaves", TABlocks.weepingwillowleaves);
 		OreDictionary.registerOre("stairWood", TABlocks.silentwoodstairs);
+		OreDictionary.registerOre("stairWood", TABlocks.weepingwillowplanksstairs);
 		OreDictionary.registerOre("treeSapling", TABlocks.silentwoodsapling);
 		OreDictionary.registerOre("treeSapling", TABlocks.weepingwillowsapling);
 		OreDictionary.registerOre("paneGlass", TABlocks.moonglasspane);
@@ -104,6 +110,9 @@ public class TARecipes {
 		OreDictionary.registerOre("blockMoonstone", TABlocks.moonstoneblock);
 		OreDictionary.registerOre("ingotMoonstone", TAItems.moonstoneingot);
 		OreDictionary.registerOre("nuggetMoonstone", TAItems.moonstonenugget);
+		
+		OreDictionary.registerOre("ingotAurorianSteel", TAItems.auroriansteel);
+		OreDictionary.registerOre("nuggetAurorianSteel", TAItems.auroriansteelnugget);
 	}
 
 }

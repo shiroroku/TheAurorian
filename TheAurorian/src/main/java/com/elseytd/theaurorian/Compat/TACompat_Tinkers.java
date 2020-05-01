@@ -6,6 +6,7 @@ import java.awt.Color;
 
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAItems;
+import com.elseytd.theaurorian.Blocks.TAFluid_MoltenAurorianSteel;
 import com.elseytd.theaurorian.Blocks.TAFluid_MoltenCerulean;
 import com.elseytd.theaurorian.Blocks.TAFluid_MoltenMoonstone;
 
@@ -69,7 +70,8 @@ public class TACompat_Tinkers {
 	public static void preinitMetalsAndMaterials() {
 		addSmelteryMetals("Cerulean", TAFluid_MoltenCerulean.FLUIDNAME);
 		addSmelteryMetals("Moonstone", TAFluid_MoltenMoonstone.FLUIDNAME);
-
+		addSmelteryMetals("AurorianSteel", TAFluid_MoltenAurorianSteel.FLUIDNAME);
+		
 		cerulean = new Material("cerulean", new Color(50, 157, 255).getRGB());
 		TinkerRegistry.addMaterialStats(cerulean, new HeadMaterialStats(270, 7.00f, 3.00f, HarvestLevels.DIAMOND), new HandleMaterialStats(1f, 50), new ExtraMaterialStats(75), new BowMaterialStats(0.2f, 0.4f, -1f));
 		TinkerRegistry.integrate(cerulean, TABlocks.Fluids.MOLTENCERULEAN, "Cerulean").toolforge().preInit();

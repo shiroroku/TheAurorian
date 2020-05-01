@@ -1,6 +1,7 @@
 package com.elseytd.theaurorian;
 
 import com.elseytd.theaurorian.TAItems.ISpecialModel;
+import com.elseytd.theaurorian.Blocks.TABlockFluid_MoltenAurorianSteel;
 import com.elseytd.theaurorian.Blocks.TABlockFluid_MoltenCerulean;
 import com.elseytd.theaurorian.Blocks.TABlockFluid_MoltenMoonstone;
 import com.elseytd.theaurorian.Blocks.TABlockFluid_Moonwater;
@@ -50,13 +51,14 @@ import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianDirt;
 import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianFarmTile;
 import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianGrass;
 import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianStone;
-import com.elseytd.theaurorian.Blocks.TABlock_Terrain_Peridotite;
 import com.elseytd.theaurorian.Blocks.TABlock_Terrain_Moonsand;
+import com.elseytd.theaurorian.Blocks.TABlock_Terrain_Peridotite;
 import com.elseytd.theaurorian.Blocks.TABlock_UmbraStone;
 import com.elseytd.theaurorian.Blocks.TABlock_Urn;
 import com.elseytd.theaurorian.Blocks.TABlock_WeepingWillow_Leaves;
 import com.elseytd.theaurorian.Blocks.TABlock_WeepingWillow_Log;
 import com.elseytd.theaurorian.Blocks.TABlock_WeepingWillow_Planks;
+import com.elseytd.theaurorian.Blocks.TAFluid_MoltenAurorianSteel;
 import com.elseytd.theaurorian.Blocks.TAFluid_MoltenCerulean;
 import com.elseytd.theaurorian.Blocks.TAFluid_MoltenMoonstone;
 import com.elseytd.theaurorian.Blocks.TAFluid_Moonwater;
@@ -82,15 +84,18 @@ public class TABlocks {
 		public static TAFluid_Moonwater MOONWATER = new TAFluid_Moonwater();
 		public static TAFluid_MoltenCerulean MOLTENCERULEAN = new TAFluid_MoltenCerulean();
 		public static TAFluid_MoltenMoonstone MOLTENMOONSTONE = new TAFluid_MoltenMoonstone();
+		public static TAFluid_MoltenAurorianSteel MOLTENAURORIANSTEEL = new TAFluid_MoltenAurorianSteel();
 
 		public static void registerFluids() {
 			FluidRegistry.registerFluid(Fluids.MOLTENCERULEAN);
 			FluidRegistry.registerFluid(Fluids.MOLTENMOONSTONE);
 			FluidRegistry.registerFluid(Fluids.MOONWATER);
+			FluidRegistry.registerFluid(Fluids.MOLTENAURORIANSTEEL);
 
 			FluidRegistry.addBucketForFluid(Fluids.MOLTENCERULEAN);
 			FluidRegistry.addBucketForFluid(Fluids.MOLTENMOONSTONE);
 			FluidRegistry.addBucketForFluid(Fluids.MOONWATER);
+			FluidRegistry.addBucketForFluid(Fluids.MOLTENAURORIANSTEEL);
 		}
 	}
 
@@ -101,6 +106,8 @@ public class TABlocks {
 	public static TABlockFluid_MoltenCerulean moltenceruleanblock;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAFluid_MoltenMoonstone.FLUIDNAME)
 	public static TABlockFluid_MoltenMoonstone moltenmoonstoneblock;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAFluid_MoltenAurorianSteel.FLUIDNAME)
+	public static TABlockFluid_MoltenAurorianSteel moltenauroriansteelblock;
 
 	// SPECIAL
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Urn.BLOCKNAME)
@@ -345,6 +352,7 @@ public class TABlocks {
 		DUNGEONSTONERUNESTONESTAIRS(new TABlock_Stairs(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_RUNESTONE), TABlock_Stairs.BLOCKNAME_RUNESTONE)),
 		FLUIDMOLTENCERULEAN(new TABlockFluid_MoltenCerulean()),
 		FLUIDMOLTENMOONSTONE(new TABlockFluid_MoltenMoonstone()),
+		FLUIDMOLTENAURORIANSTEEL(new TABlockFluid_MoltenAurorianSteel()),
 		FLUIDMOONWATER(new TABlockFluid_Moonwater()),
 		GLASSAURORIAN(new TABlock_Glass(TABlock_Glass.BLOCKNAME_AURORIAN)),
 		GLASSMOON(new TABlock_Glass(TABlock_Glass.BLOCKNAME_MOONGLASS)),
