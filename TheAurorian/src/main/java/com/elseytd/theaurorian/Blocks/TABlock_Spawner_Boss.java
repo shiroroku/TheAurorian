@@ -82,9 +82,7 @@ public class TABlock_Spawner_Boss extends Block implements ITileEntityProvider {
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		BossSpawner_TileEntity te = new BossSpawner_TileEntity();
-		te.bossEntity = this.blockBoss.getBoss();
-		return te;
+		return new BossSpawner_TileEntity(this.blockBoss.getBoss());
 	}
 
 }

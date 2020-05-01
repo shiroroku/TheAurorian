@@ -1,19 +1,30 @@
 package com.elseytd.theaurorian.TileEntities;
 
-import com.elseytd.theaurorian.Entities.Boss.Keeper_Entity;
-import com.elseytd.theaurorian.Entities.Boss.MoonQueen_Entity;
+import com.elseytd.theaurorian.TAMod;
 
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.EnumDifficulty;
 
 public class BossSpawner_TileEntity extends TileEntity implements ITickable {
 
-	protected boolean IsSpawned = false;
-	public String bossEntity;
+	private boolean IsSpawned;
+	private String bossEntity;
+
+	public BossSpawner_TileEntity() {
+		IsSpawned = false;
+	}
+
+	public BossSpawner_TileEntity(String mobName) {
+		this();
+		this.bossEntity = mobName;
+	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
@@ -40,24 +51,14 @@ public class BossSpawner_TileEntity extends TileEntity implements ITickable {
 		}
 	}
 
-	public boolean spawnBoss() {
-		switch (bossEntity) {
-		case Keeper_Entity.EntityName:
-			Keeper_Entity boss = new Keeper_Entity(this.getWorld());
-			boss.moveToBlockPosAndAngles(pos, this.getWorld().rand.nextFloat() * 360F, 0.0F);
-			boss.onInitialSpawn(this.getWorld().getDifficultyForLocation(pos), null);
-			return this.getWorld().spawnEntity(boss);
-		case MoonQueen_Entity.EntityName:
-			MoonQueen_Entity bossq = new MoonQueen_Entity(this.getWorld());
-			bossq.moveToBlockPosAndAngles(pos, this.getWorld().rand.nextFloat() * 360F, 0.0F);
-			bossq.onInitialSpawn(this.getWorld().getDifficultyForLocation(pos), null);
-			return this.getWorld().spawnEntity(bossq);
-		}
-		System.out.println("Failed to spawn boss, entity is null.");
-		return false;
+	private boolean spawnBoss() {
+		EntityLiving boss = (EntityLiving) EntityList.createEntityByIDFromName(new ResourceLocation(TAMod.MODID, bossEntity), this.getWorld());
+		boss.moveToBlockPosAndAngles(pos, this.getWorld().rand.nextFloat() * 360F, 0.0F);
+		boss.onInitialSpawn(this.getWorld().getDifficultyForLocation(pos), null);
+		return this.getWorld().spawnEntity(boss);
 	}
 
-	public boolean isPlayerInRange() {
+	private boolean isPlayerInRange() {
 		int dist = 8;
 		return this.isAnyPlayerWithinRangeAtInDome(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, dist);
 	}
@@ -65,12 +66,12 @@ public class BossSpawner_TileEntity extends TileEntity implements ITickable {
 	/**
 	 * Same as World.isAnyPlayerWithinRangeAt but limited to a dome shape.
 	 */
-	public boolean isAnyPlayerWithinRangeAtInDome(double x, double y, double z, double range) {
+	private boolean isAnyPlayerWithinRangeAtInDome(double x, double y, double z, double range) {
 		for (int playercount = 0; playercount < this.getWorld().playerEntities.size(); ++playercount) {
 			EntityPlayer entityplayer = this.getWorld().playerEntities.get(playercount);
 			if (EntitySelectors.NOT_SPECTATING.apply(entityplayer)) {
 				double d0 = entityplayer.getDistanceSq(x, y, z);
-				if (range < 0.0D || d0 < range * range) {
+				if (range < 0.0D || d0 < range * range && !entityplayer.isCreative()) {
 					if (entityplayer.getPosition().getY() >= y) {
 						return true;
 					}
