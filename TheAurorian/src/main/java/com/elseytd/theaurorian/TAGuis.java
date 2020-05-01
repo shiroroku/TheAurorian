@@ -1,13 +1,13 @@
 package com.elseytd.theaurorian;
 
-import com.elseytd.theaurorian.TileEntities.Furnace.TAContainer_Aurorian_Furnace;
-import com.elseytd.theaurorian.TileEntities.Furnace.TAGui_Aurorian_Furnace;
-import com.elseytd.theaurorian.TileEntities.Furnace.TATileEntity_Aurorian_Furnace;
-import com.elseytd.theaurorian.TileEntities.MoonLightForge.TAContainer_MoonLightForge;
-import com.elseytd.theaurorian.TileEntities.MoonLightForge.TAGui_MoonLightForge;
-import com.elseytd.theaurorian.TileEntities.MoonLightForge.TATileEntity_MoonLightForge;
-import com.elseytd.theaurorian.TileEntities.Workbench.TAContainer_Silentwood_Workbench;
-import com.elseytd.theaurorian.TileEntities.Workbench.TAGui_Silentwood_Workbench;
+import com.elseytd.theaurorian.TileEntities.AurorianFurnace_Container;
+import com.elseytd.theaurorian.TileEntities.AurorianFurnace_Gui;
+import com.elseytd.theaurorian.TileEntities.AurorianFurnace_TileEntity;
+import com.elseytd.theaurorian.TileEntities.MoonLightForge_Container;
+import com.elseytd.theaurorian.TileEntities.MoonLightForge_Gui;
+import com.elseytd.theaurorian.TileEntities.MoonLightForge_TileEntity;
+import com.elseytd.theaurorian.TileEntities.SilentwoodWorkbench_Container;
+import com.elseytd.theaurorian.TileEntities.SilentwoodWorkbench_Gui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -24,11 +24,11 @@ public class TAGuis implements IGuiHandler {
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
 		switch (id) {
 		case SILENTWOODCRAFTINGTABLE:
-			return new TAContainer_Silentwood_Workbench(player.inventory, world, new BlockPos(x, y, z));
+			return new SilentwoodWorkbench_Container(player.inventory, world, new BlockPos(x, y, z));
 		case AURORIANFURNACE:
-			return new TAContainer_Aurorian_Furnace(player.inventory, (TATileEntity_Aurorian_Furnace) world.getTileEntity(new BlockPos(x, y, z)));
+			return new AurorianFurnace_Container(player.inventory, (AurorianFurnace_TileEntity) world.getTileEntity(new BlockPos(x, y, z)));
 		case MOONLIGHTFORGE:
-			return new TAContainer_MoonLightForge(player.inventory, (TATileEntity_MoonLightForge) world.getTileEntity(new BlockPos(x, y, z)));
+			return new MoonLightForge_Container(player.inventory, (MoonLightForge_TileEntity) world.getTileEntity(new BlockPos(x, y, z)));
 		}
 		return null;
 	}
@@ -37,11 +37,11 @@ public class TAGuis implements IGuiHandler {
 	public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
 		switch (id) {
 		case SILENTWOODCRAFTINGTABLE:
-			return new TAGui_Silentwood_Workbench(player.inventory, world, new BlockPos(x, y, z));
+			return new SilentwoodWorkbench_Gui(player.inventory, world, new BlockPos(x, y, z));
 		case AURORIANFURNACE:
-			return new TAGui_Aurorian_Furnace(player.inventory, (TATileEntity_Aurorian_Furnace) world.getTileEntity(new BlockPos(x, y, z)));
+			return new AurorianFurnace_Gui(player.inventory, (AurorianFurnace_TileEntity) world.getTileEntity(new BlockPos(x, y, z)));
 		case MOONLIGHTFORGE:
-			return new TAGui_MoonLightForge(player.inventory, (TATileEntity_MoonLightForge) world.getTileEntity(new BlockPos(x, y, z)));
+			return new MoonLightForge_Gui(player.inventory, (MoonLightForge_TileEntity) world.getTileEntity(new BlockPos(x, y, z)));
 		}
 		return null;
 	}

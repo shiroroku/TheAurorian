@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.elseytd.theaurorian.TAGuis;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TileEntities.MoonLightForge.TATileEntity_MoonLightForge;
+import com.elseytd.theaurorian.TileEntities.MoonLightForge_TileEntity;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
@@ -63,8 +63,8 @@ public class TABlock_MoonLightForge extends BlockContainer {
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		TileEntity tileentity = worldIn.getTileEntity(pos);
 		if (tileentity != null) {
-			if (tileentity instanceof TATileEntity_MoonLightForge) {
-				TATileEntity_MoonLightForge tile = (TATileEntity_MoonLightForge) tileentity;
+			if (tileentity instanceof MoonLightForge_TileEntity) {
+				MoonLightForge_TileEntity tile = (MoonLightForge_TileEntity) tileentity;
 				if (tile.isCrafting()) {
 					double d0 = (double) pos.getX() + rand.nextDouble();
 					double d1 = (double) pos.getY() + 4.2D;
@@ -148,7 +148,7 @@ public class TABlock_MoonLightForge extends BlockContainer {
 		if (worldIn.isRemote) {
 			return true;
 		} else {
-			if (tileentity instanceof TATileEntity_MoonLightForge) {
+			if (tileentity instanceof MoonLightForge_TileEntity) {
 				playerIn.openGui(TAMod.INSTANCE, TAGuis.MOONLIGHTFORGE, worldIn, pos.getX(), pos.getY(), pos.getZ());
 			}
 			return true;
@@ -158,8 +158,8 @@ public class TABlock_MoonLightForge extends BlockContainer {
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		TileEntity tileentity = worldIn.getTileEntity(pos);
-		if (tileentity instanceof TATileEntity_MoonLightForge) {
-			InventoryHelper.dropInventoryItems(worldIn, pos, (TATileEntity_MoonLightForge) tileentity);
+		if (tileentity instanceof MoonLightForge_TileEntity) {
+			InventoryHelper.dropInventoryItems(worldIn, pos, (MoonLightForge_TileEntity) tileentity);
 			worldIn.updateComparatorOutputLevel(pos, this);
 		}
 		super.breakBlock(worldIn, pos, state);
@@ -167,7 +167,7 @@ public class TABlock_MoonLightForge extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TATileEntity_MoonLightForge();
+		return new MoonLightForge_TileEntity();
 	}
 
 }

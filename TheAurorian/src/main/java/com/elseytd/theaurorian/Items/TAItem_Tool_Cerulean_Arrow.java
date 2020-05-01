@@ -1,7 +1,7 @@
 package com.elseytd.theaurorian.Items;
 
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_CeruleanArrow;
+import com.elseytd.theaurorian.Entities.Projectiles.CeruleanArrow_Entity;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -22,7 +22,7 @@ public class TAItem_Tool_Cerulean_Arrow extends ItemArrow {
 
 	@Override
 	public EntityArrow createArrow(World worldIn, ItemStack stack, EntityLivingBase shooter) {
-		TAEntity_CeruleanArrow ceruleanarrow = new TAEntity_CeruleanArrow(worldIn, shooter);
+		CeruleanArrow_Entity ceruleanarrow = new CeruleanArrow_Entity(worldIn, shooter);
 		return ceruleanarrow;
 	}
 

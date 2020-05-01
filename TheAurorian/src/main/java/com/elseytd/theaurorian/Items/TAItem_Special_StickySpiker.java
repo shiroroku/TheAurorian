@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_StickySpiker;
+import com.elseytd.theaurorian.Entities.Projectiles.StickySpiker_Entity;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
@@ -47,7 +47,7 @@ public class TAItem_Special_StickySpiker extends Item {
 		worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
 		if (!worldIn.isRemote) {
-			TAEntity_StickySpiker entity = new TAEntity_StickySpiker(worldIn, playerIn);
+			StickySpiker_Entity entity = new StickySpiker_Entity(worldIn, playerIn);
 			entity.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
 			worldIn.spawnEntity(entity);
 		}

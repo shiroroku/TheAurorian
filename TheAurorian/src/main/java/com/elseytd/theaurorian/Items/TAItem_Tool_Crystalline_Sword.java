@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_CrystallineBeam;
+import com.elseytd.theaurorian.Entities.Projectiles.CrystallineBeam_Entity;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
@@ -55,7 +55,7 @@ public class TAItem_Tool_Crystalline_Sword extends ItemSword {
 
 			System.out.println(i);
 			if (!worldIn.isRemote) {
-				TAEntity_CrystallineBeam entitytippedarrow = new TAEntity_CrystallineBeam(worldIn, entityplayer);
+				CrystallineBeam_Entity entitytippedarrow = new CrystallineBeam_Entity(worldIn, entityplayer);
 				entitytippedarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, 3.0F, 1.0F);
 				stack.damageItem(1, entityplayer);
 				worldIn.spawnEntity(entitytippedarrow);

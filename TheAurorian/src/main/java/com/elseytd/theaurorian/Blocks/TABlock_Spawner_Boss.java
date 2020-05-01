@@ -3,9 +3,9 @@ package com.elseytd.theaurorian.Blocks;
 import java.util.Random;
 
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.Entities.Keeper.TAEntity_RunestoneDungeonKeeper;
-import com.elseytd.theaurorian.Entities.MoonQueen.TAEntity_MoonQueen;
-import com.elseytd.theaurorian.TileEntities.TATileEntity_Spawner_Boss;
+import com.elseytd.theaurorian.Entities.Boss.Keeper_Entity;
+import com.elseytd.theaurorian.Entities.Boss.MoonQueen_Entity;
+import com.elseytd.theaurorian.TileEntities.BossSpawner_TileEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -26,8 +26,8 @@ public class TABlock_Spawner_Boss extends Block implements ITileEntityProvider {
 	public static final String BLOCKNAME_MOONQUEEN = "bossspawnermoonqueen";
 
 	public enum Bosses {
-		KEEPER(BLOCKNAME_KEEPER, TAEntity_RunestoneDungeonKeeper.EntityName),
-		MOONQUEEN(BLOCKNAME_MOONQUEEN, TAEntity_MoonQueen.EntityName);
+		KEEPER(BLOCKNAME_KEEPER, Keeper_Entity.EntityName),
+		MOONQUEEN(BLOCKNAME_MOONQUEEN, MoonQueen_Entity.EntityName);
 
 		private String BLOCKNAME;
 		private String BOSS;
@@ -82,7 +82,7 @@ public class TABlock_Spawner_Boss extends Block implements ITileEntityProvider {
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		TATileEntity_Spawner_Boss te = new TATileEntity_Spawner_Boss();
+		BossSpawner_TileEntity te = new BossSpawner_TileEntity();
 		te.bossEntity = this.blockBoss.getBoss();
 		return te;
 	}

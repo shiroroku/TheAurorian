@@ -1,33 +1,33 @@
 package com.elseytd.theaurorian;
 
-import com.elseytd.theaurorian.Entities.AurorianPig.TAEntityRender_AurorianPig;
-import com.elseytd.theaurorian.Entities.AurorianPig.TAEntity_AurorianPig;
-import com.elseytd.theaurorian.Entities.AurorianRabbit.TAEntityRender_AurorianRabbit;
-import com.elseytd.theaurorian.Entities.AurorianRabbit.TAEntity_AurorianRabbit;
-import com.elseytd.theaurorian.Entities.AurorianSheep.TAEntityRender_AurorianSheep;
-import com.elseytd.theaurorian.Entities.AurorianSheep.TAEntity_AurorianSheep;
-import com.elseytd.theaurorian.Entities.AurorianSlime.TAEntityRender_AurorianSlime;
-import com.elseytd.theaurorian.Entities.AurorianSlime.TAEntity_AurorianSlime;
-import com.elseytd.theaurorian.Entities.CrystallineSprite.TAEntityRender_CrystallineBeam;
-import com.elseytd.theaurorian.Entities.CrystallineSprite.TAEntityRender_CrystallineSprite;
-import com.elseytd.theaurorian.Entities.CrystallineSprite.TAEntity_CrystallineSprite;
-import com.elseytd.theaurorian.Entities.Hollow.TAEntityRender_DisturbedHollow;
-import com.elseytd.theaurorian.Entities.Hollow.TAEntity_DisturbedHollow;
-import com.elseytd.theaurorian.Entities.Keeper.TAEntityRender_RunestoneDungeonKeeper;
-import com.elseytd.theaurorian.Entities.Keeper.TAEntity_RunestoneDungeonKeeper;
-import com.elseytd.theaurorian.Entities.MoonAcolyte.TAEntityRender_MoonAcolyte;
-import com.elseytd.theaurorian.Entities.MoonAcolyte.TAEntity_MoonAcolyte;
-import com.elseytd.theaurorian.Entities.MoonQueen.TAEntityRender_MoonQueen;
-import com.elseytd.theaurorian.Entities.MoonQueen.TAEntity_MoonQueen;
-import com.elseytd.theaurorian.Entities.Projectiles.TAEntityRender_CeruleanArrow;
-import com.elseytd.theaurorian.Entities.Projectiles.TAEntityRender_StickySpiker;
-import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_CeruleanArrow;
-import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_CrystallineBeam;
-import com.elseytd.theaurorian.Entities.Projectiles.TAEntity_StickySpiker;
-import com.elseytd.theaurorian.Entities.Spirit.TAEntityRender_Spirit;
-import com.elseytd.theaurorian.Entities.Spirit.TAEntity_Spirit;
-import com.elseytd.theaurorian.Entities.UndeadKnight.TAEntityRender_UndeadKnight;
-import com.elseytd.theaurorian.Entities.UndeadKnight.TAEntity_UndeadKnight;
+import com.elseytd.theaurorian.Entities.Boss.Keeper_Entity;
+import com.elseytd.theaurorian.Entities.Boss.Keeper_EntityRender;
+import com.elseytd.theaurorian.Entities.Boss.MoonQueen_Entity;
+import com.elseytd.theaurorian.Entities.Boss.MoonQueen_EntityRender;
+import com.elseytd.theaurorian.Entities.Hostile.AurorianSlime_Entity;
+import com.elseytd.theaurorian.Entities.Hostile.AurorianSlime_EntityRender;
+import com.elseytd.theaurorian.Entities.Hostile.CrystallineSprite_Entity;
+import com.elseytd.theaurorian.Entities.Hostile.CrystallineSprite_EntityRender;
+import com.elseytd.theaurorian.Entities.Hostile.DisturbedHollow_Entity;
+import com.elseytd.theaurorian.Entities.Hostile.DisturbedHollow_EntityRender;
+import com.elseytd.theaurorian.Entities.Hostile.MoonAcolyte_Entity;
+import com.elseytd.theaurorian.Entities.Hostile.MoonAcolyte_EntityRender;
+import com.elseytd.theaurorian.Entities.Hostile.Spirit_Entity;
+import com.elseytd.theaurorian.Entities.Hostile.Spirit_EntityRender;
+import com.elseytd.theaurorian.Entities.Hostile.UndeadKnight_Entity;
+import com.elseytd.theaurorian.Entities.Hostile.UndeadKnight_EntityRender;
+import com.elseytd.theaurorian.Entities.Passive.AurorianPig_Entity;
+import com.elseytd.theaurorian.Entities.Passive.AurorianPig_EntityRender;
+import com.elseytd.theaurorian.Entities.Passive.AurorianRabbit_Entity;
+import com.elseytd.theaurorian.Entities.Passive.AurorianRabbit_EntityRender;
+import com.elseytd.theaurorian.Entities.Passive.AurorianSheep_Entity;
+import com.elseytd.theaurorian.Entities.Passive.AurorianSheep_EntityRender;
+import com.elseytd.theaurorian.Entities.Projectiles.CrystallineBeam_EntityRender;
+import com.elseytd.theaurorian.Entities.Projectiles.CeruleanArrow_EntityRender;
+import com.elseytd.theaurorian.Entities.Projectiles.StickySpiker_EntityRender;
+import com.elseytd.theaurorian.Entities.Projectiles.CeruleanArrow_Entity;
+import com.elseytd.theaurorian.Entities.Projectiles.CrystallineBeam_Entity;
+import com.elseytd.theaurorian.Entities.Projectiles.StickySpiker_Entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -40,20 +40,20 @@ public class TAEntities {
 	public static void init() {
 		int id = 0;
 
-		quickRegEntity(TAEntity_DisturbedHollow.class, TAEntity_DisturbedHollow.EntityName, id++);
-		quickRegEntity(TAEntity_RunestoneDungeonKeeper.class, TAEntity_RunestoneDungeonKeeper.EntityName, id++);
-		quickRegEntity(TAEntity_UndeadKnight.class, TAEntity_UndeadKnight.EntityName, id++);
-		quickRegEntity(TAEntity_MoonAcolyte.class, TAEntity_MoonAcolyte.EntityName, id++);
-		quickRegEntity(TAEntity_MoonQueen.class, TAEntity_MoonQueen.EntityName, id++);
-		quickRegEntity(TAEntity_AurorianRabbit.class, TAEntity_AurorianRabbit.EntityName, id++);
-		quickRegEntity(TAEntity_AurorianSheep.class, TAEntity_AurorianSheep.EntityName, id++);
-		quickRegEntity(TAEntity_AurorianPig.class, TAEntity_AurorianPig.EntityName, id++);
-		quickRegEntity(TAEntity_AurorianSlime.class, TAEntity_AurorianSlime.EntityName, id++);
-		quickRegNonlivingEntity(TAEntity_StickySpiker.class, TAEntity_StickySpiker.EntityName, id++);
-		quickRegNonlivingEntity(TAEntity_CeruleanArrow.class, TAEntity_CeruleanArrow.EntityName, id++);
-		quickRegEntity(TAEntity_CrystallineSprite.class, TAEntity_CrystallineSprite.EntityName, id++);
-		quickRegNonlivingEntity(TAEntity_CrystallineBeam.class, TAEntity_CrystallineBeam.EntityName, id++);
-		quickRegEntity(TAEntity_Spirit.class, TAEntity_Spirit.EntityName, id++);
+		quickRegEntity(DisturbedHollow_Entity.class, DisturbedHollow_Entity.EntityName, id++);
+		quickRegEntity(Keeper_Entity.class, Keeper_Entity.EntityName, id++);
+		quickRegEntity(UndeadKnight_Entity.class, UndeadKnight_Entity.EntityName, id++);
+		quickRegEntity(MoonAcolyte_Entity.class, MoonAcolyte_Entity.EntityName, id++);
+		quickRegEntity(MoonQueen_Entity.class, MoonQueen_Entity.EntityName, id++);
+		quickRegEntity(AurorianRabbit_Entity.class, AurorianRabbit_Entity.EntityName, id++);
+		quickRegEntity(AurorianSheep_Entity.class, AurorianSheep_Entity.EntityName, id++);
+		quickRegEntity(AurorianPig_Entity.class, AurorianPig_Entity.EntityName, id++);
+		quickRegEntity(AurorianSlime_Entity.class, AurorianSlime_Entity.EntityName, id++);
+		quickRegNonlivingEntity(StickySpiker_Entity.class, StickySpiker_Entity.EntityName, id++);
+		quickRegNonlivingEntity(CeruleanArrow_Entity.class, CeruleanArrow_Entity.EntityName, id++);
+		quickRegEntity(CrystallineSprite_Entity.class, CrystallineSprite_Entity.EntityName, id++);
+		quickRegNonlivingEntity(CrystallineBeam_Entity.class, CrystallineBeam_Entity.EntityName, id++);
+		quickRegEntity(Spirit_Entity.class, Spirit_Entity.EntityName, id++);
 
 	}
 
@@ -67,19 +67,19 @@ public class TAEntities {
 
 	@SideOnly(Side.CLIENT)
 	public static void initModels() {
-		RenderingRegistry.registerEntityRenderingHandler(TAEntity_DisturbedHollow.class, TAEntityRender_DisturbedHollow.FACTORY);
-		RenderingRegistry.registerEntityRenderingHandler(TAEntity_RunestoneDungeonKeeper.class, TAEntityRender_RunestoneDungeonKeeper.FACTORY);
-		RenderingRegistry.registerEntityRenderingHandler(TAEntity_UndeadKnight.class, TAEntityRender_UndeadKnight.FACTORY);
-		RenderingRegistry.registerEntityRenderingHandler(TAEntity_MoonAcolyte.class, TAEntityRender_MoonAcolyte.FACTORY);
-		RenderingRegistry.registerEntityRenderingHandler(TAEntity_MoonQueen.class, TAEntityRender_MoonQueen.FACTORY);
-		RenderingRegistry.registerEntityRenderingHandler(TAEntity_AurorianRabbit.class, TAEntityRender_AurorianRabbit.FACTORY);
-		RenderingRegistry.registerEntityRenderingHandler(TAEntity_AurorianSheep.class, TAEntityRender_AurorianSheep.FACTORY);
-		RenderingRegistry.registerEntityRenderingHandler(TAEntity_AurorianPig.class, TAEntityRender_AurorianPig.FACTORY);
-		RenderingRegistry.registerEntityRenderingHandler(TAEntity_AurorianSlime.class, TAEntityRender_AurorianSlime.FACTORY);
-		RenderingRegistry.registerEntityRenderingHandler(TAEntity_StickySpiker.class, TAEntityRender_StickySpiker.FACTORY);
-		RenderingRegistry.registerEntityRenderingHandler(TAEntity_CeruleanArrow.class, TAEntityRender_CeruleanArrow.FACTORY);
-		RenderingRegistry.registerEntityRenderingHandler(TAEntity_CrystallineSprite.class, TAEntityRender_CrystallineSprite.FACTORY);
-		RenderingRegistry.registerEntityRenderingHandler(TAEntity_CrystallineBeam.class, TAEntityRender_CrystallineBeam.FACTORY);
-		RenderingRegistry.registerEntityRenderingHandler(TAEntity_Spirit.class, TAEntityRender_Spirit.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(DisturbedHollow_Entity.class, DisturbedHollow_EntityRender.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(Keeper_Entity.class, Keeper_EntityRender.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(UndeadKnight_Entity.class, UndeadKnight_EntityRender.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(MoonAcolyte_Entity.class, MoonAcolyte_EntityRender.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(MoonQueen_Entity.class, MoonQueen_EntityRender.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(AurorianRabbit_Entity.class, AurorianRabbit_EntityRender.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(AurorianSheep_Entity.class, AurorianSheep_EntityRender.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(AurorianPig_Entity.class, AurorianPig_EntityRender.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(AurorianSlime_Entity.class, AurorianSlime_EntityRender.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(StickySpiker_Entity.class, StickySpiker_EntityRender.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(CeruleanArrow_Entity.class, CeruleanArrow_EntityRender.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(CrystallineSprite_Entity.class, CrystallineSprite_EntityRender.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(CrystallineBeam_Entity.class, CrystallineBeam_EntityRender.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(Spirit_Entity.class, Spirit_EntityRender.FACTORY);
 	}
 }

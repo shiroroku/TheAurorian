@@ -6,7 +6,7 @@ import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAGuis;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TileEntities.Furnace.TATileEntity_Aurorian_Furnace;
+import com.elseytd.theaurorian.TileEntities.AurorianFurnace_TileEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -149,7 +149,7 @@ public class TABlock_Furnace extends BlockContainer {
 			return true;
 		} else {
 
-			if (tileentity instanceof TATileEntity_Aurorian_Furnace) {
+			if (tileentity instanceof AurorianFurnace_TileEntity) {
 				playerIn.openGui(TAMod.INSTANCE, TAGuis.AURORIANFURNACE, worldIn, pos.getX(), pos.getY(), pos.getZ());
 				playerIn.addStat(StatList.FURNACE_INTERACTION);
 			}
@@ -181,7 +181,7 @@ public class TABlock_Furnace extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TATileEntity_Aurorian_Furnace();
+		return new AurorianFurnace_TileEntity();
 	}
 
 	@Override
@@ -195,8 +195,8 @@ public class TABlock_Furnace extends BlockContainer {
 
 		TileEntity tileentity = worldIn.getTileEntity(pos);
 		if (stack.hasDisplayName()) {
-			if (tileentity instanceof TATileEntity_Aurorian_Furnace) {
-				((TATileEntity_Aurorian_Furnace) tileentity).setCustomInventoryName(stack.getDisplayName());
+			if (tileentity instanceof AurorianFurnace_TileEntity) {
+				((AurorianFurnace_TileEntity) tileentity).setCustomInventoryName(stack.getDisplayName());
 			}
 		}
 	}
@@ -205,8 +205,8 @@ public class TABlock_Furnace extends BlockContainer {
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		if (!keepInventory) {
 			TileEntity tileentity = worldIn.getTileEntity(pos);
-			if (tileentity instanceof TATileEntity_Aurorian_Furnace) {
-				InventoryHelper.dropInventoryItems(worldIn, pos, (TATileEntity_Aurorian_Furnace) tileentity);
+			if (tileentity instanceof AurorianFurnace_TileEntity) {
+				InventoryHelper.dropInventoryItems(worldIn, pos, (AurorianFurnace_TileEntity) tileentity);
 				worldIn.updateComparatorOutputLevel(pos, this);
 			}
 		}

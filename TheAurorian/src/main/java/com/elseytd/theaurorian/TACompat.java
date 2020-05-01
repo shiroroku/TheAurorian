@@ -1,6 +1,6 @@
 package com.elseytd.theaurorian;
 
-import com.elseytd.theaurorian.Compat.TACompat_Tinkers;
+import com.elseytd.theaurorian.Compat.TinkersConstruct.TACompat_Tinkers;
 
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
