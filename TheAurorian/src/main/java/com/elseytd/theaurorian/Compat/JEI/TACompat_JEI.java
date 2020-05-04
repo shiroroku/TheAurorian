@@ -6,6 +6,7 @@ import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipeHandler;
 import com.elseytd.theaurorian.TileEntities.AurorianFurnace_Container;
 import com.elseytd.theaurorian.TileEntities.AurorianFurnace_Gui;
 import com.elseytd.theaurorian.TileEntities.MoonLightForge_Container;
+import com.elseytd.theaurorian.TileEntities.MoonLightForge_Gui;
 import com.elseytd.theaurorian.TileEntities.SilentwoodWorkbench_Container;
 import com.elseytd.theaurorian.TileEntities.SilentwoodWorkbench_Gui;
 
@@ -39,6 +40,7 @@ public class TACompat_JEI implements IModPlugin {
 		registry.addRecipeCatalyst(new ItemStack(TABlocks.moonlightforge), UID_MOONLIGHTFORGE);
 		registry.addRecipes(MoonlightForgeRecipeHandler.allRecipes, UID_MOONLIGHTFORGE);
 		registry.handleRecipes(MoonlightForgeRecipe.class, MoonlightForgeRecipeWrapper::new, UID_MOONLIGHTFORGE);
+		registry.addRecipeClickArea(MoonLightForge_Gui.class, 107, 35, 24, 17, UID_MOONLIGHTFORGE);
 		registry.getRecipeTransferRegistry().addRecipeTransferHandler(MoonLightForge_Container.class, UID_MOONLIGHTFORGE, 0, 2, 3, 36);
 	}
 
