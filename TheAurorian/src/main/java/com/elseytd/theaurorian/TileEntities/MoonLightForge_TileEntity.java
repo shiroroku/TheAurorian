@@ -88,9 +88,9 @@ public class MoonLightForge_TileEntity extends TileEntityLockable implements ITi
 
 	public ItemStack getRecipeOutput(ItemStack input1, ItemStack input2) {
 		for (MoonlightForgeRecipe recipe : MoonlightForgeRecipeHandler.allRecipes) {
-			if (input1.getItem() == recipe.getInput1() && input2.getItem() == recipe.getInput2()) {
+			if (input1.getItem() == recipe.getInput1().getItem() && input2.getItem() == recipe.getInput2().getItem()) {
 
-				ItemStack outputitem = new ItemStack(recipe.getOutput());
+				ItemStack outputitem = recipe.getOutput().copy();
 				if (outputitem.isItemStackDamageable() && input1.isItemStackDamageable() && input1.isItemDamaged()) {
 					outputitem.setItemDamage(input1.getItemDamage());
 				}
@@ -218,14 +218,14 @@ public class MoonLightForge_TileEntity extends TileEntityLockable implements ITi
 		switch (index) {
 		case 0:
 			for (MoonlightForgeRecipe recipe : MoonlightForgeRecipeHandler.allRecipes) {
-				if (recipe.getInput1() == stack.getItem()) {
+				if (recipe.getInput1().getItem() == stack.getItem()) {
 					return true;
 				}
 			}
 			return false;
 		case 1:
 			for (MoonlightForgeRecipe recipe : MoonlightForgeRecipeHandler.allRecipes) {
-				if (recipe.getInput2() == stack.getItem()) {
+				if (recipe.getInput2().getItem() == stack.getItem()) {
 					return true;
 				}
 			}

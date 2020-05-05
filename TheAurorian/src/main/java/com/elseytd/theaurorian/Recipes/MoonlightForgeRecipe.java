@@ -1,27 +1,27 @@
 package com.elseytd.theaurorian.Recipes;
 
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class MoonlightForgeRecipe {
-	final Item INPUT1;
-	final Item INPUT2;
-	final Item OUTPUT;
+	final ItemStack INPUT1;
+	final ItemStack INPUT2;
+	final ItemStack OUTPUT;
 
-	public MoonlightForgeRecipe(Item input1, Item input2, Item output) {
+	public MoonlightForgeRecipe(ItemStack input1, ItemStack input2, ItemStack output) {
 		INPUT1 = input1;
 		INPUT2 = input2;
 		OUTPUT = output;
 	}
 
-	public Item getInput1() {
+	public ItemStack getInput1() {
 		return INPUT1;
 	}
 
-	public Item getInput2() {
+	public ItemStack getInput2() {
 		return INPUT2;
 	}
 
-	public Item getOutput() {
+	public ItemStack getOutput() {
 		return OUTPUT;
 	}
 }

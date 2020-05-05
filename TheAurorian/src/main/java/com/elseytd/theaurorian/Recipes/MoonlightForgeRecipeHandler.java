@@ -5,18 +5,46 @@ import java.util.List;
 
 import com.elseytd.theaurorian.TAItems;
 
+import net.minecraft.item.ItemStack;
+
 public class MoonlightForgeRecipeHandler {
 
 	public static List<MoonlightForgeRecipe> allRecipes = new ArrayList<>();
+	private static List<MoonlightForgeRecipe> recipesForRemoval = new ArrayList<>();
 
 	public static void initRecipes() {
-		allRecipes.add(new MoonlightForgeRecipe(TAItems.moonstonesword, TAItems.aurorianiteingot, TAItems.aurorianitesword));
-		allRecipes.add(new MoonlightForgeRecipe(TAItems.moonstoneaxe, TAItems.aurorianiteingot, TAItems.aurorianiteaxe));
-		allRecipes.add(new MoonlightForgeRecipe(TAItems.moonstonepickaxe, TAItems.aurorianiteingot, TAItems.aurorianitepickaxe));
-		allRecipes.add(new MoonlightForgeRecipe(TAItems.moonstonesword, TAItems.crystallineingot, TAItems.crystallinesword));
-		allRecipes.add(new MoonlightForgeRecipe(TAItems.moonstonepickaxe, TAItems.crystallineingot, TAItems.crystallinepickaxe));
-		allRecipes.add(new MoonlightForgeRecipe(TAItems.moonstonesword, TAItems.umbraingot, TAItems.umbrasword));
-		allRecipes.add(new MoonlightForgeRecipe(TAItems.moonstonepickaxe, TAItems.umbraingot, TAItems.umbrapickaxe));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstonesword), new ItemStack(TAItems.aurorianiteingot), new ItemStack(TAItems.aurorianitesword)));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstoneaxe), new ItemStack(TAItems.aurorianiteingot), new ItemStack(TAItems.aurorianiteaxe)));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstonepickaxe), new ItemStack(TAItems.aurorianiteingot), new ItemStack(TAItems.aurorianitepickaxe)));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstonesword), new ItemStack(TAItems.crystallineingot), new ItemStack(TAItems.crystallinesword)));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstonepickaxe), new ItemStack(TAItems.crystallineingot), new ItemStack(TAItems.crystallinepickaxe)));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstonesword), new ItemStack(TAItems.umbraingot), new ItemStack(TAItems.umbrasword)));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstonepickaxe), new ItemStack(TAItems.umbraingot), new ItemStack(TAItems.umbrapickaxe)));
+
+		for (MoonlightForgeRecipe r : recipesForRemoval) {
+			MoonlightForgeRecipe rem = null;
+			for (MoonlightForgeRecipe r2 : allRecipes) {
+				if (r.getInput1().getItem() == r2.getInput1().getItem()) {
+					if (r.getInput2().getItem() == r2.getInput2().getItem()) {
+						if (r.getOutput().getItem() == r2.getOutput().getItem()) {
+							rem = r2;
+							break;
+						}
+					}
+				}
+			}
+			if (rem != null) {
+				allRecipes.remove(rem);
+			}
+		}
 	}
-	
+
+	public static void addRecipe(MoonlightForgeRecipe recipe) {
+		allRecipes.add(recipe);
+	}
+
+	public static void removeRecipe(MoonlightForgeRecipe recipe) {
+		recipesForRemoval.add(recipe);
+	}
+
 }

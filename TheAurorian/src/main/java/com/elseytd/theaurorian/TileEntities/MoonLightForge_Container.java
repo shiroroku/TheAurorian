@@ -27,7 +27,7 @@ public class MoonLightForge_Container extends Container {
 			@Override
 			public boolean isItemValid(ItemStack stack) {
 				for (MoonlightForgeRecipe recipe : MoonlightForgeRecipeHandler.allRecipes) {
-					if (recipe.getInput1() == stack.getItem()) {
+					if (recipe.getInput1().getItem() == stack.getItem()) {
 						return true;
 					}
 				}
@@ -38,7 +38,7 @@ public class MoonLightForge_Container extends Container {
 			@Override
 			public boolean isItemValid(ItemStack stack) {
 				for (MoonlightForgeRecipe recipe : MoonlightForgeRecipeHandler.allRecipes) {
-					if (recipe.getInput2() == stack.getItem()) {
+					if (recipe.getInput2().getItem() == stack.getItem()) {
 						return true;
 					}
 				}

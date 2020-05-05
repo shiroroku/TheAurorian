@@ -17,9 +17,9 @@ public class MoonlightForgeRecipeWrapper implements IRecipeWrapper {
 
 	public MoonlightForgeRecipeWrapper(MoonlightForgeRecipe recipe) {
 		this.INPUTS = new ArrayList<>();
-		INPUTS.add(new ItemStack(recipe.getInput1()));
-		INPUTS.add(new ItemStack(recipe.getInput2()));
-		this.OUTPUT = new ItemStack(recipe.getOutput());
+		INPUTS.add(recipe.getInput1());
+		INPUTS.add(recipe.getInput2());
+		this.OUTPUT = recipe.getOutput();
 	}
 
 	@Override
