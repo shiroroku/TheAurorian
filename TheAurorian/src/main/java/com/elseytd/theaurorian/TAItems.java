@@ -27,6 +27,8 @@ import com.elseytd.theaurorian.Items.TAItem_Special_Lockpicks;
 import com.elseytd.theaurorian.Items.TAItem_Special_MoonShield;
 import com.elseytd.theaurorian.Items.TAItem_Special_StickySpiker;
 import com.elseytd.theaurorian.Items.TAItem_Special_StrangeMeat;
+import com.elseytd.theaurorian.Items.TAItem_Tool_AurorianSteel_Axe;
+import com.elseytd.theaurorian.Items.TAItem_Tool_AurorianSteel_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_AurorianSteel_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Axe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Hoe;
@@ -284,6 +286,10 @@ public class TAItems {
 	public static TAItem_Tool_Aurorian_Stone_Sword aurorianstonesword;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_AurorianSteel_Sword.ITEMNAME)
 	public static TAItem_Tool_AurorianSteel_Sword auroriansteelsword;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_AurorianSteel_Axe.ITEMNAME)
+	public static TAItem_Tool_AurorianSteel_Axe auroriansteelaxe;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_AurorianSteel_Pickaxe.ITEMNAME)
+	public static TAItem_Tool_AurorianSteel_Pickaxe auroriansteelpickaxe;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Silentwood_Axe.ITEMNAME)
 	public static TAItem_Tool_Silentwood_Axe silentwoodaxe;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Silentwood_Bow.ITEMNAME)
@@ -318,7 +324,9 @@ public class TAItems {
 		AURORIANSTEELARMORCHESTPLATE(new TAItem_Armor_AurorianSteel(EntityEquipmentSlot.CHEST, "auroriansteelchestplate")),
 		AURORIANSTEELARMORHELMET(new TAItem_Armor_AurorianSteel(EntityEquipmentSlot.HEAD, "auroriansteelhelmet")),
 		AURORIANSTEELARMORLEGGINGS(new TAItem_Armor_AurorianSteel(EntityEquipmentSlot.LEGS, "auroriansteelleggings")),
+		AURORIANSTEELAXE(new TAItem_Tool_AurorianSteel_Axe()),
 		AURORIANSTEELNUGGET(new TAItem_Crafting_Nugget(TAItem_Crafting_Nugget.ITEMNAME_AURORIANSTEEL)),
+		AURORIANSTEELPICKAXE(new TAItem_Tool_AurorianSteel_Pickaxe()),
 		AURORIANSTEELSWORD(new TAItem_Tool_AurorianSteel_Sword()),
 		AURORIANSTONEAXE(new TAItem_Tool_Aurorian_Stone_Axe()),
 		AURORIANSTONEHOE(new TAItem_Tool_Aurorian_Stone_Hoe()),
