@@ -110,7 +110,8 @@ public class TARecipes {
 		OreDictionary.registerOre("blockMoonstone", TABlocks.moonstoneblock);
 		OreDictionary.registerOre("ingotMoonstone", TAItems.moonstoneingot);
 		OreDictionary.registerOre("nuggetMoonstone", TAItems.moonstonenugget);
-		
+
+		OreDictionary.registerOre("blockAurorianSteel", TABlocks.auroriansteelblock);
 		OreDictionary.registerOre("ingotAurorianSteel", TAItems.auroriansteel);
 		OreDictionary.registerOre("nuggetAurorianSteel", TAItems.auroriansteelnugget);
 	}

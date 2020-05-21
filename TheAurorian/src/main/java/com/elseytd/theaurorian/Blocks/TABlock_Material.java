@@ -10,6 +10,7 @@ public class TABlock_Material extends Block {
 	public static final String BLOCKNAME_CERULEAN = "ceruleanblock";
 	public static final String BLOCKNAME_MOONSTONE = "moonstoneblock";
 	public static final String BLOCKNAME_COAL = "auroriancoalblock";
+	public static final String BLOCKNAME_AURORIANSTEEL = "auroriansteelblock";
 
 	public TABlock_Material(String name) {
 		super(Material.IRON);

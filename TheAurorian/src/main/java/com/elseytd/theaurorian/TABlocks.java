@@ -284,6 +284,8 @@ public class TABlocks {
 	public static TABlock_Material moonstoneblock;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Ore_Moonstone.BLOCKNAME)
 	public static TABlock_Ore_Moonstone moonstoneore;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Material.BLOCKNAME_AURORIANSTEEL)
+	public static TABlock_Material auroriansteelblock;
 
 	// STAIRS
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Stairs.BLOCKNAME_AURORIANCOBBLESTONE)
@@ -358,6 +360,7 @@ public class TABlocks {
 		GLASSMOON(new TABlock_Glass(TABlock_Glass.BLOCKNAME_MOONGLASS)),
 		GLASSPANEAURORIAN(new TABlock_GlassPane(TABlock_GlassPane.BLOCKNAME_AURORIAN)),
 		GLASSPANEMOON(new TABlock_GlassPane(TABlock_GlassPane.BLOCKNAME_MOONGLASS)),
+		MATERIALAURORIANSTEEL(new TABlock_Material(TABlock_Material.BLOCKNAME_AURORIANSTEEL)),
 		MATERIALCERULEAN(new TABlock_Material(TABlock_Material.BLOCKNAME_CERULEAN)),
 		MATERIALCOAL(new TABlock_Material(TABlock_Material.BLOCKNAME_COAL)),
 		MATERIALMOONSTONE(new TABlock_Material(TABlock_Material.BLOCKNAME_MOONSTONE)),
