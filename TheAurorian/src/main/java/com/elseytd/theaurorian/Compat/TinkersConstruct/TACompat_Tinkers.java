@@ -1,5 +1,6 @@
 package com.elseytd.theaurorian.Compat.TinkersConstruct;
 
+import static slimeknights.tconstruct.library.utils.HarvestLevels.COBALT;
 import static slimeknights.tconstruct.library.utils.HarvestLevels.IRON;
 
 import java.awt.Color;
@@ -32,6 +33,7 @@ public class TACompat_Tinkers {
 	public static Material moonstone;
 	public static Material silentwood;
 	public static Material aurorianstone;
+	public static Material auroriansteel;
 
 	public static void initMaterials() {
 		cerulean.addCommonItems("Cerulean");
@@ -65,13 +67,19 @@ public class TACompat_Tinkers {
 		aurorianstone.setRepresentativeItem(new ItemStack(TABlocks.auroriancobblestone));
 		aurorianstone.addTrait(TinkerTraits.cheap);
 		aurorianstone.addTrait(traitaurorianempowered);
+
+		auroriansteel.addCommonItems("Aurorian Steel");
+		auroriansteel.setRepresentativeItem(new ItemStack(TAItems.auroriansteel));
+		auroriansteel.addItem(TAItems.auroriansteelnugget, 1, Material.VALUE_Nugget);
+		auroriansteel.addItem(TAItems.auroriansteel, 1, Material.VALUE_Ingot);
+		auroriansteel.addTrait(traitaurorianempowered);
 	}
 
 	public static void preinitMetalsAndMaterials() {
 		addSmelteryMetals("Cerulean", TAFluid_MoltenCerulean.FLUIDNAME);
 		addSmelteryMetals("Moonstone", TAFluid_MoltenMoonstone.FLUIDNAME);
 		addSmelteryMetals("AurorianSteel", TAFluid_MoltenAurorianSteel.FLUIDNAME);
-		
+
 		cerulean = new Material("cerulean", new Color(50, 157, 255).getRGB());
 		TinkerRegistry.addMaterialStats(cerulean, new HeadMaterialStats(270, 7.00f, 3.00f, HarvestLevels.DIAMOND), new HandleMaterialStats(1f, 50), new ExtraMaterialStats(75), new BowMaterialStats(0.2f, 0.4f, -1f));
 		TinkerRegistry.integrate(cerulean, TABlocks.Fluids.MOLTENCERULEAN, "Cerulean").toolforge().preInit();
@@ -87,6 +95,10 @@ public class TACompat_Tinkers {
 		aurorianstone = new Material("aurorianstone", new Color(92, 115, 143).getRGB());
 		TinkerRegistry.addMaterialStats(aurorianstone, new HeadMaterialStats(120, 4.25f, 3.00f, IRON), new HandleMaterialStats(0.30f, -30), new ExtraMaterialStats(40), new BowMaterialStats(0.2f, 0.4f, -1f));
 		TinkerRegistry.integrate(aurorianstone, "Aurorian Stone").toolforge().preInit();
+
+		auroriansteel = new Material("auroriansteel", new Color(96, 50, 255).getRGB());
+		TinkerRegistry.addMaterialStats(auroriansteel, new HeadMaterialStats(950, 8.20f, 7.5f, COBALT), new HandleMaterialStats(1.5f, -75), new ExtraMaterialStats(250), new BowMaterialStats(0.2f, 0.4f, -1f));
+		TinkerRegistry.integrate(auroriansteel, TABlocks.Fluids.MOLTENAURORIANSTEEL, "AurorianSteel").toolforge().preInit();
 
 	}
 

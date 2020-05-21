@@ -72,6 +72,8 @@ public class TAConfig {
 	public static int Config_SlimeBootsCooldown = 100;
 	public static float Config_UmbraPickaxeMiningSpeedMultiplier = 2.0f;
 	public static boolean Config_MoonlightForgeTransfersEnchants = true;
+	public static int Config_AurorianSteel_BaseMaxLevel = 100;
+	public static float Config_AurorianSteel_BaseMaxLevelMultiplier = 1.75f;
 
 	public static void readConfig() {
 		Configuration cfg = TAMod.CONFIG;
@@ -110,6 +112,8 @@ public class TAConfig {
 		Config_SlimeBootsCooldown = cfg.getInt("SlimeBootsCooldown", name, Config_SlimeBootsCooldown, 0, 72000, "Cooldown in ticks for the Aurorian Slime Boots jump ability");
 		Config_UmbraPickaxeMiningSpeedMultiplier = cfg.getFloat("UmbraPickaxeMiningSpeedMultiplier", name, Config_UmbraPickaxeMiningSpeedMultiplier, 1F, 100F, "Speed multiplier for Umbra Pickaxe, 2F is twice as fast as it would mine regular blocks");
 		Config_MoonlightForgeTransfersEnchants = cfg.getBoolean("MoonlightForgeTransfersEnchants", name, Config_MoonlightForgeTransfersEnchants, "Set to false to disable enchantments from carrying over when crafting tools with the Moonlight Forge");
+		Config_AurorianSteel_BaseMaxLevel = cfg.getInt("AurorianSteel_BaseMaxLevel", name, Config_AurorianSteel_BaseMaxLevel, 0, 72000, "Base Max level for Aurorian Steel items. After used this many times an enchantment will level up, next level cost depends on multiplier");
+		Config_AurorianSteel_BaseMaxLevelMultiplier = cfg.getFloat("AurorianSteel_BaseMaxLevelMultiplier", name, Config_AurorianSteel_BaseMaxLevelMultiplier, 1F, 100F, "Max Level multiplier for Aurorian Steel items, every time they level up the max level is multiplied by this");
 
 	}
 
