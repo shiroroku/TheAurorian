@@ -72,6 +72,7 @@ public class TACompat_Tinkers {
 		auroriansteel.setRepresentativeItem(new ItemStack(TAItems.auroriansteel));
 		auroriansteel.addItem(TAItems.auroriansteelnugget, 1, Material.VALUE_Nugget);
 		auroriansteel.addItem(TAItems.auroriansteel, 1, Material.VALUE_Ingot);
+		auroriansteel.addTrait(TinkerTraits.established);
 		auroriansteel.addTrait(traitaurorianempowered);
 	}
 
