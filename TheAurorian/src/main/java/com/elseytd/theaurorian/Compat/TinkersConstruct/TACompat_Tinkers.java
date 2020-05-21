@@ -100,7 +100,7 @@ public class TACompat_Tinkers {
 		auroriansteel = new Material("auroriansteel", new Color(96, 50, 255).getRGB());
 		TinkerRegistry.addMaterialStats(auroriansteel, new HeadMaterialStats(950, 8.20f, 7.5f, COBALT), new HandleMaterialStats(1.5f, -75), new ExtraMaterialStats(250), new BowMaterialStats(0.2f, 0.4f, -1f));
 		TinkerRegistry.integrate(auroriansteel, TABlocks.Fluids.MOLTENAURORIANSTEEL, "AurorianSteel").toolforge().preInit();
-
+		
 	}
 
 	private static void addSmelteryMetals(String oredictname, String fluidName) {
