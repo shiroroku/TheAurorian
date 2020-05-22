@@ -11,6 +11,7 @@
         },
         {
             "type": "image",
+            "border": true,
             "title": "Surface Ruins",
             "text": "Some ruins you can find, contains a furnace for some early smelting!",
             "images": [
@@ -19,6 +20,7 @@
         },
         {
             "type": "image",
+            "border": true,
             "title": "Underground Ruins",
             "text": "Ruins you find underground that can contain valuable loot!",
             "images": [
@@ -27,6 +29,7 @@
         },
         {
             "type": "image",
+            "border": true,
             "title": "Runestone Dungeon",
             "text": "The dungeon you need to clear to move on to the Moon Temple Dungeon.",
             "images": [
@@ -35,6 +38,7 @@
         },
         {
             "type": "image",
+            "border": true,
             "title": "Moon Temple",
             "text": "Second dungeon you can enter once you defeat the Runestone Dungeon boss.",
             "images": [

@@ -13,6 +13,7 @@
         },
         {
             "type": "image",
+            "border": true,
             "title": "Silentwood Trees",
             "images": [
                 "theaurorian:patchouli_books/the_aurorian_guide/en_us/entries/aurorianbasics/silentwood.png"
@@ -26,6 +27,7 @@
         },
         {
             "type": "image",
+            "border": true,
             "title": "Aurorian Stone",
             "images": [
                 "theaurorian:patchouli_books/the_aurorian_guide/en_us/entries/aurorianbasics/aurorianstone.png"
@@ -39,6 +41,7 @@
         },
         {
             "type": "image",
+            "border": true,
             "title": "Aurorian Coal Ore",
             "images": [
                 "theaurorian:patchouli_books/the_aurorian_guide/en_us/entries/aurorianbasics/auroriancoal.png"
@@ -52,6 +55,7 @@
         },
         {
             "type": "image",
+            "border": true,
             "title": "Cerulean Ore",
             "images": [
                 "theaurorian:patchouli_books/the_aurorian_guide/en_us/entries/aurorianbasics/cerulean.png"
@@ -65,6 +69,7 @@
         },
         {
             "type": "image",
+            "border": true,
             "title": "Moonstone Ore",
             "images": [
                 "theaurorian:patchouli_books/the_aurorian_guide/en_us/entries/aurorianbasics/moonstone.png"
@@ -78,6 +83,7 @@
         },
         {
             "type": "image",
+            "border": true,
             "title": "Geode Ore",
             "images": [
                 "theaurorian:patchouli_books/the_aurorian_guide/en_us/entries/aurorianbasics/geode.png"

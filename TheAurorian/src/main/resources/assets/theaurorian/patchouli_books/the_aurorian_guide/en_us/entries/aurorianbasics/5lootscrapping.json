@@ -29,7 +29,7 @@
         {
             "type": "crafting",
             "recipe": "theaurorian:items/auroriansteel",
-            "text": "$(#008cff)Aurorian Steel$() is the strongest metal in The Aurorian and can be made into new armor and tools."
+            "text": "$(#008cff)Aurorian Steel$() is the strongest metal in The Aurorian and can be made into new armor and tools. Check it out in the $(#008cff)Magical Items$() category for more info."
         },
         {
             "type": "spotlight",
