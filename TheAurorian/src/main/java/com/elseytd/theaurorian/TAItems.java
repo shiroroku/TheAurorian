@@ -89,7 +89,7 @@ public class TAItems {
 		public static Item.ToolMaterial AURORIANSTEEL = EnumHelper.addToolMaterial("TA_AURORIANSTEEL", 3, 1500, 8.5F, 3.5F, 10);
 
 		public static ArmorMaterial CERULEAN_ARMOR = EnumHelper.addArmorMaterial("TA_CERULEAN_ARMOR", "theaurorian:cerulean", 20, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
-		public static ArmorMaterial AURORIANSTEEL_ARMOR = EnumHelper.addArmorMaterial("TA_CERULEAN_ARMOR", "theaurorian:auroriansteelarmor", 33, new int[] { 4, 7, 8, 4 }, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2);
+		public static ArmorMaterial AURORIANSTEEL_ARMOR = EnumHelper.addArmorMaterial("TA_AURORIANSTEEL_ARMOR", "theaurorian:auroriansteelarmor", 33, new int[] { 4, 7, 8, 4 }, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2);
 		public static ArmorMaterial SPIKED_ARMOR = EnumHelper.addArmorMaterial("TA_SPIKED_ARMOR", "theaurorian:spiked", 65, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
 		public static ArmorMaterial KNIGHT_ARMOR = EnumHelper.addArmorMaterial("TA_KNIGHT_ARMOR", "theaurorian:knight", 30, new int[] { 2, 3, 2, 1 }, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0);
 		public static ArmorMaterial AURORIAN_SLIME = EnumHelper.addArmorMaterial("TA_AURORIAN_SLIME", "theaurorian:aurorianslime", 120, new int[] { 1, 2, 3, 1 }, 20, SoundEvents.ENTITY_SLIME_SQUISH, 0);
