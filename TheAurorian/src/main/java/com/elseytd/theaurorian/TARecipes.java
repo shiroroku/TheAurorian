@@ -65,7 +65,6 @@ public class TARecipes {
 		GameRegistry.addSmelting(TAItems.auroriansteelhelmet, new ItemStack(TAItems.auroriansteelnugget, 10), 0F);
 		GameRegistry.addSmelting(TAItems.auroriansteelboots, new ItemStack(TAItems.auroriansteelnugget, 8), 0F);
 
-
 		// SPECIAL RECYCLING
 		GameRegistry.addSmelting(TAItems.aurorianitesword, new ItemStack(TAItems.scrapaurorianite, 2), 0F);
 		GameRegistry.addSmelting(TAItems.aurorianitepickaxe, new ItemStack(TAItems.scrapaurorianite, 3), 0F);
@@ -97,6 +96,13 @@ public class TARecipes {
 		OreDictionary.registerOre("grass", TABlocks.auroriangrasslight);
 		OreDictionary.registerOre("torch", TABlocks.silentwoodtorch);
 		OreDictionary.registerOre("workbench", TABlocks.silentwoodworkbench);
+
+		OreDictionary.registerOre("plankSilentwood", TABlocks.silentwoodplanks);
+		OreDictionary.registerOre("logSilentwood", TABlocks.silentwoodlog);
+		OreDictionary.registerOre("stickSilentwood", TAItems.silentwoodstick);
+
+		OreDictionary.registerOre("stoneAurorian", TABlocks.aurorianstone);
+		OreDictionary.registerOre("cobblestoneAurorian", TABlocks.auroriancobblestone);
 
 		OreDictionary.registerOre("oreAurorianCoal", TABlocks.auroriancoalore);
 		OreDictionary.registerOre("oreAurorianGeode", TABlocks.geodeore);

@@ -6,6 +6,7 @@ public class TAConfig {
 
 	//Compat
 	public static boolean Config_EnableTinkersConstructCompatibility = true;
+	public static boolean Config_EnableConstructsArmoryCompatibility = true;
 
 	//Blocks
 	public static int Config_MaximumChimneys = 10;
@@ -122,6 +123,7 @@ public class TAConfig {
 		cfg.addCustomCategoryComment(name, "Compatibility configuration");
 
 		Config_EnableTinkersConstructCompatibility = cfg.getBoolean("EnableTinkersConstructCompatibility", name, Config_EnableTinkersConstructCompatibility, "Set to false to disable Tinkers Construct integration");
+		Config_EnableConstructsArmoryCompatibility = cfg.getBoolean("EnableConstructsArmoryCompatibility", name, Config_EnableConstructsArmoryCompatibility, "Set to false to disable Constructs Armory integration");
 	}
 
 	private static void initBlocksConfig(Configuration cfg) {

@@ -73,10 +73,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@Mod.EventBusSubscriber
 public class TAItems {
 
 	public static class Materials {
@@ -439,6 +442,15 @@ public class TAItems {
 		}
 	}
 
+	@SubscribeEvent
+	public static void registerItems(RegistryEvent.Register<Item> event) {
+		for (TAItemRegistry i : TAItemRegistry.values()) {
+			i.Register(event);
+		}
+		TABlocks.registerItemblocks(event);
+		TACompat.init();
+	}
+
 	@SideOnly(Side.CLIENT)
 	public static void initModels() {
 		for (TAItemRegistry i : TAItemRegistry.values()) {
@@ -454,12 +466,6 @@ public class TAItems {
 	public interface ISpecialModel {
 		@SideOnly(Side.CLIENT)
 		public void initModel();
-	}
-
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		for (TAItemRegistry i : TAItemRegistry.values()) {
-			i.Register(event);
-		}
 	}
 
 }

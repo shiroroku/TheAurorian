@@ -36,6 +36,10 @@ repositories {
 		name = "ModMaven"
 		url = "https://modmaven.k-4u.nl"
 	}
+	maven {
+        name = "CurseForge"
+        url = "https://minecraft.curseforge.com/api/maven/"
+    }
 }
 
 minecraft {
@@ -74,7 +78,8 @@ dependencies {
 	compile "vazkii.patchouli:Patchouli:${version_patchouli}"
     deobfCompile "mezz.jei:jei_${version_jei}"
     deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:${version_crafttweaker}"
-
+	compile "constructs-armory:conarm:${version_conarm}"
+	
     // for more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html

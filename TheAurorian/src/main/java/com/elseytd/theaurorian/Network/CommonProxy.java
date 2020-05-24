@@ -3,7 +3,7 @@ package com.elseytd.theaurorian.Network;
 import java.io.File;
 
 import com.elseytd.theaurorian.TABiomes;
-import com.elseytd.theaurorian.TABlocks;
+import com.elseytd.theaurorian.TABlocks.Fluids;
 import com.elseytd.theaurorian.TACompat;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TADimensions;
@@ -16,30 +16,20 @@ import com.elseytd.theaurorian.TARecipes;
 import com.elseytd.theaurorian.TAUtil;
 import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipeHandler;
 
-import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
-@Mod.EventBusSubscriber
 public class CommonProxy {
-
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		TAItems.registerItems(event);
-		TABlocks.registerItemblocks(event);
-	}
 
 	public void preInit(FMLPreInitializationEvent e) {
 		File directory = e.getModConfigurationDirectory();
 		TAMod.CONFIG = new Configuration(new File(directory.getPath(), "theaurorian.cfg"));
 		TAConfig.readConfig();
+		Fluids.registerFluids();
 		TADimensions.init();
 		TACompat.preInit(e);
 		TAPacketHandler.registerMessages();
@@ -54,7 +44,6 @@ public class CommonProxy {
 		TARecipes.registerOreDictionary();
 		MoonlightForgeRecipeHandler.initRecipes();
 		TAItems.Materials.initRepairMaterials();
-		TACompat.init(e);
 	}
 
 	public void postInit(FMLPostInitializationEvent e) {

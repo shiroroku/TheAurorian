@@ -1,6 +1,7 @@
 package com.elseytd.theaurorian.Network;
 
 import com.elseytd.theaurorian.TABlocks;
+import com.elseytd.theaurorian.TACompat;
 import com.elseytd.theaurorian.TAEntities;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TASounds;
@@ -20,6 +21,7 @@ public class ClientProxy extends CommonProxy {
 	public void preInit(FMLPreInitializationEvent e) {
 		super.preInit(e);
 		TAEntities.initModels();
+		TACompat.clientPreInit(e);
 	}
 
 	@Override

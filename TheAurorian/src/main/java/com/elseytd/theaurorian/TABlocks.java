@@ -434,7 +434,6 @@ public class TABlocks {
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		Fluids.registerFluids();
 
 		for (TABlockRegistry b : TABlockRegistry.values()) {
 			b.Register(event);
