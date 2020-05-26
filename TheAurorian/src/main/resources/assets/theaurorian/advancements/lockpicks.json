@@ -1,0 +1,23 @@
+{
+    "parent": "theaurorian:root",
+    "display": {
+        "icon": {
+            "item": "theaurorian:lockpicks"
+        },
+        "title": "Pick the Lock!",
+        "frame": "goal",
+        "description": "Craft Lockpicks to enter the Runestone Dungeon"
+    },
+    "criteria": {
+        "inventory_changed": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "theaurorian:lockpicks"
+                    }
+                ]
+            }
+        }
+    }
+}

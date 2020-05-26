@@ -1,0 +1,23 @@
+{
+    "parent": "theaurorian:dethroned",
+    "display": {
+        "icon": {
+            "item": "theaurorian:darkstonekey"
+        },
+        "title": "Next boss is currently WIP!",
+        "frame": "goal",
+        "description": "Craft the Darkstone Key"
+    },
+    "criteria": {
+        "inventory_changed": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "theaurorian:darkstonekey"
+                    }
+                ]
+            }
+        }
+    }
+}

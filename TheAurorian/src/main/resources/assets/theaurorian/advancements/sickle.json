@@ -1,0 +1,49 @@
+{
+    "parent": "theaurorian:root",
+    "display": {
+        "icon": {
+            "item": "theaurorian:aurorianstonesickle"
+        },
+        "title": "Glorified Shears!",
+        "description": "Craft a Sickle to harvest Lavender and Silkberries"
+    },
+    "criteria": {
+        "inventory_changed_a": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "theaurorian:aurorianstonesickle"
+                    }
+                ]
+            }
+        },
+        "inventory_changed_b": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "theaurorian:silentwoodsickle"
+                    }
+                ]
+            }
+        },
+        "inventory_changed_c": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "theaurorian:moonstonesickle"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "inventory_changed_a",
+            "inventory_changed_b",
+            "inventory_changed_c"
+        ]
+    ]
+}

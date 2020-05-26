@@ -1,0 +1,16 @@
+{
+    "parent": "theaurorian:darkstonekey",
+    "display": {
+        "icon": {
+            "item": "theaurorian:darkstonebricks"
+        },
+        "title": "Exterminated",
+        "frame": "challenge",
+        "description": "WIP ;)"
+    },
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    }
+}

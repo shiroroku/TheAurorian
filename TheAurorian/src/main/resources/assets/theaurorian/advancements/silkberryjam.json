@@ -1,0 +1,22 @@
+{
+    "parent": "theaurorian:sickle",
+    "display": {
+        "icon": {
+            "item": "theaurorian:silkberryjam"
+        },
+        "title": "Not Blueberry",
+        "description": "Craft some Silkberry Jam"
+    },
+    "criteria": {
+        "inventory_changed": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "theaurorian:silkberryjam"
+                    }
+                ]
+            }
+        }
+    }
+}

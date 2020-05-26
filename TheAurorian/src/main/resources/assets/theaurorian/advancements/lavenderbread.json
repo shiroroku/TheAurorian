@@ -1,0 +1,22 @@
+{
+    "parent": "theaurorian:sickle",
+    "display": {
+        "icon": {
+            "item": "theaurorian:lavenderbread"
+        },
+        "title": "Blue but eatable!",
+        "description": "Craft some Lavender Bread"
+    },
+    "criteria": {
+        "inventory_changed": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "theaurorian:lavenderbread"
+                    }
+                ]
+            }
+        }
+    }
+}

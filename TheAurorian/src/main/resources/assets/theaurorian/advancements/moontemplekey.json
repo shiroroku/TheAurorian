@@ -1,0 +1,23 @@
+{
+    "parent": "theaurorian:liberated",
+    "display": {
+        "icon": {
+            "item": "theaurorian:moontemplekey"
+        },
+        "title": "The next §ophase§r",
+        "frame": "goal",
+        "description": "Craft the Moon Temple Key to access the Moon Temple"
+    },
+    "criteria": {
+        "inventory_changed": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "theaurorian:moontemplekey"
+                    }
+                ]
+            }
+        }
+    }
+}

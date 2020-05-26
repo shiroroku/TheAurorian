@@ -1,0 +1,22 @@
+{
+    "parent": "theaurorian:scrapper",
+    "display": {
+        "icon": {
+            "item": "theaurorian:moonlightforge"
+        },
+        "title": "By the power of Khonsu!",
+        "description": "Craft the Moonlight Forge"
+    },
+    "criteria": {
+        "inventory_changed": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "theaurorian:moonlightforge"
+                    }
+                ]
+            }
+        }
+    }
+}

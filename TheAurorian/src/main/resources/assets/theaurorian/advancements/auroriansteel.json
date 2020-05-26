@@ -1,0 +1,22 @@
+{
+    "parent": "theaurorian:scrapper",
+    "display": {
+        "icon": {
+            "item": "theaurorian:auroriansteel"
+        },
+        "title": "Metal stew",
+        "description": "Craft Aurorian Steel"
+    },
+    "criteria": {
+        "inventory_changed": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "theaurorian:auroriansteel"
+                    }
+                ]
+            }
+        }
+    }
+}

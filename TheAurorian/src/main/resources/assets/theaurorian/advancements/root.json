@@ -1,0 +1,18 @@
+{
+    "display": {
+        "icon": {
+            "item": "theaurorian:silentwoodsapling"
+        },
+        "title": "The Aurorian",
+        "description": "Visit The Aurorian Dimension",
+        "background": "theaurorian:textures/blocks/aurorianstone.png"
+    },
+    "criteria": {
+        "arrivedintheaurorian": {
+            "trigger": "minecraft:location",
+            "conditions": {
+                "dimension": "theaurorian"
+            }
+        }
+    }
+}
