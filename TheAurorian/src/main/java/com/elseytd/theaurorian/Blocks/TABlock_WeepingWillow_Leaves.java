@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.elseytd.theaurorian.TABlocks;
+import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TAParticles;
 import com.elseytd.theaurorian.TAParticles.Particles;
@@ -59,6 +60,13 @@ public class TABlock_WeepingWillow_Leaves extends BlockLeaves {
 	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getBlockLayer() {
 		return Blocks.LEAVES.getBlockLayer();
+	}
+
+	@Override
+	protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance) {
+		if (worldIn.rand.nextInt(chance) == 0) {
+			spawnAsEntity(worldIn, pos, new ItemStack(TAItems.weepingwillowsap));
+		}
 	}
 
 	@Override

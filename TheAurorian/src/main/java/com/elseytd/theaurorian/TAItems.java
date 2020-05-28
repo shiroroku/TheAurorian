@@ -6,10 +6,6 @@ import com.elseytd.theaurorian.Items.TAItem_Armor_Knight;
 import com.elseytd.theaurorian.Items.TAItem_Armor_SlimeBoots;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Spiked;
 import com.elseytd.theaurorian.Items.TAItem_Basic;
-import com.elseytd.theaurorian.Items.TAItem_Crafting_AurorianCoal;
-import com.elseytd.theaurorian.Items.TAItem_Crafting_Lavender;
-import com.elseytd.theaurorian.Items.TAItem_Crafting_MoonTempleCellKeyFragment;
-import com.elseytd.theaurorian.Items.TAItem_Crafting_Nugget;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_SilentwoodStick;
 import com.elseytd.theaurorian.Items.TAItem_CrystallineSprite;
 import com.elseytd.theaurorian.Items.TAItem_Debug;
@@ -201,24 +197,24 @@ public class TAItems {
 	public static TAItem_Special_StrangeMeat strangemeat;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_AURORIANSLIMEBALL)
 	public static TAItem_Food aurorianslimeball;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_AurorianCoal.ITEMNAME)
-	public static TAItem_Crafting_AurorianCoal auroriancoal;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_AURORIANCOAL)
+	public static TAItem_Basic auroriancoal;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_CRYSTAL)
 	public static TAItem_Basic crystal;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_CUP)
 	public static TAItem_Basic cup;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_Lavender.ITEMNAME)
-	public static TAItem_Crafting_Lavender lavender;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_MoonTempleCellKeyFragment.ITEMNAME)
-	public static TAItem_Crafting_MoonTempleCellKeyFragment moontemplecellkeyfragment;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_Nugget.ITEMNAME_COAL)
-	public static TAItem_Crafting_Nugget auroriancoalnugget;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_Nugget.ITEMNAME_CERULEAN)
-	public static TAItem_Crafting_Nugget ceruleannugget;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_Nugget.ITEMNAME_MOONSTONE)
-	public static TAItem_Crafting_Nugget moonstonenugget;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_Nugget.ITEMNAME_AURORIANSTEEL)
-	public static TAItem_Crafting_Nugget auroriansteelnugget;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_LAVENDER)
+	public static TAItem_Basic lavender;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_MOONTEMPLECELLKEYFRAGMENT)
+	public static TAItem_Basic moontemplecellkeyfragment;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_NUGGET_AURORIANCOAL)
+	public static TAItem_Basic auroriancoalnugget;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_NUGGET_CERULEAN)
+	public static TAItem_Basic ceruleannugget;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_NUGGET_MOONSTONE)
+	public static TAItem_Basic moonstonenugget;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_NUGGET_AURORIANSTEEL)
+	public static TAItem_Basic auroriansteelnugget;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_PLANTFIBER)
 	public static TAItem_Basic plantfiber;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Crafting_SilentwoodStick.ITEMNAME)
@@ -315,13 +311,16 @@ public class TAItems {
 	public static TAItem_Tool_Silentwood_Sword silentwoodsword;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_SILKSHROOMSTEW)
 	public static TAItem_Food silkshroomstew;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_WEEPINGWILLOWSAP)
+	public static TAItem_Basic weepingwillowsap;
 
 	private enum TAItemRegistry {
 		ABSORPTIONORB(new TAItem_Special_AbsorptionOrb()),
 		AMULETDARK(new TAItem_Special_Amulet(TAItem_Special_Amulet.Amulets.DARKAMULET)),
 		AMULETKEEPER(new TAItem_Special_Amulet(TAItem_Special_Amulet.Amulets.KEEPERAMULET)),
 		AURORIANBACON(new TAItem_Food(TAItem_Food.Foods.AURORIANBACON)),
-		AURORIANCOAL(new TAItem_Crafting_AurorianCoal()),
+		AURORIANCOAL(new TAItem_Basic(TAItem_Basic.Items.AURORIANCOAL)),
+		AURORIANCOALNUGGET(new TAItem_Basic(TAItem_Basic.Items.NUGGET_AURORIANCOAL)),
 		AURORIANITEAXE(new TAItem_Tool_Aurorianite_Axe()),
 		AURORIANITEPICKAXE(new TAItem_Tool_Aurorianite_Pickaxe()),
 		AURORIANITESWORD(new TAItem_Tool_Aurorianite_Sword()),
@@ -335,7 +334,7 @@ public class TAItems {
 		AURORIANSTEELARMORLEGGINGS(new TAItem_Armor_AurorianSteel(EntityEquipmentSlot.LEGS, "auroriansteelleggings")),
 		AURORIANSTEELAXE(new TAItem_Tool_AurorianSteel_Axe()),
 		AURORIANSTEELHOE(new TAItem_Tool_AurorianSteel_Hoe()),
-		AURORIANSTEELNUGGET(new TAItem_Crafting_Nugget(TAItem_Crafting_Nugget.ITEMNAME_AURORIANSTEEL)),
+		AURORIANSTEELNUGGET(new TAItem_Basic(TAItem_Basic.Items.NUGGET_AURORIANSTEEL)),
 		AURORIANSTEELPICKAXE(new TAItem_Tool_AurorianSteel_Pickaxe()),
 		AURORIANSTEELSHOVEL(new TAItem_Tool_AurorianSteel_Shovel()),
 		AURORIANSTEELSWORD(new TAItem_Tool_AurorianSteel_Sword()),
@@ -352,6 +351,7 @@ public class TAItems {
 		CERULEANARMORLEGGINGS(new TAItem_Armor_Cerulean(EntityEquipmentSlot.LEGS, "ceruleanleggings")),
 		CERULEANARROW(new TAItem_Tool_Cerulean_Arrow()),
 		CERULEANBUCKET(new TAItem_Tool_Cerulean_Bucket()),
+		CERULEANNUGGET(new TAItem_Basic(TAItem_Basic.Items.NUGGET_CERULEAN)),
 		CERULEANSHIELD(new TAItem_Tool_Cerulean_Shield()),
 		CRYSTAL(new TAItem_Basic(TAItem_Basic.Items.CRYSTAL)),
 		CRYSTALLINEPICKAXE(new TAItem_Tool_Crystalline_Pickaxe()),
@@ -375,7 +375,7 @@ public class TAItems {
 		KNIGHTARMORCHESTPLATE(new TAItem_Armor_Knight(EntityEquipmentSlot.CHEST, "knightchestplate")),
 		KNIGHTARMORHELMET(new TAItem_Armor_Knight(EntityEquipmentSlot.HEAD, "knighthelmet")),
 		KNIGHTARMORLEGGINGS(new TAItem_Armor_Knight(EntityEquipmentSlot.LEGS, "knightleggings")),
-		LAVENDER(new TAItem_Crafting_Lavender()),
+		LAVENDER(new TAItem_Basic(TAItem_Basic.Items.LAVENDER)),
 		LAVENDERBREAD(new TAItem_Food(TAItem_Food.Foods.LAVENDERBREAD)),
 		LIVINGDIVININGROD(new TAItem_Special_LivingDiviningRod()),
 		LOCATOR(new TAItem_Special_Locator()),
@@ -383,14 +383,12 @@ public class TAItems {
 		MOONSHIELD(new TAItem_Special_MoonShield()),
 		MOONSTONEAXE(new TAItem_Tool_Moonstone_Axe()),
 		MOONSTONEHOE(new TAItem_Tool_Moonstone_Hoe()),
+		MOONSTONENUGGET(new TAItem_Basic(TAItem_Basic.Items.NUGGET_MOONSTONE)),
 		MOONSTONEPICKAXE(new TAItem_Tool_Moonstone_Pickaxe()),
 		MOONSTONESHOVEL(new TAItem_Tool_Moonstone_Shovel()),
 		MOONSTONESICKLE(new TAItem_Tool_Moonstone_Sickle()),
 		MOONSTONESWORD(new TAItem_Tool_Moonstone_Sword()),
-		MOONTEMPLECELLKEYFRAGMENT(new TAItem_Crafting_MoonTempleCellKeyFragment()),
-		NUGGETCERULEAN(new TAItem_Crafting_Nugget(TAItem_Crafting_Nugget.ITEMNAME_CERULEAN)),
-		NUGGETCOAL(new TAItem_Crafting_Nugget(TAItem_Crafting_Nugget.ITEMNAME_COAL)),
-		NUGGETMOONSTONE(new TAItem_Crafting_Nugget(TAItem_Crafting_Nugget.ITEMNAME_MOONSTONE)),
+		MOONTEMPLECELLKEYFRAGMENT(new TAItem_Basic(TAItem_Basic.Items.MOONTEMPLECELLKEYFRAGMENT)),
 		PLANTFIBER(new TAItem_Basic(TAItem_Basic.Items.PLANTFIBER)),
 		SCRAPAURORIANITE(new TAItem_Basic(TAItem_Basic.Items.SCRAP_AURORIANITE)),
 		SCRAPCRYSTALLINE(new TAItem_Basic(TAItem_Basic.Items.SCRAP_CRYSTALLINE)),
@@ -417,7 +415,8 @@ public class TAItems {
 		TEASILKBERRY(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.SILKBERRY)),
 		UMBRAPICKAXE(new TAItem_Tool_Umbra_Pickaxe()),
 		UMBRASHIELD(new TAItem_Tool_Umbra_Shield()),
-		UMBRASWORD(new TAItem_Tool_Umbra_Sword());
+		UMBRASWORD(new TAItem_Tool_Umbra_Sword()),
+		WEEPINGWILLOWSAP(new TAItem_Basic(TAItem_Basic.Items.WEEPINGWILLOWSAP));
 
 		private Item modItem;
 

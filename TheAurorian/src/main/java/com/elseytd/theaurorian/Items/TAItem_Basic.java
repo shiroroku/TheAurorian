@@ -19,6 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TAItem_Basic extends Item {
 
+	public static final String ITEMNAME_AURORIANCOAL = "auroriancoal";
 	public static final String ITEMNAME_CRYSTAL = "crystal";
 	public static final String ITEMNAME_CUP = "cup";
 	public static final String ITEMNAME_INGOT_AURORIANITE = "aurorianiteingot";
@@ -27,12 +28,20 @@ public class TAItem_Basic extends Item {
 	public static final String ITEMNAME_INGOT_CRYSTALLINE = "crystallineingot";
 	public static final String ITEMNAME_INGOT_MOONSTONE = "moonstoneingot";
 	public static final String ITEMNAME_INGOT_UMBRA = "umbraingot";
+	public static final String ITEMNAME_LAVENDER = "lavender";
+	public static final String ITEMNAME_MOONTEMPLECELLKEYFRAGMENT = "moontemplecellkeyfragment";
+	public static final String ITEMNAME_NUGGET_AURORIANSTEEL = "auroriansteelnugget";
+	public static final String ITEMNAME_NUGGET_CERULEAN = "ceruleannugget";
+	public static final String ITEMNAME_NUGGET_AURORIANCOAL = "auroriancoalnugget";
+	public static final String ITEMNAME_NUGGET_MOONSTONE = "moonstonenugget";
 	public static final String ITEMNAME_PLANTFIBER = "plantfiber";
 	public static final String ITEMNAME_SCRAP_AURORIANITE = "scrapaurorianite";
 	public static final String ITEMNAME_SCRAP_CRYSTALLINE = "scrapcrystalline";
 	public static final String ITEMNAME_SCRAP_UMBRA = "scrapumbra";
+	public static final String ITEMNAME_WEEPINGWILLOWSAP = "weepingwillowsap";
 
 	public enum Items {
+		AURORIANCOAL(ITEMNAME_AURORIANCOAL, 64, 1600),
 		CRYSTAL(ITEMNAME_CRYSTAL, 16),
 		CUP(ITEMNAME_CUP, 16),
 		INGOT_AURORIANITE(ITEMNAME_INGOT_AURORIANITE, EnumRarity.EPIC),
@@ -41,27 +50,46 @@ public class TAItem_Basic extends Item {
 		INGOT_CRYSTALLINE(ITEMNAME_INGOT_CRYSTALLINE, EnumRarity.EPIC),
 		INGOT_MOONSTONE(ITEMNAME_INGOT_MOONSTONE),
 		INGOT_UMBRA(ITEMNAME_INGOT_UMBRA, EnumRarity.EPIC),
+		LAVENDER(ITEMNAME_LAVENDER, "string.theaurorian.tooltip.lavender"),
+		MOONTEMPLECELLKEYFRAGMENT(ITEMNAME_MOONTEMPLECELLKEYFRAGMENT, 1, "string.theaurorian.tooltip.moontemplecellkey"),
+		NUGGET_AURORIANSTEEL(ITEMNAME_NUGGET_AURORIANSTEEL),
+		NUGGET_CERULEAN(ITEMNAME_NUGGET_CERULEAN),
+		NUGGET_AURORIANCOAL(ITEMNAME_NUGGET_AURORIANCOAL, 64, 200),
+		NUGGET_MOONSTONE(ITEMNAME_NUGGET_MOONSTONE),
 		PLANTFIBER(ITEMNAME_PLANTFIBER, "string.theaurorian.tooltip.plantfiber"),
 		SCRAP_AURORIANITE(ITEMNAME_SCRAP_AURORIANITE),
 		SCRAP_CRYSTALLINE(ITEMNAME_SCRAP_CRYSTALLINE),
-		SCRAP_UMBRA(ITEMNAME_SCRAP_UMBRA);
+		SCRAP_UMBRA(ITEMNAME_SCRAP_UMBRA),
+		WEEPINGWILLOWSAP(ITEMNAME_WEEPINGWILLOWSAP, 64, 1600);
 
 		private String ITEMNAME;
 		private EnumRarity RARITY;
+		private int BURNTIME;
 		private String INFO;
 		private int STACKSIZE;
 
 		Items(String itemname) {
 			this.STACKSIZE = 64;
+			this.BURNTIME = -1;
 			this.RARITY = EnumRarity.COMMON;
 			this.ITEMNAME = itemname;
+		}
+
+		Items(String itemname, int stacksize, int burntime) {
+			this(itemname, stacksize);
+			this.BURNTIME = burntime;
 		}
 
 		Items(String itemname, EnumRarity rarity) {
 			this(itemname);
 			this.RARITY = rarity;
 		}
-
+		
+		Items(String itemname, int stacksize, String info) {
+			this(itemname, stacksize);
+			this.INFO = info;
+		}
+		
 		Items(String itemname, int stacksize) {
 			this(itemname);
 			this.STACKSIZE = stacksize;
@@ -84,6 +112,10 @@ public class TAItem_Basic extends Item {
 			return STACKSIZE;
 		}
 
+		public int getBurntime() {
+			return BURNTIME;
+		}
+
 		public EnumRarity getRarity() {
 			return RARITY;
 		}
@@ -104,6 +136,11 @@ public class TAItem_Basic extends Item {
 	@Override
 	public net.minecraftforge.common.IRarity getForgeRarity(ItemStack stack) {
 		return itemType.getRarity();
+	}
+
+	@Override
+	public int getItemBurnTime(ItemStack itemStack) {
+		return itemType.getBurntime();
 	}
 
 	@SideOnly(Side.CLIENT)
