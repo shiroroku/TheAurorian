@@ -7,7 +7,11 @@ import java.util.Set;
 import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TABlocks;
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
+import com.elseytd.theaurorian.Blocks.TABlock_DungeonStone;
+import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneLamp;
+import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneSmooth;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
@@ -65,6 +69,15 @@ public class AurorianSheep_Entity extends EntityAnimal implements net.minecraftf
 			return false;
 		}
 	}, 2, 1);
+
+	@Override
+	public boolean getCanSpawnHere() {
+		int i = MathHelper.floor(this.posX);
+		int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+		int k = MathHelper.floor(this.posZ);
+		Block downblock = this.world.getBlockState(new BlockPos(i, j, k).down()).getBlock();
+		return super.getCanSpawnHere() && !(downblock instanceof TABlock_DungeonStone || downblock instanceof TABlock_DungeonStoneSmooth || downblock instanceof TABlock_DungeonStoneLamp) && this.dimension == TAConfig.Config_AurorianDimID;
+	}
 
 	public AurorianSheep_Entity(World worldIn) {
 		super(worldIn);

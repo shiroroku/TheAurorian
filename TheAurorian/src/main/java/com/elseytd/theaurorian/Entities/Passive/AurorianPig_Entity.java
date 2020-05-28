@@ -5,8 +5,12 @@ import java.util.Set;
 import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TABlocks;
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
+import com.elseytd.theaurorian.Blocks.TABlock_DungeonStone;
+import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneLamp;
+import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneSmooth;
 import com.google.common.collect.Sets;
 
 import net.minecraft.block.Block;
@@ -33,6 +37,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class AurorianPig_Entity extends EntityAnimal {
@@ -45,6 +50,15 @@ public class AurorianPig_Entity extends EntityAnimal {
 		super(worldIn);
 		this.spawnableBlock = TABlocks.auroriangrass;
 		this.setSize(0.9F, 0.9F);
+	}
+
+	@Override
+	public boolean getCanSpawnHere() {
+		int i = MathHelper.floor(this.posX);
+		int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+		int k = MathHelper.floor(this.posZ);
+		Block downblock = this.world.getBlockState(new BlockPos(i, j, k).down()).getBlock();
+		return super.getCanSpawnHere() && !(downblock instanceof TABlock_DungeonStone || downblock instanceof TABlock_DungeonStoneSmooth || downblock instanceof TABlock_DungeonStoneLamp) && this.dimension == TAConfig.Config_AurorianDimID;
 	}
 
 	@Override

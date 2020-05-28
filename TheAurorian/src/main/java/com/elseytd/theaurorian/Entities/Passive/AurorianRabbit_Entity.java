@@ -5,8 +5,12 @@ import java.util.Set;
 import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TABlocks;
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
+import com.elseytd.theaurorian.Blocks.TABlock_DungeonStone;
+import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneLamp;
+import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneSmooth;
 import com.google.common.collect.Sets;
 
 import net.minecraft.block.Block;
@@ -70,6 +74,15 @@ public class AurorianRabbit_Entity extends EntityAnimal {
 		this.jumpHelper = new AurorianRabbit_Entity.RabbitJumpHelper(this);
 		this.moveHelper = new AurorianRabbit_Entity.RabbitMoveHelper(this);
 		this.setMovementSpeed(0.0D);
+	}
+
+	@Override
+	public boolean getCanSpawnHere() {
+		int i = MathHelper.floor(this.posX);
+		int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+		int k = MathHelper.floor(this.posZ);
+		Block downblock = this.world.getBlockState(new BlockPos(i, j, k).down()).getBlock();
+		return super.getCanSpawnHere() && !(downblock instanceof TABlock_DungeonStone || downblock instanceof TABlock_DungeonStoneSmooth || downblock instanceof TABlock_DungeonStoneLamp) && this.dimension == TAConfig.Config_AurorianDimID;
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
