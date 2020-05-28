@@ -40,11 +40,13 @@ public class AurorianFurnace_TileEntity extends TileEntityLockable implements IT
 	private int smeltTime = 200;
 
 	public float getChimneySpeedMultiplier() {
-		int y = 1;
+		int y = 0;
 		int chimcount = 0;
-		while (this.world.getBlockState(pos.add(0, y, 0)).getBlock() == TABlocks.aurorianfurnacechimney && y <= TAConfig.Config_MaximumChimneys) {
+		while (!(this.world.isAirBlock(pos.up(y))) && chimcount < TAConfig.Config_MaximumChimneys) {
 			y++;
-			chimcount++;
+			if (this.world.getBlockState(pos.up(y)).getBlock() == TABlocks.aurorianfurnacechimney) {
+				chimcount++;
+			}
 		}
 		return (chimcount / TAConfig.Config_MaximumChimneys) * TAConfig.Config_ChimneySpeedMuliplier;
 	}

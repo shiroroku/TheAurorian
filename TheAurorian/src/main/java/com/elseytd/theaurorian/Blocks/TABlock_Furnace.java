@@ -19,7 +19,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryHelper;
@@ -63,7 +62,7 @@ public class TABlock_Furnace extends BlockContainer {
 			this.setCreativeTab(TAMod.CREATIVE_TAB);
 		}
 	}
-	
+
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		return Item.getItemFromBlock(TABlocks.aurorianfurnace);
@@ -134,7 +133,8 @@ public class TABlock_Furnace extends BlockContainer {
 
 		if (Block.getBlockFromItem(playerIn.getHeldItem(hand).getItem()) == TABlocks.aurorianfurnacechimney) {
 			for (int h = 0; h <= TAConfig.Config_MaximumChimneys; h++) {
-				if (worldIn.getBlockState(pos.up(h)).getBlock() == Blocks.AIR) {
+				Block blockprev = worldIn.getBlockState(pos.up(h - 1)).getBlock();
+				if (worldIn.isAirBlock(pos.up(h)) && (blockprev == TABlocks.aurorianfurnacechimney || blockprev == TABlocks.aurorianfurnace)) {
 					worldIn.setBlockState(new BlockPos(pos.up(h)), TABlocks.aurorianfurnacechimney.getDefaultState(), 11);
 					if (!playerIn.isCreative()) {
 						playerIn.getHeldItem(hand).shrink(1);
