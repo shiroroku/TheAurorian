@@ -5,14 +5,10 @@
 	},
 	"variants": {
 		"normal": [
-			{
-				"model": "theaurorian:bossspawner"
-			}
+			{}
 		],
 		"inventory": [
-			{
-				"model": "theaurorian:bossspawner"
-			}
+			{}
 		]
 	}
 }

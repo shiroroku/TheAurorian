@@ -5,14 +5,10 @@
 	},
 	"variants": {
 		"normal": [
-			{
-				"model": "theaurorian:moongem"
-			}
+			{}
 		],
 		"inventory": [
-			{
-				"model": "theaurorian:moongem"
-			}
+			{}
 		]
 	}
 }

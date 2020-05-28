@@ -5,34 +5,22 @@
     },
     "variants": {
         "normal": [
-            {
-                "model": "theaurorian:silentwoodleaves"
-            }
+            {}
         ],
         "inventory": [
-            {
-                "model": "theaurorian:silentwoodleaves"
-            }
+            {}
         ],
         "check_decay=false,decayable=false": [
-            {
-                "model": "theaurorian:silentwoodleaves"
-            }
+            {}
         ],
         "check_decay=true,decayable=true": [
-            {
-                "model": "theaurorian:silentwoodleaves"
-            }
+            {}
         ],
         "check_decay=false,decayable=true": [
-            {
-                "model": "theaurorian:silentwoodleaves"
-            }
+            {}
         ],
         "check_decay=true,decayable=false": [
-            {
-                "model": "theaurorian:silentwoodleaves"
-            }
+            {}
         ]
     }
 }

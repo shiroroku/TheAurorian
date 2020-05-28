@@ -1,25 +1,22 @@
 {
 	"forge_marker": 1,
+	"defaults": {
+		"model": "theaurorian:mushroomstem"
+	},
 	"variants": {
 		"inventory": [
-			{
-				"model": "theaurorian:mushroomstem"
-			}
+			{}
 		],
-		"axis=y": {
-			"model": "theaurorian:mushroomstem"
-		},
-		"axis=z": {
-			"model": "theaurorian:mushroomstem",
-			"x": 90
-		},
-		"axis=x": {
-			"model": "theaurorian:mushroomstem",
-			"x": 90,
-			"y": 90
-		},
-		"axis=none": {
-			"model": "theaurorian:mushroomstem"
+		"axis": {
+			"y": {},
+			"z": {
+				"x": 90
+			},
+			"x": {
+				"x": 90,
+				"y": 90
+			},
+			"none": {}
 		}
 	}
 }

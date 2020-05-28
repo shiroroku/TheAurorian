@@ -5,14 +5,10 @@
     },
     "variants": {
         "normal": [
-            {
-                "model": "theaurorian:auroriansteelblock"
-            }
+            {}
         ],
         "inventory": [
-            {
-                "model": "theaurorian:auroriansteelblock"
-            }
+            {}
         ]
     }
 }

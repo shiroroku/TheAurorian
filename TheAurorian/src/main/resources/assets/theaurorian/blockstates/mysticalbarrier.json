@@ -1,19 +1,20 @@
 {
+	"forge_marker": 1,
+	"defaults": {
+		"model": "theaurorian:mysticalbarrier"
+	},
 	"variants": {
-		"facing=north": {
-			"model": "theaurorian:mysticalbarrier"
-		},
-		"facing=south": {
-			"model": "theaurorian:mysticalbarrier",
-			"y": 180
-		},
-		"facing=west": {
-			"model": "theaurorian:mysticalbarrier",
-			"y": 270
-		},
-		"facing=east": {
-			"model": "theaurorian:mysticalbarrier",
-			"y": 90
+		"facing": {
+			"north": {},
+			"south": {
+				"y": 180
+			},
+			"west": {
+				"y": 270
+			},
+			"east": {
+				"y": 90
+			}
 		}
 	}
 }

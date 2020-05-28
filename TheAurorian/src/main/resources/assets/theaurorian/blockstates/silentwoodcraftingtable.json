@@ -5,14 +5,10 @@
 	},
 	"variants": {
 		"normal": [
-			{
-				"model": "theaurorian:silentwoodcraftingtable"
-			}
+			{}
 		],
 		"inventory": [
-			{
-				"model": "theaurorian:silentwoodcraftingtable"
-			}
+			{}
 		]
 	}
 }

@@ -5,14 +5,10 @@
     },
     "variants": {
         "normal": [
-            {
-                "model": "theaurorian:umbrastonerooftiles"
-            }
+            {}
         ],
         "inventory": [
-            {
-                "model": "theaurorian:umbrastonerooftiles"
-            }
+            {}
         ]
     }
 }

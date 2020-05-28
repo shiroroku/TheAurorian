@@ -5,14 +5,10 @@
 	},
 	"variants": {
 		"normal": [
-			{
-				"model": "theaurorian:runestonelamp"
-			}
+			{}
 		],
 		"inventory": [
-			{
-				"model": "theaurorian:runestonelamp"
-			}
+			{}
 		]
 	}
 }

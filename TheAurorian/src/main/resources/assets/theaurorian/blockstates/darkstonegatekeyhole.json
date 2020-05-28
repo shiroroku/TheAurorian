@@ -5,14 +5,10 @@
     },
     "variants": {
         "normal": [
-            {
-                "model": "theaurorian:darkstonegatekeyhole"
-            }
+            {}
         ],
         "inventory": [
-            {
-                "model": "theaurorian:darkstonegatekeyhole"
-            }
+            {}
         ]
     }
 }

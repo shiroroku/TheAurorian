@@ -5,14 +5,10 @@
 	},
 	"variants": {
 		"normal": [
-			{
-				"model": "theaurorian:moontemplecellgatekeyhole"
-			}
+			{}
 		],
 		"inventory": [
-			{
-				"model": "theaurorian:moontemplecellgatekeyhole"
-			}
+			{}
 		]
 	}
 }

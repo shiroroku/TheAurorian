@@ -5,14 +5,10 @@
 	},
 	"variants": {
 		"normal": [
-			{
-				"model": "theaurorian:moontemplelamp"
-			}
+			{}
 		],
 		"inventory": [
-			{
-				"model": "theaurorian:moontemplelamp"
-			}
+			{}
 		]
 	}
 }

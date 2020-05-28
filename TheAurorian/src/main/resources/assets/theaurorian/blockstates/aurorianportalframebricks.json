@@ -5,14 +5,10 @@
 	},
 	"variants": {
 		"normal": [
-			{
-				"model": "theaurorian:aurorianportalframebricks"
-			}
+			{}
 		],
 		"inventory": [
-			{
-				"model": "theaurorian:aurorianportalframebricks"
-			}
+			{}
 		]
 	}
 }

@@ -5,14 +5,10 @@
 	},
 	"variants": {
 		"normal": [
-			{
-				"model": "theaurorian:aurorianperidotitesmooth"
-			}
+			{}
 		],
 		"inventory": [
-			{
-				"model": "theaurorian:aurorianperidotitesmooth"
-			}
+			{}
 		]
 	}
 }

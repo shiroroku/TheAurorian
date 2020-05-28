@@ -5,14 +5,10 @@
 	},
 	"variants": {
 		"normal": [
-			{
-				"model": "theaurorian:geodeore"
-			}
+			{}
 		],
 		"inventory": [
-			{
-				"model": "theaurorian:geodeore"
-			}
+			{}
 		]
 	}
 }

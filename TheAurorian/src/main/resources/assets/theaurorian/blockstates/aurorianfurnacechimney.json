@@ -5,14 +5,10 @@
 	},
 	"variants": {
 		"normal": [
-			{
-				"model": "theaurorian:aurorianfurnacechimney"
-			}
+			{}
 		],
 		"inventory": [
-			{
-				"model": "theaurorian:aurorianfurnacechimney"
-			}
+			{}
 		]
 	}
 }

@@ -5,14 +5,10 @@
 	},
 	"variants": {
 		"normal": [
-			{
-				"model": "theaurorian:moontemplebrickssmooth"
-			}
+			{}
 		],
 		"inventory": [
-			{
-				"model": "theaurorian:moontemplebrickssmooth"
-			}
+			{}
 		]
 	}
 }

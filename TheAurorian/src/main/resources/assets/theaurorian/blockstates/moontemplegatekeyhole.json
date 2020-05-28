@@ -5,14 +5,10 @@
 	},
 	"variants": {
 		"normal": [
-			{
-				"model": "theaurorian:moontemplegatekeyhole"
-			}
+			{}
 		],
 		"inventory": [
-			{
-				"model": "theaurorian:moontemplegatekeyhole"
-			}
+			{}
 		]
 	}
 }

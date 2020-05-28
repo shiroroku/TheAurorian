@@ -5,14 +5,10 @@
 	},
 	"variants": {
 		"normal": [
-			{
-				"model": "theaurorian:auroriangrass"
-			}
+			{}
 		],
 		"inventory": [
-			{
-				"model": "theaurorian:auroriangrass"
-			}
+			{}
 		]
 	}
 }

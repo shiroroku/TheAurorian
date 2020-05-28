@@ -5,14 +5,10 @@
 	},
 	"variants": {
 		"normal": [
-			{
-				"model": "theaurorian:weepingwillowplanks"
-			}
+			{}
 		],
 		"inventory": [
-			{
-				"model": "theaurorian:weepingwillowplanks"
-			}
+			{}
 		]
 	}
 }

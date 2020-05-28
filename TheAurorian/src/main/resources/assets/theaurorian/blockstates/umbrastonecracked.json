@@ -5,14 +5,10 @@
     },
     "variants": {
         "normal": [
-            {
-                "model": "theaurorian:umbrastonecracked"
-            }
+            {}
         ],
         "inventory": [
-            {
-                "model": "theaurorian:umbrastonecracked"
-            }
+            {}
         ]
     }
 }

@@ -5,14 +5,10 @@
 	},
 	"variants": {
 		"normal": [
-			{
-				"model": "theaurorian:moonsand"
-			}
+			{}
 		],
 		"inventory": [
-			{
-				"model": "theaurorian:moonsand"
-			}
+			{}
 		]
 	}
 }

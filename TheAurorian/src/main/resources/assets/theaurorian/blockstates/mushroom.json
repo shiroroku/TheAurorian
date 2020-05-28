@@ -5,14 +5,10 @@
 	},
 	"variants": {
 		"normal": [
-			{
-				"model": "theaurorian:mushroom"
-			}
+			{}
 		],
 		"inventory": [
-			{
-				"model": "theaurorian:mushroom"
-			}
+			{}
 		]
 	}
 }

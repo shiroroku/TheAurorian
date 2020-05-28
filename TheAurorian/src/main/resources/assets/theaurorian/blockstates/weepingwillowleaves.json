@@ -5,34 +5,22 @@
     },
     "variants": {
         "normal": [
-            {
-                "model": "theaurorian:weepingwillowleaves"
-            }
+            {}
         ],
         "inventory": [
-            {
-                "model": "theaurorian:weepingwillowleaves"
-            }
+            {}
         ],
         "check_decay=false,decayable=false": [
-            {
-                "model": "theaurorian:weepingwillowleaves"
-            }
+            {}
         ],
         "check_decay=true,decayable=true": [
-            {
-                "model": "theaurorian:weepingwillowleaves"
-            }
+            {}
         ],
         "check_decay=false,decayable=true": [
-            {
-                "model": "theaurorian:weepingwillowleaves"
-            }
+            {}
         ],
         "check_decay=true,decayable=false": [
-            {
-                "model": "theaurorian:weepingwillowleaves"
-            }
+            {}
         ]
     }
 }
