@@ -1,5 +1,7 @@
 package com.elseytd.theaurorian.Misc;
 
+import java.util.Comparator;
+
 import com.elseytd.theaurorian.TABlocks;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,5 +27,11 @@ public class TACreativeTab extends CreativeTabs {
 	@Override
 	public void displayAllRelevantItems(final NonNullList<ItemStack> items) {
 		super.displayAllRelevantItems(items);
+		items.sort(new Comparator<ItemStack>() {
+			@Override
+			public int compare(ItemStack i1, ItemStack i2) {
+				return i1.getUnlocalizedName().compareTo(i2.getUnlocalizedName());
+			}
+		});
 	}
 }
