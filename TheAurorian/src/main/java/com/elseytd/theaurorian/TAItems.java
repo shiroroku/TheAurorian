@@ -59,6 +59,7 @@ import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Sword;
+import com.elseytd.theaurorian.Items.TAItem_Special_WeepingWillowSap;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.SoundEvents;
@@ -311,8 +312,8 @@ public class TAItems {
 	public static TAItem_Tool_Silentwood_Sword silentwoodsword;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_SILKSHROOMSTEW)
 	public static TAItem_Food silkshroomstew;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_WEEPINGWILLOWSAP)
-	public static TAItem_Basic weepingwillowsap;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_WeepingWillowSap.ITEMNAME)
+	public static TAItem_Special_WeepingWillowSap weepingwillowsap;
 
 	private enum TAItemRegistry {
 		ABSORPTIONORB(new TAItem_Special_AbsorptionOrb()),
@@ -416,7 +417,7 @@ public class TAItems {
 		UMBRAPICKAXE(new TAItem_Tool_Umbra_Pickaxe()),
 		UMBRASHIELD(new TAItem_Tool_Umbra_Shield()),
 		UMBRASWORD(new TAItem_Tool_Umbra_Sword()),
-		WEEPINGWILLOWSAP(new TAItem_Basic(TAItem_Basic.Items.WEEPINGWILLOWSAP));
+		WEEPINGWILLOWSAP(new TAItem_Special_WeepingWillowSap());
 
 		private Item modItem;
 

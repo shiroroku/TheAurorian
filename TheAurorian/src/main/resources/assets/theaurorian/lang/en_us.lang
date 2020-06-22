@@ -188,6 +188,7 @@ string.theaurorian.tooltip.strangemeat=Huge chunk of meat, will take a while to 
 string.theaurorian.tooltip.umbrapickaxe=Select a block to gain bonus mining speed towards that type! Selecting a block costs a lot of durability.
 string.theaurorian.tooltip.umbrashield=Lights whoever is in front of you on fire when blocking! Blocking for too long will cause it to overheat.
 string.theaurorian.tooltip.umbrasword=Gives you a short boost of health health at the cost of weakness and slowness!
+string.theaurorian.tooltip.weepingwillowsap=Will cleanse poison but gives you slowness.
 tile.tamoonwater.name=Moonwater
 tile.theaurorian.auroriancoalblock.name=Aurorian Coal Block
 tile.theaurorian.auroriancoalore.name=Aurorian Coal Ore

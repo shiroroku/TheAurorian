@@ -38,7 +38,6 @@ public class TAItem_Basic extends Item {
 	public static final String ITEMNAME_SCRAP_AURORIANITE = "scrapaurorianite";
 	public static final String ITEMNAME_SCRAP_CRYSTALLINE = "scrapcrystalline";
 	public static final String ITEMNAME_SCRAP_UMBRA = "scrapumbra";
-	public static final String ITEMNAME_WEEPINGWILLOWSAP = "weepingwillowsap";
 
 	public enum Items {
 		AURORIANCOAL(ITEMNAME_AURORIANCOAL, 64, 1600),
@@ -59,8 +58,7 @@ public class TAItem_Basic extends Item {
 		PLANTFIBER(ITEMNAME_PLANTFIBER, "string.theaurorian.tooltip.plantfiber"),
 		SCRAP_AURORIANITE(ITEMNAME_SCRAP_AURORIANITE),
 		SCRAP_CRYSTALLINE(ITEMNAME_SCRAP_CRYSTALLINE),
-		SCRAP_UMBRA(ITEMNAME_SCRAP_UMBRA),
-		WEEPINGWILLOWSAP(ITEMNAME_WEEPINGWILLOWSAP, 64, 1600);
+		SCRAP_UMBRA(ITEMNAME_SCRAP_UMBRA);
 
 		private String ITEMNAME;
 		private EnumRarity RARITY;
@@ -84,12 +82,12 @@ public class TAItem_Basic extends Item {
 			this(itemname);
 			this.RARITY = rarity;
 		}
-		
+
 		Items(String itemname, int stacksize, String info) {
 			this(itemname, stacksize);
 			this.INFO = info;
 		}
-		
+
 		Items(String itemname, int stacksize) {
 			this(itemname);
 			this.STACKSIZE = stacksize;
