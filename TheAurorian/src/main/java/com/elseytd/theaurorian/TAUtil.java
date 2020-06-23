@@ -204,11 +204,37 @@ public class TAUtil {
 					Map<Enchantment, Integer> enchs = EnchantmentHelper.getEnchantments(stack);
 					for (Map.Entry<Enchantment, Integer> e : enchs.entrySet()) {
 						if (e.getKey().getMaxLevel() > 1 && e.getValue() < e.getKey().getMaxLevel()) {
-							enchs.put(e.getKey(), e.getValue() + 1);
-							EnchantmentHelper.setEnchantments(enchs, stack);
-							setMultiplier(stack, levelmultiplier * maxlevelmultiplier);
-							setLevel(stack, 0);
-							return;
+							switch (TAConfig.Config_AurorianSteel_Enchants_WhitelistBlacklist) {
+							case 0:
+							default:
+								enchs.put(e.getKey(), e.getValue() + 1);
+								EnchantmentHelper.setEnchantments(enchs, stack);
+								setMultiplier(stack, levelmultiplier * maxlevelmultiplier);
+								setLevel(stack, 0);
+								return;
+							case 1:
+								for (String enchreg : TAConfig.Config_AurorianSteel_Enchants) {
+									if (enchreg.equals(e.getKey().getRegistryName().toString()) || e.getKey().getRegistryName().getResourceDomain().equals(enchreg)) {
+										enchs.put(e.getKey(), e.getValue() + 1);
+										EnchantmentHelper.setEnchantments(enchs, stack);
+										setMultiplier(stack, levelmultiplier * maxlevelmultiplier);
+										setLevel(stack, 0);
+										return;
+									}
+								}
+								break;
+							case 2:
+								for (String enchreg : TAConfig.Config_AurorianSteel_Enchants) {
+									if (enchreg.equals(e.getKey().getRegistryName().toString()) || e.getKey().getRegistryName().getResourceDomain().equals(enchreg)) {
+										return;
+									}
+								}
+								enchs.put(e.getKey(), e.getValue() + 1);
+								EnchantmentHelper.setEnchantments(enchs, stack);
+								setMultiplier(stack, levelmultiplier * maxlevelmultiplier);
+								setLevel(stack, 0);
+								return;
+							}
 						}
 					}
 				}
