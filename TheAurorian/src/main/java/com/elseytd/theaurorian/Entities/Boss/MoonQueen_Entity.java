@@ -49,7 +49,7 @@ public class MoonQueen_Entity extends EntityMob {
 	public static final ResourceLocation LOOT = new ResourceLocation(TAMod.MODID, "entities/" + EntityName);
 	public static final ResourceLocation CHEST_LOOT = new ResourceLocation(TAMod.MODID, "chests/moontemplehigh");
 	public static final float MobScale = 0.9F;
-	private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(this.getDisplayName(), BossInfo.Color.WHITE, BossInfo.Overlay.PROGRESS)).setDarkenSky(false);
+	private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(this.getDisplayName(), BossInfo.Color.PINK, BossInfo.Overlay.PROGRESS)).setDarkenSky(false);
 	private static final DataParameter<Boolean> CHARGING = EntityDataManager.createKey(MoonQueen_Entity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> WINDINGUPCHARGE = EntityDataManager.createKey(MoonQueen_Entity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> CHARGEHIT = EntityDataManager.createKey(MoonQueen_Entity.class, DataSerializers.BOOLEAN);
