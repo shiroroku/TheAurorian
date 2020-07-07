@@ -23,6 +23,8 @@ import com.elseytd.theaurorian.Items.TAItem_Special_Lockpicks;
 import com.elseytd.theaurorian.Items.TAItem_Special_MoonShield;
 import com.elseytd.theaurorian.Items.TAItem_Special_StickySpiker;
 import com.elseytd.theaurorian.Items.TAItem_Special_StrangeMeat;
+import com.elseytd.theaurorian.Items.TAItem_Special_Webbing;
+import com.elseytd.theaurorian.Items.TAItem_Special_WeepingWillowSap;
 import com.elseytd.theaurorian.Items.TAItem_Tool_AurorianSteel_Axe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_AurorianSteel_Hoe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_AurorianSteel_Pickaxe;
@@ -59,7 +61,6 @@ import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Sword;
-import com.elseytd.theaurorian.Items.TAItem_Special_WeepingWillowSap;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.SoundEvents;
@@ -314,6 +315,8 @@ public class TAItems {
 	public static TAItem_Food silkshroomstew;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_WeepingWillowSap.ITEMNAME)
 	public static TAItem_Special_WeepingWillowSap weepingwillowsap;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Webbing.ITEMNAME)
+	public static TAItem_Special_Webbing webbing;
 
 	private enum TAItemRegistry {
 		ABSORPTIONORB(new TAItem_Special_AbsorptionOrb()),
@@ -417,6 +420,7 @@ public class TAItems {
 		UMBRAPICKAXE(new TAItem_Tool_Umbra_Pickaxe()),
 		UMBRASHIELD(new TAItem_Tool_Umbra_Shield()),
 		UMBRASWORD(new TAItem_Tool_Umbra_Sword()),
+		WEBBING(new TAItem_Special_Webbing()),
 		WEEPINGWILLOWSAP(new TAItem_Special_WeepingWillowSap());
 
 		private Item modItem;

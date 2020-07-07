@@ -4,6 +4,8 @@ import com.elseytd.theaurorian.Entities.Boss.Keeper_Entity;
 import com.elseytd.theaurorian.Entities.Boss.Keeper_EntityRender;
 import com.elseytd.theaurorian.Entities.Boss.MoonQueen_Entity;
 import com.elseytd.theaurorian.Entities.Boss.MoonQueen_EntityRender;
+import com.elseytd.theaurorian.Entities.Boss.Spider_Entity;
+import com.elseytd.theaurorian.Entities.Boss.Spider_EntityRender;
 import com.elseytd.theaurorian.Entities.Hostile.AurorianSlime_Entity;
 import com.elseytd.theaurorian.Entities.Hostile.AurorianSlime_EntityRender;
 import com.elseytd.theaurorian.Entities.Hostile.CrystallineSprite_Entity;
@@ -22,12 +24,14 @@ import com.elseytd.theaurorian.Entities.Passive.AurorianRabbit_Entity;
 import com.elseytd.theaurorian.Entities.Passive.AurorianRabbit_EntityRender;
 import com.elseytd.theaurorian.Entities.Passive.AurorianSheep_Entity;
 import com.elseytd.theaurorian.Entities.Passive.AurorianSheep_EntityRender;
-import com.elseytd.theaurorian.Entities.Projectiles.CrystallineBeam_EntityRender;
-import com.elseytd.theaurorian.Entities.Projectiles.CeruleanArrow_EntityRender;
-import com.elseytd.theaurorian.Entities.Projectiles.StickySpiker_EntityRender;
 import com.elseytd.theaurorian.Entities.Projectiles.CeruleanArrow_Entity;
+import com.elseytd.theaurorian.Entities.Projectiles.CeruleanArrow_EntityRender;
 import com.elseytd.theaurorian.Entities.Projectiles.CrystallineBeam_Entity;
+import com.elseytd.theaurorian.Entities.Projectiles.CrystallineBeam_EntityRender;
 import com.elseytd.theaurorian.Entities.Projectiles.StickySpiker_Entity;
+import com.elseytd.theaurorian.Entities.Projectiles.StickySpiker_EntityRender;
+import com.elseytd.theaurorian.Entities.Projectiles.Webbing_Entity;
+import com.elseytd.theaurorian.Entities.Projectiles.Webbing_EntityRender;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -54,6 +58,8 @@ public class TAEntities {
 		quickRegEntity(CrystallineSprite_Entity.class, CrystallineSprite_Entity.EntityName, id++);
 		quickRegNonlivingEntity(CrystallineBeam_Entity.class, CrystallineBeam_Entity.EntityName, id++);
 		quickRegEntity(Spirit_Entity.class, Spirit_Entity.EntityName, id++);
+		quickRegEntity(Spider_Entity.class, Spider_Entity.EntityName, id++);
+		quickRegNonlivingEntity(Webbing_Entity.class, Webbing_Entity.EntityName, id++);
 
 	}
 
@@ -81,5 +87,7 @@ public class TAEntities {
 		RenderingRegistry.registerEntityRenderingHandler(CrystallineSprite_Entity.class, CrystallineSprite_EntityRender.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(CrystallineBeam_Entity.class, CrystallineBeam_EntityRender.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(Spirit_Entity.class, Spirit_EntityRender.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(Spider_Entity.class, Spider_EntityRender.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(Webbing_Entity.class, Webbing_EntityRender.FACTORY);
 	}
 }

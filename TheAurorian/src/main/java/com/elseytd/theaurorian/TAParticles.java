@@ -2,6 +2,7 @@ package com.elseytd.theaurorian;
 
 import com.elseytd.theaurorian.Particles.TAParticle_AurorianSlime;
 import com.elseytd.theaurorian.Particles.TAParticle_StickySpiker;
+import com.elseytd.theaurorian.Particles.TAParticle_Webbing;
 import com.elseytd.theaurorian.Particles.TAParticle_WeepingWillow_Drip;
 
 import net.minecraft.client.Minecraft;
@@ -17,7 +18,8 @@ public class TAParticles {
 	public enum Particles {
 		AURORIANSLIME(111240),
 		STICKYSPIKER(111241),
-		WEEPINGWILLOWDRIP(111242);
+		WEBBING(111242),
+		WEEPINGWILLOWDRIP(111243);
 
 		int ID;
 
@@ -38,6 +40,8 @@ public class TAParticles {
 			return new TAParticle_StickySpiker(mcinstance.world, xCoordIn, yCoordIn, zCoordIn);
 		case WEEPINGWILLOWDRIP:
 			return new TAParticle_WeepingWillow_Drip(mcinstance.world, xCoordIn, yCoordIn, zCoordIn);
+		case WEBBING:
+			return new TAParticle_Webbing(mcinstance.world, xCoordIn, yCoordIn, zCoordIn);
 		default:
 			return null;
 		}
