@@ -78,6 +78,30 @@ public class TAConfig {
 	public static String[] Config_AurorianSteel_Enchants = new String[] {};
 	public static int Config_AurorianSteel_Enchants_WhitelistBlacklist = 0;
 
+	//Multipliers
+	public static float Config_Silentwood_Multiplier_Speed = 1F;
+	public static float Config_Silentwood_Multiplier_Durability = 1F;
+	public static int Config_Silentwood_HarvestLevel = 0;
+	public static float Config_AurorianStone_Multiplier_Damage = 1F;
+	public static float Config_AurorianStone_Multiplier_Speed = 1F;
+	public static float Config_AurorianStone_Multiplier_Durability = 1F;
+	public static int Config_AurorianStone_HarvestLevel = 1;
+	public static float Config_Moonstone_Multiplier_Damage = 1F;
+	public static float Config_Moonstone_Multiplier_Speed = 1F;
+	public static float Config_Moonstone_Multiplier_Durability = 1F;
+	public static int Config_Moonstone_HarvestLevel = 2;
+	public static float Config_Special_Multiplier_Damage = 1F;
+	public static float Config_Special_Multiplier_Speed = 1F;
+	public static float Config_Special_Multiplier_Durability = 1F;
+	public static int Config_Special_HarvestLevel = 3;
+	public static float Config_AurorianSteel_Multiplier_Damage = 1F;
+	public static float Config_AurorianSteel_Multiplier_Speed = 1F;
+	public static float Config_AurorianSteel_Multiplier_Durability = 1F;
+	public static float Config_AurorianSteel_Multiplier_Armor = 1F;
+	public static int Config_AurorianSteel_HarvestLevel = 3;
+	public static float Config_Cerulean_Multiplier_Durability = 1F;
+	public static float Config_Cerulean_Multiplier_Armor = 1F;
+
 	public static void readConfig() {
 		Configuration cfg = TAMod.CONFIG;
 		try {
@@ -89,12 +113,42 @@ public class TAConfig {
 			initEntityConfig(cfg);
 			initGenerationConfig(cfg);
 			initMiscConfig(cfg);
+			initMultiplierConfig(cfg);
 		} catch (Exception e1) {
 		} finally {
 			if (cfg.hasChanged()) {
 				cfg.save();
 			}
 		}
+	}
+
+	private static void initMultiplierConfig(Configuration cfg) {
+		String name = "multipliers";
+		cfg.addCustomCategoryComment(name, "Tool and Armor multipliers");
+
+		Config_Silentwood_Multiplier_Speed = cfg.getFloat("Silentwood_Multiplier_Speed", name, Config_Silentwood_Multiplier_Speed, 0F, 1000F, "Multiplier for mining speed");
+		Config_Silentwood_Multiplier_Durability = cfg.getFloat("Silentwood_Multiplier_Durability", name, Config_Silentwood_Multiplier_Durability, 0F, 1000F, "Multiplier for tool/armor durability");
+		Config_Silentwood_HarvestLevel = cfg.getInt("Silentwood_HarvestLevel", name, Config_Silentwood_HarvestLevel, 0, 500, "Harvest level for these tools");
+		Config_AurorianStone_Multiplier_Damage = cfg.getFloat("AurorianStone_Multiplier_Damage", name, Config_AurorianStone_Multiplier_Damage, 0F, 1000F, "Multiplier for damage");
+		Config_AurorianStone_Multiplier_Speed = cfg.getFloat("AurorianStone_Multiplier_Speed", name, Config_AurorianStone_Multiplier_Speed, 0F, 1000F, "Multiplier for mining speed");
+		Config_AurorianStone_Multiplier_Durability = cfg.getFloat("AurorianStone_Multiplier_Durability", name, Config_AurorianStone_Multiplier_Durability, 0F, 1000F, "Multiplier for tool/armor durability");
+		Config_AurorianStone_HarvestLevel = cfg.getInt("AurorianStone_HarvestLevel", name, Config_AurorianStone_HarvestLevel, 0, 500, "Harvest level for these tools");
+		Config_Moonstone_Multiplier_Damage = cfg.getFloat("Moonstone_Multiplier_Damage", name, Config_Moonstone_Multiplier_Damage, 0F, 1000F, "Multiplier for damage");
+		Config_Moonstone_Multiplier_Speed = cfg.getFloat("Moonstone_Multiplier_Speed", name, Config_Moonstone_Multiplier_Speed, 0F, 1000F, "Multiplier for mining speed");
+		Config_Moonstone_Multiplier_Durability = cfg.getFloat("Moonstone_Multiplier_Durability", name, Config_Moonstone_Multiplier_Durability, 0F, 1000F, "Multiplier for tool/armor durability");
+		Config_Moonstone_HarvestLevel = cfg.getInt("Moonstone_HarvestLevel", name, Config_Moonstone_HarvestLevel, 0, 500, "Harvest level for these tools");
+		Config_Special_Multiplier_Damage = cfg.getFloat("Special_Multiplier_Damage", name, Config_Special_Multiplier_Damage, 0F, 1000F, "Multiplier for damage");
+		Config_Special_Multiplier_Speed = cfg.getFloat("Special_Multiplier_Speed", name, Config_Special_Multiplier_Speed, 0F, 1000F, "Multiplier for mining speed");
+		Config_Special_Multiplier_Durability = cfg.getFloat("Special_Multiplier_Durability", name, Config_Special_Multiplier_Durability, 0F, 1000F, "Multiplier for tool/armor durability");
+		Config_Special_HarvestLevel = cfg.getInt("Special_HarvestLevel", name, Config_Special_HarvestLevel, 0, 500, "Harvest level for these tools");
+		Config_AurorianSteel_Multiplier_Damage = cfg.getFloat("AurorianSteel_Multiplier_Damage", name, Config_AurorianSteel_Multiplier_Damage, 0F, 1000F, "Multiplier for damage");
+		Config_AurorianSteel_Multiplier_Speed = cfg.getFloat("AurorianSteel_Multiplier_Speed", name, Config_AurorianSteel_Multiplier_Speed, 0F, 1000F, "Multiplier for mining speed");
+		Config_AurorianSteel_Multiplier_Durability = cfg.getFloat("AurorianSteel_Multiplier_Durability", name, Config_AurorianSteel_Multiplier_Durability, 0F, 1000F, "Multiplier for tool/armor durability");
+		Config_AurorianSteel_Multiplier_Armor = cfg.getFloat("AurorianSteel_Multiplier_Armor", name, Config_AurorianSteel_Multiplier_Armor, 0F, 1000F, "Multiplier for armor strength");
+		Config_AurorianSteel_HarvestLevel = cfg.getInt("AurorianSteel_HarvestLevel", name, Config_AurorianSteel_HarvestLevel, 0, 500, "Harvest level for these tools");
+		Config_Cerulean_Multiplier_Durability = cfg.getFloat("Cerulean_Multiplier_Durability", name, Config_Cerulean_Multiplier_Durability, 0F, 1000F, "Multiplier for tool/armor durability");
+		Config_Cerulean_Multiplier_Armor = cfg.getFloat("Cerulean_Multiplier_Armor", name, Config_Cerulean_Multiplier_Armor, 0F, 1000F, "Multiplier for armor strength");
+
 	}
 
 	private static void initMiscConfig(Configuration cfg) {
@@ -117,7 +171,7 @@ public class TAConfig {
 		Config_MoonlightForgeTransfersEnchants = cfg.getBoolean("MoonlightForgeTransfersEnchants", name, Config_MoonlightForgeTransfersEnchants, "Set to false to disable enchantments from carrying over when crafting tools with the Moonlight Forge");
 		Config_AurorianSteel_BaseMaxLevel = cfg.getInt("AurorianSteel_BaseMaxLevel", name, Config_AurorianSteel_BaseMaxLevel, 0, 72000, "Base Max level for Aurorian Steel items. After used this many times an enchantment will level up, next level cost depends on multiplier");
 		Config_AurorianSteel_BaseMaxLevelMultiplier = cfg.getFloat("AurorianSteel_BaseMaxLevelMultiplier", name, Config_AurorianSteel_BaseMaxLevelMultiplier, 1F, 100F, "Max Level multiplier for Aurorian Steel items, every time they level up the max level is multiplied by this");
-		
+
 		Config_AurorianSteel_Enchants = cfg.getStringList("AurorianSteel_Enchants", name, Config_AurorianSteel_Enchants, "List of enchantments, use is decided by AurorianSteel_Enchants_WhitelistBlacklist, you can also specify mod ids to whitelist or blacklist whole mods, ex: (draconicevolution, minecraft:sharpness)");
 		Config_AurorianSteel_Enchants_WhitelistBlacklist = cfg.getInt("AurorianSteel_Enchants_WhitelistBlacklist", name, Config_AurorianSteel_Enchants_WhitelistBlacklist, 0, 2, "Decides how to treat AurorianSteel_Enchants, 0 - ignored (Aurorian Steel can upgrade any enchantment), 1 - whitelist (can only upgrade enchantments specified), 2 - blacklist (upgrades all but the enchantments specified)");
 

@@ -81,19 +81,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TAItems {
 
 	public static class Materials {
-		public static Item.ToolMaterial SILENTWOOD = EnumHelper.addToolMaterial("TA_SILENTWOOD", 0, 59, 3.0F, 0.0F, 20);
-		public static Item.ToolMaterial AURORIANSTONE = EnumHelper.addToolMaterial("TA_AURORIANSTONE", 1, 131, 4.5F, 1.5F, 14);
-		public static Item.ToolMaterial MOONSTONE = EnumHelper.addToolMaterial("TA_MOONSTONE", 2, 250, 7.0F, 2.5F, 14);
-		public static Item.ToolMaterial AURORIANITE = EnumHelper.addToolMaterial("TA_AURORIANITE", 3, 1000, 8.0F, 3.0F, 20);
-		public static Item.ToolMaterial UMBRA = EnumHelper.addToolMaterial("TA_UMBRA", 3, 1000, 8.0F, 3.0F, 20);
-		public static Item.ToolMaterial CRYSTALLINE = EnumHelper.addToolMaterial("TA_CRYSTALLINE", 3, 1000, 8.0F, 3.0F, 20);
-		public static Item.ToolMaterial AURORIANSTEEL = EnumHelper.addToolMaterial("TA_AURORIANSTEEL", 3, 1500, 8.5F, 3.5F, 10);
+		public static Item.ToolMaterial SILENTWOOD = EnumHelper.addToolMaterial("TA_SILENTWOOD", TAConfig.Config_Silentwood_HarvestLevel, (int) (59 * TAConfig.Config_Silentwood_Multiplier_Durability), 3.0F * TAConfig.Config_Silentwood_Multiplier_Speed, 0, 20);
+		public static Item.ToolMaterial AURORIANSTONE = EnumHelper.addToolMaterial("TA_AURORIANSTONE", TAConfig.Config_AurorianStone_HarvestLevel, (int) (131 * TAConfig.Config_AurorianStone_Multiplier_Durability), 4.5F * TAConfig.Config_AurorianStone_Multiplier_Speed, 1.5F * TAConfig.Config_AurorianStone_Multiplier_Damage, 14);
+		public static Item.ToolMaterial MOONSTONE = EnumHelper.addToolMaterial("TA_MOONSTONE", TAConfig.Config_Moonstone_HarvestLevel, (int) (250 * TAConfig.Config_Moonstone_Multiplier_Durability), 7.0F * TAConfig.Config_Moonstone_Multiplier_Speed, 2.5F * TAConfig.Config_Moonstone_Multiplier_Damage, 14);
+		public static Item.ToolMaterial AURORIANITE = EnumHelper.addToolMaterial("TA_AURORIANITE", TAConfig.Config_Special_HarvestLevel, (int) (1000 * TAConfig.Config_Special_Multiplier_Durability), 8.0F * TAConfig.Config_Special_Multiplier_Speed, 3.0F * TAConfig.Config_Special_Multiplier_Damage, 20);
+		public static Item.ToolMaterial UMBRA = EnumHelper.addToolMaterial("TA_UMBRA", TAConfig.Config_Special_HarvestLevel, (int) (1000 * TAConfig.Config_Special_Multiplier_Durability), 8.0F * TAConfig.Config_Special_Multiplier_Speed, 3.0F * TAConfig.Config_Special_Multiplier_Damage, 20);
+		public static Item.ToolMaterial CRYSTALLINE = EnumHelper.addToolMaterial("TA_CRYSTALLINE", TAConfig.Config_Special_HarvestLevel, (int) (1000 * TAConfig.Config_Special_Multiplier_Durability), 8.0F * TAConfig.Config_Special_Multiplier_Speed, 3.0F * TAConfig.Config_Special_Multiplier_Damage, 20);
+		public static Item.ToolMaterial AURORIANSTEEL = EnumHelper.addToolMaterial("TA_AURORIANSTEEL", TAConfig.Config_AurorianSteel_HarvestLevel, (int) (1500 * TAConfig.Config_AurorianSteel_Multiplier_Durability), 8.5F * TAConfig.Config_AurorianSteel_Multiplier_Speed, 3.5F * TAConfig.Config_AurorianSteel_Multiplier_Damage, 10);
 
-		public static ArmorMaterial CERULEAN_ARMOR = EnumHelper.addArmorMaterial("TA_CERULEAN_ARMOR", "theaurorian:cerulean", 20, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
-		public static ArmorMaterial AURORIANSTEEL_ARMOR = EnumHelper.addArmorMaterial("TA_AURORIANSTEEL_ARMOR", "theaurorian:auroriansteelarmor", 33, new int[] { 4, 7, 8, 4 }, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2);
-		public static ArmorMaterial SPIKED_ARMOR = EnumHelper.addArmorMaterial("TA_SPIKED_ARMOR", "theaurorian:spiked", 65, new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
+		public static ArmorMaterial CERULEAN_ARMOR = EnumHelper.addArmorMaterial("TA_CERULEAN_ARMOR", "theaurorian:cerulean", (int) (20 * TAConfig.Config_Cerulean_Multiplier_Durability), new int[] { (int) (3 * TAConfig.Config_Cerulean_Multiplier_Armor), (int) (6 * TAConfig.Config_Cerulean_Multiplier_Armor), (int) (5 * TAConfig.Config_Cerulean_Multiplier_Armor), (int) (3 * TAConfig.Config_Cerulean_Multiplier_Armor) }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
+		public static ArmorMaterial AURORIANSTEEL_ARMOR = EnumHelper.addArmorMaterial("TA_AURORIANSTEEL_ARMOR", "theaurorian:auroriansteelarmor", (int) (33 * TAConfig.Config_AurorianSteel_Multiplier_Durability), new int[] { (int) (4 * TAConfig.Config_AurorianSteel_Multiplier_Armor), (int) (7 * TAConfig.Config_AurorianSteel_Multiplier_Armor), (int) (8 * TAConfig.Config_AurorianSteel_Multiplier_Armor), (int) (4 * TAConfig.Config_AurorianSteel_Multiplier_Armor) }, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2);
+		public static ArmorMaterial SPIKED_ARMOR = EnumHelper.addArmorMaterial("TA_SPIKED_ARMOR", "theaurorian:spiked", (int) (65 * TAConfig.Config_Special_Multiplier_Durability), new int[] { 3, 6, 5, 3 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1);
 		public static ArmorMaterial KNIGHT_ARMOR = EnumHelper.addArmorMaterial("TA_KNIGHT_ARMOR", "theaurorian:knight", 30, new int[] { 2, 3, 2, 1 }, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0);
-		public static ArmorMaterial AURORIAN_SLIME = EnumHelper.addArmorMaterial("TA_AURORIAN_SLIME", "theaurorian:aurorianslime", 120, new int[] { 1, 2, 3, 1 }, 20, SoundEvents.ENTITY_SLIME_SQUISH, 0);
+		public static ArmorMaterial AURORIAN_SLIME = EnumHelper.addArmorMaterial("TA_AURORIAN_SLIME", "theaurorian:aurorianslime", (int) (120 * TAConfig.Config_Special_Multiplier_Durability), new int[] { 1, 2, 3, 1 }, 20, SoundEvents.ENTITY_SLIME_SQUISH, 0);
 
 		public static void initRepairMaterials() {
 			SILENTWOOD.setRepairItem(new ItemStack(TABlocks.silentwoodplanks));
