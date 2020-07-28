@@ -1,9 +1,20 @@
 package com.elseytd.theaurorian.Items;
 
-import com.elseytd.theaurorian.TAMod;
+import java.util.List;
 
+import com.elseytd.theaurorian.TAMod;
+import com.elseytd.theaurorian.TAUtil;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
 
 public class TAItem_Special_MoonShield extends TAItem_Tool_Shield {
 
@@ -19,12 +30,61 @@ public class TAItem_Special_MoonShield extends TAItem_Tool_Shield {
 
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack) {
-		return 100;
+		return 50;
 	}
 
 	@Override
 	public net.minecraftforge.common.IRarity getForgeRarity(ItemStack stack) {
 		return EnumRarity.EPIC;
+	}
+
+	@Override
+	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+		if (entityIn instanceof EntityPlayer) {
+			EntityPlayer playerIn = (EntityPlayer) entityIn;
+			if (playerIn.getHeldItemMainhand() == stack || playerIn.getHeldItemOffhand() == stack) {
+				if (worldIn.isRemote) {
+					if (!playerIn.isSneaking() && playerIn.onGround && playerIn.ticksExisted % 4 == 0 && stack == playerIn.getActiveItemStack()) {
+						double motionX = playerIn.getRNG().nextGaussian() * 0.02D;
+						double motionY = playerIn.getRNG().nextGaussian() * 0.1D;
+						double motionZ = playerIn.getRNG().nextGaussian() * 0.02D;
+						worldIn.spawnParticle(EnumParticleTypes.VILLAGER_ANGRY, playerIn.posX + playerIn.getRNG().nextFloat() - 0.5, playerIn.posY + playerIn.getRNG().nextFloat() * playerIn.height, playerIn.posZ + playerIn.getRNG().nextFloat() - 0.5, motionX, motionY, motionZ);
+					}
+				}
+
+				if (playerIn.getCooldownTracker().hasCooldown(stack.getItem()) && playerIn.motionX <= 1.5 && playerIn.motionZ <= 1.5) {
+					List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, 1, 2.5D, false);
+					for (EntityLivingBase e : entities) {
+						if (e.isNonBoss() && e != playerIn) {
+							if (e instanceof EntityPlayer) {
+								if (!playerIn.canAttackPlayer((EntityPlayer) e)) {
+									return;
+								}
+							}
+							e.motionY = e.motionY + 1D;
+							worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.PLAYERS, 1F, 1.5F);
+							playerIn.getCooldownTracker().removeCooldown(stack.getItem());
+							return;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@Override
+	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
+		if (entityLiving instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) entityLiving;
+			if (!player.isSneaking() && player.onGround) {
+				double velx = MathHelper.sin(-player.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(player.rotationPitch / 180.0F * (float) Math.PI);
+				double velz = MathHelper.cos(player.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(player.rotationPitch / 180.0F * (float) Math.PI);
+				int distance = 4;
+				player.addVelocity(velx * distance, 0, velz * distance);
+				player.getCooldownTracker().setCooldown(stack.getItem(), 10);
+			}
+		}
+		return stack;
 	}
 
 }
