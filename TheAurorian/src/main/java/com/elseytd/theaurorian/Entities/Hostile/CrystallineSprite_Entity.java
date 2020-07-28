@@ -2,8 +2,11 @@ package com.elseytd.theaurorian.Entities.Hostile;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
+import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TAUtil;
 import com.elseytd.theaurorian.Entities.Projectiles.CrystallineBeam_Entity;
 
@@ -20,6 +23,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -28,6 +32,7 @@ import net.minecraft.world.World;
 public class CrystallineSprite_Entity extends EntityMob implements IRangedAttackMob {
 
 	public static final String EntityName = "crystallinesprite";
+	public static final ResourceLocation LOOT = new ResourceLocation(TAMod.MODID, "entities/" + EntityName);
 	private float heightOffset = 0.5F;
 	private int heightOffsetUpdateTime;
 	public int maxNearby = 5 * TAConfig.Config_MoonTempleMobDensity;
@@ -79,6 +84,12 @@ public class CrystallineSprite_Entity extends EntityMob implements IRangedAttack
 		return this.height * 0.5F;
 	}
 
+	@Override
+	@Nullable
+	protected ResourceLocation getLootTable() {
+		return LOOT;
+	}
+	
 	@Override
 	protected boolean isValidLightLevel() {
 		return true;
