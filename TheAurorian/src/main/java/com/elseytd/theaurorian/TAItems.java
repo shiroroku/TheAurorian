@@ -17,6 +17,7 @@ import com.elseytd.theaurorian.Items.TAItem_Special_AbsorptionOrb;
 import com.elseytd.theaurorian.Items.TAItem_Special_Amulet;
 import com.elseytd.theaurorian.Items.TAItem_Special_Bepsi;
 import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
+import com.elseytd.theaurorian.Items.TAItem_Special_KeepersBow;
 import com.elseytd.theaurorian.Items.TAItem_Special_LivingDiviningRod;
 import com.elseytd.theaurorian.Items.TAItem_Special_Locator;
 import com.elseytd.theaurorian.Items.TAItem_Special_Lockpicks;
@@ -317,6 +318,8 @@ public class TAItems {
 	public static TAItem_Special_WeepingWillowSap weepingwillowsap;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Webbing.ITEMNAME)
 	public static TAItem_Special_Webbing webbing;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_KeepersBow.ITEMNAME)
+	public static TAItem_Special_KeepersBow keepersbow;
 
 	private enum TAItemRegistry {
 		ABSORPTIONORB(new TAItem_Special_AbsorptionOrb()),
@@ -370,6 +373,7 @@ public class TAItems {
 		INGOTCRYSTALLINE(new TAItem_Basic(TAItem_Basic.Items.INGOT_CRYSTALLINE)),
 		INGOTMOONSTONE(new TAItem_Basic(TAItem_Basic.Items.INGOT_MOONSTONE)),
 		INGOTUMBRA(new TAItem_Basic(TAItem_Basic.Items.INGOT_UMBRA)),
+		KEEPERSBOW(new TAItem_Special_KeepersBow()),
 		KEYDARKSTONE(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.DARKSTONE)),
 		KEYMOONTEMPLE(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.MOONTEMPLE)),
 		KEYMOONTEMPLECELL(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.MOONTEMPLECELL)),

@@ -1,0 +1,6 @@
+{
+    "parent": "theaurorian:item/keepersbow",
+    "textures": {
+        "layer0": "theaurorian:items/keepersbowpulling1"
+    }
+}
