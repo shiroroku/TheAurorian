@@ -76,24 +76,28 @@ public class Spider_EntityModel extends ModelBase {
 
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+		float legrotanglez = 0.58119464F * 1.3F;
+		float legrotanglex = 0.3926991F * 1.1F;
+		float val = 4.6F;
+
 		this.spiderHead.rotateAngleY = netHeadYaw * 0.017453292F;
 		this.spiderHead.rotateAngleX = headPitch * 0.017453292F;
-		this.spiderLeg1.rotateAngleZ = -((float) Math.PI / 4F);
-		this.spiderLeg2.rotateAngleZ = ((float) Math.PI / 4F);
-		this.spiderLeg3.rotateAngleZ = -0.58119464F;
-		this.spiderLeg4.rotateAngleZ = 0.58119464F;
-		this.spiderLeg5.rotateAngleZ = -0.58119464F;
-		this.spiderLeg6.rotateAngleZ = 0.58119464F;
-		this.spiderLeg7.rotateAngleZ = -((float) Math.PI / 4F);
-		this.spiderLeg8.rotateAngleZ = ((float) Math.PI / 4F);
-		this.spiderLeg1.rotateAngleY = ((float) Math.PI / 4F);
-		this.spiderLeg2.rotateAngleY = -((float) Math.PI / 4F);
-		this.spiderLeg3.rotateAngleY = 0.3926991F;
-		this.spiderLeg4.rotateAngleY = -0.3926991F;
-		this.spiderLeg5.rotateAngleY = -0.3926991F;
-		this.spiderLeg6.rotateAngleY = 0.3926991F;
-		this.spiderLeg7.rotateAngleY = -((float) Math.PI / 4F);
-		this.spiderLeg8.rotateAngleY = ((float) Math.PI / 4F);
+		this.spiderLeg1.rotateAngleZ = -((float) Math.PI / val);
+		this.spiderLeg2.rotateAngleZ = ((float) Math.PI / val);
+		this.spiderLeg3.rotateAngleZ = -legrotanglez;
+		this.spiderLeg4.rotateAngleZ = legrotanglez;
+		this.spiderLeg5.rotateAngleZ = -legrotanglez;
+		this.spiderLeg6.rotateAngleZ = legrotanglez;
+		this.spiderLeg7.rotateAngleZ = -((float) Math.PI / val);
+		this.spiderLeg8.rotateAngleZ = ((float) Math.PI / val);
+		this.spiderLeg1.rotateAngleY = ((float) Math.PI / val);
+		this.spiderLeg2.rotateAngleY = -((float) Math.PI / val);
+		this.spiderLeg3.rotateAngleY = legrotanglex;
+		this.spiderLeg4.rotateAngleY = -legrotanglex;
+		this.spiderLeg5.rotateAngleY = -legrotanglex;
+		this.spiderLeg6.rotateAngleY = legrotanglex;
+		this.spiderLeg7.rotateAngleY = -((float) Math.PI / val);
+		this.spiderLeg8.rotateAngleY = ((float) Math.PI / val);
 		float f3 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + 0.0F) * 0.4F) * limbSwingAmount;
 		float f4 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + (float) Math.PI) * 0.4F) * limbSwingAmount;
 		float f5 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + ((float) Math.PI / 2F)) * 0.4F) * limbSwingAmount;

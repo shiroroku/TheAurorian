@@ -21,7 +21,7 @@ public class Spider_EntityRender extends RenderLiving<Spider_Entity> {
 	public static final Factory FACTORY = new Factory();
 
 	public Spider_EntityRender(RenderManager renderManagerIn) {
-		super(renderManagerIn, new Spider_EntityModel(), 1.0F);
+		super(renderManagerIn, new Spider_EntityModel(), 2.0F);
 	}
 
 	@Override

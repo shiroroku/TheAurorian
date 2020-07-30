@@ -27,7 +27,7 @@ public class Webbing_EntityRender extends Render<Webbing_Entity> {
 		GlStateManager.pushMatrix();
 		GlStateManager.translate((float) x, (float) y, (float) z);
 		GlStateManager.enableRescaleNormal();
-		GlStateManager.scale(1.2, 1.2, 1.2);
+		GlStateManager.scale(1.8, 1.8, 1.8);
 		GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
 		GlStateManager.rotate((float) (this.renderManager.options.thirdPersonView == 2 ? -1 : 1) * this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
 		GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);

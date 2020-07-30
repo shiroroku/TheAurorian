@@ -47,7 +47,7 @@ public class Webbing_Entity extends EntityThrowable {
 					EntityLivingBase e = (EntityLivingBase) result.entityHit;
 					if (e != this.getThrower()) {
 						e.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 0.5f);
-						e.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 100));
+						e.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 100, 2));
 					}
 				}
 			}

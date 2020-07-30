@@ -1,15 +1,18 @@
 package com.elseytd.theaurorian.Particles;
 
+import com.elseytd.theaurorian.TAItems;
+
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.Particle;
+import net.minecraft.client.particle.ParticleBreaking;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class TAParticle_Webbing extends Particle {
+public class TAParticle_Webbing extends ParticleBreaking {
 	public TAParticle_Webbing(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn) {
-		super(worldIn, xCoordIn, yCoordIn, zCoordIn);
+		super(worldIn, xCoordIn, yCoordIn, zCoordIn, TAItems.webbing);
 	}
 
 	@SideOnly(Side.CLIENT)
