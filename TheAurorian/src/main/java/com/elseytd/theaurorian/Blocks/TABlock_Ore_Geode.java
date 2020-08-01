@@ -2,7 +2,7 @@ package com.elseytd.theaurorian.Blocks;
 
 import java.util.Random;
 
-import com.elseytd.theaurorian.TAItems;
+import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.block.Block;
@@ -31,7 +31,7 @@ public class TABlock_Ore_Geode extends Block {
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return TAItems.crystal;
+		return Item.getItemFromBlock(TABlocks.crystal);
 	}
 
 	@Override

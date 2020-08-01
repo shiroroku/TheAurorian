@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "theaurorian:blocks/crystalblock",
-		"particle": "theaurorian:blocks/crystalblock"
+		"0": "theaurorian:blocks/crystal",
+		"particle": "theaurorian:blocks/crystal"
 	},
 	"elements": [
 		{

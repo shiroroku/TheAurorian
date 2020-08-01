@@ -1,14 +1,16 @@
 {
     "forge_marker": 1,
     "defaults": {
-        "model": "theaurorian:crystalblock"
+        "model": "theaurorian:crystal"
     },
     "variants": {
         "normal": [
             {}
         ],
         "inventory": [
-            {}
+            {
+                "model": "theaurorian:items/crystal"
+            }
         ]
     }
 }

@@ -6,7 +6,7 @@ import com.elseytd.theaurorian.Blocks.TABlockFluid_MoltenCerulean;
 import com.elseytd.theaurorian.Blocks.TABlockFluid_MoltenMoonstone;
 import com.elseytd.theaurorian.Blocks.TABlockFluid_Moonwater;
 import com.elseytd.theaurorian.Blocks.TABlock_Aurorian_Stone_Brick;
-import com.elseytd.theaurorian.Blocks.TABlock_CrystalBlock;
+import com.elseytd.theaurorian.Blocks.TABlock_Crystal;
 import com.elseytd.theaurorian.Blocks.TABlock_DungeonStone;
 import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneBars;
 import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneGate;
@@ -145,8 +145,8 @@ public class TABlocks {
 	public static TABlock_MushroomCrystal mushroomcrystal;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_MoonLightForge.BLOCKNAME)
 	public static TABlock_MoonLightForge moonlightforge;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_CrystalBlock.BLOCKNAME)
-	public static TABlock_CrystalBlock crystalblock;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Crystal.BLOCKNAME)
+	public static TABlock_Crystal crystal;
 
 	// PLANTS
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Plant_Tallgrass.BLOCKNAME)
@@ -325,7 +325,7 @@ public class TABlocks {
 		AURORIANSTONEBRICKSSTAIRS(new TABlock_Stairs(new TABlock_Aurorian_Stone_Brick(), TABlock_Stairs.BLOCKNAME_AURORIANSTONE)),
 		BOSSSPAWNERKEEPER(new TABlock_Spawner_Boss(TABlock_Spawner_Boss.Bosses.KEEPER)),
 		BOSSSPAWNERMOONQUEEN(new TABlock_Spawner_Boss(TABlock_Spawner_Boss.Bosses.MOONQUEEN)),
-		CRYSTALBLOCK(new TABlock_CrystalBlock()),
+		CRYSTAL(new TABlock_Crystal()),
 		DUNGEONSTONEDARK(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK)),
 		DUNGEONSTONEDARKFANCY(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK_FANCY)),
 		DUNGEONSTONEDARKGATE(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_DARK, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_DARK)),
@@ -419,8 +419,8 @@ public class TABlocks {
 			event.getRegistry().register(new ItemBlock(this.modBlock).setRegistryName(this.modBlock.getRegistryName()));
 		}
 
-		public boolean hasSpecialModel() {
-			if (this.modBlock instanceof ISpecialModel) {
+		public boolean hasItemBlock() {
+			if (this.modBlock instanceof ISpecialItemBlock) {
 				return true;
 			} else {
 				return false;
@@ -429,6 +429,14 @@ public class TABlocks {
 
 		public void InitModel() {
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this.modBlock), 0, new ModelResourceLocation(this.modBlock.getRegistryName(), "inventory"));
+		}
+
+		public boolean hasSpecialModel() {
+			if (this.modBlock instanceof ISpecialModel) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 
 		public void Register(RegistryEvent.Register<Block> event) {
@@ -460,8 +468,17 @@ public class TABlocks {
 
 	public static void registerItemblocks(RegistryEvent.Register<Item> event) {
 		for (TABlockRegistry b : TABlockRegistry.values()) {
-			b.registerItemBlock(event);
+			if (!b.hasItemBlock()) {
+				b.registerItemBlock(event);
+			} else {
+				ISpecialItemBlock itemblock = (ISpecialItemBlock) b.modBlock;
+				itemblock.registerItemBlock(event);
+			}
 		}
+	}
+
+	public interface ISpecialItemBlock {
+		public void registerItemBlock(RegistryEvent.Register<Item> event);
 	}
 
 }
