@@ -3,8 +3,10 @@ package com.elseytd.theaurorian.Blocks;
 import java.util.Random;
 
 import com.elseytd.theaurorian.TAGuis;
+import com.elseytd.theaurorian.TAItems.ISpecialModel;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TileEntities.MoonLightForge_TileEntity;
+import com.elseytd.theaurorian.TileEntities.MoonLightForge_TileEntitySpecialRenderer;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
@@ -14,9 +16,11 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
@@ -28,10 +32,12 @@ import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TABlock_MoonLightForge extends BlockContainer {
+public class TABlock_MoonLightForge extends BlockContainer implements ISpecialModel {
 
 	public static final String BLOCKNAME = "moonlightforge";
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -50,6 +56,13 @@ public class TABlock_MoonLightForge extends BlockContainer {
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void initModel() {
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(this.getRegistryName(), "inventory"));
+		ClientRegistry.bindTileEntitySpecialRenderer(MoonLightForge_TileEntity.class, new MoonLightForge_TileEntitySpecialRenderer());
 	}
 
 	@Override

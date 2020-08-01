@@ -6,6 +6,7 @@ import com.elseytd.theaurorian.Blocks.TABlock_MoonLightForge;
 import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipe;
 import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipeHandler;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -13,6 +14,8 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
@@ -68,6 +71,7 @@ public class MoonLightForge_TileEntity extends TileEntityLockable implements ITi
 					if (slot3output.isEmpty()) {
 						if (this.isCrafting != true) {
 							this.isCrafting = true;
+							updateClient();
 						}
 					} else {
 						stopCrafting();
@@ -120,6 +124,7 @@ public class MoonLightForge_TileEntity extends TileEntityLockable implements ITi
 	private void stopCrafting() {
 		this.isCrafting = false;
 		this.craftProgress = 0;
+		updateClient();
 	}
 
 	@Override
@@ -234,6 +239,31 @@ public class MoonLightForge_TileEntity extends TileEntityLockable implements ITi
 		case 2:
 			return false;
 		}
+	}
+
+	private void updateClient() {
+		this.markDirty();
+		if (this.world != null) {
+			IBlockState state = this.world.getBlockState(getPos());
+			this.world.notifyBlockUpdate(getPos(), state, state, 3);
+		}
+	}
+
+	@Override
+	public NBTTagCompound getUpdateTag() {
+		return writeToNBT(new NBTTagCompound());
+	}
+
+	@Override
+	public SPacketUpdateTileEntity getUpdatePacket() {
+		NBTTagCompound nbtTag = new NBTTagCompound();
+		this.writeToNBT(nbtTag);
+		return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
+		this.readFromNBT(packet.getNbtCompound());
 	}
 
 	@Override
