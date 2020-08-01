@@ -6,6 +6,7 @@ import com.elseytd.theaurorian.Blocks.TABlockFluid_MoltenCerulean;
 import com.elseytd.theaurorian.Blocks.TABlockFluid_MoltenMoonstone;
 import com.elseytd.theaurorian.Blocks.TABlockFluid_Moonwater;
 import com.elseytd.theaurorian.Blocks.TABlock_Aurorian_Stone_Brick;
+import com.elseytd.theaurorian.Blocks.TABlock_CrystalBlock;
 import com.elseytd.theaurorian.Blocks.TABlock_DungeonStone;
 import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneBars;
 import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneGate;
@@ -144,6 +145,8 @@ public class TABlocks {
 	public static TABlock_MushroomCrystal mushroomcrystal;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_MoonLightForge.BLOCKNAME)
 	public static TABlock_MoonLightForge moonlightforge;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_CrystalBlock.BLOCKNAME)
+	public static TABlock_CrystalBlock crystalblock;
 
 	// PLANTS
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Plant_Tallgrass.BLOCKNAME)
@@ -322,6 +325,7 @@ public class TABlocks {
 		AURORIANSTONEBRICKSSTAIRS(new TABlock_Stairs(new TABlock_Aurorian_Stone_Brick(), TABlock_Stairs.BLOCKNAME_AURORIANSTONE)),
 		BOSSSPAWNERKEEPER(new TABlock_Spawner_Boss(TABlock_Spawner_Boss.Bosses.KEEPER)),
 		BOSSSPAWNERMOONQUEEN(new TABlock_Spawner_Boss(TABlock_Spawner_Boss.Bosses.MOONQUEEN)),
+		CRYSTALBLOCK(new TABlock_CrystalBlock()),
 		DUNGEONSTONEDARK(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK)),
 		DUNGEONSTONEDARKFANCY(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK_FANCY)),
 		DUNGEONSTONEDARKGATE(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_DARK, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_DARK)),

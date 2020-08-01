@@ -16,6 +16,7 @@ import com.elseytd.theaurorian.Items.TAItem_Seeds;
 import com.elseytd.theaurorian.Items.TAItem_Special_AbsorptionOrb;
 import com.elseytd.theaurorian.Items.TAItem_Special_Amulet;
 import com.elseytd.theaurorian.Items.TAItem_Special_Bepsi;
+import com.elseytd.theaurorian.Items.TAItem_Special_Crystal;
 import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
 import com.elseytd.theaurorian.Items.TAItem_Special_KeepersBow;
 import com.elseytd.theaurorian.Items.TAItem_Special_LivingDiviningRod;
@@ -202,8 +203,8 @@ public class TAItems {
 	public static TAItem_Food aurorianslimeball;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_AURORIANCOAL)
 	public static TAItem_Basic auroriancoal;
-	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_CRYSTAL)
-	public static TAItem_Basic crystal;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Crystal.ITEMNAME)
+	public static TAItem_Special_Crystal crystal;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_CUP)
 	public static TAItem_Basic cup;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_LAVENDER)
@@ -360,7 +361,7 @@ public class TAItems {
 		CERULEANBUCKET(new TAItem_Tool_Cerulean_Bucket()),
 		CERULEANNUGGET(new TAItem_Basic(TAItem_Basic.Items.NUGGET_CERULEAN)),
 		CERULEANSHIELD(new TAItem_Tool_Cerulean_Shield()),
-		CRYSTAL(new TAItem_Basic(TAItem_Basic.Items.CRYSTAL)),
+		CRYSTAL(new TAItem_Special_Crystal()),
 		CRYSTALLINEPICKAXE(new TAItem_Tool_Crystalline_Pickaxe()),
 		CRYSTALLINESHIELD(new TAItem_Tool_Crystalline_Shield()),
 		CRYSTALLINESPRITE(new TAItem_CrystallineSprite()),

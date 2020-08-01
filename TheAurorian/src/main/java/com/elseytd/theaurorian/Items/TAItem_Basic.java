@@ -20,7 +20,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TAItem_Basic extends Item {
 
 	public static final String ITEMNAME_AURORIANCOAL = "auroriancoal";
-	public static final String ITEMNAME_CRYSTAL = "crystal";
 	public static final String ITEMNAME_CUP = "cup";
 	public static final String ITEMNAME_INGOT_AURORIANITE = "aurorianiteingot";
 	public static final String ITEMNAME_INGOT_AURORIANSTEEL = "auroriansteel";
@@ -41,7 +40,6 @@ public class TAItem_Basic extends Item {
 
 	public enum Items {
 		AURORIANCOAL(ITEMNAME_AURORIANCOAL, 64, 1800),
-		CRYSTAL(ITEMNAME_CRYSTAL, 16),
 		CUP(ITEMNAME_CUP, 16),
 		INGOT_AURORIANITE(ITEMNAME_INGOT_AURORIANITE, EnumRarity.EPIC),
 		INGOT_AURORIANSTEEL(ITEMNAME_INGOT_AURORIANSTEEL, EnumRarity.EPIC),
