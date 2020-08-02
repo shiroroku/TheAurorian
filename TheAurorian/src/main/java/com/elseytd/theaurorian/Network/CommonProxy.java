@@ -15,6 +15,7 @@ import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TARecipes;
 import com.elseytd.theaurorian.TAUtil;
 import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipeHandler;
+import com.elseytd.theaurorian.Recipes.ScrapperRecipeHandler;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -43,6 +44,7 @@ public class CommonProxy {
 		TAEntities.init();
 		TARecipes.registerOreDictionary();
 		MoonlightForgeRecipeHandler.initRecipes();
+		ScrapperRecipeHandler.initRecipes();
 		TAItems.Materials.initRepairMaterials();
 	}
 

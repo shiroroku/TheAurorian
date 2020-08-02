@@ -6,6 +6,9 @@ import com.elseytd.theaurorian.TileEntities.AurorianFurnace_TileEntity;
 import com.elseytd.theaurorian.TileEntities.MoonLightForge_Container;
 import com.elseytd.theaurorian.TileEntities.MoonLightForge_Gui;
 import com.elseytd.theaurorian.TileEntities.MoonLightForge_TileEntity;
+import com.elseytd.theaurorian.TileEntities.Scrapper_Container;
+import com.elseytd.theaurorian.TileEntities.Scrapper_Gui;
+import com.elseytd.theaurorian.TileEntities.Scrapper_TileEntity;
 import com.elseytd.theaurorian.TileEntities.SilentwoodWorkbench_Container;
 import com.elseytd.theaurorian.TileEntities.SilentwoodWorkbench_Gui;
 
@@ -19,6 +22,7 @@ public class TAGuis implements IGuiHandler {
 	public static final int SILENTWOODCRAFTINGTABLE = 1;
 	public static final int AURORIANFURNACE = 2;
 	public static final int MOONLIGHTFORGE = 3;
+	public static final int SCRAPPER = 4;
 
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
@@ -29,6 +33,8 @@ public class TAGuis implements IGuiHandler {
 			return new AurorianFurnace_Container(player.inventory, (AurorianFurnace_TileEntity) world.getTileEntity(new BlockPos(x, y, z)));
 		case MOONLIGHTFORGE:
 			return new MoonLightForge_Container(player.inventory, (MoonLightForge_TileEntity) world.getTileEntity(new BlockPos(x, y, z)));
+		case SCRAPPER:
+			return new Scrapper_Container(player.inventory, (Scrapper_TileEntity) world.getTileEntity(new BlockPos(x, y, z)));
 		}
 		return null;
 	}
@@ -42,6 +48,8 @@ public class TAGuis implements IGuiHandler {
 			return new AurorianFurnace_Gui(player.inventory, (AurorianFurnace_TileEntity) world.getTileEntity(new BlockPos(x, y, z)));
 		case MOONLIGHTFORGE:
 			return new MoonLightForge_Gui(player.inventory, (MoonLightForge_TileEntity) world.getTileEntity(new BlockPos(x, y, z)));
+		case SCRAPPER:
+			return new Scrapper_Gui(player.inventory, (Scrapper_TileEntity) world.getTileEntity(new BlockPos(x, y, z)));
 		}
 		return null;
 	}

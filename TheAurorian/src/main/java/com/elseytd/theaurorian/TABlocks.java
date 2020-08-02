@@ -39,6 +39,7 @@ import com.elseytd.theaurorian.Blocks.TABlock_Plant_Tallgrass_Light;
 import com.elseytd.theaurorian.Blocks.TABlock_Plant_WeepingWillow_Sapling;
 import com.elseytd.theaurorian.Blocks.TABlock_Portal;
 import com.elseytd.theaurorian.Blocks.TABlock_PortalframeBricks;
+import com.elseytd.theaurorian.Blocks.TABlock_Scrapper;
 import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Ladder;
 import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Leaves;
 import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Log;
@@ -111,6 +112,8 @@ public class TABlocks {
 	public static TABlockFluid_MoltenAurorianSteel moltenauroriansteelblock;
 
 	// SPECIAL
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Scrapper.BLOCKNAME)
+	public static TABlock_Scrapper scrapper;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Urn.BLOCKNAME)
 	public static TABlock_Urn urn;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Furnace.BLOCKNAME)
@@ -391,6 +394,7 @@ public class TABlocks {
 		PLANTSILKBERRYCROP(new TABlock_Plant_Crops(TABlock_Plant_Crops.BLOCKNAME_SILKBERRY)),
 		PLANTTALLGRASS(new TABlock_Plant_Tallgrass()),
 		PLANTTALLGRASSLIGHT(new TABlock_Plant_Tallgrass_Light()),
+		SCRAPPER(new TABlock_Scrapper()),
 		SILENTWOODLADDER(new TABlock_Silentwood_Ladder()),
 		SILENTWOODLEAVES(new TABlock_Silentwood_Leaves()),
 		SILENTWOODLOG(new TABlock_Silentwood_Log()),

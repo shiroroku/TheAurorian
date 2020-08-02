@@ -3,10 +3,14 @@ package com.elseytd.theaurorian.Compat.JEI;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipe;
 import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipeHandler;
+import com.elseytd.theaurorian.Recipes.ScrapperRecipe;
+import com.elseytd.theaurorian.Recipes.ScrapperRecipeHandler;
 import com.elseytd.theaurorian.TileEntities.AurorianFurnace_Container;
 import com.elseytd.theaurorian.TileEntities.AurorianFurnace_Gui;
 import com.elseytd.theaurorian.TileEntities.MoonLightForge_Container;
 import com.elseytd.theaurorian.TileEntities.MoonLightForge_Gui;
+import com.elseytd.theaurorian.TileEntities.Scrapper_Container;
+import com.elseytd.theaurorian.TileEntities.Scrapper_Gui;
 import com.elseytd.theaurorian.TileEntities.SilentwoodWorkbench_Container;
 import com.elseytd.theaurorian.TileEntities.SilentwoodWorkbench_Gui;
 
@@ -21,6 +25,7 @@ import net.minecraft.item.ItemStack;
 public class TACompat_JEI implements IModPlugin {
 
 	public static final String UID_MOONLIGHTFORGE = "theaurorian.moonlightforge";
+	public static final String UID_SCRAPPER = "theaurorian.scrapper";
 
 	@Override
 	public void register(IModRegistry registry) {
@@ -42,11 +47,19 @@ public class TACompat_JEI implements IModPlugin {
 		registry.handleRecipes(MoonlightForgeRecipe.class, MoonlightForgeRecipeWrapper::new, UID_MOONLIGHTFORGE);
 		registry.addRecipeClickArea(MoonLightForge_Gui.class, 107, 35, 24, 17, UID_MOONLIGHTFORGE);
 		registry.getRecipeTransferRegistry().addRecipeTransferHandler(MoonLightForge_Container.class, UID_MOONLIGHTFORGE, 0, 2, 3, 36);
+
+		//Scrapper
+		registry.addRecipeCatalyst(new ItemStack(TABlocks.scrapper), UID_SCRAPPER);
+		registry.addRecipes(ScrapperRecipeHandler.allRecipes, UID_SCRAPPER);
+		registry.handleRecipes(ScrapperRecipe.class, ScrapperRecipeWrapper::new, UID_SCRAPPER);
+		registry.addRecipeClickArea(Scrapper_Gui.class, 98, 16, 9, 55, UID_SCRAPPER);
+		registry.getRecipeTransferRegistry().addRecipeTransferHandler(Scrapper_Container.class, UID_SCRAPPER, 0, 2, 3, 36);
 	}
 
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registry) {
 		registry.addRecipeCategories(new MoonlightForgeRecipeCategory(registry.getJeiHelpers().getGuiHelper()));
+		registry.addRecipeCategories(new ScrapperRecipeCategory(registry.getJeiHelpers().getGuiHelper()));
 	}
 
 }

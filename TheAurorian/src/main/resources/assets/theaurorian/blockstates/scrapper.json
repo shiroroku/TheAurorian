@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "theaurorian:scrapper"
+		},
+		"facing=south": {
+			"model": "theaurorian:scrapper",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "theaurorian:scrapper",
+			"y": 270
+		},
+		"facing=east": {
+			"model": "theaurorian:scrapper",
+			"y": 90
+		}
+	}
+}
