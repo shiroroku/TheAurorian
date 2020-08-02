@@ -101,6 +101,9 @@ public class TARecipes {
 		OreDictionary.registerOre("logSilentwood", TABlocks.silentwoodlog);
 		OreDictionary.registerOre("stickSilentwood", TAItems.silentwoodstick);
 
+		OreDictionary.registerOre("plankWood", TABlocks.weepingwillowplanks);
+		OreDictionary.registerOre("logWood", TABlocks.weepingwillowlog);
+		
 		OreDictionary.registerOre("stoneAurorian", TABlocks.aurorianstone);
 		OreDictionary.registerOre("cobblestoneAurorian", TABlocks.auroriancobblestone);
 
