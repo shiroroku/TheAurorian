@@ -9,7 +9,7 @@
             "type": "spotlight",
             "title": "Loot Scrapping",
             "item": "theaurorian:auroriansteel",
-            "text": "Aurorian loot can be smelted into scrap, which can then be used to repair tools, craft other special tools, or craft a powerful type of steel: $(#008cff)Aurorian Steel$()!"
+            "text": "Aurorian loot can be smelted into scrap, which can then be used to repair tools, craft other special tools, or craft a powerful type of steel: $(#008cff)Aurorian Steel$()! You can also use the Scrapper that gives double the scrap!"
         },
         {
             "type": "smelting",
