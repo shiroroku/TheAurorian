@@ -49,6 +49,7 @@ import com.elseytd.theaurorian.Items.TAItem_Tool_Crystalline_Sword;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Axe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Hoe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Shovel;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Sickle;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Sword;
@@ -112,6 +113,8 @@ public class TAItems {
 		}
 	}
 
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Moonstone_Shield.ITEMNAME)
+	public static TAItem_Tool_Moonstone_Shield moonstoneshield;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_Locator.ITEMNAME)
 	public static TAItem_Special_Locator locator;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Tool_Umbra_Pickaxe.ITEMNAME)
@@ -390,6 +393,7 @@ public class TAItems {
 		MOONSTONEHOE(new TAItem_Tool_Moonstone_Hoe()),
 		MOONSTONENUGGET(new TAItem_Basic(TAItem_Basic.Items.NUGGET_MOONSTONE)),
 		MOONSTONEPICKAXE(new TAItem_Tool_Moonstone_Pickaxe()),
+		MOONSTONESHIELD(new TAItem_Tool_Moonstone_Shield()),
 		MOONSTONESHOVEL(new TAItem_Tool_Moonstone_Shovel()),
 		MOONSTONESICKLE(new TAItem_Tool_Moonstone_Sickle()),
 		MOONSTONESWORD(new TAItem_Tool_Moonstone_Sword()),

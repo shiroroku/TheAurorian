@@ -6,6 +6,7 @@ import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
@@ -41,4 +42,8 @@ public class TAItem_Special_KeepersBow extends ItemBow {
 		});
 	}
 
+	@Override
+	public net.minecraftforge.common.IRarity getForgeRarity(ItemStack stack) {
+		return EnumRarity.RARE;
+	}
 }
