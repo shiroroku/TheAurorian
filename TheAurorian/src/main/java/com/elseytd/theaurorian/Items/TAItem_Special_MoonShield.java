@@ -80,7 +80,7 @@ public class TAItem_Special_MoonShield extends TAItem_Tool_Shield {
 							}
 							e.motionY = e.motionY + 1D;
 							worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.PLAYERS, 1F, 1.5F);
-							playerIn.getCooldownTracker().removeCooldown(stack.getItem());
+							playerIn.getCooldownTracker().setCooldown(stack.getItem(), 0);
 							return;
 						}
 					}
