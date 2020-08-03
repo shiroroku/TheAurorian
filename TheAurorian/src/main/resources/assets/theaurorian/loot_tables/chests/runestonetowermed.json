@@ -1,20 +1,58 @@
 {
 	"pools": [
 		{
-			"name": "main",
+			"name": "teas",
 			"rolls": {
-				"min": 1,
-				"max": 2
+				"min": 0,
+				"max": 1
 			},
-			"bonus_rolls": {
-				"min": 1,
+			"entries": [
+				{
+					"type": "item",
+					"name": "theaurorian:tealavender",
+					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:teapetunia",
+					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:teaseedy",
+					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:silkberry",
+					"weight": 10
+				}
+			]
+		},
+		{
+			"name": "foods",
+			"rolls": {
+				"min": 0,
 				"max": 2
 			},
 			"entries": [
 				{
 					"type": "item",
-					"weight": 15,
-					"name": "theaurorian:silkberry",
+					"name": "theaurorian:aurorianbacon",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 4
+							}
+						}
+					],
+					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:silkberryjam",
 					"functions": [
 						{
 							"function": "set_count",
@@ -23,49 +61,59 @@
 								"max": 2
 							}
 						}
-					]
+					],
+					"weight": 10
 				},
 				{
 					"type": "item",
-					"weight": 10,
-					"name": "theaurorian:moonstonenugget",
+					"name": "theaurorian:lavenderbread",
 					"functions": [
 						{
 							"function": "set_count",
 							"count": {
-								"min": 0,
-								"max": 5
-							}
-						}
-					]
-				},
-				{
-					"type": "item",
-					"weight": 20,
-					"name": "theaurorian:ceruleannugget",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 6
-							}
-						}
-					]
-				},
-				{
-					"type": "item",
-					"weight": 10,
-					"name": "theaurorian:aurorianbacon",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
+								"min": 1,
 								"max": 2
 							}
 						}
-					]
+					],
+					"weight": 10
+				}
+			]
+		},
+		{
+			"name": "utils",
+			"rolls": {
+				"min": 0,
+				"max": 3
+			},
+			"entries": [
+				{
+					"type": "item",
+					"name": "theaurorian:silentwoodtorch",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 4
+							}
+						}
+					],
+					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:stickyspiker",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 4
+							}
+						}
+					],
+					"weight": 10
 				},
 				{
 					"type": "item",
@@ -75,154 +123,119 @@
 							"function": "set_count",
 							"count": {
 								"min": 1,
+								"max": 16
+							}
+						}
+					],
+					"weight": 15
+				}
+			]
+		},
+		{
+			"name": "materials",
+			"rolls": {
+				"min": 1,
+				"max": 3
+			},
+			"entries": [
+				{
+					"type": "item",
+					"name": "theaurorian:crystal",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 2
+							}
+						}
+					],
+					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:moonstonenugget",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 4
+							}
+						}
+					],
+					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:auroriancoalnugget",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
 								"max": 5
 							}
 						}
 					],
-					"weight": 20
-				}
-			]
-		},
-		{
-			"name": "main",
-			"rolls": {
-				"min": 0,
-				"max": 1
-			},
-			"entries": [
-				{
-					"type": "item",
-					"weight": 25,
-					"name": "theaurorian:strangemeat",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 1
-							}
-						}
-					]
+					"weight": 5
 				},
 				{
 					"type": "item",
-					"weight": 15,
-					"name": "theaurorian:crystallineshield",
+					"name": "theaurorian:ceruleannugget",
 					"functions": [
 						{
 							"function": "set_count",
 							"count": {
-								"min": 0,
-								"max": 1
+								"min": 1,
+								"max": 6
 							}
 						}
-					]
-				}
-			]
-		},
-		{
-			"name": "main",
-			"rolls": {
-				"min": 0,
-				"max": 1
-			},
-			"bonus_rolls": {
-				"min": 0,
-				"max": 1
-			},
-			"entries": [
-				{
-					"type": "item",
-					"weight": 2,
-					"name": "theaurorian:aurorianstonesickle",
-					"functions": [
-						{
-							"function": "set_damage",
-							"damage": {
-								"min": 0.1,
-								"max": 0.5
-							}
-						}
-					]
+					],
+					"weight": 15
 				},
 				{
 					"type": "item",
-					"weight": 20,
-					"name": "theaurorian:teaseedy",
+					"name": "theaurorian:scrapaurorianite",
 					"functions": [
 						{
 							"function": "set_count",
 							"count": {
-								"min": 0,
-								"max": 1
-							}
-						}
-					]
-				},
-				{
-					"type": "item",
-					"weight": 20,
-					"name": "theaurorian:teasilkberry",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 1
-							}
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "main",
-			"rolls": {
-				"min": 0,
-				"max": 1
-			},
-			"entries": [
-				{
-					"type": "item",
-					"weight": 20,
-					"name": "theaurorian:stickyspiker",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
+								"min": 1,
 								"max": 3
 							}
 						}
-					]
-				},
+					],
+					"weight": 10
+				}
+			]
+		},
+		{
+			"name": "tools",
+			"rolls": {
+				"min": 0,
+				"max": 1
+			},
+			"entries": [
 				{
 					"type": "item",
-					"weight": 15,
 					"name": "theaurorian:livingdiviningrod",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 1
-							}
-						}
-					]
+					"weight": 20
 				},
 				{
 					"type": "item",
-					"weight": 15,
+					"name": "theaurorian:absorptionorb",
+					"weight": 20
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:aurorianitesword",
+					"weight": 10
+				},
+				{
+					"type": "item",
 					"name": "theaurorian:aurorianiteaxe",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 1
-							}
-						}
-					]
+					"weight": 10
 				}
 			]
 		}
