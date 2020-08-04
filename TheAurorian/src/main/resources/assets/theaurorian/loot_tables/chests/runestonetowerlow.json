@@ -235,6 +235,20 @@
 						}
 					],
 					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:lockpicks",
+					"functions": [
+						{
+							"function": "set_damage",
+							"damage": {
+								"min": 0.1,
+								"max": 0.3
+							}
+						}
+					],
+					"weight": 5
 				}
 			]
 		}

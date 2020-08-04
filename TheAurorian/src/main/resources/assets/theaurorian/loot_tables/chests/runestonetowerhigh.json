@@ -1,9 +1,9 @@
 {
 	"pools": [
 		{
-			"name": "main",
+			"name": "materials",
 			"rolls": {
-				"min": 2,
+				"min": 1,
 				"max": 3
 			},
 			"entries": [
@@ -15,39 +15,11 @@
 							"function": "set_count",
 							"count": {
 								"min": 1,
-								"max": 3
+								"max": 6
 							}
 						}
 					],
-					"weight": 20
-				},
-				{
-					"type": "item",
-					"name": "theaurorian:ceruleanarrow",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 1,
-								"max": 5
-							}
-						}
-					],
-					"weight": 20
-				},
-				{
-					"type": "item",
-					"name": "theaurorian:bepsi",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 1
-							}
-						}
-					],
-					"weight": 5
+					"weight": 10
 				},
 				{
 					"type": "item",
@@ -56,26 +28,12 @@
 						{
 							"function": "set_count",
 							"count": {
-								"min": 0,
-								"max": 3
+								"min": 1,
+								"max": 4
 							}
 						}
 					],
-					"weight": 15
-				},
-				{
-					"type": "item",
-					"name": "theaurorian:moonstonenugget",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 8
-							}
-						}
-					],
-					"weight": 20
+					"weight": 10
 				},
 				{
 					"type": "item",
@@ -84,189 +42,46 @@
 						{
 							"function": "set_count",
 							"count": {
-								"min": 2,
-								"max": 3
+								"min": 1,
+								"max": 4
 							}
 						}
 					],
-					"weight": 15
-				},
-				{
-					"type": "item",
-					"name": "theaurorian:ceruleannugget",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 10
-							}
-						}
-					],
-					"weight": 20
-				},
-				{
-					"type": "item",
-					"name": "theaurorian:aurorianbacon",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 8
-							}
-						}
-					],
-					"weight": 20
+					"weight": 10
 				}
 			]
 		},
 		{
-			"name": "main",
+			"name": "tools",
 			"rolls": {
-				"min": 0,
-				"max": 2
+				"min": 1,
+				"max": 3
 			},
 			"entries": [
-				{
-					"type": "item",
-					"name": "theaurorian:strangemeat",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 1
-							}
-						}
-					],
-					"weight": 10
-				},
-				{
-					"type": "item",
-					"name": "theaurorian:absorptionorb",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 1
-							}
-						}
-					],
-					"weight": 10
-				},
-				{
-					"type": "item",
-					"name": "theaurorian:crystallineshield",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 1
-							}
-						}
-					],
-					"weight": 15
-				},
-				{
-					"type": "item",
-					"name": "theaurorian:aurorianitepickaxe",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 1
-							}
-						}
-					],
-					"weight": 20
-				},
 				{
 					"type": "item",
 					"name": "theaurorian:aurorianitesword",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 1
-							}
-						}
-					],
-					"weight": 35
-				},
-				{
-					"type": "item",
-					"name": "theaurorian:spikedchestplate",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 1
-							}
-						}
-					],
-					"weight": 15
-				}
-			]
-		},
-		{
-			"name": "main",
-			"rolls": {
-				"min": 0,
-				"max": 1
-			},
-			"entries": [
-				{
-					"type": "item",
-					"name": "theaurorian:stickyspiker",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 2
-							}
-						}
-					],
-					"weight": 25
-				},
-				{
-					"type": "item",
-					"name": "theaurorian:livingdiviningrod",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 1
-							}
-						}
-					],
 					"weight": 10
 				},
 				{
 					"type": "item",
 					"name": "theaurorian:aurorianiteaxe",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 0,
-								"max": 1
-							}
-						}
-					],
-					"weight": 15
+					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:aurorianitepickaxe",
+					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:strangemeat",
+					"weight": 10
 				}
 			]
 		},
 		{
-			"name": "main",
+			"name": "books",
 			"rolls": {
 				"min": 1,
 				"max": 1
@@ -275,7 +90,6 @@
 				{
 					"type": "item",
 					"name": "minecraft:book",
-					"weight": 10,
 					"functions": [
 						{
 							"function": "set_count",
@@ -285,14 +99,19 @@
 							}
 						},
 						{
-							"function": "enchant_randomly"
+							"function": "enchant_with_levels",
+							"levels": {
+								"min": 0,
+								"max": 15
+							}
 						}
-					]
+					],
+					"weight": 10
 				}
 			]
 		},
 		{
-			"name": "main",
+			"name": "rare",
 			"rolls": {
 				"min": 1,
 				"max": 3
@@ -300,71 +119,80 @@
 			"entries": [
 				{
 					"type": "item",
-					"name": "theaurorian:moonstonesword",
-					"weight": 10,
+					"name": "theaurorian:bepsi",
 					"functions": [
 						{
 							"function": "set_count",
 							"count": {
-								"min": 0,
+								"min": 1,
 								"max": 1
 							}
-						},
-						{
-							"function": "enchant_randomly"
 						}
-					]
+					],
+					"weight": 5
 				},
 				{
 					"type": "item",
 					"name": "theaurorian:moonstonepickaxe",
-					"weight": 10,
 					"functions": [
 						{
 							"function": "set_count",
 							"count": {
-								"min": 0,
+								"min": 1,
 								"max": 1
 							}
 						},
 						{
-							"function": "enchant_randomly"
+							"function": "enchant_with_levels",
+							"levels": {
+								"min": 0,
+								"max": 15
+							}
 						}
-					]
+					],
+					"weight": 20
 				},
 				{
 					"type": "item",
-					"name": "theaurorian:moonstoneshovel",
-					"weight": 10,
+					"name": "theaurorian:moonstonesword",
 					"functions": [
 						{
 							"function": "set_count",
 							"count": {
-								"min": 0,
+								"min": 1,
 								"max": 1
 							}
 						},
 						{
-							"function": "enchant_randomly"
+							"function": "enchant_with_levels",
+							"levels": {
+								"min": 0,
+								"max": 15
+							}
 						}
-					]
+					],
+					"weight": 20
 				},
 				{
 					"type": "item",
 					"name": "theaurorian:moonstoneaxe",
-					"weight": 10,
 					"functions": [
 						{
 							"function": "set_count",
 							"count": {
-								"min": 0,
+								"min": 1,
 								"max": 1
 							}
 						},
 						{
-							"function": "enchant_randomly"
+							"function": "enchant_with_levels",
+							"levels": {
+								"min": 0,
+								"max": 15
+							}
 						}
-					]
+					],
+					"weight": 20
 				}
 			]
 		}
