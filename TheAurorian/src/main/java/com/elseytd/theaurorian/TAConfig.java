@@ -23,7 +23,7 @@ public class TAConfig {
 	public static boolean Config_GenerateMoonTemple = true;
 	public static boolean Config_GenerateMoonTemplePath = true;
 	public static boolean Config_GenerateUmbraTower = true;
-	public static boolean Config_GenerateMushroomCaves = true;
+	public static boolean Config_GenerateMushroomCaves = false;
 
 	//Entities
 	public static int Config_RunestoneDungeonMobDensity = 1;

@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_DarkstoneDungeon;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_MoonTemple;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Ruins;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Runestone_Tower;
@@ -36,6 +37,7 @@ public class TAChunkGenerator implements IChunkGenerator {
 	private TAWorldGenerator_Ruins ruingen = new TAWorldGenerator_Ruins();
 	private TAWorldGenerator_MoonTemple templegen = new TAWorldGenerator_MoonTemple();
 	private TAWorldGenerator_UmbraTower umbratowergen = new TAWorldGenerator_UmbraTower();
+	private TAWorldGenerator_DarkstoneDungeon darkstonegen = new TAWorldGenerator_DarkstoneDungeon();
 
 	public TAChunkGenerator(World worldObj) {
 		this.worldObj = worldObj;
@@ -58,7 +60,6 @@ public class TAChunkGenerator implements IChunkGenerator {
 		this.caveGenerator.generate(this.worldObj, x, z, chunkprimer);
 		Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
 
-		
 		byte[] biomeArray = chunk.getBiomeArray();
 		for (int i = 0; i < biomeArray.length; ++i) {
 			biomeArray[i] = (byte) Biome.getIdForBiome(this.biomes[i]);
@@ -90,6 +91,8 @@ public class TAChunkGenerator implements IChunkGenerator {
 		if (TAWorldGenerator_UmbraTower.GENERATE_TOWERS) {
 			umbratowergen.generate(this.worldObj, this.random, blockpos);
 		}
+
+		darkstonegen.generate(this.worldObj, this.random, blockpos);
 
 		//BIOMES
 		Biome biome = this.worldObj.getBiome(blockpos.add(0, 0, 0));

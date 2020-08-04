@@ -117,18 +117,6 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator implements 
 		return i + 1;
 	}
 
-	private void populateFloorChests(Chunk c, int heightmin, int heightmax, ResourceLocation loot, Random r) {
-		Chunk c1 = c.getWorld().getChunkFromChunkCoords(c.x + 1, c.z + 1);
-		Chunk c2 = c.getWorld().getChunkFromChunkCoords(c.x + 1, c.z);
-		Chunk c3 = c.getWorld().getChunkFromChunkCoords(c.x, c.z + 1);
-		for (int y = heightmin; y <= heightmax; y++) {
-			GenerationHelper.populateChestsInChunkAtHeight(c, y, r, loot, false);
-			GenerationHelper.populateChestsInChunkAtHeight(c1, y, r, loot, false);
-			GenerationHelper.populateChestsInChunkAtHeight(c2, y, r, loot, false);
-			GenerationHelper.populateChestsInChunkAtHeight(c3, y, r, loot, false);
-		}
-	}
-
 	private boolean generateTower(World world, Chunk c, Random r) {
 		if (FLOOR_COUNT % 2 != 0) {
 			FLOOR_COUNT = FLOOR_COUNT + 1;
@@ -141,24 +129,24 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator implements 
 		int z = chunkZ * 16 + 8;
 		int y = 86;
 
-		final PlacementSettings settings = new PlacementSettings().setRotation(Rotation.NONE).setReplacedBlock(TABlocks.aurorianstone);
-		final PlacementSettings settingsrotated = new PlacementSettings().setRotation(Rotation.CLOCKWISE_180).setReplacedBlock(TABlocks.aurorianstone);
+		PlacementSettings settings = new PlacementSettings().setRotation(Rotation.NONE).setReplacedBlock(TABlocks.aurorianstone);
+		PlacementSettings settingsrotated = new PlacementSettings().setRotation(Rotation.CLOCKWISE_180).setReplacedBlock(TABlocks.aurorianstone);
 
-		final Template floor_tl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_FLOOR_TL);
-		final Template floor_br = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_FLOOR_BR);
-		final Template floor_tr = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_FLOOR_TR);
-		final Template floor_bl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_FLOOR_BL);
+		Template floor_tl = GenerationHelper.getTemplate(world, RUNESTONETOWER_FLOOR_TL);
+		Template floor_br = GenerationHelper.getTemplate(world, RUNESTONETOWER_FLOOR_BR);
+		Template floor_tr = GenerationHelper.getTemplate(world, RUNESTONETOWER_FLOOR_TR);
+		Template floor_bl = GenerationHelper.getTemplate(world, RUNESTONETOWER_FLOOR_BL);
 
-		final Template floor2_tl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_FLOOR2_TL);
-		final Template floor2_br = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_FLOOR2_BR);
-		final Template floor2_tr = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_FLOOR2_TR);
-		final Template floor2_bl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_FLOOR2_BL);
+		Template floor2_tl = GenerationHelper.getTemplate(world, RUNESTONETOWER_FLOOR2_TL);
+		Template floor2_br = GenerationHelper.getTemplate(world, RUNESTONETOWER_FLOOR2_BR);
+		Template floor2_tr = GenerationHelper.getTemplate(world, RUNESTONETOWER_FLOOR2_TR);
+		Template floor2_bl = GenerationHelper.getTemplate(world, RUNESTONETOWER_FLOOR2_BL);
 
 		if (isValidChunkForGen(chunkX, chunkZ, 1, -1)) {
-			final Template terrain_tl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TERRAIN_TL);
-			final Template base_tl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_BASE_TL);
-			final Template top_tl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TOP_TL);
-			final Template top_br = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TOP_BR);
+			Template terrain_tl = GenerationHelper.getTemplate(world, RUNESTONETOWER_TERRAIN_TL);
+			Template base_tl = GenerationHelper.getTemplate(world, RUNESTONETOWER_BASE_TL);
+			Template top_tl = GenerationHelper.getTemplate(world, RUNESTONETOWER_TOP_TL);
+			Template top_br = GenerationHelper.getTemplate(world, RUNESTONETOWER_TOP_BR);
 			y = getDungeonBaseHeight(world, x + 1, z, 1);
 
 			//Terrain
@@ -168,6 +156,7 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator implements 
 
 			//Base
 			base_tl.addBlocksToWorld(world, new BlockPos(x + 1, y, z), settings);
+			GenerationHelper.populateChestsInTemplate(world, x + 1, y, z, base_tl, settings, "chest", RUNESTONETOWER_LOOTTABLELOW);
 
 			//Floors
 			boolean alt = true;
@@ -175,10 +164,12 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator implements 
 			while (floor <= FLOOR_COUNT) {
 				if (alt) {
 					floor_tl.addBlocksToWorld(world, new BlockPos(x + 1, y + (6 * floor), z), settings);
+					GenerationHelper.populateChestsInTemplate(world, x + 1, y + (6 * floor), z, floor_tl, settings, "chest", floor < FLOOR_COUNT / 2 ? RUNESTONETOWER_LOOTTABLELOW : RUNESTONETOWER_LOOTTABLEMED);
 					floor++;
 					alt = !alt;
 				} else {
 					floor2_br.addBlocksToWorld(world, new BlockPos(x + 1 + 14, y + (6 * floor), z + 14), settingsrotated);
+					GenerationHelper.populateChestsInTemplate(world, x + 1 + 14, y + (6 * floor), z + 14, floor2_br, settingsrotated, "chest", floor < FLOOR_COUNT / 2 ? RUNESTONETOWER_LOOTTABLELOW : RUNESTONETOWER_LOOTTABLEMED);
 					floor++;
 					floor++;
 					alt = !alt;
@@ -189,21 +180,18 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator implements 
 			int bossfloorlevel = y + (6 * floor);
 			if (alt) {
 				top_tl.addBlocksToWorld(world, new BlockPos(x + 1, bossfloorlevel, z), settings);
+				GenerationHelper.populateChestsInTemplate(world, x + 1, bossfloorlevel, z, top_tl, settings, "chest", RUNESTONETOWER_LOOTTABLEHIGH);
 			} else {
 				top_br.addBlocksToWorld(world, new BlockPos(x + 1 + 14, bossfloorlevel, z + 14), settingsrotated);
+				GenerationHelper.populateChestsInTemplate(world, x + 1 + 14, bossfloorlevel, z + 14, top_br, settingsrotated, "chest", RUNESTONETOWER_LOOTTABLEHIGH);
 			}
-
-			//Loot
-			populateFloorChests(c, y, y + ((6 * floor) / 2), RUNESTONETOWER_LOOTTABLELOW, r);
-			populateFloorChests(c, y + ((6 * floor) / 2), bossfloorlevel, RUNESTONETOWER_LOOTTABLEMED, r);
-			populateFloorChests(c, bossfloorlevel, bossfloorlevel + 15, RUNESTONETOWER_LOOTTABLEHIGH, r);
 
 			gen = true;
 		} else if (isValidChunkForGen(chunkX, chunkZ, 1, 0)) {
-			final Template terrain_tr = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TERRAIN_TR);
-			final Template base_tr = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_BASE_TR);
-			final Template top_tr = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TOP_TR);
-			final Template top_bl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TOP_BL);
+			Template terrain_tr = GenerationHelper.getTemplate(world, RUNESTONETOWER_TERRAIN_TR);
+			Template base_tr = GenerationHelper.getTemplate(world, RUNESTONETOWER_BASE_TR);
+			Template top_tr = GenerationHelper.getTemplate(world, RUNESTONETOWER_TOP_TR);
+			Template top_bl = GenerationHelper.getTemplate(world, RUNESTONETOWER_TOP_BL);
 			y = getDungeonBaseHeight(world, x + 1, z - 1, 2);
 
 			for (int i = y; i >= 50; i--) {
@@ -211,16 +199,19 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator implements 
 			}
 
 			base_tr.addBlocksToWorld(world, new BlockPos(x + 1, y, z + 1), settings);
+			GenerationHelper.populateChestsInTemplate(world, x + 1, y, z + 1, base_tr, settings, "chest", RUNESTONETOWER_LOOTTABLELOW);
 
 			boolean alt = true;
 			int floor = 1;
 			while (floor <= FLOOR_COUNT) {
 				if (alt) {
 					floor_tr.addBlocksToWorld(world, new BlockPos(x + 1, y + (6 * floor), z + 1), settings);
+					GenerationHelper.populateChestsInTemplate(world, x + 1, y + (6 * floor), z + 1, floor_tr, settings, "chest", floor < FLOOR_COUNT / 2 ? RUNESTONETOWER_LOOTTABLELOW : RUNESTONETOWER_LOOTTABLEMED);
 					floor++;
 					alt = !alt;
 				} else {
 					floor2_bl.addBlocksToWorld(world, new BlockPos(x + 1 + 14, y + (6 * floor), z + 1 + 14), settingsrotated);
+					GenerationHelper.populateChestsInTemplate(world, x + 1 + 14, y + (6 * floor), z + 1 + 14, floor2_bl, settingsrotated, "chest", floor < FLOOR_COUNT / 2 ? RUNESTONETOWER_LOOTTABLELOW : RUNESTONETOWER_LOOTTABLEMED);
 					floor++;
 					floor++;
 					alt = !alt;
@@ -230,20 +221,18 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator implements 
 			int bossfloorlevel = y + (6 * floor);
 			if (alt) {
 				top_tr.addBlocksToWorld(world, new BlockPos(x + 1, bossfloorlevel, z + 1), settings);
+				GenerationHelper.populateChestsInTemplate(world, x + 1, bossfloorlevel, z + 1, top_tr, settings, "chest", RUNESTONETOWER_LOOTTABLEHIGH);
 			} else {
 				top_bl.addBlocksToWorld(world, new BlockPos(x + 1 + 14, bossfloorlevel, z + 1 + 14), settingsrotated);
+				GenerationHelper.populateChestsInTemplate(world, x + 1 + 14, bossfloorlevel, z + 1 + 14, top_bl, settingsrotated, "chest", RUNESTONETOWER_LOOTTABLEHIGH);
 			}
-
-			populateFloorChests(c, y, y + ((6 * floor) / 2), RUNESTONETOWER_LOOTTABLELOW, r);
-			populateFloorChests(c, y + ((6 * floor) / 2), bossfloorlevel, RUNESTONETOWER_LOOTTABLEMED, r);
-			populateFloorChests(c, bossfloorlevel, bossfloorlevel + 15, RUNESTONETOWER_LOOTTABLEHIGH, r);
 
 			gen = true;
 		} else if (isValidChunkForGen(chunkX, chunkZ, 0, -1)) {
-			final Template terrain_bl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TERRAIN_BL);
-			final Template base_bl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_BASE_BL);
-			final Template top_bl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TOP_BL);
-			final Template top_tr = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TOP_TR);
+			Template terrain_bl = GenerationHelper.getTemplate(world, RUNESTONETOWER_TERRAIN_BL);
+			Template base_bl = GenerationHelper.getTemplate(world, RUNESTONETOWER_BASE_BL);
+			Template top_bl = GenerationHelper.getTemplate(world, RUNESTONETOWER_TOP_BL);
+			Template top_tr = GenerationHelper.getTemplate(world, RUNESTONETOWER_TOP_TR);
 			y = getDungeonBaseHeight(world, x, z, 3);
 
 			for (int i = y; i >= 50; i--) {
@@ -251,16 +240,19 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator implements 
 			}
 
 			base_bl.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
+			GenerationHelper.populateChestsInTemplate(world, x, y, z, base_bl, settings, "chest", RUNESTONETOWER_LOOTTABLELOW);
 
 			boolean alt = true;
 			int floor = 1;
 			while (floor <= FLOOR_COUNT) {
 				if (alt) {
 					floor_bl.addBlocksToWorld(world, new BlockPos(x, y + (6 * floor), z), settings);
+					GenerationHelper.populateChestsInTemplate(world, x, y + (6 * floor), z, floor_bl, settings, "chest", floor < FLOOR_COUNT / 2 ? RUNESTONETOWER_LOOTTABLELOW : RUNESTONETOWER_LOOTTABLEMED);
 					floor++;
 					alt = !alt;
 				} else {
 					floor2_tr.addBlocksToWorld(world, new BlockPos(x + 14, y + (6 * floor), z + 14), settingsrotated);
+					GenerationHelper.populateChestsInTemplate(world, x + 14, y + (6 * floor), z + 14, floor2_tr, settingsrotated, "chest", floor < FLOOR_COUNT / 2 ? RUNESTONETOWER_LOOTTABLELOW : RUNESTONETOWER_LOOTTABLEMED);
 					floor++;
 					floor++;
 					alt = !alt;
@@ -270,20 +262,18 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator implements 
 			int bossfloorlevel = y + (6 * floor);
 			if (alt) {
 				top_bl.addBlocksToWorld(world, new BlockPos(x, bossfloorlevel, z), settings);
+				GenerationHelper.populateChestsInTemplate(world, x, bossfloorlevel, z, top_bl, settings, "chest", RUNESTONETOWER_LOOTTABLEHIGH);
 			} else {
 				top_tr.addBlocksToWorld(world, new BlockPos(x + 14, bossfloorlevel, z + 14), settingsrotated);
+				GenerationHelper.populateChestsInTemplate(world, x + 14, bossfloorlevel, z + 14, top_tr, settingsrotated, "chest", RUNESTONETOWER_LOOTTABLEHIGH);
 			}
-
-			populateFloorChests(c, y, y + ((6 * floor) / 2), RUNESTONETOWER_LOOTTABLELOW, r);
-			populateFloorChests(c, y + ((6 * floor) / 2), bossfloorlevel, RUNESTONETOWER_LOOTTABLEMED, r);
-			populateFloorChests(c, bossfloorlevel, bossfloorlevel + 15, RUNESTONETOWER_LOOTTABLEHIGH, r);
 
 			gen = true;
 		} else if (isValidChunkForGen(chunkX, chunkZ, 0, 0)) {
-			final Template terrain_br = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TERRAIN_BR);
-			final Template base_br = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_BASE_BR);
-			final Template top_br = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TOP_BR);
-			final Template top_tl = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUNESTONETOWER_TOP_TL);
+			Template terrain_br = GenerationHelper.getTemplate(world, RUNESTONETOWER_TERRAIN_BR);
+			Template base_br = GenerationHelper.getTemplate(world, RUNESTONETOWER_BASE_BR);
+			Template top_br = GenerationHelper.getTemplate(world, RUNESTONETOWER_TOP_BR);
+			Template top_tl = GenerationHelper.getTemplate(world, RUNESTONETOWER_TOP_TL);
 			y = getDungeonBaseHeight(world, x, z + 1, 4);
 
 			for (int i = y; i >= 50; i--) {
@@ -291,16 +281,19 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator implements 
 			}
 
 			base_br.addBlocksToWorld(world, new BlockPos(x, y, z + 1), settings);
+			GenerationHelper.populateChestsInTemplate(world, x, y, z + 1, base_br, settings, "chest", RUNESTONETOWER_LOOTTABLELOW);
 
 			boolean alt = true;
 			int floor = 1;
 			while (floor <= FLOOR_COUNT) {
 				if (alt) {
 					floor_br.addBlocksToWorld(world, new BlockPos(x, y + (6 * floor), z + 1), settings);
+					GenerationHelper.populateChestsInTemplate(world, x, y + (6 * floor), z + 1, floor_br, settings, "chest", floor < FLOOR_COUNT / 2 ? RUNESTONETOWER_LOOTTABLELOW : RUNESTONETOWER_LOOTTABLEMED);
 					floor++;
 					alt = !alt;
 				} else {
 					floor2_tl.addBlocksToWorld(world, new BlockPos(x + 14, y + (6 * floor), z + 1 + 14), settingsrotated);
+					GenerationHelper.populateChestsInTemplate(world, x + 14, y + (6 * floor), z + 1 + 14, floor2_tl, settingsrotated, "chest", floor < FLOOR_COUNT / 2 ? RUNESTONETOWER_LOOTTABLELOW : RUNESTONETOWER_LOOTTABLEMED);
 					floor++;
 					floor++;
 					alt = !alt;
@@ -310,13 +303,11 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator implements 
 			int bossfloorlevel = y + (6 * floor);
 			if (alt) {
 				top_br.addBlocksToWorld(world, new BlockPos(x, bossfloorlevel, z + 1), settings);
+				GenerationHelper.populateChestsInTemplate(world, x, bossfloorlevel, z + 1, top_br, settings, "chest", RUNESTONETOWER_LOOTTABLEHIGH);
 			} else {
 				top_tl.addBlocksToWorld(world, new BlockPos(x + 14, bossfloorlevel, z + 1 + 14), settingsrotated);
+				GenerationHelper.populateChestsInTemplate(world, x + 14, bossfloorlevel, z + 1 + 14, top_tl, settingsrotated, "chest", RUNESTONETOWER_LOOTTABLEHIGH);
 			}
-
-			populateFloorChests(c, y, y + ((6 * floor) / 2), RUNESTONETOWER_LOOTTABLELOW, r);
-			populateFloorChests(c, y + ((6 * floor) / 2), bossfloorlevel, RUNESTONETOWER_LOOTTABLEMED, r);
-			populateFloorChests(c, bossfloorlevel, bossfloorlevel + 15, RUNESTONETOWER_LOOTTABLEHIGH, r);
 
 			gen = true;
 		}
