@@ -61,8 +61,6 @@ public class TAItem_Tool_Umbra_Shield extends TAItem_Tool_Shield {
 	@Override
 	public void onBlockingDamage(ItemStack shield, EntityPlayer player) {
 		super.onBlockingDamage(shield, player);
-		player.resetActiveHand();
-		player.getCooldownTracker().setCooldown(shield.getItem(), 20);
 	}
 
 	@Override
