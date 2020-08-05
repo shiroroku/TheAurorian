@@ -44,7 +44,7 @@
 							"function": "set_count",
 							"count": {
 								"min": 1,
-								"max": 4
+								"max": 2
 							}
 						}
 					],
@@ -66,17 +66,17 @@
 				},
 				{
 					"type": "item",
-					"name": "theaurorian:lavenderbread",
+					"name": "theaurorian:silkshroomstew",
 					"functions": [
 						{
 							"function": "set_count",
 							"count": {
-								"min": 1,
-								"max": 2
+								"min": 0,
+								"max": 1
 							}
 						}
 					],
-					"weight": 10
+					"weight": 5
 				}
 			]
 		},
@@ -95,7 +95,7 @@
 							"function": "set_count",
 							"count": {
 								"min": 1,
-								"max": 4
+								"max": 2
 							}
 						}
 					],
@@ -103,7 +103,7 @@
 				},
 				{
 					"type": "item",
-					"name": "theaurorian:stickyspiker",
+					"name": "theaurorian:weepingwillowsap",
 					"functions": [
 						{
 							"function": "set_count",
@@ -123,7 +123,7 @@
 							"function": "set_count",
 							"count": {
 								"min": 1,
-								"max": 16
+								"max": 4
 							}
 						}
 					],
@@ -146,7 +146,7 @@
 							"function": "set_count",
 							"count": {
 								"min": 1,
-								"max": 2
+								"max": 1
 							}
 						}
 					],
@@ -160,35 +160,7 @@
 							"function": "set_count",
 							"count": {
 								"min": 1,
-								"max": 4
-							}
-						}
-					],
-					"weight": 10
-				},
-				{
-					"type": "item",
-					"name": "theaurorian:auroriancoalnugget",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 1,
-								"max": 5
-							}
-						}
-					],
-					"weight": 5
-				},
-				{
-					"type": "item",
-					"name": "theaurorian:ceruleannugget",
-					"functions": [
-						{
-							"function": "set_count",
-							"count": {
-								"min": 1,
-								"max": 6
+								"max": 2
 							}
 						}
 					],
@@ -196,13 +168,13 @@
 				},
 				{
 					"type": "item",
-					"name": "theaurorian:scrapaurorianite",
+					"name": "theaurorian:scrapumbra",
 					"functions": [
 						{
 							"function": "set_count",
 							"count": {
 								"min": 1,
-								"max": 3
+								"max": 2
 							}
 						}
 					],
@@ -219,23 +191,23 @@
 			"entries": [
 				{
 					"type": "item",
-					"name": "theaurorian:livingdiviningrod",
-					"weight": 20
-				},
-				{
-					"type": "item",
-					"name": "theaurorian:absorptionorb",
-					"weight": 20
-				},
-				{
-					"type": "item",
-					"name": "theaurorian:aurorianitesword",
+					"name": "theaurorian:spikedchestplate",
 					"weight": 10
 				},
 				{
 					"type": "item",
-					"name": "theaurorian:aurorianiteaxe",
+					"name": "theaurorian:umbrasword",
+					"weight": 20
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:umbrashield",
 					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "theaurorian:umbrapickaxe",
+					"weight": 20
 				}
 			]
 		}
