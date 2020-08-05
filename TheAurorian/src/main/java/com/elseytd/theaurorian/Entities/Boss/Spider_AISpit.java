@@ -51,6 +51,7 @@ public class Spider_AISpit extends EntityAIBase {
 	public void startExecuting() {
 		this.entity.getNavigator().clearPath();
 		this.entity.setSpitting(true);
+		this.entity.faceEntity(this.entity.getAttackTarget(), this.entity.getHorizontalFaceSpeed() * 2, this.entity.getVerticalFaceSpeed() * 2);
 		startSpit();
 	}
 

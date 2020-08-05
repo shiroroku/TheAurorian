@@ -14,6 +14,8 @@ import com.elseytd.theaurorian.Entities.Hostile.DisturbedHollow_Entity;
 import com.elseytd.theaurorian.Entities.Hostile.DisturbedHollow_EntityRender;
 import com.elseytd.theaurorian.Entities.Hostile.MoonAcolyte_Entity;
 import com.elseytd.theaurorian.Entities.Hostile.MoonAcolyte_EntityRender;
+import com.elseytd.theaurorian.Entities.Hostile.Spiderling_Entity;
+import com.elseytd.theaurorian.Entities.Hostile.Spiderling_EntityRender;
 import com.elseytd.theaurorian.Entities.Hostile.Spirit_Entity;
 import com.elseytd.theaurorian.Entities.Hostile.Spirit_EntityRender;
 import com.elseytd.theaurorian.Entities.Hostile.UndeadKnight_Entity;
@@ -60,6 +62,7 @@ public class TAEntities {
 		quickRegEntity(Spirit_Entity.class, Spirit_Entity.EntityName, id++);
 		quickRegEntity(Spider_Entity.class, Spider_Entity.EntityName, id++);
 		quickRegNonlivingEntity(Webbing_Entity.class, Webbing_Entity.EntityName, id++);
+		quickRegEntity(Spiderling_Entity.class, Spiderling_Entity.EntityName, id++);
 
 	}
 
@@ -89,5 +92,6 @@ public class TAEntities {
 		RenderingRegistry.registerEntityRenderingHandler(Spirit_Entity.class, Spirit_EntityRender.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(Spider_Entity.class, Spider_EntityRender.FACTORY);
 		RenderingRegistry.registerEntityRenderingHandler(Webbing_Entity.class, Webbing_EntityRender.FACTORY);
+		RenderingRegistry.registerEntityRenderingHandler(Spiderling_Entity.class, Spiderling_EntityRender.FACTORY);
 	}
 }

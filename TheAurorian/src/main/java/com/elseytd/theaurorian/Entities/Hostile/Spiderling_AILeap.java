@@ -1,18 +1,18 @@
-package com.elseytd.theaurorian.Entities.Boss;
+package com.elseytd.theaurorian.Entities.Hostile;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.MathHelper;
 
-public class Spider_AILeap extends EntityAIBase {
+public class Spiderling_AILeap extends EntityAIBase {
 
-	private Spider_Entity entity;
+	private Spiderling_Entity entity;
 	private EntityLivingBase target;
 
-	private float leapVelocity = 0.7f;
+	private float leapVelocity = 0.5f;
 	private int minDistance = 20;
 
-	public Spider_AILeap(Spider_Entity attacker) {
+	public Spiderling_AILeap(Spiderling_Entity attacker) {
 		this.entity = attacker;
 		this.setMutexBits(5);
 	}
@@ -39,7 +39,7 @@ public class Spider_AILeap extends EntityAIBase {
 
 	@Override
 	public void updateTask() {
-		this.entity.faceEntity(target, this.entity.getHorizontalFaceSpeed() * 2, this.entity.getVerticalFaceSpeed() * 2);
+		this.entity.faceEntity(target, this.entity.getHorizontalFaceSpeed(), this.entity.getVerticalFaceSpeed());
 		this.entity.getLookHelper().setLookPositionWithEntity(target, (float) this.entity.getHorizontalFaceSpeed(), (float) this.entity.getVerticalFaceSpeed());
 	}
 
@@ -55,8 +55,8 @@ public class Spider_AILeap extends EntityAIBase {
 		double d1 = this.target.posZ - this.entity.posZ;
 		float f = MathHelper.sqrt(d0 * d0 + d1 * d1);
 
-		double val1 = 2;
-		double val2 = 4;
+		double val1 = 1;
+		double val2 = 1;
 
 		if ((double) f >= 1.0E-4D) {
 			this.entity.motionX += d0 / (double) f * 0.5D * val1 + this.entity.motionX * val2;

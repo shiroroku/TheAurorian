@@ -130,6 +130,8 @@ public class TABlocks {
 	public static TABlock_Spawner_Boss bossspawnerkeeper;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Spawner_Boss.BLOCKNAME_MOONQUEEN)
 	public static TABlock_Spawner_Boss bossspawnermoonqueen;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Spawner_Boss.BLOCKNAME_SPIDER)
+	public static TABlock_Spawner_Boss bossspawnerspider;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Silentwood_Torch.BLOCKNAME)
 	public static TABlock_Silentwood_Torch silentwoodtorch;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TABlock_Silentwood_Workbench.BLOCKNAME)
@@ -328,6 +330,7 @@ public class TABlocks {
 		AURORIANSTONEBRICKSSTAIRS(new TABlock_Stairs(new TABlock_Aurorian_Stone_Brick(), TABlock_Stairs.BLOCKNAME_AURORIANSTONE)),
 		BOSSSPAWNERKEEPER(new TABlock_Spawner_Boss(TABlock_Spawner_Boss.Bosses.KEEPER)),
 		BOSSSPAWNERMOONQUEEN(new TABlock_Spawner_Boss(TABlock_Spawner_Boss.Bosses.MOONQUEEN)),
+		BOSSSPAWNERSPIDER(new TABlock_Spawner_Boss(TABlock_Spawner_Boss.Bosses.SPIDER)),
 		CRYSTAL(new TABlock_Crystal()),
 		DUNGEONSTONEDARK(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK)),
 		DUNGEONSTONEDARKFANCY(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK_FANCY)),

@@ -1,11 +1,13 @@
 package com.elseytd.theaurorian;
 
 import com.elseytd.theaurorian.Enchantments.TAEnchantment_Lightning_Damage;
+import com.elseytd.theaurorian.Entities.Boss.Spider_Entity;
+import com.elseytd.theaurorian.Entities.Hostile.Spiderling_Entity;
 import com.elseytd.theaurorian.Items.TAItem_Armor_AurorianSteel;
 import com.elseytd.theaurorian.Items.TAItem_Armor_SlimeBoots;
 import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Pickaxe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Pickaxe;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.SoundEvents;
@@ -42,6 +44,8 @@ public class TAEvents {
 	@SubscribeEvent
 	public void fallEvent(LivingFallEvent e) {
 		TAItem_Armor_SlimeBoots.handleFallEvent(e);
+		Spiderling_Entity.handleFallEvent(e);
+		Spider_Entity.handleFallEvent(e);
 	}
 
 	@SubscribeEvent

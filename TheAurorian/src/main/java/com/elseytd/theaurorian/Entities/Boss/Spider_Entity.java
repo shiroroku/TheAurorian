@@ -2,6 +2,7 @@ package com.elseytd.theaurorian.Entities.Boss;
 
 import javax.annotation.Nullable;
 
+import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -16,8 +17,6 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -28,16 +27,18 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 
 public class Spider_Entity extends EntityMob {
 
 	public static final String EntityName = "spider";
 	public static final ResourceLocation LOOT = new ResourceLocation(TAMod.MODID, "entities/" + EntityName);
-	private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
+	private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
 	private static final DataParameter<Boolean> WINDINGUPSPIT = EntityDataManager.createKey(Spider_Entity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> SPITTING = EntityDataManager.createKey(Spider_Entity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> CLIMBING = EntityDataManager.createKey(Spider_Entity.class, DataSerializers.BOOLEAN);
@@ -46,7 +47,7 @@ public class Spider_Entity extends EntityMob {
 		super(worldIn);
 		this.setHealth(this.getMaxHealth());
 		this.setSize(1.4F * 2, 0.9F * 2);
-		this.experienceValue = 400;
+		this.experienceValue = 1000;
 		this.isImmuneToFire = true;
 	}
 
@@ -61,7 +62,7 @@ public class Spider_Entity extends EntityMob {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(180.0D * 1);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200.0D * 1);
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(50.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
@@ -93,6 +94,30 @@ public class Spider_Entity extends EntityMob {
 			double motionY = this.getRNG().nextGaussian() * 0.02D;
 			double motionZ = this.getRNG().nextGaussian() * 0.02D;
 			this.world.spawnParticle(EnumParticleTypes.CLOUD, this.posX + sinx, this.posY + this.getEyeHeight() - 0.2F, this.posZ + cosz, motionX, motionY, motionZ);
+		}
+	}
+
+	@Override
+	public void onDeath(DamageSource cause) {
+		super.onDeath(cause);
+		int distance = 70;
+		for (int x = 0; x <= distance; x++) {
+			for (int y = 0; y <= distance; y++) {
+				for (int z = 0; z <= distance; z++) {
+					int offs = distance / 2;
+					BlockPos p = new BlockPos(x + this.getPosition().getX() - offs, y + this.getPosition().getY() - offs, z + this.getPosition().getZ() - offs);
+					if (this.world.getBlockState(p).getBlock() == TABlocks.mysticalbarrier) {
+						this.world.destroyBlock(p, false);
+					}
+				}
+			}
+		}
+	}
+
+	public static void handleFallEvent(LivingFallEvent e) {
+		if (e.getEntity() instanceof Spider_Entity) {
+			e.setCanceled(true);
+			return;
 		}
 	}
 
@@ -175,11 +200,6 @@ public class Spider_Entity extends EntityMob {
 	protected void updateAITasks() {
 		super.updateAITasks();
 		this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
-	}
-
-	protected EntityArrow getArrow(float ench) {
-		EntityTippedArrow entitytippedarrow = new EntityTippedArrow(this.world, this);
-		return entitytippedarrow;
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.Random;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.Entities.Boss.Keeper_Entity;
 import com.elseytd.theaurorian.Entities.Boss.MoonQueen_Entity;
+import com.elseytd.theaurorian.Entities.Boss.Spider_Entity;
 import com.elseytd.theaurorian.TileEntities.BossSpawner_TileEntity;
 
 import net.minecraft.block.Block;
@@ -24,10 +25,12 @@ public class TABlock_Spawner_Boss extends Block implements ITileEntityProvider {
 
 	public static final String BLOCKNAME_KEEPER = "bossspawnerkeeper";
 	public static final String BLOCKNAME_MOONQUEEN = "bossspawnermoonqueen";
+	public static final String BLOCKNAME_SPIDER = "bossspawnerspider";
 
 	public enum Bosses {
 		KEEPER(BLOCKNAME_KEEPER, Keeper_Entity.EntityName),
-		MOONQUEEN(BLOCKNAME_MOONQUEEN, MoonQueen_Entity.EntityName);
+		MOONQUEEN(BLOCKNAME_MOONQUEEN, MoonQueen_Entity.EntityName),
+		SPIDER(BLOCKNAME_SPIDER, Spider_Entity.EntityName);
 
 		private String BLOCKNAME;
 		private String BOSS;
