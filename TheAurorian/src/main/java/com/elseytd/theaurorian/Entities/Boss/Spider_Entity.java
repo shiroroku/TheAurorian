@@ -42,11 +42,12 @@ public class Spider_Entity extends EntityMob {
 	private static final DataParameter<Boolean> WINDINGUPSPIT = EntityDataManager.createKey(Spider_Entity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> SPITTING = EntityDataManager.createKey(Spider_Entity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> CLIMBING = EntityDataManager.createKey(Spider_Entity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> HANGING = EntityDataManager.createKey(Spider_Entity.class, DataSerializers.BOOLEAN);
 
 	public Spider_Entity(World worldIn) {
 		super(worldIn);
 		this.setHealth(this.getMaxHealth());
-		this.setSize(1.4F * 2, 0.9F * 2);
+		this.setSize(2.8F, 1.8F);
 		this.experienceValue = 1000;
 		this.isImmuneToFire = true;
 	}
@@ -57,6 +58,7 @@ public class Spider_Entity extends EntityMob {
 		this.getDataManager().register(WINDINGUPSPIT, Boolean.valueOf(false));
 		this.getDataManager().register(SPITTING, Boolean.valueOf(false));
 		this.getDataManager().register(CLIMBING, Boolean.valueOf(false));
+		this.getDataManager().register(HANGING, Boolean.valueOf(false));
 	}
 
 	@Override
@@ -72,21 +74,22 @@ public class Spider_Entity extends EntityMob {
 	@Override
 	protected void initEntityAI() {
 		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(1, new Spider_AISpit(this));
+		this.tasks.addTask(1, new Spider_AIHang(this));
+		this.tasks.addTask(2, new Spider_AISpit(this));
 		this.tasks.addTask(4, new Spider_AILeap(this));
 		this.tasks.addTask(4, new EntityAIAttackMelee(this, 1.0D, true));
 		this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 0.8D));
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityCow>(this, EntityCow.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityCow.class, true));
 	}
 
 	@Override
 	public void onEntityUpdate() {
 		super.onEntityUpdate();
-		if (this.world.isRemote && this.ticksExisted % 2 == 0 && isWindingUpSpit()) {
+		if (this.world.isRemote && this.ticksExisted % 2 == 0 && this.isWindingUpSpit()) {
 			float distance = 1.6F;
 			double sinx = MathHelper.sin(-this.rotationYawHead / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI) * distance;
 			double cosz = MathHelper.cos(this.rotationYawHead / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI) * distance;
@@ -161,6 +164,14 @@ public class Spider_Entity extends EntityMob {
 
 	public boolean isBesideClimbableBlock() {
 		return this.getDataManager().get(CLIMBING).booleanValue();
+	}
+
+	public void setHanging(boolean bool) {
+		this.getDataManager().set(HANGING, Boolean.valueOf(bool));
+	}
+
+	public boolean isHanging() {
+		return this.getDataManager().get(HANGING).booleanValue();
 	}
 
 	@Override

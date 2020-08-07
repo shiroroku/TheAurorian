@@ -53,17 +53,13 @@ public class TAWorldGenerator_MoonTemple extends WorldGenerator implements Gener
 
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
-		Chunk c = worldIn.getChunkFromBlockCoords(position);
-		int height = 200;
-
-		generateTemple(worldIn, c, height);
-
+		this.generateTemple(worldIn, worldIn.getChunkFromBlockCoords(position), 200);
 		return true;
 	}
 
 	private void populateChests(World world, BlockPos pos, Template template, PlacementSettings settings) {
-		GenerationHelper.populateChestsInTemplate(world, pos.getX(), pos.getY(), pos.getZ(), template, settings, "chest_low", MOONTEMPLE_LOOTTABLE_LOW);
-		GenerationHelper.populateChestsInTemplate(world, pos.getX(), pos.getY(), pos.getZ(), template, settings, "chest_med", MOONTEMPLE_LOOTTABLE_MED);
+		GenerationHelper.populateChestsInTemplate(world, pos, template, settings, "chest_low", MOONTEMPLE_LOOTTABLE_LOW);
+		GenerationHelper.populateChestsInTemplate(world, pos, template, settings, "chest_med", MOONTEMPLE_LOOTTABLE_MED);
 	}
 
 	@Override
@@ -75,161 +71,170 @@ public class TAWorldGenerator_MoonTemple extends WorldGenerator implements Gener
 	}
 
 	private void generateTemple(World world, Chunk c, int height) {
-		int chunkX = c.x;
-		int chunkZ = c.z;
-		int x = chunkX * 16 + 8;
-		int z = chunkZ * 16 + 8;
-		int y = height;
+		final int chunkX = c.x;
+		final int chunkZ = c.z;
+		final BlockPos position = new BlockPos(chunkX * 16 + 8, height, chunkZ * 16 + 8);
+		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.aurorianstone);
 
-		PlacementSettings settings = new PlacementSettings().setRotation(Rotation.NONE).setReplacedBlock(TABlocks.aurorianstone);
+		if (this.isValidChunkForGen(chunkX, chunkZ, 0, 0)) {
+			final Template temple_center = GenerationHelper.getTemplate(world, MOONTEMPLE_CENTER);
+			temple_center.addBlocksToWorld(world, position, settings);
+			this.populateChests(world, position, temple_center, settings);
 
-		if (isValidChunkForGen(chunkX, chunkZ, 0, 0)) {
-			Template temple_center = GenerationHelper.getTemplate(world, MOONTEMPLE_CENTER);
-			temple_center.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
-			populateChests(world, new BlockPos(x, y, z), temple_center, settings);
-
-			Template temple_terrain = GenerationHelper.getTemplate(world, MOONTEMPLE_TERRAIN);
-			temple_terrain.addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings);
+			GenerationHelper.getTemplate(world, MOONTEMPLE_TERRAIN).addBlocksToWorld(world, position.down(12), settings);
 		}
 
-		if (isValidChunkForGen(chunkX, chunkZ, -1, 0)) {
-			Template temple_tower = GenerationHelper.getTemplate(world, MOONTEMPLE_TOWER_LEFT);
-			temple_tower.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
-			populateChests(world, new BlockPos(x, y, z), temple_tower, settings);
+		if (this.isValidChunkForGen(chunkX, chunkZ, -1, 0)) {
+			final Template temple_tower = GenerationHelper.getTemplate(world, MOONTEMPLE_TOWER_LEFT);
+			temple_tower.addBlocksToWorld(world, position, settings);
+			this.populateChests(world, position, temple_tower, settings);
 
-			GenerationHelper.getTemplate(world, MOONTEMPLE_TERRAIN).addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings);
+			GenerationHelper.getTemplate(world, MOONTEMPLE_TERRAIN).addBlocksToWorld(world, position.down(12), settings);
 		}
 
-		if (isValidChunkForGen(chunkX, chunkZ, 1, 0)) {
-			Template temple_tower = GenerationHelper.getTemplate(world, MOONTEMPLE_TOWER_RIGHT);
-			temple_tower.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
-			populateChests(world, new BlockPos(x, y, z), temple_tower, settings);
+		if (this.isValidChunkForGen(chunkX, chunkZ, 1, 0)) {
+			final Template temple_tower = GenerationHelper.getTemplate(world, MOONTEMPLE_TOWER_RIGHT);
+			temple_tower.addBlocksToWorld(world, position, settings);
+			this.populateChests(world, position, temple_tower, settings);
 
-			GenerationHelper.getTemplate(world, MOONTEMPLE_TERRAIN).addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings);
+			GenerationHelper.getTemplate(world, MOONTEMPLE_TERRAIN).addBlocksToWorld(world, position.down(12), settings);
 		}
 
-		if (isValidChunkForGen(chunkX, chunkZ, 0, 1)) {
-			Template temple_courtyard = GenerationHelper.getTemplate(world, MOONTEMPLE_COURTYARD);
-			temple_courtyard.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
-
-			GenerationHelper.getTemplate(world, MOONTEMPLE_TERRAIN).addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings);
+		if (this.isValidChunkForGen(chunkX, chunkZ, 0, 1)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_COURTYARD).addBlocksToWorld(world, position, settings);
+			GenerationHelper.getTemplate(world, MOONTEMPLE_TERRAIN).addBlocksToWorld(world, position.down(12), settings);
 		}
 
-		if (isValidChunkForGen(chunkX, chunkZ, -1, 1)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_COURTYARD_LEFT).addBlocksToWorld(world, new BlockPos(x, y, z), settings);
+		if (this.isValidChunkForGen(chunkX, chunkZ, -1, 1)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_COURTYARD_LEFT).addBlocksToWorld(world, position, settings);
 		}
 
-		if (isValidChunkForGen(chunkX, chunkZ, 1, 1)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_COURTYARD_RIGHT).addBlocksToWorld(world, new BlockPos(x, y, z), settings);
+		if (this.isValidChunkForGen(chunkX, chunkZ, 1, 1)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_COURTYARD_RIGHT).addBlocksToWorld(world, position, settings);
 		}
 
-		if (isValidChunkForGen(chunkX, chunkZ, 0, -1)) {
-			Template temple_room = GenerationHelper.getTemplate(world, MOONTEMPLE_ROOM);
-			temple_room.addBlocksToWorld(world, new BlockPos(x, y, z), settings);
-			populateChests(world, new BlockPos(x, y, z), temple_room, settings);
+		if (this.isValidChunkForGen(chunkX, chunkZ, 0, -1)) {
+			final Template temple_room = GenerationHelper.getTemplate(world, MOONTEMPLE_ROOM);
+			temple_room.addBlocksToWorld(world, position, settings);
+			this.populateChests(world, position, temple_room, settings);
 
-			GenerationHelper.getTemplate(world, MOONTEMPLE_TERRAIN).addBlocksToWorld(world, new BlockPos(x, y - 12, z), settings);
+			GenerationHelper.getTemplate(world, MOONTEMPLE_TERRAIN).addBlocksToWorld(world, position.down(12), settings);
 		}
 
 		//ISLANDS
-		if (isValidChunkForGen(chunkX, chunkZ, -1, -3)) {
-			genIsland(world, x, y, z, world.rand);
-		}
-		if (isValidChunkForGen(chunkX, chunkZ, 1, -3)) {
-			genIsland(world, x, y, z, world.rand);
-		}
-		if (isValidChunkForGen(chunkX, chunkZ, -1, 3)) {
-			genIsland(world, x, y, z, world.rand);
-		}
-		if (isValidChunkForGen(chunkX, chunkZ, 1, 3)) {
-			genIsland(world, x, y, z, world.rand);
-		}
-		if (isValidChunkForGen(chunkX, chunkZ, -3, -1)) {
-			genIsland(world, x, y, z, world.rand);
-		}
-		if (isValidChunkForGen(chunkX, chunkZ, -3, 1)) {
-			genIsland(world, x, y, z, world.rand);
-		}
-		if (isValidChunkForGen(chunkX, chunkZ, 3, -1)) {
-			genIsland(world, x, y, z, world.rand);
-		}
-		if (isValidChunkForGen(chunkX, chunkZ, 3, 1)) {
-			genIsland(world, x, y, z, world.rand);
-		}
+		this.genIslands(world, chunkX, chunkZ, position, world.rand);
 
 		//PATH
 		if (GENERATE_TEMPLES_PATH) {
-			genSpiralPath(world, chunkX, chunkZ, x, y, z);
+			this.genSpiralPath(world, chunkX, chunkZ, position.getX(), position.getY(), position.getZ());
 		}
 
 	}
 
-	private void genIsland(World world, int x, int y, int z, Random rand) {
-		PlacementSettings settings = new PlacementSettings().setRotation(Rotation.NONE).setReplacedBlock(Blocks.AIR);
-		GenerationHelper.getTemplate(world, MOONTEMPLE_ISLAND).addBlocksToWorld(world, new BlockPos(x, y - 27 + rand.nextInt(10), z), settings, 3);
+	private void genIslands(World world, int chunkX, int chunkZ, BlockPos position, Random rand) {
+		if (this.isValidChunkForGen(chunkX, chunkZ, -1, -3)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_ISLAND).addBlocksToWorld(world, position.down(27 + rand.nextInt(10)), new PlacementSettings().setReplacedBlock(Blocks.AIR), 3);
+			return;
+		}
+		if (this.isValidChunkForGen(chunkX, chunkZ, 1, -3)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_ISLAND).addBlocksToWorld(world, position.down(27 + rand.nextInt(10)), new PlacementSettings().setReplacedBlock(Blocks.AIR), 3);
+			return;
+		}
+		if (this.isValidChunkForGen(chunkX, chunkZ, -1, 3)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_ISLAND).addBlocksToWorld(world, position.down(27 + rand.nextInt(10)), new PlacementSettings().setReplacedBlock(Blocks.AIR), 3);
+			return;
+		}
+		if (this.isValidChunkForGen(chunkX, chunkZ, 1, 3)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_ISLAND).addBlocksToWorld(world, position.down(27 + rand.nextInt(10)), new PlacementSettings().setReplacedBlock(Blocks.AIR), 3);
+			return;
+		}
+		if (this.isValidChunkForGen(chunkX, chunkZ, -3, -1)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_ISLAND).addBlocksToWorld(world, position.down(27 + rand.nextInt(10)), new PlacementSettings().setReplacedBlock(Blocks.AIR), 3);
+			return;
+		}
+		if (this.isValidChunkForGen(chunkX, chunkZ, -3, 1)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_ISLAND).addBlocksToWorld(world, position.down(27 + rand.nextInt(10)), new PlacementSettings().setReplacedBlock(Blocks.AIR), 3);
+			return;
+		}
+		if (this.isValidChunkForGen(chunkX, chunkZ, 3, -1)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_ISLAND).addBlocksToWorld(world, position.down(27 + rand.nextInt(10)), new PlacementSettings().setReplacedBlock(Blocks.AIR), 3);
+			return;
+		}
+		if (this.isValidChunkForGen(chunkX, chunkZ, 3, 1)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_ISLAND).addBlocksToWorld(world, position.down(27 + rand.nextInt(10)), new PlacementSettings().setReplacedBlock(Blocks.AIR), 3);
+			return;
+		}
 	}
 
 	private void genSpiralPath(World world, int chunkX, int chunkZ, int x, int y, int z) {
-		PlacementSettings settings = new PlacementSettings().setRotation(Rotation.NONE).setReplacedBlock(Blocks.AIR);
-		PlacementSettings settingsrotated90 = new PlacementSettings().setRotation(Rotation.COUNTERCLOCKWISE_90).setReplacedBlock(Blocks.AIR);
-		PlacementSettings settingsrotated90c = new PlacementSettings().setRotation(Rotation.CLOCKWISE_90).setReplacedBlock(Blocks.AIR);
-		PlacementSettings settingsrotated180 = new PlacementSettings().setRotation(Rotation.CLOCKWISE_180).setReplacedBlock(Blocks.AIR);
-		int height = y - 1;
-		int yoffset = 7;
+		final int height = y - 1;
+		final int yoffset = 7;
 
-		if (isValidChunkForGen(chunkX, chunkZ, 0, 2)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_TURN).addBlocksToWorld(world, new BlockPos(x, height - yoffset, z), settings);
+		if (this.isValidChunkForGen(chunkX, chunkZ, 0, 2)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_TURN).addBlocksToWorld(world, new BlockPos(x, height - yoffset, z), new PlacementSettings().setReplacedBlock(Blocks.AIR));
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 17, z), new PlacementSettings().setReplacedBlock(Blocks.AIR));
+			return;
 		}
-		if (isValidChunkForGen(chunkX, chunkZ, 1, 2)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 2, z), settings);
+		if (this.isValidChunkForGen(chunkX, chunkZ, 1, 2)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 2, z), new PlacementSettings().setReplacedBlock(Blocks.AIR));
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 18, z), new PlacementSettings().setReplacedBlock(Blocks.AIR));
+			return;
 		}
-		if (isValidChunkForGen(chunkX, chunkZ, 2, 2)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_TURN).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 3, z + 15), settingsrotated90);
+		if (this.isValidChunkForGen(chunkX, chunkZ, 2, 2)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_TURN).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 3, z + 15), new PlacementSettings().setRotation(Rotation.COUNTERCLOCKWISE_90).setReplacedBlock(Blocks.AIR));
+			return;
 		}
-		if (isValidChunkForGen(chunkX, chunkZ, 2, 1)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 4, z + 15), settingsrotated90);
+		if (this.isValidChunkForGen(chunkX, chunkZ, 2, 1)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 4, z + 15), new PlacementSettings().setRotation(Rotation.COUNTERCLOCKWISE_90).setReplacedBlock(Blocks.AIR));
+			return;
 		}
-		if (isValidChunkForGen(chunkX, chunkZ, 2, 0)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 5, z + 15), settingsrotated90);
+		if (this.isValidChunkForGen(chunkX, chunkZ, 2, 0)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 5, z + 15), new PlacementSettings().setRotation(Rotation.COUNTERCLOCKWISE_90).setReplacedBlock(Blocks.AIR));
+			return;
 		}
-		if (isValidChunkForGen(chunkX, chunkZ, 2, -1)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 6, z + 15), settingsrotated90);
+		if (this.isValidChunkForGen(chunkX, chunkZ, 2, -1)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 6, z + 15), new PlacementSettings().setRotation(Rotation.COUNTERCLOCKWISE_90).setReplacedBlock(Blocks.AIR));
+			return;
 		}
-		if (isValidChunkForGen(chunkX, chunkZ, 2, -2)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_TURN).addBlocksToWorld(world, new BlockPos(x + 15, height - yoffset * 7, z + 15), settingsrotated180);
+		if (this.isValidChunkForGen(chunkX, chunkZ, 2, -2)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_TURN).addBlocksToWorld(world, new BlockPos(x + 15, height - yoffset * 7, z + 15), new PlacementSettings().setRotation(Rotation.CLOCKWISE_180).setReplacedBlock(Blocks.AIR));
+			return;
 		}
-		if (isValidChunkForGen(chunkX, chunkZ, 1, -2)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x + 15, height - yoffset * 8, z + 15), settingsrotated180);
+		if (this.isValidChunkForGen(chunkX, chunkZ, 1, -2)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x + 15, height - yoffset * 8, z + 15), new PlacementSettings().setRotation(Rotation.CLOCKWISE_180).setReplacedBlock(Blocks.AIR));
+			return;
 		}
-		if (isValidChunkForGen(chunkX, chunkZ, 0, -2)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x + 15, height - yoffset * 9, z + 15), settingsrotated180);
+		if (this.isValidChunkForGen(chunkX, chunkZ, 0, -2)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x + 15, height - yoffset * 9, z + 15), new PlacementSettings().setRotation(Rotation.CLOCKWISE_180).setReplacedBlock(Blocks.AIR));
+			return;
 		}
-		if (isValidChunkForGen(chunkX, chunkZ, -1, -2)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x + 15, height - yoffset * 10, z + 15), settingsrotated180);
+		if (this.isValidChunkForGen(chunkX, chunkZ, -1, -2)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x + 15, height - yoffset * 10, z + 15), new PlacementSettings().setRotation(Rotation.CLOCKWISE_180).setReplacedBlock(Blocks.AIR));
+			return;
 		}
-		if (isValidChunkForGen(chunkX, chunkZ, -2, -2)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_TURN).addBlocksToWorld(world, new BlockPos(x + 15, height - yoffset * 11, z), settingsrotated90c);
+		if (this.isValidChunkForGen(chunkX, chunkZ, -2, -2)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_TURN).addBlocksToWorld(world, new BlockPos(x + 15, height - yoffset * 11, z), new PlacementSettings().setRotation(Rotation.CLOCKWISE_90).setReplacedBlock(Blocks.AIR));
+			return;
 		}
-		if (isValidChunkForGen(chunkX, chunkZ, -2, -1)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x + 15, height - yoffset * 12, z), settingsrotated90c);
+		if (this.isValidChunkForGen(chunkX, chunkZ, -2, -1)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x + 15, height - yoffset * 12, z), new PlacementSettings().setRotation(Rotation.CLOCKWISE_90).setReplacedBlock(Blocks.AIR));
+			return;
 		}
-		if (isValidChunkForGen(chunkX, chunkZ, -2, 0)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x + 15, height - yoffset * 13, z), settingsrotated90c);
+		if (this.isValidChunkForGen(chunkX, chunkZ, -2, 0)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x + 15, height - yoffset * 13, z), new PlacementSettings().setRotation(Rotation.CLOCKWISE_90).setReplacedBlock(Blocks.AIR));
+			return;
 		}
-		if (isValidChunkForGen(chunkX, chunkZ, -2, 1)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x + 15, height - yoffset * 14, z), settingsrotated90c);
+		if (this.isValidChunkForGen(chunkX, chunkZ, -2, 1)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x + 15, height - yoffset * 14, z), new PlacementSettings().setRotation(Rotation.CLOCKWISE_90).setReplacedBlock(Blocks.AIR));
+			return;
 		}
-		if (isValidChunkForGen(chunkX, chunkZ, -2, 2)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_TURN).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 15, z), settings);
+		if (this.isValidChunkForGen(chunkX, chunkZ, -2, 2)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_TURN).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 15, z), new PlacementSettings().setReplacedBlock(Blocks.AIR));
+			return;
 		}
-		if (isValidChunkForGen(chunkX, chunkZ, -1, 2)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 16, z), settings);
-		}
-		if (isValidChunkForGen(chunkX, chunkZ, 0, 2)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 17, z), settings);
-		}
-		if (isValidChunkForGen(chunkX, chunkZ, 1, 2)) {
-			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 18, z), settings);
+		if (this.isValidChunkForGen(chunkX, chunkZ, -1, 2)) {
+			GenerationHelper.getTemplate(world, MOONTEMPLE_PATH_STRAIGHT).addBlocksToWorld(world, new BlockPos(x, height - yoffset * 16, z), new PlacementSettings().setReplacedBlock(Blocks.AIR));
+			return;
 		}
 	}
 }

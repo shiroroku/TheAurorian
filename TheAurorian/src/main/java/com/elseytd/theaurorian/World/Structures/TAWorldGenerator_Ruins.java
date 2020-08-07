@@ -9,7 +9,6 @@ import com.elseytd.theaurorian.TAUtil;
 import com.elseytd.theaurorian.Misc.GenerationHelper;
 
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -29,29 +28,22 @@ public class TAWorldGenerator_Ruins extends WorldGenerator {
 
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
-		boolean gen = false;
-
 		if (TAUtil.randomChanceOf(RUINS_1_CHANCE)) {
-			int i = rand.nextInt(2) + 4;
-			int j = rand.nextInt(2) + 4;
+			final int i = rand.nextInt(2) + 4;
+			final int j = rand.nextInt(2) + 4;
 			BlockPos pos = worldIn.getHeight(position.add(i, 128, j)).up();
 			if (GenerationHelper.isTerrainFlat(worldIn, position, 3)) {
-				generateRuins(worldIn, pos);
-				gen = true;
+				this.generateRuins(worldIn, pos);
 			}
 		}
 		if (TAUtil.randomChanceOf(RUINS_2_CHANCE)) {
-			int i = rand.nextInt(2) + 4;
-			int j = rand.nextInt(2) + 4;
-			int k = rand.nextInt(50) + 4;
+			final int i = rand.nextInt(2) + 4;
+			final int j = rand.nextInt(2) + 4;
+			final int k = rand.nextInt(50) + 4;
 			BlockPos pos = worldIn.getHeight(position.add(i, 0, j));
-			generateRuinsUnderground(worldIn, pos, k);
-			gen = true;
+			this.generateRuinsUnderground(worldIn, pos, k);
 		}
 
-		if (gen) {
-			GenerationHelper.populateChestsInChunk(worldIn.getChunkFromBlockCoords(position), rand, RUIN_LOOTTABLE);
-		}
 		return true;
 	}
 
@@ -60,16 +52,17 @@ public class TAWorldGenerator_Ruins extends WorldGenerator {
 			position = position.down();
 		}
 
-		final PlacementSettings settings = new PlacementSettings().setRotation(Rotation.NONE).setReplacedBlock(TABlocks.aurorianstone);
-		final Template ruins1 = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUINS_1);
-		ruins1.addBlocksToWorld(world, position, settings);
+		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.aurorianstone);
+		GenerationHelper.getTemplate(world, RUINS_1).addBlocksToWorld(world, position, settings);
 	}
 
 	public void generateRuinsUnderground(World world, BlockPos position, int height) {
-		BlockPos pos = new BlockPos(position.getX(), height, position.getZ());
+		final BlockPos pos = new BlockPos(position.getX(), height, position.getZ());
 
-		final PlacementSettings settings = new PlacementSettings().setRotation(Rotation.NONE).setReplacedBlock(TABlocks.aurorianstone);
-		final Template ruins2 = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), RUINS_2);
+		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.aurorianstone);
+		final Template ruins2 = GenerationHelper.getTemplate(world, RUINS_2);
 		ruins2.addBlocksToWorld(world, pos, settings);
+
+		GenerationHelper.populateChestsInTemplate(world, pos, ruins2, settings, "chest", RUIN_LOOTTABLE);
 	}
 }

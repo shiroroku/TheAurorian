@@ -2,7 +2,6 @@ package com.elseytd.theaurorian.Misc;
 
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Random;
 
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
@@ -15,14 +14,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 
 public class GenerationHelper {
 
 	public interface IChunkSpecific {
-		public boolean isValidChunkForGen(int chunkX, int chunkZ, int offsetX, int offsetZ);
+		boolean isValidChunkForGen(int chunkX, int chunkZ, int offsetX, int offsetZ);
 	}
 
 	/**
@@ -37,7 +35,7 @@ public class GenerationHelper {
 	/**
 	 * Returns true if the position is within the specified range of the
 	 * structure.
-	 * 
+	 *
 	 * @param structure      Structure.
 	 * @param worldIn        World.
 	 * @param pos            Position.
@@ -65,7 +63,7 @@ public class GenerationHelper {
 	/**
 	 * Returns the nearest Aurorian structure to the player within the distance
 	 * specified
-	 * 
+	 *
 	 * @param structure Structure.
 	 * @param player    Player.
 	 * @param distance  Search distance in chunks.
@@ -95,18 +93,16 @@ public class GenerationHelper {
 	/**
 	 * Will fill chests that have data blocks above them using the given loot
 	 * table.
-	 * 
+	 *
 	 * @param world     World.
-	 * @param x         Template Placement x.
-	 * @param y         Template Placement y.
-	 * @param z         Template Placement z.
+	 * @param position  Stucture Position.
 	 * @param template  Struture Template.
 	 * @param settings  Placement Settings.
 	 * @param data      Tag Data tag of Data Blocks.
 	 * @param lootTable Loot table to use.
 	 */
-	public static void populateChestsInTemplate(World world, int x, int y, int z, Template template, PlacementSettings settings, String dataTag, ResourceLocation lootTable) {
-		Map<BlockPos, String> map = template.getDataBlocks(new BlockPos(x, y, z), settings);
+	public static void populateChestsInTemplate(World world, BlockPos position, Template template, PlacementSettings settings, String dataTag, ResourceLocation lootTable) {
+		Map<BlockPos, String> map = template.getDataBlocks(position, settings);
 		for (Entry<BlockPos, String> entry : map.entrySet()) {
 			if (dataTag.equals(entry.getValue())) {
 				BlockPos blockpos2 = entry.getKey();
@@ -120,84 +116,8 @@ public class GenerationHelper {
 	}
 
 	/**
-	 * Finds all chests in the chunk and applies the given loot table to them.
-	 * 
-	 * @deprecated Use populateChestsInTemplate instead
-	 * @param c                Chunk.
-	 * @param rand             Random.
-	 * @param loot             Chests Loot.
-	 * @param ignorechestempty If the chests should be given loot even if they
-	 *                         are not empty.
-	 */
-	@Deprecated
-	public static void populateChestsInChunk(Chunk c, Random rand, ResourceLocation loot, boolean ignorechestempty) {
-		Map<BlockPos, TileEntity> entry = c.getTileEntityMap();
-		for (TileEntity e : entry.values()) {
-			if (e != null) {
-				if (e instanceof TileEntityChest) {
-					TileEntityChest chest = (TileEntityChest) e;
-					if (ignorechestempty) {
-						chest.setLootTable(loot, rand.nextLong());
-					} else {
-						if (chest.isEmpty()) {
-							chest.setLootTable(loot, rand.nextLong());
-						}
-					}
-				}
-			}
-		}
-	}
-
-	/**
-	 * Finds all chests in the chunk and applies the given loot table to them
-	 * only if they're at the specified height.
-	 * 
-	 * @deprecated Use populateChestsInTemplate instead
-	 * @param c                Chunk.
-	 * @param y                Height at which to populate.
-	 * @param rand             Random.
-	 * @param loot             Chests Loot.
-	 * @param ignorechestempty If the chests should be given loot even if they
-	 *                         are not empty.
-	 */
-	@Deprecated
-	public static void populateChestsInChunkAtHeight(Chunk c, int y, Random rand, ResourceLocation loot, boolean ignorechestempty) {
-		Map<BlockPos, TileEntity> entry = c.getTileEntityMap();
-		for (TileEntity e : entry.values()) {
-			if (e != null) {
-				if (e instanceof TileEntityChest) {
-					TileEntityChest chest = (TileEntityChest) e;
-					if (chest.getPos().getY() == y) {
-						if (ignorechestempty) {
-							chest.setLootTable(loot, rand.nextLong());
-						} else {
-							if (chest.isEmpty()) {
-								chest.setLootTable(loot, rand.nextLong());
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
-	/**
-	 * Finds all empty chests in the chunk and applies the given loot table to
-	 * them.
-	 * 
-	 * @deprecated Use populateChestsInTemplate instead
-	 * @param c    Chunk.
-	 * @param rand Random.
-	 * @param loot Chests Loot.
-	 */
-	@Deprecated
-	public static void populateChestsInChunk(Chunk c, Random rand, ResourceLocation loot) {
-		populateChestsInChunk(c, rand, loot, false);
-	}
-
-	/**
 	 * Returns true if the chunk is flat determined by maximumDifference.
-	 * 
+	 *
 	 * @param pos               Position of the chunk.
 	 * @param maximumDifference Maximum number of blocks to allow between the
 	 *                          highest block and lowest block in the chunk.

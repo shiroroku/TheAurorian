@@ -44,10 +44,7 @@ public class TAWorldGenerator_DarkstoneDungeon extends WorldGenerator implements
 
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
-		Chunk c = worldIn.getChunkFromBlockCoords(position);
-
-		//generateDungeon(worldIn, c);
-
+		//this.generateDungeon(worldIn, worldIn.getChunkFromBlockCoords(position));
 		return true;
 	}
 
@@ -72,71 +69,81 @@ public class TAWorldGenerator_DarkstoneDungeon extends WorldGenerator implements
 	 * Facing west: west+ = x- north+ = z-
 	 */
 
-	private String[][] map_a = { { "╷╷╟─┐", "└┴┐╷│", "┌─┘└┤", "├╴┌╴│", "└─┼─┘" }, { "┌┬ ┌╴", "│└─┼┐", "╵┌─┘│", "┌┴╴╶┘", "└─┬─╴" } };
+	private final String[][] map_a = { { "╷╷╟─┐", "└┴┐╷│", "┌─┘└┤", "├╴┌╴│", "└─┼─┘" }, { "┌┬ ┌╴", "│└─┼┐", "╵┌─┘│", "┌┴╴╶┘", "└─┬─╴" } };
 
-	private String[][] mapToUse = map_a;
+	private String[][] mapToUse = this.map_a;
 
 	private void generateDungeon(World world, Chunk c) {
-		int chunkX = c.x;
-		int chunkZ = c.z;
-		int x = chunkX * 16 + 8;
-		int z = chunkZ * 16 + 8;
-		PlacementSettings settings = new PlacementSettings().setRotation(Rotation.NONE).setReplacedBlock(TABlocks.aurorianstone);
+		final int chunkX = c.x;
+		final int chunkZ = c.z;
+		final int x = chunkX * 16 + 8;
+		final int z = chunkZ * 16 + 8;
+		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.aurorianstone);
 
 		//Generate Entrance & Stairs
-		if (isValidChunkForGen(chunkX, chunkZ, 0, 0)) {
-			GenerationHelper.getTemplate(world, DARKSTONE_ENTRANCE).addBlocksToWorld(world, new BlockPos(x, getHeightOfDungeon(world, chunkX, chunkZ, 0, 0), z), settings);
+		if (this.isValidChunkForGen(chunkX, chunkZ, 0, 0)) {
+			GenerationHelper.getTemplate(world, DARKSTONE_ENTRANCE).addBlocksToWorld(world, new BlockPos(x, this.getHeightOfDungeon(world, chunkX, chunkZ, 0, 0), z), settings);
 		}
-		if (isValidChunkForGen(chunkX, chunkZ, 1, 0)) {
-			createStructureFromChar('╤', world, x, getHeightOfDungeon(world, chunkX, chunkZ, 1, 0), z, 0);
+		if (this.isValidChunkForGen(chunkX, chunkZ, 1, 0)) {
+			this.createStructureFromChar('╤', world, x, this.getHeightOfDungeon(world, chunkX, chunkZ, 1, 0), z, 0);
 		}
 
 		//Align Map to a chunk from entrance (presuming the map is 5x5)
-		int mapoffsety = 6;
-		int mapoffsetx = -2;
-		for (int maplayer = 0; maplayer < mapToUse.length; maplayer++) {
-			for (int iy = 0; iy < mapToUse[maplayer].length; iy++) {
-				for (int ix = 0; ix < mapToUse[maplayer][iy].toCharArray().length; ix++) {
-					if (isValidChunkForGen(chunkX, chunkZ, -iy + mapoffsety, ix + mapoffsetx)) {
-						createStructureFromChar(mapToUse[maplayer][iy].toCharArray()[ix], world, x, getHeightOfDungeon(world, chunkX, chunkZ, -iy + mapoffsety, ix + mapoffsetx) - (14 * (maplayer + 1)), z, maplayer);
+		final int mapoffsety = 6;
+		final int mapoffsetx = -2;
+		for (int maplayer = 0; maplayer < this.mapToUse.length; maplayer++) {
+			for (int iy = 0; iy < this.mapToUse[maplayer].length; iy++) {
+				for (int ix = 0; ix < this.mapToUse[maplayer][iy].toCharArray().length; ix++) {
+					if (this.isValidChunkForGen(chunkX, chunkZ, -iy + mapoffsety, ix + mapoffsetx)) {
+						this.createStructureFromChar(this.mapToUse[maplayer][iy].toCharArray()[ix], world, x, this.getHeightOfDungeon(world, chunkX, chunkZ, -iy + mapoffsety, ix + mapoffsetx) - (14 * (maplayer + 1)), z, maplayer);
 					}
 				}
 			}
 		}
 
 		//Generate Boss Room
-		int bossRoomYOffset = 14 * 2;
-		if (isValidChunkForGen(chunkX, chunkZ, 0, 0)) {
-			Template template = GenerationHelper.getTemplate(world, DARKSTONE_BOSSROOM_BACK);
-			template.addBlocksToWorld(world, new BlockPos(x, getHeightOfDungeon(world, chunkX, chunkZ, 0, 0) - bossRoomYOffset, z), settings);
-			GenerationHelper.populateChestsInTemplate(world, x, getHeightOfDungeon(world, chunkX, chunkZ, 0, 0) - bossRoomYOffset, z, template, settings, "chest", DARKSTONE_LOOTTABLEHIGH);
-		}
-		if (isValidChunkForGen(chunkX, chunkZ, 0, 1)) {
-			Template template = GenerationHelper.getTemplate(world, DARKSTONE_BOSSROOM_BACKLEFT);
-			template.addBlocksToWorld(world, new BlockPos(x, getHeightOfDungeon(world, chunkX, chunkZ, 0, 1) - bossRoomYOffset, z), settings);
-		}
-		if (isValidChunkForGen(chunkX, chunkZ, 0, -1)) {
-			Template template = GenerationHelper.getTemplate(world, DARKSTONE_BOSSROOM_BACKRIGHT);
-			template.addBlocksToWorld(world, new BlockPos(x, getHeightOfDungeon(world, chunkX, chunkZ, 0, -1) - bossRoomYOffset, z), settings);
-		}
-		if (isValidChunkForGen(chunkX, chunkZ, 1, 0)) {
-			Template template = GenerationHelper.getTemplate(world, DARKSTONE_BOSSROOM_FRONT);
-			template.addBlocksToWorld(world, new BlockPos(x, getHeightOfDungeon(world, chunkX, chunkZ, 1, 0) - bossRoomYOffset, z), settings);
-		}
-		if (isValidChunkForGen(chunkX, chunkZ, 1, 1)) {
-			Template template = GenerationHelper.getTemplate(world, DARKSTONE_BOSSROOM_FRONTLEFT);
-			template.addBlocksToWorld(world, new BlockPos(x, getHeightOfDungeon(world, chunkX, chunkZ, 1, 1) - bossRoomYOffset, z), settings);
-		}
-		if (isValidChunkForGen(chunkX, chunkZ, 1, -1)) {
-			Template template = GenerationHelper.getTemplate(world, DARKSTONE_BOSSROOM_FRONTRIGHT);
-			template.addBlocksToWorld(world, new BlockPos(x, getHeightOfDungeon(world, chunkX, chunkZ, 1, -1) - bossRoomYOffset, z), settings);
-		}
+		this.generateBossRoom(world, chunkX, chunkZ, x, z);
+	}
 
+	private void generateBossRoom(World world, int chunkX, int chunkZ, int x, int z) {
+		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.aurorianstone);
+		final int bossRoomYOffset = 14 * 2;
+		if (this.isValidChunkForGen(chunkX, chunkZ, 0, 0)) {
+			final Template template = GenerationHelper.getTemplate(world, DARKSTONE_BOSSROOM_BACK);
+			template.addBlocksToWorld(world, new BlockPos(x, this.getHeightOfDungeon(world, chunkX, chunkZ, 0, 0) - bossRoomYOffset, z), settings);
+			GenerationHelper.populateChestsInTemplate(world, new BlockPos(x, this.getHeightOfDungeon(world, chunkX, chunkZ, 0, 0) - bossRoomYOffset, z), template, settings, "chest", DARKSTONE_LOOTTABLEHIGH);
+			return;
+		}
+		if (this.isValidChunkForGen(chunkX, chunkZ, 0, 1)) {
+			final Template template = GenerationHelper.getTemplate(world, DARKSTONE_BOSSROOM_BACKLEFT);
+			template.addBlocksToWorld(world, new BlockPos(x, this.getHeightOfDungeon(world, chunkX, chunkZ, 0, 1) - bossRoomYOffset, z), settings);
+			return;
+		}
+		if (this.isValidChunkForGen(chunkX, chunkZ, 0, -1)) {
+			final Template template = GenerationHelper.getTemplate(world, DARKSTONE_BOSSROOM_BACKRIGHT);
+			template.addBlocksToWorld(world, new BlockPos(x, this.getHeightOfDungeon(world, chunkX, chunkZ, 0, -1) - bossRoomYOffset, z), settings);
+			return;
+		}
+		if (this.isValidChunkForGen(chunkX, chunkZ, 1, 0)) {
+			final Template template = GenerationHelper.getTemplate(world, DARKSTONE_BOSSROOM_FRONT);
+			template.addBlocksToWorld(world, new BlockPos(x, this.getHeightOfDungeon(world, chunkX, chunkZ, 1, 0) - bossRoomYOffset, z), settings);
+			return;
+		}
+		if (this.isValidChunkForGen(chunkX, chunkZ, 1, 1)) {
+			final Template template = GenerationHelper.getTemplate(world, DARKSTONE_BOSSROOM_FRONTLEFT);
+			template.addBlocksToWorld(world, new BlockPos(x, this.getHeightOfDungeon(world, chunkX, chunkZ, 1, 1) - bossRoomYOffset, z), settings);
+			return;
+		}
+		if (this.isValidChunkForGen(chunkX, chunkZ, 1, -1)) {
+			final Template template = GenerationHelper.getTemplate(world, DARKSTONE_BOSSROOM_FRONTRIGHT);
+			template.addBlocksToWorld(world, new BlockPos(x, this.getHeightOfDungeon(world, chunkX, chunkZ, 1, -1) - bossRoomYOffset, z), settings);
+			return;
+		}
 	}
 
 	/**
 	 * Gets height of dungeon from a single block specified at dungeon origin
-	 * 
+	 *
 	 * @param xin          actual chunk x
 	 * @param zin          actual chunk z
 	 * @param chunkoffsetx dungeon chunk x offset
@@ -164,123 +171,124 @@ public class TAWorldGenerator_DarkstoneDungeon extends WorldGenerator implements
 	}
 
 	private void createStructureFromChar(char c, World world, int x, int y, int z, int floorForLootRarity) {
-		PlacementSettings settings = new PlacementSettings().setRotation(Rotation.NONE).setReplacedBlock(TABlocks.aurorianstone);
+		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.aurorianstone);
+		final ResourceLocation loot = floorForLootRarity == 0 ? DARKSTONE_LOOTTABLELOW : DARKSTONE_LOOTTABLEMED;
 		boolean populateChests = false;
-		ResourceLocation loot = floorForLootRarity == 0 ? DARKSTONE_LOOTTABLELOW : DARKSTONE_LOOTTABLEMED;
 		Template template = null;
 		int placementx = x;
 		int placementy = y;
 		int placementz = z;
 
 		switch (c) {
-		case ' ':
-			return;
-		case '┼':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_CROSS);
-			populateChests = true;
-			break;
-		case '└':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_CORNER);
-			break;
-		case '┘':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_CORNER);
-			settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
-			placementz += 15;
-			break;
-		case '┌':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_CORNER);
-			settings.setRotation(Rotation.CLOCKWISE_90);
-			placementx += 15;
-			break;
-		case '┐':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_CORNER);
-			settings.setRotation(Rotation.CLOCKWISE_180);
-			placementz += 15;
-			placementx += 15;
-			break;
-		case '─':
-			boolean variant = world.rand.nextBoolean();
-			populateChests = variant ? true : false;
-			template = GenerationHelper.getTemplate(world, (variant ? DARKSTONE_STRAIGHT : DARKSTONE_STRAIGHT_B));
-			break;
-		case '│':
-			boolean variant2 = world.rand.nextBoolean();
-			populateChests = variant2 ? true : false;
-			template = GenerationHelper.getTemplate(world, (variant2 ? DARKSTONE_STRAIGHT : DARKSTONE_STRAIGHT_B));
-			settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
-			placementz += 15;
-			break;
-		case '╷':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_END);
-			populateChests = true;
-			break;
-		case '╴':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_END);
-			settings.setRotation(Rotation.CLOCKWISE_90);
-			placementx += 15;
-			populateChests = true;
-			break;
-		case '╶':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_END);
-			settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
-			placementz += 15;
-			populateChests = true;
-			break;
-		case '╵':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_END);
-			settings.setRotation(Rotation.CLOCKWISE_180);
-			placementz += 15;
-			placementx += 15;
-			populateChests = true;
-			break;
-		case '├':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_T);
-			break;
-		case '┬':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_T);
-			settings.setRotation(Rotation.CLOCKWISE_90);
-			placementx += 15;
-			break;
-		case '┤':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_T);
-			settings.setRotation(Rotation.CLOCKWISE_180);
-			placementz += 15;
-			placementx += 15;
-			break;
-		case '┴':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_T);
-			settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
-			placementz += 15;
-			break;
-		case '╤':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_STAIRS);
-			placementy -= 14;
-			break;
-		case '╟':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_STAIRS);
-			settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
-			placementz += 15;
-			placementy -= 14;
-			break;
-		case '╢':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_STAIRS);
-			settings.setRotation(Rotation.CLOCKWISE_90);
-			placementx += 15;
-			placementy -= 14;
-			break;
-		case '╧':
-			template = GenerationHelper.getTemplate(world, DARKSTONE_STAIRS);
-			settings.setRotation(Rotation.CLOCKWISE_180);
-			placementz += 15;
-			placementx += 15;
-			placementy -= 14;
-			break;
+			case ' ':
+				return;
+			case '┼':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_CROSS);
+				populateChests = true;
+				break;
+			case '└':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_CORNER);
+				break;
+			case '┘':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_CORNER);
+				settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
+				placementz += 15;
+				break;
+			case '┌':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_CORNER);
+				settings.setRotation(Rotation.CLOCKWISE_90);
+				placementx += 15;
+				break;
+			case '┐':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_CORNER);
+				settings.setRotation(Rotation.CLOCKWISE_180);
+				placementz += 15;
+				placementx += 15;
+				break;
+			case '─':
+				boolean variant = world.rand.nextBoolean();
+				populateChests = variant ? true : false;
+				template = GenerationHelper.getTemplate(world, (variant ? DARKSTONE_STRAIGHT : DARKSTONE_STRAIGHT_B));
+				break;
+			case '│':
+				boolean variant2 = world.rand.nextBoolean();
+				populateChests = variant2 ? true : false;
+				template = GenerationHelper.getTemplate(world, (variant2 ? DARKSTONE_STRAIGHT : DARKSTONE_STRAIGHT_B));
+				settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
+				placementz += 15;
+				break;
+			case '╷':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_END);
+				populateChests = true;
+				break;
+			case '╴':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_END);
+				settings.setRotation(Rotation.CLOCKWISE_90);
+				placementx += 15;
+				populateChests = true;
+				break;
+			case '╶':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_END);
+				settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
+				placementz += 15;
+				populateChests = true;
+				break;
+			case '╵':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_END);
+				settings.setRotation(Rotation.CLOCKWISE_180);
+				placementz += 15;
+				placementx += 15;
+				populateChests = true;
+				break;
+			case '├':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_T);
+				break;
+			case '┬':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_T);
+				settings.setRotation(Rotation.CLOCKWISE_90);
+				placementx += 15;
+				break;
+			case '┤':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_T);
+				settings.setRotation(Rotation.CLOCKWISE_180);
+				placementz += 15;
+				placementx += 15;
+				break;
+			case '┴':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_T);
+				settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
+				placementz += 15;
+				break;
+			case '╤':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_STAIRS);
+				placementy -= 14;
+				break;
+			case '╟':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_STAIRS);
+				settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
+				placementz += 15;
+				placementy -= 14;
+				break;
+			case '╢':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_STAIRS);
+				settings.setRotation(Rotation.CLOCKWISE_90);
+				placementx += 15;
+				placementy -= 14;
+				break;
+			case '╧':
+				template = GenerationHelper.getTemplate(world, DARKSTONE_STAIRS);
+				settings.setRotation(Rotation.CLOCKWISE_180);
+				placementz += 15;
+				placementx += 15;
+				placementy -= 14;
+				break;
 		}
 
 		if (template != null) {
-			template.addBlocksToWorld(world, new BlockPos(placementx, placementy, placementz), settings);
+			BlockPos position = new BlockPos(placementx, placementy, placementz);
+			template.addBlocksToWorld(world, position, settings);
 			if (populateChests && loot != null) {
-				GenerationHelper.populateChestsInTemplate(world, placementx, placementy, placementz, template, settings, "chest", loot);
+				GenerationHelper.populateChestsInTemplate(world, position, template, settings, "chest", loot);
 			}
 		}
 	}

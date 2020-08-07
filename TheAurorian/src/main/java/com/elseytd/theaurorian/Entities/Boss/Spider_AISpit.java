@@ -100,7 +100,6 @@ public class Spider_AISpit extends EntityAIBase {
 	@Override
 	public void resetTask() {
 		this.entity.getNavigator().clearPath();
-		this.entity.resetActiveHand();
 	}
 
 	private void finishSpit(EntityLivingBase target) {

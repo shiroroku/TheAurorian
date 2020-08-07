@@ -31,12 +31,16 @@ public class Spider_EntityRender extends RenderLiving<Spider_Entity> {
 
 	@Override
 	protected ResourceLocation getEntityTexture(Spider_Entity entity) {
-		return mobTexture;
+		return this.mobTexture;
 	}
 
 	@Override
 	protected void preRenderCallback(Spider_Entity entitylivingbaseIn, float partialTickTime) {
-		GlStateManager.scale(mobScale, mobScale, mobScale);
+		GlStateManager.scale(this.mobScale, this.mobScale, this.mobScale);
+		if (entitylivingbaseIn.isHanging()) {
+			GlStateManager.translate(0, 0, 0.5);
+			GlStateManager.rotate(90, 1, 0, 0);
+		}
 	}
 
 	public static class Factory implements IRenderFactory<Spider_Entity> {
