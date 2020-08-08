@@ -1,5 +1,7 @@
 package com.elseytd.theaurorian.TileEntities;
 
+import javax.annotation.Nullable;
+
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.Blocks.TABlock_Scrapper;
@@ -9,17 +11,23 @@ import com.elseytd.theaurorian.Recipes.ScrapperRecipeHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityLockable;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
-public class Scrapper_TileEntity extends TileEntityLockable implements ITickable {
+public class Scrapper_TileEntity extends TileEntityLockable implements ITickable, ISidedInventory {
 
 	private NonNullList<ItemStack> heldItems = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
 	private int craftProgress = 0;
@@ -45,16 +53,16 @@ public class Scrapper_TileEntity extends TileEntityLockable implements ITickable
 			ItemStack slot1 = this.heldItems.get(0);
 			ItemStack slot3output = this.heldItems.get(2);
 
-			if (getRecipeOutput(slot1) != null) {
-				if (slot3output.isEmpty() || (getRecipeOutput(slot1).getItem() == slot3output.getItem() && slot3output.getCount() + getRecipeOutput(slot1).getCount() <= slot3output.getMaxStackSize())) {
+			if (this.getRecipeOutput(slot1) != null) {
+				if (slot3output.isEmpty() || (this.getRecipeOutput(slot1).getItem() == slot3output.getItem() && slot3output.getCount() + this.getRecipeOutput(slot1).getCount() <= slot3output.getMaxStackSize())) {
 					if (this.isCrafting != true) {
 						this.isCrafting = true;
 					}
 				} else {
-					stopCrafting();
+					this.stopCrafting();
 				}
 			} else if (this.isCrafting) {
-				stopCrafting();
+				this.stopCrafting();
 			}
 
 		}
@@ -75,7 +83,7 @@ public class Scrapper_TileEntity extends TileEntityLockable implements ITickable
 	}
 
 	private void doCraft() {
-		ItemStack output = getRecipeOutput(this.heldItems.get(0));
+		ItemStack output = this.getRecipeOutput(this.heldItems.get(0));
 		if (output != null) {
 			this.heldItems.get(0).shrink(1);
 			this.heldItems.get(1).shrink(1);
@@ -186,22 +194,22 @@ public class Scrapper_TileEntity extends TileEntityLockable implements ITickable
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
 		switch (index) {
-		case 0:
-			for (ScrapperRecipe recipe : ScrapperRecipeHandler.allRecipes) {
-				if (recipe.getInput().getItem() == stack.getItem()) {
+			case 0:
+				for (ScrapperRecipe recipe : ScrapperRecipeHandler.allRecipes) {
+					if (recipe.getInput().getItem() == stack.getItem()) {
+						return true;
+					}
+				}
+				return false;
+			case 1:
+				if (Item.getItemFromBlock(TABlocks.crystal) == stack.getItem()) {
 					return true;
 				}
-			}
-			return false;
-		case 1:
-			if (Item.getItemFromBlock(TABlocks.crystal) == stack.getItem()) {
-				return true;
-			}
 
-			return false;
-		default:
-		case 2:
-			return false;
+				return false;
+			default:
+			case 2:
+				return false;
 		}
 	}
 
@@ -223,25 +231,54 @@ public class Scrapper_TileEntity extends TileEntityLockable implements ITickable
 	@Override
 	public int getField(int id) {
 		switch (id) {
-		default:
-		case 0:
-			return craftProgress;
+			default:
+			case 0:
+				return this.craftProgress;
 		}
 	}
 
 	@Override
 	public void setField(int id, int value) {
 		switch (id) {
-		default:
-		case 0:
-			craftProgress = value;
-			break;
+			default:
+			case 0:
+				this.craftProgress = value;
+				break;
 		}
 	}
 
 	@Override
 	public int getFieldCount() {
 		return 1;
+	}
+
+	@Override
+	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
+		return index == 2;
+	}
+
+	@Override
+	public int[] getSlotsForFace(EnumFacing side) {
+		return side == EnumFacing.DOWN ? new int[] { 2 } : new int[] { 0, 1 };
+	}
+
+	@Override
+	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
+		return this.isItemValidForSlot(index, itemStackIn);
+	}
+
+	IItemHandler handlerBottom = new SidedInvWrapper(this, net.minecraft.util.EnumFacing.DOWN);
+
+	@Override
+	@Nullable
+	@SuppressWarnings("unchecked")
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+		if (facing != null && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+			if (facing == EnumFacing.DOWN) {
+				return (T) this.handlerBottom;
+			}
+		}
+		return super.getCapability(capability, facing);
 	}
 
 }

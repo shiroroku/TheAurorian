@@ -1,5 +1,7 @@
 package com.elseytd.theaurorian.TileEntities;
 
+import javax.annotation.Nullable;
+
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.Blocks.TABlock_MoonLightForge;
@@ -11,18 +13,24 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
-public class MoonLightForge_TileEntity extends TileEntityLockable implements ITickable {
+public class MoonLightForge_TileEntity extends TileEntityLockable implements ITickable, ISidedInventory {
 
 	private NonNullList<ItemStack> heldItems = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
 	private int hasMoonLight = 0;
@@ -67,17 +75,17 @@ public class MoonLightForge_TileEntity extends TileEntityLockable implements ITi
 				ItemStack slot2 = this.heldItems.get(1);
 				ItemStack slot3output = this.heldItems.get(2);
 
-				if (getRecipeOutput(slot1, slot2) != null && this.hasMoonlight()) {
+				if (this.getRecipeOutput(slot1, slot2) != null && this.hasMoonlight()) {
 					if (slot3output.isEmpty()) {
 						if (this.isCrafting != true) {
 							this.isCrafting = true;
-							updateClient();
+							this.updateClient();
 						}
 					} else {
-						stopCrafting();
+						this.stopCrafting();
 					}
 				} else if (this.isCrafting) {
-					stopCrafting();
+					this.stopCrafting();
 				}
 			} else {
 				this.isPowered = 1;
@@ -113,7 +121,7 @@ public class MoonLightForge_TileEntity extends TileEntityLockable implements ITi
 	}
 
 	private void doCraft() {
-		ItemStack output = getRecipeOutput(this.heldItems.get(0), this.heldItems.get(1));
+		ItemStack output = this.getRecipeOutput(this.heldItems.get(0), this.heldItems.get(1));
 		if (output != null) {
 			this.heldItems.get(0).shrink(1);
 			this.heldItems.get(1).shrink(1);
@@ -124,7 +132,7 @@ public class MoonLightForge_TileEntity extends TileEntityLockable implements ITi
 	private void stopCrafting() {
 		this.isCrafting = false;
 		this.craftProgress = 0;
-		updateClient();
+		this.updateClient();
 	}
 
 	@Override
@@ -221,44 +229,44 @@ public class MoonLightForge_TileEntity extends TileEntityLockable implements ITi
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
 		switch (index) {
-		case 0:
-			for (MoonlightForgeRecipe recipe : MoonlightForgeRecipeHandler.allRecipes) {
-				if (recipe.getInput1().getItem() == stack.getItem()) {
-					return true;
+			case 0:
+				for (MoonlightForgeRecipe recipe : MoonlightForgeRecipeHandler.allRecipes) {
+					if (recipe.getInput1().getItem() == stack.getItem()) {
+						return true;
+					}
 				}
-			}
-			return false;
-		case 1:
-			for (MoonlightForgeRecipe recipe : MoonlightForgeRecipeHandler.allRecipes) {
-				if (recipe.getInput2().getItem() == stack.getItem()) {
-					return true;
+				return false;
+			case 1:
+				for (MoonlightForgeRecipe recipe : MoonlightForgeRecipeHandler.allRecipes) {
+					if (recipe.getInput2().getItem() == stack.getItem()) {
+						return true;
+					}
 				}
-			}
-			return false;
-		default:
-		case 2:
-			return false;
+				return false;
+			default:
+			case 2:
+				return false;
 		}
 	}
 
 	private void updateClient() {
 		this.markDirty();
 		if (this.world != null) {
-			IBlockState state = this.world.getBlockState(getPos());
-			this.world.notifyBlockUpdate(getPos(), state, state, 3);
+			IBlockState state = this.world.getBlockState(this.getPos());
+			this.world.notifyBlockUpdate(this.getPos(), state, state, 3);
 		}
 	}
 
 	@Override
 	public NBTTagCompound getUpdateTag() {
-		return writeToNBT(new NBTTagCompound());
+		return this.writeToNBT(new NBTTagCompound());
 	}
 
 	@Override
 	public SPacketUpdateTileEntity getUpdatePacket() {
 		NBTTagCompound nbtTag = new NBTTagCompound();
 		this.writeToNBT(nbtTag);
-		return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
+		return new SPacketUpdateTileEntity(this.getPos(), 1, nbtTag);
 	}
 
 	@Override
@@ -293,29 +301,29 @@ public class MoonLightForge_TileEntity extends TileEntityLockable implements ITi
 	@Override
 	public int getField(int id) {
 		switch (id) {
-		default:
-		case 0:
-			return hasMoonLight;
-		case 1:
-			return craftProgress;
-		case 2:
-			return isPowered;
+			default:
+			case 0:
+				return this.hasMoonLight;
+			case 1:
+				return this.craftProgress;
+			case 2:
+				return this.isPowered;
 		}
 	}
 
 	@Override
 	public void setField(int id, int value) {
 		switch (id) {
-		default:
-		case 0:
-			hasMoonLight = value;
-			break;
-		case 1:
-			craftProgress = value;
-			break;
-		case 2:
-			isPowered = value;
-			break;
+			default:
+			case 0:
+				this.hasMoonLight = value;
+				break;
+			case 1:
+				this.craftProgress = value;
+				break;
+			case 2:
+				this.isPowered = value;
+				break;
 		}
 	}
 
@@ -324,4 +332,32 @@ public class MoonLightForge_TileEntity extends TileEntityLockable implements ITi
 		return 3;
 	}
 
+	@Override
+	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
+		return index == 2;
+	}
+
+	@Override
+	public int[] getSlotsForFace(EnumFacing side) {
+		return side == EnumFacing.DOWN ? new int[] { 2 } : new int[] { 0, 1 };
+	}
+
+	@Override
+	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
+		return this.isItemValidForSlot(index, itemStackIn);
+	}
+
+	IItemHandler handlerBottom = new SidedInvWrapper(this, net.minecraft.util.EnumFacing.DOWN);
+
+	@Override
+	@Nullable
+	@SuppressWarnings("unchecked")
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+		if (facing != null && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+			if (facing == EnumFacing.DOWN) {
+				return (T) this.handlerBottom;
+			}
+		}
+		return super.getCapability(capability, facing);
+	}
 }
