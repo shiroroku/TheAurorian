@@ -29,7 +29,7 @@ public class TAItem_Special_AbsorptionOrb extends Item {
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);
-		this.setMaxDamage(200);
+		this.setMaxDamage(TAConfig.Config_OrbOfAbsorptionDurability);
 		this.setMaxStackSize(1);
 	}
 
@@ -41,28 +41,19 @@ public class TAItem_Special_AbsorptionOrb extends Item {
 				ItemStack offhand = p.getHeldItem(EnumHand.OFF_HAND);
 				ItemStack mainhand = p.getHeldItem(EnumHand.MAIN_HAND);
 				switch (TAConfig.Config_OrbOfAbsorptionWhitelistBlacklist) {
-				case 0:
-				default:
-					if (mainhand.isItemStackDamageable() && mainhand.isItemDamaged()) {
-						if (!p.isCreative()) {
-							offhand.damageItem(1, p);
-						}
-						mainhand.setItemDamage(mainhand.getItemDamage() - 1);
-						return;
-					}
-					break;
-				case 1:
-					for (String i : TAConfig.Config_OrbOfAbsorptionList) {
-						if (Item.getByNameOrId(i) == mainhand.getItem()) {
-							if (mainhand.isItemStackDamageable() && mainhand.isItemDamaged()) {
-								if (!p.isCreative()) {
-									offhand.damageItem(1, p);
-								}
-								mainhand.setItemDamage(mainhand.getItemDamage() - 1);
-								return;
+					case 0:
+					default:
+						if (mainhand.isItemStackDamageable() && mainhand.isItemDamaged()) {
+							if (!p.isCreative()) {
+								offhand.damageItem(1, p);
 							}
-						} else if (!i.contains(":")) {
-							if (i.equals(mainhand.getItem().getRegistryName().getResourceDomain())) {
+							mainhand.setItemDamage(mainhand.getItemDamage() - 1);
+							return;
+						}
+						break;
+					case 1:
+						for (String i : TAConfig.Config_OrbOfAbsorptionList) {
+							if (Item.getByNameOrId(i) == mainhand.getItem()) {
 								if (mainhand.isItemStackDamageable() && mainhand.isItemDamaged()) {
 									if (!p.isCreative()) {
 										offhand.damageItem(1, p);
@@ -70,28 +61,37 @@ public class TAItem_Special_AbsorptionOrb extends Item {
 									mainhand.setItemDamage(mainhand.getItemDamage() - 1);
 									return;
 								}
+							} else if (!i.contains(":")) {
+								if (i.equals(mainhand.getItem().getRegistryName().getResourceDomain())) {
+									if (mainhand.isItemStackDamageable() && mainhand.isItemDamaged()) {
+										if (!p.isCreative()) {
+											offhand.damageItem(1, p);
+										}
+										mainhand.setItemDamage(mainhand.getItemDamage() - 1);
+										return;
+									}
+								}
 							}
 						}
-					}
-					break;
-				case 2:
-					for (String i : TAConfig.Config_OrbOfAbsorptionList) {
-						if (Item.getByNameOrId(i) == mainhand.getItem()) {
-							return;
-						} else if (!i.contains(":")) {
-							if (i.equals(mainhand.getItem().getRegistryName().getResourceDomain())) {
+						break;
+					case 2:
+						for (String i : TAConfig.Config_OrbOfAbsorptionList) {
+							if (Item.getByNameOrId(i) == mainhand.getItem()) {
 								return;
+							} else if (!i.contains(":")) {
+								if (i.equals(mainhand.getItem().getRegistryName().getResourceDomain())) {
+									return;
+								}
 							}
 						}
-					}
-					if (mainhand.isItemStackDamageable() && mainhand.isItemDamaged()) {
-						if (!p.isCreative()) {
-							offhand.damageItem(1, p);
+						if (mainhand.isItemStackDamageable() && mainhand.isItemDamaged()) {
+							if (!p.isCreative()) {
+								offhand.damageItem(1, p);
+							}
+							mainhand.setItemDamage(mainhand.getItemDamage() - 1);
+							return;
 						}
-						mainhand.setItemDamage(mainhand.getItemDamage() - 1);
-						return;
-					}
-					break;
+						break;
 				}
 			}
 		}
@@ -102,6 +102,7 @@ public class TAItem_Special_AbsorptionOrb extends Item {
 		return EnumRarity.EPIC;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {
