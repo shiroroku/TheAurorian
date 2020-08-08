@@ -41,6 +41,8 @@ public class TABlock_Portal extends BlockBreakable {
 	protected static final AxisAlignedBB Z_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D);
 	protected static final AxisAlignedBB Y_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D);
 
+	//TODO Add portal effects when standing in it
+
 	public TABlock_Portal() {
 		super(Material.PORTAL, false);
 		this.setRegistryName(BLOCKNAME);
@@ -54,20 +56,20 @@ public class TABlock_Portal extends BlockBreakable {
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		if (rand.nextInt(100) == 0) {
-			worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
 		}
 	}
 
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		switch ((EnumFacing.Axis) state.getValue(AXIS)) {
-		case X:
-			return X_AABB;
-		case Y:
-		default:
-			return Y_AABB;
-		case Z:
-			return Z_AABB;
+		switch (state.getValue(AXIS)) {
+			case X:
+				return X_AABB;
+			case Y:
+			default:
+				return Y_AABB;
+			case Z:
+				return Z_AABB;
 		}
 	}
 
@@ -115,7 +117,7 @@ public class TABlock_Portal extends BlockBreakable {
 
 	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
-		EnumFacing.Axis enumfacing$axis = (EnumFacing.Axis) state.getValue(AXIS);
+		EnumFacing.Axis enumfacing$axis = state.getValue(AXIS);
 
 		if (enumfacing$axis == EnumFacing.Axis.X) {
 			TABlock_Portal.Size blockportal$size = new TABlock_Portal.Size(worldIn, pos, EnumFacing.Axis.X);
@@ -139,7 +141,7 @@ public class TABlock_Portal extends BlockBreakable {
 		EnumFacing.Axis enumfacing$axis = null;
 
 		if (blockState.getBlock() == this) {
-			enumfacing$axis = (EnumFacing.Axis) blockState.getValue(AXIS);
+			enumfacing$axis = blockState.getValue(AXIS);
 
 			if (enumfacing$axis == null) {
 				return false;
@@ -209,7 +211,7 @@ public class TABlock_Portal extends BlockBreakable {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(AXIS, (meta & 3) == 2 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
+		return this.getDefaultState().withProperty(AXIS, (meta & 3) == 2 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
 	}
 
 	@Override
@@ -333,50 +335,50 @@ public class TABlock_Portal extends BlockBreakable {
 		protected int calculatePortalHeight() {
 			label56:
 
-			for (this.height = 0; this.height < 21; ++this.height) {
-				for (int i = 0; i < this.width; ++i) {
-					BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i).up(this.height);
-					Block block = this.world.getBlockState(blockpos).getBlock();
+				for (this.height = 0; this.height < 21; ++this.height) {
+					for (int i = 0; i < this.width; ++i) {
+						BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i).up(this.height);
+						Block block = this.world.getBlockState(blockpos).getBlock();
 
-					if (!this.isEmptyBlock(block)) {
-						break label56;
-					}
-
-					if (block == TABlocks.aurorianportal) {
-						++this.portalBlockCount;
-					}
-
-					if (i == 0) {
-						block = this.world.getBlockState(blockpos.offset(this.leftDir)).getBlock();
-
-						if (block != TABlocks.aurorianportalframebricks) {
+						if (!this.isEmptyBlock(block)) {
 							break label56;
 						}
-					} else if (i == this.width - 1) {
-						block = this.world.getBlockState(blockpos.offset(this.rightDir)).getBlock();
 
-						if (block != TABlocks.aurorianportalframebricks) {
-							break label56;
+						if (block == TABlocks.aurorianportal) {
+							++this.portalBlockCount;
+						}
+
+						if (i == 0) {
+							block = this.world.getBlockState(blockpos.offset(this.leftDir)).getBlock();
+
+							if (block != TABlocks.aurorianportalframebricks) {
+								break label56;
+							}
+						} else if (i == this.width - 1) {
+							block = this.world.getBlockState(blockpos.offset(this.rightDir)).getBlock();
+
+							if (block != TABlocks.aurorianportalframebricks) {
+								break label56;
+							}
 						}
 					}
 				}
-			}
 
-			for (int j = 0; j < this.width; ++j) {
-				if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != TABlocks.aurorianportalframebricks) {
-					this.height = 0;
-					break;
-				}
-			}
-
-			if (this.height <= 21 && this.height >= 3) {
-				return this.height;
-			} else {
-				this.bottomLeft = null;
-				this.width = 0;
+		for (int j = 0; j < this.width; ++j) {
+			if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != TABlocks.aurorianportalframebricks) {
 				this.height = 0;
-				return 0;
+				break;
 			}
+		}
+
+		if (this.height <= 21 && this.height >= 3) {
+			return this.height;
+		} else {
+			this.bottomLeft = null;
+			this.width = 0;
+			this.height = 0;
+			return 0;
+		}
 		}
 
 		protected boolean isEmptyBlock(Block blockIn) {

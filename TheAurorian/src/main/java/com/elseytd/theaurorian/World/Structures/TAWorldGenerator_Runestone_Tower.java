@@ -46,7 +46,7 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator implements 
 	private static final ResourceLocation RUNESTONETOWER_TOP_BL = new ResourceLocation(TAMod.MODID, "runestonedungeon/runestonetower_top_blv2");
 	private static final ResourceLocation RUNESTONETOWER_TOP_BR = new ResourceLocation(TAMod.MODID, "runestonedungeon/runestonetower_top_brv2");
 
-	//I made a mistake of having the templates be 15x15 when I first made them and also saving them all on different sides.
+	//TODO I made a mistake of having the templates be 15x15 when I first made them and also saving them all on different sides.
 	//Need to rewrite all this soon.
 	//==================
 	// TERRAIN - Filler layers that go under the base so the tower doesnt look like its floating.

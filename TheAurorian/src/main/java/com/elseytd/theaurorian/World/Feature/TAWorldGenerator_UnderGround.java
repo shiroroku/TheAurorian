@@ -17,6 +17,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class TAWorldGenerator_UnderGround extends WorldGenerator {
 
+	//TODO Find a way to generate underground mushroom biomes
+
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
 		int distance = 320;
@@ -26,22 +28,22 @@ public class TAWorldGenerator_UnderGround extends WorldGenerator {
 			int size = 250;
 
 			float f = rand.nextFloat() * (float) Math.PI;
-			double d0 = (double) ((float) (location.getX() + 8) + MathHelper.sin(f) * (float) size / 8.0F);
-			double d1 = (double) ((float) (location.getX() + 8) - MathHelper.sin(f) * (float) size / 8.0F);
-			double d2 = (double) ((float) (location.getZ() + 8) + MathHelper.cos(f) * (float) size / 8.0F);
-			double d3 = (double) ((float) (location.getZ() + 8) - MathHelper.cos(f) * (float) size / 8.0F);
-			double d4 = (double) (location.getY() + rand.nextInt(3) - 2);
-			double d5 = (double) (location.getY() + rand.nextInt(3) - 2);
+			double d0 = location.getX() + 8 + MathHelper.sin(f) * size / 8.0F;
+			double d1 = location.getX() + 8 - MathHelper.sin(f) * size / 8.0F;
+			double d2 = location.getZ() + 8 + MathHelper.cos(f) * size / 8.0F;
+			double d3 = location.getZ() + 8 - MathHelper.cos(f) * size / 8.0F;
+			double d4 = location.getY() + rand.nextInt(3) - 2;
+			double d5 = location.getY() + rand.nextInt(3) - 2;
 
-			List<BlockPos> blks = new ArrayList<BlockPos>();
+			List<BlockPos> blks = new ArrayList<>();
 			for (int i = 0; i < size; ++i) {
 				float f1 = (float) i / (float) size;
-				double d6 = d0 + (d1 - d0) * (double) f1;
-				double d7 = d4 + (d5 - d4) * (double) f1;
-				double d8 = d2 + (d3 - d2) * (double) f1;
-				double d9 = rand.nextDouble() * (double) (size) / 16.0D;
-				double d10 = (double) (MathHelper.sin((float) Math.PI * f1) + 1.0F) * d9 + 1.0D;
-				double d11 = (double) (MathHelper.sin((float) Math.PI * f1) + 1.0F) * (d9 * 0.5D) + 1.0D;
+				double d6 = d0 + (d1 - d0) * f1;
+				double d7 = d4 + (d5 - d4) * f1;
+				double d8 = d2 + (d3 - d2) * f1;
+				double d9 = rand.nextDouble() * (size) / 16.0D;
+				double d10 = (MathHelper.sin((float) Math.PI * f1) + 1.0F) * d9 + 1.0D;
+				double d11 = (MathHelper.sin((float) Math.PI * f1) + 1.0F) * (d9 * 0.5D) + 1.0D;
 				int j = MathHelper.floor(d6 - d10 / 2.0D);
 				int k = MathHelper.floor(d7 - d11 / 2.0D);
 				int l = MathHelper.floor(d8 - d10 / 2.0D);
@@ -51,13 +53,13 @@ public class TAWorldGenerator_UnderGround extends WorldGenerator {
 
 				//Clear out space
 				for (int x = j; x <= i1; ++x) {
-					double d12 = ((double) x + 0.5D - d6) / (d10 / 2.0D);
+					double d12 = (x + 0.5D - d6) / (d10 / 2.0D);
 					if (d12 * d12 < 1.0D) {
 						for (int y = k; y <= j1; ++y) {
-							double d13 = ((double) y + 0.5D - d7) / (d11 / 2.0D);
+							double d13 = (y + 0.5D - d7) / (d11 / 2.0D);
 							if (d12 * d12 + d13 * d13 < 1.0D) {
 								for (int z = l; z <= k1; ++z) {
-									double d14 = ((double) z + 0.5D - d8) / (d10 / 2.0D);
+									double d14 = (z + 0.5D - d8) / (d10 / 2.0D);
 									if (d12 * d12 + d13 * d13 + d14 * d14 < 1.0D) {
 										BlockPos blockpos = new BlockPos(x, y, z);
 										worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 2);
@@ -70,13 +72,13 @@ public class TAWorldGenerator_UnderGround extends WorldGenerator {
 
 				//Make ground grass and decorate
 				for (int x = j; x <= i1; ++x) {
-					double d12 = ((double) x + 0.5D - d6) / (d10 / 2.0D);
+					double d12 = (x + 0.5D - d6) / (d10 / 2.0D);
 					if (d12 * d12 < 1.0D) {
 						for (int y = k; y <= j1; ++y) {
-							double d13 = ((double) y + 0.5D - d7) / (d11 / 2.0D);
+							double d13 = (y + 0.5D - d7) / (d11 / 2.0D);
 							if (d12 * d12 + d13 * d13 < 1.0D) {
 								for (int z = l; z <= k1; ++z) {
-									double d14 = ((double) z + 0.5D - d8) / (d10 / 2.0D);
+									double d14 = (z + 0.5D - d8) / (d10 / 2.0D);
 									if (d12 * d12 + d13 * d13 + d14 * d14 < 1.0D) {
 										BlockPos blockpos = new BlockPos(x, y - 1, z);
 										if (worldIn.getBlockState(blockpos.up()) == Blocks.AIR.getDefaultState()) {
@@ -94,7 +96,7 @@ public class TAWorldGenerator_UnderGround extends WorldGenerator {
 			}
 
 			for (BlockPos p : blks) {
-				decorateBlock(worldIn, rand, p.up());
+				this.decorateBlock(worldIn, rand, p.up());
 			}
 
 			return true;
@@ -104,7 +106,7 @@ public class TAWorldGenerator_UnderGround extends WorldGenerator {
 
 	private void decorateBlock(World worldIn, Random rand, BlockPos position) {
 		if (TAUtil.randomChanceOf(0.10)) {
-			if (!isTouchingOrAdjacent(worldIn, position, TABlocks.mushroomstem, 6)) {
+			if (!this.isTouchingOrAdjacent(worldIn, position, TABlocks.mushroomstem, 6)) {
 				if (worldIn.getBlockState(position.down()) == TABlocks.auroriangrass.getDefaultState()) {
 					TAWorldGenerator_Mushroom worldgenabstracttree = new TAWorldGenerator_Mushroom(false);
 					worldgenabstracttree.generate(worldIn, rand, position);

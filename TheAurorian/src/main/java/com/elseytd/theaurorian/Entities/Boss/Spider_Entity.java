@@ -44,6 +44,8 @@ public class Spider_Entity extends EntityMob {
 	private static final DataParameter<Boolean> CLIMBING = EntityDataManager.createKey(Spider_Entity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Boolean> HANGING = EntityDataManager.createKey(Spider_Entity.class, DataSerializers.BOOLEAN);
 
+	//TODO Add web animation for Hanging so its not just floating
+
 	public Spider_Entity(World worldIn) {
 		super(worldIn);
 		this.setHealth(this.getMaxHealth());
