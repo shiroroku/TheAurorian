@@ -14,7 +14,7 @@ public class Spider_AISpit extends EntityAIBase {
 
 	private int spitCooldown = 0;
 	private int spitWindup = 0;
-	private int minDistance = 10;
+	private int minDistance = 3;
 	private int maxDistance = 50;
 	private double targetX;
 	private double targetY;
@@ -52,7 +52,7 @@ public class Spider_AISpit extends EntityAIBase {
 		this.entity.getNavigator().clearPath();
 		this.entity.setSpitting(true);
 		this.entity.faceEntity(this.entity.getAttackTarget(), this.entity.getHorizontalFaceSpeed() * 2, this.entity.getVerticalFaceSpeed() * 2);
-		startSpit();
+		this.startSpit();
 	}
 
 	@Override
@@ -79,15 +79,15 @@ public class Spider_AISpit extends EntityAIBase {
 		EntityLivingBase target = this.entity.getAttackTarget();
 
 		if (this.spitWindup == 1) {
-			setSpitLocation(this.entity.getAttackTarget());
+			this.setSpitLocation(this.entity.getAttackTarget());
 		}
 
 		if (this.spitWindup == 0) {
-			this.entity.getLookHelper().setLookPosition(this.targetX, this.targetY + (double) this.entity.getEyeHeight(), this.targetZ, (float) this.entity.getHorizontalFaceSpeed(), (float) this.entity.getVerticalFaceSpeed());
+			this.entity.getLookHelper().setLookPosition(this.targetX, this.targetY + this.entity.getEyeHeight(), this.targetZ, this.entity.getHorizontalFaceSpeed(), this.entity.getVerticalFaceSpeed());
 			this.entity.setWindingUpSpit(false);
-			finishSpit(target);
+			this.finishSpit(target);
 		} else {
-			this.entity.getLookHelper().setLookPosition(target.posX, target.posY + (double) target.getEyeHeight(), target.posZ, (float) this.entity.getHorizontalFaceSpeed(), (float) this.entity.getVerticalFaceSpeed());
+			this.entity.getLookHelper().setLookPosition(target.posX, target.posY + target.getEyeHeight(), target.posZ, this.entity.getHorizontalFaceSpeed(), this.entity.getVerticalFaceSpeed());
 			this.entity.setWindingUpSpit(true);
 			this.spitWindup--;
 		}
@@ -107,14 +107,14 @@ public class Spider_AISpit extends EntityAIBase {
 		if (target != null) {
 
 			Webbing_Entity web = new Webbing_Entity(this.entity.world, this.entity);
-			double d0 = target.posX - entity.posX;
-			double d1 = target.getEntityBoundingBox().minY + (double) (target.height / 3.0F) - web.posY;
-			double d2 = target.posZ - entity.posZ;
-			double d3 = (double) MathHelper.sqrt(d0 * d0 + d2 * d2);
+			double d0 = target.posX - this.entity.posX;
+			double d1 = target.getEntityBoundingBox().minY + target.height / 3.0F - web.posY;
+			double d2 = target.posZ - this.entity.posZ;
+			double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
 			web.shoot(d0, d1 + d3 * 0.1D, d2, 1F, 0F);
-			entity.world.playSound(null, entity.posX, entity.posY, entity.posZ, SoundEvents.ENTITY_CAT_HISS, SoundCategory.HOSTILE, 0.8F, 0.8F / (entity.getRNG().nextFloat() * 0.4F + 0.8F));
+			this.entity.world.playSound(null, this.entity.posX, this.entity.posY, this.entity.posZ, SoundEvents.ENTITY_CAT_HISS, SoundCategory.HOSTILE, 0.8F, 0.8F / (this.entity.getRNG().nextFloat() * 0.4F + 0.8F));
 
-			entity.world.spawnEntity(web);
+			this.entity.world.spawnEntity(web);
 		}
 		this.entity.setSpitting(false);
 	}

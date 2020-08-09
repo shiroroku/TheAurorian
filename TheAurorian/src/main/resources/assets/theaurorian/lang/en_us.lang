@@ -142,6 +142,7 @@ string.theaurorian.gui.moonlightforge.nomoonlight=No Moonlight Detected!
 string.theaurorian.gui.moonlightforge.redstone=Currently disabled by redstone power.
 string.theaurorian.item.locator1=Locator set to Runestone
 string.theaurorian.item.locator2=Locator set to Moontemple
+string.theaurorian.item.locator3=Locator set to Darkstone
 string.theaurorian.tooltip.absorptionorb=Heals mainhand item when held in offhand!
 string.theaurorian.tooltip.amuletdark=Has a faint dreadful aura. [Next boss not implemented yet!]
 string.theaurorian.tooltip.amuletkeeper=Pulsates with corrupted power. Used for crafting the Moontemple Key.

@@ -44,34 +44,43 @@ public class TAWorldGenerator_DarkstoneDungeon extends WorldGenerator implements
 
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
-		//this.generateDungeon(worldIn, worldIn.getChunkFromBlockCoords(position));
+		this.generateDungeon(worldIn, worldIn.getChunkFromBlockCoords(position));
 		return true;
 	}
-
-	@Override
-	public boolean isValidChunkForGen(int chunkX, int chunkZ, int offsetX, int offsetZ) {
-		int offs = (TAConfig.Config_DungeonDensity / 4);
-		if ((chunkX + offsetX + offs) % CHUNKS_BETWEEN_DUNGEONS == 0 && (chunkZ + offsetZ + offs) % CHUNKS_BETWEEN_DUNGEONS == 0) {
-			return true;
-		}
-		return false;
-	}
-
-	// └ ┘ ┌ ┐
-	// ─ │
-	// ╴ ╵ ╶ ╷
-	// ┼ ┤ ┴ ├ ┬
-	// ╟ ╤ ╢ ╧
-
+	
 	/*
 	 * isValidChunkForGen x and z are not aligned with minecrafts, need to fix
 	 * this sometime but would require rework of moontemples and runestones also
 	 * Facing west: west+ = x- north+ = z-
 	 */
 
-	private final String[][] map_a = { { "╷╷╟─┐", "└┴┐╷│", "┌─┘└┤", "├╴┌╴│", "└─┼─┘" }, { "┌┬ ┌╴", "│└─┼┐", "╵┌─┘│", "┌┴╴╶┘", "└─┬─╴" } };
+	@Override
+	public boolean isValidChunkForGen(int chunkX, int chunkZ, int offsetX, int offsetZ) {
+		int offs = TAConfig.Config_DungeonDensity + TAConfig.Config_DungeonDensity / 2;
+		if ((chunkX + offsetX + offs) % CHUNKS_BETWEEN_DUNGEONS == 0 && (chunkZ + offsetZ + offs) % CHUNKS_BETWEEN_DUNGEONS == 0) {
+			return true;
+		}
+		return false;
+	}
 
-	private String[][] mapToUse = this.map_a;
+	/*
+	 * Because gradle didnt like to build my map chars, I have to change to
+	 * letters -3-
+	 */
+	private final String[][] map_a = { { "AAQIH", "EOHAJ", "GIFEN", "LBGBJ", "EIKIF" }, { "GM GB", "JEIKH", "DGIFJ", "GOBCF", "EIMIB" } };
+	private final String[][] map_b = { { "GHCHA", "JSAEN", "EMKIF", "GFEMH", "DCMFD" }, { "GIMHA", "J JEN", "JJDGF", "EFGFA", "CIKIF" } };
+
+	//Map Settings
+	private final int mapWidth = 5;
+	private final int mapLength = 5;
+	private final int mapFloors = 2;
+	private final int mapoffsetx = 6;
+	private final int mapoffsetz = -2;
+
+	//A clever way we can have map variations without using rng
+	private String[][] getMapFromDungeonHeight(int height) {
+		return height % 2 == 0 ? this.map_b : this.map_a;
+	}
 
 	private void generateDungeon(World world, Chunk c) {
 		final int chunkX = c.x;
@@ -85,17 +94,17 @@ public class TAWorldGenerator_DarkstoneDungeon extends WorldGenerator implements
 			GenerationHelper.getTemplate(world, DARKSTONE_ENTRANCE).addBlocksToWorld(world, new BlockPos(x, this.getHeightOfDungeon(world, chunkX, chunkZ, 0, 0), z), settings);
 		}
 		if (this.isValidChunkForGen(chunkX, chunkZ, 1, 0)) {
-			this.createStructureFromChar('╤', world, x, this.getHeightOfDungeon(world, chunkX, chunkZ, 1, 0), z, 0);
+			this.createStructureFromChar('P', world, x, this.getHeightOfDungeon(world, chunkX, chunkZ, 1, 0), z, 0);
 		}
 
-		//Align Map to a chunk from entrance (presuming the map is 5x5)
-		final int mapoffsety = 6;
-		final int mapoffsetx = -2;
-		for (int maplayer = 0; maplayer < this.mapToUse.length; maplayer++) {
-			for (int iy = 0; iy < this.mapToUse[maplayer].length; iy++) {
-				for (int ix = 0; ix < this.mapToUse[maplayer][iy].toCharArray().length; ix++) {
-					if (this.isValidChunkForGen(chunkX, chunkZ, -iy + mapoffsety, ix + mapoffsetx)) {
-						this.createStructureFromChar(this.mapToUse[maplayer][iy].toCharArray()[ix], world, x, this.getHeightOfDungeon(world, chunkX, chunkZ, -iy + mapoffsety, ix + mapoffsetx) - (14 * (maplayer + 1)), z, maplayer);
+		//Generate from map
+		for (int maplayer = 0; maplayer < this.mapFloors; maplayer++) {
+			for (int ix = 0; ix < this.mapLength; ix++) {
+				for (int iz = 0; iz < this.mapWidth; iz++) {
+					if (this.isValidChunkForGen(chunkX, chunkZ, -ix + this.mapoffsetx, iz + this.mapoffsetz)) {
+						final int y = this.getHeightOfDungeon(world, chunkX, chunkZ, -ix + this.mapoffsetx, iz + this.mapoffsetz) - (14 * (maplayer + 1));
+						final String[][] mapToUse = this.getMapFromDungeonHeight(y);
+						this.createStructureFromChar(mapToUse[maplayer][ix].toCharArray()[iz], world, x, y, z, maplayer);
 					}
 				}
 			}
@@ -154,7 +163,7 @@ public class TAWorldGenerator_DarkstoneDungeon extends WorldGenerator implements
 
 		int originoffsetx = 16 + 8;
 		int originoffsetz = 8 + 8;
-		int heightoffset = -3;
+		int heightoffset = -1;
 		int minimumheight = 40;
 
 		int x = (chunkoffsetx * 16 + (xin * 16)) + originoffsetx;
@@ -182,100 +191,100 @@ public class TAWorldGenerator_DarkstoneDungeon extends WorldGenerator implements
 		switch (c) {
 			case ' ':
 				return;
-			case '┼':
+			case 'K':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_CROSS);
 				populateChests = true;
 				break;
-			case '└':
+			case 'E':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_CORNER);
 				break;
-			case '┘':
+			case 'F':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_CORNER);
 				settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
 				placementz += 15;
 				break;
-			case '┌':
+			case 'G':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_CORNER);
 				settings.setRotation(Rotation.CLOCKWISE_90);
 				placementx += 15;
 				break;
-			case '┐':
+			case 'H':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_CORNER);
 				settings.setRotation(Rotation.CLOCKWISE_180);
 				placementz += 15;
 				placementx += 15;
 				break;
-			case '─':
+			case 'I':
 				boolean variant = world.rand.nextBoolean();
 				populateChests = variant ? true : false;
 				template = GenerationHelper.getTemplate(world, (variant ? DARKSTONE_STRAIGHT : DARKSTONE_STRAIGHT_B));
 				break;
-			case '│':
+			case 'J':
 				boolean variant2 = world.rand.nextBoolean();
 				populateChests = variant2 ? true : false;
 				template = GenerationHelper.getTemplate(world, (variant2 ? DARKSTONE_STRAIGHT : DARKSTONE_STRAIGHT_B));
 				settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
 				placementz += 15;
 				break;
-			case '╷':
+			case 'A':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_END);
 				populateChests = true;
 				break;
-			case '╴':
+			case 'B':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_END);
 				settings.setRotation(Rotation.CLOCKWISE_90);
 				placementx += 15;
 				populateChests = true;
 				break;
-			case '╶':
+			case 'C':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_END);
 				settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
 				placementz += 15;
 				populateChests = true;
 				break;
-			case '╵':
+			case 'D':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_END);
 				settings.setRotation(Rotation.CLOCKWISE_180);
 				placementz += 15;
 				placementx += 15;
 				populateChests = true;
 				break;
-			case '├':
+			case 'L':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_T);
 				break;
-			case '┬':
+			case 'M':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_T);
 				settings.setRotation(Rotation.CLOCKWISE_90);
 				placementx += 15;
 				break;
-			case '┤':
+			case 'N':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_T);
 				settings.setRotation(Rotation.CLOCKWISE_180);
 				placementz += 15;
 				placementx += 15;
 				break;
-			case '┴':
+			case 'O':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_T);
 				settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
 				placementz += 15;
 				break;
-			case '╤':
+			case 'P':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_STAIRS);
 				placementy -= 14;
 				break;
-			case '╟':
+			case 'Q':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_STAIRS);
 				settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
 				placementz += 15;
 				placementy -= 14;
 				break;
-			case '╢':
+			case 'R':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_STAIRS);
 				settings.setRotation(Rotation.CLOCKWISE_90);
 				placementx += 15;
 				placementy -= 14;
 				break;
-			case '╧':
+			case 'S':
 				template = GenerationHelper.getTemplate(world, DARKSTONE_STAIRS);
 				settings.setRotation(Rotation.CLOCKWISE_180);
 				placementz += 15;

@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.Misc.GenerationHelper;
+import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_DarkstoneDungeon;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_MoonTemple;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Runestone_Tower;
 
@@ -50,26 +51,33 @@ public class TAItem_Special_Locator extends Item {
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
 		if (playerIn.isSneaking()) {
 			switch (this.getSelectedDungeon(itemstack)) {
-			case "Moontemple":
-				this.setSelectedDungeon(itemstack, "Runestone");
-				playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator1")), true);
-				break;
-			default:
-			case "Runestone":
-				this.setSelectedDungeon(itemstack, "Moontemple");
-				playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator2")), true);
-				break;
+				case "Moontemple":
+					this.setSelectedDungeon(itemstack, "Darkstone");
+					playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator3")), true);
+					break;
+				default:
+				case "Runestone":
+					this.setSelectedDungeon(itemstack, "Moontemple");
+					playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator2")), true);
+					break;
+				case "Darkstone":
+					this.setSelectedDungeon(itemstack, "Runestone");
+					playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator1")), true);
+					break;
 			}
 		} else {
 			ChunkPos dungeon;
 			switch (this.getSelectedDungeon(itemstack)) {
-			case "Moontemple":
-				dungeon = GenerationHelper.getNearestStructure(new TAWorldGenerator_MoonTemple(), playerIn, TAConfig.Config_DungeonDensity * 4);
-				break;
-			default:
-			case "Runestone":
-				dungeon = GenerationHelper.getNearestStructure(new TAWorldGenerator_Runestone_Tower(), playerIn, TAConfig.Config_DungeonDensity * 2);
-				break;
+				case "Moontemple":
+					dungeon = GenerationHelper.getNearestStructure(new TAWorldGenerator_MoonTemple(), playerIn, TAConfig.Config_DungeonDensity * 4);
+					break;
+				default:
+				case "Runestone":
+					dungeon = GenerationHelper.getNearestStructure(new TAWorldGenerator_Runestone_Tower(), playerIn, TAConfig.Config_DungeonDensity * 2);
+					break;
+				case "Darkstone":
+					dungeon = GenerationHelper.getNearestStructure(new TAWorldGenerator_DarkstoneDungeon(), playerIn, TAConfig.Config_DungeonDensity * 6);
+					break;
 			}
 
 			worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
@@ -79,23 +87,43 @@ public class TAItem_Special_Locator extends Item {
 					double looky = 0.25D + -MathHelper.sin((float) Math.toRadians(playerIn.rotationPitch));
 					double lookz = 0.25D + MathHelper.cos((float) Math.toRadians(playerIn.rotationYawHead)) * MathHelper.cos((float) Math.toRadians(playerIn.rotationPitch));
 
-					double y = (double) playerIn.posY + 1 + Item.itemRand.nextDouble() * 6.0D / 16.0D;
-					double speed = -0.005D;
+					double y = playerIn.posY + 1 + Item.itemRand.nextDouble() * 6.0D / 16.0D;
+					double speed = 0.01D;
 					double targetx = playerIn.posX - dungeon.x * 16;
 					double targetz = playerIn.posZ - dungeon.z * 16;
 					double originx = playerIn.posX;
 					double originz = playerIn.posZ;
+
+					double partx = targetx * -speed;
+					double partz = targetz * -speed;
+
+					if (partx < -0.5) {
+						partx = -0.5;
+					}
+					if (partx > 0.5) {
+						partx = 0.5;
+					}
+					if (partz < -0.5) {
+						partz = -0.5;
+					}
+					if (partz > 0.5) {
+						partz = 0.5;
+					}
+
+					double randx = Item.itemRand.nextDouble() / 8;
+					double randz = Item.itemRand.nextDouble() / 8;
+
 					for (int i = 0; i < 2; i++) {
-						worldIn.spawnParticle(EnumParticleTypes.CLOUD, originx + lookx, y + looky, originz + lookz, targetx * speed * Item.itemRand.nextDouble(), 0.25D, targetz * speed * Item.itemRand.nextDouble());
-						worldIn.spawnParticle(EnumParticleTypes.ITEM_CRACK, originx + lookx, y + looky, originz + lookz, targetx * speed * Item.itemRand.nextDouble(), 0.25D, targetz * speed * Item.itemRand.nextDouble(), Item.getIdFromItem(itemstack.getItem()), itemstack.getMetadata());
+						worldIn.spawnParticle(EnumParticleTypes.CLOUD, originx + lookx, y + looky, originz + lookz, partx + randx, 0.25D, partz + randz);
+						worldIn.spawnParticle(EnumParticleTypes.ITEM_CRACK, originx + lookx, y + looky, originz + lookz, partx + randx, 0.25D, partz + randz, Item.getIdFromItem(itemstack.getItem()), itemstack.getMetadata());
 					}
 				}
 				itemstack.damageItem(1, playerIn);
 			}
 			playerIn.addStat(StatList.getObjectUseStats(this));
-			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+			return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, itemstack);
+		return new ActionResult<>(EnumActionResult.PASS, itemstack);
 	}
 
 	private NBTTagCompound getNBT(ItemStack stack) {
@@ -110,7 +138,7 @@ public class TAItem_Special_Locator extends Item {
 	}
 
 	private String getSelectedDungeon(ItemStack stack) {
-		String blockname = getNBT(stack).getString("dungeon");
+		String blockname = this.getNBT(stack).getString("dungeon");
 		if (blockname.isEmpty()) {
 			return "Runestone";
 		} else {
@@ -119,12 +147,12 @@ public class TAItem_Special_Locator extends Item {
 	}
 
 	private boolean setSelectedDungeon(ItemStack stack, String dungeon) {
-		NBTTagCompound nbt = getNBT(stack);
+		NBTTagCompound nbt = this.getNBT(stack);
 		if (dungeon == null) {
 			nbt.setString("dungeon", "Runestone");
 			return true;
 		}
-		if (dungeon != getSelectedDungeon(stack)) {
+		if (dungeon != this.getSelectedDungeon(stack)) {
 			nbt.setString("dungeon", dungeon);
 			return true;
 		}
@@ -136,6 +164,7 @@ public class TAItem_Special_Locator extends Item {
 		return EnumRarity.EPIC;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {
@@ -143,8 +172,8 @@ public class TAItem_Special_Locator extends Item {
 		} else {
 			tooltip.add(I18n.format("string.theaurorian.tooltip.locator"));
 		}
-		if (getSelectedDungeon(stack) != null) {
-			tooltip.add("[" + getSelectedDungeon(stack) + "]");
+		if (this.getSelectedDungeon(stack) != null) {
+			tooltip.add("[" + this.getSelectedDungeon(stack) + "]");
 		}
 	}
 

@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAMod;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -66,7 +67,7 @@ public class Spider_Entity extends EntityMob {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200.0D * 1);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(300.0D * 1);
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(50.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
@@ -79,7 +80,12 @@ public class Spider_Entity extends EntityMob {
 		this.tasks.addTask(1, new Spider_AIHang(this));
 		this.tasks.addTask(2, new Spider_AISpit(this));
 		this.tasks.addTask(4, new Spider_AILeap(this));
-		this.tasks.addTask(4, new EntityAIAttackMelee(this, 1.0D, true));
+		this.tasks.addTask(4, new EntityAIAttackMelee(this, 1.2D, true) {
+			@Override
+			protected double getAttackReachSqr(EntityLivingBase attackTarget) {
+				return this.attacker.width * this.attacker.width + attackTarget.width;
+			}
+		});
 		this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 0.8D));
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
