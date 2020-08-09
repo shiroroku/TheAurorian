@@ -36,6 +36,7 @@ public class TAWorldProvider extends WorldProvider {
 		return 0.75F;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public Vec3d getSkyColor(net.minecraft.entity.Entity cameraEntity, float partialTicks) {
 		double r = 0;
@@ -48,7 +49,7 @@ public class TAWorldProvider extends WorldProvider {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public float getStarBrightness(float par1) {
-		return world.getStarBrightnessBody(par1) * 1.85F;
+		return this.world.getStarBrightnessBody(par1) * 1.85F;
 	}
 
 	@Override
@@ -60,7 +61,7 @@ public class TAWorldProvider extends WorldProvider {
 	@Override
 	public int getMoonPhase(long worldTime) {
 		float rot = worldTime * 0.0025f;
-		int phase = (int) ((int) 8 - (rot % 8));
+		int phase = (int) (8 - (rot % 8));
 		if (phase >= 8) {
 			return 7;
 		}
@@ -69,7 +70,10 @@ public class TAWorldProvider extends WorldProvider {
 
 	@Override
 	public float calculateCelestialAngle(long worldTime, float partialTicks) {
-		return 0.4f;
+		double amp = 0.1;
+		double freq = 0.0005;
+		float rot = (float) (amp * Math.sin(worldTime * freq));
+		return 0.5f + rot;
 	}
 
 	@Override
@@ -84,7 +88,7 @@ public class TAWorldProvider extends WorldProvider {
 
 	@Override
 	public IChunkGenerator createChunkGenerator() {
-		return new TAChunkGenerator(world);
+		return new TAChunkGenerator(this.world);
 	}
 
 	@Override
