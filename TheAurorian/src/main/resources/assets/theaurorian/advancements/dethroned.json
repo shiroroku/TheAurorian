@@ -2,7 +2,7 @@
     "parent": "theaurorian:moontemplekey",
     "display": {
         "icon": {
-            "item": "theaurorian:darkamulet"
+            "item": "theaurorian:trophymoonqueen"
         },
         "title": "Dethroned",
         "frame": "challenge",

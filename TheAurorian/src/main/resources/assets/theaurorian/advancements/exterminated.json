@@ -2,7 +2,7 @@
     "parent": "theaurorian:darkstonekey",
     "display": {
         "icon": {
-            "item": "theaurorian:darkstonebricks"
+            "item": "theaurorian:darkamulet"
         },
         "title": "Exterminated",
         "frame": "challenge",
