@@ -34,7 +34,7 @@ public class TAWorldGenerator_MoonTemple extends WorldGenerator implements Gener
 	private static final ResourceLocation MOONTEMPLE_PATH_TURN = new ResourceLocation(TAMod.MODID, "moontemple/moontemple_path_turn");
 	private static final ResourceLocation MOONTEMPLE_PATH_STRAIGHT = new ResourceLocation(TAMod.MODID, "moontemple/moontemple_path_straight");
 
-	public static int CHUNKS_BETWEEN_TEMPLES = TAConfig.Config_DungeonDensity * 2;
+	public static int CHUNKS_BETWEEN_TEMPLES = TAConfig.Config_DungeonDensity * 4;
 	public static boolean GENERATE_TEMPLES = TAConfig.Config_GenerateMoonTemple;
 	public static boolean GENERATE_TEMPLES_PATH = TAConfig.Config_GenerateMoonTemplePath;
 
@@ -64,7 +64,8 @@ public class TAWorldGenerator_MoonTemple extends WorldGenerator implements Gener
 
 	@Override
 	public boolean isValidChunkForGen(int chunkX, int chunkZ, int offsetX, int offsetZ) {
-		if ((chunkX + offsetX + (TAConfig.Config_DungeonDensity / 2)) % CHUNKS_BETWEEN_TEMPLES == 0 && (chunkZ + offsetZ + (TAConfig.Config_DungeonDensity / 2)) % CHUNKS_BETWEEN_TEMPLES == 0) {
+		int offs = TAConfig.Config_DungeonDensity + TAConfig.Config_DungeonDensity / 2;
+		if ((chunkX + offsetX +offs) % CHUNKS_BETWEEN_TEMPLES == 0 && (chunkZ + offsetZ + offs) % CHUNKS_BETWEEN_TEMPLES == 0) {
 			return true;
 		}
 		return false;

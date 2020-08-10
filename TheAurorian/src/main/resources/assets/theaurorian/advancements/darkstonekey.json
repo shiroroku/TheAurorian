@@ -1,12 +1,12 @@
 {
-    "parent": "theaurorian:dethroned",
+    "parent": "theaurorian:liberated",
     "display": {
         "icon": {
             "item": "theaurorian:darkstonekey"
         },
-        "title": "Next boss is currently WIP!",
+        "title": "Conquering Arachnophobia",
         "frame": "goal",
-        "description": "Craft the Darkstone Key"
+        "description": "Craft the Darkstone Key to access the Darkstone Dungeon"
     },
     "criteria": {
         "inventory_changed": {

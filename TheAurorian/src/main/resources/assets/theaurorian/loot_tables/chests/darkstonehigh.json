@@ -106,8 +106,8 @@
 						{
 							"function": "enchant_with_levels",
 							"levels": {
-								"min": 20,
-								"max": 40
+								"min": 10,
+								"max": 20
 							}
 						}
 					],
@@ -150,8 +150,8 @@
 						{
 							"function": "enchant_with_levels",
 							"levels": {
-								"min": 20,
-								"max": 40
+								"min": 10,
+								"max": 20
 							}
 						}
 					],
@@ -171,8 +171,8 @@
 						{
 							"function": "enchant_with_levels",
 							"levels": {
-								"min": 20,
-								"max": 40
+								"min": 10,
+								"max": 20
 							}
 						}
 					],
@@ -192,8 +192,8 @@
 						{
 							"function": "enchant_with_levels",
 							"levels": {
-								"min": 20,
-								"max": 40
+								"min": 10,
+								"max": 20
 							}
 						}
 					],
@@ -213,8 +213,8 @@
 						{
 							"function": "enchant_with_levels",
 							"levels": {
-								"min": 20,
-								"max": 40
+								"min": 10,
+								"max": 20
 							}
 						}
 					],

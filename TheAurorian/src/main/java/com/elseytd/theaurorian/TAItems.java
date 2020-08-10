@@ -321,6 +321,12 @@ public class TAItems {
 	public static TAItem_Special_Webbing webbing;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Special_KeepersBow.ITEMNAME)
 	public static TAItem_Special_KeepersBow keepersbow;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_TROPHY_KEEPER)
+	public static TAItem_Basic trophykeeper;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_TROPHY_SPIDER)
+	public static TAItem_Basic trophyspider;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_TROPHY_MOONQUEEN)
+	public static TAItem_Basic trophymoonqueen;
 
 	private enum TAItemRegistry {
 		ABSORPTIONORB(new TAItem_Special_AbsorptionOrb()),
@@ -422,6 +428,9 @@ public class TAItems {
 		TEAPETUNIA(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.PETUNIA)),
 		TEASEEDY(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.SEEDY)),
 		TEASILKBERRY(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.SILKBERRY)),
+		TROPHYKEEPER(new TAItem_Basic(TAItem_Basic.Items.TROPHY_KEEPER)),
+		TROPHYMOONQUEEN(new TAItem_Basic(TAItem_Basic.Items.TROPHY_MOONQUEEN)),
+		TROPHYSPIDER(new TAItem_Basic(TAItem_Basic.Items.TROPHY_SPIDER)),
 		UMBRAPICKAXE(new TAItem_Tool_Umbra_Pickaxe()),
 		UMBRASHIELD(new TAItem_Tool_Umbra_Shield()),
 		UMBRASWORD(new TAItem_Tool_Umbra_Sword()),
@@ -435,7 +444,7 @@ public class TAItems {
 		}
 
 		public void InitModel() {
-			ModelLoader.setCustomModelResourceLocation(modItem, 0, new ModelResourceLocation(modItem.getRegistryName(), "inventory"));
+			ModelLoader.setCustomModelResourceLocation(this.modItem, 0, new ModelResourceLocation(this.modItem.getRegistryName(), "inventory"));
 		}
 
 		public void Register(RegistryEvent.Register<Item> event) {
@@ -473,8 +482,7 @@ public class TAItems {
 	}
 
 	public interface ISpecialModel {
-		@SideOnly(Side.CLIENT)
-		public void initModel();
+		@SideOnly(Side.CLIENT) void initModel();
 	}
 
 }

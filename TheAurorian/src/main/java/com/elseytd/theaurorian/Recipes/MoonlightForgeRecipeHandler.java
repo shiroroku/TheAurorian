@@ -24,8 +24,8 @@ public class MoonlightForgeRecipeHandler {
 		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstoneshield), new ItemStack(TAItems.crystallineingot), new ItemStack(TAItems.crystallineshield)));
 
 		//Boss Item Recipes
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstoneshield), new ItemStack(TAItems.darkamulet), new ItemStack(TAItems.moonshield)));
-		//addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.silentwoodbow), new ItemStack(TAItems.keeperamulet), new ItemStack(TAItems.keepersbow)));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstoneshield), new ItemStack(TAItems.trophymoonqueen), new ItemStack(TAItems.moonshield)));
+		//addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.silentwoodbow), new ItemStack(TAItems.trophykeeper), new ItemStack(TAItems.keepersbow)));
 
 		for (MoonlightForgeRecipe r : recipesForRemoval) {
 			MoonlightForgeRecipe rem = null;

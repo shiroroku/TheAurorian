@@ -6,11 +6,32 @@
         },
         "title": "Exterminated",
         "frame": "challenge",
-        "description": "WIP ;)"
+        "description": "Kill the Spider Mother"
     },
     "criteria": {
-        "impossible": {
-            "trigger": "minecraft:impossible"
+        "player_killed_entity": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "theaurorian:spider"
+                }
+            }
+        },
+        "inventory_changed": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "theaurorian:darkamulet"
+                    }
+                ]
+            }
         }
-    }
+    },
+    "requirements": [
+        [
+            "player_killed_entity",
+            "inventory_changed"
+        ]
+    ]
 }

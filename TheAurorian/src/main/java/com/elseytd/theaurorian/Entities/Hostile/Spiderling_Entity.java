@@ -1,9 +1,14 @@
 package com.elseytd.theaurorian.Entities.Hostile;
 
+import java.util.List;
+
 import javax.annotation.Nullable;
 
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
+import com.elseytd.theaurorian.TAUtil;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -31,6 +36,7 @@ public class Spiderling_Entity extends EntityMob {
 	public static final String EntityName = "spiderling";
 	public static final ResourceLocation LOOT = new ResourceLocation(TAMod.MODID, "entities/" + EntityName);
 	private static final DataParameter<Boolean> CLIMBING = EntityDataManager.createKey(Spiderling_Entity.class, DataSerializers.BOOLEAN);
+	public int maxNearby = 3 * TAConfig.Config_DarkstoneDungeonMobDensity;
 
 	public Spiderling_Entity(World worldIn) {
 		super(worldIn);
@@ -64,7 +70,7 @@ public class Spiderling_Entity extends EntityMob {
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
 	}
 
 	@Override
@@ -107,13 +113,26 @@ public class Spiderling_Entity extends EntityMob {
 	}
 
 	@Override
+	public boolean getCanSpawnHere() {
+		List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 6, false);
+		int maxcount = this.maxNearby;
+		int count = 0;
+		for (EntityLivingBase e : entities) {
+			if (e instanceof Spiderling_Entity) {
+				count++;
+			}
+		}
+		return count <= maxcount && super.getCanSpawnHere();
+	}
+
+	@Override
 	protected boolean isValidLightLevel() {
 		return true;
 	}
 
 	@Override
 	public int getMaxSpawnedInChunk() {
-		return 5;
+		return 3;
 	}
 
 	@Override

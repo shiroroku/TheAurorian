@@ -2,16 +2,16 @@
 	"type": "minecraft:crafting_shapeless",
 	"ingredients": [
 		{
-			"item": "theaurorian:darkamulet"
+			"item": "theaurorian:keeperamulet"
 		},
 		{
 			"item": "theaurorian:crystal"
 		},
 		{
-			"item": "theaurorian:moongem"
+			"item": "theaurorian:ceruleannugget"
 		}
 	],
 	"result": {
-		"item": "theaurorian:moontemplekey"
+		"item": "theaurorian:darkstonekey"
 	}
 }

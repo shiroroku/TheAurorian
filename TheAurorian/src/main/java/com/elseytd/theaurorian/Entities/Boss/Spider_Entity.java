@@ -3,6 +3,7 @@ package com.elseytd.theaurorian.Entities.Boss;
 import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TABlocks;
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -51,7 +52,7 @@ public class Spider_Entity extends EntityMob {
 		super(worldIn);
 		this.setHealth(this.getMaxHealth());
 		this.setSize(2.8F, 1.8F);
-		this.experienceValue = 1000;
+		this.experienceValue = 500;
 		this.isImmuneToFire = true;
 	}
 
@@ -67,10 +68,10 @@ public class Spider_Entity extends EntityMob {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(300.0D * 1);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(160.0D * TAConfig.Config_SpiderMotherHealthMuliplier);
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(50.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
-		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D * TAConfig.Config_SpiderMotherDamageMuliplier);
 		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.0D);
 	}
 

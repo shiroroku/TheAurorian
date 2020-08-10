@@ -37,6 +37,9 @@ public class TAItem_Basic extends Item {
 	public static final String ITEMNAME_SCRAP_AURORIANITE = "scrapaurorianite";
 	public static final String ITEMNAME_SCRAP_CRYSTALLINE = "scrapcrystalline";
 	public static final String ITEMNAME_SCRAP_UMBRA = "scrapumbra";
+	public static final String ITEMNAME_TROPHY_KEEPER = "trophykeeper";
+	public static final String ITEMNAME_TROPHY_MOONQUEEN = "trophymoonqueen";
+	public static final String ITEMNAME_TROPHY_SPIDER = "trophyspider";
 
 	public enum Items {
 		AURORIANCOAL(ITEMNAME_AURORIANCOAL, 64, 1800),
@@ -48,7 +51,7 @@ public class TAItem_Basic extends Item {
 		INGOT_MOONSTONE(ITEMNAME_INGOT_MOONSTONE),
 		INGOT_UMBRA(ITEMNAME_INGOT_UMBRA, EnumRarity.EPIC),
 		LAVENDER(ITEMNAME_LAVENDER, "string.theaurorian.tooltip.lavender"),
-		MOONTEMPLECELLKEYFRAGMENT(ITEMNAME_MOONTEMPLECELLKEYFRAGMENT, 1, "string.theaurorian.tooltip.moontemplecellkey"),
+		MOONTEMPLECELLKEYFRAGMENT(ITEMNAME_MOONTEMPLECELLKEYFRAGMENT, 1, "string.theaurorian.tooltip.moontemplecellkeyfragment"),
 		NUGGET_AURORIANSTEEL(ITEMNAME_NUGGET_AURORIANSTEEL),
 		NUGGET_CERULEAN(ITEMNAME_NUGGET_CERULEAN),
 		NUGGET_AURORIANCOAL(ITEMNAME_NUGGET_AURORIANCOAL, 64, 200),
@@ -56,7 +59,10 @@ public class TAItem_Basic extends Item {
 		PLANTFIBER(ITEMNAME_PLANTFIBER, "string.theaurorian.tooltip.plantfiber"),
 		SCRAP_AURORIANITE(ITEMNAME_SCRAP_AURORIANITE),
 		SCRAP_CRYSTALLINE(ITEMNAME_SCRAP_CRYSTALLINE),
-		SCRAP_UMBRA(ITEMNAME_SCRAP_UMBRA);
+		SCRAP_UMBRA(ITEMNAME_SCRAP_UMBRA),
+		TROPHY_KEEPER(ITEMNAME_TROPHY_KEEPER, EnumRarity.RARE),
+		TROPHY_MOONQUEEN(ITEMNAME_TROPHY_MOONQUEEN, EnumRarity.RARE),
+		TROPHY_SPIDER(ITEMNAME_TROPHY_SPIDER, EnumRarity.RARE);
 
 		private String ITEMNAME;
 		private EnumRarity RARITY;
@@ -97,23 +103,23 @@ public class TAItem_Basic extends Item {
 		}
 
 		public String getName() {
-			return ITEMNAME;
+			return this.ITEMNAME;
 		}
 
 		public String getInfo() {
-			return INFO;
+			return this.INFO;
 		}
 
 		public int getStacksize() {
-			return STACKSIZE;
+			return this.STACKSIZE;
 		}
 
 		public int getBurntime() {
-			return BURNTIME;
+			return this.BURNTIME;
 		}
 
 		public EnumRarity getRarity() {
-			return RARITY;
+			return this.RARITY;
 		}
 	}
 
@@ -131,21 +137,22 @@ public class TAItem_Basic extends Item {
 
 	@Override
 	public net.minecraftforge.common.IRarity getForgeRarity(ItemStack stack) {
-		return itemType.getRarity();
+		return this.itemType.getRarity();
 	}
 
 	@Override
 	public int getItemBurnTime(ItemStack itemStack) {
-		return itemType.getBurntime();
+		return this.itemType.getBurntime();
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		if (itemType.getInfo() != null) {
+		if (this.itemType.getInfo() != null) {
 			if (!GuiScreen.isShiftKeyDown()) {
 				tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
 			} else {
-				tooltip.add(I18n.format(itemType.getInfo()));
+				tooltip.add(I18n.format(this.itemType.getInfo()));
 			}
 		}
 	}

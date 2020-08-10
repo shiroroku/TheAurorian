@@ -40,14 +40,14 @@ public class TAWorldGenerator_DarkstoneDungeon extends WorldGenerator implements
 	private static final ResourceLocation DARKSTONE_BOSSROOM_BACKRIGHT = new ResourceLocation(TAMod.MODID, "darkstone/darkstone_bossroom_backright");
 	private static final ResourceLocation DARKSTONE_BOSSROOM_BACKLEFT = new ResourceLocation(TAMod.MODID, "darkstone/darkstone_bossroom_backleft");
 
-	public static int CHUNKS_BETWEEN_DUNGEONS = TAConfig.Config_DungeonDensity * 4;
+	public static int CHUNKS_BETWEEN_DUNGEONS = TAConfig.Config_DungeonDensity * 2;
 
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
 		this.generateDungeon(worldIn, worldIn.getChunkFromBlockCoords(position));
 		return true;
 	}
-	
+
 	/*
 	 * isValidChunkForGen x and z are not aligned with minecrafts, need to fix
 	 * this sometime but would require rework of moontemples and runestones also
@@ -56,7 +56,7 @@ public class TAWorldGenerator_DarkstoneDungeon extends WorldGenerator implements
 
 	@Override
 	public boolean isValidChunkForGen(int chunkX, int chunkZ, int offsetX, int offsetZ) {
-		int offs = TAConfig.Config_DungeonDensity + TAConfig.Config_DungeonDensity / 2;
+		int offs = TAConfig.Config_DungeonDensity / 2;
 		if ((chunkX + offsetX + offs) % CHUNKS_BETWEEN_DUNGEONS == 0 && (chunkZ + offsetZ + offs) % CHUNKS_BETWEEN_DUNGEONS == 0) {
 			return true;
 		}

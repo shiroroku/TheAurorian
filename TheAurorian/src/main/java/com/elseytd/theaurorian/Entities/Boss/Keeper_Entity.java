@@ -69,7 +69,7 @@ public class Keeper_Entity extends EntityMob implements IRangedAttackMob {
 		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(80.0D * TAConfig.Config_RunestoneKeeperHealthMuliplier);
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(50.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30D);
-		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D * TAConfig.Config_RunestoneKeeperDamageMuliplier);
 		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(4.0D);
 	}
 
@@ -85,7 +85,7 @@ public class Keeper_Entity extends EntityMob implements IRangedAttackMob {
 				ItemStack s = new ItemStack(TAItems.moonstonesword);
 				s.addEnchantment(TAEnchantments.lightning, 3);
 				s.addEnchantment(Enchantments.KNOCKBACK, 2);
-				attacker.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, s);
+				this.attacker.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, s);
 			}
 		});
 		this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
@@ -93,7 +93,7 @@ public class Keeper_Entity extends EntityMob implements IRangedAttackMob {
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
 	}
 
 	@Override
@@ -111,11 +111,11 @@ public class Keeper_Entity extends EntityMob implements IRangedAttackMob {
 	@Override
 	public void onEntityUpdate() {
 		super.onEntityUpdate();
-		if (this.world.isRemote && ticksExisted % 2 == 0 && this.getHealth() <= this.getMaxHealth() * 0.30F) {
-			double motionX = rand.nextGaussian() * 0.02D;
-			double motionY = rand.nextGaussian() * 0.1D;
-			double motionZ = rand.nextGaussian() * 0.02D;
-			this.world.spawnParticle(EnumParticleTypes.WATER_SPLASH, posX + rand.nextFloat(), posY + rand.nextFloat() * height, posZ + rand.nextFloat(), motionX, motionY, motionZ);
+		if (this.world.isRemote && this.ticksExisted % 2 == 0 && this.getHealth() <= this.getMaxHealth() * 0.30F) {
+			double motionX = this.rand.nextGaussian() * 0.02D;
+			double motionY = this.rand.nextGaussian() * 0.1D;
+			double motionZ = this.rand.nextGaussian() * 0.02D;
+			this.world.spawnParticle(EnumParticleTypes.WATER_SPLASH, this.posX + this.rand.nextFloat(), this.posY + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat(), motionX, motionY, motionZ);
 		}
 	}
 
@@ -162,9 +162,9 @@ public class Keeper_Entity extends EntityMob implements IRangedAttackMob {
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
 		EntityArrow entityarrow = this.getArrow(distanceFactor);
 		double d0 = target.posX - this.posX;
-		double d1 = target.getEntityBoundingBox().minY + (double) (target.height / 3.0F) - entityarrow.posY;
+		double d1 = target.getEntityBoundingBox().minY + target.height / 3.0F - entityarrow.posY;
 		double d2 = target.posZ - this.posZ;
-		double d3 = (double) MathHelper.sqrt(d0 * d0 + d2 * d2);
+		double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
 		entityarrow.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, 9F);
 		this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
 		this.world.spawnEntity(entityarrow);

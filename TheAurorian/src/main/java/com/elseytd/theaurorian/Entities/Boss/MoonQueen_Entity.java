@@ -57,7 +57,7 @@ public class MoonQueen_Entity extends EntityMob {
 	public MoonQueen_Entity(World worldIn) {
 		super(worldIn);
 		this.setHealth(this.getMaxHealth());
-		setSize(0.6F * MobScale, 1.95F * MobScale);
+		this.setSize(0.6F * MobScale, 1.95F * MobScale);
 		this.experienceValue = 500;
 		this.isImmuneToFire = true;
 		this.stepHeight = 1F;
@@ -70,10 +70,10 @@ public class MoonQueen_Entity extends EntityMob {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(120.0D * TAConfig.Config_RunestoneKeeperHealthMuliplier);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200.0D * TAConfig.Config_MoonQueenHealthMuliplier);
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20D);
-		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D * TAConfig.Config_MoonQueenDamageMuliplier);
 		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(8.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.85D);
 	}
@@ -89,7 +89,7 @@ public class MoonQueen_Entity extends EntityMob {
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
 	}
 
 	@Override
@@ -103,14 +103,14 @@ public class MoonQueen_Entity extends EntityMob {
 	@Override
 	public void onEntityUpdate() {
 		super.onEntityUpdate();
-		if (this.world.isRemote && this.ticksExisted % 2 == 0 && isWindingUpCharge()) {
+		if (this.world.isRemote && this.ticksExisted % 2 == 0 && this.isWindingUpCharge()) {
 			double motionX = this.getRNG().nextGaussian() * 0.02D;
 			double motionY = this.getRNG().nextGaussian() * 0.1D;
 			double motionZ = this.getRNG().nextGaussian() * 0.02D;
 			this.world.spawnParticle(EnumParticleTypes.VILLAGER_ANGRY, this.posX + this.getRNG().nextFloat(), this.posY + this.getRNG().nextFloat() * this.height, this.posZ + this.getRNG().nextFloat(), motionX, motionY, motionZ);
 		}
 
-		if (didChargeHit()) {
+		if (this.didChargeHit()) {
 			if (this.world.isRemote) {
 				this.world.playSound(this.posX, this.posY, this.posZ, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.PLAYERS, 1F, 1.5F, false);
 			}

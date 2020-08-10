@@ -28,8 +28,14 @@ public class TAConfig {
 	//Entities
 	public static int Config_RunestoneDungeonMobDensity = 1;
 	public static int Config_MoonTempleMobDensity = 1;
+	public static int Config_DarkstoneDungeonMobDensity = 1;
 	public static float Config_RunestoneKeeperHealthMuliplier = 1;
 	public static float Config_MoonQueenHealthMuliplier = 1;
+	public static float Config_SpiderMotherHealthMuliplier = 1;
+	public static float Config_RunestoneKeeperDamageMuliplier = 1;
+	public static float Config_MoonQueenDamageMuliplier = 1;
+	public static float Config_SpiderMotherDamageMuliplier = 1;
+
 
 	//Generation, vanilla values found in net.minecraft.world.gen.ChunkGeneratorSettings.ChunkGeneratorSettings(Factory)
 	public static int Config_AurorianCoalOre_Size = 12;
@@ -247,9 +253,13 @@ public class TAConfig {
 
 		Config_RunestoneDungeonMobDensity = cfg.getInt("RunestoneDungeonMobDensity", name, Config_RunestoneDungeonMobDensity, 0, 10, "Density of mobs spawning in the Runestone Dungeon, 2 for twice as many mobs, etc");
 		Config_MoonTempleMobDensity = cfg.getInt("MoonTempleMobDensity", name, Config_MoonTempleMobDensity, 0, 10, "Density of mobs spawning in the Moon Temple, 2 for twice as many mobs, etc");
+		Config_DarkstoneDungeonMobDensity = cfg.getInt("DarkstoneDungeonMobDensity", name, Config_DarkstoneDungeonMobDensity, 0, 10, "Density of mobs spawning in the Darkstone Dungeon, 2 for twice as many mobs, etc");
 		Config_RunestoneKeeperHealthMuliplier = cfg.getFloat("RunestoneKeeperHealthMuliplier", name, Config_RunestoneKeeperHealthMuliplier, 0, 100, "");
 		Config_MoonQueenHealthMuliplier = cfg.getFloat("MoonQueenHealthMuliplier", name, Config_MoonQueenHealthMuliplier, 0, 100, "");
-
+		Config_SpiderMotherHealthMuliplier = cfg.getFloat("SpiderMotherHealthMuliplier", name, Config_SpiderMotherHealthMuliplier, 0, 100, "");
+		Config_RunestoneKeeperDamageMuliplier = cfg.getFloat("RunestoneKeeperDamageMuliplier", name, Config_RunestoneKeeperDamageMuliplier, 0, 100, "");
+		Config_MoonQueenDamageMuliplier = cfg.getFloat("MoonQueenDamageMuliplier", name, Config_MoonQueenDamageMuliplier, 0, 100, "");
+		Config_SpiderMotherDamageMuliplier = cfg.getFloat("SpiderMotherDamageMuliplier", name, Config_SpiderMotherDamageMuliplier, 0, 100, "");
 	}
 
 	private static void initDimensionConfig(Configuration cfg) {
