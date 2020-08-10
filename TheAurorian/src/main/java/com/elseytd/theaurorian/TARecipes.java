@@ -10,7 +10,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class TARecipes {
 
 	public enum blockBurnTimes {
-		AURORIANCOALBLOCK(TABlocks.auroriancoalblock, 16000),
+		AURORIANCOALBLOCK(TABlocks.auroriancoalblock, 16200),
 		SILENTWOODPLANKS(TABlocks.silentwoodplanks, 200),
 		WEEPINGWILLOWPLANKS(TABlocks.weepingwillowplanks, 200),
 		SILENTWOODLOG(TABlocks.silentwoodlog, 300),
@@ -23,8 +23,8 @@ public class TARecipes {
 		int burnTime;
 
 		blockBurnTimes(Block b, int bt) {
-			block = b;
-			burnTime = bt;
+			this.block = b;
+			this.burnTime = bt;
 		}
 
 		public Item getItemBlock() {
@@ -103,7 +103,7 @@ public class TARecipes {
 
 		OreDictionary.registerOre("plankWood", TABlocks.weepingwillowplanks);
 		OreDictionary.registerOre("logWood", TABlocks.weepingwillowlog);
-		
+
 		OreDictionary.registerOre("stoneAurorian", TABlocks.aurorianstone);
 		OreDictionary.registerOre("cobblestoneAurorian", TABlocks.auroriancobblestone);
 
