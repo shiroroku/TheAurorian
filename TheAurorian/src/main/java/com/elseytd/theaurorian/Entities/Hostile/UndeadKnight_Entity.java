@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Util.EntityHelper;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -94,7 +94,7 @@ public class UndeadKnight_Entity extends EntityMob {
 
 	@Override
 	public boolean getCanSpawnHere() {
-		List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 6, false);
+		List<EntityLivingBase> entities = EntityHelper.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 6, false);
 		int maxcount = maxNearby;
 		int count = 0;
 		for (EntityLivingBase e : entities) {

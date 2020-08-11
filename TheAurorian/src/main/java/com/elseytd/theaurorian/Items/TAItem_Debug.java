@@ -26,7 +26,7 @@ public class TAItem_Debug extends Item {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 
-		TAUtil.Debugging.simulateLootTable(worldIn, new ResourceLocation(TAMod.MODID, "chests/darkstonelow"), 20);
+		TAUtil.simulateLootTable(worldIn, new ResourceLocation(TAMod.MODID, "chests/darkstonelow"), 20);
 
 		return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}

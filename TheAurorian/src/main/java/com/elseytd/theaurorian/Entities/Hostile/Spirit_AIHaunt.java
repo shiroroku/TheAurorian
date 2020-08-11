@@ -1,6 +1,6 @@
 package com.elseytd.theaurorian.Entities.Hostile;
 
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Util.EntityHelper;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -34,7 +34,7 @@ public class Spirit_AIHaunt extends EntityAIBase {
 	public boolean shouldExecute() {
 		if (this.entity.getAttackTarget() != null) {
 			if (this.entity.getDistance(this.entity.getAttackTarget()) <= strafeDistance && this.entity.canEntityBeSeen(this.entity.getAttackTarget())) {
-				if (!TAUtil.Entity.isLookingAt(this.entity, this.entity.getAttackTarget(), 0.1D)) {
+				if (!EntityHelper.isLookingAt(this.entity, this.entity.getAttackTarget(), 0.1D)) {
 					return true;
 				}
 			}
@@ -52,7 +52,7 @@ public class Spirit_AIHaunt extends EntityAIBase {
 	public boolean shouldContinueExecuting() {
 		if (this.entity.getAttackTarget() != null) {
 			if (this.entity.getDistance(this.entity.getAttackTarget()) <= strafeDistance && this.strafeDirection != null && this.entity.canEntityBeSeen(this.entity.getAttackTarget())) {
-				if (!TAUtil.Entity.isLookingAt(this.entity, this.entity.getAttackTarget(), 0.1D)) {
+				if (!EntityHelper.isLookingAt(this.entity, this.entity.getAttackTarget(), 0.1D)) {
 					return true;
 				}
 			}

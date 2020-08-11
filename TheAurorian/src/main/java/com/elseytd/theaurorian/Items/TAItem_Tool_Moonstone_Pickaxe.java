@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Util.MoonstoneHelper;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
@@ -35,7 +35,7 @@ public class TAItem_Tool_Moonstone_Pickaxe extends ItemPickaxe {
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
 		if (!worldIn.isRemote && (double) state.getBlockHardness(worldIn, pos) != 0.0D) {
-			TAUtil.Moonstone.handleMoonstoneDurability(stack, worldIn, entityLiving);
+			MoonstoneHelper.handleMoonstoneDurability(stack, worldIn, entityLiving);
 		}
 		return true;
 	}
@@ -45,7 +45,7 @@ public class TAItem_Tool_Moonstone_Pickaxe extends ItemPickaxe {
 		if (!GuiScreen.isShiftKeyDown()) {
 			tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
 		} else {
-			tooltip.add(TAUtil.Moonstone.getMoonstoneTooltip());
+			tooltip.add(MoonstoneHelper.getMoonstoneTooltip());
 		}
 	}
 

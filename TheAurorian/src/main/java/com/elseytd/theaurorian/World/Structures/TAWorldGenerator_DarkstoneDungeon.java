@@ -5,7 +5,7 @@ import java.util.Random;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.Misc.GenerationHelper;
+import com.elseytd.theaurorian.Util.GenerationHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;

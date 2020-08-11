@@ -335,8 +335,7 @@ public class TABlocks {
 		DUNGEONSTONEDARK(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK)),
 		DUNGEONSTONEDARKFANCY(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK_FANCY)),
 		DUNGEONSTONEDARKGATE(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_DARK, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_DARK)),
-		DUNGEONSTONEDARKGATEKEYHOLE(
-			new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_DARK, TABlock_DungeonStoneGate.BLOCKNAME_DARK, TAItem_Special_DungeonKey.Keys.DARKSTONE)),
+		DUNGEONSTONEDARKGATEKEYHOLE(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_DARK, TABlock_DungeonStoneGate.BLOCKNAME_DARK, TAItem_Special_DungeonKey.Keys.DARKSTONE)),
 		DUNGEONSTONEDARKLAMP(new TABlock_DungeonStoneLamp(TABlock_DungeonStoneLamp.BLOCKNAME_DARK)),
 		DUNGEONSTONEDARKLAYERS(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK_LAYERS)),
 		DUNGEONSTONEDARKSTAIRS(new TABlock_Stairs(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK), TABlock_Stairs.BLOCKNAME_DARK)),
@@ -344,20 +343,16 @@ public class TABlocks {
 		DUNGEONSTONEMOONTEMPLEBARS(new TABlock_DungeonStoneBars(TABlock_DungeonStoneBars.BLOCKNAME_MOONTEMPLE)),
 		DUNGEONSTONEMOONTEMPLEGATE(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLE, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLE)),
 		DUNGEONSTONEMOONTEMPLEGATECELL(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLECELL, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLECELL)),
-		DUNGEONSTONEMOONTEMPLEGATEKEYHOLE(
-			new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLE, TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLE, TAItem_Special_DungeonKey.Keys.MOONTEMPLE)),
-		DUNGEONSTONEMOONTEMPLEGATEKEYHOLECELL(
-			new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLECELL, TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLECELL, TAItem_Special_DungeonKey.Keys.MOONTEMPLECELL)),
+		DUNGEONSTONEMOONTEMPLEGATEKEYHOLE(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLE, TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLE, TAItem_Special_DungeonKey.Keys.MOONTEMPLE)),
+		DUNGEONSTONEMOONTEMPLEGATEKEYHOLECELL(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLECELL, TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLECELL, TAItem_Special_DungeonKey.Keys.MOONTEMPLECELL)),
 		DUNGEONSTONEMOONTEMPLELAMP(new TABlock_DungeonStoneLamp(TABlock_DungeonStoneLamp.BLOCKNAME_MOONTEMPLE)),
 		DUNGEONSTONEMOONTEMPLESMOOTH(new TABlock_DungeonStoneSmooth(TABlock_DungeonStoneSmooth.BLOCKNAME_MOONTEMPLE)),
 		DUNGEONSTONEMOONTEMPLESTAIRS(new TABlock_Stairs(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_MOONTEMPLE), TABlock_Stairs.BLOCKNAME_MOONTEMPLE)),
 		DUNGEONSTONERUNESTONE(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_RUNESTONE)),
 		DUNGEONSTONERUNESTONEBARS(new TABlock_DungeonStoneBars(TABlock_DungeonStoneBars.BLOCKNAME_RUNESTONE)),
 		DUNGEONSTONERUNESTONEGATE(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONE, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONE)),
-		DUNGEONSTONERUNESTONEGATEKEYHOLE(
-			new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONE, TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONE, TAItem_Special_DungeonKey.Keys.RUNESTONE, true)),
-		DUNGEONSTONERUNESTONEGATEKEYHOLELOOT(
-			new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONELOOT, TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONELOOT, TAItem_Special_DungeonKey.Keys.RUNESTONELOOT)),
+		DUNGEONSTONERUNESTONEGATEKEYHOLE(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONE, TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONE, TAItem_Special_DungeonKey.Keys.RUNESTONE, true)),
+		DUNGEONSTONERUNESTONEGATEKEYHOLELOOT(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONELOOT, TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONELOOT, TAItem_Special_DungeonKey.Keys.RUNESTONELOOT)),
 		DUNGEONSTONERUNESTONEGATELOOT(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONELOOT, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONELOOT)),
 		DUNGEONSTONERUNESTONELAMP(new TABlock_DungeonStoneLamp(TABlock_DungeonStoneLamp.BLOCKNAME_RUNESTONE)),
 		DUNGEONSTONERUNESTONESMOOTH(new TABlock_DungeonStoneSmooth(TABlock_DungeonStoneSmooth.BLOCKNAME_RUNESTONE)),
@@ -485,7 +480,7 @@ public class TABlocks {
 	}
 
 	public interface ISpecialItemBlock {
-		public void registerItemBlock(RegistryEvent.Register<Item> event);
+		void registerItemBlock(RegistryEvent.Register<Item> event);
 	}
 
 }

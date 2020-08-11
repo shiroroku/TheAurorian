@@ -8,7 +8,7 @@ import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Util.EntityHelper;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -59,7 +59,7 @@ public class MoonAcolyte_Entity extends EntityMob {
 		int j = MathHelper.floor(this.getEntityBoundingBox().minY);
 		int k = MathHelper.floor(this.posZ);
 		BlockPos blockpos = new BlockPos(i, j, k);
-		List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 30, false);
+		List<EntityLivingBase> entities = EntityHelper.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 30, false);
 		int maxcount = maxNearby;
 		int count = 0;
 		for (EntityLivingBase e : entities) {

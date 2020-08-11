@@ -7,8 +7,8 @@ import javax.annotation.Nullable;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
 import com.elseytd.theaurorian.Entities.Projectiles.CrystallineBeam_Entity;
+import com.elseytd.theaurorian.Util.EntityHelper;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -50,7 +50,7 @@ public class CrystallineSprite_Entity extends EntityMob implements IRangedAttack
 		int j = MathHelper.floor(this.getEntityBoundingBox().minY);
 		int k = MathHelper.floor(this.posZ);
 		BlockPos blockpos = new BlockPos(i, j, k);
-		List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 30, false);
+		List<EntityLivingBase> entities = EntityHelper.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 30, false);
 		int maxcount = maxNearby;
 		int count = 0;
 		for (EntityLivingBase e : entities) {

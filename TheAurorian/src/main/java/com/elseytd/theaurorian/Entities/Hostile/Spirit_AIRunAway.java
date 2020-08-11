@@ -1,6 +1,6 @@
 package com.elseytd.theaurorian.Entities.Hostile;
 
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Util.EntityHelper;
 
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
@@ -25,7 +25,7 @@ public class Spirit_AIRunAway extends EntityAIBase {
 	@Override
 	public boolean shouldExecute() {
 		if (this.entity.getAttackTarget() != null) {
-			if (TAUtil.Entity.isLookingAt(this.entity, this.entity.getAttackTarget(), 0.1D) && this.entity.canEntityBeSeen(this.entity.getAttackTarget())) {
+			if (EntityHelper.isLookingAt(this.entity, this.entity.getAttackTarget(), 0.1D) && this.entity.canEntityBeSeen(this.entity.getAttackTarget())) {
 				Vec3d vec3d = RandomPositionGenerator.findRandomTargetBlockAwayFrom(this.entity, 16, 10, new Vec3d(this.entity.getAttackTarget().posX, this.entity.getAttackTarget().posY, this.entity.getAttackTarget().posZ));
 
 				if (vec3d != null) {

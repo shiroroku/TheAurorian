@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Util.AurorianSteelHelper;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
@@ -44,10 +44,10 @@ public class TAItem_Armor_AurorianSteel extends ItemArmor {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {
-			tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("string.theaurorian.tooltip.silentwoodpickaxe1") + " [" + TAUtil.AurorianSteel.getLevel(stack) + "/" + Math.round(TAUtil.AurorianSteel.maxlevelbase * TAUtil.AurorianSteel.getMultiplier(stack)) + "]" + TextFormatting.RESET);
+			tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("string.theaurorian.tooltip.silentwoodpickaxe1") + " [" + AurorianSteelHelper.getLevel(stack) + "/" + Math.round(AurorianSteelHelper.maxlevelbase * AurorianSteelHelper.getMultiplier(stack)) + "]" + TextFormatting.RESET);
 			tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
 		} else {
-			tooltip.add(TAUtil.AurorianSteel.getAurorianSteelTooltip());
+			tooltip.add(AurorianSteelHelper.getAurorianSteelTooltip());
 		}
 	}
 
@@ -60,7 +60,7 @@ public class TAItem_Armor_AurorianSteel extends ItemArmor {
 			if (piece.getItem() instanceof ItemArmor) {
 				ItemArmor armorpart = (ItemArmor) piece.getItem();
 				if (armorpart.getArmorMaterial() == TAItems.Materials.AURORIANSTEEL_ARMOR) {
-					TAUtil.AurorianSteel.handleAurorianSteelDurability(piece, target.world, target);
+					AurorianSteelHelper.handleAurorianSteelDurability(piece, target.world, target);
 				}
 			}
 		}

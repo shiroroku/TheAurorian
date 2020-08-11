@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Util.EntityHelper;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
@@ -39,7 +40,7 @@ public class TAItem_Special_LivingDiviningRod extends Item {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, 18, false);
+		List<EntityLivingBase> entities = EntityHelper.getEntitiesAround(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, 18, false);
 		for (EntityLivingBase e : entities) {
 			if (TAUtil.randomChanceOf(0.75f)) {
 				e.addPotionEffect(new PotionEffect(MobEffects.GLOWING, 120));

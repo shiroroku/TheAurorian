@@ -8,7 +8,7 @@ import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TAParticles;
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Util.EntityHelper;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -70,7 +70,7 @@ public class AurorianSlime_Entity extends EntityLiving implements IMob {
 
 	@Override
 	public boolean getCanSpawnHere() {
-		List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 6, false);
+		List<EntityLivingBase> entities = EntityHelper.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 6, false);
 		int maxcount = maxNearby;
 		int count = 0;
 		for (EntityLivingBase e : entities) {

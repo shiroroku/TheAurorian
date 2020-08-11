@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.Misc.GenerationHelper;
+import com.elseytd.theaurorian.Util.GenerationHelper;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_DarkstoneDungeon;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_MoonTemple;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Runestone_Tower;

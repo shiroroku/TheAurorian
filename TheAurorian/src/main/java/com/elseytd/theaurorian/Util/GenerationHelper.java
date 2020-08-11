@@ -1,4 +1,4 @@
-package com.elseytd.theaurorian.Misc;
+package com.elseytd.theaurorian.Util;
 
 import java.util.Map;
 import java.util.Map.Entry;

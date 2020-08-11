@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Util.AurorianSteelHelper;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
@@ -37,7 +37,7 @@ public class TAItem_Tool_AurorianSteel_Axe extends ItemAxe {
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
 		if (!worldIn.isRemote && (double) state.getBlockHardness(worldIn, pos) != 0.0D) {
 			stack.damageItem(1, entityLiving);
-			TAUtil.AurorianSteel.handleAurorianSteelDurability(stack, worldIn, entityLiving);
+			AurorianSteelHelper.handleAurorianSteelDurability(stack, worldIn, entityLiving);
 		}
 		return true;
 	}
@@ -45,10 +45,10 @@ public class TAItem_Tool_AurorianSteel_Axe extends ItemAxe {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {
-			tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("string.theaurorian.tooltip.silentwoodpickaxe1") + " [" + TAUtil.AurorianSteel.getLevel(stack) + "/" + Math.round(TAUtil.AurorianSteel.maxlevelbase * TAUtil.AurorianSteel.getMultiplier(stack)) + "]" + TextFormatting.RESET);
+			tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("string.theaurorian.tooltip.silentwoodpickaxe1") + " [" + AurorianSteelHelper.getLevel(stack) + "/" + Math.round(AurorianSteelHelper.maxlevelbase * AurorianSteelHelper.getMultiplier(stack)) + "]" + TextFormatting.RESET);
 			tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
 		} else {
-			tooltip.add(TAUtil.AurorianSteel.getAurorianSteelTooltip());
+			tooltip.add(AurorianSteelHelper.getAurorianSteelTooltip());
 		}
 	}
 

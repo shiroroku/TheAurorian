@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Util.MoonstoneHelper;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
@@ -37,7 +37,7 @@ public class TAItem_Tool_Moonstone_Shield extends TAItem_Tool_Shield {
 
 	@Override
 	public void onBlockingDamage(ItemStack shield, EntityPlayer player) {
-		TAUtil.Moonstone.handleMoonstoneDurability(shield, player.world, player);
+		MoonstoneHelper.handleMoonstoneDurability(shield, player.world, player);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -45,7 +45,7 @@ public class TAItem_Tool_Moonstone_Shield extends TAItem_Tool_Shield {
 		if (!GuiScreen.isShiftKeyDown()) {
 			tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
 		} else {
-			tooltip.add(TAUtil.Moonstone.getMoonstoneTooltip());
+			tooltip.add(MoonstoneHelper.getMoonstoneTooltip());
 		}
 	}
 
