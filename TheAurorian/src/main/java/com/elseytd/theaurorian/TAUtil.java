@@ -1,20 +1,28 @@
 package com.elseytd.theaurorian;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
+import java.util.TreeMap;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraft.world.storage.loot.LootContext;
+import net.minecraft.world.storage.loot.LootTable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
@@ -27,7 +35,7 @@ public class TAUtil {
 	 */
 	public static boolean randomChanceOf(double percent) {
 		Random r = new Random();
-		double gen = (double) r.nextDouble();
+		double gen = r.nextDouble();
 		if (gen <= percent) {
 			return true;
 		}
@@ -38,12 +46,12 @@ public class TAUtil {
 
 		/**
 		 * Returns true when the looker is looking at the target.
-		 * 
+		 *
 		 * @param accuracy How close does the looker have to look at the target
 		 */
 		public static boolean isLookingAt(EntityLivingBase looker, EntityLivingBase target, double accuracy) {
 			Vec3d lookvec = target.getLook(1.0F).normalize();
-			Vec3d vec = new Vec3d(looker.posX - target.posX, looker.getEntityBoundingBox().minY + (double) looker.getEyeHeight() - (target.posY + (double) target.getEyeHeight()), looker.posZ - target.posZ);
+			Vec3d vec = new Vec3d(looker.posX - target.posX, looker.getEntityBoundingBox().minY + looker.getEyeHeight() - (target.posY + target.getEyeHeight()), looker.posZ - target.posZ);
 			double leng = vec.lengthVector();
 			vec = vec.normalize();
 			double mult = lookvec.dotProduct(vec);
@@ -89,6 +97,46 @@ public class TAUtil {
 			}
 		}
 
+		/**
+		 * Generates and prints loot tables to the console.
+		 *
+		 * @param world     World Object
+		 * @param lootTable Loot Table
+		 * @param rolls     Rolls/Chests to simulate
+		 */
+		public static void simulateLootTable(World world, ResourceLocation lootTable, int rolls) {
+			if (!world.isRemote) {
+				Map<Item, Integer> allItems = new TreeMap<>(new Comparator<Item>() {
+					@Override
+					public int compare(Item i1, Item i2) {
+						return new ItemStack(i1).getDisplayName().compareTo(new ItemStack(i2).getDisplayName());
+					}
+				});
+
+				LootTable table = world.getLootTableManager().getLootTableFromLocation(lootTable);
+				LootContext ctx = new LootContext.Builder((WorldServer) world).build();
+
+				for (int c = 1; c <= rolls; c++) {
+					List<ItemStack> stacks = table.generateLootForPools(world.rand, ctx);
+
+					for (ItemStack item : stacks) {
+						if (allItems.containsKey(item.getItem())) {
+							allItems.put(item.getItem(), allItems.get(item.getItem()) + item.getCount());
+						} else {
+							allItems.put(item.getItem(), item.getCount());
+						}
+
+					}
+				}
+
+				System.out.println("==Loot Simulation:== (Rolls: " + rolls + ")");
+				for (Entry<Item, Integer> item : allItems.entrySet()) {
+					System.out.println(String.format("%-30s%d", new ItemStack(item.getKey()).getDisplayName(), item.getValue()));
+				}
+				System.out.println("===============================");
+			}
+		}
+
 	}
 
 	public static class LocalOreDictionary {
@@ -105,7 +153,7 @@ public class TAUtil {
 		 */
 		public static List<ItemStack> populateOrelist() {
 			String[] names = OreDictionary.getOreNames();
-			List<ItemStack> ores = new ArrayList<ItemStack>();
+			List<ItemStack> ores = new ArrayList<>();
 			for (String s : names) {
 				if (s.startsWith("ore")) {
 					ores.addAll(OreDictionary.getOres(s));
@@ -131,12 +179,12 @@ public class TAUtil {
 		 * itemstack registered as "oreMoonstone" and a type specified as
 		 * "ingot" will return the registered ore dictionary itemstack of
 		 * "ingotMoonstone".
-		 * 
+		 *
 		 * @param Ore dictionary item
 		 * @param Ore name, Ex:("ingot", "nugget")
 		 */
 		public static ItemStack getTypeFromOre(ItemStack itemIn, String type) {
-			List<ItemStack> nuggets = new ArrayList<ItemStack>();
+			List<ItemStack> nuggets = new ArrayList<>();
 			for (int i : OreDictionary.getOreIDs(itemIn)) {
 				String orename = OreDictionary.getOreName(i);
 				String nuggetnamewouldbe = type + orename.substring(3);
@@ -205,35 +253,35 @@ public class TAUtil {
 					for (Map.Entry<Enchantment, Integer> e : enchs.entrySet()) {
 						if (e.getKey().getMaxLevel() > 1 && e.getValue() < e.getKey().getMaxLevel()) {
 							switch (TAConfig.Config_AurorianSteel_Enchants_WhitelistBlacklist) {
-							case 0:
-							default:
-								enchs.put(e.getKey(), e.getValue() + 1);
-								EnchantmentHelper.setEnchantments(enchs, stack);
-								setMultiplier(stack, levelmultiplier * maxlevelmultiplier);
-								setLevel(stack, 0);
-								return;
-							case 1:
-								for (String enchreg : TAConfig.Config_AurorianSteel_Enchants) {
-									if (enchreg.equals(e.getKey().getRegistryName().toString()) || e.getKey().getRegistryName().getResourceDomain().equals(enchreg)) {
-										enchs.put(e.getKey(), e.getValue() + 1);
-										EnchantmentHelper.setEnchantments(enchs, stack);
-										setMultiplier(stack, levelmultiplier * maxlevelmultiplier);
-										setLevel(stack, 0);
-										return;
+								case 0:
+								default:
+									enchs.put(e.getKey(), e.getValue() + 1);
+									EnchantmentHelper.setEnchantments(enchs, stack);
+									setMultiplier(stack, levelmultiplier * maxlevelmultiplier);
+									setLevel(stack, 0);
+									return;
+								case 1:
+									for (String enchreg : TAConfig.Config_AurorianSteel_Enchants) {
+										if (enchreg.equals(e.getKey().getRegistryName().toString()) || e.getKey().getRegistryName().getResourceDomain().equals(enchreg)) {
+											enchs.put(e.getKey(), e.getValue() + 1);
+											EnchantmentHelper.setEnchantments(enchs, stack);
+											setMultiplier(stack, levelmultiplier * maxlevelmultiplier);
+											setLevel(stack, 0);
+											return;
+										}
 									}
-								}
-								break;
-							case 2:
-								for (String enchreg : TAConfig.Config_AurorianSteel_Enchants) {
-									if (enchreg.equals(e.getKey().getRegistryName().toString()) || e.getKey().getRegistryName().getResourceDomain().equals(enchreg)) {
-										return;
+									break;
+								case 2:
+									for (String enchreg : TAConfig.Config_AurorianSteel_Enchants) {
+										if (enchreg.equals(e.getKey().getRegistryName().toString()) || e.getKey().getRegistryName().getResourceDomain().equals(enchreg)) {
+											return;
+										}
 									}
-								}
-								enchs.put(e.getKey(), e.getValue() + 1);
-								EnchantmentHelper.setEnchantments(enchs, stack);
-								setMultiplier(stack, levelmultiplier * maxlevelmultiplier);
-								setLevel(stack, 0);
-								return;
+									enchs.put(e.getKey(), e.getValue() + 1);
+									EnchantmentHelper.setEnchantments(enchs, stack);
+									setMultiplier(stack, levelmultiplier * maxlevelmultiplier);
+									setLevel(stack, 0);
+									return;
 							}
 						}
 					}
