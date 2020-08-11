@@ -2,7 +2,7 @@
     "name": "Moon Temple Mobs",
     "icon": "theaurorian:bossspawnerkeeper",
     "category": "2modprogression",
-    "sortnum": "5",
+    "sortnum": "7",
     "readbydefault": true,
     "pages": [
         {
@@ -17,7 +17,7 @@
         },
         {
             "type": "text",
-            "text": "$(#8800ff)The Moon Queen$() is the boss of $(#008cff)The Moon Temple$(). She currently is a work in progress and only has very basic AI"
+            "text": "$(#8800ff)The Moon Queen$() is the boss of $(#008cff)The Moon Temple$(). She will circle you with her shield up and perform shield charges to knock you up in the air!"
         },
         {
             "type": "entity",

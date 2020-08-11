@@ -1,13 +1,13 @@
 {
-    "name": "Moontemple",
+    "name": "Moon temple",
     "icon": "theaurorian:moontemplekey",
     "category": "2modprogression",
-    "sortnum": "4",
+    "sortnum": "6",
     "readbydefault": true,
     "pages": [
         {
             "type": "image",
-            "title": "Moontemple",
+            "title": "Moon temple",
             "text": "",
             "images": [
                 "theaurorian:patchouli_books/the_aurorian_guide/en_us/entries/aurorianbasics/moontemple.png"
@@ -15,7 +15,7 @@
         },
         {
             "type": "text",
-            "text": "$(#008cff)The Moontemple$() can be found floating in the sky, they always spawn along the X and Z axis, same as the $(#008cff)The Runestone Dungeon$(). It has a small path leading up to the entrance and is home to $(#8800ff)The Moon Queen$()!$(br2)Around the temple you can find floating islands that contain $(#008cff)Moongems$() that are important for future recipes."
+            "text": "$(#008cff)The Moon temple$() can be found floating in the sky, they always spawn along the X and Z axis, same as the $(#008cff)The Runestone Dungeon$(). It has a small path leading up to the entrance and is home to $(#8800ff)The Moon Queen$()!$(br2)Around the temple you can find floating islands that contain $(#008cff)Moongems$() that are important for many recipes."
         },
         {
             "type": "crafting",
