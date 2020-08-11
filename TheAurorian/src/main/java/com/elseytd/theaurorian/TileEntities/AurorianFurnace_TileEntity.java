@@ -4,6 +4,8 @@ import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.Blocks.TABlock_Furnace;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
@@ -14,7 +16,12 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.SlotFurnaceFuel;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBoat;
+import net.minecraft.item.ItemDoor;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
+import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityLockable;
@@ -42,9 +49,9 @@ public class AurorianFurnace_TileEntity extends TileEntityLockable implements IT
 	public float getChimneySpeedMultiplier() {
 		int y = 0;
 		int chimcount = 0;
-		while (!(this.world.isAirBlock(pos.up(y))) && chimcount < TAConfig.Config_MaximumChimneys) {
+		while (!(this.world.isAirBlock(this.pos.up(y))) && chimcount < TAConfig.Config_MaximumChimneys) {
 			y++;
-			if (this.world.getBlockState(pos.up(y)).getBlock() == TABlocks.aurorianfurnacechimney) {
+			if (this.world.getBlockState(this.pos.up(y)).getBlock() == TABlocks.aurorianfurnacechimney) {
 				chimcount++;
 			}
 		}
@@ -65,7 +72,7 @@ public class AurorianFurnace_TileEntity extends TileEntityLockable implements IT
 
 			if (this.isBurning() || !itemstack.isEmpty() && !this.furnaceItemStacks.get(0).isEmpty()) {
 				if (!this.isBurning() && this.canSmelt()) {
-					this.furnaceBurnTime = (int) (getItemBurnTime(itemstack) - (getItemBurnTime(itemstack) * getChimneySpeedMultiplier()));
+					this.furnaceBurnTime = (int) (getItemBurnTime(itemstack) - (getItemBurnTime(itemstack) * this.getChimneySpeedMultiplier()));
 					this.currentItemBurnTime = this.furnaceBurnTime;
 
 					if (this.isBurning()) {
@@ -226,33 +233,33 @@ public class AurorianFurnace_TileEntity extends TileEntityLockable implements IT
 	@Override
 	public int getField(int id) {
 		switch (id) {
-		case 0:
-			return this.furnaceBurnTime;
-		case 1:
-			return this.currentItemBurnTime;
-		case 2:
-			return this.cookTime;
-		case 3:
-			return this.totalCookTime;
-		default:
-			return 0;
+			case 0:
+				return this.furnaceBurnTime;
+			case 1:
+				return this.currentItemBurnTime;
+			case 2:
+				return this.cookTime;
+			case 3:
+				return this.totalCookTime;
+			default:
+				return 0;
 		}
 	}
 
 	@Override
 	public void setField(int id, int value) {
 		switch (id) {
-		case 0:
-			this.furnaceBurnTime = value;
-			break;
-		case 1:
-			this.currentItemBurnTime = value;
-			break;
-		case 2:
-			this.cookTime = value;
-			break;
-		case 3:
-			this.totalCookTime = value;
+			case 0:
+				this.furnaceBurnTime = value;
+				break;
+			case 1:
+				this.currentItemBurnTime = value;
+				break;
+			case 2:
+				this.cookTime = value;
+				break;
+			case 3:
+				this.totalCookTime = value;
 		}
 	}
 
@@ -286,7 +293,7 @@ public class AurorianFurnace_TileEntity extends TileEntityLockable implements IT
 	}
 
 	public int getSmeltTime(ItemStack stack) {
-		return (int) (this.smeltTime - this.smeltTime * getChimneySpeedMultiplier());
+		return (int) (this.smeltTime - this.smeltTime * this.getChimneySpeedMultiplier());
 	}
 
 	public void setSmeltTime(int time) {
@@ -308,11 +315,10 @@ public class AurorianFurnace_TileEntity extends TileEntityLockable implements IT
 					return true;
 				} else if (!itemstack1.isItemEqual(itemstack)) {
 					return false;
-				} else if (itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) // Forge fix: make furnace respect stack sizes in furnace recipes
-				{
+				} else if (itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) {
 					return true;
 				} else {
-					return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
+					return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize();
 				}
 			}
 		}
@@ -346,8 +352,52 @@ public class AurorianFurnace_TileEntity extends TileEntityLockable implements IT
 			if (burnTime >= 0) {
 				return burnTime;
 			}
+			Item item = stack.getItem();
+
+			if (item == Item.getItemFromBlock(Blocks.WOODEN_SLAB)) {
+				return 150;
+			} else if (item == Item.getItemFromBlock(Blocks.WOOL)) {
+				return 100;
+			} else if (item == Item.getItemFromBlock(Blocks.CARPET)) {
+				return 67;
+			} else if (item == Item.getItemFromBlock(Blocks.LADDER)) {
+				return 300;
+			} else if (item == Item.getItemFromBlock(Blocks.WOODEN_BUTTON)) {
+				return 100;
+			} else if (Block.getBlockFromItem(item).getDefaultState().getMaterial() == Material.WOOD) {
+				return 300;
+			} else if (item == Item.getItemFromBlock(Blocks.COAL_BLOCK)) {
+				return 16000;
+			} else if (item instanceof ItemTool && "WOOD".equals(((ItemTool) item).getToolMaterialName())) {
+				return 200;
+			} else if (item instanceof ItemSword && "WOOD".equals(((ItemSword) item).getToolMaterialName())) {
+				return 200;
+			} else if (item instanceof ItemHoe && "WOOD".equals(((ItemHoe) item).getMaterialName())) {
+				return 200;
+			} else if (item == Items.STICK) {
+				return 100;
+			} else if (item != Items.BOW && item != Items.FISHING_ROD) {
+				if (item == Items.SIGN) {
+					return 200;
+				} else if (item == Items.COAL) {
+					return 1600;
+				} else if (item == Items.LAVA_BUCKET) {
+					return 20000;
+				} else if (item != Item.getItemFromBlock(Blocks.SAPLING) && item != Items.BOWL) {
+					if (item == Items.BLAZE_ROD) {
+						return 2400;
+					} else if (item instanceof ItemDoor && item != Items.IRON_DOOR) {
+						return 200;
+					} else {
+						return item instanceof ItemBoat ? 400 : 0;
+					}
+				} else {
+					return 100;
+				}
+			} else {
+				return 300;
+			}
 		}
-		return 0;
 	}
 
 	public static boolean isItemFuel(ItemStack stack) {
@@ -397,13 +447,15 @@ public class AurorianFurnace_TileEntity extends TileEntityLockable implements IT
 	@Override
 	@javax.annotation.Nullable
 	public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @javax.annotation.Nullable net.minecraft.util.EnumFacing facing) {
-		if (facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-			if (facing == EnumFacing.DOWN)
-				return (T) handlerBottom;
-			else if (facing == EnumFacing.UP)
-				return (T) handlerTop;
-			else
-				return (T) handlerSide;
+		if (facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+			if (facing == EnumFacing.DOWN) {
+				return (T) this.handlerBottom;
+			} else if (facing == EnumFacing.UP) {
+				return (T) this.handlerTop;
+			} else {
+				return (T) this.handlerSide;
+			}
+		}
 		return super.getCapability(capability, facing);
 	}
 
