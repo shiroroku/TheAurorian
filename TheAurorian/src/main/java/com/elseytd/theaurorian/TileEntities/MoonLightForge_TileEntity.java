@@ -76,7 +76,7 @@ public class MoonLightForge_TileEntity extends TileEntityLockable implements ITi
 				ItemStack slot3output = this.heldItems.get(2);
 
 				if (this.getRecipeOutput(slot1, slot2) != null && this.hasMoonlight()) {
-					if (slot3output.isEmpty()) {
+					if (slot3output.isEmpty() || (slot3output.isStackable() && this.getRecipeOutput(slot1, slot2).getItem() == slot3output.getItem() && slot3output.getCount() + this.getRecipeOutput(slot1, slot2).getCount() <= slot3output.getMaxStackSize())) {
 						if (this.isCrafting != true) {
 							this.isCrafting = true;
 							this.updateClient();
@@ -100,7 +100,7 @@ public class MoonLightForge_TileEntity extends TileEntityLockable implements ITi
 
 	public ItemStack getRecipeOutput(ItemStack input1, ItemStack input2) {
 		for (MoonlightForgeRecipe recipe : MoonlightForgeRecipeHandler.allRecipes) {
-			if (input1.getItem() == recipe.getInput1().getItem() && input2.getItem() == recipe.getInput2().getItem()) {
+			if ((input1.getItem() == recipe.getInput1().getItem() && input1.getCount() >= recipe.getInput1().getCount()) && (input2.getItem() == recipe.getInput2().getItem() && input2.getCount() >= recipe.getInput2().getCount())) {
 
 				ItemStack outputitem = recipe.getOutput().copy();
 				if (outputitem.isItemStackDamageable() && input1.isItemStackDamageable() && input1.isItemDamaged()) {
@@ -121,11 +121,40 @@ public class MoonLightForge_TileEntity extends TileEntityLockable implements ITi
 	}
 
 	private void doCraft() {
-		ItemStack output = this.getRecipeOutput(this.heldItems.get(0), this.heldItems.get(1));
+		ItemStack output = null;
+		ItemStack input1 = this.heldItems.get(0);
+		ItemStack input2 = this.heldItems.get(1);
+		ItemStack req1 = null;
+		ItemStack req2 = null;
+
+		for (MoonlightForgeRecipe recipe : MoonlightForgeRecipeHandler.allRecipes) {
+			if ((input1.getItem() == recipe.getInput1().getItem() && input1.getCount() >= recipe.getInput1().getCount()) && (input2.getItem() == recipe.getInput2().getItem() && input2.getCount() >= recipe.getInput2().getCount())) {
+
+				ItemStack outputitem = recipe.getOutput().copy();
+				if (outputitem.isItemStackDamageable() && input1.isItemStackDamageable() && input1.isItemDamaged()) {
+					outputitem.setItemDamage(input1.getItemDamage());
+				}
+
+				if (TAConfig.Config_MoonlightForgeTransfersEnchants) {
+					if (input1.isItemEnchanted() && outputitem.isItemEnchantable()) {
+						EnchantmentHelper.setEnchantments(EnchantmentHelper.getEnchantments(input1), outputitem);
+					}
+				}
+
+				req1 = recipe.getInput1();
+				req2 = recipe.getInput2();
+				output = outputitem;
+			}
+		}
+
 		if (output != null) {
-			this.heldItems.get(0).shrink(1);
-			this.heldItems.get(1).shrink(1);
-			this.heldItems.set(2, output);
+			this.heldItems.get(0).shrink(req1 == null ? 1 : req1.getCount());
+			this.heldItems.get(1).shrink(req2 == null ? 1 : req2.getCount());
+			if (this.heldItems.get(2).isEmpty()) {
+				this.heldItems.set(2, output);
+			} else if (this.heldItems.get(2).getItem() == output.getItem() && output.isStackable()) {
+				this.heldItems.get(2).grow(output.getCount());
+			}
 		}
 	}
 

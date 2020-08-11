@@ -13,18 +13,18 @@ import stanhebben.zenscript.annotations.ZenMethod;
 
 
 /** Script Example:
- * 
+ *
  * To import: "import mods.theaurorian.MoonlightForge;"
  * To add recipe: "mods.theaurorian.MoonlightForge.addRecipe(<theaurorian:moonstonesword>, <minecraft:diamond>, <minecraft:diamond_sword>);"
  * To remove recipe: "mods.theaurorian.MoonlightForge.removeRecipe(<theaurorian:moonstonesword>, <theaurorian:aurorianiteingot>, <theaurorian:aurorianitesword>);"
- * 
- * Note: the Moonlight Forge's recipe checker only compares input items as Items, not as a ItemStack. This means item damage and other NBT data on input items is ignored.
+ *
+ * Note: the Moonlight Forge's recipe checker compares input items as Items and Itemstack counts. This means item damage and other NBT data on input items is ignored.
  */
 @ModOnly("theaurorian")
 @ZenClass("mods.theaurorian.MoonlightForge")
 @ZenRegister
 public class MoonlightForge_CraftTweaker {
-	
+
 	@ZenMethod
 	public static void addRecipe(IItemStack input1, IItemStack input2, IItemStack output) {
 		ItemStack item1 = CraftTweakerMC.getItemStack(input1);
@@ -32,7 +32,7 @@ public class MoonlightForge_CraftTweaker {
 		ItemStack item3 = CraftTweakerMC.getItemStack(output);
 		CraftTweakerAPI.apply(new MoonlightForgeActionAddRecipe(new MoonlightForgeRecipe(item1, item2, item3)));
 	}
-	
+
 	@ZenMethod
 	public static void removeRecipe(IItemStack input1, IItemStack input2, IItemStack output) {
 		ItemStack item1 = CraftTweakerMC.getItemStack(input1);

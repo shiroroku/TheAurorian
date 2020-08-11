@@ -50,10 +50,6 @@ public class TAMod {
 		proxy.postInit(event);
 	}
 
-	/**
-	 * Remove in release builds, adds the command to tp to the aurorian or other
-	 * dimensions
-	 */
 	@Mod.EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
 		event.registerServerCommand(new TACommandBase_TPTA());
