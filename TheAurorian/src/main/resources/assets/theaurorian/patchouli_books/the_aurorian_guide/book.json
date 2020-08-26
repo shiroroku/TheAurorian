@@ -1,6 +1,6 @@
 {
-    "name": "The Aurorian Guide",
-    "landing_text": "Everything you need to know about this mod and how to progress!",
+    "name": "patchouli.theaurorian.guide.name",
+    "landing_text": "patchouli.theaurorian.guide.desc",
     "version": 13,
     "model": "theaurorian:theaurorianguide",
     "creative_tab": "theaurorian",
