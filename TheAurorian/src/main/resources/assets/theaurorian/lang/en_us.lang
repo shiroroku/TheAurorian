@@ -148,6 +148,9 @@ modifier.conarmmoonlit_armor.name=Moonlit
 modifier.tamoonlit.desc=§oIt's a Nightowl!§r\nHas a 50% chance to not take duribility when it's night but 50% to take more during the day!
 modifier.tamoonlit.name=Moonlit
 
+patchouli.theaurorian.guide.desc=Everything you need to know about this mod and how to progress!
+patchouli.theaurorian.guide.name=The Aurorian Guide
+
 string.theaurorian.block.dungeonstonekeyhole1=I need a key
 string.theaurorian.block.dungeonstonekeyhole2=or a lockpick
 string.theaurorian.gui.moonlightforge.nomoonlight=No Moonlight Detected!
@@ -297,6 +300,3 @@ tile.theaurorian.weepingwillowlog.name=Weeping Willow Log
 tile.theaurorian.weepingwillowplanks.name=Weeping Willow Planks
 tile.theaurorian.weepingwillowplanksstairs.name=Weeping Willow Planks Stairs
 tile.theaurorian.weepingwillowsapling.name=Weeping Willow Sapling
-
-patchouli.theaurorian.guide.name=The Aurorian Guide
-patchouli.theaurorian.guide.desc=Everything you need to know about this mod and how to progress!
