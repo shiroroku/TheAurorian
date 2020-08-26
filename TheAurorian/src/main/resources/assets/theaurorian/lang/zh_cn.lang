@@ -148,6 +148,9 @@ modifier.conarmmoonlit_armor.name=月辉
 modifier.tamoonlit.desc=§o它是个夜猫子！§r\n在夜晚有 50% 的机会不消耗耐久，但在白天有 50% 的机会消耗更多耐久！
 modifier.tamoonlit.name=月辉
 
+patchouli.theaurorian.guide.desc=关于本模组你所需要知道的一切！
+patchouli.theaurorian.guide.name=极光导书
+
 string.theaurorian.block.dungeonstonekeyhole1=我需要一把钥匙
 string.theaurorian.block.dungeonstonekeyhole2=或者一个开锁器
 string.theaurorian.gui.moonlightforge.nomoonlight=没有检测到月光！
@@ -297,6 +300,3 @@ tile.theaurorian.weepingwillowlog.name=垂柳原木
 tile.theaurorian.weepingwillowplanks.name=垂柳木板
 tile.theaurorian.weepingwillowplanksstairs.name=垂柳木楼梯
 tile.theaurorian.weepingwillowsapling.name=垂柳树苗
-
-patchouli.theaurorian.guide.name=极光幽境指导
-patchouli.theaurorian.guide.desc=关于本模组你所需要知道的一切！
