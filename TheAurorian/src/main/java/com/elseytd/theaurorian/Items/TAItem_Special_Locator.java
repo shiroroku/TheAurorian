@@ -52,17 +52,17 @@ public class TAItem_Special_Locator extends Item {
 		if (playerIn.isSneaking()) {
 			switch (this.getSelectedDungeon(itemstack)) {
 				case "Moontemple":
-					this.setSelectedDungeon(itemstack, "Darkstone");
-					playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator3")), true);
+					this.setSelectedDungeon(itemstack, "Runestone");
+					playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator1")), true);
 					break;
 				default:
 				case "Runestone":
-					this.setSelectedDungeon(itemstack, "Moontemple");
-					playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator2")), true);
+					this.setSelectedDungeon(itemstack, "Darkstone");
+					playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator3")), true);
 					break;
 				case "Darkstone":
-					this.setSelectedDungeon(itemstack, "Runestone");
-					playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator1")), true);
+					this.setSelectedDungeon(itemstack, "Moontemple");
+					playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator2")), true);
 					break;
 			}
 		} else {
