@@ -1,5 +1,5 @@
 {
-    "name": "Sticky Spiker",
+    "name": "粘性尖钉",
     "icon": "theaurorian:stickyspiker",
     "category": "3magicalitems",
     "readbydefault": true,
@@ -7,13 +7,13 @@
         {
             "type": "spotlight",
             "item": "theaurorian:stickyspiker",
-            "text": "$(#008cff)Sticky Spiker$() will poison any entity hit with it!"
+            "text": "$(#008cff)粘性尖钉$()会使碰触者中毒。"
         },
         {
             "type": "crafting",
-            "name": "Sticky Spiker",
+            "name": "粘性尖钉",
             "recipe": "theaurorian:items/tools/stickyspiker",
-            "text": "$(#008cff)Sticky Spiker$() can be crafted or found in dungeons."
+            "text": "$(#008cff)粘性尖钉$()既可以在地牢中被发现也可以被合成。"
         }
     ]
 }
