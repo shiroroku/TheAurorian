@@ -54,7 +54,7 @@ public class TABiome extends Biome {
 	}
 
 	public int getSpawnWeight() {
-		return genChance;
+		return this.genChance;
 	}
 
 	public void setSpawnWeight(int genChance) {
@@ -85,7 +85,7 @@ public class TABiome extends Biome {
 
 	@Override
 	public BiomeDecorator createBiomeDecorator() {
-		return getModdedBiomeDecorator(new TABiomeDecorator());
+		return this.getModdedBiomeDecorator(new TABiomeDecorator());
 	}
 
 	@Override
@@ -106,11 +106,11 @@ public class TABiome extends Biome {
 				IBlockState iblockstate2 = chunkPrimerIn.getBlockState(xc, y, zc);
 				if (iblockstate2.getMaterial() == Material.AIR) {
 					j = -1;
-				} else if (iblockstate2.getBlock() == stoneBlock) {
+				} else if (iblockstate2.getBlock() == this.stoneBlock) {
 					if (j == -1) {
 						if (k <= 0) {
 							topblk = AIR;
-							fillerblk = stoneBlock.getDefaultState();
+							fillerblk = this.stoneBlock.getDefaultState();
 						} else if (y >= i - 4 && y <= i + 1) {
 							topblk = this.topBlock;
 							fillerblk = this.fillerBlock;
@@ -121,7 +121,7 @@ public class TABiome extends Biome {
 							chunkPrimerIn.setBlockState(xc, y, zc, topblk);
 						} else if (y < i - 7 - k) {
 							topblk = AIR;
-							fillerblk = stoneBlock.getDefaultState();
+							fillerblk = this.stoneBlock.getDefaultState();
 							chunkPrimerIn.setBlockState(xc, y, zc, fillerblk);
 						} else {
 							chunkPrimerIn.setBlockState(xc, y, zc, sandblk);
