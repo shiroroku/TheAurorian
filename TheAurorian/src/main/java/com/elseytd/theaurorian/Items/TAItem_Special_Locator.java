@@ -167,13 +167,13 @@ public class TAItem_Special_Locator extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		if (this.getSelectedDungeon(stack) != null) {
+			tooltip.add(TextFormatting.AQUA + "[" + this.getSelectedDungeon(stack) + "]" + TextFormatting.RESET);
+		}
 		if (!GuiScreen.isShiftKeyDown()) {
 			tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
 		} else {
 			tooltip.add(I18n.format("string.theaurorian.tooltip.locator"));
-		}
-		if (this.getSelectedDungeon(stack) != null) {
-			tooltip.add("[" + this.getSelectedDungeon(stack) + "]");
 		}
 	}
 

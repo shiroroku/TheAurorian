@@ -8,13 +8,10 @@ import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.Util.AurorianSteelHelper;
 
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -36,13 +33,9 @@ public class TAItem_Tool_AurorianSteel_Sword extends ItemSword {
 		return true;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		if (!GuiScreen.isShiftKeyDown()) {
-			tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("string.theaurorian.tooltip.silentwoodpickaxe1") + " [" + AurorianSteelHelper.getLevel(stack) + "/" + Math.round(AurorianSteelHelper.maxlevelbase * AurorianSteelHelper.getMultiplier(stack)) + "]" + TextFormatting.RESET);
-			tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
-		} else {
-			tooltip.add(AurorianSteelHelper.getAurorianSteelTooltip());
-		}
+		AurorianSteelHelper.getAurorianSteelInfo(stack, worldIn, tooltip, flagIn);
 	}
 }

@@ -1,15 +1,21 @@
 package com.elseytd.theaurorian.Util;
 
+import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAConfig;
 
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -25,6 +31,94 @@ public class AurorianSteelHelper {
 	@SideOnly(Side.CLIENT)
 	public static String getAurorianSteelTooltip() {
 		return I18n.format("string.theaurorian.tooltip.auroriansteeltools");
+	}
+
+	@SideOnly(Side.CLIENT)
+	public static void getAurorianSteelInfo(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		boolean canlevelup = hasEnchantToLevelUp(stack, worldIn);
+		if (!GuiScreen.isShiftKeyDown()) {
+			if (!canlevelup) {
+				tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("string.theaurorian.tooltip.auroriansteeltools.noenchants") + TextFormatting.RESET);
+			} else {
+				tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("string.theaurorian.tooltip.silentwoodpickaxe1") + " [" + AurorianSteelHelper.getLevel(stack) + "/" + Math.round(AurorianSteelHelper.maxlevelbase * AurorianSteelHelper.getMultiplier(stack)) + "]" + TextFormatting.RESET);
+			}
+			tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
+		} else {
+			if (canlevelup) {
+				String nextenchant = getNextEnchantment(stack, worldIn);
+				if (nextenchant != null) {
+					tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("string.theaurorian.tooltip.auroriansteeltools.nextenchant") + nextenchant + TextFormatting.RESET);
+				}
+			}
+			tooltip.add(getAurorianSteelTooltip());
+		}
+	}
+
+	/**
+	 * Returns the display name of the next enchantment it will level up.
+	 */
+	public static String getNextEnchantment(ItemStack stack, World worldIn) {
+		if (stack.isItemEnchanted()) {
+			Map<Enchantment, Integer> enchs = EnchantmentHelper.getEnchantments(stack);
+			for (Map.Entry<Enchantment, Integer> e : enchs.entrySet()) {
+				if (e.getKey().getMaxLevel() > 1 && e.getValue() < e.getKey().getMaxLevel()) {
+					switch (TAConfig.Config_AurorianSteel_Enchants_WhitelistBlacklist) {
+						case 0:
+						default:
+							return e.getKey().getTranslatedName(e.getValue() + 1);
+						case 1:
+							for (String enchreg : TAConfig.Config_AurorianSteel_Enchants) {
+								if (enchreg.equals(e.getKey().getRegistryName().toString()) || e.getKey().getRegistryName().getResourceDomain().equals(enchreg)) {
+									return e.getKey().getTranslatedName(e.getValue() + 1);
+								}
+							}
+							break;
+						case 2:
+							for (String enchreg : TAConfig.Config_AurorianSteel_Enchants) {
+								if (enchreg.equals(e.getKey().getRegistryName().toString()) || e.getKey().getRegistryName().getResourceDomain().equals(enchreg)) {
+									return null;
+								}
+							}
+							return e.getKey().getTranslatedName(e.getValue() + 1);
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Checks the itemstack and config to see if the item has enchantments to
+	 * level up.
+	 */
+	public static boolean hasEnchantToLevelUp(ItemStack stack, World worldIn) {
+		if (stack.isItemEnchanted()) {
+			Map<Enchantment, Integer> enchs = EnchantmentHelper.getEnchantments(stack);
+			for (Map.Entry<Enchantment, Integer> e : enchs.entrySet()) {
+				if (e.getKey().getMaxLevel() > 1 && e.getValue() < e.getKey().getMaxLevel()) {
+					switch (TAConfig.Config_AurorianSteel_Enchants_WhitelistBlacklist) {
+						case 0:
+						default:
+							return true;
+						case 1:
+							for (String enchreg : TAConfig.Config_AurorianSteel_Enchants) {
+								if (enchreg.equals(e.getKey().getRegistryName().toString()) || e.getKey().getRegistryName().getResourceDomain().equals(enchreg)) {
+									return true;
+								}
+							}
+							break;
+						case 2:
+							for (String enchreg : TAConfig.Config_AurorianSteel_Enchants) {
+								if (enchreg.equals(e.getKey().getRegistryName().toString()) || e.getKey().getRegistryName().getResourceDomain().equals(enchreg)) {
+									return false;
+								}
+							}
+							return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -76,7 +170,6 @@ public class AurorianSteelHelper {
 		} else {
 			setLevel(stack, itemlevel + 1);
 		}
-
 	}
 
 	public static float getMultiplier(ItemStack stack) {
