@@ -37,6 +37,7 @@ public class TAItem_Basic extends Item {
 	public static final String ITEMNAME_SCRAP_AURORIANITE = "scrapaurorianite";
 	public static final String ITEMNAME_SCRAP_CRYSTALLINE = "scrapcrystalline";
 	public static final String ITEMNAME_SCRAP_UMBRA = "scrapumbra";
+	public static final String ITEMNAME_SPECTRALSILK = "spectralsilk";
 	public static final String ITEMNAME_TROPHY_KEEPER = "trophykeeper";
 	public static final String ITEMNAME_TROPHY_MOONQUEEN = "trophymoonqueen";
 	public static final String ITEMNAME_TROPHY_SPIDER = "trophyspider";
@@ -60,6 +61,7 @@ public class TAItem_Basic extends Item {
 		SCRAP_AURORIANITE(ITEMNAME_SCRAP_AURORIANITE),
 		SCRAP_CRYSTALLINE(ITEMNAME_SCRAP_CRYSTALLINE),
 		SCRAP_UMBRA(ITEMNAME_SCRAP_UMBRA),
+		SPECTRALSILK(ITEMNAME_SPECTRALSILK, EnumRarity.RARE),
 		TROPHY_KEEPER(ITEMNAME_TROPHY_KEEPER, EnumRarity.RARE),
 		TROPHY_MOONQUEEN(ITEMNAME_TROPHY_MOONQUEEN, EnumRarity.RARE),
 		TROPHY_SPIDER(ITEMNAME_TROPHY_SPIDER, EnumRarity.RARE);

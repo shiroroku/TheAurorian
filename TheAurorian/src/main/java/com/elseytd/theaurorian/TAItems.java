@@ -345,6 +345,8 @@ public class TAItems {
 	public static TAItem_Basic trophymoonqueen;
 	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Food.ITEMNAME_SOULLESSFLESH)
 	public static TAItem_Food soullessflesh;
+	@GameRegistry.ObjectHolder(TAMod.MODID + ":" + TAItem_Basic.ITEMNAME_SPECTRALSILK)
+	public static TAItem_Basic spectralsilk;
 
 	private enum TAItemRegistry {
 		ABSORPTIONORB(new TAItem_Special_AbsorptionOrb()),
@@ -440,6 +442,7 @@ public class TAItems {
 		SILKBERRYJAMSANDWICH(new TAItem_Food(TAItem_Food.Foods.SILKBERRYJAMSANDWICH)),
 		SILKSHROOMSTEW(new TAItem_Food(TAItem_Food.Foods.SILKSHROOMSTEW)),
 		SOULLESSFLESH(new TAItem_Food(TAItem_Food.Foods.SOULLESSFLESH)),
+		SPECTRALSILK(new TAItem_Basic(TAItem_Basic.Items.SPECTRALSILK)),
 		SPIKEDCHESTPLATE(new TAItem_Armor_Spiked(EntityEquipmentSlot.CHEST, "spikedchestplate")),
 		STICKYSPIKER(new TAItem_Special_StickySpiker()),
 		STRANGEMEAT(new TAItem_Special_StrangeMeat()),
