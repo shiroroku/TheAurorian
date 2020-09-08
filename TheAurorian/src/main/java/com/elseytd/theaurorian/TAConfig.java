@@ -198,7 +198,7 @@ public class TAConfig {
 		cfg.addCustomCategoryComment(name, "Blocks configuration");
 
 		Config_MaximumChimneys = cfg.getInt("MaximumChimneys", name, Config_MaximumChimneys, 0, 255, "Maximum number of chimneys able to be stacked on Aurorian Furnace");
-		Config_ChimneySpeedMuliplier = cfg.getFloat("ChimneySpeedMuliplier", name, Config_ChimneySpeedMuliplier, 0, 1, "Changes how much chimneys speed up the Aurorian Furnace when at maximum number (0.5 is + 50%)");
+		Config_ChimneySpeedMuliplier = cfg.getFloat("ChimneySpeedMuliplier", name, Config_ChimneySpeedMuliplier, 0, 0.99f, "Changes how much chimneys speed up the Aurorian Furnace when at maximum number (0.5 is + 50%)");
 	}
 
 	private static void initGenerationConfig(Configuration cfg) {
