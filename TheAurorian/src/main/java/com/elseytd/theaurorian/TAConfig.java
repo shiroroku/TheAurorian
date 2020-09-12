@@ -24,6 +24,7 @@ public class TAConfig {
 	public static boolean Config_GenerateMoonTemplePath = true;
 	public static boolean Config_GenerateUmbraTower = true;
 	public static boolean Config_GenerateMushroomCaves = false;
+	public static boolean Config_GenerateGraveyards = true;
 
 	//Entities
 	public static int Config_RunestoneDungeonMobDensity = 1;
@@ -35,7 +36,6 @@ public class TAConfig {
 	public static float Config_RunestoneKeeperDamageMuliplier = 1;
 	public static float Config_MoonQueenDamageMuliplier = 1;
 	public static float Config_SpiderMotherDamageMuliplier = 1;
-
 
 	//Generation, vanilla values found in net.minecraft.world.gen.ChunkGeneratorSettings.ChunkGeneratorSettings(Factory)
 	public static int Config_AurorianCoalOre_Size = 12;
@@ -244,6 +244,7 @@ public class TAConfig {
 		Config_GenerateMoonTemplePath = cfg.getBoolean("GenerateMoonTemplePath", name, Config_GenerateMoonTemplePath, "Set to false to disable Moon Temple's spiral path up");
 		Config_GenerateUmbraTower = cfg.getBoolean("GenerateUmbraTower", name, Config_GenerateUmbraTower, "Set to false to disable Umbra Towers");
 		Config_GenerateMushroomCaves = cfg.getBoolean("GenerateMushroomCaves", name, Config_GenerateMushroomCaves, "Set to false to disable Mushroom Caves");
+		Config_GenerateGraveyards = cfg.getBoolean("GenerateGraveyards", name, Config_GenerateGraveyards, "Set to false to disable Graveyards");
 
 	}
 

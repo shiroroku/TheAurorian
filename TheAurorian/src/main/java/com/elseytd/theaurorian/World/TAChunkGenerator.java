@@ -6,6 +6,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_DarkstoneDungeon;
+import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Graveyard;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_MoonTemple;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Ruins;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Runestone_Tower;
@@ -38,24 +39,25 @@ public class TAChunkGenerator implements IChunkGenerator {
 	private TAWorldGenerator_MoonTemple templegen = new TAWorldGenerator_MoonTemple();
 	private TAWorldGenerator_UmbraTower umbratowergen = new TAWorldGenerator_UmbraTower();
 	private TAWorldGenerator_DarkstoneDungeon darkstonegen = new TAWorldGenerator_DarkstoneDungeon();
+	private TAWorldGenerator_Graveyard graveyardgen = new TAWorldGenerator_Graveyard();
 
 	public TAChunkGenerator(World worldObj) {
 		this.worldObj = worldObj;
 		long seed = worldObj.getSeed();
 		this.random = new Random((seed + 516) * 314);
-		terraingen.setup(worldObj, random);
-		caveGenerator = TerrainGen.getModdedMapGen(caveGenerator, EventType.CAVE);
+		this.terraingen.setup(worldObj, this.random);
+		this.caveGenerator = TerrainGen.getModdedMapGen(this.caveGenerator, EventType.CAVE);
 	}
 
 	@Override
 	public Chunk generateChunk(int x, int z) {
 		ChunkPrimer chunkprimer = new ChunkPrimer();
 		this.biomes = this.worldObj.getBiomeProvider().getBiomesForGeneration(this.biomes, x * 4 - 2, z * 4 - 2, 10, 10);
-		this.terraingen.setBiomes(biomes);
+		this.terraingen.setBiomes(this.biomes);
 		this.terraingen.generate(x, z, chunkprimer);
 
 		this.biomes = this.worldObj.getBiomeProvider().getBiomes(this.biomes, x * 16, z * 16, 16, 16);
-		this.terraingen.replaceBiomeBlocks(x, z, chunkprimer, this, biomes);
+		this.terraingen.replaceBiomeBlocks(x, z, chunkprimer, this, this.biomes);
 
 		this.caveGenerator.generate(this.worldObj, x, z, chunkprimer);
 		Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
@@ -77,22 +79,26 @@ public class TAChunkGenerator implements IChunkGenerator {
 
 		//STRUCTURES
 		if (TAWorldGenerator_Runestone_Tower.GENERATE_TOWERS) {
-			towergen.generate(this.worldObj, this.random, blockpos);
+			this.towergen.generate(this.worldObj, this.random, blockpos);
 		}
 
 		if (TAWorldGenerator_Ruins.GENERATE_RUINS) {
-			ruingen.generate(this.worldObj, this.random, blockpos);
+			this.ruingen.generate(this.worldObj, this.random, blockpos);
 		}
 
 		if (TAWorldGenerator_MoonTemple.GENERATE_TEMPLES) {
-			templegen.generate(this.worldObj, this.random, blockpos);
+			this.templegen.generate(this.worldObj, this.random, blockpos);
 		}
 
 		if (TAWorldGenerator_UmbraTower.GENERATE_TOWERS) {
-			umbratowergen.generate(this.worldObj, this.random, blockpos);
+			this.umbratowergen.generate(this.worldObj, this.random, blockpos);
 		}
 
-		darkstonegen.generate(this.worldObj, this.random, blockpos);
+		if (TAWorldGenerator_Graveyard.GENERATE_GRAVEYARDS) {
+			this.graveyardgen.generate(this.worldObj, this.random, blockpos);
+		}
+
+		this.darkstonegen.generate(this.worldObj, this.random, blockpos);
 
 		//BIOMES
 		Biome biome = this.worldObj.getBiome(blockpos.add(0, 0, 0));
