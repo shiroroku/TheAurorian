@@ -98,7 +98,9 @@ public class TAChunkGenerator implements IChunkGenerator {
 			this.graveyardgen.generate(this.worldObj, this.random, blockpos);
 		}
 
-		this.darkstonegen.generate(this.worldObj, this.random, blockpos);
+		if (TAWorldGenerator_DarkstoneDungeon.GENERATE_DUNGEON) {
+			this.darkstonegen.generate(this.worldObj, this.random, blockpos);
+		}
 
 		//BIOMES
 		Biome biome = this.worldObj.getBiome(blockpos.add(0, 0, 0));

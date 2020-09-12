@@ -22,6 +22,7 @@ public class TAConfig {
 	public static boolean Config_GenerateRuins = true;
 	public static boolean Config_GenerateMoonTemple = true;
 	public static boolean Config_GenerateMoonTemplePath = true;
+	public static boolean Config_GenerateDarkstoneDungeon = true;
 	public static boolean Config_GenerateUmbraTower = true;
 	public static boolean Config_GenerateMushroomCaves = false;
 	public static boolean Config_GenerateGraveyards = true;
@@ -245,7 +246,7 @@ public class TAConfig {
 		Config_GenerateUmbraTower = cfg.getBoolean("GenerateUmbraTower", name, Config_GenerateUmbraTower, "Set to false to disable Umbra Towers");
 		Config_GenerateMushroomCaves = cfg.getBoolean("GenerateMushroomCaves", name, Config_GenerateMushroomCaves, "Set to false to disable Mushroom Caves");
 		Config_GenerateGraveyards = cfg.getBoolean("GenerateGraveyards", name, Config_GenerateGraveyards, "Set to false to disable Graveyards");
-
+		Config_GenerateDarkstoneDungeon = cfg.getBoolean("GenerateDarkstoneDungeon", name, Config_GenerateDarkstoneDungeon, "Set to false to disable Darkstone Dungeons");
 	}
 
 	private static void initEntityConfig(Configuration cfg) {

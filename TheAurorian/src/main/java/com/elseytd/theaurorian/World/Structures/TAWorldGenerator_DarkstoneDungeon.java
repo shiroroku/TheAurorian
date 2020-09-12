@@ -41,6 +41,7 @@ public class TAWorldGenerator_DarkstoneDungeon extends WorldGenerator implements
 	private static final ResourceLocation DARKSTONE_BOSSROOM_BACKLEFT = new ResourceLocation(TAMod.MODID, "darkstone/darkstone_bossroom_backleft");
 
 	public static int CHUNKS_BETWEEN_DUNGEONS = TAConfig.Config_DungeonDensity * 2;
+	public static boolean GENERATE_DUNGEON = TAConfig.Config_GenerateDarkstoneDungeon;
 
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
