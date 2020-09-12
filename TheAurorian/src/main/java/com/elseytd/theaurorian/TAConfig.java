@@ -11,6 +11,10 @@ public class TAConfig {
 	//Blocks
 	public static int Config_MaximumChimneys = 10;
 	public static float Config_ChimneySpeedMuliplier = 0.5F;
+	public static boolean Config_CrystalsSpeedUpMachines = true;
+	public static float Config_CrystalsChanceOfBreaking = 0.25F;
+	public static float Config_CrystalsSpeedReduction = 0.5F;
+	public static int Config_ScrapperTickInterval = 4;
 
 	//Dimensions
 	public static int Config_AurorianDimID = 424;
@@ -200,6 +204,11 @@ public class TAConfig {
 
 		Config_MaximumChimneys = cfg.getInt("MaximumChimneys", name, Config_MaximumChimneys, 0, 255, "Maximum number of chimneys able to be stacked on Aurorian Furnace");
 		Config_ChimneySpeedMuliplier = cfg.getFloat("ChimneySpeedMuliplier", name, Config_ChimneySpeedMuliplier, 0, 0.99f, "Changes how much chimneys speed up the Aurorian Furnace when at maximum number (0.5 is + 50%)");
+		Config_CrystalsSpeedUpMachines = cfg.getBoolean("CrystalsSpeedUpMachines", name, Config_CrystalsSpeedUpMachines, "Set to false to disable Crystals speeding up machines when placed on top");
+		Config_CrystalsChanceOfBreaking = cfg.getFloat("CrystalsChanceOfBreaking", name, Config_CrystalsChanceOfBreaking, 0, 1f, "The chance for a Crystal to break when the machine finishes a recipe. (0.5 is 50%, 0 is no breaking)");
+		Config_CrystalsSpeedReduction = cfg.getFloat("CrystalsSpeedReduction", name, Config_CrystalsSpeedReduction, 0.01f, 1f, "How much a Crystal will speed up the machine below it (LOWER percentage = FASTER machine, yes I know its backwards)");
+		Config_ScrapperTickInterval = cfg.getInt("ScrapperTickInterval", name, Config_ScrapperTickInterval, 0, 72000, "How many ticks until the scrapper will perform 1 update, Scrapper requires 100 updates to do 1 craft. (Meaning default is 400 ticks(20 seconds) for 1 craft)");
+
 	}
 
 	private static void initGenerationConfig(Configuration cfg) {
