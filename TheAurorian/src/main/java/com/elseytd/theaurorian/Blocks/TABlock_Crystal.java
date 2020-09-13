@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TABlocks.ISpecialItemBlock;
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems.ISpecialModel;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TileEntities.CrystalBlock_TileEntity;
@@ -85,9 +86,10 @@ public class TABlock_Crystal extends Block implements ITileEntityProvider, ISpec
 
 	@Override
 	public void registerItemBlock(Register<Item> event) {
-		event.getRegistry().register(new ItemBlock(this).setRegistryName(this.getRegistryName()).setMaxStackSize(16));
+		event.getRegistry().register(new ItemBlock(this).setRegistryName(this.getRegistryName()).setMaxStackSize(TAConfig.Config_CrystalStackSize));
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {
