@@ -16,7 +16,7 @@ public class Keeper_AIBowAttackBarrage extends Keeper_AIBowAttack {
 		if (entitylivingbase == null) {
 			return false;
 		} else {
-			if (this.entityHost.getHealth() <= this.entityHost.getMaxHealth() * 0.20F) {
+			if (this.entityHost.getHealth() <= this.entityHost.getMaxHealth() * 0.35F) {
 				this.attackTarget = entitylivingbase;
 				return true;
 			} else {
@@ -34,7 +34,7 @@ public class Keeper_AIBowAttackBarrage extends Keeper_AIBowAttack {
 		} else {
 			this.seeTime = 0;
 		}
-		if (d0 <= (double) this.maxAttackDistance && this.seeTime >= 20) {
+		if (d0 <= this.maxAttackDistance && this.seeTime >= 20) {
 			this.entityHost.getNavigator().clearPath();
 		} else {
 			this.entityHost.getNavigator().tryMoveToEntityLiving(this.attackTarget, this.entityMoveSpeed);
@@ -47,10 +47,10 @@ public class Keeper_AIBowAttackBarrage extends Keeper_AIBowAttack {
 			float f = MathHelper.sqrt(d0) / this.attackRadius;
 			float lvt_5_1_ = MathHelper.clamp(f, 0.1F, 1.0F);
 			this.rangedAttackEntityHost.attackEntityWithRangedAttack(this.attackTarget, lvt_5_1_);
-			this.rangedAttackTime = MathHelper.floor(f * (float) (this.maxRangedAttackTime - this.attackIntervalMin) + (float) this.attackIntervalMin);
+			this.rangedAttackTime = MathHelper.floor(f * (this.maxRangedAttackTime - this.attackIntervalMin) + this.attackIntervalMin);
 		} else if (this.rangedAttackTime < 0) {
 			float f2 = MathHelper.sqrt(d0) / this.attackRadius;
-			this.rangedAttackTime = MathHelper.floor(f2 * (float) (this.maxRangedAttackTime - this.attackIntervalMin) + (float) this.attackIntervalMin);
+			this.rangedAttackTime = MathHelper.floor(f2 * (this.maxRangedAttackTime - this.attackIntervalMin) + this.attackIntervalMin);
 		}
 	}
 

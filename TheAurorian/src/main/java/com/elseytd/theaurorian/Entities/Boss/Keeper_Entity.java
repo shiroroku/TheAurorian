@@ -66,7 +66,7 @@ public class Keeper_Entity extends EntityMob implements IRangedAttackMob {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(80.0D * TAConfig.Config_RunestoneKeeperHealthMuliplier);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(175.0D * TAConfig.Config_RunestoneKeeperHealthMuliplier);
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(50.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30D);
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D * TAConfig.Config_RunestoneKeeperDamageMuliplier);
@@ -78,7 +78,7 @@ public class Keeper_Entity extends EntityMob implements IRangedAttackMob {
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new Keeper_AIBowAttackBarrage(this, 0.25F, 2, 40F));
 		this.tasks.addTask(2, new Keeper_AIBowAttack(this, 0.85F, 20, 40F));
-		this.tasks.addTask(3, new EntityAIAttackMelee(this, 1.0D, false) {
+		this.tasks.addTask(3, new EntityAIAttackMelee(this, 1.6D, false) {
 			@Override
 			public void startExecuting() {
 				super.startExecuting();
