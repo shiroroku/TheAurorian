@@ -36,7 +36,7 @@ public class TAItem_Tool_Silentwood_Axe extends ItemAxe {
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
 		if (!worldIn.isRemote) {
-			if (state.getBlock() == TABlocks.silentwoodlog) {
+			if (state.getBlock() == TABlocks.Registry.SILENTWOODLOG.getBlock()) {
 				if (TAUtil.randomChanceOf(0.75F)) {
 					if (stack.getItemDamage() > 0) {
 						stack.setItemDamage(stack.getItemDamage() - 1);
@@ -51,6 +51,7 @@ public class TAItem_Tool_Silentwood_Axe extends ItemAxe {
 		return true;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {

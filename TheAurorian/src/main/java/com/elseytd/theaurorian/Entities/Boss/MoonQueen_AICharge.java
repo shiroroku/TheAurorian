@@ -28,7 +28,7 @@ public class MoonQueen_AICharge extends EntityAIBase {
 
 	/**
 	 * Does charge attack.
-	 * 
+	 *
 	 * @param chainCharge If the entity should charge immediately after if they
 	 *                    miss, will do more charges at lower health.
 	 */
@@ -65,7 +65,7 @@ public class MoonQueen_AICharge extends EntityAIBase {
 	public void startExecuting() {
 		this.entity.getNavigator().clearPath();
 		this.entity.setCharging(true);
-		startChargeAttack();
+		this.startChargeAttack();
 	}
 
 	@Override
@@ -98,24 +98,24 @@ public class MoonQueen_AICharge extends EntityAIBase {
 
 		//A tick before we do a charge we set location, so the entity has a chance to dodge.
 		if (this.chargeWindup == 1) {
-			setChargeLocation(this.entity.getAttackTarget());
+			this.setChargeLocation(this.entity.getAttackTarget());
 		}
 
 		if (this.chargeWindup == 0) {
 			//Look at where we are charging and run to the position
-			this.entity.getLookHelper().setLookPosition(this.targetX, this.targetY + (double) this.entity.getEyeHeight(), this.targetZ, (float) this.entity.getHorizontalFaceSpeed(), (float) this.entity.getVerticalFaceSpeed());
+			this.entity.getLookHelper().setLookPosition(this.targetX, this.targetY + this.entity.getEyeHeight(), this.targetZ, this.entity.getHorizontalFaceSpeed(), this.entity.getVerticalFaceSpeed());
 			this.entity.setWindingUpCharge(false);
-			this.entity.getNavigator().tryMoveToXYZ(this.targetX, this.targetY, this.targetZ, chargeSpeed);
+			this.entity.getNavigator().tryMoveToXYZ(this.targetX, this.targetY, this.targetZ, this.chargeSpeed);
 
 			//If we are in range of our target or finish our path, we finish the charge
-			if (this.entity.getDistance(this.entity.getAttackTarget()) <= attackReach) {
-				finishChargeAttack(target);
+			if (this.entity.getDistance(this.entity.getAttackTarget()) <= this.attackReach) {
+				this.finishChargeAttack(target);
 			} else if (this.entity.getNavigator().noPath()) {
-				finishChargeAttack(null);
+				this.finishChargeAttack(null);
 			}
 		} else {
 			//Look at our target while winding up
-			this.entity.getLookHelper().setLookPosition(target.posX, target.posY + (double) target.getEyeHeight(), target.posZ, (float) this.entity.getHorizontalFaceSpeed(), (float) this.entity.getVerticalFaceSpeed());
+			this.entity.getLookHelper().setLookPosition(target.posX, target.posY + target.getEyeHeight(), target.posZ, this.entity.getHorizontalFaceSpeed(), this.entity.getVerticalFaceSpeed());
 			this.entity.setWindingUpCharge(true);
 			this.chargeWindup--;
 		}
@@ -125,13 +125,13 @@ public class MoonQueen_AICharge extends EntityAIBase {
 		this.chargeTime = this.maxChargeTime;
 
 		//Set held item to shield and block
-		this.entity.setHeldItem(EnumHand.OFF_HAND, new ItemStack(TAItems.moonshield));
+		this.entity.setHeldItem(EnumHand.OFF_HAND, new ItemStack(TAItems.Registry.MOONSHIELD.getItem()));
 		this.entity.setActiveHand(EnumHand.OFF_HAND);
 		//Start windup timer
 		this.chargeWindup = 40 - this.entity.getRNG().nextInt(10);
 
 		//If chaincharge is enabled, we add charges to be done if the first charge misses, depending on health
-		if (chainCharge) {
+		if (this.chainCharge) {
 			double healthScale = this.entity.getHealth() / this.entity.getMaxHealth();
 
 			if (healthScale >= 0.75) {
@@ -162,8 +162,8 @@ public class MoonQueen_AICharge extends EntityAIBase {
 			this.entity.attackEntityAsMob(target);
 			target.motionY = target.motionY + 0.25;
 		} else {
-			if (chainCharge) {
-				handleChainCharge();
+			if (this.chainCharge) {
+				this.handleChainCharge();
 			}
 		}
 
@@ -177,7 +177,7 @@ public class MoonQueen_AICharge extends EntityAIBase {
 			//Else we reset our queue and let the regular charge cooldown go
 			if (this.queuedChainCharges != 0) {
 				this.chargeCooldown = 5;
-				queuedChainCharges--;
+				this.queuedChainCharges--;
 			} else {
 				this.queuedChainCharges = this.maxChainCharges;
 			}

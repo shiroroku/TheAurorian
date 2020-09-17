@@ -42,7 +42,7 @@ public class Scrapper_TileEntity extends TileEntityLockable implements ITickable
 
 				float tickinterval = TAConfig.Config_ScrapperTickInterval;
 
-				if (this.getWorld().getBlockState(this.pos.up(1)).getBlock() == TABlocks.crystal && TAConfig.Config_CrystalsSpeedUpMachines) {
+				if (this.getWorld().getBlockState(this.pos.up(1)).getBlock() == TABlocks.Registry.CRYSTAL.getBlock() && TAConfig.Config_CrystalsSpeedUpMachines) {
 					tickinterval *= TAConfig.Config_CrystalsSpeedReduction;
 				}
 
@@ -83,7 +83,7 @@ public class Scrapper_TileEntity extends TileEntityLockable implements ITickable
 
 	public ItemStack getRecipeOutput(ItemStack input) {
 		for (ScrapperRecipe recipe : ScrapperRecipeHandler.allRecipes) {
-			if (input.getItem() == recipe.getInput().getItem() && this.heldItems.get(1).getItem() == Item.getItemFromBlock(TABlocks.crystal)) {
+			if (input.getItem() == recipe.getInput().getItem() && this.heldItems.get(1).getItem() == Item.getItemFromBlock(TABlocks.Registry.CRYSTAL.getBlock())) {
 				return recipe.getOutput().copy();
 			}
 		}
@@ -94,7 +94,7 @@ public class Scrapper_TileEntity extends TileEntityLockable implements ITickable
 		ItemStack output = this.getRecipeOutput(this.heldItems.get(0));
 		if (output != null) {
 
-			if (this.getWorld().getBlockState(this.pos.up(1)).getBlock() == TABlocks.crystal && TAConfig.Config_CrystalsSpeedUpMachines && TAUtil.randomChanceOf(TAConfig.Config_CrystalsChanceOfBreaking)) {
+			if (this.getWorld().getBlockState(this.pos.up(1)).getBlock() == TABlocks.Registry.CRYSTAL.getBlock() && TAConfig.Config_CrystalsSpeedUpMachines && TAUtil.randomChanceOf(TAConfig.Config_CrystalsChanceOfBreaking)) {
 				this.getWorld().destroyBlock(this.pos.up(1), false);
 			}
 
@@ -215,7 +215,7 @@ public class Scrapper_TileEntity extends TileEntityLockable implements ITickable
 				}
 				return false;
 			case 1:
-				if (Item.getItemFromBlock(TABlocks.crystal) == stack.getItem()) {
+				if (Item.getItemFromBlock(TABlocks.Registry.CRYSTAL.getBlock()) == stack.getItem()) {
 					return true;
 				}
 

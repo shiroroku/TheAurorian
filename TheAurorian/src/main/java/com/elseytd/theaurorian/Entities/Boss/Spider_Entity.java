@@ -118,7 +118,7 @@ public class Spider_Entity extends EntityMob {
 				for (int z = 0; z <= distance; z++) {
 					int offs = distance / 2;
 					BlockPos p = new BlockPos(x + this.getPosition().getX() - offs, y + this.getPosition().getY() - offs, z + this.getPosition().getZ() - offs);
-					if (this.world.getBlockState(p).getBlock() == TABlocks.mysticalbarrier) {
+					if (this.world.getBlockState(p).getBlock() == TABlocks.Registry.MYSTICALBARRIER.getBlock()) {
 						this.world.destroyBlock(p, false);
 					}
 				}

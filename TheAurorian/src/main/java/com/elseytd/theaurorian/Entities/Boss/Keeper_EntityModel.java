@@ -49,7 +49,7 @@ public class Keeper_EntityModel extends ModelBiped {
 		this.leftArmPose = ModelBiped.ArmPose.EMPTY;
 		ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
 
-		if (itemstack.getItem() == TAItems.silentwoodbow) {
+		if (itemstack.getItem() == TAItems.Registry.SILENTWOODBOW.getItem()) {
 			if (entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT) {
 				this.rightArmPose = ModelBiped.ArmPose.BOW_AND_ARROW;
 			} else {

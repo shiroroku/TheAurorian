@@ -38,14 +38,14 @@ public class UndeadKnight_Entity extends EntityMob {
 	public static final ResourceLocation LOOT = new ResourceLocation(TAMod.MODID, "entities/" + EntityName);
 	public static final float MobScale = 1.3F;
 	public int maxNearby = 3 * TAConfig.Config_RunestoneDungeonMobDensity;
-	
+
 	public UndeadKnight_Entity(World worldIn) {
 		super(worldIn);
-		setSize(0.6F * MobScale, 1.95F * MobScale);
-		this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(TAItems.aurorianstonesword));
-		this.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(TAItems.knightchestplate));
-		this.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(TAItems.knightleggings));
-		this.setItemStackToSlot(EntityEquipmentSlot.FEET, new ItemStack(TAItems.knightboots));
+		this.setSize(0.6F * MobScale, 1.95F * MobScale);
+		this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(TAItems.Registry.AURORIANSTONESWORD.getItem()));
+		this.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(TAItems.Registry.KNIGHTARMORCHESTPLATE.getItem()));
+		this.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(TAItems.Registry.KNIGHTARMORLEGGINGS.getItem()));
+		this.setItemStackToSlot(EntityEquipmentSlot.FEET, new ItemStack(TAItems.Registry.KNIGHTARMORBOOTS.getItem()));
 		this.experienceValue = 20;
 		this.isImmuneToFire = true;
 	}
@@ -77,7 +77,7 @@ public class UndeadKnight_Entity extends EntityMob {
 		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
-		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
+		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
 	}
 
 	@Override
@@ -95,7 +95,7 @@ public class UndeadKnight_Entity extends EntityMob {
 	@Override
 	public boolean getCanSpawnHere() {
 		List<EntityLivingBase> entities = EntityHelper.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 6, false);
-		int maxcount = maxNearby;
+		int maxcount = this.maxNearby;
 		int count = 0;
 		for (EntityLivingBase e : entities) {
 			if (e instanceof UndeadKnight_Entity) {

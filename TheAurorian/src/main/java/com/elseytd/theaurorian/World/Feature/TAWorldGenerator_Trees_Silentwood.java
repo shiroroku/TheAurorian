@@ -13,8 +13,8 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 public class TAWorldGenerator_Trees_Silentwood extends WorldGenAbstractTree {
 
-	private IBlockState blockStateWood = TABlocks.silentwoodlog.getDefaultState();
-	private IBlockState blockStateLeaves = TABlocks.silentwoodleaves.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+	private IBlockState blockStateWood = TABlocks.Registry.SILENTWOODLOG.getBlock().getDefaultState();
+	private IBlockState blockStateLeaves = TABlocks.Registry.SILENTWOODLEAVES.getBlock().getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
 
 	private final int minTreeHeight = 13;
 	private final int minLeavesHeight = 5;
@@ -25,8 +25,8 @@ public class TAWorldGenerator_Trees_Silentwood extends WorldGenAbstractTree {
 
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
-		int i = minTreeHeight + rand.nextInt(6);
-		int j = minLeavesHeight + rand.nextInt(2);
+		int i = this.minTreeHeight + rand.nextInt(6);
+		int j = this.minLeavesHeight + rand.nextInt(2);
 		int k = i - j;
 		int l = 2 + rand.nextInt(2);
 		boolean flag = true;
@@ -84,7 +84,7 @@ public class TAWorldGenerator_Trees_Silentwood extends WorldGenAbstractTree {
 									state = worldIn.getBlockState(blockpos);
 
 									if (state.getBlock().canBeReplacedByLeaves(state, worldIn, blockpos)) {
-										this.setBlockAndNotifyAdequately(worldIn, blockpos, blockStateLeaves);
+										this.setBlockAndNotifyAdequately(worldIn, blockpos, this.blockStateLeaves);
 									}
 								}
 							}
@@ -110,7 +110,7 @@ public class TAWorldGenerator_Trees_Silentwood extends WorldGenAbstractTree {
 						state = worldIn.getBlockState(upN);
 
 						if (state.getBlock().isAir(state, worldIn, upN) || state.getBlock().isLeaves(state, worldIn, upN)) {
-							this.setBlockAndNotifyAdequately(worldIn, position.up(k4), blockStateWood);
+							this.setBlockAndNotifyAdequately(worldIn, position.up(k4), this.blockStateWood);
 						}
 					}
 

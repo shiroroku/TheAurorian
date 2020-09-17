@@ -48,18 +48,18 @@ public class TAWorldGenerator_Ruins extends WorldGenerator {
 	}
 
 	public void generateRuins(World world, BlockPos position) {
-		while (world.getBlockState(position).getBlock() != TABlocks.auroriangrass && position.getY() >= 5) {
+		while (world.getBlockState(position).getBlock() != TABlocks.Registry.AURORIANGRASS.getBlock() && position.getY() >= 5) {
 			position = position.down();
 		}
 
-		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.aurorianstone);
+		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.Registry.AURORIANSTONE.getBlock());
 		GenerationHelper.getTemplate(world, RUINS_1).addBlocksToWorld(world, position, settings);
 	}
 
 	public void generateRuinsUnderground(World world, BlockPos position, int height) {
 		final BlockPos pos = new BlockPos(position.getX(), height, position.getZ());
 
-		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.aurorianstone);
+		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.Registry.AURORIANSTONE.getBlock());
 		final Template ruins2 = GenerationHelper.getTemplate(world, RUINS_2);
 		ruins2.addBlocksToWorld(world, pos, settings);
 

@@ -129,7 +129,7 @@ public class GenerationHelper {
 		for (int x = 0; x <= 16; x++) {
 			for (int z = 0; z <= 16; z++) {
 				for (int y = 190; y >= 60; y--) {
-					if (worldIn.getBlockState(new BlockPos(pos.getX() + x, y, pos.getZ() + z)).getBlock() == TABlocks.auroriangrass) {
+					if (worldIn.getBlockState(new BlockPos(pos.getX() + x, y, pos.getZ() + z)).getBlock() == TABlocks.Registry.AURORIANGRASS.getBlock()) {
 						if (y >= high) {
 							high = y;
 						}

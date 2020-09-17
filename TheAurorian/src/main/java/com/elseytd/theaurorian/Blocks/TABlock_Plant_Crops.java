@@ -19,7 +19,15 @@ import net.minecraft.world.World;
 public class TABlock_Plant_Crops extends BlockCrops {
 
 	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
-	private static final AxisAlignedBB[] AABB = new AxisAlignedBB[] { new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.4375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5625D, 1.0D) };
+	private static final AxisAlignedBB[] AABB = new AxisAlignedBB[] {
+				new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D),
+				new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D),
+				new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D),
+				new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D),
+				new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D),
+				new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.4375D, 1.0D),
+				new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D),
+				new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5625D, 1.0D) };
 
 	public static final String BLOCKNAME_SILKBERRY = "silkberrycrop";
 	public static final String BLOCKNAME_LAVENDER = "lavendercrop";
@@ -38,13 +46,14 @@ public class TABlock_Plant_Crops extends BlockCrops {
 	@Override
 	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
 		IBlockState soil = worldIn.getBlockState(pos.down());
-		return worldIn.canSeeSky(pos) && (soil.getBlock() == TABlocks.aurorianfarmtile || soil.getBlock() == Blocks.FARMLAND);
+		return worldIn.canSeeSky(pos) && (soil.getBlock() == TABlocks.Registry.AURORIANFARMTILE.getBlock() || soil.getBlock() == Blocks.FARMLAND);
 	}
 
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-		if (!worldIn.isAreaLoaded(pos, 1))
+		if (!worldIn.isAreaLoaded(pos, 1)) {
 			return;
+		}
 
 		int i = this.getAge(state);
 
@@ -61,33 +70,33 @@ public class TABlock_Plant_Crops extends BlockCrops {
 	@Override
 	protected Item getSeed() {
 		if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_SILKBERRY)) {
-			return TAItems.silkberry;
+			return TAItems.Registry.SILKBERRY.getItem();
 		} else if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_LAVENDER)) {
-			return TAItems.lavenderseeds;
+			return TAItems.Registry.SEEDSLAVENDER.getItem();
 		} else {
-			return TAItems.silkberry;
+			return TAItems.Registry.SILKBERRY.getItem();
 		}
 	}
 
 	@Override
 	protected Item getCrop() {
 		if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_SILKBERRY)) {
-			return TAItems.silkberry;
+			return TAItems.Registry.SILKBERRY.getItem();
 		} else if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + BLOCKNAME_LAVENDER)) {
-			return TAItems.lavender;
+			return TAItems.Registry.LAVENDER.getItem();
 		} else {
-			return TAItems.silkberry;
+			return TAItems.Registry.SILKBERRY.getItem();
 		}
 	}
 
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return AABB[((Integer) state.getValue(this.getAgeProperty())).intValue()];
+		return AABB[state.getValue(this.getAgeProperty()).intValue()];
 	}
 
 	@Override
 	protected boolean canSustainBush(IBlockState state) {
-		return state.getBlock() == TABlocks.aurorianfarmtile || state.getBlock() == Blocks.FARMLAND;
+		return state.getBlock() == TABlocks.Registry.AURORIANFARMTILE.getBlock() || state.getBlock() == Blocks.FARMLAND;
 	}
 
 }

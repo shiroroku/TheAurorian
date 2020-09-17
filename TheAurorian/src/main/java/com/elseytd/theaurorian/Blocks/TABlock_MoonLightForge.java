@@ -3,7 +3,7 @@ package com.elseytd.theaurorian.Blocks;
 import java.util.Random;
 
 import com.elseytd.theaurorian.TAGuis;
-import com.elseytd.theaurorian.TAItems.ISpecialModel;
+import com.elseytd.theaurorian.TAItems.IUniqueModel;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TileEntities.MoonLightForge_TileEntity;
 import com.elseytd.theaurorian.TileEntities.MoonLightForge_TileEntitySpecialRenderer;
@@ -37,7 +37,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TABlock_MoonLightForge extends BlockContainer implements ISpecialModel {
+public class TABlock_MoonLightForge extends BlockContainer implements IUniqueModel {
 
 	public static final String BLOCKNAME = "moonlightforge";
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;

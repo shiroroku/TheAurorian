@@ -20,7 +20,7 @@ public class ScrapperRecipeCategory implements IRecipeCategory<ScrapperRecipeWra
 	private final IDrawable GUI_TEXTURE;
 
 	public ScrapperRecipeCategory(IGuiHelper helper) {
-		GUI_TEXTURE = helper.createDrawable(new ResourceLocation(TAMod.MODID, "textures/gui/scrapper.png"), 35, 14, 84, 64);
+		this.GUI_TEXTURE = helper.createDrawable(new ResourceLocation(TAMod.MODID, "textures/gui/scrapper.png"), 35, 14, 84, 64);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class ScrapperRecipeCategory implements IRecipeCategory<ScrapperRecipeWra
 
 	@Override
 	public IDrawable getBackground() {
-		return GUI_TEXTURE;
+		return this.GUI_TEXTURE;
 	}
 
 	@Override

@@ -31,7 +31,7 @@ public class TAWorldGenerator_Mushroom extends WorldGenAbstractTree {
 		for (int i = 0; i < height; i++) {
 			BlockPos p = position.up(i);
 			if (worldIn.isAirBlock(p)) {
-				worldIn.setBlockState(position.up(i), TABlocks.mushroomstem.getDefaultState());
+				worldIn.setBlockState(position.up(i), TABlocks.Registry.MUSHROOMSTEM.getBlock().getDefaultState());
 			}
 		}
 
@@ -41,7 +41,7 @@ public class TAWorldGenerator_Mushroom extends WorldGenAbstractTree {
 			for (int z = 0; z < w2; z++) {
 				BlockPos p = position.add(x - w2 / 2, height, z - w2 / 2);
 				if (worldIn.isAirBlock(p)) {
-					worldIn.setBlockState(p, TABlocks.mushroom.getDefaultState());
+					worldIn.setBlockState(p, TABlocks.Registry.MUSHROOM.getBlock().getDefaultState());
 				}
 			}
 		}
@@ -52,7 +52,7 @@ public class TAWorldGenerator_Mushroom extends WorldGenAbstractTree {
 				BlockPos p = position.add(x - capwidth / 2, height - 1, z - capwidth / 2);
 				if (worldIn.isAirBlock(p) && (x == 0 || z == 0 || x == capwidth - 1 || z == capwidth - 1)) {
 					if (!((x == 0 && z == 0) || (x == capwidth - 1 && z == capwidth - 1) || (x == 0 && z == capwidth - 1) || (x == capwidth - 1 && z == 0))) {
-						worldIn.setBlockState(p, TABlocks.mushroom.getDefaultState());
+						worldIn.setBlockState(p, TABlocks.Registry.MUSHROOM.getBlock().getDefaultState());
 					}
 				}
 			}
@@ -63,7 +63,7 @@ public class TAWorldGenerator_Mushroom extends WorldGenAbstractTree {
 			for (int z = 0; z < w2; z++) {
 				BlockPos p = position.add(x - w2 / 2, height - 1, z - w2 / 2);
 				if (worldIn.isAirBlock(p) && TAUtil.randomChanceOf(0.25D)) {
-					worldIn.setBlockState(p, TABlocks.mushroomcrystal.getDefaultState());
+					worldIn.setBlockState(p, TABlocks.Registry.MUSHROOMCRYSTAL.getBlock().getDefaultState());
 					return true;
 				}
 			}

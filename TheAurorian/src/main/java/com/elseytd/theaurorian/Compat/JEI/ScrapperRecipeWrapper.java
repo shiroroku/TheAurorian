@@ -19,15 +19,15 @@ public class ScrapperRecipeWrapper implements IRecipeWrapper {
 
 	public ScrapperRecipeWrapper(ScrapperRecipe recipe) {
 		this.INPUTS = new ArrayList<>();
-		INPUTS.add(recipe.getInput());
-		INPUTS.add(new ItemStack(Item.getItemFromBlock(TABlocks.crystal)));
+		this.INPUTS.add(recipe.getInput());
+		this.INPUTS.add(new ItemStack(Item.getItemFromBlock(TABlocks.Registry.CRYSTAL.getBlock())));
 		this.OUTPUT = recipe.getOutput();
 	}
 
 	@Override
 	public void getIngredients(IIngredients ingredients) {
-		ingredients.setInputs(VanillaTypes.ITEM, INPUTS);
-		ingredients.setOutput(VanillaTypes.ITEM, OUTPUT);
+		ingredients.setInputs(VanillaTypes.ITEM, this.INPUTS);
+		ingredients.setOutput(VanillaTypes.ITEM, this.OUTPUT);
 	}
 
 }

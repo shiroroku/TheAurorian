@@ -25,7 +25,7 @@ public class AurorianSheep_AIEatGrass extends EntityAIBase {
 			return false;
 		} else {
 			BlockPos blockpos = new BlockPos(this.grassEaterEntity.posX, this.grassEaterEntity.posY, this.grassEaterEntity.posZ);
-			return this.entityWorld.getBlockState(blockpos.down()).getBlock() == TABlocks.auroriangrass;
+			return this.entityWorld.getBlockState(blockpos.down()).getBlock() == TABlocks.Registry.AURORIANGRASS.getBlock();
 		}
 	}
 
@@ -56,10 +56,10 @@ public class AurorianSheep_AIEatGrass extends EntityAIBase {
 		if (this.eatingGrassTimer == 4) {
 			BlockPos blockpos = new BlockPos(this.grassEaterEntity.posX, this.grassEaterEntity.posY, this.grassEaterEntity.posZ);
 			BlockPos blockpos1 = blockpos.down();
-			if (this.entityWorld.getBlockState(blockpos1).getBlock() == TABlocks.auroriangrass) {
+			if (this.entityWorld.getBlockState(blockpos1).getBlock() == TABlocks.Registry.AURORIANGRASS.getBlock()) {
 				if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.entityWorld, this.grassEaterEntity)) {
-					this.entityWorld.playEvent(2001, blockpos1, Block.getIdFromBlock(TABlocks.auroriangrass));
-					this.entityWorld.setBlockState(blockpos1, TABlocks.auroriandirt.getDefaultState(), 2);
+					this.entityWorld.playEvent(2001, blockpos1, Block.getIdFromBlock(TABlocks.Registry.AURORIANGRASS.getBlock()));
+					this.entityWorld.setBlockState(blockpos1, TABlocks.Registry.AURORIANDIRT.getBlock().getDefaultState(), 2);
 				}
 				this.grassEaterEntity.eatGrassBonus();
 			}

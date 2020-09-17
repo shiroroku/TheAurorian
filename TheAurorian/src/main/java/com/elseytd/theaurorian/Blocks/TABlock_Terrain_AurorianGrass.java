@@ -39,7 +39,7 @@ public class TABlock_Terrain_AurorianGrass extends Block {
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return TABlocks.auroriandirt.getItemDropped(TABlocks.auroriandirt.getDefaultState(), rand, fortune);
+		return TABlocks.Registry.AURORIANDIRT.getBlock().getItemDropped(TABlocks.Registry.AURORIANDIRT.getBlock().getDefaultState(), rand, fortune);
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class TABlock_Terrain_AurorianGrass extends Block {
 
 	@Override
 	public void onPlantGrow(IBlockState state, World world, BlockPos pos, BlockPos source) {
-		world.setBlockState(pos, TABlocks.auroriandirt.getDefaultState(), 2);
+		world.setBlockState(pos, TABlocks.Registry.AURORIANDIRT.getBlock().getDefaultState(), 2);
 	}
 
 	@Override
@@ -62,9 +62,9 @@ public class TABlock_Terrain_AurorianGrass extends Block {
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		if (worldIn.isRemote && (worldIn.isAirBlock(pos.up()) || worldIn.getBlockState(pos.up()).getBlock() instanceof BlockBush)) {
 			if (TAUtil.randomChanceOf(0.01) && TAUtil.randomChanceOf(0.5)) {
-				double d0 = (double) pos.getX() + 0.5D;
-				double d1 = (double) pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
-				double d2 = (double) pos.getZ() + 0.5D;
+				double d0 = pos.getX() + 0.5D;
+				double d1 = pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
+				double d2 = pos.getZ() + 0.5D;
 				double d3 = 4 * rand.nextDouble();
 				double mo = 0.1D * rand.nextDouble();
 				worldIn.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, d0, d1 + 4 + d3, d2, mo, 0.0D, mo);
@@ -80,7 +80,7 @@ public class TABlock_Terrain_AurorianGrass extends Block {
 			}
 
 			if (worldIn.getLightFromNeighbors(pos.up()) < 4 && worldIn.getBlockState(pos.up()).getLightOpacity(worldIn, pos.up()) > 2) {
-				worldIn.setBlockState(pos, TABlocks.auroriandirt.getDefaultState());
+				worldIn.setBlockState(pos, TABlocks.Registry.AURORIANDIRT.getBlock().getDefaultState());
 			} else {
 				if (worldIn.getLightFromNeighbors(pos.up()) >= 9) {
 					for (int i = 0; i < 4; ++i) {
@@ -93,7 +93,7 @@ public class TABlock_Terrain_AurorianGrass extends Block {
 						IBlockState iblockstate = worldIn.getBlockState(blockpos.up());
 						IBlockState iblockstate1 = worldIn.getBlockState(blockpos);
 
-						if (iblockstate1.getBlock() == TABlocks.auroriandirt && worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate.getLightOpacity(worldIn, pos.up()) <= 2) {
+						if (iblockstate1.getBlock() == TABlocks.Registry.AURORIANDIRT.getBlock() && worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate.getLightOpacity(worldIn, pos.up()) <= 2) {
 							worldIn.setBlockState(blockpos, this.getDefaultState());
 						}
 					}

@@ -61,7 +61,7 @@ public class TABlock_Terrain_AurorianFarmTile extends Block {
 
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-		int i = ((Integer) state.getValue(MOISTURE)).intValue();
+		int i = state.getValue(MOISTURE).intValue();
 
 		if (!this.hasWater(worldIn, pos) && !worldIn.isRainingAt(pos.up())) {
 			if (i > 0) {
@@ -76,7 +76,7 @@ public class TABlock_Terrain_AurorianFarmTile extends Block {
 
 	@Override
 	public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
-		if (net.minecraftforge.common.ForgeHooks.onFarmlandTrample(worldIn, pos, TABlocks.auroriandirt.getDefaultState(), fallDistance, entityIn)) {
+		if (net.minecraftforge.common.ForgeHooks.onFarmlandTrample(worldIn, pos, TABlocks.Registry.AURORIANDIRT.getBlock().getDefaultState(), fallDistance, entityIn)) {
 			turnToDirt(worldIn, pos);
 		}
 
@@ -84,7 +84,7 @@ public class TABlock_Terrain_AurorianFarmTile extends Block {
 	}
 
 	protected static void turnToDirt(World world, BlockPos worldIn) {
-		world.setBlockState(worldIn, TABlocks.auroriandirt.getDefaultState());
+		world.setBlockState(worldIn, TABlocks.Registry.AURORIANDIRT.getBlock().getDefaultState());
 		AxisAlignedBB axisalignedbb = field_194405_c.offset(worldIn);
 
 		for (Entity entity : world.getEntitiesWithinAABBExcludingEntity((Entity) null, axisalignedbb)) {
@@ -95,7 +95,7 @@ public class TABlock_Terrain_AurorianFarmTile extends Block {
 
 	private boolean hasCrops(World worldIn, BlockPos pos) {
 		Block block = worldIn.getBlockState(pos.up()).getBlock();
-		return block instanceof net.minecraftforge.common.IPlantable && canSustainPlant(worldIn.getBlockState(pos), worldIn, pos, net.minecraft.util.EnumFacing.UP, (net.minecraftforge.common.IPlantable) block);
+		return block instanceof net.minecraftforge.common.IPlantable && this.canSustainPlant(worldIn.getBlockState(pos), worldIn, pos, net.minecraft.util.EnumFacing.UP, (net.minecraftforge.common.IPlantable) block);
 	}
 
 	private boolean hasWater(World worldIn, BlockPos pos) {
@@ -132,23 +132,23 @@ public class TABlock_Terrain_AurorianFarmTile extends Block {
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		switch (side) {
-		case UP:
-			return true;
-		case NORTH:
-		case SOUTH:
-		case WEST:
-		case EAST:
-			IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
-			Block block = iblockstate.getBlock();
-			return !iblockstate.isOpaqueCube() && block != TABlocks.aurorianfarmtile && block != Blocks.GRASS_PATH;
-		default:
-			return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+			case UP:
+				return true;
+			case NORTH:
+			case SOUTH:
+			case WEST:
+			case EAST:
+				IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
+				Block block = iblockstate.getBlock();
+				return !iblockstate.isOpaqueCube() && block != TABlocks.Registry.AURORIANFARMTILE.getBlock() && block != Blocks.GRASS_PATH;
+			default:
+				return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 		}
 	}
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return TABlocks.auroriandirt.getItemDropped(TABlocks.auroriandirt.getDefaultState(), rand, fortune);
+		return TABlocks.Registry.AURORIANDIRT.getBlock().getItemDropped(TABlocks.Registry.AURORIANDIRT.getBlock().getDefaultState(), rand, fortune);
 	}
 
 	@Override
@@ -158,7 +158,7 @@ public class TABlock_Terrain_AurorianFarmTile extends Block {
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return ((Integer) state.getValue(MOISTURE)).intValue();
+		return state.getValue(MOISTURE).intValue();
 	}
 
 	@Override

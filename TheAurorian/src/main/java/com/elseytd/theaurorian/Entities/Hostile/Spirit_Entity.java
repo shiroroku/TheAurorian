@@ -39,7 +39,7 @@ public class Spirit_Entity extends EntityMob {
 
 	public Spirit_Entity(World worldIn) {
 		super(worldIn);
-		setSize(0.6F * MobScale, 1.95F * MobScale);
+		this.setSize(0.6F * MobScale, 1.95F * MobScale);
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class Spirit_Entity extends EntityMob {
 
 	public void setArmsRaised(boolean armsRaised) {
 		this.getDataManager().set(ARMS_RAISED, Boolean.valueOf(armsRaised));
-	}	
+	}
 
 	@SideOnly(Side.CLIENT)
 	public boolean isArmsRaised() {
@@ -76,21 +76,21 @@ public class Spirit_Entity extends EntityMob {
 		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
+		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
 	}
 
 	@Override
 	public void fall(float distance, float damageMultiplier) {
 	}
-	
+
 	@Override
 	public boolean getCanSpawnHere() {
 		int i = MathHelper.floor(this.posX);
 		int j = MathHelper.floor(this.getEntityBoundingBox().minY);
 		int k = MathHelper.floor(this.posZ);
 		BlockPos blockpos = new BlockPos(i, j, k);
-		return this.world.getBlockState(blockpos.down()).getBlock() == TABlocks.auroriangrass && this.dimension == TAConfig.Config_AurorianDimID && super.getCanSpawnHere();
+		return this.world.getBlockState(blockpos.down()).getBlock() == TABlocks.Registry.AURORIANGRASS.getBlock() && this.dimension == TAConfig.Config_AurorianDimID && super.getCanSpawnHere();
 	}
 
 	@Override

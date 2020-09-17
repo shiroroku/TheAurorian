@@ -31,17 +31,17 @@ public class CrystallineBeam_Entity extends EntityArrow {
 
 	public CrystallineBeam_Entity(World worldIn) {
 		super(worldIn);
-		setStats();
+		this.setStats();
 	}
 
 	public CrystallineBeam_Entity(World worldIn, double x, double y, double z) {
 		super(worldIn, x, y, z);
-		setStats();
+		this.setStats();
 	}
 
 	public CrystallineBeam_Entity(World worldIn, EntityLivingBase shooter) {
 		super(worldIn, shooter);
-		setStats();
+		this.setStats();
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class CrystallineBeam_Entity extends EntityArrow {
 		float f = -MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
 		float f1 = -MathHelper.sin(pitch * 0.017453292F);
 		float f2 = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
-		this.shoot((double) f, (double) f1, (double) f2, velocity * arrowVelocity, inaccuracy);
+		this.shoot(f, f1, f2, velocity * arrowVelocity, inaccuracy);
 		this.motionX += shooter.motionX;
 		this.motionZ += shooter.motionZ;
 
@@ -65,7 +65,7 @@ public class CrystallineBeam_Entity extends EntityArrow {
 		System.out.println(true);
 		if (entity != null) {
 			float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-			int i = MathHelper.ceil((double) f * CrystallineBeam_Entity.arrowDamage);
+			int i = MathHelper.ceil(f * CrystallineBeam_Entity.arrowDamage);
 
 			if (this.getIsCritical()) {
 				i += this.rand.nextInt(i / 2 + 2);
@@ -83,12 +83,12 @@ public class CrystallineBeam_Entity extends EntityArrow {
 				entity.setFire(5);
 			}
 
-			if (entity.attackEntityFrom(damagesource, (float) i)) {
+			if (entity.attackEntityFrom(damagesource, i)) {
 				if (entity instanceof EntityLivingBase) {
 					EntityLivingBase entitylivingbase = (EntityLivingBase) entity;
 					float f1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 					if (f1 > 0.0F) {
-						entitylivingbase.addVelocity(this.motionX * (double) 0.5 * 0.6000000238418579D / (double) f1, 0.1D, this.motionZ * (double) 0.5 * 0.6000000238418579D / (double) f1);
+						entitylivingbase.addVelocity(this.motionX * 0.5 * 0.6000000238418579D / f1, 0.1D, this.motionZ * 0.5 * 0.6000000238418579D / f1);
 					}
 					if (this.shootingEntity instanceof EntityLivingBase) {
 						EnchantmentHelper.applyThornEnchantments(entitylivingbase, this.shootingEntity);
@@ -120,13 +120,13 @@ public class CrystallineBeam_Entity extends EntityArrow {
 				}
 			}
 		} else {
-			this.motionX = (double) ((float) (raytraceResultIn.hitVec.x - this.posX));
-			this.motionY = (double) ((float) (raytraceResultIn.hitVec.y - this.posY));
-			this.motionZ = (double) ((float) (raytraceResultIn.hitVec.z - this.posZ));
+			this.motionX = ((float) (raytraceResultIn.hitVec.x - this.posX));
+			this.motionY = ((float) (raytraceResultIn.hitVec.y - this.posY));
+			this.motionZ = ((float) (raytraceResultIn.hitVec.z - this.posZ));
 			float f2 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-			this.posX -= this.motionX / (double) f2 * 0.05000000074505806D;
-			this.posY -= this.motionY / (double) f2 * 0.05000000074505806D;
-			this.posZ -= this.motionZ / (double) f2 * 0.05000000074505806D;
+			this.posX -= this.motionX / f2 * 0.05000000074505806D;
+			this.posY -= this.motionY / f2 * 0.05000000074505806D;
+			this.posZ -= this.motionZ / f2 * 0.05000000074505806D;
 			this.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 0.25F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 			if (this.world.isRemote) {
 				this.world.spawnParticle(EnumParticleTypes.CLOUD, this.posX, this.posY, this.posZ, 0, 0, 0);
@@ -148,6 +148,6 @@ public class CrystallineBeam_Entity extends EntityArrow {
 
 	@Override
 	protected ItemStack getArrowStack() {
-		return new ItemStack(TAItems.crystallinesprite);
+		return new ItemStack(TAItems.Registry.CRYSTALLINESPRITE.getItem());
 	}
 }

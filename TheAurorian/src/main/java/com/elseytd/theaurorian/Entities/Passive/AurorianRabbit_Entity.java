@@ -60,7 +60,7 @@ public class AurorianRabbit_Entity extends EntityAnimal {
 
 	public static final String EntityName = "aurorianrabbit";
 	public static final ResourceLocation LOOT = new ResourceLocation(TAMod.MODID, "entities/" + EntityName);
-	private static final Set<Item> BREEDING_ITEMS = Sets.newHashSet(TAItems.silkberry);
+	private static final Set<Item> BREEDING_ITEMS = Sets.newHashSet(TAItems.Registry.SILKBERRY.getItem());
 	private int jumpTicks;
 	private int jumpDuration;
 	private boolean wasOnGround;
@@ -69,7 +69,7 @@ public class AurorianRabbit_Entity extends EntityAnimal {
 
 	public AurorianRabbit_Entity(World worldIn) {
 		super(worldIn);
-		this.spawnableBlock = TABlocks.auroriangrass;
+		this.spawnableBlock = TABlocks.Registry.AURORIANGRASS.getBlock();
 		this.setSize(0.4F, 0.5F);
 		this.jumpHelper = new AurorianRabbit_Entity.RabbitJumpHelper(this);
 		this.moveHelper = new AurorianRabbit_Entity.RabbitMoveHelper(this);
@@ -91,7 +91,7 @@ public class AurorianRabbit_Entity extends EntityAnimal {
 		this.tasks.addTask(1, new EntityAISwimming(this));
 		this.tasks.addTask(1, new AurorianRabbit_Entity.AIPanic(this, 2.2D));
 		this.tasks.addTask(2, new EntityAIMate(this, 0.8D));
-		this.tasks.addTask(3, new EntityAITempt(this, 1.0D, TAItems.silkberry, false));
+		this.tasks.addTask(3, new EntityAITempt(this, 1.0D, TAItems.Registry.SILKBERRY.getItem(), false));
 		this.tasks.addTask(4, new EntityAIAvoidEntity(this, EntityPlayer.class, 8.0F, 2.2D, 2.2D));
 		this.tasks.addTask(4, new EntityAIAvoidEntity(this, EntityWolf.class, 10.0F, 2.2D, 2.2D));
 		this.tasks.addTask(4, new EntityAIAvoidEntity(this, EntityMob.class, 4.0F, 2.2D, 2.2D));
@@ -144,7 +144,7 @@ public class AurorianRabbit_Entity extends EntityAnimal {
 
 	@SideOnly(Side.CLIENT)
 	public float setJumpCompletion(float p_175521_1_) {
-		return this.jumpDuration == 0 ? 0.0F : ((float) this.jumpTicks + p_175521_1_) / (float) this.jumpDuration;
+		return this.jumpDuration == 0 ? 0.0F : (this.jumpTicks + p_175521_1_) / this.jumpDuration;
 	}
 
 	public void setMovementSpeed(double newSpeed) {
@@ -387,7 +387,7 @@ public class AurorianRabbit_Entity extends EntityAnimal {
 	}
 
 	protected void createEatingParticles() {
-		this.world.spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, this.posY + 0.5D + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, 0.0D, 0.0D, 0.0D, Block.getStateId(TABlocks.silkberryplant.getDefaultState()));
+		this.world.spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, 0.0D, 0.0D, 0.0D, Block.getStateId(TABlocks.Registry.PLANTSILKBERRY.getBlock().getDefaultState()));
 		this.carrotTicks = 40;
 	}
 
@@ -466,7 +466,7 @@ public class AurorianRabbit_Entity extends EntityAnimal {
 		@Override
 		public void updateTask() {
 			super.updateTask();
-			this.rabbit.getLookHelper().setLookPosition((double) this.destinationBlock.getX() + 0.5D, (double) (this.destinationBlock.getY() + 1), (double) this.destinationBlock.getZ() + 0.5D, 10.0F, (float) this.rabbit.getVerticalFaceSpeed());
+			this.rabbit.getLookHelper().setLookPosition(this.destinationBlock.getX() + 0.5D, this.destinationBlock.getY() + 1, this.destinationBlock.getZ() + 0.5D, 10.0F, this.rabbit.getVerticalFaceSpeed());
 
 			if (this.getIsAboveDestination()) {
 				//World world = this.rabbit.world;

@@ -20,7 +20,7 @@ public class TACreativeTab extends CreativeTabs {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public ItemStack getTabIconItem() {
-		return new ItemStack(Item.getItemFromBlock(TABlocks.silentwoodsapling));
+		return new ItemStack(Item.getItemFromBlock(TABlocks.Registry.PLANTSILENTWOODSAPLING.getBlock()));
 	}
 
 	@SideOnly(Side.CLIENT)

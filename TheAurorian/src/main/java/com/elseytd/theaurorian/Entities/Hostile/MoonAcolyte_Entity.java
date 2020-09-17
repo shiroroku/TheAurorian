@@ -47,10 +47,10 @@ public class MoonAcolyte_Entity extends EntityMob {
 
 	public MoonAcolyte_Entity(World worldIn) {
 		super(worldIn);
-		ItemStack sword = new ItemStack(TAItems.aurorianstonesword);
+		ItemStack sword = new ItemStack(TAItems.Registry.AURORIANSTONESWORD.getItem());
 		sword.addEnchantment(Enchantments.KNOCKBACK, 2);
 		this.setHeldItem(EnumHand.MAIN_HAND, sword);
-		setSize(0.6F * MobScale, 1.95F * MobScale);
+		this.setSize(0.6F * MobScale, 1.95F * MobScale);
 	}
 
 	@Override
@@ -60,14 +60,14 @@ public class MoonAcolyte_Entity extends EntityMob {
 		int k = MathHelper.floor(this.posZ);
 		BlockPos blockpos = new BlockPos(i, j, k);
 		List<EntityLivingBase> entities = EntityHelper.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 30, false);
-		int maxcount = maxNearby;
+		int maxcount = this.maxNearby;
 		int count = 0;
 		for (EntityLivingBase e : entities) {
 			if (e instanceof MoonAcolyte_Entity) {
 				count++;
 			}
 		}
-		return count <= maxcount && this.world.getBlockState(blockpos.down()).getBlock() == TABlocks.moontemplebricks && this.dimension == TAConfig.Config_AurorianDimID && super.getCanSpawnHere();
+		return count <= maxcount && this.world.getBlockState(blockpos.down()).getBlock() == TABlocks.Registry.DUNGEONSTONEMOONTEMPLE.getBlock() && this.dimension == TAConfig.Config_AurorianDimID && super.getCanSpawnHere();
 	}
 
 	@Override
@@ -107,7 +107,7 @@ public class MoonAcolyte_Entity extends EntityMob {
 		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
-		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
+		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
 	}
 
 	@Override

@@ -75,7 +75,7 @@ public class TAWorldGenerator_MoonTemple extends WorldGenerator implements Gener
 		final int chunkX = c.x;
 		final int chunkZ = c.z;
 		final BlockPos position = new BlockPos(chunkX * 16 + 8, height, chunkZ * 16 + 8);
-		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.aurorianstone);
+		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.Registry.AURORIANSTONE.getBlock());
 
 		if (this.isValidChunkForGen(chunkX, chunkZ, 0, 0)) {
 			final Template temple_center = GenerationHelper.getTemplate(world, MOONTEMPLE_CENTER);

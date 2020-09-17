@@ -48,9 +48,9 @@ public class TABlock_WeepingWillow_Leaves extends BlockLeaves {
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		if (worldIn.isRemote && (worldIn.isAirBlock(pos.down()))) {
 			if (TAUtil.randomChanceOf(0.01)) {
-				double d0 = (double) pos.getX() + rand.nextDouble();
-				double d1 = (double) pos.getY() - 0.2D;
-				double d2 = (double) pos.getZ() + rand.nextDouble();
+				double d0 = pos.getX() + rand.nextDouble();
+				double d1 = pos.getY() - 0.2D;
+				double d2 = pos.getZ() + rand.nextDouble();
 				TAParticles.spawnParticle(Particles.WEEPINGWILLOWDRIP, d0, d1, d2, 0, 0, 0);
 			}
 		}
@@ -65,7 +65,7 @@ public class TABlock_WeepingWillow_Leaves extends BlockLeaves {
 	@Override
 	protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance) {
 		if (worldIn.rand.nextInt(chance) == 0) {
-			spawnAsEntity(worldIn, pos, new ItemStack(TAItems.weepingwillowsap));
+			spawnAsEntity(worldIn, pos, new ItemStack(TAItems.Registry.WEEPINGWILLOWSAP.getItem()));
 		}
 	}
 
@@ -88,7 +88,7 @@ public class TABlock_WeepingWillow_Leaves extends BlockLeaves {
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return Item.getItemFromBlock(TABlocks.weepingwillowsapling);
+		return Item.getItemFromBlock(TABlocks.Registry.WEEPINGWILLOWSAPLING.getBlock());
 	}
 
 	@Override

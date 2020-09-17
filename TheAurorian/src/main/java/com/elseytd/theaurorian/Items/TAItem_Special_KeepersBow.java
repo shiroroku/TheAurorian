@@ -25,16 +25,18 @@ public class TAItem_Special_KeepersBow extends ItemBow {
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);
 		this.setMaxDamage(512);
 		this.addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter() {
+			@Override
 			@SideOnly(Side.CLIENT)
 			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
 				if (entityIn == null) {
 					return 0.0F;
 				} else {
-					return entityIn.getActiveItemStack().getItem() != TAItems.keepersbow ? 0.0F : (float) (stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 20.0F;
+					return entityIn.getActiveItemStack().getItem() != TAItems.Registry.KEEPERSBOW.getItem() ? 0.0F : (stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 20.0F;
 				}
 			}
 		});
 		this.addPropertyOverride(new ResourceLocation("pulling"), new IItemPropertyGetter() {
+			@Override
 			@SideOnly(Side.CLIENT)
 			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
 				return entityIn != null && entityIn.isHandActive() && entityIn.getActiveItemStack() == stack ? 1.0F : 0.0F;

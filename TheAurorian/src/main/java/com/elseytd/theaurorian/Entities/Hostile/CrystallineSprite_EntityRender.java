@@ -32,8 +32,8 @@ public class CrystallineSprite_EntityRender extends Render<CrystallineSprite_Ent
 		GlStateManager.rotate(-entity.rotationYawHead, 0.0F, 1.0F, 0.0F);
 		GlStateManager.rotate(entity.rotationPitch, 1.0F, 0.0F, 0.0F);
 		GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
-		
-		Minecraft.getMinecraft().getRenderItem().renderItem(new ItemStack(TAItems.crystallinesprite), ItemCameraTransforms.TransformType.GROUND);
+
+		Minecraft.getMinecraft().getRenderItem().renderItem(new ItemStack(TAItems.Registry.CRYSTALLINESPRITE.getItem()), ItemCameraTransforms.TransformType.GROUND);
 
 		GlStateManager.popMatrix();
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
@@ -42,7 +42,7 @@ public class CrystallineSprite_EntityRender extends Render<CrystallineSprite_Ent
 	@Override
 	@Nonnull
 	protected ResourceLocation getEntityTexture(@Nonnull CrystallineSprite_Entity entity) {
-		return rl;
+		return this.rl;
 	}
 
 	public static class Factory implements IRenderFactory<CrystallineSprite_Entity> {

@@ -45,6 +45,7 @@ public class TAItem_Armor_SlimeBoots extends ItemArmor {
 		return EnumRarity.EPIC;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {
@@ -76,7 +77,7 @@ public class TAItem_Armor_SlimeBoots extends ItemArmor {
 	public static void handleJumpEvent(LivingJumpEvent e) {
 		if (e.getEntity() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) e.getEntity();
-			if (player.isSneaking() && player.onGround && !player.getCooldownTracker().hasCooldown(TAItems.aurorianslimeboots)) {
+			if (player.isSneaking() && player.onGround && !player.getCooldownTracker().hasCooldown(TAItems.Registry.AURORIANSLIMEBOOTS.getItem())) {
 				for (ItemStack s : player.getArmorInventoryList()) {
 					if (s.getItem() instanceof TAItem_Armor_SlimeBoots) {
 						player.addVelocity(0, 1.25D, 0);
@@ -84,7 +85,7 @@ public class TAItem_Armor_SlimeBoots extends ItemArmor {
 						if (player.getEntityWorld().isRemote) {
 							player.playSound(SoundEvents.ENTITY_SLIME_JUMP, 1f, 1f);
 						}
-						player.getCooldownTracker().setCooldown(TAItems.aurorianslimeboots, TAConfig.Config_SlimeBootsCooldown);
+						player.getCooldownTracker().setCooldown(TAItems.Registry.AURORIANSLIMEBOOTS.getItem(), TAConfig.Config_SlimeBootsCooldown);
 						return;
 					}
 				}

@@ -20,7 +20,7 @@ public class MoonlightForgeRecipeCategory implements IRecipeCategory<MoonlightFo
 	private final IDrawable GUI_TEXTURE;
 
 	public MoonlightForgeRecipeCategory(IGuiHelper helper) {
-		GUI_TEXTURE = helper.createDrawable(new ResourceLocation(TAMod.MODID, "textures/gui/moonlightforge.png"), 17, 22, 152, 44);
+		this.GUI_TEXTURE = helper.createDrawable(new ResourceLocation(TAMod.MODID, "textures/gui/moonlightforge.png"), 17, 22, 152, 44);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class MoonlightForgeRecipeCategory implements IRecipeCategory<MoonlightFo
 
 	@Override
 	public IDrawable getBackground() {
-		return GUI_TEXTURE;
+		return this.GUI_TEXTURE;
 	}
 
 	@Override
@@ -49,11 +49,11 @@ public class MoonlightForgeRecipeCategory implements IRecipeCategory<MoonlightFo
 		guistacks.init(0, true, 4, 12);
 		guistacks.init(1, true, 66, 12);
 		guistacks.init(2, false, 124, 12);
-		
+
 		List<ItemStack> input1 = ingredients.getInputs(VanillaTypes.ITEM).get(0);
 		List<ItemStack> input2 = ingredients.getInputs(VanillaTypes.ITEM).get(1);
 		List<ItemStack> output = ingredients.getOutputs(VanillaTypes.ITEM).get(0);
-		
+
 		guistacks.set(0, input1);
 		guistacks.set(1, input2);
 		guistacks.set(2, output);

@@ -44,11 +44,11 @@ public class AurorianPig_Entity extends EntityAnimal {
 
 	public static final String EntityName = "aurorianpig";
 	public static final ResourceLocation LOOT = new ResourceLocation(TAMod.MODID, "entities/" + EntityName);
-	private static final Set<Item> BREEDING_ITEMS = Sets.newHashSet(TAItems.silkberry);
+	private static final Set<Item> BREEDING_ITEMS = Sets.newHashSet(TAItems.Registry.SILKBERRY.getItem());
 
 	public AurorianPig_Entity(World worldIn) {
 		super(worldIn);
-		this.spawnableBlock = TABlocks.auroriangrass;
+		this.spawnableBlock = TABlocks.Registry.AURORIANGRASS.getBlock();
 		this.setSize(0.9F, 0.9F);
 	}
 

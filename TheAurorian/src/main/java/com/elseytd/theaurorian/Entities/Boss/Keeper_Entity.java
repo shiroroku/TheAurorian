@@ -50,7 +50,7 @@ public class Keeper_Entity extends EntityMob implements IRangedAttackMob {
 		super(worldIn);
 		this.setHealth(this.getMaxHealth());
 		this.setSize(0.7F * 2F, 4.2F);
-		ItemStack s = new ItemStack(TAItems.moonstonesword);
+		ItemStack s = new ItemStack(TAItems.Registry.MOONSTONESWORD.getItem());
 		s.addEnchantment(TAEnchantments.lightning, 3);
 		s.addEnchantment(Enchantments.KNOCKBACK, 2);
 		this.setHeldItem(EnumHand.MAIN_HAND, s);
@@ -82,7 +82,7 @@ public class Keeper_Entity extends EntityMob implements IRangedAttackMob {
 			@Override
 			public void startExecuting() {
 				super.startExecuting();
-				ItemStack s = new ItemStack(TAItems.moonstonesword);
+				ItemStack s = new ItemStack(TAItems.Registry.MOONSTONESWORD.getItem());
 				s.addEnchantment(TAEnchantments.lightning, 3);
 				s.addEnchantment(Enchantments.KNOCKBACK, 2);
 				this.attacker.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, s);

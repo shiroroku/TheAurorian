@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 @SuppressWarnings("deprecation")
 public class TATeleporter extends Teleporter {
 
-	private static final Long2ObjectMap<TATeleporter.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap<PortalPosition>(4096);
+	private static final Long2ObjectMap<TATeleporter.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap<>(4096);
 
 	private final WorldServer WSInstance;
 
@@ -53,9 +53,9 @@ public class TATeleporter extends Teleporter {
 
 	@Override
 	public void placeInPortal(Entity entityIn, float rotationYaw) {
-		if (!placeInExistingPortal(entityIn, rotationYaw)) {
-			makePortal(entityIn);
-			placeInExistingPortal(entityIn, rotationYaw);
+		if (!this.placeInExistingPortal(entityIn, rotationYaw)) {
+			this.makePortal(entityIn);
+			this.placeInExistingPortal(entityIn, rotationYaw);
 		}
 	}
 
@@ -72,7 +72,7 @@ public class TATeleporter extends Teleporter {
 			Teleporter.PortalPosition portalposition = destinationCoordinateCache.get(k);
 			d0 = 0.0D;
 			object = portalposition;
-			portalposition.lastUpdateTime = WSInstance.getTotalWorldTime();
+			portalposition.lastUpdateTime = this.WSInstance.getTotalWorldTime();
 			flag1 = false;
 		} else {
 			BlockPos blockpos4 = new BlockPos(entityIn);
@@ -80,10 +80,10 @@ public class TATeleporter extends Teleporter {
 				BlockPos blockpos1;
 
 				for (int i1 = -128; i1 <= 128; ++i1) {
-					for (BlockPos blockpos = blockpos4.add(l, WSInstance.getActualHeight() - 1 - blockpos4.getY(), i1); blockpos.getY() >= 0; blockpos = blockpos1) {
+					for (BlockPos blockpos = blockpos4.add(l, this.WSInstance.getActualHeight() - 1 - blockpos4.getY(), i1); blockpos.getY() >= 0; blockpos = blockpos1) {
 						blockpos1 = blockpos.down();
-						if (WSInstance.getBlockState(blockpos).getBlock() == TABlocks.aurorianportal) {
-							while (WSInstance.getBlockState(blockpos1 = blockpos.down()).getBlock() == TABlocks.aurorianportal) {
+						if (this.WSInstance.getBlockState(blockpos).getBlock() == TABlocks.Registry.AURORIANPORTAL.getBlock()) {
+							while (this.WSInstance.getBlockState(blockpos1 = blockpos.down()).getBlock() == TABlocks.Registry.AURORIANPORTAL.getBlock()) {
 								blockpos = blockpos1;
 							}
 							double d1 = blockpos.distanceSq(blockpos4);
@@ -99,7 +99,7 @@ public class TATeleporter extends Teleporter {
 
 		if (d0 >= 0.0D) {
 			if (flag1) {
-				destinationCoordinateCache.put(k, new Teleporter.PortalPosition((BlockPos) object, WSInstance.getTotalWorldTime()));
+				destinationCoordinateCache.put(k, new Teleporter.PortalPosition((BlockPos) object, this.WSInstance.getTotalWorldTime()));
 			}
 
 			double d4 = ((BlockPos) object).getX() + 0.5D;
@@ -108,44 +108,49 @@ public class TATeleporter extends Teleporter {
 
 			EnumFacing enumfacing = null;
 
-			if (WSInstance.getBlockState(((BlockPos) object).west()).getBlock() == TABlocks.aurorianportal)
+			if (this.WSInstance.getBlockState(((BlockPos) object).west()).getBlock() == TABlocks.Registry.AURORIANPORTAL.getBlock()) {
 				enumfacing = EnumFacing.NORTH;
+			}
 
-			if (WSInstance.getBlockState(((BlockPos) object).east()).getBlock() == TABlocks.aurorianportal)
+			if (this.WSInstance.getBlockState(((BlockPos) object).east()).getBlock() == TABlocks.Registry.AURORIANPORTAL.getBlock()) {
 				enumfacing = EnumFacing.SOUTH;
+			}
 
-			if (WSInstance.getBlockState(((BlockPos) object).north()).getBlock() == TABlocks.aurorianportal)
+			if (this.WSInstance.getBlockState(((BlockPos) object).north()).getBlock() == TABlocks.Registry.AURORIANPORTAL.getBlock()) {
 				enumfacing = EnumFacing.EAST;
+			}
 
-			if (WSInstance.getBlockState(((BlockPos) object).south()).getBlock() == TABlocks.aurorianportal)
+			if (this.WSInstance.getBlockState(((BlockPos) object).south()).getBlock() == TABlocks.Registry.AURORIANPORTAL.getBlock()) {
 				enumfacing = EnumFacing.WEST;
+			}
 
 			EnumFacing enumfacing1 = EnumFacing.getHorizontal(MathHelper.floor(entityIn.rotationYaw * 4.0F / 360.0F + 0.5D) & 3);
 
 			if (enumfacing != null) {
 				EnumFacing enumfacing2 = enumfacing.rotateYCCW();
 				BlockPos blockpos2 = ((BlockPos) object).offset(enumfacing);
-				boolean flag2 = isBlockAirAndAbove(blockpos2);
-				boolean flag3 = isBlockAirAndAbove(blockpos2.offset(enumfacing2));
+				boolean flag2 = this.isBlockAirAndAbove(blockpos2);
+				boolean flag3 = this.isBlockAirAndAbove(blockpos2.offset(enumfacing2));
 
 				if (flag3 && flag2) {
 					object = ((BlockPos) object).offset(enumfacing2);
 					enumfacing = enumfacing.getOpposite();
 					enumfacing2 = enumfacing2.getOpposite();
 					BlockPos blockpos3 = ((BlockPos) object).offset(enumfacing);
-					flag2 = isBlockAirAndAbove(blockpos3);
-					flag3 = isBlockAirAndAbove(blockpos3.offset(enumfacing2));
+					flag2 = this.isBlockAirAndAbove(blockpos3);
+					flag3 = this.isBlockAirAndAbove(blockpos3.offset(enumfacing2));
 				}
 
 				float f6 = 0.5F;
 				float f1 = 0.5F;
 
-				if (!flag3 && flag2)
+				if (!flag3 && flag2) {
 					f6 = 1.0F;
-				else if (flag3 && !flag2)
+				} else if (flag3 && !flag2) {
 					f6 = 0.0F;
-				else if (flag3)
+				} else if (flag3) {
 					f1 = 0.0F;
+				}
 
 				d4 = ((BlockPos) object).getX() + 0.5D;
 				d5 = ((BlockPos) object).getY() + 0.5D;
@@ -187,7 +192,7 @@ public class TATeleporter extends Teleporter {
 	}
 
 	private boolean isBlockAirAndAbove(BlockPos pos) {
-		return !WSInstance.isAirBlock(pos) || !WSInstance.isAirBlock(pos.up());
+		return !this.WSInstance.isAirBlock(pos) || !this.WSInstance.isAirBlock(pos.up());
 	}
 
 	@Override
@@ -199,7 +204,7 @@ public class TATeleporter extends Teleporter {
 
 		for (int h = this.world.getHeight() - 20; h > 0; h--) {
 			IBlockState blk = this.world.getBlockState(new BlockPos(x, h, z));
-			if (!this.world.isAirBlock(new BlockPos(x, h, z)) && blk != TABlocks.silentwoodlog && !(blk.getBlock() instanceof BlockLeaves) && !(blk.getBlock() instanceof BlockBush)) {
+			if (!this.world.isAirBlock(new BlockPos(x, h, z)) && blk != TABlocks.Registry.SILENTWOODLOG.getBlock() && !(blk.getBlock() instanceof BlockLeaves) && !(blk.getBlock() instanceof BlockBush)) {
 				y = h + 2;
 				break;
 			}
@@ -228,13 +233,13 @@ public class TATeleporter extends Teleporter {
 						int y10 = y1 + k8;
 						int z11 = z1 + (l7 - 1) * directionmirr - j7 * direction;
 						boolean flag = k8 < 0;
-						this.world.setBlockState(new BlockPos(x9, y10, z11), flag ? TABlocks.aurorianstonebrick.getDefaultState() : Blocks.AIR.getDefaultState());
+						this.world.setBlockState(new BlockPos(x9, y10, z11), flag ? TABlocks.Registry.AURORIANSTONEBRICK.getBlock().getDefaultState() : Blocks.AIR.getDefaultState());
 					}
 				}
 			}
 		}
 
-		IBlockState portalBlock = TABlocks.aurorianportal.getDefaultState().withProperty(TABlock_Portal.AXIS, direction == 0 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
+		IBlockState portalBlock = TABlocks.Registry.AURORIANPORTAL.getBlock().getDefaultState().withProperty(TABlock_Portal.AXIS, direction == 0 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
 
 		for (int i8 = 0; i8 < testing4; ++i8) {
 			for (int l8 = 0; l8 < testing4; ++l8) {
@@ -243,7 +248,7 @@ public class TATeleporter extends Teleporter {
 					int yPort = y1 + l9;
 					int zPort = z1 + (l8 - 1) * directionmirr;
 					boolean flag1 = l8 == 0 || l8 == testing3 || l9 == -1 || l9 == testing3;
-					this.world.setBlockState(new BlockPos(xPort, yPort, zPort), flag1 ? TABlocks.aurorianportalframebricks.getDefaultState() : portalBlock, 2);
+					this.world.setBlockState(new BlockPos(xPort, yPort, zPort), flag1 ? TABlocks.Registry.AURORIANPORTALFRAME.getBlock().getDefaultState() : portalBlock, 2);
 				}
 			}
 
@@ -268,7 +273,7 @@ public class TATeleporter extends Teleporter {
 			ObjectIterator<TATeleporter.PortalPosition> objectiterator = TATeleporter.destinationCoordinateCache.values().iterator();
 
 			while (objectiterator.hasNext()) {
-				TATeleporter.PortalPosition teleporter$portalposition = (TATeleporter.PortalPosition) objectiterator.next();
+				TATeleporter.PortalPosition teleporter$portalposition = objectiterator.next();
 
 				if (teleporter$portalposition == null || teleporter$portalposition.lastUpdateTime < i) {
 					objectiterator.remove();

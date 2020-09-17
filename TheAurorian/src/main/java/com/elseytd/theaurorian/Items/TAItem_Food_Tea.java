@@ -26,7 +26,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TAItem_Food_Tea extends Item implements TAItems.ISpecialModel{
+public class TAItem_Food_Tea extends Item implements TAItems.IUniqueModel {
 
 	public static final String PARENT_MODEL = "tea";
 	public static final String ITEMNAME_LAVENDER = "tealavender";
@@ -51,15 +51,15 @@ public class TAItem_Food_Tea extends Item implements TAItems.ISpecialModel{
 		}
 
 		public String getName() {
-			return ITEMNAME;
+			return this.ITEMNAME;
 		}
 
 		public PotionEffect getEffect() {
-			return EFFECT;
+			return this.EFFECT;
 		}
 
 		public Color getColor() {
-			return OVERLAYCOLOR;
+			return this.OVERLAYCOLOR;
 		}
 	}
 
@@ -85,13 +85,14 @@ public class TAItem_Food_Tea extends Item implements TAItems.ISpecialModel{
 				}
 				return 16777215;
 			}
-		}, TAItems.tealavender, TAItems.teapetunia, TAItems.teaseedy, TAItems.teasilkberry);
+		}, TAItems.Registry.TEALAVENDER.getItem(), TAItems.Registry.TEAPETUNIA.getItem(), TAItems.Registry.TEASEEDY.getItem(), TAItems.Registry.TEASILKBERRY.getItem());
 	}
 
 	public Teas getTeaType() {
-		return itemTea;
+		return this.itemTea;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void initModel() {
 		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(TAMod.MODID + ":" + PARENT_MODEL, "inventory"));
@@ -122,9 +123,9 @@ public class TAItem_Food_Tea extends Item implements TAItems.ISpecialModel{
 			if (!entityplayer.capabilities.isCreativeMode) {
 				stack.shrink(1);
 				if (stack.isEmpty()) {
-					return new ItemStack(TAItems.cup);
+					return new ItemStack(TAItems.Registry.CUP.getItem());
 				}
-				entityplayer.inventory.addItemStackToInventory(new ItemStack(TAItems.cup));
+				entityplayer.inventory.addItemStackToInventory(new ItemStack(TAItems.Registry.CUP.getItem()));
 			}
 		}
 
@@ -135,7 +136,7 @@ public class TAItem_Food_Tea extends Item implements TAItems.ISpecialModel{
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
 		playerIn.setActiveHand(handIn);
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+		return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
 	}
 
 	@Override

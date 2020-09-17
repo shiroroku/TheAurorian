@@ -57,14 +57,14 @@ public class TABlock_Mushroom extends Block {
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return TABlocks.mushroomsmall.getItemDropped(TABlocks.mushroomsmall.getDefaultState(), rand, fortune);
+		return TABlocks.Registry.MUSHROOMSMALL.getBlock().getItemDropped(TABlocks.Registry.MUSHROOMSMALL.getBlock().getDefaultState(), rand, fortune);
 	}
 
 	@Override
 	public int quantityDropped(Random random) {
 		return 1;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {

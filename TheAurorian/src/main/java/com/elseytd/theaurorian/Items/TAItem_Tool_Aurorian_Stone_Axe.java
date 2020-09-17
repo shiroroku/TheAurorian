@@ -37,10 +37,10 @@ public class TAItem_Tool_Aurorian_Stone_Axe extends ItemAxe {
 	 */
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
-		if (!worldIn.isRemote && (double) state.getBlockHardness(worldIn, pos) != 0.0D) {
+		if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0D) {
 			stack.damageItem(1, entityLiving);
 			int y = 1;
-			while (worldIn.getBlockState(new BlockPos(pos.getX(), pos.getY() + y, pos.getZ())) == TABlocks.silentwoodlog.getDefaultState() && stack.getItemDamage() <= (stack.getMaxDamage() - 3)) {
+			while (worldIn.getBlockState(new BlockPos(pos.getX(), pos.getY() + y, pos.getZ())) == TABlocks.Registry.SILENTWOODLOG.getBlock().getDefaultState() && stack.getItemDamage() <= (stack.getMaxDamage() - 3)) {
 				worldIn.destroyBlock(new BlockPos(pos.getX(), pos.getY() + y, pos.getZ()), true);
 				stack.damageItem(3, entityLiving);
 				y++;
@@ -49,6 +49,7 @@ public class TAItem_Tool_Aurorian_Stone_Axe extends ItemAxe {
 		return true;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {

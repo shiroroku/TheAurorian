@@ -32,7 +32,7 @@ public class TAItem_Tool_Moonstone_Shield extends TAItem_Tool_Shield {
 
 	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-		return repair.getItem() == TAItems.moonstoneingot ? true : super.getIsRepairable(toRepair, repair);
+		return repair.getItem() == TAItems.Registry.INGOTMOONSTONE.getItem() ? true : super.getIsRepairable(toRepair, repair);
 	}
 
 	@Override
@@ -40,6 +40,7 @@ public class TAItem_Tool_Moonstone_Shield extends TAItem_Tool_Shield {
 		MoonstoneHelper.handleMoonstoneDurability(shield, player.world, player);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {

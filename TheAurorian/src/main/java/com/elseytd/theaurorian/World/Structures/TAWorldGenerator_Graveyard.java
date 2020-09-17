@@ -35,7 +35,7 @@ public class TAWorldGenerator_Graveyard extends WorldGenerator {
 	}
 
 	public void generateGraveyard(World world, BlockPos position) {
-		while (world.getBlockState(position).getBlock() != TABlocks.auroriangrass && position.getY() >= 40) {
+		while (world.getBlockState(position).getBlock() != TABlocks.Registry.AURORIANGRASS.getBlock() && position.getY() >= 40) {
 			position = position.down();
 		}
 
@@ -50,7 +50,7 @@ public class TAWorldGenerator_Graveyard extends WorldGenerator {
 		}
 
 		final Template template = GenerationHelper.getTemplate(world, GRAVEYARD);
-		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.aurorianstone);
+		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.Registry.AURORIANSTONE.getBlock());
 		template.addBlocksToWorld(world, position, settings);
 		GenerationHelper.populateChestsInTemplate(world, position, template, settings, "chest", LOOT);
 

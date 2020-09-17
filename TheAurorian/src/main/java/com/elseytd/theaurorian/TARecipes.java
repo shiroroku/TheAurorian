@@ -1,5 +1,10 @@
 package com.elseytd.theaurorian;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.elseytd.theaurorian.TABlocks.Registry;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -9,120 +14,108 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class TARecipes {
 
-	public enum blockBurnTimes {
-		AURORIANCOALBLOCK(TABlocks.auroriancoalblock, 16200),
-		SILENTWOODPLANKS(TABlocks.silentwoodplanks, 200),
-		WEEPINGWILLOWPLANKS(TABlocks.weepingwillowplanks, 200),
-		SILENTWOODLOG(TABlocks.silentwoodlog, 300),
-		WEEPINGWILLOWLOG(TABlocks.weepingwillowlog, 300),
-		SILENTWOODSTAIRS(TABlocks.silentwoodstairs, 300),
-		MUSHROOM(TABlocks.mushroom, 0),
-		MUSHROOMSTEM(TABlocks.mushroomstem, 0);
-
-		Block block;
-		int burnTime;
-
-		blockBurnTimes(Block b, int bt) {
-			this.block = b;
-			this.burnTime = bt;
-		}
-
-		public Item getItemBlock() {
-			return Item.getItemFromBlock(this.block);
-		}
-	}
-
 	public static void registerBlockBurntime(FurnaceFuelBurnTimeEvent event) {
-		for (blockBurnTimes b : blockBurnTimes.values()) {
-			if (event.getItemStack().getItem() == b.getItemBlock()) {
-				event.setBurnTime(b.burnTime);
+		Map<Block, Integer> burnableBlocks = new HashMap<>();
+
+		burnableBlocks.put(Registry.MATERIALCOAL.getBlock(), 16200);
+		burnableBlocks.put(Registry.SILENTWOODPLANKS.getBlock(), 200);
+		burnableBlocks.put(Registry.WEEPINGWILLOWPLANKS.getBlock(), 200);
+		burnableBlocks.put(Registry.SILENTWOODLOG.getBlock(), 300);
+		burnableBlocks.put(Registry.WEEPINGWILLOWLOG.getBlock(), 300);
+		burnableBlocks.put(Registry.SILENTWOODPLANKSSTAIRS.getBlock(), 300);
+		burnableBlocks.put(Registry.MUSHROOM.getBlock(), 0);
+		burnableBlocks.put(Registry.MUSHROOMSTEM.getBlock(), 0);
+
+		for (Map.Entry<Block, Integer> entry : burnableBlocks.entrySet()) {
+			if (event.getItemStack().getItem() == Item.getItemFromBlock(entry.getKey())) {
+				event.setBurnTime(entry.getValue());
 			}
 		}
 	}
 
 	public static void registerFurnaceRecipes() {
 		// BASIC
-		GameRegistry.addSmelting(TABlocks.auroriancobblestone, new ItemStack(TABlocks.aurorianstone), 0.1F);
-		GameRegistry.addSmelting(TABlocks.ceruleanore, new ItemStack(TAItems.ceruleaningot), 1F);
-		GameRegistry.addSmelting(TABlocks.moonstoneore, new ItemStack(TAItems.moonstoneingot), 1F);
-		GameRegistry.addSmelting(TAItems.aurorianpork, new ItemStack(TAItems.aurorianporkcooked), 0.1F);
-		GameRegistry.addSmelting(TABlocks.moonsand, new ItemStack(TABlocks.moonglass), 0.1F);
+		GameRegistry.addSmelting(TABlocks.Registry.AURORIANCOBBLESTONE.getBlock(), new ItemStack(TABlocks.Registry.AURORIANSTONE.getBlock()), 0.1F);
+		GameRegistry.addSmelting(TABlocks.Registry.ORECERULEAN.getBlock(), new ItemStack(TAItems.Registry.INGOTCERULEAN.getItem()), 1F);
+		GameRegistry.addSmelting(TABlocks.Registry.OREMOONSTONE.getBlock(), new ItemStack(TAItems.Registry.INGOTMOONSTONE.getItem()), 1F);
+		GameRegistry.addSmelting(TAItems.Registry.AURORIANPORK.getItem(), new ItemStack(TAItems.Registry.AURORIANPORKCOOKED.getItem()), 0.1F);
+		GameRegistry.addSmelting(TABlocks.Registry.MOONSAND.getBlock(), new ItemStack(TABlocks.Registry.GLASSMOON.getBlock()), 0.1F);
 
 		// RECYCLING
-		GameRegistry.addSmelting(TAItems.moonstonesword, new ItemStack(TAItems.moonstonenugget, 4), 0F);
-		GameRegistry.addSmelting(TAItems.moonstonehoe, new ItemStack(TAItems.moonstonenugget, 4), 0F);
-		GameRegistry.addSmelting(TAItems.moonstonepickaxe, new ItemStack(TAItems.moonstonenugget, 6), 0F);
-		GameRegistry.addSmelting(TAItems.moonstoneshovel, new ItemStack(TAItems.moonstonenugget, 2), 0F);
-		GameRegistry.addSmelting(TAItems.moonstonesickle, new ItemStack(TAItems.moonstonenugget, 6), 0F);
-		GameRegistry.addSmelting(TAItems.moonstoneaxe, new ItemStack(TAItems.moonstonenugget, 6), 0F);
-		GameRegistry.addSmelting(TAItems.ceruleanboots, new ItemStack(TAItems.ceruleannugget, 8), 0F);
-		GameRegistry.addSmelting(TAItems.ceruleanchestplate, new ItemStack(TAItems.ceruleannugget, 16), 0F);
-		GameRegistry.addSmelting(TAItems.ceruleanleggings, new ItemStack(TAItems.ceruleannugget, 14), 0F);
-		GameRegistry.addSmelting(TAItems.ceruleanhelmet, new ItemStack(TAItems.ceruleannugget, 10), 0F);
-		GameRegistry.addSmelting(TAItems.ceruleanshield, new ItemStack(TAItems.ceruleannugget, 12), 0F);
-		GameRegistry.addSmelting(TAItems.auroriansteelchestplate, new ItemStack(TAItems.auroriansteelnugget, 16), 0F);
-		GameRegistry.addSmelting(TAItems.auroriansteelleggings, new ItemStack(TAItems.auroriansteelnugget, 14), 0F);
-		GameRegistry.addSmelting(TAItems.auroriansteelhelmet, new ItemStack(TAItems.auroriansteelnugget, 10), 0F);
-		GameRegistry.addSmelting(TAItems.auroriansteelboots, new ItemStack(TAItems.auroriansteelnugget, 8), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.MOONSTONESWORD.getItem(), new ItemStack(TAItems.Registry.MOONSTONENUGGET.getItem(), 4), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.MOONSTONEHOE.getItem(), new ItemStack(TAItems.Registry.MOONSTONENUGGET.getItem(), 4), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.MOONSTONEPICKAXE.getItem(), new ItemStack(TAItems.Registry.MOONSTONENUGGET.getItem(), 6), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.MOONSTONESHOVEL.getItem(), new ItemStack(TAItems.Registry.MOONSTONENUGGET.getItem(), 2), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.MOONSTONESICKLE.getItem(), new ItemStack(TAItems.Registry.MOONSTONENUGGET.getItem(), 6), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.MOONSTONEAXE.getItem(), new ItemStack(TAItems.Registry.MOONSTONENUGGET.getItem(), 6), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.CERULEANARMORBOOTS.getItem(), new ItemStack(TAItems.Registry.CERULEANNUGGET.getItem(), 8), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.CERULEANARMORCHESTPLATE.getItem(), new ItemStack(TAItems.Registry.CERULEANNUGGET.getItem(), 16), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.CERULEANARMORLEGGINGS.getItem(), new ItemStack(TAItems.Registry.CERULEANNUGGET.getItem(), 14), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.CERULEANARMORHELMET.getItem(), new ItemStack(TAItems.Registry.CERULEANNUGGET.getItem(), 10), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.CERULEANSHIELD.getItem(), new ItemStack(TAItems.Registry.CERULEANNUGGET.getItem(), 12), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.AURORIANSTEELARMORCHESTPLATE.getItem(), new ItemStack(TAItems.Registry.AURORIANSTEELNUGGET.getItem(), 16), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.AURORIANSTEELARMORLEGGINGS.getItem(), new ItemStack(TAItems.Registry.AURORIANSTEELNUGGET.getItem(), 14), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.AURORIANSTEELARMORHELMET.getItem(), new ItemStack(TAItems.Registry.AURORIANSTEELNUGGET.getItem(), 10), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.AURORIANSTEELARMORBOOTS.getItem(), new ItemStack(TAItems.Registry.AURORIANSTEELNUGGET.getItem(), 8), 0F);
 
 		// SPECIAL RECYCLING
-		GameRegistry.addSmelting(TAItems.aurorianitesword, new ItemStack(TAItems.scrapaurorianite, 2), 0F);
-		GameRegistry.addSmelting(TAItems.aurorianitepickaxe, new ItemStack(TAItems.scrapaurorianite, 3), 0F);
-		GameRegistry.addSmelting(TAItems.aurorianiteaxe, new ItemStack(TAItems.scrapaurorianite, 3), 0F);
-		GameRegistry.addSmelting(TAItems.crystallinesword, new ItemStack(TAItems.scrapcrystalline, 2), 0F);
-		GameRegistry.addSmelting(TAItems.crystallinepickaxe, new ItemStack(TAItems.scrapcrystalline, 3), 0F);
-		GameRegistry.addSmelting(TAItems.crystallineshield, new ItemStack(TAItems.scrapcrystalline, 5), 0F);
-		GameRegistry.addSmelting(TAItems.absorptionorb, new ItemStack(TAItems.scrapcrystalline, 4), 0F);
-		GameRegistry.addSmelting(TAItems.livingdiviningrod, new ItemStack(TAItems.scrapcrystalline, 2), 0F);
-		GameRegistry.addSmelting(TAItems.spikedchestplate, new ItemStack(TAItems.scrapumbra, 8), 0F);
-		GameRegistry.addSmelting(TAItems.umbrashield, new ItemStack(TAItems.scrapumbra, 5), 0F);
-		GameRegistry.addSmelting(TAItems.umbrasword, new ItemStack(TAItems.scrapumbra, 2), 0F);
-		GameRegistry.addSmelting(TAItems.umbrapickaxe, new ItemStack(TAItems.scrapumbra, 3), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.AURORIANITESWORD.getItem(), new ItemStack(TAItems.Registry.SCRAPAURORIANITE.getItem(), 2), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.AURORIANITEPICKAXE.getItem(), new ItemStack(TAItems.Registry.SCRAPAURORIANITE.getItem(), 3), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.AURORIANITEAXE.getItem(), new ItemStack(TAItems.Registry.SCRAPAURORIANITE.getItem(), 3), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.CRYSTALLINESWORD.getItem(), new ItemStack(TAItems.Registry.SCRAPCRYSTALLINE.getItem(), 2), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.CRYSTALLINEPICKAXE.getItem(), new ItemStack(TAItems.Registry.SCRAPCRYSTALLINE.getItem(), 3), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.CRYSTALLINESHIELD.getItem(), new ItemStack(TAItems.Registry.SCRAPCRYSTALLINE.getItem(), 5), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.ABSORPTIONORB.getItem(), new ItemStack(TAItems.Registry.SCRAPCRYSTALLINE.getItem(), 4), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.LIVINGDIVININGROD.getItem(), new ItemStack(TAItems.Registry.SCRAPCRYSTALLINE.getItem(), 2), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.SPIKEDCHESTPLATE.getItem(), new ItemStack(TAItems.Registry.SCRAPUMBRA.getItem(), 8), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.UMBRASHIELD.getItem(), new ItemStack(TAItems.Registry.SCRAPUMBRA.getItem(), 5), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.UMBRASWORD.getItem(), new ItemStack(TAItems.Registry.SCRAPUMBRA.getItem(), 2), 0F);
+		GameRegistry.addSmelting(TAItems.Registry.UMBRAPICKAXE.getItem(), new ItemStack(TAItems.Registry.SCRAPUMBRA.getItem(), 3), 0F);
 	}
 
 	public static void registerOreDictionary() {
-		OreDictionary.registerOre("treeLeaves", TABlocks.silentwoodleaves);
-		OreDictionary.registerOre("treeLeaves", TABlocks.weepingwillowleaves);
-		OreDictionary.registerOre("stairWood", TABlocks.silentwoodstairs);
-		OreDictionary.registerOre("stairWood", TABlocks.weepingwillowplanksstairs);
-		OreDictionary.registerOre("treeSapling", TABlocks.silentwoodsapling);
-		OreDictionary.registerOre("treeSapling", TABlocks.weepingwillowsapling);
-		OreDictionary.registerOre("paneGlass", TABlocks.moonglasspane);
-		OreDictionary.registerOre("paneGlass", TABlocks.aurorianglasspane);
-		OreDictionary.registerOre("slimeball", TAItems.aurorianslimeball);
-		OreDictionary.registerOre("string", TAItems.plantfiber);
-		OreDictionary.registerOre("dirt", TABlocks.auroriandirt);
-		OreDictionary.registerOre("grass", TABlocks.auroriangrass);
-		OreDictionary.registerOre("grass", TABlocks.auroriangrasslight);
-		OreDictionary.registerOre("torch", TABlocks.silentwoodtorch);
-		OreDictionary.registerOre("workbench", TABlocks.silentwoodworkbench);
+		OreDictionary.registerOre("treeLeaves", TABlocks.Registry.SILENTWOODLEAVES.getBlock());
+		OreDictionary.registerOre("treeLeaves", TABlocks.Registry.WEEPINGWILLOWLEAVES.getBlock());
+		OreDictionary.registerOre("stairWood", TABlocks.Registry.SILENTWOODPLANKSSTAIRS.getBlock());
+		OreDictionary.registerOre("stairWood", TABlocks.Registry.WEEPINGWILLOWPLANKSSTAIRS.getBlock());
+		OreDictionary.registerOre("treeSapling", TABlocks.Registry.PLANTSILENTWOODSAPLING.getBlock());
+		OreDictionary.registerOre("treeSapling", TABlocks.Registry.WEEPINGWILLOWSAPLING.getBlock());
+		OreDictionary.registerOre("paneGlass", TABlocks.Registry.GLASSPANEMOON.getBlock());
+		OreDictionary.registerOre("paneGlass", TABlocks.Registry.GLASSPANEAURORIAN.getBlock());
+		OreDictionary.registerOre("slimeball", TAItems.Registry.AURORIANSLIMEBALL.getItem());
+		OreDictionary.registerOre("string", TAItems.Registry.PLANTFIBER.getItem());
+		OreDictionary.registerOre("dirt", TABlocks.Registry.AURORIANDIRT.getBlock());
+		OreDictionary.registerOre("grass", TABlocks.Registry.AURORIANGRASS.getBlock());
+		OreDictionary.registerOre("grass", TABlocks.Registry.AURORIANGRASSLIGHT.getBlock());
+		OreDictionary.registerOre("torch", TABlocks.Registry.SILENTWOODTORCH.getBlock());
+		OreDictionary.registerOre("workbench", TABlocks.Registry.SILENTWOODWORKBENCH.getBlock());
 
-		OreDictionary.registerOre("plankSilentwood", TABlocks.silentwoodplanks);
-		OreDictionary.registerOre("logSilentwood", TABlocks.silentwoodlog);
-		OreDictionary.registerOre("stickSilentwood", TAItems.silentwoodstick);
+		OreDictionary.registerOre("plankSilentwood", TABlocks.Registry.SILENTWOODPLANKS.getBlock());
+		OreDictionary.registerOre("logSilentwood", TABlocks.Registry.SILENTWOODLOG.getBlock());
+		OreDictionary.registerOre("stickSilentwood", TAItems.Registry.SILENTWOODSTICK.getItem());
 
-		OreDictionary.registerOre("plankWood", TABlocks.weepingwillowplanks);
-		OreDictionary.registerOre("logWood", TABlocks.weepingwillowlog);
+		OreDictionary.registerOre("plankWood", TABlocks.Registry.WEEPINGWILLOWPLANKS.getBlock());
+		OreDictionary.registerOre("logWood", TABlocks.Registry.WEEPINGWILLOWLOG.getBlock());
 
-		OreDictionary.registerOre("stoneAurorian", TABlocks.aurorianstone);
-		OreDictionary.registerOre("cobblestoneAurorian", TABlocks.auroriancobblestone);
+		OreDictionary.registerOre("stoneAurorian", TABlocks.Registry.AURORIANSTONE.getBlock());
+		OreDictionary.registerOre("cobblestoneAurorian", TABlocks.Registry.AURORIANCOBBLESTONE.getBlock());
 
-		OreDictionary.registerOre("oreAurorianCoal", TABlocks.auroriancoalore);
-		OreDictionary.registerOre("oreAurorianGeode", TABlocks.geodeore);
+		OreDictionary.registerOre("oreAurorianCoal", TABlocks.Registry.OREAURORIANCOAL.getBlock());
+		OreDictionary.registerOre("oreAurorianGeode", TABlocks.Registry.OREGEODE.getBlock());
 
-		OreDictionary.registerOre("oreCerulean", TABlocks.ceruleanore);
-		OreDictionary.registerOre("blockCerulean", TABlocks.ceruleanblock);
-		OreDictionary.registerOre("ingotCerulean", TAItems.ceruleaningot);
-		OreDictionary.registerOre("nuggetCerulean", TAItems.ceruleannugget);
+		OreDictionary.registerOre("oreCerulean", TABlocks.Registry.ORECERULEAN.getBlock());
+		OreDictionary.registerOre("blockCerulean", TABlocks.Registry.MATERIALCERULEAN.getBlock());
+		OreDictionary.registerOre("ingotCerulean", TAItems.Registry.INGOTCERULEAN.getItem());
+		OreDictionary.registerOre("nuggetCerulean", TAItems.Registry.CERULEANNUGGET.getItem());
 
-		OreDictionary.registerOre("oreMoonstone", TABlocks.moonstoneore);
-		OreDictionary.registerOre("blockMoonstone", TABlocks.moonstoneblock);
-		OreDictionary.registerOre("ingotMoonstone", TAItems.moonstoneingot);
-		OreDictionary.registerOre("nuggetMoonstone", TAItems.moonstonenugget);
+		OreDictionary.registerOre("oreMoonstone", TABlocks.Registry.OREMOONSTONE.getBlock());
+		OreDictionary.registerOre("blockMoonstone", TABlocks.Registry.MATERIALMOONSTONE.getBlock());
+		OreDictionary.registerOre("ingotMoonstone", TAItems.Registry.INGOTMOONSTONE.getItem());
+		OreDictionary.registerOre("nuggetMoonstone", TAItems.Registry.MOONSTONENUGGET.getItem());
 
-		OreDictionary.registerOre("blockAurorianSteel", TABlocks.auroriansteelblock);
-		OreDictionary.registerOre("ingotAurorianSteel", TAItems.auroriansteel);
-		OreDictionary.registerOre("nuggetAurorianSteel", TAItems.auroriansteelnugget);
+		OreDictionary.registerOre("blockAurorianSteel", TABlocks.Registry.MATERIALAURORIANSTEEL.getBlock());
+		OreDictionary.registerOre("ingotAurorianSteel", TAItems.Registry.INGOTAURORIANSTEEL.getItem());
+		OreDictionary.registerOre("nuggetAurorianSteel", TAItems.Registry.AURORIANSTEELNUGGET.getItem());
 	}
 
 }

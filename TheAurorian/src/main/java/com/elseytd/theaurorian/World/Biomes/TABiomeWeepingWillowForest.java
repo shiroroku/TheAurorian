@@ -15,7 +15,7 @@ public class TABiomeWeepingWillowForest extends TABiome {
 
 	public TABiomeWeepingWillowForest() {
 		super(new BiomeProperties(BIOMEDISPLAYNAME).setBaseHeight(0.6F).setHeightVariation(0.5F));
-		this.topBlock = TABlocks.auroriangrasslight.getDefaultState();
+		this.topBlock = TABlocks.Registry.AURORIANGRASSLIGHT.getBlock().getDefaultState();
 		this.setSpawnWeight(20);
 	}
 

@@ -38,7 +38,7 @@ public class TAWorldGenerator_UmbraTower extends WorldGenerator {
 	}
 
 	public void generateUmbraTower(World world, BlockPos position) {
-		while (world.getBlockState(position).getBlock() != TABlocks.auroriangrass && position.getY() >= 40) {
+		while (world.getBlockState(position).getBlock() != TABlocks.Registry.AURORIANGRASS.getBlock() && position.getY() >= 40) {
 			position = position.down();
 		}
 
@@ -53,7 +53,7 @@ public class TAWorldGenerator_UmbraTower extends WorldGenerator {
 		}
 
 		final Template tower = GenerationHelper.getTemplate(world, TOWER);
-		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.aurorianstone);
+		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.Registry.AURORIANSTONE.getBlock());
 		tower.addBlocksToWorld(world, position, settings);
 		GenerationHelper.populateChestsInTemplate(world, position, tower, settings, "chest", LOOT);
 

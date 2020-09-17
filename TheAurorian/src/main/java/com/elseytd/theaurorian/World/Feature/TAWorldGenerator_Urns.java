@@ -14,8 +14,8 @@ public class TAWorldGenerator_Urns extends WorldGenerator {
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
 		if (worldIn.isAirBlock(position)) {
-			if (isValidPos(worldIn, position, TABlocks.aurorianstone)) {
-				worldIn.setBlockState(position, TABlocks.urn.getDefaultState(), 2);
+			if (this.isValidPos(worldIn, position, TABlocks.Registry.AURORIANSTONE.getBlock())) {
+				worldIn.setBlockState(position, TABlocks.Registry.URN.getBlock().getDefaultState(), 2);
 				return true;
 			}
 		}

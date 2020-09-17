@@ -41,6 +41,7 @@ public class TABlock_PortalframeBricks extends Block {
 		this.setUnlocalizedName(TAMod.MODID + "." + BLOCKNAME);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {
@@ -56,12 +57,12 @@ public class TABlock_PortalframeBricks extends Block {
 		ItemStack itemstack = playerIn.getHeldItem(hand);
 
 		if (!itemstack.isEmpty()) {
-			if (itemstack.getItem() == TAItems.silentwoodstick && TAConfig.Config_SticksMakeFire) {
+			if (itemstack.getItem() == TAItems.Registry.SILENTWOODSTICK.getItem() && TAConfig.Config_SticksMakeFire) {
 				itemstack.shrink(1);
-				if (playerIn.getHeldItemOffhand().getItem() == TAItems.silentwoodstick) {
+				if (playerIn.getHeldItemOffhand().getItem() == TAItems.Registry.SILENTWOODSTICK.getItem()) {
 					playerIn.getHeldItemOffhand().shrink(1);
 				}
-				TABlocks.aurorianportal.trySpawnPortal(worldIn, pos.up());
+				((TABlock_Portal) TABlocks.Registry.AURORIANPORTAL.getBlock()).trySpawnPortal(worldIn, pos.up());
 				return true;
 			} else {
 				for (String i : TAConfig.Config_PortalLighter) {
@@ -71,7 +72,7 @@ public class TABlock_PortalframeBricks extends Block {
 						} else {
 							itemstack.shrink(1);
 						}
-						TABlocks.aurorianportal.trySpawnPortal(worldIn, pos.up());
+						((TABlock_Portal) TABlocks.Registry.AURORIANPORTAL.getBlock()).trySpawnPortal(worldIn, pos.up());
 						return true;
 					}
 				}

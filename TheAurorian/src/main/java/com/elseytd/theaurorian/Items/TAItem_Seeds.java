@@ -40,8 +40,8 @@ public class TAItem_Seeds extends Item implements net.minecraftforge.common.IPla
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack itemstack = player.getHeldItem(hand);
 		net.minecraft.block.state.IBlockState state = worldIn.getBlockState(pos);
-		if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemstack) && state.getBlock() == TABlocks.aurorianfarmtile || state.getBlock() == Blocks.FARMLAND && worldIn.isAirBlock(pos.up())) {
-			worldIn.setBlockState(pos.up(), getPlant(worldIn, pos), 11);
+		if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemstack) && state.getBlock() == TABlocks.Registry.AURORIANFARMTILE.getBlock() || state.getBlock() == Blocks.FARMLAND && worldIn.isAirBlock(pos.up())) {
+			worldIn.setBlockState(pos.up(), this.getPlant(worldIn, pos), 11);
 			itemstack.shrink(1);
 			return EnumActionResult.SUCCESS;
 		} else {
@@ -57,12 +57,13 @@ public class TAItem_Seeds extends Item implements net.minecraftforge.common.IPla
 	@Override
 	public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
 		if (this.getRegistryName().toString().contains(TAMod.MODID + ":" + ITEMNAME_LAVENDER)) {
-			return TABlocks.lavendercrop.getDefaultState();
+			return TABlocks.Registry.PLANTLAVENDERCROP.getBlock().getDefaultState();
 		} else {
-			return TABlocks.lavendercrop.getDefaultState();
+			return TABlocks.Registry.PLANTLAVENDERCROP.getBlock().getDefaultState();
 		}
 	}
-	
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {

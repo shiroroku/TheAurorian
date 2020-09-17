@@ -50,7 +50,7 @@ public class TACompat_Tinkers {
 
 		auroriansteel = new Material("auroriansteel", new Color(96, 50, 255).getRGB());
 		auroriansteel.addCommonItems("AurorianSteel");
-		auroriansteel.setRepresentativeItem(TAItems.auroriansteel);
+		auroriansteel.setRepresentativeItem(TAItems.Registry.INGOTAURORIANSTEEL.getItem());
 		auroriansteel.setFluid(TABlocks.Fluids.MOLTENAURORIANSTEEL);
 		auroriansteel.setCraftable(false).setCastable(true);
 		auroriansteel.addTrait(TinkerTraits.established);

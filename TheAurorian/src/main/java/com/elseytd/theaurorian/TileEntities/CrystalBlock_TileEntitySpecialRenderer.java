@@ -55,7 +55,7 @@ public class CrystalBlock_TileEntitySpecialRenderer extends TileEntitySpecialRen
 		BufferBuilder bufferBuilder = tessellator.getBuffer();
 		bufferBuilder.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
 
-		IBlockState state = TABlocks.crystal.getDefaultState();
+		IBlockState state = TABlocks.Registry.CRYSTAL.getBlock().getDefaultState();
 		BlockRendererDispatcher dispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
 		IBakedModel model = dispatcher.getModelForState(state);
 		dispatcher.getBlockModelRenderer().renderModel(world, model, state, te.getPos(), bufferBuilder, true);

@@ -28,7 +28,7 @@ public class StickySpiker_EntityRender extends Render<StickySpiker_Entity> {
 		GlStateManager.translate((float) x, (float) y, (float) z);
 		GlStateManager.enableRescaleNormal();
 		GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
-		GlStateManager.rotate((float) (this.renderManager.options.thirdPersonView == 2 ? -1 : 1) * this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
+		GlStateManager.rotate((this.renderManager.options.thirdPersonView == 2 ? -1 : 1) * this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
 		GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
 		this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 
@@ -37,7 +37,7 @@ public class StickySpiker_EntityRender extends Render<StickySpiker_Entity> {
 			GlStateManager.enableOutlineMode(this.getTeamColor(entity));
 		}
 
-		Minecraft.getMinecraft().getRenderItem().renderItem(new ItemStack(TAItems.stickyspiker), ItemCameraTransforms.TransformType.GROUND);
+		Minecraft.getMinecraft().getRenderItem().renderItem(new ItemStack(TAItems.Registry.STICKYSPIKER.getItem()), ItemCameraTransforms.TransformType.GROUND);
 
 		if (this.renderOutlines) {
 			GlStateManager.disableOutlineMode();

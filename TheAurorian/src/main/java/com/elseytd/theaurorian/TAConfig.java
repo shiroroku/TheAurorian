@@ -14,7 +14,7 @@ public class TAConfig {
 	public static boolean Config_CrystalsSpeedUpMachines = true;
 	public static float Config_CrystalsChanceOfBreaking = 0.25F;
 	public static float Config_CrystalsSpeedReduction = 0.5F;
-	public static int Config_ScrapperTickInterval = 4;
+	public static int Config_ScrapperTickInterval = 4; //TODO make this more user friendly
 
 	//Dimensions
 	public static int Config_AurorianDimID = 424;

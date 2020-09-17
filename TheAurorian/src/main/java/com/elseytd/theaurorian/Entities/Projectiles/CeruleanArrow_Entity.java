@@ -21,17 +21,17 @@ public class CeruleanArrow_Entity extends EntityArrow {
 
 	public CeruleanArrow_Entity(World worldIn) {
 		super(worldIn);
-		setStats();
+		this.setStats();
 	}
 
 	public CeruleanArrow_Entity(World worldIn, double x, double y, double z) {
 		super(worldIn, x, y, z);
-		setStats();
+		this.setStats();
 	}
 
 	public CeruleanArrow_Entity(World worldIn, EntityLivingBase shooter) {
 		super(worldIn, shooter);
-		setStats();
+		this.setStats();
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class CeruleanArrow_Entity extends EntityArrow {
 		float f = -MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
 		float f1 = -MathHelper.sin(pitch * 0.017453292F);
 		float f2 = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
-		this.shoot((double) f, (double) f1, (double) f2, velocity * arrowVelocity, inaccuracy);
+		this.shoot(f, f1, f2, velocity * arrowVelocity, inaccuracy);
 		this.motionX += shooter.motionX;
 		this.motionZ += shooter.motionZ;
 
@@ -50,6 +50,6 @@ public class CeruleanArrow_Entity extends EntityArrow {
 
 	@Override
 	protected ItemStack getArrowStack() {
-		return new ItemStack(TAItems.ceruleanarrow);
+		return new ItemStack(TAItems.Registry.CERULEANARROW.getItem());
 	}
 }
