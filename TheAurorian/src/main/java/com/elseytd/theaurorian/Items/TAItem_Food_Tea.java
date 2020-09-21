@@ -2,6 +2,7 @@ package com.elseytd.theaurorian.Items;
 
 import java.awt.Color;
 
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 
@@ -35,10 +36,10 @@ public class TAItem_Food_Tea extends Item implements TAItems.IUniqueModel {
 	public static final String ITEMNAME_PETUNIA = "teapetunia";
 
 	public enum Teas {
-		LAVENDER(ITEMNAME_LAVENDER, new PotionEffect(MobEffects.RESISTANCE, 300), new Color(118, 70, 255)),
-		SILKBERRY(ITEMNAME_SILKBERRY, new PotionEffect(MobEffects.REGENERATION, 100), new Color(14, 35, 75)),
-		SEEDY(ITEMNAME_SEEDY, new PotionEffect(MobEffects.SPEED, 200), new Color(174, 188, 215)),
-		PETUNIA(ITEMNAME_PETUNIA, new PotionEffect(MobEffects.STRENGTH, 300), new Color(255, 186, 255));
+		LAVENDER(ITEMNAME_LAVENDER, new PotionEffect(MobEffects.RESISTANCE, (int) (300 * TAConfig.Config_Tea_EffectDuration_Muliplier)), new Color(118, 70, 255)),
+		SILKBERRY(ITEMNAME_SILKBERRY, new PotionEffect(MobEffects.REGENERATION, (int) (100 * TAConfig.Config_Tea_EffectDuration_Muliplier)), new Color(14, 35, 75)),
+		SEEDY(ITEMNAME_SEEDY, new PotionEffect(MobEffects.SPEED, (int) (200 * TAConfig.Config_Tea_EffectDuration_Muliplier)), new Color(174, 188, 215)),
+		PETUNIA(ITEMNAME_PETUNIA, new PotionEffect(MobEffects.STRENGTH, (int) (300 * TAConfig.Config_Tea_EffectDuration_Muliplier)), new Color(255, 186, 255));
 
 		private String ITEMNAME;
 		private PotionEffect EFFECT;

@@ -114,6 +114,7 @@ public class TAConfig {
 	public static int Config_AurorianSteel_HarvestLevel = 3;
 	public static float Config_Cerulean_Multiplier_Durability = 1F;
 	public static float Config_Cerulean_Multiplier_Armor = 1F;
+	public static float Config_Tea_EffectDuration_Muliplier = 1F;
 
 	public static void readConfig() {
 		Configuration cfg = TAMod.CONFIG;
@@ -161,6 +162,7 @@ public class TAConfig {
 		Config_AurorianSteel_HarvestLevel = cfg.getInt("AurorianSteel_HarvestLevel", name, Config_AurorianSteel_HarvestLevel, 0, 500, "Harvest level for these tools");
 		Config_Cerulean_Multiplier_Durability = cfg.getFloat("Cerulean_Multiplier_Durability", name, Config_Cerulean_Multiplier_Durability, 0F, 1000F, "Multiplier for tool/armor durability");
 		Config_Cerulean_Multiplier_Armor = cfg.getFloat("Cerulean_Multiplier_Armor", name, Config_Cerulean_Multiplier_Armor, 0F, 1000F, "Multiplier for armor strength");
+		Config_Tea_EffectDuration_Muliplier = cfg.getFloat("Tea_EffectDuration_Muliplier", name, Config_Tea_EffectDuration_Muliplier, 0F, 1000F, "Multiplier for tea potion effect duration");
 
 	}
 
