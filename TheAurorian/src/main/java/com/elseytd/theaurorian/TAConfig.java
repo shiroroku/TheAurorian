@@ -90,6 +90,7 @@ public class TAConfig {
 	public static String[] Config_AurorianSteel_Enchants = new String[] {};
 	public static int Config_AurorianSteel_Enchants_WhitelistBlacklist = 0;
 	public static int Config_CrystalStackSize = 16;
+	public static float Config_Spectral_Armor_CleanseChance = 0.06f;
 
 	//Multipliers
 	public static float Config_Silentwood_Multiplier_Speed = 1F;
@@ -115,6 +116,8 @@ public class TAConfig {
 	public static float Config_Cerulean_Multiplier_Durability = 1F;
 	public static float Config_Cerulean_Multiplier_Armor = 1F;
 	public static float Config_Tea_EffectDuration_Muliplier = 1F;
+	public static float Config_Spectral_Multiplier_Durability = 1F;
+	public static float Config_Spectral_Multiplier_Armor = 1F;
 
 	public static void readConfig() {
 		Configuration cfg = TAMod.CONFIG;
@@ -163,6 +166,8 @@ public class TAConfig {
 		Config_Cerulean_Multiplier_Durability = cfg.getFloat("Cerulean_Multiplier_Durability", name, Config_Cerulean_Multiplier_Durability, 0F, 1000F, "Multiplier for tool/armor durability");
 		Config_Cerulean_Multiplier_Armor = cfg.getFloat("Cerulean_Multiplier_Armor", name, Config_Cerulean_Multiplier_Armor, 0F, 1000F, "Multiplier for armor strength");
 		Config_Tea_EffectDuration_Muliplier = cfg.getFloat("Tea_EffectDuration_Muliplier", name, Config_Tea_EffectDuration_Muliplier, 0F, 1000F, "Multiplier for tea potion effect duration");
+		Config_Spectral_Multiplier_Durability = cfg.getFloat("Spectral_Multiplier_Durability", name, Config_Spectral_Multiplier_Durability, 0F, 1000F, "Multiplier for tool/armor durability");
+		Config_Spectral_Multiplier_Armor = cfg.getFloat("Spectral_Multiplier_Armor", name, Config_Spectral_Multiplier_Armor, 0F, 1000F, "Multiplier for armor strength");
 
 	}
 
@@ -190,6 +195,7 @@ public class TAConfig {
 		Config_CrystalStackSize = cfg.getInt("CrystalStackSize", name, Config_CrystalStackSize, 1, 64, "Stack size of Crystals");
 		Config_AurorianSteel_Enchants = cfg.getStringList("AurorianSteel_Enchants", name, Config_AurorianSteel_Enchants, "List of enchantments, use is decided by AurorianSteel_Enchants_WhitelistBlacklist, you can also specify mod ids to whitelist or blacklist whole mods, ex: (draconicevolution, minecraft:sharpness)");
 		Config_AurorianSteel_Enchants_WhitelistBlacklist = cfg.getInt("AurorianSteel_Enchants_WhitelistBlacklist", name, Config_AurorianSteel_Enchants_WhitelistBlacklist, 0, 2, "Decides how to treat AurorianSteel_Enchants, 0 - ignored (Aurorian Steel can upgrade any enchantment), 1 - whitelist (can only upgrade enchantments specified), 2 - blacklist (upgrades all but the enchantments specified)");
+		Config_Spectral_Armor_CleanseChance = cfg.getFloat("Spectral_Armor_CleanseChance", name, Config_Spectral_Armor_CleanseChance, 0.01F, 1F, "Percent for one armor piece to cleanse the players negative effects, stacks with other armor parts (full spectral armor with 6% is a 24% chance with full set)");
 
 	}
 

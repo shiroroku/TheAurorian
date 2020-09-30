@@ -4,6 +4,7 @@ import com.elseytd.theaurorian.Items.TAItem_Armor_AurorianSteel;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Cerulean;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Knight;
 import com.elseytd.theaurorian.Items.TAItem_Armor_SlimeBoots;
+import com.elseytd.theaurorian.Items.TAItem_Armor_Spectral;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Spiked;
 import com.elseytd.theaurorian.Items.TAItem_Basic;
 import com.elseytd.theaurorian.Items.TAItem_Crafting_SilentwoodStick;
@@ -111,6 +112,11 @@ public class TAItems {
 					2,
 					3,
 					1 }, 20, SoundEvents.ENTITY_SLIME_SQUISH, 0);
+		public static ArmorMaterial SPECTRAL_ARMOR = EnumHelper.addArmorMaterial("TA_SPECTRAL_ARMOR", "theaurorian:spectral", (int) (20 * TAConfig.Config_Spectral_Multiplier_Durability), new int[] {
+					(int) (4 * TAConfig.Config_Spectral_Multiplier_Armor),
+					(int) (6 * TAConfig.Config_Spectral_Multiplier_Armor),
+					(int) (6 * TAConfig.Config_Spectral_Multiplier_Armor),
+					(int) (4 * TAConfig.Config_Spectral_Multiplier_Armor) }, 25, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0);
 
 		public static void initRepairMaterials() {
 			SILENTWOOD.setRepairItem(new ItemStack(TABlocks.Registry.SILENTWOODPLANKS.getBlock()));
@@ -125,6 +131,7 @@ public class TAItems {
 			SPIKED_ARMOR.setRepairItem(new ItemStack(TAItems.Registry.INGOTUMBRA.getItem()));
 			AURORIAN_SLIME.setRepairItem(new ItemStack(TAItems.Registry.AURORIANSLIMEBALL.getItem()));
 			AURORIANSTEEL_ARMOR.setRepairItem(new ItemStack(TAItems.Registry.INGOTAURORIANSTEEL.getItem()));
+			SPECTRAL_ARMOR.setRepairItem(new ItemStack(TAItems.Registry.SPECTRALSILK.getItem()));
 		}
 	}
 
@@ -223,6 +230,10 @@ public class TAItems {
 		SILKSHROOMSTEW(new TAItem_Food(TAItem_Food.Foods.SILKSHROOMSTEW)),
 		SOULLESSFLESH(new TAItem_Food(TAItem_Food.Foods.SOULLESSFLESH)),
 		SPECTRALSILK(new TAItem_Basic(TAItem_Basic.Items.SPECTRALSILK)),
+		SPECTRALARMORBOOTS(new TAItem_Armor_Spectral(EntityEquipmentSlot.FEET, "spectralboots")),
+		SPECTRALARMORCHESTPLATE(new TAItem_Armor_Spectral(EntityEquipmentSlot.CHEST, "spectralchestplate")),
+		SPECTRALARMORHELMET(new TAItem_Armor_Spectral(EntityEquipmentSlot.HEAD, "spectralhelmet")),
+		SPECTRALARMORLEGGINGS(new TAItem_Armor_Spectral(EntityEquipmentSlot.LEGS, "spectralleggings")),
 		SPIKEDCHESTPLATE(new TAItem_Armor_Spiked(EntityEquipmentSlot.CHEST, "spikedchestplate")),
 		STICKYSPIKER(new TAItem_Special_StickySpiker()),
 		STRANGEMEAT(new TAItem_Special_StrangeMeat()),

@@ -1,6 +1,5 @@
 package com.elseytd.theaurorian.Items;
 
-import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,13 +24,6 @@ public class TAItem_Debug extends Item {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 
-		if (playerIn.getHeldItemOffhand().getItem() == TAItems.Registry.AURORIANCOAL.getItem()) {
-			System.out.println(true);
-		} else {
-			System.out.println(false);
-		}
-
-		//TAUtil.simulateLootTable(worldIn, new ResourceLocation(TAMod.MODID, "chests/darkstonelow"), 20);
 
 		return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}

@@ -61,7 +61,7 @@ public class TAItem_Basic extends Item {
 		SCRAP_AURORIANITE(ITEMNAME_SCRAP_AURORIANITE),
 		SCRAP_CRYSTALLINE(ITEMNAME_SCRAP_CRYSTALLINE),
 		SCRAP_UMBRA(ITEMNAME_SCRAP_UMBRA),
-		SPECTRALSILK(ITEMNAME_SPECTRALSILK, EnumRarity.RARE),
+		SPECTRALSILK(ITEMNAME_SPECTRALSILK, EnumRarity.RARE, "string.theaurorian.tooltip.spectralsilk"),
 		TROPHY_KEEPER(ITEMNAME_TROPHY_KEEPER, EnumRarity.RARE),
 		TROPHY_MOONQUEEN(ITEMNAME_TROPHY_MOONQUEEN, EnumRarity.RARE),
 		TROPHY_SPIDER(ITEMNAME_TROPHY_SPIDER, EnumRarity.RARE);
@@ -87,6 +87,11 @@ public class TAItem_Basic extends Item {
 		Items(String itemname, EnumRarity rarity) {
 			this(itemname);
 			this.RARITY = rarity;
+		}
+
+		Items(String itemname, EnumRarity rarity, String info) {
+			this(itemname, rarity);
+			this.INFO = info;
 		}
 
 		Items(String itemname, int stacksize, String info) {

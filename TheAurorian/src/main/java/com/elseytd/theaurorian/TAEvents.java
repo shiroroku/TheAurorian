@@ -5,6 +5,7 @@ import com.elseytd.theaurorian.Entities.Boss.Spider_Entity;
 import com.elseytd.theaurorian.Entities.Hostile.Spiderling_Entity;
 import com.elseytd.theaurorian.Items.TAItem_Armor_AurorianSteel;
 import com.elseytd.theaurorian.Items.TAItem_Armor_SlimeBoots;
+import com.elseytd.theaurorian.Items.TAItem_Armor_Spectral;
 import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Pickaxe;
@@ -34,6 +35,7 @@ public class TAEvents {
 	public void damageEvent(LivingDamageEvent e) {
 		TAEnchantment_Lightning_Damage.handleDamageEvent(e);
 		TAItem_Armor_AurorianSteel.handleDamageEvent(e);
+		TAItem_Armor_Spectral.handleDamageEvent(e);
 	}
 
 	@SubscribeEvent
