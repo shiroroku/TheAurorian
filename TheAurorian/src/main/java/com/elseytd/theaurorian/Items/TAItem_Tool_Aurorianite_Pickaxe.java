@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Util.OreDictionaryHelper;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
@@ -43,7 +43,7 @@ public class TAItem_Tool_Aurorianite_Pickaxe extends ItemPickaxe {
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
 		if (!worldIn.isRemote && (double) state.getBlockHardness(worldIn, pos) != 0.0D) {
 			ItemStack s = new ItemStack(worldIn.getBlockState(pos).getBlock());
-			if (TAUtil.LocalOreDictionary.isOre(s)) {
+			if (OreDictionaryHelper.isOre(s)) {
 				entityLiving.addPotionEffect(new PotionEffect(MobEffects.HASTE, 100));
 				stack.damageItem(1, entityLiving);
 				return true;

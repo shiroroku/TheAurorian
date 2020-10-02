@@ -1,7 +1,7 @@
 {
     "name": "patchouli.theaurorian.guide.name",
     "landing_text": "patchouli.theaurorian.guide.desc",
-    "version": 13,
+    "version": 14,
     "model": "theaurorian:theaurorianguide",
     "creative_tab": "theaurorian",
     "show_progress": false,

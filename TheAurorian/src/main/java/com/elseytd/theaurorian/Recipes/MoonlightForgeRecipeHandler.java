@@ -13,18 +13,18 @@ public class MoonlightForgeRecipeHandler {
 	private static List<MoonlightForgeRecipe> recipesForRemoval = new ArrayList<>();
 
 	public static void initRecipes() {
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstonesword), new ItemStack(TAItems.aurorianiteingot), new ItemStack(TAItems.aurorianitesword)));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstoneaxe), new ItemStack(TAItems.aurorianiteingot), new ItemStack(TAItems.aurorianiteaxe)));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstonepickaxe), new ItemStack(TAItems.aurorianiteingot), new ItemStack(TAItems.aurorianitepickaxe)));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstonesword), new ItemStack(TAItems.crystallineingot), new ItemStack(TAItems.crystallinesword)));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstonepickaxe), new ItemStack(TAItems.crystallineingot), new ItemStack(TAItems.crystallinepickaxe)));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstonesword), new ItemStack(TAItems.umbraingot), new ItemStack(TAItems.umbrasword)));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstonepickaxe), new ItemStack(TAItems.umbraingot), new ItemStack(TAItems.umbrapickaxe)));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstoneshield), new ItemStack(TAItems.umbraingot), new ItemStack(TAItems.umbrashield)));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstoneshield), new ItemStack(TAItems.crystallineingot), new ItemStack(TAItems.crystallineshield)));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONESWORD.getItem()), new ItemStack(TAItems.Registry.INGOTAURORIANITE.getItem()), new ItemStack(TAItems.Registry.AURORIANITESWORD.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONEAXE.getItem()), new ItemStack(TAItems.Registry.INGOTAURORIANITE.getItem()), new ItemStack(TAItems.Registry.AURORIANITEAXE.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONEPICKAXE.getItem()), new ItemStack(TAItems.Registry.INGOTAURORIANITE.getItem()), new ItemStack(TAItems.Registry.AURORIANITEPICKAXE.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONESWORD.getItem()), new ItemStack(TAItems.Registry.INGOTCRYSTALLINE.getItem()), new ItemStack(TAItems.Registry.CRYSTALLINESWORD.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONEPICKAXE.getItem()), new ItemStack(TAItems.Registry.INGOTCRYSTALLINE.getItem()), new ItemStack(TAItems.Registry.CRYSTALLINEPICKAXE.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONESWORD.getItem()), new ItemStack(TAItems.Registry.INGOTUMBRA.getItem()), new ItemStack(TAItems.Registry.UMBRASWORD.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONEPICKAXE.getItem()), new ItemStack(TAItems.Registry.INGOTUMBRA.getItem()), new ItemStack(TAItems.Registry.UMBRAPICKAXE.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONESHIELD.getItem()), new ItemStack(TAItems.Registry.INGOTUMBRA.getItem()), new ItemStack(TAItems.Registry.UMBRASHIELD.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONESHIELD.getItem()), new ItemStack(TAItems.Registry.INGOTCRYSTALLINE.getItem()), new ItemStack(TAItems.Registry.CRYSTALLINESHIELD.getItem())));
 
 		//Boss Item Recipes
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.moonstoneshield), new ItemStack(TAItems.trophymoonqueen), new ItemStack(TAItems.moonshield)));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONESHIELD.getItem()), new ItemStack(TAItems.Registry.TROPHYMOONQUEEN.getItem()), new ItemStack(TAItems.Registry.MOONSHIELD.getItem())));
 		//addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.silentwoodbow), new ItemStack(TAItems.trophykeeper), new ItemStack(TAItems.keepersbow)));
 
 		for (MoonlightForgeRecipe r : recipesForRemoval) {

@@ -13,9 +13,9 @@ import com.elseytd.theaurorian.TAGuis;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TARecipes;
-import com.elseytd.theaurorian.TAUtil;
 import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipeHandler;
 import com.elseytd.theaurorian.Recipes.ScrapperRecipeHandler;
+import com.elseytd.theaurorian.Util.OreDictionaryHelper;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -53,6 +53,6 @@ public class CommonProxy {
 			TAMod.CONFIG.save();
 		}
 		TACompat.postInit(e);
-		TAUtil.LocalOreDictionary.Ores = TAUtil.LocalOreDictionary.populateOrelist();
+		OreDictionaryHelper.Ores = OreDictionaryHelper.populateOrelist();
 	}
 }

@@ -61,10 +61,10 @@ public class MoonQueen_Entity extends EntityMob {
 		this.experienceValue = 500;
 		this.isImmuneToFire = true;
 		this.stepHeight = 1F;
-		this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(TAItems.moonstonesword));
-		this.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(TAItems.knightchestplate));
-		this.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(TAItems.knightleggings));
-		this.setItemStackToSlot(EntityEquipmentSlot.FEET, new ItemStack(TAItems.knightboots));
+		this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(TAItems.Registry.MOONSTONESWORD.getItem()));
+		this.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(TAItems.Registry.KNIGHTARMORCHESTPLATE.getItem()));
+		this.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(TAItems.Registry.KNIGHTARMORLEGGINGS.getItem()));
+		this.setItemStackToSlot(EntityEquipmentSlot.FEET, new ItemStack(TAItems.Registry.KNIGHTARMORBOOTS.getItem()));
 	}
 
 	@Override
@@ -156,7 +156,7 @@ public class MoonQueen_Entity extends EntityMob {
 				for (int z = 0; z <= distance; z++) {
 					int offs = distance / 2;
 					BlockPos p = new BlockPos(x + this.getPosition().getX() - offs, y + this.getPosition().getY() - offs, z + this.getPosition().getZ() - offs);
-					if (this.world.getBlockState(p).getBlock() == TABlocks.mysticalbarrier) {
+					if (this.world.getBlockState(p).getBlock() == TABlocks.Registry.MYSTICALBARRIER.getBlock()) {
 						this.world.destroyBlock(p, false);
 					}
 				}

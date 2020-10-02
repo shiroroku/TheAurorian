@@ -46,15 +46,15 @@ public class TABlock_Plant_Lavender extends BlockBush implements IShearable {
 		Block.EnumOffsetType block$enumoffsettype = this.getOffsetType();
 
 		double d = 0.25D;
-		
+
 		if (block$enumoffsettype == Block.EnumOffsetType.NONE) {
 			return Vec3d.ZERO;
 		} else {
 			long i = MathHelper.getCoordinateRandom(pos.getX(), 0, pos.getZ());
-			return new Vec3d(((double) ((float) (i >> 16 & 15L) / 15.0F) - 0.5D) * d, block$enumoffsettype == Block.EnumOffsetType.XYZ ? ((double) ((float) (i >> 20 & 15L) / 15.0F) - 1.0D) * 0.2D : 0.0D, ((double) ((float) (i >> 24 & 15L) / 15.0F) - 0.5D) * d);
+			return new Vec3d(((i >> 16 & 15L) / 15.0F - 0.5D) * d, block$enumoffsettype == Block.EnumOffsetType.XYZ ? ((i >> 20 & 15L) / 15.0F - 1.0D) * 0.2D : 0.0D, ((i >> 24 & 15L) / 15.0F - 0.5D) * d);
 		}
 	}
-	
+
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return AABB.offset(state.getOffset(source, pos));
@@ -67,7 +67,7 @@ public class TABlock_Plant_Lavender extends BlockBush implements IShearable {
 
 	@Override
 	protected boolean canSustainBush(IBlockState state) {
-		return state.getBlock() == TABlocks.auroriangrass;
+		return state.getBlock() == TABlocks.Registry.AURORIANGRASS.getBlock();
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class TABlock_Plant_Lavender extends BlockBush implements IShearable {
 
 	@Override
 	public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
-		return NonNullList.withSize(1, new ItemStack(TAItems.lavender));
+		return NonNullList.withSize(1, new ItemStack(TAItems.Registry.LAVENDER.getItem()));
 	}
 
 }

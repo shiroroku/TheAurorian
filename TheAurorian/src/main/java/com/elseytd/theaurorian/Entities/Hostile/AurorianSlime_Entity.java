@@ -8,7 +8,7 @@ import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TAParticles;
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Util.EntityHelper;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -58,10 +58,10 @@ public class AurorianSlime_Entity extends EntityLiving implements IMob {
 	}
 
 	protected void setSlimeSize(int size, boolean resetHealth) {
-		this.setSize(0.51000005F * (float) size, 0.51000005F * (float) size);
+		this.setSize(0.51000005F * size, 0.51000005F * size);
 		this.setPosition(this.posX, this.posY, this.posZ);
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((double) (6));
-		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) (0.2F + 0.1F * (float) 3));
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((6));
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2F + 0.1F * 3);
 		if (resetHealth) {
 			this.setHealth(this.getMaxHealth());
 		}
@@ -70,8 +70,8 @@ public class AurorianSlime_Entity extends EntityLiving implements IMob {
 
 	@Override
 	public boolean getCanSpawnHere() {
-		List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 6, false);
-		int maxcount = maxNearby;
+		List<EntityLivingBase> entities = EntityHelper.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 6, false);
+		int maxcount = this.maxNearby;
 		int count = 0;
 		for (EntityLivingBase e : entities) {
 			if (e instanceof AurorianSlime_Entity) {
@@ -81,7 +81,6 @@ public class AurorianSlime_Entity extends EntityLiving implements IMob {
 		return count <= maxcount && super.getCanSpawnHere();
 	}
 
-	
 	@Override
 	public int getMaxSpawnedInChunk() {
 		return 6;
@@ -151,7 +150,7 @@ public class AurorianSlime_Entity extends EntityLiving implements IMob {
 	@Override
 	public void onCollideWithPlayer(EntityPlayer entityIn) {
 		double i = 2;
-		if (this.canEntityBeSeen(entityIn) && this.getDistanceSq(entityIn) < 0.6D * i * 0.6D * i && entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getAttackStrength())) {
+		if (this.canEntityBeSeen(entityIn) && this.getDistanceSq(entityIn) < 0.6D * i * 0.6D * i && entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), this.getAttackStrength())) {
 			this.playSound(SoundEvents.ENTITY_SLIME_ATTACK, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 			this.applyEnchantments(this, entityIn);
 		}
@@ -186,7 +185,7 @@ public class AurorianSlime_Entity extends EntityLiving implements IMob {
 
 	@Override
 	protected Item getDropItem() {
-		return TAItems.aurorianslimeball;
+		return TAItems.Registry.AURORIANSLIMEBALL.getItem();
 	}
 
 	@Override
@@ -289,7 +288,7 @@ public class AurorianSlime_Entity extends EntityLiving implements IMob {
 		public void updateTask() {
 			if (--this.nextRandomizeTime <= 0) {
 				this.nextRandomizeTime = 40 + this.slime.getRNG().nextInt(60);
-				this.chosenDegrees = (float) this.slime.getRNG().nextInt(360);
+				this.chosenDegrees = this.slime.getRNG().nextInt(360);
 			}
 			((AurorianSlime_Entity.SlimeMoveHelper) this.slime.getMoveHelper()).setDirection(this.chosenDegrees, false);
 		}
@@ -359,6 +358,7 @@ public class AurorianSlime_Entity extends EntityLiving implements IMob {
 			this.action = EntityMoveHelper.Action.MOVE_TO;
 		}
 
+		@Override
 		public void onUpdateMoveHelper() {
 			this.entity.rotationYaw = this.limitAngle(this.entity.rotationYaw, this.yRot, 90.0F);
 			this.entity.rotationYawHead = this.entity.rotationYaw;

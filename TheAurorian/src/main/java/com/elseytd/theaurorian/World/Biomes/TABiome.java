@@ -28,13 +28,13 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class TABiome extends Biome {
 
-	private Block stoneBlock = TABlocks.aurorianstone;
+	private Block stoneBlock = TABlocks.Registry.AURORIANSTONE.getBlock();
 	private int genChance = 1;
 
 	public TABiome(Biome.BiomeProperties properties) {
 		super(properties.setRainDisabled().setTemperature(0.2F));
-		this.topBlock = TABlocks.auroriangrass.getDefaultState();
-		this.fillerBlock = TABlocks.auroriandirt.getDefaultState();
+		this.topBlock = TABlocks.Registry.AURORIANGRASS.getBlock().getDefaultState();
+		this.fillerBlock = TABlocks.Registry.AURORIANDIRT.getBlock().getDefaultState();
 		this.spawnableCaveCreatureList.clear();
 		this.spawnableCreatureList.clear();
 		this.spawnableMonsterList.clear();
@@ -54,7 +54,7 @@ public class TABiome extends Biome {
 	}
 
 	public int getSpawnWeight() {
-		return genChance;
+		return this.genChance;
 	}
 
 	public void setSpawnWeight(int genChance) {
@@ -67,15 +67,15 @@ public class TABiome extends Biome {
 	}
 
 	public WorldGenerator getRandomWorldGenForSilkberry(Random rand) {
-		return new TAWorldGenerator_Plant(TABlocks.silkberryplant.getDefaultState(), 0.25f);
+		return new TAWorldGenerator_Plant(TABlocks.Registry.PLANTSILKBERRY.getBlock().getDefaultState(), 0.25f);
 	}
 
 	public WorldGenerator getRandomWorldGenForLavender(Random rand) {
-		return new TAWorldGenerator_Plant(TABlocks.lavenderplant.getDefaultState(), 1f);
+		return new TAWorldGenerator_Plant(TABlocks.Registry.PLANTLAVENDER.getBlock().getDefaultState(), 1f);
 	}
 
 	public WorldGenerator getRandomWorldGenForPetunia(Random rand) {
-		return new TAWorldGenerator_Plant(TABlocks.petuniaplant.getDefaultState(), 0.25f);
+		return new TAWorldGenerator_Plant(TABlocks.Registry.PLANTPETUNIA.getBlock().getDefaultState(), 0.25f);
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class TABiome extends Biome {
 
 	@Override
 	public BiomeDecorator createBiomeDecorator() {
-		return getModdedBiomeDecorator(new TABiomeDecorator());
+		return this.getModdedBiomeDecorator(new TABiomeDecorator());
 	}
 
 	@Override
@@ -93,7 +93,7 @@ public class TABiome extends Biome {
 		int i = TATerrainGenerator.waterLevel + 1;
 		IBlockState topblk = this.topBlock;
 		IBlockState fillerblk = this.fillerBlock;
-		IBlockState sandblk = TABlocks.moonsand.getDefaultState();
+		IBlockState sandblk = TABlocks.Registry.MOONSAND.getBlock().getDefaultState();
 		int j = -1;
 		int k = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
 		int zc = x & 15;
@@ -106,11 +106,11 @@ public class TABiome extends Biome {
 				IBlockState iblockstate2 = chunkPrimerIn.getBlockState(xc, y, zc);
 				if (iblockstate2.getMaterial() == Material.AIR) {
 					j = -1;
-				} else if (iblockstate2.getBlock() == stoneBlock) {
+				} else if (iblockstate2.getBlock() == this.stoneBlock) {
 					if (j == -1) {
 						if (k <= 0) {
 							topblk = AIR;
-							fillerblk = stoneBlock.getDefaultState();
+							fillerblk = this.stoneBlock.getDefaultState();
 						} else if (y >= i - 4 && y <= i + 1) {
 							topblk = this.topBlock;
 							fillerblk = this.fillerBlock;
@@ -121,7 +121,7 @@ public class TABiome extends Biome {
 							chunkPrimerIn.setBlockState(xc, y, zc, topblk);
 						} else if (y < i - 7 - k) {
 							topblk = AIR;
-							fillerblk = stoneBlock.getDefaultState();
+							fillerblk = this.stoneBlock.getDefaultState();
 							chunkPrimerIn.setBlockState(xc, y, zc, fillerblk);
 						} else {
 							chunkPrimerIn.setBlockState(xc, y, zc, sandblk);

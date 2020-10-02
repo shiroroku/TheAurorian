@@ -7,8 +7,8 @@ import javax.annotation.Nullable;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
 import com.elseytd.theaurorian.Entities.Projectiles.CrystallineBeam_Entity;
+import com.elseytd.theaurorian.Util.EntityHelper;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -50,15 +50,15 @@ public class CrystallineSprite_Entity extends EntityMob implements IRangedAttack
 		int j = MathHelper.floor(this.getEntityBoundingBox().minY);
 		int k = MathHelper.floor(this.posZ);
 		BlockPos blockpos = new BlockPos(i, j, k);
-		List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 30, false);
-		int maxcount = maxNearby;
+		List<EntityLivingBase> entities = EntityHelper.getEntitiesAround(this.world, this.posX, this.posY, this.posZ, 64, 30, false);
+		int maxcount = this.maxNearby;
 		int count = 0;
 		for (EntityLivingBase e : entities) {
 			if (e instanceof CrystallineSprite_Entity) {
 				count++;
 			}
 		}
-		return count <= maxcount && this.world.getBlockState(blockpos.down()).getBlock() == TABlocks.moontemplebricks && this.dimension == TAConfig.Config_AurorianDimID && super.getCanSpawnHere();
+		return count <= maxcount && this.world.getBlockState(blockpos.down()).getBlock() == TABlocks.Registry.DUNGEONSTONEMOONTEMPLE.getBlock() && this.dimension == TAConfig.Config_AurorianDimID && super.getCanSpawnHere();
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class CrystallineSprite_Entity extends EntityMob implements IRangedAttack
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[0]));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class CrystallineSprite_Entity extends EntityMob implements IRangedAttack
 	protected ResourceLocation getLootTable() {
 		return LOOT;
 	}
-	
+
 	@Override
 	protected boolean isValidLightLevel() {
 		return true;
@@ -99,9 +99,9 @@ public class CrystallineSprite_Entity extends EntityMob implements IRangedAttack
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
 		EntityArrow entityarrow = this.getArrow(distanceFactor);
 		double d0 = target.posX - this.posX;
-		double d1 = target.getEntityBoundingBox().minY + (double) (target.height / 3.0F) - entityarrow.posY;
+		double d1 = target.getEntityBoundingBox().minY + target.height / 3.0F - entityarrow.posY;
 		double d2 = target.posZ - this.posZ;
-		double d3 = (double) MathHelper.sqrt(d0 * d0 + d2 * d2);
+		double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
 		entityarrow.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, 9F);
 		this.playSound(SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
 		this.world.spawnEntity(entityarrow);
@@ -126,7 +126,7 @@ public class CrystallineSprite_Entity extends EntityMob implements IRangedAttack
 
 		EntityLivingBase entitylivingbase = this.getAttackTarget();
 
-		if (entitylivingbase != null && entitylivingbase.posY + (double) entitylivingbase.getEyeHeight() > this.posY + (double) this.getEyeHeight() + (double) this.heightOffset) {
+		if (entitylivingbase != null && entitylivingbase.posY + entitylivingbase.getEyeHeight() > this.posY + this.getEyeHeight() + this.heightOffset) {
 			this.motionY += (0.30000001192092896D - this.motionY) * 0.30000001192092896D;
 			this.isAirBorne = true;
 		}

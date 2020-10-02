@@ -35,7 +35,7 @@ public class TAWorldGenerator_UnderWater extends WorldGenerator {
 						for (int k1 = y - 1; k1 <= y + 1; ++k1) {
 							BlockPos blockpos = new BlockPos(k, k1, l);
 							Block block = worldIn.getBlockState(blockpos).getBlock();
-							if (block == TABlocks.moonsand || block == blockIn) {
+							if (block == TABlocks.Registry.MOONSAND.getBlock() || block == this.blockIn) {
 								worldIn.setBlockState(blockpos, this.blockIn.getDefaultState(), 2);
 							}
 						}

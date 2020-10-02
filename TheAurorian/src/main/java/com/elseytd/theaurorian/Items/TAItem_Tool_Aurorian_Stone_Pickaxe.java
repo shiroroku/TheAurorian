@@ -36,7 +36,7 @@ public class TAItem_Tool_Aurorian_Stone_Pickaxe extends ItemPickaxe {
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
 		if (!worldIn.isRemote) {
-			if (state.getBlock() == TABlocks.aurorianstone) {
+			if (state.getBlock() == TABlocks.Registry.AURORIANSTONE.getBlock()) {
 				if (TAUtil.randomChanceOf(0.75F)) {
 					if (stack.getItemDamage() > 0) {
 						stack.setItemDamage(stack.getItemDamage() - 1);
@@ -51,6 +51,7 @@ public class TAItem_Tool_Aurorian_Stone_Pickaxe extends ItemPickaxe {
 		return true;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {

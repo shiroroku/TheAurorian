@@ -5,6 +5,7 @@ import com.elseytd.theaurorian.Entities.Boss.Spider_Entity;
 import com.elseytd.theaurorian.Entities.Hostile.Spiderling_Entity;
 import com.elseytd.theaurorian.Items.TAItem_Armor_AurorianSteel;
 import com.elseytd.theaurorian.Items.TAItem_Armor_SlimeBoots;
+import com.elseytd.theaurorian.Items.TAItem_Armor_Spectral;
 import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Pickaxe;
@@ -34,6 +35,7 @@ public class TAEvents {
 	public void damageEvent(LivingDamageEvent e) {
 		TAEnchantment_Lightning_Damage.handleDamageEvent(e);
 		TAItem_Armor_AurorianSteel.handleDamageEvent(e);
+		TAItem_Armor_Spectral.handleDamageEvent(e);
 	}
 
 	@SubscribeEvent
@@ -77,10 +79,10 @@ public class TAEvents {
 	@SubscribeEvent
 	public static void onHoeUse(UseHoeEvent e) {
 		Block block = e.getWorld().getBlockState(e.getPos()).getBlock();
-		if (block == TABlocks.auroriangrass || block == TABlocks.auroriangrasslight || block == TABlocks.auroriandirt) {
+		if (block == TABlocks.Registry.AURORIANGRASS.getBlock() || block == TABlocks.Registry.AURORIANGRASSLIGHT.getBlock() || block == TABlocks.Registry.AURORIANDIRT.getBlock()) {
 			e.getWorld().playSound(e.getEntityPlayer(), e.getPos(), SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			if (!e.getWorld().isRemote) {
-				e.getWorld().setBlockState(e.getPos(), TABlocks.aurorianfarmtile.getDefaultState(), 11);
+				e.getWorld().setBlockState(e.getPos(), TABlocks.Registry.AURORIANFARMTILE.getBlock().getDefaultState(), 11);
 			}
 			e.setResult(Result.ALLOW);
 		}

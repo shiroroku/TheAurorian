@@ -26,6 +26,7 @@ public class TAItem_Food extends ItemFood {
 	public static final String ITEMNAME_AURORIANSLIMEBALL = "aurorianslimeball";
 	public static final String ITEMNAME_SILKSHROOMSTEW = "silkshroomstew";
 	public static final String ITEMNAME_LAVENDERBREAD = "lavenderbread";
+	public static final String ITEMNAME_SOULLESSFLESH = "soullessflesh";
 
 	public enum Foods {
 		SILKBERRYJAM(ITEMNAME_SILKBERRYJAM, 2, 0.5F, 64),
@@ -35,7 +36,8 @@ public class TAItem_Food extends ItemFood {
 		COOKEDAURORIANPORK(ITEMNAME_COOKEDAURORIANPORK, 8, 0.8F, true),
 		AURORIANSLIMEBALL(ITEMNAME_AURORIANSLIMEBALL, 1, 0.2F, 40),
 		SILKSHROOMSTEW(ITEMNAME_SILKSHROOMSTEW, 6, 1F),
-		LAVENDERBREAD(ITEMNAME_LAVENDERBREAD, 4, 0.4F);
+		LAVENDERBREAD(ITEMNAME_LAVENDERBREAD, 4, 0.4F),
+		SOULLESSFLESH(ITEMNAME_SOULLESSFLESH, 2, 0.1F);
 
 		private String ITEMNAME;
 		private String INFO;
@@ -61,23 +63,23 @@ public class TAItem_Food extends ItemFood {
 		}
 
 		public String getName() {
-			return ITEMNAME;
+			return this.ITEMNAME;
 		}
 
 		public String getInfo() {
-			return INFO;
+			return this.INFO;
 		}
 
 		public int getFeedAmount() {
-			return FEEDAMT;
+			return this.FEEDAMT;
 		}
 
 		public float getSaturation() {
-			return SATURATION;
+			return this.SATURATION;
 		}
 
 		public int getEatTime() {
-			return EATTIME;
+			return this.EATTIME;
 		}
 	}
 
@@ -91,6 +93,7 @@ public class TAItem_Food extends ItemFood {
 		this.itemFood = foodtype;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (this.itemFood.getInfo() != null) {

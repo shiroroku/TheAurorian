@@ -37,7 +37,7 @@ public class TABlock_Plant_Petunia extends BlockBush implements IShearable {
 	public Block.EnumOffsetType getOffsetType() {
 		return Block.EnumOffsetType.XZ;
 	}
-	
+
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return AABB.offset(state.getOffset(source, pos));
@@ -50,7 +50,7 @@ public class TABlock_Plant_Petunia extends BlockBush implements IShearable {
 
 	@Override
 	protected boolean canSustainBush(IBlockState state) {
-		return state.getBlock() == TABlocks.auroriangrass;
+		return state.getBlock() == TABlocks.Registry.AURORIANGRASS.getBlock();
 	}
 
 	@Override

@@ -3,7 +3,9 @@ package com.elseytd.theaurorian.TileEntities;
 import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TABlocks;
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
+import com.elseytd.theaurorian.TAUtil;
 import com.elseytd.theaurorian.Blocks.TABlock_Scrapper;
 import com.elseytd.theaurorian.Recipes.ScrapperRecipe;
 import com.elseytd.theaurorian.Recipes.ScrapperRecipeHandler;
@@ -38,7 +40,13 @@ public class Scrapper_TileEntity extends TileEntityLockable implements ITickable
 		if (!this.getWorld().isRemote) {
 			if (this.isCrafting) {
 
-				if (this.getWorld().getTotalWorldTime() % 4 == 0) {
+				float tickinterval = TAConfig.Config_ScrapperTickInterval;
+
+				if (this.getWorld().getBlockState(this.pos.up(1)).getBlock() == TABlocks.Registry.CRYSTAL.getBlock() && TAConfig.Config_CrystalsSpeedUpMachines) {
+					tickinterval *= TAConfig.Config_CrystalsSpeedReduction;
+				}
+
+				if (this.getWorld().getTotalWorldTime() % tickinterval == 0) {
 					int newval = this.craftProgress + 1;
 
 					if (newval >= 100) {
@@ -75,7 +83,7 @@ public class Scrapper_TileEntity extends TileEntityLockable implements ITickable
 
 	public ItemStack getRecipeOutput(ItemStack input) {
 		for (ScrapperRecipe recipe : ScrapperRecipeHandler.allRecipes) {
-			if (input.getItem() == recipe.getInput().getItem() && this.heldItems.get(1).getItem() == Item.getItemFromBlock(TABlocks.crystal)) {
+			if (input.getItem() == recipe.getInput().getItem() && this.heldItems.get(1).getItem() == Item.getItemFromBlock(TABlocks.Registry.CRYSTAL.getBlock())) {
 				return recipe.getOutput().copy();
 			}
 		}
@@ -85,6 +93,11 @@ public class Scrapper_TileEntity extends TileEntityLockable implements ITickable
 	private void doCraft() {
 		ItemStack output = this.getRecipeOutput(this.heldItems.get(0));
 		if (output != null) {
+
+			if (this.getWorld().getBlockState(this.pos.up(1)).getBlock() == TABlocks.Registry.CRYSTAL.getBlock() && TAConfig.Config_CrystalsSpeedUpMachines && TAUtil.randomChanceOf(TAConfig.Config_CrystalsChanceOfBreaking)) {
+				this.getWorld().destroyBlock(this.pos.up(1), false);
+			}
+
 			this.heldItems.get(0).shrink(1);
 			this.heldItems.get(1).shrink(1);
 			if (this.heldItems.get(2).isEmpty()) {
@@ -202,7 +215,7 @@ public class Scrapper_TileEntity extends TileEntityLockable implements ITickable
 				}
 				return false;
 			case 1:
-				if (Item.getItemFromBlock(TABlocks.crystal) == stack.getItem()) {
+				if (Item.getItemFromBlock(TABlocks.Registry.CRYSTAL.getBlock()) == stack.getItem()) {
 					return true;
 				}
 

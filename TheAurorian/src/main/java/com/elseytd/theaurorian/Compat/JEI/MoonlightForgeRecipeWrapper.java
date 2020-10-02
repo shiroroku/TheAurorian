@@ -17,15 +17,15 @@ public class MoonlightForgeRecipeWrapper implements IRecipeWrapper {
 
 	public MoonlightForgeRecipeWrapper(MoonlightForgeRecipe recipe) {
 		this.INPUTS = new ArrayList<>();
-		INPUTS.add(recipe.getInput1());
-		INPUTS.add(recipe.getInput2());
+		this.INPUTS.add(recipe.getInput1());
+		this.INPUTS.add(recipe.getInput2());
 		this.OUTPUT = recipe.getOutput();
 	}
 
 	@Override
 	public void getIngredients(IIngredients ingredients) {
-		ingredients.setInputs(VanillaTypes.ITEM, INPUTS);
-		ingredients.setOutput(VanillaTypes.ITEM, OUTPUT);
+		ingredients.setInputs(VanillaTypes.ITEM, this.INPUTS);
+		ingredients.setOutput(VanillaTypes.ITEM, this.OUTPUT);
 	}
 
 }

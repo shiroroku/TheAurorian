@@ -21,12 +21,12 @@ public class TAWorldGenerator_TallGrass extends WorldGenerator {
 			BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 			IBlockState grass = null;
 
-			if (worldIn.getBlockState(blockpos.down()).getBlock() == TABlocks.auroriangrass) {
-				grass = TABlocks.auroriantallgrass.getDefaultState();
-			} else if (worldIn.getBlockState(blockpos.down()).getBlock() == TABlocks.auroriangrasslight) {
-				grass = TABlocks.auroriantallgrasslight.getDefaultState();
+			if (worldIn.getBlockState(blockpos.down()).getBlock() == TABlocks.Registry.AURORIANGRASS.getBlock()) {
+				grass = TABlocks.Registry.PLANTTALLGRASS.getBlock().getDefaultState();
+			} else if (worldIn.getBlockState(blockpos.down()).getBlock() == TABlocks.Registry.AURORIANGRASSLIGHT.getBlock()) {
+				grass = TABlocks.Registry.PLANTTALLGRASSLIGHT.getBlock().getDefaultState();
 			}
-			
+
 			if (grass != null) {
 				if (worldIn.isAirBlock(blockpos) && ((BlockBush) grass.getBlock()).canBlockStay(worldIn, blockpos, worldIn.getBlockState(blockpos.down()))) {
 					worldIn.setBlockState(blockpos, grass, 2);

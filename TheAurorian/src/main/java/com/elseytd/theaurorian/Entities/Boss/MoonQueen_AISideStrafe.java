@@ -35,7 +35,7 @@ public class MoonQueen_AISideStrafe extends EntityAIBase {
 	@Override
 	public boolean shouldExecute() {
 		if (this.entity.getAttackTarget() != null) {
-			if (this.entity.getDistance(this.entity.getAttackTarget()) <= strafeDistance && !this.entity.isCharging()) {
+			if (this.entity.getDistance(this.entity.getAttackTarget()) <= this.strafeDistance && !this.entity.isCharging()) {
 				if (this.strafeTimer == 0) {
 					return true;
 				} else if (this.strafeTimer > 0) {
@@ -49,16 +49,16 @@ public class MoonQueen_AISideStrafe extends EntityAIBase {
 	@Override
 	public void startExecuting() {
 		this.entity.getNavigator().clearPath();
-		this.strafeDirection = getRandomDirection();
+		this.strafeDirection = this.getRandomDirection();
 		this.strafeTimer = 10;
-		this.entity.setHeldItem(EnumHand.OFF_HAND, new ItemStack(TAItems.moonshield));
+		this.entity.setHeldItem(EnumHand.OFF_HAND, new ItemStack(TAItems.Registry.MOONSHIELD.getItem()));
 		this.entity.setActiveHand(EnumHand.OFF_HAND);
 	}
 
 	@Override
 	public boolean shouldContinueExecuting() {
 		if (this.entity.getAttackTarget() != null && !this.entity.isCharging()) {
-			if (this.entity.getDistance(this.entity.getAttackTarget()) <= strafeDistance && this.strafeDirection != null) {
+			if (this.entity.getDistance(this.entity.getAttackTarget()) <= this.strafeDistance && this.strafeDirection != null) {
 				return true;
 			}
 		}
@@ -70,11 +70,11 @@ public class MoonQueen_AISideStrafe extends EntityAIBase {
 		EntityLivingBase target = this.entity.getAttackTarget();
 		this.entity.faceEntity(target, 40F, 40F);
 		if (this.strafeDirection == Direction.RIGHT) {
-			this.entity.setMoveStrafing(strafeSpeed);
+			this.entity.setMoveStrafing(this.strafeSpeed);
 		} else {
-			this.entity.setMoveStrafing(-strafeSpeed);
+			this.entity.setMoveStrafing(-this.strafeSpeed);
 		}
-		
+
 		if(this.entity.getDistance(this.entity.getAttackTarget()) <= 2.5F) {
 			this.entity.attackEntityAsMob(target);
 			this.strafeDirection = null;

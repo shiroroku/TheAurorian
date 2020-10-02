@@ -33,39 +33,39 @@ public class TATerrainGenerator {
 	private NoiseGeneratorOctaves depthNoise;
 
 	//Main Noise Scale X:
-	//	stretches the terrain along the x-axis, consequently making the terrain more smooth. 
+	//	stretches the terrain along the x-axis, consequently making the terrain more smooth.
 	//	Larger values for smoother terrain.
 	//Main Noise Scale Y:
-	//	stretches the terrain along the y (height) axis. 
+	//	stretches the terrain along the y (height) axis.
 	//	Larger values for smoother, higher and more hilly terrain. Ranges from 1 to 5000, and defaults to 160.
 	//Main Noise Scale Z:
-	//	stretches the terrain along the z-axis, consequently making the terrain more smooth. 
+	//	stretches the terrain along the z-axis, consequently making the terrain more smooth.
 	//	Larger values for smoother terrain. Ranges from 1 to 5000, and defaults to 80.
 	//Depth Noise Scale X:
-	//	changes the abruptness of terrain height along the x axis. 
+	//	changes the abruptness of terrain height along the x axis.
 	//	It ranges from 1 to 2000, and defaults to 200.
 	//Depth Noise Scale Z:
-	//	changes the abruptness of terrain height along the z axis. 
+	//	changes the abruptness of terrain height along the z axis.
 	//	It ranges from 1 to 2000, and defaults to 200.
-	//Depth Noise Exponent: 
+	//Depth Noise Exponent:
 	//	ranges from 0.01 to 20, and defaults to 0.5. Not quite sure what it does.
 	//Depth Base Size:
-	//	changes the base height of land. It ranges from 1 to 25, and defaults to 8.5. 
+	//	changes the base height of land. It ranges from 1 to 25, and defaults to 8.5.
 	//	1 in this value corresponds to 8 blocks, so the default is 8.5 * 8, which is 68.
-	//Coordinate Scale: 
-	//	Larger values sharpen and create more frequent hills without stretching the biome. 
+	//Coordinate Scale:
+	//	Larger values sharpen and create more frequent hills without stretching the biome.
 	//	It is best used last to tweak the terrain. Ranges from 1 to 6000, and defaults to 684.412.
 	//Height Scale:
-	//	stretches the base hills vertically before more details are made. 
+	//	stretches the base hills vertically before more details are made.
 	//	It ranges from 1 to 6000, and defaults to 684.412.
 	//Height Stretch:
-	//	pulls terrain upward, with smaller values causing more extreme stretching. 
+	//	pulls terrain upward, with smaller values causing more extreme stretching.
 	//	Ranges from 0.01 to 50, and defaults to 12.
 	//Upper Limit Scale:
-	//	makes terrain more solid/riddled with holes depending on how close the values are to the lower limit scale values. 
+	//	makes terrain more solid/riddled with holes depending on how close the values are to the lower limit scale values.
 	//	Ranges from 1 to 5000, and defaults to 512.
 	//Lower Limit Scale:
-	//	makes terrain more solid or riddled with holes depending on how close the values are to the upper limit scale values. 
+	//	makes terrain more solid or riddled with holes depending on how close the values are to the upper limit scale values.
 	//	Ranges from 1 to 5000, and defaults to 512.
 
 	private static final int mainNoiseScaleX = 80;
@@ -91,7 +91,7 @@ public class TATerrainGenerator {
 		this.biomeWeights = new float[25];
 		for (int j = -2; j <= 2; ++j) {
 			for (int k = -2; k <= 2; ++k) {
-				float f = 10.0F / MathHelper.sqrt((float) (j * j + k * k) + 0.2F);
+				float f = 10.0F / MathHelper.sqrt(j * j + k * k + 0.2F);
 				this.biomeWeights[j + 2 + (k + 2) * 5] = f;
 			}
 		}
@@ -112,7 +112,7 @@ public class TATerrainGenerator {
 		this.depthNoise = new NoiseGeneratorOctaves(rand, 16);
 		NoiseGeneratorOctaves noiseGen5 = new NoiseGeneratorOctaves(rand, 10);
 
-		InitNoiseGensEvent.ContextOverworld ctx = new InitNoiseGensEvent.ContextOverworld(minLimitPerlinNoise, maxLimitPerlinNoise, mainPerlinNoise, surfaceNoise, noiseGen5, depthNoise, null);
+		InitNoiseGensEvent.ContextOverworld ctx = new InitNoiseGensEvent.ContextOverworld(this.minLimitPerlinNoise, this.maxLimitPerlinNoise, this.mainPerlinNoise, this.surfaceNoise, noiseGen5, this.depthNoise, null);
 		ctx = net.minecraftforge.event.terraingen.TerrainGen.getModdedNoiseGenerators(world, rand, ctx);
 		this.minLimitPerlinNoise = ctx.getLPerlin1();
 		this.maxLimitPerlinNoise = ctx.getLPerlin2();
@@ -143,7 +143,7 @@ public class TATerrainGenerator {
 						float baseHeight = biome2.getBaseHeight();
 						float variation = biome2.getHeightVariation();
 
-						float f5 = biomeWeights[l1 + 2 + (i2 + 2) * 5] / (baseHeight + 2.0F);
+						float f5 = this.biomeWeights[l1 + 2 + (i2 + 2) * 5] / (baseHeight + 2.0F);
 						if (biome2.getBaseHeight() > biome1.getBaseHeight()) {
 							f5 /= 2.0F;
 						}
@@ -215,7 +215,7 @@ public class TATerrainGenerator {
 	}
 
 	public void generate(int chunkX, int chunkZ, ChunkPrimer primer) {
-		generateHeightmap(chunkX * 4, 0, chunkZ * 4);
+		this.generateHeightmap(chunkX * 4, 0, chunkZ * 4);
 		for (int x4 = 0; x4 < 4; ++x4) {
 			int l = x4 * 5;
 			int i1 = (x4 + 1) * 5;
@@ -228,14 +228,14 @@ public class TATerrainGenerator {
 
 				for (int height32 = 0; height32 < 32; ++height32) {
 					double d0 = 0.125D;
-					double d1 = heightMap[k1 + height32];
-					double d2 = heightMap[l1 + height32];
-					double d3 = heightMap[i2 + height32];
-					double d4 = heightMap[j2 + height32];
-					double d5 = (heightMap[k1 + height32 + 1] - d1) * d0;
-					double d6 = (heightMap[l1 + height32 + 1] - d2) * d0;
-					double d7 = (heightMap[i2 + height32 + 1] - d3) * d0;
-					double d8 = (heightMap[j2 + height32 + 1] - d4) * d0;
+					double d1 = this.heightMap[k1 + height32];
+					double d2 = this.heightMap[l1 + height32];
+					double d3 = this.heightMap[i2 + height32];
+					double d4 = this.heightMap[j2 + height32];
+					double d5 = (this.heightMap[k1 + height32 + 1] - d1) * d0;
+					double d6 = (this.heightMap[l1 + height32 + 1] - d2) * d0;
+					double d7 = (this.heightMap[i2 + height32 + 1] - d3) * d0;
+					double d8 = (this.heightMap[j2 + height32 + 1] - d4) * d0;
 
 					for (int h = 0; h < 8; ++h) {
 						double d9 = 0.25D;
@@ -254,9 +254,9 @@ public class TATerrainGenerator {
 								if (height < 2) {
 									primer.setBlockState(x4 * 4 + x, height32 * 8 + h, z4 * 4 + z, Blocks.BEDROCK.getDefaultState());
 								} else if ((d15 += d16) > 0.0D) {
-									primer.setBlockState(x4 * 4 + x, height32 * 8 + h, z4 * 4 + z, TABlocks.aurorianstone.getDefaultState());
+									primer.setBlockState(x4 * 4 + x, height32 * 8 + h, z4 * 4 + z, TABlocks.Registry.AURORIANSTONE.getBlock().getDefaultState());
 								} else if (height < waterLevel && height > 30) {
-									primer.setBlockState(x4 * 4 + x, height32 * 8 + h, z4 * 4 + z, TABlocks.moonwaterblock.getDefaultState());
+									primer.setBlockState(x4 * 4 + x, height32 * 8 + h, z4 * 4 + z, TABlocks.Registry.FLUIDMOONWATER.getBlock().getDefaultState());
 								}
 							}
 
@@ -275,15 +275,15 @@ public class TATerrainGenerator {
 	}
 
 	public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, IChunkGenerator generator, Biome[] biomes) {
-		if (!ForgeEventFactory.onReplaceBiomeBlocks(generator, x, z, primer, world)) {
+		if (!ForgeEventFactory.onReplaceBiomeBlocks(generator, x, z, primer, this.world)) {
 			return;
 		}
-		depthBuffer = surfaceNoise.getRegion(depthBuffer, x * 16, z * 16, 16, 16, 0.0625D, 0.0625D, 1.0D);
+		this.depthBuffer = this.surfaceNoise.getRegion(this.depthBuffer, x * 16, z * 16, 16, 16, 0.0625D, 0.0625D, 1.0D);
 
 		for (int xInChunk = 0; xInChunk < 16; ++xInChunk) {
 			for (int zInChunk = 0; zInChunk < 16; ++zInChunk) {
 				Biome biome = biomes[zInChunk + xInChunk * 16];
-				biome.genTerrainBlocks(world, random, primer, x * 16 + xInChunk, z * 16 + zInChunk, depthBuffer[zInChunk + xInChunk * 16]);
+				biome.genTerrainBlocks(this.world, this.random, primer, x * 16 + xInChunk, z * 16 + zInChunk, this.depthBuffer[zInChunk + xInChunk * 16]);
 			}
 		}
 	}

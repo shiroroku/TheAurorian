@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Util.EntityHelper;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
@@ -70,7 +70,7 @@ public class TAItem_Special_MoonShield extends TAItem_Tool_Shield {
 				}
 
 				if (playerIn.getCooldownTracker().hasCooldown(stack.getItem()) && playerIn.motionX <= 1.5 && playerIn.motionZ <= 1.5) {
-					List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, 1, 2.5D, false);
+					List<EntityLivingBase> entities = EntityHelper.getEntitiesAround(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, 1, 2.5D, false);
 					for (EntityLivingBase e : entities) {
 						if (e.isNonBoss() && e != playerIn) {
 							if (e instanceof EntityPlayer) {

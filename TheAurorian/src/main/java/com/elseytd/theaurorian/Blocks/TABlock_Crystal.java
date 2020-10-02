@@ -4,8 +4,9 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.elseytd.theaurorian.TABlocks.ISpecialItemBlock;
-import com.elseytd.theaurorian.TAItems.ISpecialModel;
+import com.elseytd.theaurorian.TABlocks.IUniqueItemBlock;
+import com.elseytd.theaurorian.TAConfig;
+import com.elseytd.theaurorian.TAItems.IUniqueModel;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TileEntities.CrystalBlock_TileEntity;
 import com.elseytd.theaurorian.TileEntities.CrystalBlock_TileEntitySpecialRenderer;
@@ -35,7 +36,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TABlock_Crystal extends Block implements ITileEntityProvider, ISpecialModel, ISpecialItemBlock {
+public class TABlock_Crystal extends Block implements ITileEntityProvider, IUniqueModel, IUniqueItemBlock {
 
 	public static final String BLOCKNAME = "crystal";
 	protected static final AxisAlignedBB AABB = new AxisAlignedBB(0.4D, 0.0D, 0.4D, 0.6D, 1.0D, 0.6D);
@@ -85,9 +86,10 @@ public class TABlock_Crystal extends Block implements ITileEntityProvider, ISpec
 
 	@Override
 	public void registerItemBlock(Register<Item> event) {
-		event.getRegistry().register(new ItemBlock(this).setRegistryName(this.getRegistryName()).setMaxStackSize(16));
+		event.getRegistry().register(new ItemBlock(this).setRegistryName(this.getRegistryName()).setMaxStackSize(TAConfig.Config_CrystalStackSize));
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {

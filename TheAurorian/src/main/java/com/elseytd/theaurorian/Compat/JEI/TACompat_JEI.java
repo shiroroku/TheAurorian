@@ -30,8 +30,8 @@ public class TACompat_JEI implements IModPlugin {
 	@Override
 	public void register(IModRegistry registry) {
 		//Let JEI know these blocks use vanilla recipes and where to add the recipes click location
-		registry.addRecipeCatalyst(new ItemStack(TABlocks.aurorianfurnace), VanillaRecipeCategoryUid.SMELTING, VanillaRecipeCategoryUid.FUEL);
-		registry.addRecipeCatalyst(new ItemStack(TABlocks.silentwoodworkbench), VanillaRecipeCategoryUid.CRAFTING);
+		registry.addRecipeCatalyst(new ItemStack(TABlocks.Registry.AURORIANFURNACEOFF.getBlock()), VanillaRecipeCategoryUid.SMELTING, VanillaRecipeCategoryUid.FUEL);
+		registry.addRecipeCatalyst(new ItemStack(TABlocks.Registry.SILENTWOODWORKBENCH.getBlock()), VanillaRecipeCategoryUid.CRAFTING);
 		registry.addRecipeClickArea(SilentwoodWorkbench_Gui.class, 88, 32, 28, 23, VanillaRecipeCategoryUid.CRAFTING);
 		registry.addRecipeClickArea(AurorianFurnace_Gui.class, 78, 32, 28, 23, VanillaRecipeCategoryUid.SMELTING, VanillaRecipeCategoryUid.FUEL);
 
@@ -42,14 +42,14 @@ public class TACompat_JEI implements IModPlugin {
 		recipeTransferRegistry.addRecipeTransferHandler(AurorianFurnace_Container.class, VanillaRecipeCategoryUid.FUEL, 1, 1, 3, 36);
 
 		//Moonlight Forge
-		registry.addRecipeCatalyst(new ItemStack(TABlocks.moonlightforge), UID_MOONLIGHTFORGE);
+		registry.addRecipeCatalyst(new ItemStack(TABlocks.Registry.MOONLIGHTFORGE.getBlock()), UID_MOONLIGHTFORGE);
 		registry.addRecipes(MoonlightForgeRecipeHandler.allRecipes, UID_MOONLIGHTFORGE);
 		registry.handleRecipes(MoonlightForgeRecipe.class, MoonlightForgeRecipeWrapper::new, UID_MOONLIGHTFORGE);
 		registry.addRecipeClickArea(MoonLightForge_Gui.class, 107, 35, 24, 17, UID_MOONLIGHTFORGE);
 		registry.getRecipeTransferRegistry().addRecipeTransferHandler(MoonLightForge_Container.class, UID_MOONLIGHTFORGE, 0, 2, 3, 36);
 
 		//Scrapper
-		registry.addRecipeCatalyst(new ItemStack(TABlocks.scrapper), UID_SCRAPPER);
+		registry.addRecipeCatalyst(new ItemStack(TABlocks.Registry.SCRAPPER.getBlock()), UID_SCRAPPER);
 		registry.addRecipes(ScrapperRecipeHandler.allRecipes, UID_SCRAPPER);
 		registry.handleRecipes(ScrapperRecipe.class, ScrapperRecipeWrapper::new, UID_SCRAPPER);
 		registry.addRecipeClickArea(Scrapper_Gui.class, 98, 16, 9, 55, UID_SCRAPPER);

@@ -60,7 +60,7 @@ public class TABlock_Plant_Tallgrass_Light extends BlockBush implements IShearab
 
 	@Override
 	protected boolean canSustainBush(IBlockState state) {
-		return state.getBlock() == TABlocks.auroriangrasslight;
+		return state.getBlock() == TABlocks.Registry.AURORIANGRASSLIGHT.getBlock();
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class TABlock_Plant_Tallgrass_Light extends BlockBush implements IShearab
 
 	@Override
 	public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
-		return NonNullList.withSize(1, new ItemStack(TAItems.plantfiber));
+		return NonNullList.withSize(1, new ItemStack(TAItems.Registry.PLANTFIBER.getItem()));
 	}
 
 }

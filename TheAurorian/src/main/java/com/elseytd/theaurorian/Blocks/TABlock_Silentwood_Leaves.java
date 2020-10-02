@@ -64,7 +64,7 @@ public class TABlock_Silentwood_Leaves extends BlockLeaves {
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return Item.getItemFromBlock(TABlocks.silentwoodsapling);
+		return Item.getItemFromBlock(TABlocks.Registry.PLANTSILENTWOODSAPLING.getBlock());
 	}
 
 	@Override

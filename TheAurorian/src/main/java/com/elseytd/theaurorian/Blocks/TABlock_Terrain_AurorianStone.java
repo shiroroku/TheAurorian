@@ -28,7 +28,7 @@ public class TABlock_Terrain_AurorianStone extends Block implements IAurorianSto
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return Item.getItemFromBlock(TABlocks.auroriancobblestone);
+		return Item.getItemFromBlock(TABlocks.Registry.AURORIANCOBBLESTONE.getBlock());
 	}
 
 }

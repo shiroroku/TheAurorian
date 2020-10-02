@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Util.OreDictionaryHelper;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
@@ -43,9 +43,9 @@ public class TAItem_Tool_Crystalline_Pickaxe extends ItemPickaxe {
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
 		if (!worldIn.isRemote && (double) state.getBlockHardness(worldIn, pos) != 0.0D) {
 			ItemStack block = new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state));
-			if (TAUtil.LocalOreDictionary.isOre(block)) {
-				ItemStack nugget = TAUtil.LocalOreDictionary.getTypeFromOre(block, "nugget");
-				ItemStack ingot = TAUtil.LocalOreDictionary.getTypeFromOre(block, "ingot");
+			if (OreDictionaryHelper.isOre(block)) {
+				ItemStack nugget = OreDictionaryHelper.getTypeFromOre(block, "nugget");
+				ItemStack ingot = OreDictionaryHelper.getTypeFromOre(block, "ingot");
 				if (ingot != null) {
 					worldIn.spawnEntity(new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), ingot));
 					if (nugget != null) {

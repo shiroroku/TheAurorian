@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.Util.EntityHelper;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
@@ -41,7 +41,7 @@ public class TAItem_Tool_Aurorianite_Sword extends ItemSword {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		if (playerIn.getHeldItemOffhand().isEmpty() || playerIn.isSneaking()) {
-			List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(worldIn, playerIn.posX, playerIn.posY + 2.5D, playerIn.posZ, 5, 2.5D, false);
+			List<EntityLivingBase> entities = EntityHelper.getEntitiesAround(worldIn, playerIn.posX, playerIn.posY + 2.5D, playerIn.posZ, 5, 2.5D, false);
 			for (EntityLivingBase e : entities) {
 				if (e.isNonBoss()) {
 					e.addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 60));

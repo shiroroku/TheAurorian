@@ -51,7 +51,7 @@ public class AurorianFurnace_TileEntity extends TileEntityLockable implements IT
 		int chimcount = 0;
 		while (!(this.world.isAirBlock(this.pos.up(y))) && chimcount < TAConfig.Config_MaximumChimneys) {
 			y++;
-			if (this.world.getBlockState(this.pos.up(y)).getBlock() == TABlocks.aurorianfurnacechimney) {
+			if (this.world.getBlockState(this.pos.up(y)).getBlock() == TABlocks.Registry.AURORIANFURNACECHIMNEY.getBlock()) {
 				chimcount++;
 			}
 		}

@@ -39,27 +39,27 @@ public class TABiomeDecorator extends BiomeDecorator {
 
 	@Override
 	protected void generateOres(World worldIn, Random random) {
-		oreQuickGen(worldIn, random, TABlocks.ceruleanore.getDefaultState(), TAConfig.Config_CeruleanOre_Size, TAConfig.Config_CeruleanOre_Count, TAConfig.Config_CeruleanOre_HeightMin, TAConfig.Config_CeruleanOre_HeightMax);
-		oreQuickGen(worldIn, random, TABlocks.moonstoneore.getDefaultState(), TAConfig.Config_MoonstoneOre_Size, TAConfig.Config_MoonstoneOre_Count, TAConfig.Config_MoonstoneOre_HeightMin, TAConfig.Config_MoonstoneOre_HeightMax);
-		oreQuickGen(worldIn, random, TABlocks.auroriancoalore.getDefaultState(), TAConfig.Config_AurorianCoalOre_Size, TAConfig.Config_AurorianCoalOre_Count, TAConfig.Config_AurorianCoalOre_HeightMin, TAConfig.Config_AurorianCoalOre_HeightMax);
-		oreQuickGen(worldIn, random, TABlocks.geodeore.getDefaultState(), TAConfig.Config_GeodeOre_Size, TAConfig.Config_GeodeOre_Count, TAConfig.Config_GeodeOre_HeightMin, TAConfig.Config_GeodeOre_HeightMax);
+		this.oreQuickGen(worldIn, random, TABlocks.Registry.ORECERULEAN.getBlock().getDefaultState(), TAConfig.Config_CeruleanOre_Size, TAConfig.Config_CeruleanOre_Count, TAConfig.Config_CeruleanOre_HeightMin, TAConfig.Config_CeruleanOre_HeightMax);
+		this.oreQuickGen(worldIn, random, TABlocks.Registry.OREMOONSTONE.getBlock().getDefaultState(), TAConfig.Config_MoonstoneOre_Size, TAConfig.Config_MoonstoneOre_Count, TAConfig.Config_MoonstoneOre_HeightMin, TAConfig.Config_MoonstoneOre_HeightMax);
+		this.oreQuickGen(worldIn, random, TABlocks.Registry.OREAURORIANCOAL.getBlock().getDefaultState(), TAConfig.Config_AurorianCoalOre_Size, TAConfig.Config_AurorianCoalOre_Count, TAConfig.Config_AurorianCoalOre_HeightMin, TAConfig.Config_AurorianCoalOre_HeightMax);
+		this.oreQuickGen(worldIn, random, TABlocks.Registry.OREGEODE.getBlock().getDefaultState(), TAConfig.Config_GeodeOre_Size, TAConfig.Config_GeodeOre_Count, TAConfig.Config_GeodeOre_HeightMin, TAConfig.Config_GeodeOre_HeightMax);
 	}
 
 	protected void generateStones(World worldIn, Random random) {
-		oreQuickGen(worldIn, random, TABlocks.aurorianperidotite.getDefaultState(), TAConfig.Config_Peridotite_Size, TAConfig.Config_Peridotite_Count, TAConfig.Config_Peridotite_HeightMin, TAConfig.Config_Peridotite_HeightMax);
-		oreQuickGen(worldIn, random, TABlocks.auroriandirt.getDefaultState(), TAConfig.Config_Dirt_Size, TAConfig.Config_Dirt_Count, TAConfig.Config_Dirt_HeightMin, TAConfig.Config_Dirt_HeightMax);
+		this.oreQuickGen(worldIn, random, TABlocks.Registry.PERIDOTITE.getBlock().getDefaultState(), TAConfig.Config_Peridotite_Size, TAConfig.Config_Peridotite_Count, TAConfig.Config_Peridotite_HeightMin, TAConfig.Config_Peridotite_HeightMax);
+		this.oreQuickGen(worldIn, random, TABlocks.Registry.AURORIANDIRT.getBlock().getDefaultState(), TAConfig.Config_Dirt_Size, TAConfig.Config_Dirt_Count, TAConfig.Config_Dirt_HeightMin, TAConfig.Config_Dirt_HeightMax);
 	}
 
 	private void oreQuickGen(World worldIn, Random random, IBlockState oreblock, int size, int count, int heightmin, int heightmax) {
 		WorldGenerator oregenerator = new WorldGenMinable(oreblock, size, new AurorianStonesPredicate());
-		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, oregenerator, chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM)) {
+		if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(worldIn, random, oregenerator, this.chunkPos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.CUSTOM)) {
 			this.genStandardOre1(worldIn, random, count, oregenerator, heightmin, heightmax);
 		}
 	}
 
 	@Override
 	protected void genDecorations(Biome biomeIn, World worldIn, Random random) {
-		net.minecraft.util.math.ChunkPos forgeChunkPos = new net.minecraft.util.math.ChunkPos(chunkPos);
+		net.minecraft.util.math.ChunkPos forgeChunkPos = new net.minecraft.util.math.ChunkPos(this.chunkPos);
 		net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.terraingen.DecorateBiomeEvent.Pre(worldIn, random, forgeChunkPos));
 		this.generateOres(worldIn, random);
 
@@ -70,7 +70,7 @@ public class TABiomeDecorator extends BiomeDecorator {
 			for (int i1 = 0; i1 < 4; ++i1) {
 				int l1 = random.nextInt(16) + 8;
 				int i6 = random.nextInt(16) + 8;
-				TAWorldGenerator_UnderWater gen = new TAWorldGenerator_UnderWater(5, TABlocks.auroriandirt);
+				TAWorldGenerator_UnderWater gen = new TAWorldGenerator_UnderWater(5, TABlocks.Registry.AURORIANDIRT.getBlock());
 				gen.generate(worldIn, random, worldIn.getTopSolidOrLiquidBlock(this.chunkPos.add(l1, 0, i6)));
 			}
 		}
@@ -78,7 +78,7 @@ public class TABiomeDecorator extends BiomeDecorator {
 			for (int i1 = 0; i1 < 4; ++i1) {
 				int l1 = random.nextInt(16) + 8;
 				int i6 = random.nextInt(16) + 8;
-				TAWorldGenerator_UnderWater gen = new TAWorldGenerator_UnderWater(5, TABlocks.aurorianstone);
+				TAWorldGenerator_UnderWater gen = new TAWorldGenerator_UnderWater(5, TABlocks.Registry.AURORIANDIRT.getBlock());
 				gen.generate(worldIn, random, worldIn.getTopSolidOrLiquidBlock(this.chunkPos.add(l1, 0, i6)));
 			}
 		}
@@ -196,6 +196,7 @@ public class TABiomeDecorator extends BiomeDecorator {
 	}
 
 	public static class AurorianStonesPredicate implements Predicate<IBlockState> {
+		@Override
 		public boolean apply(IBlockState blkin) {
 			if (blkin != null && (blkin.getBlock() instanceof IAurorianStoneType)) {
 				return true;

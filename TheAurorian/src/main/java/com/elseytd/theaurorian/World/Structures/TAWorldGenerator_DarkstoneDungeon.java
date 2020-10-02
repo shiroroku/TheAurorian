@@ -5,7 +5,7 @@ import java.util.Random;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.Misc.GenerationHelper;
+import com.elseytd.theaurorian.Util.GenerationHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -41,6 +41,7 @@ public class TAWorldGenerator_DarkstoneDungeon extends WorldGenerator implements
 	private static final ResourceLocation DARKSTONE_BOSSROOM_BACKLEFT = new ResourceLocation(TAMod.MODID, "darkstone/darkstone_bossroom_backleft");
 
 	public static int CHUNKS_BETWEEN_DUNGEONS = TAConfig.Config_DungeonDensity * 2;
+	public static boolean GENERATE_DUNGEON = TAConfig.Config_GenerateDarkstoneDungeon;
 
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
@@ -87,7 +88,7 @@ public class TAWorldGenerator_DarkstoneDungeon extends WorldGenerator implements
 		final int chunkZ = c.z;
 		final int x = chunkX * 16 + 8;
 		final int z = chunkZ * 16 + 8;
-		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.aurorianstone);
+		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.Registry.AURORIANSTONE.getBlock());
 
 		//Generate Entrance & Stairs
 		if (this.isValidChunkForGen(chunkX, chunkZ, 0, 0)) {
@@ -115,7 +116,7 @@ public class TAWorldGenerator_DarkstoneDungeon extends WorldGenerator implements
 	}
 
 	private void generateBossRoom(World world, int chunkX, int chunkZ, int x, int z) {
-		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.aurorianstone);
+		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.Registry.AURORIANSTONE.getBlock());
 		final int bossRoomYOffset = 14 * 2;
 		if (this.isValidChunkForGen(chunkX, chunkZ, 0, 0)) {
 			final Template template = GenerationHelper.getTemplate(world, DARKSTONE_BOSSROOM_BACK);
@@ -170,7 +171,7 @@ public class TAWorldGenerator_DarkstoneDungeon extends WorldGenerator implements
 		int z = (chunkoffsetz * 16 + (zin * 16)) + originoffsetz;
 
 		Block blk = world.getBlockState(new BlockPos(x, h, z)).getBlock();
-		while ((blk == Blocks.AIR || blk == TABlocks.silentwoodleaves || blk == TABlocks.silentwoodlog || blk instanceof BlockBush) && h > minimumheight) {
+		while ((blk == Blocks.AIR || blk == TABlocks.Registry.SILENTWOODLEAVES.getBlock() || blk == TABlocks.Registry.SILENTWOODLOG.getBlock() || blk instanceof BlockBush) && h > minimumheight) {
 			h--;
 			blk = world.getBlockState(new BlockPos(x, h, z)).getBlock();
 		}
@@ -180,7 +181,7 @@ public class TAWorldGenerator_DarkstoneDungeon extends WorldGenerator implements
 	}
 
 	private void createStructureFromChar(char c, World world, int x, int y, int z, int floorForLootRarity) {
-		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.aurorianstone);
+		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.Registry.AURORIANSTONE.getBlock());
 		final ResourceLocation loot = floorForLootRarity == 0 ? DARKSTONE_LOOTTABLELOW : DARKSTONE_LOOTTABLEMED;
 		boolean populateChests = false;
 		Template template = null;

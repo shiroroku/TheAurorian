@@ -2,6 +2,7 @@ package com.elseytd.theaurorian.Items;
 
 import java.awt.Color;
 
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 
@@ -26,7 +27,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TAItem_Food_Tea extends Item implements TAItems.ISpecialModel{
+public class TAItem_Food_Tea extends Item implements TAItems.IUniqueModel {
 
 	public static final String PARENT_MODEL = "tea";
 	public static final String ITEMNAME_LAVENDER = "tealavender";
@@ -35,10 +36,10 @@ public class TAItem_Food_Tea extends Item implements TAItems.ISpecialModel{
 	public static final String ITEMNAME_PETUNIA = "teapetunia";
 
 	public enum Teas {
-		LAVENDER(ITEMNAME_LAVENDER, new PotionEffect(MobEffects.RESISTANCE, 300), new Color(118, 70, 255)),
-		SILKBERRY(ITEMNAME_SILKBERRY, new PotionEffect(MobEffects.REGENERATION, 100), new Color(14, 35, 75)),
-		SEEDY(ITEMNAME_SEEDY, new PotionEffect(MobEffects.SPEED, 200), new Color(174, 188, 215)),
-		PETUNIA(ITEMNAME_PETUNIA, new PotionEffect(MobEffects.STRENGTH, 300), new Color(255, 186, 255));
+		LAVENDER(ITEMNAME_LAVENDER, new PotionEffect(MobEffects.RESISTANCE, (int) (300 * TAConfig.Config_Tea_EffectDuration_Muliplier)), new Color(118, 70, 255)),
+		SILKBERRY(ITEMNAME_SILKBERRY, new PotionEffect(MobEffects.REGENERATION, (int) (100 * TAConfig.Config_Tea_EffectDuration_Muliplier)), new Color(14, 35, 75)),
+		SEEDY(ITEMNAME_SEEDY, new PotionEffect(MobEffects.SPEED, (int) (200 * TAConfig.Config_Tea_EffectDuration_Muliplier)), new Color(174, 188, 215)),
+		PETUNIA(ITEMNAME_PETUNIA, new PotionEffect(MobEffects.STRENGTH, (int) (300 * TAConfig.Config_Tea_EffectDuration_Muliplier)), new Color(255, 186, 255));
 
 		private String ITEMNAME;
 		private PotionEffect EFFECT;
@@ -51,15 +52,15 @@ public class TAItem_Food_Tea extends Item implements TAItems.ISpecialModel{
 		}
 
 		public String getName() {
-			return ITEMNAME;
+			return this.ITEMNAME;
 		}
 
 		public PotionEffect getEffect() {
-			return EFFECT;
+			return this.EFFECT;
 		}
 
 		public Color getColor() {
-			return OVERLAYCOLOR;
+			return this.OVERLAYCOLOR;
 		}
 	}
 
@@ -85,13 +86,14 @@ public class TAItem_Food_Tea extends Item implements TAItems.ISpecialModel{
 				}
 				return 16777215;
 			}
-		}, TAItems.tealavender, TAItems.teapetunia, TAItems.teaseedy, TAItems.teasilkberry);
+		}, TAItems.Registry.TEALAVENDER.getItem(), TAItems.Registry.TEAPETUNIA.getItem(), TAItems.Registry.TEASEEDY.getItem(), TAItems.Registry.TEASILKBERRY.getItem());
 	}
 
 	public Teas getTeaType() {
-		return itemTea;
+		return this.itemTea;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void initModel() {
 		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(TAMod.MODID + ":" + PARENT_MODEL, "inventory"));
@@ -122,9 +124,9 @@ public class TAItem_Food_Tea extends Item implements TAItems.ISpecialModel{
 			if (!entityplayer.capabilities.isCreativeMode) {
 				stack.shrink(1);
 				if (stack.isEmpty()) {
-					return new ItemStack(TAItems.cup);
+					return new ItemStack(TAItems.Registry.CUP.getItem());
 				}
-				entityplayer.inventory.addItemStackToInventory(new ItemStack(TAItems.cup));
+				entityplayer.inventory.addItemStackToInventory(new ItemStack(TAItems.Registry.CUP.getItem()));
 			}
 		}
 
@@ -135,7 +137,7 @@ public class TAItem_Food_Tea extends Item implements TAItems.ISpecialModel{
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
 		playerIn.setActiveHand(handIn);
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+		return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
 	}
 
 	@Override

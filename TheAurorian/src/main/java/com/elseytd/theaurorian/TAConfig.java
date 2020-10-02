@@ -11,6 +11,10 @@ public class TAConfig {
 	//Blocks
 	public static int Config_MaximumChimneys = 10;
 	public static float Config_ChimneySpeedMuliplier = 0.5F;
+	public static boolean Config_CrystalsSpeedUpMachines = true;
+	public static float Config_CrystalsChanceOfBreaking = 0.25F;
+	public static float Config_CrystalsSpeedReduction = 0.5F;
+	public static int Config_ScrapperTickInterval = 4; //TODO make this more user friendly
 
 	//Dimensions
 	public static int Config_AurorianDimID = 424;
@@ -22,8 +26,10 @@ public class TAConfig {
 	public static boolean Config_GenerateRuins = true;
 	public static boolean Config_GenerateMoonTemple = true;
 	public static boolean Config_GenerateMoonTemplePath = true;
+	public static boolean Config_GenerateDarkstoneDungeon = true;
 	public static boolean Config_GenerateUmbraTower = true;
 	public static boolean Config_GenerateMushroomCaves = false;
+	public static boolean Config_GenerateGraveyards = true;
 
 	//Entities
 	public static int Config_RunestoneDungeonMobDensity = 1;
@@ -35,7 +41,6 @@ public class TAConfig {
 	public static float Config_RunestoneKeeperDamageMuliplier = 1;
 	public static float Config_MoonQueenDamageMuliplier = 1;
 	public static float Config_SpiderMotherDamageMuliplier = 1;
-
 
 	//Generation, vanilla values found in net.minecraft.world.gen.ChunkGeneratorSettings.ChunkGeneratorSettings(Factory)
 	public static int Config_AurorianCoalOre_Size = 12;
@@ -84,6 +89,8 @@ public class TAConfig {
 	public static float Config_AurorianSteel_BaseMaxLevelMultiplier = 1.75f;
 	public static String[] Config_AurorianSteel_Enchants = new String[] {};
 	public static int Config_AurorianSteel_Enchants_WhitelistBlacklist = 0;
+	public static int Config_CrystalStackSize = 16;
+	public static float Config_Spectral_Armor_CleanseChance = 0.06f;
 
 	//Multipliers
 	public static float Config_Silentwood_Multiplier_Speed = 1F;
@@ -108,6 +115,9 @@ public class TAConfig {
 	public static int Config_AurorianSteel_HarvestLevel = 3;
 	public static float Config_Cerulean_Multiplier_Durability = 1F;
 	public static float Config_Cerulean_Multiplier_Armor = 1F;
+	public static float Config_Tea_EffectDuration_Muliplier = 1F;
+	public static float Config_Spectral_Multiplier_Durability = 1F;
+	public static float Config_Spectral_Multiplier_Armor = 1F;
 
 	public static void readConfig() {
 		Configuration cfg = TAMod.CONFIG;
@@ -155,6 +165,9 @@ public class TAConfig {
 		Config_AurorianSteel_HarvestLevel = cfg.getInt("AurorianSteel_HarvestLevel", name, Config_AurorianSteel_HarvestLevel, 0, 500, "Harvest level for these tools");
 		Config_Cerulean_Multiplier_Durability = cfg.getFloat("Cerulean_Multiplier_Durability", name, Config_Cerulean_Multiplier_Durability, 0F, 1000F, "Multiplier for tool/armor durability");
 		Config_Cerulean_Multiplier_Armor = cfg.getFloat("Cerulean_Multiplier_Armor", name, Config_Cerulean_Multiplier_Armor, 0F, 1000F, "Multiplier for armor strength");
+		Config_Tea_EffectDuration_Muliplier = cfg.getFloat("Tea_EffectDuration_Muliplier", name, Config_Tea_EffectDuration_Muliplier, 0F, 1000F, "Multiplier for tea potion effect duration");
+		Config_Spectral_Multiplier_Durability = cfg.getFloat("Spectral_Multiplier_Durability", name, Config_Spectral_Multiplier_Durability, 0F, 1000F, "Multiplier for tool/armor durability");
+		Config_Spectral_Multiplier_Armor = cfg.getFloat("Spectral_Multiplier_Armor", name, Config_Spectral_Multiplier_Armor, 0F, 1000F, "Multiplier for armor strength");
 
 	}
 
@@ -179,9 +192,10 @@ public class TAConfig {
 		Config_MoonlightForgeTransfersEnchants = cfg.getBoolean("MoonlightForgeTransfersEnchants", name, Config_MoonlightForgeTransfersEnchants, "Set to false to disable enchantments from carrying over when crafting tools with the Moonlight Forge");
 		Config_AurorianSteel_BaseMaxLevel = cfg.getInt("AurorianSteel_BaseMaxLevel", name, Config_AurorianSteel_BaseMaxLevel, 0, 72000, "Base Max level for Aurorian Steel items. After used this many times an enchantment will level up, next level cost depends on multiplier");
 		Config_AurorianSteel_BaseMaxLevelMultiplier = cfg.getFloat("AurorianSteel_BaseMaxLevelMultiplier", name, Config_AurorianSteel_BaseMaxLevelMultiplier, 1F, 100F, "Max Level multiplier for Aurorian Steel items, every time they level up the max level is multiplied by this");
-
+		Config_CrystalStackSize = cfg.getInt("CrystalStackSize", name, Config_CrystalStackSize, 1, 64, "Stack size of Crystals");
 		Config_AurorianSteel_Enchants = cfg.getStringList("AurorianSteel_Enchants", name, Config_AurorianSteel_Enchants, "List of enchantments, use is decided by AurorianSteel_Enchants_WhitelistBlacklist, you can also specify mod ids to whitelist or blacklist whole mods, ex: (draconicevolution, minecraft:sharpness)");
 		Config_AurorianSteel_Enchants_WhitelistBlacklist = cfg.getInt("AurorianSteel_Enchants_WhitelistBlacklist", name, Config_AurorianSteel_Enchants_WhitelistBlacklist, 0, 2, "Decides how to treat AurorianSteel_Enchants, 0 - ignored (Aurorian Steel can upgrade any enchantment), 1 - whitelist (can only upgrade enchantments specified), 2 - blacklist (upgrades all but the enchantments specified)");
+		Config_Spectral_Armor_CleanseChance = cfg.getFloat("Spectral_Armor_CleanseChance", name, Config_Spectral_Armor_CleanseChance, 0.01F, 1F, "Percent for one armor piece to cleanse the players negative effects, stacks with other armor parts (full spectral armor with 6% is a 24% chance with full set)");
 
 	}
 
@@ -198,7 +212,12 @@ public class TAConfig {
 		cfg.addCustomCategoryComment(name, "Blocks configuration");
 
 		Config_MaximumChimneys = cfg.getInt("MaximumChimneys", name, Config_MaximumChimneys, 0, 255, "Maximum number of chimneys able to be stacked on Aurorian Furnace");
-		Config_ChimneySpeedMuliplier = cfg.getFloat("ChimneySpeedMuliplier", name, Config_ChimneySpeedMuliplier, 0, 1, "Changes how much chimneys speed up the Aurorian Furnace when at maximum number (0.5 is + 50%)");
+		Config_ChimneySpeedMuliplier = cfg.getFloat("ChimneySpeedMuliplier", name, Config_ChimneySpeedMuliplier, 0, 0.99f, "Changes how much chimneys speed up the Aurorian Furnace when at maximum number (0.5 is + 50%)");
+		Config_CrystalsSpeedUpMachines = cfg.getBoolean("CrystalsSpeedUpMachines", name, Config_CrystalsSpeedUpMachines, "Set to false to disable Crystals speeding up machines when placed on top");
+		Config_CrystalsChanceOfBreaking = cfg.getFloat("CrystalsChanceOfBreaking", name, Config_CrystalsChanceOfBreaking, 0, 1f, "The chance for a Crystal to break when the machine finishes a recipe. (0.5 is 50%, 0 is no breaking)");
+		Config_CrystalsSpeedReduction = cfg.getFloat("CrystalsSpeedReduction", name, Config_CrystalsSpeedReduction, 0.01f, 1f, "How much a Crystal will speed up the machine below it (LOWER percentage = FASTER machine, yes I know its backwards)");
+		Config_ScrapperTickInterval = cfg.getInt("ScrapperTickInterval", name, Config_ScrapperTickInterval, 0, 72000, "How many ticks until the scrapper will perform 1 update, Scrapper requires 100 updates to do 1 craft. (Meaning default is 400 ticks(20 seconds) for 1 craft)");
+
 	}
 
 	private static void initGenerationConfig(Configuration cfg) {
@@ -244,7 +263,8 @@ public class TAConfig {
 		Config_GenerateMoonTemplePath = cfg.getBoolean("GenerateMoonTemplePath", name, Config_GenerateMoonTemplePath, "Set to false to disable Moon Temple's spiral path up");
 		Config_GenerateUmbraTower = cfg.getBoolean("GenerateUmbraTower", name, Config_GenerateUmbraTower, "Set to false to disable Umbra Towers");
 		Config_GenerateMushroomCaves = cfg.getBoolean("GenerateMushroomCaves", name, Config_GenerateMushroomCaves, "Set to false to disable Mushroom Caves");
-
+		Config_GenerateGraveyards = cfg.getBoolean("GenerateGraveyards", name, Config_GenerateGraveyards, "Set to false to disable Graveyards");
+		Config_GenerateDarkstoneDungeon = cfg.getBoolean("GenerateDarkstoneDungeon", name, Config_GenerateDarkstoneDungeon, "Set to false to disable Darkstone Dungeons");
 	}
 
 	private static void initEntityConfig(Configuration cfg) {

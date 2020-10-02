@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.Misc.GenerationHelper;
+import com.elseytd.theaurorian.Util.GenerationHelper;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_DarkstoneDungeon;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_MoonTemple;
 import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Runestone_Tower;
@@ -52,17 +52,17 @@ public class TAItem_Special_Locator extends Item {
 		if (playerIn.isSneaking()) {
 			switch (this.getSelectedDungeon(itemstack)) {
 				case "Moontemple":
-					this.setSelectedDungeon(itemstack, "Darkstone");
-					playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator3")), true);
+					this.setSelectedDungeon(itemstack, "Runestone");
+					playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator1")), true);
 					break;
 				default:
 				case "Runestone":
-					this.setSelectedDungeon(itemstack, "Moontemple");
-					playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator2")), true);
+					this.setSelectedDungeon(itemstack, "Darkstone");
+					playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator3")), true);
 					break;
 				case "Darkstone":
-					this.setSelectedDungeon(itemstack, "Runestone");
-					playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator1")), true);
+					this.setSelectedDungeon(itemstack, "Moontemple");
+					playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.item.locator2")), true);
 					break;
 			}
 		} else {
@@ -167,13 +167,13 @@ public class TAItem_Special_Locator extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		if (this.getSelectedDungeon(stack) != null) {
+			tooltip.add(TextFormatting.AQUA + "[" + this.getSelectedDungeon(stack) + "]" + TextFormatting.RESET);
+		}
 		if (!GuiScreen.isShiftKeyDown()) {
 			tooltip.add(TextFormatting.ITALIC + I18n.format("string.theaurorian.tooltip.shiftinfo") + TextFormatting.RESET);
 		} else {
 			tooltip.add(I18n.format("string.theaurorian.tooltip.locator"));
-		}
-		if (this.getSelectedDungeon(stack) != null) {
-			tooltip.add("[" + this.getSelectedDungeon(stack) + "]");
 		}
 	}
 

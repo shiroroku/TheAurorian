@@ -19,7 +19,7 @@ public class TAItem_Tool_Cerulean_Shield extends TAItem_Tool_Shield {
 
 	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-		return repair.getItem() == TAItems.ceruleaningot ? true : super.getIsRepairable(toRepair, repair);
+		return repair.getItem() == TAItems.Registry.INGOTCERULEAN.getItem() ? true : super.getIsRepairable(toRepair, repair);
 	}
 
 }

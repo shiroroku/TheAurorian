@@ -290,7 +290,7 @@ public class TABlock_Portal extends BlockBreakable {
 			}
 
 			for (BlockPos blockpos = blockPos; blockPos.getY() > blockpos.getY() - 21 && blockPos.getY() > 0 && this.isEmptyBlock(worldIn.getBlockState(blockPos.down()).getBlock()); blockPos = blockPos.down()) {
-				;
+
 			}
 
 			int i = this.getDistanceUntilEdge(blockPos, this.leftDir) - 1;
@@ -315,13 +315,13 @@ public class TABlock_Portal extends BlockBreakable {
 
 			for (i = 0; i < 22; ++i) {
 				BlockPos blockpos = blockPos.offset(facing, i);
-				if (!this.isEmptyBlock(this.world.getBlockState(blockpos).getBlock()) || this.world.getBlockState(blockpos.down()).getBlock() != TABlocks.aurorianportalframebricks) {
+				if (!this.isEmptyBlock(this.world.getBlockState(blockpos).getBlock()) || this.world.getBlockState(blockpos.down()).getBlock() != TABlocks.Registry.AURORIANPORTALFRAME.getBlock()) {
 					break;
 				}
 			}
 
 			Block block = this.world.getBlockState(blockPos.offset(facing, i)).getBlock();
-			return block == TABlocks.aurorianportalframebricks ? i : 0;
+			return block == TABlocks.Registry.AURORIANPORTALFRAME.getBlock() ? i : 0;
 		}
 
 		public int getHeight() {
@@ -344,20 +344,20 @@ public class TABlock_Portal extends BlockBreakable {
 							break label56;
 						}
 
-						if (block == TABlocks.aurorianportal) {
+						if (block == TABlocks.Registry.AURORIANPORTAL.getBlock()) {
 							++this.portalBlockCount;
 						}
 
 						if (i == 0) {
 							block = this.world.getBlockState(blockpos.offset(this.leftDir)).getBlock();
 
-							if (block != TABlocks.aurorianportalframebricks) {
+							if (block != TABlocks.Registry.AURORIANPORTALFRAME.getBlock()) {
 								break label56;
 							}
 						} else if (i == this.width - 1) {
 							block = this.world.getBlockState(blockpos.offset(this.rightDir)).getBlock();
 
-							if (block != TABlocks.aurorianportalframebricks) {
+							if (block != TABlocks.Registry.AURORIANPORTALFRAME.getBlock()) {
 								break label56;
 							}
 						}
@@ -365,7 +365,7 @@ public class TABlock_Portal extends BlockBreakable {
 				}
 
 		for (int j = 0; j < this.width; ++j) {
-			if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != TABlocks.aurorianportalframebricks) {
+			if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != TABlocks.Registry.AURORIANPORTALFRAME.getBlock()) {
 				this.height = 0;
 				break;
 			}
@@ -382,7 +382,7 @@ public class TABlock_Portal extends BlockBreakable {
 		}
 
 		protected boolean isEmptyBlock(Block blockIn) {
-			return blockIn == Blocks.AIR || blockIn == Blocks.FIRE || blockIn == TABlocks.aurorianportal;
+			return blockIn == Blocks.AIR || blockIn == Blocks.FIRE || blockIn == TABlocks.Registry.AURORIANPORTAL.getBlock();
 		}
 
 		public boolean isValid() {
@@ -394,7 +394,7 @@ public class TABlock_Portal extends BlockBreakable {
 				BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i);
 
 				for (int j = 0; j < this.height; ++j) {
-					this.world.setBlockState(blockpos.up(j), TABlocks.aurorianportal.getDefaultState().withProperty(TABlock_Portal.AXIS, this.axis), 2);
+					this.world.setBlockState(blockpos.up(j), TABlocks.Registry.AURORIANPORTAL.getBlock().getDefaultState().withProperty(TABlock_Portal.AXIS, this.axis), 2);
 				}
 			}
 		}

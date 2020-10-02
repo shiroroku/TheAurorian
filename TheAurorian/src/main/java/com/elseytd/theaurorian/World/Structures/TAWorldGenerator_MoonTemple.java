@@ -5,7 +5,7 @@ import java.util.Random;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.Misc.GenerationHelper;
+import com.elseytd.theaurorian.Util.GenerationHelper;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
@@ -75,7 +75,7 @@ public class TAWorldGenerator_MoonTemple extends WorldGenerator implements Gener
 		final int chunkX = c.x;
 		final int chunkZ = c.z;
 		final BlockPos position = new BlockPos(chunkX * 16 + 8, height, chunkZ * 16 + 8);
-		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.aurorianstone);
+		final PlacementSettings settings = new PlacementSettings().setReplacedBlock(TABlocks.Registry.AURORIANSTONE.getBlock());
 
 		if (this.isValidChunkForGen(chunkX, chunkZ, 0, 0)) {
 			final Template temple_center = GenerationHelper.getTemplate(world, MOONTEMPLE_CENTER);

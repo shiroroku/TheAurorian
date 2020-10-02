@@ -20,7 +20,7 @@ public class TAItem_Food_Silkberry extends ItemSeedFood {
 	public static final String ITEMNAME = "silkberry";
 
 	public TAItem_Food_Silkberry() {
-		super(2, 0.1F, TABlocks.silkberrycrop, TABlocks.aurorianfarmtile);
+		super(2, 0.1F, TABlocks.Registry.PLANTSILKBERRYCROP.getBlock(), TABlocks.Registry.AURORIANFARMTILE.getBlock());
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(ITEMNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);
@@ -31,8 +31,8 @@ public class TAItem_Food_Silkberry extends ItemSeedFood {
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack itemstack = player.getHeldItem(hand);
 		net.minecraft.block.state.IBlockState state = worldIn.getBlockState(pos);
-		if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemstack) && state.getBlock() == TABlocks.aurorianfarmtile || state.getBlock() == Blocks.FARMLAND && worldIn.isAirBlock(pos.up())) {
-			worldIn.setBlockState(pos.up(), TABlocks.silkberrycrop.getDefaultState(), 11);
+		if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemstack) && state.getBlock() == TABlocks.Registry.AURORIANFARMTILE.getBlock() || state.getBlock() == Blocks.FARMLAND && worldIn.isAirBlock(pos.up())) {
+			worldIn.setBlockState(pos.up(), TABlocks.Registry.PLANTSILKBERRYCROP.getBlock().getDefaultState(), 11);
 			itemstack.shrink(1);
 			return EnumActionResult.SUCCESS;
 		} else {

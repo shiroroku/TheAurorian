@@ -29,7 +29,7 @@ public class Webbing_EntityRender extends Render<Webbing_Entity> {
 		GlStateManager.enableRescaleNormal();
 		GlStateManager.scale(1.8, 1.8, 1.8);
 		GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
-		GlStateManager.rotate((float) (this.renderManager.options.thirdPersonView == 2 ? -1 : 1) * this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
+		GlStateManager.rotate((this.renderManager.options.thirdPersonView == 2 ? -1 : 1) * this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
 		GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
 		this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 
@@ -38,7 +38,7 @@ public class Webbing_EntityRender extends Render<Webbing_Entity> {
 			GlStateManager.enableOutlineMode(this.getTeamColor(entity));
 		}
 
-		Minecraft.getMinecraft().getRenderItem().renderItem(new ItemStack(TAItems.webbing), ItemCameraTransforms.TransformType.GROUND);
+		Minecraft.getMinecraft().getRenderItem().renderItem(new ItemStack(TAItems.Registry.WEBBING.getItem()), ItemCameraTransforms.TransformType.GROUND);
 
 		if (this.renderOutlines) {
 			GlStateManager.disableOutlineMode();

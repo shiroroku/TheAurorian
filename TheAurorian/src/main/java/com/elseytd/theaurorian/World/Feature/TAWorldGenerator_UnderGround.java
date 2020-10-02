@@ -83,7 +83,7 @@ public class TAWorldGenerator_UnderGround extends WorldGenerator {
 										BlockPos blockpos = new BlockPos(x, y - 1, z);
 										if (worldIn.getBlockState(blockpos.up()) == Blocks.AIR.getDefaultState()) {
 											if (worldIn.getBlockState(blockpos.down()).getBlock() instanceof IAurorianStoneType) {
-												worldIn.setBlockState(blockpos, TABlocks.auroriangrass.getDefaultState(), 2);
+												worldIn.setBlockState(blockpos, TABlocks.Registry.AURORIANGRASS.getBlock().getDefaultState(), 2);
 												blks.add(blockpos);
 											}
 										}
@@ -106,8 +106,8 @@ public class TAWorldGenerator_UnderGround extends WorldGenerator {
 
 	private void decorateBlock(World worldIn, Random rand, BlockPos position) {
 		if (TAUtil.randomChanceOf(0.10)) {
-			if (!this.isTouchingOrAdjacent(worldIn, position, TABlocks.mushroomstem, 6)) {
-				if (worldIn.getBlockState(position.down()) == TABlocks.auroriangrass.getDefaultState()) {
+			if (!this.isTouchingOrAdjacent(worldIn, position, TABlocks.Registry.MUSHROOMSTEM.getBlock(), 6)) {
+				if (worldIn.getBlockState(position.down()) == TABlocks.Registry.AURORIANGRASS.getBlock().getDefaultState()) {
 					TAWorldGenerator_Mushroom worldgenabstracttree = new TAWorldGenerator_Mushroom(false);
 					worldgenabstracttree.generate(worldIn, rand, position);
 				}

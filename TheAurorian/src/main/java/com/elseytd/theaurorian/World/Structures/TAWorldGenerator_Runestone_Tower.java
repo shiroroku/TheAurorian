@@ -5,7 +5,7 @@ import java.util.Random;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.Misc.GenerationHelper;
+import com.elseytd.theaurorian.Util.GenerationHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -103,7 +103,7 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator implements 
 		}
 
 		Block blk = world.getBlockState(new BlockPos(x1, i, z1)).getBlock();
-		while (blk == Blocks.AIR || blk == TABlocks.silentwoodleaves || blk == TABlocks.silentwoodlog || blk instanceof BlockBush && i > 0) {
+		while (blk == Blocks.AIR || blk == TABlocks.Registry.SILENTWOODLEAVES.getBlock() || blk == TABlocks.Registry.SILENTWOODLOG.getBlock() || blk instanceof BlockBush && i > 0) {
 			i--;
 			blk = world.getBlockState(new BlockPos(x1, i, z1)).getBlock();
 		}
@@ -124,8 +124,8 @@ public class TAWorldGenerator_Runestone_Tower extends WorldGenerator implements 
 		final int z = chunkZ * 16 + 8;
 		int y = 86;
 
-		final PlacementSettings settings = new PlacementSettings().setRotation(Rotation.NONE).setReplacedBlock(TABlocks.aurorianstone);
-		final PlacementSettings settingsrotated = new PlacementSettings().setRotation(Rotation.CLOCKWISE_180).setReplacedBlock(TABlocks.aurorianstone);
+		final PlacementSettings settings = new PlacementSettings().setRotation(Rotation.NONE).setReplacedBlock(TABlocks.Registry.AURORIANSTONE.getBlock());
+		final PlacementSettings settingsrotated = new PlacementSettings().setRotation(Rotation.CLOCKWISE_180).setReplacedBlock(TABlocks.Registry.AURORIANSTONE.getBlock());
 
 		final Template floor_tl = GenerationHelper.getTemplate(world, RUNESTONETOWER_FLOOR_TL);
 		final Template floor_br = GenerationHelper.getTemplate(world, RUNESTONETOWER_FLOOR_BR);

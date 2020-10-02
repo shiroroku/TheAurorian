@@ -88,7 +88,7 @@ public class TABlock_DungeonStoneGateKeyhole extends Block {
 	}
 
 	public boolean isGate(Block bcheck) {
-		if (getGate().getRegistryName().equals(bcheck.getRegistryName())) {
+		if (this.getGate().getRegistryName().equals(bcheck.getRegistryName())) {
 			return true;
 		} else {
 			return false;
@@ -104,13 +104,13 @@ public class TABlock_DungeonStoneGateKeyhole extends Block {
 	}
 
 	public boolean isKey(Item icheck) {
-		if (getKey().getRegistryName().equals(icheck.getRegistryName())) {
+		if (this.getKey().getRegistryName().equals(icheck.getRegistryName())) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
+
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (!playerIn.isSneaking() && this.isKey(playerIn.getHeldItem(hand).getItem())) {
@@ -120,7 +120,7 @@ public class TABlock_DungeonStoneGateKeyhole extends Block {
 				worldIn.destroyBlock(pos, false);
 			}
 			playerIn.playSound(SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, 1F, 1F);
-		} else if (!playerIn.isSneaking() && playerIn.getHeldItem(hand).getItem() == TAItems.lockpicks && this.isLockpickable()) {
+		} else if (!playerIn.isSneaking() && playerIn.getHeldItem(hand).getItem() == TAItems.Registry.LOCKPICKS.getItem() && this.isLockpickable()) {
 			playerIn.getHeldItem(hand).damageItem(1, playerIn);
 			if (TAUtil.randomChanceOf(0.33F)) {
 				this.breakGateBlocks(worldIn, pos);
@@ -138,7 +138,7 @@ public class TABlock_DungeonStoneGateKeyhole extends Block {
 	}
 
 	public void breakGateBlocks(World worldIn, BlockPos pos) {
-		int gated = getMaxGateDistance();
+		int gated = this.getMaxGateDistance();
 		for (int x = -gated; x <= gated; x++) {
 			for (int y = -gated; y <= gated; y++) {
 				BlockPos blkpos = new BlockPos(pos.getX() - x, pos.getY() - y, pos.getZ());

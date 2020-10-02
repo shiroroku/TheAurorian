@@ -25,12 +25,12 @@ public class TABlock_MushroomStem extends BlockLog {
 		this.setRegistryName(BLOCKNAME);
 		this.setSoundType(SoundType.SLIME);
 		this.setUnlocalizedName(TAMod.MODID + "." + BLOCKNAME);
-		this.setDefaultState(blockState.getBaseState().withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
 	}
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return TABlocks.mushroomsmall.getItemDropped(TABlocks.mushroomsmall.getDefaultState(), rand, fortune);
+		return TABlocks.Registry.MUSHROOMSMALL.getBlock().getItemDropped(TABlocks.Registry.MUSHROOMSMALL.getBlock().getDefaultState(), rand, fortune);
 	}
 
 	@Override
@@ -58,17 +58,17 @@ public class TABlock_MushroomStem extends BlockLog {
 		IBlockState state = this.getDefaultState();
 
 		switch (meta & 12) {
-		case 0:
-			state = state.withProperty(LOG_AXIS, BlockLog.EnumAxis.Y);
-			break;
-		case 4:
-			state = state.withProperty(LOG_AXIS, BlockLog.EnumAxis.X);
-			break;
-		case 8:
-			state = state.withProperty(LOG_AXIS, BlockLog.EnumAxis.Z);
-			break;
-		default:
-			state = state.withProperty(LOG_AXIS, BlockLog.EnumAxis.NONE);
+			case 0:
+				state = state.withProperty(LOG_AXIS, BlockLog.EnumAxis.Y);
+				break;
+			case 4:
+				state = state.withProperty(LOG_AXIS, BlockLog.EnumAxis.X);
+				break;
+			case 8:
+				state = state.withProperty(LOG_AXIS, BlockLog.EnumAxis.Z);
+				break;
+			default:
+				state = state.withProperty(LOG_AXIS, BlockLog.EnumAxis.NONE);
 		}
 
 		return state;
@@ -79,14 +79,14 @@ public class TABlock_MushroomStem extends BlockLog {
 	public int getMetaFromState(IBlockState state) {
 		int meta = 0;
 		switch (state.getValue(LOG_AXIS)) {
-		case X:
-			meta |= 4;
-			break;
-		case Z:
-			meta |= 8;
-			break;
-		case NONE:
-			meta |= 12;
+			case X:
+				meta |= 4;
+				break;
+			case Z:
+				meta |= 8;
+				break;
+			case NONE:
+				meta |= 12;
 		}
 		return meta;
 	}

@@ -52,17 +52,19 @@ public class TABlock_Plant_Silkberry extends BlockBush implements IShearable {
 	@Override
 	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 
-		if (RANDOM.nextInt(8) != 0)
+		if (RANDOM.nextInt(8) != 0) {
 			return;
-		ItemStack seed = new ItemStack(TAItems.silkberry);
-		if (!seed.isEmpty())
+		}
+		ItemStack seed = new ItemStack(TAItems.Registry.SILKBERRY.getItem());
+		if (!seed.isEmpty()) {
 			drops.add(seed);
+		}
 
 	}
 
 	@Override
 	protected boolean canSustainBush(IBlockState state) {
-		return state.getBlock() == TABlocks.auroriangrass;
+		return state.getBlock() == TABlocks.Registry.AURORIANGRASS.getBlock();
 	}
 
 	@Override
@@ -72,7 +74,7 @@ public class TABlock_Plant_Silkberry extends BlockBush implements IShearable {
 
 	@Override
 	public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
-		return NonNullList.withSize(1, new ItemStack(TAItems.silkberry));
+		return NonNullList.withSize(1, new ItemStack(TAItems.Registry.SILKBERRY.getItem()));
 	}
 
 }

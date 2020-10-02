@@ -65,7 +65,7 @@ public class TABlock_Furnace extends BlockContainer {
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return Item.getItemFromBlock(TABlocks.aurorianfurnace);
+		return Item.getItemFromBlock(TABlocks.Registry.AURORIANFURNACEOFF.getBlock());
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class TABlock_Furnace extends BlockContainer {
 			IBlockState iblockstate1 = worldIn.getBlockState(pos.south());
 			IBlockState iblockstate2 = worldIn.getBlockState(pos.west());
 			IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
-			EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+			EnumFacing enumfacing = state.getValue(FACING);
 			if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock()) {
 				enumfacing = EnumFacing.SOUTH;
 			} else if (enumfacing == EnumFacing.SOUTH && iblockstate1.isFullBlock() && !iblockstate.isFullBlock()) {
@@ -98,32 +98,32 @@ public class TABlock_Furnace extends BlockContainer {
 	@SuppressWarnings("incomplete-switch")
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		if (this.isBurning) {
-			EnumFacing enumfacing = (EnumFacing) stateIn.getValue(FACING);
-			double d0 = (double) pos.getX() + 0.5D;
-			double d1 = (double) pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
-			double d2 = (double) pos.getZ() + 0.5D;
+			EnumFacing enumfacing = stateIn.getValue(FACING);
+			double d0 = pos.getX() + 0.5D;
+			double d1 = pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
+			double d2 = pos.getZ() + 0.5D;
 			double d4 = rand.nextDouble() * 0.6D - 0.3D;
 
 			if (rand.nextDouble() < 0.1D) {
-				worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+				worldIn.playSound(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
 			}
 
 			switch (enumfacing) {
-			case WEST:
-				worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 - 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
-				worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 - 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
-				break;
-			case EAST:
-				worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
-				worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
-				break;
-			case NORTH:
-				worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 - 0.52D, 0.0D, 0.0D, 0.0D);
-				worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 - 0.52D, 0.0D, 0.0D, 0.0D);
-				break;
-			case SOUTH:
-				worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 + 0.52D, 0.0D, 0.0D, 0.0D);
-				worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 + 0.52D, 0.0D, 0.0D, 0.0D);
+				case WEST:
+					worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 - 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+					worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 - 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+					break;
+				case EAST:
+					worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+					worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+					break;
+				case NORTH:
+					worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 - 0.52D, 0.0D, 0.0D, 0.0D);
+					worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 - 0.52D, 0.0D, 0.0D, 0.0D);
+					break;
+				case SOUTH:
+					worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 + 0.52D, 0.0D, 0.0D, 0.0D);
+					worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 + 0.52D, 0.0D, 0.0D, 0.0D);
 			}
 		}
 	}
@@ -131,11 +131,11 @@ public class TABlock_Furnace extends BlockContainer {
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-		if (Block.getBlockFromItem(playerIn.getHeldItem(hand).getItem()) == TABlocks.aurorianfurnacechimney) {
+		if (Block.getBlockFromItem(playerIn.getHeldItem(hand).getItem()) == TABlocks.Registry.AURORIANFURNACECHIMNEY.getBlock()) {
 			for (int h = 0; h <= TAConfig.Config_MaximumChimneys; h++) {
 				Block blockprev = worldIn.getBlockState(pos.up(h - 1)).getBlock();
-				if (worldIn.isAirBlock(pos.up(h)) && (blockprev == TABlocks.aurorianfurnacechimney || blockprev == TABlocks.aurorianfurnace)) {
-					worldIn.setBlockState(new BlockPos(pos.up(h)), TABlocks.aurorianfurnacechimney.getDefaultState(), 11);
+				if (worldIn.isAirBlock(pos.up(h)) && (blockprev == TABlocks.Registry.AURORIANFURNACECHIMNEY.getBlock() || blockprev == TABlocks.Registry.AURORIANFURNACEOFF.getBlock())) {
+					worldIn.setBlockState(new BlockPos(pos.up(h)), TABlocks.Registry.AURORIANFURNACECHIMNEY.getBlock().getDefaultState(), 11);
 					if (!playerIn.isCreative()) {
 						playerIn.getHeldItem(hand).shrink(1);
 					}
@@ -164,11 +164,11 @@ public class TABlock_Furnace extends BlockContainer {
 		keepInventory = true;
 
 		if (active) {
-			worldIn.setBlockState(pos, TABlocks.aurorianfurnacelit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-			worldIn.setBlockState(pos, TABlocks.aurorianfurnacelit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+			worldIn.setBlockState(pos, TABlocks.Registry.AURORIANFURNACEON.getBlock().getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+			worldIn.setBlockState(pos, TABlocks.Registry.AURORIANFURNACEON.getBlock().getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
 		} else {
-			worldIn.setBlockState(pos, TABlocks.aurorianfurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-			worldIn.setBlockState(pos, TABlocks.aurorianfurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+			worldIn.setBlockState(pos, TABlocks.Registry.AURORIANFURNACEOFF.getBlock().getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+			worldIn.setBlockState(pos, TABlocks.Registry.AURORIANFURNACEOFF.getBlock().getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
 		}
 
 		keepInventory = false;
@@ -225,7 +225,7 @@ public class TABlock_Furnace extends BlockContainer {
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-		return new ItemStack(TABlocks.aurorianfurnace);
+		return new ItemStack(TABlocks.Registry.AURORIANFURNACEOFF.getBlock());
 	}
 
 	@Override
@@ -251,12 +251,12 @@ public class TABlock_Furnace extends BlockContainer {
 
 	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot) {
-		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 
 	@Override

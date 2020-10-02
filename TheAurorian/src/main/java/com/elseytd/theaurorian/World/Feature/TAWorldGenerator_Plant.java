@@ -25,12 +25,12 @@ public class TAWorldGenerator_Plant extends WorldGenerator {
 		for (IBlockState iblockstate = worldIn.getBlockState(position); (iblockstate.getBlock().isAir(iblockstate, worldIn, position) || iblockstate.getBlock().isLeaves(iblockstate, worldIn, position)) && position.getY() > 0; iblockstate = worldIn.getBlockState(position)) {
 			position = position.down();
 		}
-		if (plantState.getBlock() instanceof BlockBush) {
-			BlockBush blk = (BlockBush) plantState.getBlock();
+		if (this.plantState.getBlock() instanceof BlockBush) {
+			BlockBush blk = (BlockBush) this.plantState.getBlock();
 			for (int i = 0; i < 128; ++i) {
 				BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-				if (worldIn.isAirBlock(blockpos) && blk.canBlockStay(worldIn, blockpos, worldIn.getBlockState(blockpos.down())) && TAUtil.randomChanceOf(plantDensity)) {
+				if (worldIn.isAirBlock(blockpos) && blk.canBlockStay(worldIn, blockpos, worldIn.getBlockState(blockpos.down())) && TAUtil.randomChanceOf(this.plantDensity)) {
 					worldIn.setBlockState(blockpos, this.plantState, 2);
 				}
 			}

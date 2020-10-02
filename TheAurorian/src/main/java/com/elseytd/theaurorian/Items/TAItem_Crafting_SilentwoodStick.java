@@ -38,6 +38,7 @@ public class TAItem_Crafting_SilentwoodStick extends Item {
 		this.setUnlocalizedName(TAMod.MODID + "." + ITEMNAME);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {
@@ -54,7 +55,7 @@ public class TAItem_Crafting_SilentwoodStick extends Item {
 
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (player.getHeldItemOffhand().getItem() == TAItems.silentwoodstick) {
+		if (player.getHeldItemOffhand().getItem() == TAItems.Registry.SILENTWOODSTICK.getItem()) {
 			pos = pos.offset(facing);
 			ItemStack itemstack = player.getHeldItem(hand);
 			if (!player.canPlayerEdit(pos, facing, itemstack)) {

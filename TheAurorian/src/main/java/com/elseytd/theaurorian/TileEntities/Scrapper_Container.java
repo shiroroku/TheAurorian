@@ -37,7 +37,7 @@ public class Scrapper_Container extends Container {
 		this.addSlotToContainer(new Slot(machineinv, 1, 40, 37) {
 			@Override
 			public boolean isItemValid(ItemStack stack) {
-				if (Item.getItemFromBlock(TABlocks.crystal) == stack.getItem()) {
+				if (Item.getItemFromBlock(TABlocks.Registry.CRYSTAL.getBlock()) == stack.getItem()) {
 					return true;
 				}
 
@@ -81,11 +81,11 @@ public class Scrapper_Container extends Container {
 		super.detectAndSendChanges();
 		for (int i = 0; i < this.listeners.size(); ++i) {
 			IContainerListener icontainerlistener = this.listeners.get(i);
-			if (progress != this.inventory.getField(0)) {
+			if (this.progress != this.inventory.getField(0)) {
 				icontainerlistener.sendWindowProperty(this, 0, this.inventory.getField(1));
 			}
 		}
-		progress = this.inventory.getField(0);
+		this.progress = this.inventory.getField(0);
 	}
 
 	@Override

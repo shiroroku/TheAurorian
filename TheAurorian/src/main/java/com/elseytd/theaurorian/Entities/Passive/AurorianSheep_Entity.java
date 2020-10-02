@@ -58,13 +58,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class AurorianSheep_Entity extends EntityAnimal implements net.minecraftforge.common.IShearable {
 
 	public static final String EntityName = "auroriansheep";
-	private static final Set<Item> BREEDING_ITEMS = Sets.newHashSet(TAItems.silkberry);
+	private static final Set<Item> BREEDING_ITEMS = Sets.newHashSet(TAItems.Registry.SILKBERRY.getItem());
 	private static final DataParameter<Byte> DYE_COLOR = EntityDataManager.<Byte>createKey(AurorianSheep_Entity.class, DataSerializers.BYTE);
 	private static final Map<EnumDyeColor, float[]> DYE_TO_RGB = Maps.newEnumMap(EnumDyeColor.class);
 	private int sheepTimer;
 	private AurorianSheep_AIEatGrass entityAIEatGrass;
 
 	private final InventoryCrafting inventoryCrafting = new InventoryCrafting(new Container() {
+		@Override
 		public boolean canInteractWith(EntityPlayer playerIn) {
 			return false;
 		}
@@ -81,7 +82,7 @@ public class AurorianSheep_Entity extends EntityAnimal implements net.minecraftf
 
 	public AurorianSheep_Entity(World worldIn) {
 		super(worldIn);
-		this.spawnableBlock = TABlocks.auroriangrass;
+		this.spawnableBlock = TABlocks.Registry.AURORIANGRASS.getBlock();
 		this.setSize(0.9F, 1.3F);
 		this.inventoryCrafting.setInventorySlotContents(0, new ItemStack(Items.DYE));
 		this.inventoryCrafting.setInventorySlotContents(1, new ItemStack(Items.DYE));
@@ -151,39 +152,39 @@ public class AurorianSheep_Entity extends EntityAnimal implements net.minecraftf
 			return LootTableList.ENTITIES_SHEEP;
 		} else {
 			switch (this.getFleeceColor()) {
-			case WHITE:
-			default:
-				return LootTableList.ENTITIES_SHEEP_WHITE;
-			case ORANGE:
-				return LootTableList.ENTITIES_SHEEP_ORANGE;
-			case MAGENTA:
-				return LootTableList.ENTITIES_SHEEP_MAGENTA;
-			case LIGHT_BLUE:
-				return LootTableList.ENTITIES_SHEEP_LIGHT_BLUE;
-			case YELLOW:
-				return LootTableList.ENTITIES_SHEEP_YELLOW;
-			case LIME:
-				return LootTableList.ENTITIES_SHEEP_LIME;
-			case PINK:
-				return LootTableList.ENTITIES_SHEEP_PINK;
-			case GRAY:
-				return LootTableList.ENTITIES_SHEEP_GRAY;
-			case SILVER:
-				return LootTableList.ENTITIES_SHEEP_SILVER;
-			case CYAN:
-				return LootTableList.ENTITIES_SHEEP_CYAN;
-			case PURPLE:
-				return LootTableList.ENTITIES_SHEEP_PURPLE;
-			case BLUE:
-				return LootTableList.ENTITIES_SHEEP_BLUE;
-			case BROWN:
-				return LootTableList.ENTITIES_SHEEP_BROWN;
-			case GREEN:
-				return LootTableList.ENTITIES_SHEEP_GREEN;
-			case RED:
-				return LootTableList.ENTITIES_SHEEP_RED;
-			case BLACK:
-				return LootTableList.ENTITIES_SHEEP_BLACK;
+				case WHITE:
+				default:
+					return LootTableList.ENTITIES_SHEEP_WHITE;
+				case ORANGE:
+					return LootTableList.ENTITIES_SHEEP_ORANGE;
+				case MAGENTA:
+					return LootTableList.ENTITIES_SHEEP_MAGENTA;
+				case LIGHT_BLUE:
+					return LootTableList.ENTITIES_SHEEP_LIGHT_BLUE;
+				case YELLOW:
+					return LootTableList.ENTITIES_SHEEP_YELLOW;
+				case LIME:
+					return LootTableList.ENTITIES_SHEEP_LIME;
+				case PINK:
+					return LootTableList.ENTITIES_SHEEP_PINK;
+				case GRAY:
+					return LootTableList.ENTITIES_SHEEP_GRAY;
+				case SILVER:
+					return LootTableList.ENTITIES_SHEEP_SILVER;
+				case CYAN:
+					return LootTableList.ENTITIES_SHEEP_CYAN;
+				case PURPLE:
+					return LootTableList.ENTITIES_SHEEP_PURPLE;
+				case BLUE:
+					return LootTableList.ENTITIES_SHEEP_BLUE;
+				case BROWN:
+					return LootTableList.ENTITIES_SHEEP_BROWN;
+				case GREEN:
+					return LootTableList.ENTITIES_SHEEP_GREEN;
+				case RED:
+					return LootTableList.ENTITIES_SHEEP_RED;
+				case BLACK:
+					return LootTableList.ENTITIES_SHEEP_BLACK;
 			}
 		}
 	}
@@ -191,6 +192,7 @@ public class AurorianSheep_Entity extends EntityAnimal implements net.minecraftf
 	/**
 	 * Handler for {@link World#setEntityState}
 	 */
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void handleStatusUpdate(byte id) {
 		if (id == 10) {
@@ -211,14 +213,14 @@ public class AurorianSheep_Entity extends EntityAnimal implements net.minecraftf
 		} else if (this.sheepTimer >= 4 && this.sheepTimer <= 36) {
 			return 1.0F;
 		} else {
-			return this.sheepTimer < 4 ? ((float) this.sheepTimer - p_70894_1_) / 4.0F : -((float) (this.sheepTimer - 40) - p_70894_1_) / 4.0F;
+			return this.sheepTimer < 4 ? (this.sheepTimer - p_70894_1_) / 4.0F : -(this.sheepTimer - 40 - p_70894_1_) / 4.0F;
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
 	public float getHeadRotationAngleX(float p_70890_1_) {
 		if (this.sheepTimer > 4 && this.sheepTimer <= 36) {
-			float f = ((float) (this.sheepTimer - 4) - p_70890_1_) / 32.0F;
+			float f = (this.sheepTimer - 4 - p_70890_1_) / 32.0F;
 			return ((float) Math.PI / 5F) + ((float) Math.PI * 7F / 100F) * MathHelper.sin(f * 28.7F);
 		} else {
 			return this.sheepTimer > 0 ? ((float) Math.PI / 5F) : this.rotationPitch * 0.017453292F;
@@ -260,20 +262,20 @@ public class AurorianSheep_Entity extends EntityAnimal implements net.minecraftf
 	}
 
 	public EnumDyeColor getFleeceColor() {
-		return EnumDyeColor.byMetadata(((Byte) this.dataManager.get(DYE_COLOR)).byteValue() & 15);
+		return EnumDyeColor.byMetadata(this.dataManager.get(DYE_COLOR).byteValue() & 15);
 	}
 
 	public void setFleeceColor(EnumDyeColor color) {
-		byte b0 = ((Byte) this.dataManager.get(DYE_COLOR)).byteValue();
+		byte b0 = this.dataManager.get(DYE_COLOR).byteValue();
 		this.dataManager.set(DYE_COLOR, Byte.valueOf((byte) (b0 & 240 | color.getMetadata() & 15)));
 	}
 
 	public boolean getSheared() {
-		return (((Byte) this.dataManager.get(DYE_COLOR)).byteValue() & 16) != 0;
+		return (this.dataManager.get(DYE_COLOR).byteValue() & 16) != 0;
 	}
 
 	public void setSheared(boolean sheared) {
-		byte b0 = ((Byte) this.dataManager.get(DYE_COLOR)).byteValue();
+		byte b0 = this.dataManager.get(DYE_COLOR).byteValue();
 		if (sheared) {
 			this.dataManager.set(DYE_COLOR, Byte.valueOf((byte) (b0 | 16)));
 		} else {
@@ -303,6 +305,7 @@ public class AurorianSheep_Entity extends EntityAnimal implements net.minecraftf
 		return entitysheep1;
 	}
 
+	@Override
 	public void eatGrassBonus() {
 		this.setSheared(false);
 
@@ -329,9 +332,10 @@ public class AurorianSheep_Entity extends EntityAnimal implements net.minecraftf
 		this.setSheared(true);
 		int i = 1 + this.rand.nextInt(3);
 
-		java.util.List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
-		for (int j = 0; j < i; ++j)
+		java.util.List<ItemStack> ret = new java.util.ArrayList<>();
+		for (int j = 0; j < i; ++j) {
 			ret.add(new ItemStack(Item.getItemFromBlock(Blocks.WOOL), 1, this.getFleeceColor().getMetadata()));
+		}
 
 		this.playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 1.0F, 1.0F);
 		return ret;

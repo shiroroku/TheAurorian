@@ -7,8 +7,8 @@ import javax.annotation.Nullable;
 
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TAUtil;
 import com.elseytd.theaurorian.Network.TAPacketHandler;
+import com.elseytd.theaurorian.Util.EntityHelper;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
@@ -104,7 +104,7 @@ public class TAItem_Tool_Umbra_Shield extends TAItem_Tool_Shield {
 				y = y * reach + player.posY;
 				z = z * reach + player.posZ;
 
-				List<EntityLivingBase> entities = TAUtil.Entity.getEntitiesAround(worldIn, x, y + 1.5, z, 1, false);
+				List<EntityLivingBase> entities = EntityHelper.getEntitiesAround(worldIn, x, y + 1.5, z, 1, false);
 				for (EntityLivingBase e : entities) {
 					if (e.isNonBoss() && e != player) {
 						if (e instanceof EntityPlayer) {
