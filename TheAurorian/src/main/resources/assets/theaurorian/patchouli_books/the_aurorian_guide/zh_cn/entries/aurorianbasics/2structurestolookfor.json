@@ -1,5 +1,5 @@
 {
-    "name": "Structures to Look For",
+    "name": "应当寻找的结构",
     "icon": "theaurorian:runestone",
     "category": "1aurorianbasics",
     "sortnum": "2",
@@ -7,13 +7,13 @@
     "pages": [
         {
             "type": "text",
-            "text": "Here are a few structures to look out for while exploring The Aurorian."
+            "text": "这些是你在极光幽境中探索时应当注意的结构。"
         },
         {
             "type": "image",
             "border": true,
-            "title": "Surface Ruins",
-            "text": "Some ruins you can find, contains a furnace for some early smelting!",
+            "title": "地表遗迹",
+            "text": "你可以直接找到的遗迹。里面会有能帮你进行探索初期熔炼的熔炉！",
             "images": [
                 "theaurorian:patchouli_books/the_aurorian_guide/en_us/entries/aurorianbasics/ruins1.png"
             ]
@@ -21,8 +21,8 @@
         {
             "type": "image",
             "border": true,
-            "title": "Underground Ruins",
-            "text": "Ruins you find underground that can contain valuable loot!",
+            "title": "地下遗迹",
+            "text": "只有地下才会生成的遗迹。其中会有高价值的战利品！",
             "images": [
                 "theaurorian:patchouli_books/the_aurorian_guide/en_us/entries/aurorianbasics/ruins2.png"
             ]
@@ -30,8 +30,8 @@
         {
             "type": "image",
             "border": true,
-            "title": "Runestone Dungeon",
-            "text": "The dungeon you need to clear to move on to the Moon Temple Dungeon.",
+            "title": "符石地牢",
+            "text": "在你前往暗石地牢前需要完成探索的地牢。",
             "images": [
                 "theaurorian:patchouli_books/the_aurorian_guide/en_us/entries/aurorianbasics/runestone.png"
             ]
@@ -39,17 +39,17 @@
         {
             "type": "image",
             "border": true,
-            "title": "Moon Temple",
-            "text": "Second dungeon you can enter once you defeat the Runestone Dungeon boss.",
+            "title": "月宫",
+            "text": "在打败暗石地牢的 BOSS 后你才能探索的下一座地牢。",
             "images": [
                 "theaurorian:patchouli_books/the_aurorian_guide/en_us/entries/aurorianbasics/moontemple.png"
             ]
         },
         {
             "type": "spotlight",
-            "title": "Lockpicks",
+            "title": "开锁器",
             "item": "theaurorian:lockpicks",
-            "text": "More info about dungeons and how to get through them is located in the $(#008cff)Mod Progression$() section."
+            "text": "更多有关地牢的信息请见$(#008cff)进程发展$()部分。"
         }
     ]
 }

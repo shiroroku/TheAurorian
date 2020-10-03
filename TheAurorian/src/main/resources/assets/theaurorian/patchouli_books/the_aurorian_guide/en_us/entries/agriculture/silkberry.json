@@ -7,7 +7,7 @@
         {
             "type": "spotlight",
             "item": "theaurorian:silkberry",
-            "text": "$(#008cff)Silkberries$() are found all around The Aurorian! They can be aten raw, turned into $(#008cff)Silkberry Jam$(), or even planted in farmland!"
+            "text": "$(#008cff)Silkberries$() are found all around The Aurorian! They can be eaten raw, turned into $(#008cff)Silkberry Jam$(), or even planted in farmland!"
         },
         {
             "type": "crafting",
