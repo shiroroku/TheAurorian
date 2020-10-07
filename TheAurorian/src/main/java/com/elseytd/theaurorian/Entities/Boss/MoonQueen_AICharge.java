@@ -108,8 +108,12 @@ public class MoonQueen_AICharge extends EntityAIBase {
 			this.entity.getNavigator().tryMoveToXYZ(this.targetX, this.targetY, this.targetZ, this.chargeSpeed);
 
 			//If we are in range of our target or finish our path, we finish the charge
-			if (this.entity.getDistance(this.entity.getAttackTarget()) <= this.attackReach) {
-				this.finishChargeAttack(target);
+			if (this.entity.getAttackTarget() != null) {
+				if (this.entity.getDistance(this.entity.getAttackTarget()) <= this.attackReach) {
+					this.finishChargeAttack(target);
+				} else if (this.entity.getNavigator().noPath()) {
+					this.finishChargeAttack(null);
+				}
 			} else if (this.entity.getNavigator().noPath()) {
 				this.finishChargeAttack(null);
 			}
