@@ -51,9 +51,11 @@ public class Spirit_Entity extends EntityMob {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
+
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.24D);
-		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 40 * TAConfig.Config_NIGHTMAREMODE_Multiplier : 20));
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 0.5D * TAConfig.Config_NIGHTMAREMODE_Multiplier : 0.24D));
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 6D * TAConfig.Config_NIGHTMAREMODE_Multiplier : 3D));
 		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(0D);
 	}
 

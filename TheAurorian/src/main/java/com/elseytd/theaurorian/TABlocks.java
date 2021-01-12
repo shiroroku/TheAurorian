@@ -20,6 +20,7 @@ import com.elseytd.theaurorian.Blocks.TABlock_GlassPane;
 import com.elseytd.theaurorian.Blocks.TABlock_Material;
 import com.elseytd.theaurorian.Blocks.TABlock_MoonGem;
 import com.elseytd.theaurorian.Blocks.TABlock_MoonLightForge;
+import com.elseytd.theaurorian.Blocks.TABlock_MoonTorch;
 import com.elseytd.theaurorian.Blocks.TABlock_Mushroom;
 import com.elseytd.theaurorian.Blocks.TABlock_MushroomCrystal;
 import com.elseytd.theaurorian.Blocks.TABlock_MushroomStem;
@@ -159,6 +160,7 @@ public class TABlocks {
 		MOONGEM(new TABlock_MoonGem()),
 		MOONLIGHTFORGE(new TABlock_MoonLightForge()),
 		MOONSAND(new TABlock_Terrain_Moonsand()),
+		MOONTORCH(new TABlock_MoonTorch()),
 		MUSHROOM(new TABlock_Mushroom()),
 		MUSHROOMCRYSTAL(new TABlock_MushroomCrystal()),
 		MUSHROOMSMALL(new TABlock_Plant_Mushroom()),

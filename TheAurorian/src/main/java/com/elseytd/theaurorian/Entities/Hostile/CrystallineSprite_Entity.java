@@ -62,6 +62,11 @@ public class CrystallineSprite_Entity extends EntityMob implements IRangedAttack
 	}
 
 	@Override
+	public int getMaxSpawnedInChunk() {
+		return this.maxNearby;
+	}
+
+	@Override
 	protected void initEntityAI() {
 		this.tasks.addTask(2, new CrystallineSprite_AIRangedAttack(this, 0.85F, 40, 40F));
 		this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
@@ -74,7 +79,8 @@ public class CrystallineSprite_Entity extends EntityMob implements IRangedAttack
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 40 * TAConfig.Config_NIGHTMAREMODE_Multiplier : 20));
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 12D * TAConfig.Config_NIGHTMAREMODE_Multiplier : 6D));
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23000000417232513D);
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
 	}

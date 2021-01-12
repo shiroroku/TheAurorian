@@ -63,9 +63,10 @@ public class UndeadKnight_Entity extends EntityMob {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 40 * TAConfig.Config_NIGHTMAREMODE_Multiplier : 20));
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20D);
-		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 0.5D * TAConfig.Config_NIGHTMAREMODE_Multiplier : 0.20D));
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 6D * TAConfig.Config_NIGHTMAREMODE_Multiplier : 3D));
 		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.0D);
 	}
 
@@ -118,7 +119,7 @@ public class UndeadKnight_Entity extends EntityMob {
 
 	@Override
 	public int getMaxSpawnedInChunk() {
-		return 1;
+		return this.maxNearby;
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.elseytd.theaurorian.Entities.Hostile;
 
 import javax.annotation.Nullable;
 
+import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.entity.Entity;
@@ -34,7 +35,7 @@ public class DisturbedHollow_Entity extends EntityMob {
 
 	public DisturbedHollow_Entity(World worldIn) {
 		super(worldIn);
-		setSize(0.6F * MobScale, 1.95F * MobScale);
+		this.setSize(0.6F * MobScale, 1.95F * MobScale);
 	}
 
 	@Override
@@ -51,10 +52,11 @@ public class DisturbedHollow_Entity extends EntityMob {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.24D);
-		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 40 * TAConfig.Config_NIGHTMAREMODE_Multiplier : 20));
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 0.6D * TAConfig.Config_NIGHTMAREMODE_Multiplier : 0.24D));
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 6D * TAConfig.Config_NIGHTMAREMODE_Multiplier : 3D));
 		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
 	}
 
 	public void setArmsRaised(boolean armsRaised) {
@@ -74,7 +76,7 @@ public class DisturbedHollow_Entity extends EntityMob {
 		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
-		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
+		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
 	}
 
 	@Override

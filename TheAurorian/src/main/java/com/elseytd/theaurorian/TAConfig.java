@@ -4,6 +4,8 @@ import net.minecraftforge.common.config.Configuration;
 
 public class TAConfig {
 
+	//TODO: fix multiplier mispelling sometime
+
 	//Compat
 	public static boolean Config_EnableTinkersConstructCompatibility = true;
 	public static boolean Config_EnableConstructsArmoryCompatibility = true;
@@ -32,6 +34,9 @@ public class TAConfig {
 	public static boolean Config_GenerateGraveyards = true;
 
 	//Entities
+
+	public static boolean Config_NIGHTMAREMODE = false;
+	public static float Config_NIGHTMAREMODE_Multiplier = 1;
 	public static int Config_RunestoneDungeonMobDensity = 1;
 	public static int Config_MoonTempleMobDensity = 1;
 	public static int Config_DarkstoneDungeonMobDensity = 1;
@@ -271,6 +276,8 @@ public class TAConfig {
 		String name = "entity";
 		cfg.addCustomCategoryComment(name, "Entity configuration");
 
+		Config_NIGHTMAREMODE = cfg.getBoolean("NIGHTMAREMODE", name, Config_NIGHTMAREMODE, "Enable to make Aurorian mobs(not bosses) fast and strong, change multiplier to adjust the strength of these effects");
+		Config_NIGHTMAREMODE_Multiplier = cfg.getFloat("NIGHTMAREMODEMultiplier", name, Config_NIGHTMAREMODE_Multiplier, 0, 50, "Use at your own risk!");
 		Config_RunestoneDungeonMobDensity = cfg.getInt("RunestoneDungeonMobDensity", name, Config_RunestoneDungeonMobDensity, 0, 10, "Density of mobs spawning in the Runestone Dungeon, 2 for twice as many mobs, etc");
 		Config_MoonTempleMobDensity = cfg.getInt("MoonTempleMobDensity", name, Config_MoonTempleMobDensity, 0, 10, "Density of mobs spawning in the Moon Temple, 2 for twice as many mobs, etc");
 		Config_DarkstoneDungeonMobDensity = cfg.getInt("DarkstoneDungeonMobDensity", name, Config_DarkstoneDungeonMobDensity, 0, 10, "Density of mobs spawning in the Darkstone Dungeon, 2 for twice as many mobs, etc");

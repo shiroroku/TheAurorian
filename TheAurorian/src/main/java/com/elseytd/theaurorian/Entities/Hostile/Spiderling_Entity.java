@@ -55,9 +55,10 @@ public class Spiderling_Entity extends EntityMob {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(7D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 14D * TAConfig.Config_NIGHTMAREMODE_Multiplier : 7D));
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.7D);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 1.4D * TAConfig.Config_NIGHTMAREMODE_Multiplier : 0.7D));
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 6D * TAConfig.Config_NIGHTMAREMODE_Multiplier : 3D));
 		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(0);
 	}
 
@@ -132,7 +133,7 @@ public class Spiderling_Entity extends EntityMob {
 
 	@Override
 	public int getMaxSpawnedInChunk() {
-		return 3;
+		return this.maxNearby;
 	}
 
 	@Override

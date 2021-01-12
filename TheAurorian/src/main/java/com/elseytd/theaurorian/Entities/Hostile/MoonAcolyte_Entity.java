@@ -79,9 +79,9 @@ public class MoonAcolyte_Entity extends EntityMob {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 40 * TAConfig.Config_NIGHTMAREMODE_Multiplier : 20));
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 0.5D * TAConfig.Config_NIGHTMAREMODE_Multiplier : 0.25D));
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 4D * TAConfig.Config_NIGHTMAREMODE_Multiplier : 2D));
 		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(3.0D);
 	}
 
@@ -135,7 +135,7 @@ public class MoonAcolyte_Entity extends EntityMob {
 
 	@Override
 	public int getMaxSpawnedInChunk() {
-		return 3;
+		return this.maxNearby;
 	}
 
 }

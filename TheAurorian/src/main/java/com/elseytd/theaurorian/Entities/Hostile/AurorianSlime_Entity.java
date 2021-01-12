@@ -60,7 +60,7 @@ public class AurorianSlime_Entity extends EntityLiving implements IMob {
 	protected void setSlimeSize(int size, boolean resetHealth) {
 		this.setSize(0.51000005F * size, 0.51000005F * size);
 		this.setPosition(this.posX, this.posY, this.posZ);
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((6));
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((TAConfig.Config_NIGHTMAREMODE ? 12 * TAConfig.Config_NIGHTMAREMODE_Multiplier : 6));
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2F + 0.1F * 3);
 		if (resetHealth) {
 			this.setHealth(this.getMaxHealth());
@@ -83,7 +83,7 @@ public class AurorianSlime_Entity extends EntityLiving implements IMob {
 
 	@Override
 	public int getMaxSpawnedInChunk() {
-		return 6;
+		return this.maxNearby;
 	}
 
 	public static void registerFixesSlime(DataFixer fixer) {
@@ -140,7 +140,7 @@ public class AurorianSlime_Entity extends EntityLiving implements IMob {
 	}
 
 	protected int getJumpDelay() {
-		return this.rand.nextInt(20) + 10;
+		return this.rand.nextInt(20) + (TAConfig.Config_NIGHTMAREMODE ? 5 : 60);
 	}
 
 	protected AurorianSlime_Entity createInstance() {
