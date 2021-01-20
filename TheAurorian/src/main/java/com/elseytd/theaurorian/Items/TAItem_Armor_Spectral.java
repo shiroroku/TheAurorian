@@ -89,7 +89,7 @@ public class TAItem_Armor_Spectral extends ItemArmor {
 				if (TAUtil.randomChanceOf(chance)) {
 					List<Potion> remove = new ArrayList<>();
 					for (PotionEffect p : wearer.getActivePotionEffects()) {
-						if (p.getPotion().isBadEffect() && !p.getPotion().isBeneficial()) {
+						if (p.getPotion().isBadEffect()) {
 							remove.add(p.getPotion());
 						}
 					}
