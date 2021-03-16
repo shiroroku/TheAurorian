@@ -12,8 +12,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
@@ -40,8 +42,13 @@ public class TAItem_Tool_Crystalline_Pickaxe extends ItemPickaxe {
 	}
 
 	@Override
+	public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+		return !(EnchantmentHelper.getEnchantments(book).containsKey(Enchantments.FORTUNE));
+	}
+
+	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
-		if (!worldIn.isRemote && (double) state.getBlockHardness(worldIn, pos) != 0.0D) {
+		if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0D) {
 			ItemStack block = new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state));
 			if (OreDictionaryHelper.isOre(block)) {
 				ItemStack nugget = OreDictionaryHelper.getTypeFromOre(block, "nugget");
@@ -62,6 +69,7 @@ public class TAItem_Tool_Crystalline_Pickaxe extends ItemPickaxe {
 		return true;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!GuiScreen.isShiftKeyDown()) {
