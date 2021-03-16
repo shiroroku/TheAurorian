@@ -70,7 +70,7 @@ public class TAItem_Food_Tea extends Item implements TAItems.IUniqueModel {
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setRegistryName(tea.getName());
 		this.setUnlocalizedName(TAMod.MODID + "." + tea.getName());
-		this.setMaxStackSize(1);
+		this.setMaxStackSize(8);
 		this.itemTea = tea;
 	}
 
