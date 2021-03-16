@@ -9,6 +9,7 @@ import com.elseytd.theaurorian.TAMod;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
@@ -106,6 +107,11 @@ public class Keeper_Entity extends EntityMob implements IRangedAttackMob {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public EnumCreatureAttribute getCreatureAttribute() {
+		return EnumCreatureAttribute.UNDEAD;
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class TABlock_DungeonStoneBars extends BlockPane {
 	public static final String BLOCKNAME_MOONTEMPLE = "moontemplebars";
 
 	public TABlock_DungeonStoneBars(String blockname) {
-		super(Material.IRON, false);
+		super(Material.IRON, true);
 		this.setBlockUnbreakable();
 		this.setResistance(6000000.0F);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);

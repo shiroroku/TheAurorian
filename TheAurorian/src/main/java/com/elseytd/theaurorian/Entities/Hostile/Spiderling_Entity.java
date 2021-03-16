@@ -9,6 +9,7 @@ import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.Util.EntityHelper;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -50,6 +51,11 @@ public class Spiderling_Entity extends EntityMob {
 	protected void entityInit() {
 		super.entityInit();
 		this.getDataManager().register(CLIMBING, Boolean.valueOf(false));
+	}
+
+	@Override
+	public EnumCreatureAttribute getCreatureAttribute() {
+		return EnumCreatureAttribute.ARTHROPOD;
 	}
 
 	@Override

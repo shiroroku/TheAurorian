@@ -54,6 +54,7 @@ import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Shield;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Shovel;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Sickle;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Sword;
+import com.elseytd.theaurorian.Items.TAItem_Tool_QueensChipper;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Axe;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Bow;
 import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Hoe;
@@ -212,6 +213,7 @@ public class TAItems {
 		MOONSTONESWORD(new TAItem_Tool_Moonstone_Sword()),
 		MOONTEMPLECELLKEYFRAGMENT(new TAItem_Basic(TAItem_Basic.Items.MOONTEMPLECELLKEYFRAGMENT)),
 		PLANTFIBER(new TAItem_Basic(TAItem_Basic.Items.PLANTFIBER)),
+		QUEENSCHIPPER(new TAItem_Tool_QueensChipper()),
 		SCRAPAURORIANITE(new TAItem_Basic(TAItem_Basic.Items.SCRAP_AURORIANITE)),
 		SCRAPCRYSTALLINE(new TAItem_Basic(TAItem_Basic.Items.SCRAP_CRYSTALLINE)),
 		SCRAPUMBRA(new TAItem_Basic(TAItem_Basic.Items.SCRAP_UMBRA)),
