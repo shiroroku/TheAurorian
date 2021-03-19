@@ -41,6 +41,7 @@ import com.elseytd.theaurorian.Blocks.TABlock_Plant_WeepingWillow_Sapling;
 import com.elseytd.theaurorian.Blocks.TABlock_Portal;
 import com.elseytd.theaurorian.Blocks.TABlock_PortalframeBricks;
 import com.elseytd.theaurorian.Blocks.TABlock_Scrapper;
+import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Chest;
 import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Ladder;
 import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Leaves;
 import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Log;
@@ -182,6 +183,7 @@ public class TABlocks {
 		PLANTTALLGRASS(new TABlock_Plant_Tallgrass()),
 		PLANTTALLGRASSLIGHT(new TABlock_Plant_Tallgrass_Light()),
 		SCRAPPER(new TABlock_Scrapper()),
+		SILENTWOODCHEST(new TABlock_Silentwood_Chest()),
 		SILENTWOODLADDER(new TABlock_Silentwood_Ladder()),
 		SILENTWOODLEAVES(new TABlock_Silentwood_Leaves()),
 		SILENTWOODLOG(new TABlock_Silentwood_Log()),
