@@ -26,7 +26,7 @@ public class MoonlightForgeRecipeHandler {
 		//Boss Item Recipes
 		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONESHIELD.getItem()), new ItemStack(TAItems.Registry.TROPHYMOONQUEEN.getItem()), new ItemStack(TAItems.Registry.MOONSHIELD.getItem())));
 		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.AURORIANSTEELPICKAXE.getItem()), new ItemStack(TAItems.Registry.TROPHYMOONQUEEN.getItem()), new ItemStack(TAItems.Registry.QUEENSCHIPPER.getItem())));
-		//addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.silentwoodbow), new ItemStack(TAItems.trophykeeper), new ItemStack(TAItems.keepersbow)));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.SILENTWOODBOW.getItem()), new ItemStack(TAItems.Registry.TROPHYKEEPER.getItem()), new ItemStack(TAItems.Registry.KEEPERSBOW.getItem())));
 
 		for (MoonlightForgeRecipe r : recipesForRemoval) {
 			MoonlightForgeRecipe rem = null;
