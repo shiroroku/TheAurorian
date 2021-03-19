@@ -1,6 +1,7 @@
 package com.elseytd.theaurorian;
 
 import com.elseytd.theaurorian.Enchantments.TAEnchantment_Lightning_Damage;
+import com.elseytd.theaurorian.Enchantments.TAEnchantment_Lightning_Resist;
 import com.elseytd.theaurorian.Entities.Boss.Spider_Entity;
 import com.elseytd.theaurorian.Entities.Hostile.Spiderling_Entity;
 import com.elseytd.theaurorian.Items.TAItem_Armor_AurorianSteel;
@@ -34,6 +35,7 @@ public class TAEvents {
 	@SubscribeEvent
 	public void damageEvent(LivingDamageEvent e) {
 		TAEnchantment_Lightning_Damage.handleDamageEvent(e);
+		TAEnchantment_Lightning_Resist.handleDamageEvent(e);
 		TAItem_Armor_AurorianSteel.handleDamageEvent(e);
 		TAItem_Armor_Spectral.handleDamageEvent(e);
 	}
