@@ -20,6 +20,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -61,6 +62,11 @@ public class TAItem_Tool_QueensChipper extends ItemPickaxe {
 				return EnumActionResult.PASS;
 			}
 		}
+	}
+
+	@Override
+	public net.minecraftforge.common.IRarity getForgeRarity(ItemStack stack) {
+		return EnumRarity.RARE;
 	}
 
 	@Override
