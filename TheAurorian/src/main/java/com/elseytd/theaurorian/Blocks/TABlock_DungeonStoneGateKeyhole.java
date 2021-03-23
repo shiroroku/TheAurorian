@@ -3,7 +3,7 @@ package com.elseytd.theaurorian.Blocks;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TAUtil;
-import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
+import com.elseytd.theaurorian.Items.TAItem_DungeonKey;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -29,7 +29,7 @@ public class TABlock_DungeonStoneGateKeyhole extends Block {
 
 	private boolean Lockpickable = false;
 	private TABlock_DungeonStoneGate gateBlock = null;
-	private TAItem_Special_DungeonKey keyItem = null;
+	private TAItem_DungeonKey keyItem = null;
 	private int maxBlocksFromKeyhole = 2;
 
 	public TABlock_DungeonStoneGateKeyhole(String blockname) {
@@ -42,23 +42,23 @@ public class TABlock_DungeonStoneGateKeyhole extends Block {
 		this.setRegistryName(blockname);
 	}
 
-	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, TAItem_Special_DungeonKey.Keys keyitemname) {
+	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, TAItem_DungeonKey.Keys keyitemname) {
 		this(blockname);
 		this.setGate(new TABlock_DungeonStoneGate(gateblockname));
-		this.setKey(new TAItem_Special_DungeonKey(keyitemname));
+		this.setKey(new TAItem_DungeonKey(keyitemname));
 	}
 
-	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, TAItem_Special_DungeonKey.Keys keyitemname, int maxdistance) {
+	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, TAItem_DungeonKey.Keys keyitemname, int maxdistance) {
 		this(blockname, gateblockname, keyitemname);
 		this.setMaxGateDistance(maxdistance);
 	}
 
-	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, TAItem_Special_DungeonKey.Keys keyitemname, boolean islockpickable) {
+	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, TAItem_DungeonKey.Keys keyitemname, boolean islockpickable) {
 		this(blockname, gateblockname, keyitemname);
 		this.setLockpickable(islockpickable);
 	}
 
-	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, TAItem_Special_DungeonKey.Keys keyitemname, int maxdistance, boolean islockpickable) {
+	public TABlock_DungeonStoneGateKeyhole(String blockname, String gateblockname, TAItem_DungeonKey.Keys keyitemname, int maxdistance, boolean islockpickable) {
 		this(blockname, gateblockname, keyitemname, maxdistance);
 		this.setLockpickable(islockpickable);
 	}
@@ -95,11 +95,11 @@ public class TABlock_DungeonStoneGateKeyhole extends Block {
 		}
 	}
 
-	public TAItem_Special_DungeonKey getKey() {
+	public TAItem_DungeonKey getKey() {
 		return this.keyItem;
 	}
 
-	public void setKey(TAItem_Special_DungeonKey keyitem) {
+	public void setKey(TAItem_DungeonKey keyitem) {
 		this.keyItem = keyitem;
 	}
 

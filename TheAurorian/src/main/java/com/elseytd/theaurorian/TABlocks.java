@@ -5,7 +5,7 @@ import com.elseytd.theaurorian.Blocks.TABlockFluid_MoltenAurorianSteel;
 import com.elseytd.theaurorian.Blocks.TABlockFluid_MoltenCerulean;
 import com.elseytd.theaurorian.Blocks.TABlockFluid_MoltenMoonstone;
 import com.elseytd.theaurorian.Blocks.TABlockFluid_Moonwater;
-import com.elseytd.theaurorian.Blocks.TABlock_Aurorian_Stone_Brick;
+import com.elseytd.theaurorian.Blocks.TABlock_Aurorian_StoneBrick;
 import com.elseytd.theaurorian.Blocks.TABlock_Crystal;
 import com.elseytd.theaurorian.Blocks.TABlock_DungeonStone;
 import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneBars;
@@ -48,15 +48,15 @@ import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Log;
 import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Planks;
 import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Torch;
 import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Workbench;
-import com.elseytd.theaurorian.Blocks.TABlock_Spawner_Boss;
+import com.elseytd.theaurorian.Blocks.TABlock_BossSpawner;
 import com.elseytd.theaurorian.Blocks.TABlock_Stairs;
-import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianCobblestone;
-import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianDirt;
-import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianFarmTile;
-import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianGrass;
-import com.elseytd.theaurorian.Blocks.TABlock_Terrain_AurorianStone;
-import com.elseytd.theaurorian.Blocks.TABlock_Terrain_Moonsand;
-import com.elseytd.theaurorian.Blocks.TABlock_Terrain_Peridotite;
+import com.elseytd.theaurorian.Blocks.TABlock_Aurorian_Cobblestone;
+import com.elseytd.theaurorian.Blocks.TABlock_Aurorian_Dirt;
+import com.elseytd.theaurorian.Blocks.TABlock_Aurorian_FarmTile;
+import com.elseytd.theaurorian.Blocks.TABlock_Aurorian_Grass;
+import com.elseytd.theaurorian.Blocks.TABlock_Aurorian_Stone;
+import com.elseytd.theaurorian.Blocks.TABlock_Moonsand;
+import com.elseytd.theaurorian.Blocks.TABlock_Peridotite;
 import com.elseytd.theaurorian.Blocks.TABlock_UmbraStone;
 import com.elseytd.theaurorian.Blocks.TABlock_Urn;
 import com.elseytd.theaurorian.Blocks.TABlock_WeepingWillow_Leaves;
@@ -66,7 +66,7 @@ import com.elseytd.theaurorian.Blocks.TAFluid_MoltenAurorianSteel;
 import com.elseytd.theaurorian.Blocks.TAFluid_MoltenCerulean;
 import com.elseytd.theaurorian.Blocks.TAFluid_MoltenMoonstone;
 import com.elseytd.theaurorian.Blocks.TAFluid_Moonwater;
-import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
+import com.elseytd.theaurorian.Items.TAItem_DungeonKey;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -103,28 +103,28 @@ public class TABlocks {
 	}
 
 	public enum Registry {
-		AURORIANCOBBLESTONE(new TABlock_Terrain_AurorianCobblestone()),
-		AURORIANCOBBLESTONESTAIRS(new TABlock_Stairs(new TABlock_Terrain_AurorianCobblestone(), TABlock_Stairs.BLOCKNAME_AURORIANCOBBLESTONE)),
-		AURORIANDIRT(new TABlock_Terrain_AurorianDirt()),
-		AURORIANFARMTILE(new TABlock_Terrain_AurorianFarmTile()),
+		AURORIANCOBBLESTONE(new TABlock_Aurorian_Cobblestone()),
+		AURORIANCOBBLESTONESTAIRS(new TABlock_Stairs(new TABlock_Aurorian_Cobblestone(), TABlock_Stairs.BLOCKNAME_AURORIANCOBBLESTONE)),
+		AURORIANDIRT(new TABlock_Aurorian_Dirt()),
+		AURORIANFARMTILE(new TABlock_Aurorian_FarmTile()),
 		AURORIANFURNACECHIMNEY(new TABlock_FurnaceChimney()),
 		AURORIANFURNACEOFF(new TABlock_Furnace(false)),
 		AURORIANFURNACEON(new TABlock_Furnace(true)),
-		AURORIANGRASS(new TABlock_Terrain_AurorianGrass(TABlock_Terrain_AurorianGrass.BLOCKNAME)),
-		AURORIANGRASSLIGHT(new TABlock_Terrain_AurorianGrass(TABlock_Terrain_AurorianGrass.BLOCKNAME_LIGHT)),
+		AURORIANGRASS(new TABlock_Aurorian_Grass(TABlock_Aurorian_Grass.BLOCKNAME)),
+		AURORIANGRASSLIGHT(new TABlock_Aurorian_Grass(TABlock_Aurorian_Grass.BLOCKNAME_LIGHT)),
 		AURORIANPORTAL(new TABlock_Portal()),
 		AURORIANPORTALFRAME(new TABlock_PortalframeBricks()),
-		AURORIANSTONE(new TABlock_Terrain_AurorianStone()),
-		AURORIANSTONEBRICK(new TABlock_Aurorian_Stone_Brick()),
-		AURORIANSTONEBRICKSSTAIRS(new TABlock_Stairs(new TABlock_Aurorian_Stone_Brick(), TABlock_Stairs.BLOCKNAME_AURORIANSTONE)),
-		BOSSSPAWNERKEEPER(new TABlock_Spawner_Boss(TABlock_Spawner_Boss.Bosses.KEEPER)),
-		BOSSSPAWNERMOONQUEEN(new TABlock_Spawner_Boss(TABlock_Spawner_Boss.Bosses.MOONQUEEN)),
-		BOSSSPAWNERSPIDER(new TABlock_Spawner_Boss(TABlock_Spawner_Boss.Bosses.SPIDER)),
+		AURORIANSTONE(new TABlock_Aurorian_Stone()),
+		AURORIANSTONEBRICK(new TABlock_Aurorian_StoneBrick()),
+		AURORIANSTONEBRICKSSTAIRS(new TABlock_Stairs(new TABlock_Aurorian_StoneBrick(), TABlock_Stairs.BLOCKNAME_AURORIANSTONE)),
+		BOSSSPAWNERKEEPER(new TABlock_BossSpawner(TABlock_BossSpawner.Bosses.KEEPER)),
+		BOSSSPAWNERMOONQUEEN(new TABlock_BossSpawner(TABlock_BossSpawner.Bosses.MOONQUEEN)),
+		BOSSSPAWNERSPIDER(new TABlock_BossSpawner(TABlock_BossSpawner.Bosses.SPIDER)),
 		CRYSTAL(new TABlock_Crystal()),
 		DUNGEONSTONEDARK(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK)),
 		DUNGEONSTONEDARKFANCY(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK_FANCY)),
 		DUNGEONSTONEDARKGATE(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_DARK, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_DARK)),
-		DUNGEONSTONEDARKGATEKEYHOLE(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_DARK, TABlock_DungeonStoneGate.BLOCKNAME_DARK, TAItem_Special_DungeonKey.Keys.DARKSTONE)),
+		DUNGEONSTONEDARKGATEKEYHOLE(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_DARK, TABlock_DungeonStoneGate.BLOCKNAME_DARK, TAItem_DungeonKey.Keys.DARKSTONE)),
 		DUNGEONSTONEDARKLAMP(new TABlock_DungeonStoneLamp(TABlock_DungeonStoneLamp.BLOCKNAME_DARK)),
 		DUNGEONSTONEDARKLAYERS(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK_LAYERS)),
 		DUNGEONSTONEDARKSTAIRS(new TABlock_Stairs(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_DARK), TABlock_Stairs.BLOCKNAME_DARK)),
@@ -132,16 +132,16 @@ public class TABlocks {
 		DUNGEONSTONEMOONTEMPLEBARS(new TABlock_DungeonStoneBars(TABlock_DungeonStoneBars.BLOCKNAME_MOONTEMPLE)),
 		DUNGEONSTONEMOONTEMPLEGATE(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLE, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLE)),
 		DUNGEONSTONEMOONTEMPLEGATECELL(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLECELL, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLECELL)),
-		DUNGEONSTONEMOONTEMPLEGATEKEYHOLE(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLE, TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLE, TAItem_Special_DungeonKey.Keys.MOONTEMPLE)),
-		DUNGEONSTONEMOONTEMPLEGATEKEYHOLECELL(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLECELL, TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLECELL, TAItem_Special_DungeonKey.Keys.MOONTEMPLECELL)),
+		DUNGEONSTONEMOONTEMPLEGATEKEYHOLE(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLE, TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLE, TAItem_DungeonKey.Keys.MOONTEMPLE)),
+		DUNGEONSTONEMOONTEMPLEGATEKEYHOLECELL(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_MOONTEMPLECELL, TABlock_DungeonStoneGate.BLOCKNAME_MOONTEMPLECELL, TAItem_DungeonKey.Keys.MOONTEMPLECELL)),
 		DUNGEONSTONEMOONTEMPLELAMP(new TABlock_DungeonStoneLamp(TABlock_DungeonStoneLamp.BLOCKNAME_MOONTEMPLE)),
 		DUNGEONSTONEMOONTEMPLESMOOTH(new TABlock_DungeonStoneSmooth(TABlock_DungeonStoneSmooth.BLOCKNAME_MOONTEMPLE)),
 		DUNGEONSTONEMOONTEMPLESTAIRS(new TABlock_Stairs(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_MOONTEMPLE), TABlock_Stairs.BLOCKNAME_MOONTEMPLE)),
 		DUNGEONSTONERUNESTONE(new TABlock_DungeonStone(TABlock_DungeonStone.BLOCKNAME_RUNESTONE)),
 		DUNGEONSTONERUNESTONEBARS(new TABlock_DungeonStoneBars(TABlock_DungeonStoneBars.BLOCKNAME_RUNESTONE)),
 		DUNGEONSTONERUNESTONEGATE(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONE, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONE)),
-		DUNGEONSTONERUNESTONEGATEKEYHOLE(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONE, TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONE, TAItem_Special_DungeonKey.Keys.RUNESTONE, true)),
-		DUNGEONSTONERUNESTONEGATEKEYHOLELOOT(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONELOOT, TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONELOOT, TAItem_Special_DungeonKey.Keys.RUNESTONELOOT)),
+		DUNGEONSTONERUNESTONEGATEKEYHOLE(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONE, TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONE, TAItem_DungeonKey.Keys.RUNESTONE, true)),
+		DUNGEONSTONERUNESTONEGATEKEYHOLELOOT(new TABlock_DungeonStoneGateKeyhole(TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONELOOT, TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONELOOT, TAItem_DungeonKey.Keys.RUNESTONELOOT)),
 		DUNGEONSTONERUNESTONEGATELOOT(new TABlock_DungeonStoneGate(TABlock_DungeonStoneGate.BLOCKNAME_RUNESTONELOOT, TABlock_DungeonStoneGateKeyhole.BLOCKNAME_RUNESTONELOOT)),
 		DUNGEONSTONERUNESTONELAMP(new TABlock_DungeonStoneLamp(TABlock_DungeonStoneLamp.BLOCKNAME_RUNESTONE)),
 		DUNGEONSTONERUNESTONESMOOTH(new TABlock_DungeonStoneSmooth(TABlock_DungeonStoneSmooth.BLOCKNAME_RUNESTONE)),
@@ -160,7 +160,7 @@ public class TABlocks {
 		MATERIALMOONSTONE(new TABlock_Material(TABlock_Material.BLOCKNAME_MOONSTONE)),
 		MOONGEM(new TABlock_MoonGem()),
 		MOONLIGHTFORGE(new TABlock_MoonLightForge()),
-		MOONSAND(new TABlock_Terrain_Moonsand()),
+		MOONSAND(new TABlock_Moonsand()),
 		MOONTORCH(new TABlock_MoonTorch()),
 		MUSHROOM(new TABlock_Mushroom()),
 		MUSHROOMCRYSTAL(new TABlock_MushroomCrystal()),
@@ -171,9 +171,9 @@ public class TABlocks {
 		ORECERULEAN(new TABlock_Ore_Cerulean()),
 		OREGEODE(new TABlock_Ore_Geode()),
 		OREMOONSTONE(new TABlock_Ore_Moonstone()),
-		PERIDOTITE(new TABlock_Terrain_Peridotite(TABlock_Terrain_Peridotite.BLOCKNAME)),
-		PERIDOTITESMOOTH(new TABlock_Terrain_Peridotite(TABlock_Terrain_Peridotite.BLOCKNAME_SMOOTH)),
-		PERIDOTITESMOOTHSTAIRS(new TABlock_Stairs(new TABlock_Terrain_Peridotite(TABlock_Terrain_Peridotite.BLOCKNAME_SMOOTH), TABlock_Stairs.BLOCKNAME_PERIDOTITESMOOTH)),
+		PERIDOTITE(new TABlock_Peridotite(TABlock_Peridotite.BLOCKNAME)),
+		PERIDOTITESMOOTH(new TABlock_Peridotite(TABlock_Peridotite.BLOCKNAME_SMOOTH)),
+		PERIDOTITESMOOTHSTAIRS(new TABlock_Stairs(new TABlock_Peridotite(TABlock_Peridotite.BLOCKNAME_SMOOTH), TABlock_Stairs.BLOCKNAME_PERIDOTITESMOOTH)),
 		PLANTLAVENDER(new TABlock_Plant_Lavender()),
 		PLANTLAVENDERCROP(new TABlock_Plant_Crops(TABlock_Plant_Crops.BLOCKNAME_LAVENDER)),
 		PLANTPETUNIA(new TABlock_Plant_Petunia()),

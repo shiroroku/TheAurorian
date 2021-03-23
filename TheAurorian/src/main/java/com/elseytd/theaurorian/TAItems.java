@@ -7,64 +7,64 @@ import com.elseytd.theaurorian.Items.TAItem_Armor_SlimeBoots;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Spectral;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Spiked;
 import com.elseytd.theaurorian.Items.TAItem_Basic;
-import com.elseytd.theaurorian.Items.TAItem_Crafting_SilentwoodStick;
+import com.elseytd.theaurorian.Items.TAItem_Silentwood_Stick;
 import com.elseytd.theaurorian.Items.TAItem_CrystallineSprite;
 import com.elseytd.theaurorian.Items.TAItem_Debug;
 import com.elseytd.theaurorian.Items.TAItem_Food;
 import com.elseytd.theaurorian.Items.TAItem_Food_Silkberry;
 import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
 import com.elseytd.theaurorian.Items.TAItem_Seeds;
-import com.elseytd.theaurorian.Items.TAItem_Special_AbsorptionOrb;
-import com.elseytd.theaurorian.Items.TAItem_Special_Amulet;
-import com.elseytd.theaurorian.Items.TAItem_Special_Bepsi;
-import com.elseytd.theaurorian.Items.TAItem_Special_DungeonKey;
-import com.elseytd.theaurorian.Items.TAItem_Special_KeepersBow;
-import com.elseytd.theaurorian.Items.TAItem_Special_LivingDiviningRod;
-import com.elseytd.theaurorian.Items.TAItem_Special_Locator;
-import com.elseytd.theaurorian.Items.TAItem_Special_Lockpicks;
-import com.elseytd.theaurorian.Items.TAItem_Special_MoonShield;
-import com.elseytd.theaurorian.Items.TAItem_Special_StickySpiker;
-import com.elseytd.theaurorian.Items.TAItem_Special_StrangeMeat;
-import com.elseytd.theaurorian.Items.TAItem_Special_Webbing;
-import com.elseytd.theaurorian.Items.TAItem_Special_WeepingWillowSap;
-import com.elseytd.theaurorian.Items.TAItem_Tool_AurorianSteel_Axe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_AurorianSteel_Hoe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_AurorianSteel_Pickaxe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_AurorianSteel_Shovel;
-import com.elseytd.theaurorian.Items.TAItem_Tool_AurorianSteel_Sword;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Axe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Hoe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Pickaxe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Shovel;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Sickle;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorian_Stone_Sword;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorianite_Axe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorianite_Pickaxe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Aurorianite_Sword;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Arrow;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Bucket;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Cerulean_Shield;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Crystalline_Pickaxe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Crystalline_Shield;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Crystalline_Sword;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Axe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Hoe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Pickaxe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Shield;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Shovel;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Sickle;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Moonstone_Sword;
-import com.elseytd.theaurorian.Items.TAItem_Tool_QueensChipper;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Axe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Bow;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Hoe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Pickaxe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Shovel;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Sickle;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Silentwood_Sword;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Pickaxe;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Shield;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Sword;
+import com.elseytd.theaurorian.Items.TAItem_AbsorptionOrb;
+import com.elseytd.theaurorian.Items.TAItem_Amulet;
+import com.elseytd.theaurorian.Items.TAItem_Bepsi;
+import com.elseytd.theaurorian.Items.TAItem_DungeonKey;
+import com.elseytd.theaurorian.Items.TAItem_KeepersBow;
+import com.elseytd.theaurorian.Items.TAItem_LivingDiviningRod;
+import com.elseytd.theaurorian.Items.TAItem_DungeonLocator;
+import com.elseytd.theaurorian.Items.TAItem_Lockpicks;
+import com.elseytd.theaurorian.Items.TAItem_MoonShield;
+import com.elseytd.theaurorian.Items.TAItem_StickySpiker;
+import com.elseytd.theaurorian.Items.TAItem_StrangeMeat;
+import com.elseytd.theaurorian.Items.TAItem_Webbing;
+import com.elseytd.theaurorian.Items.TAItem_WeepingWillowSap;
+import com.elseytd.theaurorian.Items.TAItem_AurorianSteel_Axe;
+import com.elseytd.theaurorian.Items.TAItem_AurorianSteel_Hoe;
+import com.elseytd.theaurorian.Items.TAItem_AurorianSteel_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_AurorianSteel_Shovel;
+import com.elseytd.theaurorian.Items.TAItem_AurorianSteel_Sword;
+import com.elseytd.theaurorian.Items.TAItem_AurorianStone_Axe;
+import com.elseytd.theaurorian.Items.TAItem_AurorianStone_Hoe;
+import com.elseytd.theaurorian.Items.TAItem_AurorianStone_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_AurorianStone_Shovel;
+import com.elseytd.theaurorian.Items.TAItem_AurorianStone_Sickle;
+import com.elseytd.theaurorian.Items.TAItem_AurorianStone_Sword;
+import com.elseytd.theaurorian.Items.TAItem_Aurorianite_Axe;
+import com.elseytd.theaurorian.Items.TAItem_Aurorianite_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Aurorianite_Sword;
+import com.elseytd.theaurorian.Items.TAItem_Cerulean_Arrow;
+import com.elseytd.theaurorian.Items.TAItem_Cerulean_Bucket;
+import com.elseytd.theaurorian.Items.TAItem_Cerulean_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Crystalline_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Crystalline_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Crystalline_Sword;
+import com.elseytd.theaurorian.Items.TAItem_Moonstone_Axe;
+import com.elseytd.theaurorian.Items.TAItem_Moonstone_Hoe;
+import com.elseytd.theaurorian.Items.TAItem_Moonstone_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Moonstone_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Moonstone_Shovel;
+import com.elseytd.theaurorian.Items.TAItem_Moonstone_Sickle;
+import com.elseytd.theaurorian.Items.TAItem_Moonstone_Sword;
+import com.elseytd.theaurorian.Items.TAItem_QueensChipper;
+import com.elseytd.theaurorian.Items.TAItem_Silentwood_Axe;
+import com.elseytd.theaurorian.Items.TAItem_Silentwood_Bow;
+import com.elseytd.theaurorian.Items.TAItem_Silentwood_Hoe;
+import com.elseytd.theaurorian.Items.TAItem_Silentwood_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Silentwood_Shovel;
+import com.elseytd.theaurorian.Items.TAItem_Silentwood_Sickle;
+import com.elseytd.theaurorian.Items.TAItem_Silentwood_Sword;
+import com.elseytd.theaurorian.Items.TAItem_Umbra_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Umbra_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Umbra_Sword;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.SoundEvents;
@@ -137,15 +137,15 @@ public class TAItems {
 	}
 
 	public enum Registry {
-		ABSORPTIONORB(new TAItem_Special_AbsorptionOrb()),
-		AMULETDARK(new TAItem_Special_Amulet(TAItem_Special_Amulet.Amulets.DARKAMULET)),
-		AMULETKEEPER(new TAItem_Special_Amulet(TAItem_Special_Amulet.Amulets.KEEPERAMULET)),
+		ABSORPTIONORB(new TAItem_AbsorptionOrb()),
+		AMULETDARK(new TAItem_Amulet(TAItem_Amulet.Amulets.DARKAMULET)),
+		AMULETKEEPER(new TAItem_Amulet(TAItem_Amulet.Amulets.KEEPERAMULET)),
 		AURORIANBACON(new TAItem_Food(TAItem_Food.Foods.AURORIANBACON)),
 		AURORIANCOAL(new TAItem_Basic(TAItem_Basic.Items.AURORIANCOAL)),
 		AURORIANCOALNUGGET(new TAItem_Basic(TAItem_Basic.Items.NUGGET_AURORIANCOAL)),
-		AURORIANITEAXE(new TAItem_Tool_Aurorianite_Axe()),
-		AURORIANITEPICKAXE(new TAItem_Tool_Aurorianite_Pickaxe()),
-		AURORIANITESWORD(new TAItem_Tool_Aurorianite_Sword()),
+		AURORIANITEAXE(new TAItem_Aurorianite_Axe()),
+		AURORIANITEPICKAXE(new TAItem_Aurorianite_Pickaxe()),
+		AURORIANITESWORD(new TAItem_Aurorianite_Sword()),
 		AURORIANPORK(new TAItem_Food(TAItem_Food.Foods.AURORIANPORK)),
 		AURORIANPORKCOOKED(new TAItem_Food(TAItem_Food.Foods.COOKEDAURORIANPORK)),
 		AURORIANSLIMEBALL(new TAItem_Food(TAItem_Food.Foods.AURORIANSLIMEBALL)),
@@ -154,31 +154,31 @@ public class TAItems {
 		AURORIANSTEELARMORCHESTPLATE(new TAItem_Armor_AurorianSteel(EntityEquipmentSlot.CHEST, "auroriansteelchestplate")),
 		AURORIANSTEELARMORHELMET(new TAItem_Armor_AurorianSteel(EntityEquipmentSlot.HEAD, "auroriansteelhelmet")),
 		AURORIANSTEELARMORLEGGINGS(new TAItem_Armor_AurorianSteel(EntityEquipmentSlot.LEGS, "auroriansteelleggings")),
-		AURORIANSTEELAXE(new TAItem_Tool_AurorianSteel_Axe()),
-		AURORIANSTEELHOE(new TAItem_Tool_AurorianSteel_Hoe()),
+		AURORIANSTEELAXE(new TAItem_AurorianSteel_Axe()),
+		AURORIANSTEELHOE(new TAItem_AurorianSteel_Hoe()),
 		AURORIANSTEELNUGGET(new TAItem_Basic(TAItem_Basic.Items.NUGGET_AURORIANSTEEL)),
-		AURORIANSTEELPICKAXE(new TAItem_Tool_AurorianSteel_Pickaxe()),
-		AURORIANSTEELSHOVEL(new TAItem_Tool_AurorianSteel_Shovel()),
-		AURORIANSTEELSWORD(new TAItem_Tool_AurorianSteel_Sword()),
-		AURORIANSTONEAXE(new TAItem_Tool_Aurorian_Stone_Axe()),
-		AURORIANSTONEHOE(new TAItem_Tool_Aurorian_Stone_Hoe()),
-		AURORIANSTONEPICKAXE(new TAItem_Tool_Aurorian_Stone_Pickaxe()),
-		AURORIANSTONESHOVEL(new TAItem_Tool_Aurorian_Stone_Shovel()),
-		AURORIANSTONESICKLE(new TAItem_Tool_Aurorian_Stone_Sickle()),
-		AURORIANSTONESWORD(new TAItem_Tool_Aurorian_Stone_Sword()),
-		BEPSI(new TAItem_Special_Bepsi()),
+		AURORIANSTEELPICKAXE(new TAItem_AurorianSteel_Pickaxe()),
+		AURORIANSTEELSHOVEL(new TAItem_AurorianSteel_Shovel()),
+		AURORIANSTEELSWORD(new TAItem_AurorianSteel_Sword()),
+		AURORIANSTONEAXE(new TAItem_AurorianStone_Axe()),
+		AURORIANSTONEHOE(new TAItem_AurorianStone_Hoe()),
+		AURORIANSTONEPICKAXE(new TAItem_AurorianStone_Pickaxe()),
+		AURORIANSTONESHOVEL(new TAItem_AurorianStone_Shovel()),
+		AURORIANSTONESICKLE(new TAItem_AurorianStone_Sickle()),
+		AURORIANSTONESWORD(new TAItem_AurorianStone_Sword()),
+		BEPSI(new TAItem_Bepsi()),
 		CERULEANARMORBOOTS(new TAItem_Armor_Cerulean(EntityEquipmentSlot.FEET, "ceruleanboots")),
 		CERULEANARMORCHESTPLATE(new TAItem_Armor_Cerulean(EntityEquipmentSlot.CHEST, "ceruleanchestplate")),
 		CERULEANARMORHELMET(new TAItem_Armor_Cerulean(EntityEquipmentSlot.HEAD, "ceruleanhelmet")),
 		CERULEANARMORLEGGINGS(new TAItem_Armor_Cerulean(EntityEquipmentSlot.LEGS, "ceruleanleggings")),
-		CERULEANARROW(new TAItem_Tool_Cerulean_Arrow()),
-		CERULEANBUCKET(new TAItem_Tool_Cerulean_Bucket()),
+		CERULEANARROW(new TAItem_Cerulean_Arrow()),
+		CERULEANBUCKET(new TAItem_Cerulean_Bucket()),
 		CERULEANNUGGET(new TAItem_Basic(TAItem_Basic.Items.NUGGET_CERULEAN)),
-		CERULEANSHIELD(new TAItem_Tool_Cerulean_Shield()),
-		CRYSTALLINEPICKAXE(new TAItem_Tool_Crystalline_Pickaxe()),
-		CRYSTALLINESHIELD(new TAItem_Tool_Crystalline_Shield()),
+		CERULEANSHIELD(new TAItem_Cerulean_Shield()),
+		CRYSTALLINEPICKAXE(new TAItem_Crystalline_Pickaxe()),
+		CRYSTALLINESHIELD(new TAItem_Crystalline_Shield()),
 		CRYSTALLINESPRITE(new TAItem_CrystallineSprite()),
-		CRYSTALLINESWORD(new TAItem_Tool_Crystalline_Sword()),
+		CRYSTALLINESWORD(new TAItem_Crystalline_Sword()),
 		CUP(new TAItem_Basic(TAItem_Basic.Items.CUP)),
 		DEBUGGER(new TAItem_Debug()),
 		INGOTAURORIANITE(new TAItem_Basic(TAItem_Basic.Items.INGOT_AURORIANITE)),
@@ -187,45 +187,45 @@ public class TAItems {
 		INGOTCRYSTALLINE(new TAItem_Basic(TAItem_Basic.Items.INGOT_CRYSTALLINE)),
 		INGOTMOONSTONE(new TAItem_Basic(TAItem_Basic.Items.INGOT_MOONSTONE)),
 		INGOTUMBRA(new TAItem_Basic(TAItem_Basic.Items.INGOT_UMBRA)),
-		KEEPERSBOW(new TAItem_Special_KeepersBow()),
-		KEYDARKSTONE(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.DARKSTONE)),
-		KEYMOONTEMPLE(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.MOONTEMPLE)),
-		KEYMOONTEMPLECELL(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.MOONTEMPLECELL)),
-		KEYRUNESTONE(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.RUNESTONE)),
-		KEYRUNESTONELOOT(new TAItem_Special_DungeonKey(TAItem_Special_DungeonKey.Keys.RUNESTONELOOT)),
+		KEEPERSBOW(new TAItem_KeepersBow()),
+		KEYDARKSTONE(new TAItem_DungeonKey(TAItem_DungeonKey.Keys.DARKSTONE)),
+		KEYMOONTEMPLE(new TAItem_DungeonKey(TAItem_DungeonKey.Keys.MOONTEMPLE)),
+		KEYMOONTEMPLECELL(new TAItem_DungeonKey(TAItem_DungeonKey.Keys.MOONTEMPLECELL)),
+		KEYRUNESTONE(new TAItem_DungeonKey(TAItem_DungeonKey.Keys.RUNESTONE)),
+		KEYRUNESTONELOOT(new TAItem_DungeonKey(TAItem_DungeonKey.Keys.RUNESTONELOOT)),
 		KNIGHTARMORBOOTS(new TAItem_Armor_Knight(EntityEquipmentSlot.FEET, "knightboots")),
 		KNIGHTARMORCHESTPLATE(new TAItem_Armor_Knight(EntityEquipmentSlot.CHEST, "knightchestplate")),
 		KNIGHTARMORHELMET(new TAItem_Armor_Knight(EntityEquipmentSlot.HEAD, "knighthelmet")),
 		KNIGHTARMORLEGGINGS(new TAItem_Armor_Knight(EntityEquipmentSlot.LEGS, "knightleggings")),
 		LAVENDER(new TAItem_Basic(TAItem_Basic.Items.LAVENDER)),
 		LAVENDERBREAD(new TAItem_Food(TAItem_Food.Foods.LAVENDERBREAD)),
-		LIVINGDIVININGROD(new TAItem_Special_LivingDiviningRod()),
-		LOCATOR(new TAItem_Special_Locator()),
-		LOCKPICKS(new TAItem_Special_Lockpicks()),
-		MOONSHIELD(new TAItem_Special_MoonShield()),
-		MOONSTONEAXE(new TAItem_Tool_Moonstone_Axe()),
-		MOONSTONEHOE(new TAItem_Tool_Moonstone_Hoe()),
+		LIVINGDIVININGROD(new TAItem_LivingDiviningRod()),
+		LOCATOR(new TAItem_DungeonLocator()),
+		LOCKPICKS(new TAItem_Lockpicks()),
+		MOONSHIELD(new TAItem_MoonShield()),
+		MOONSTONEAXE(new TAItem_Moonstone_Axe()),
+		MOONSTONEHOE(new TAItem_Moonstone_Hoe()),
 		MOONSTONENUGGET(new TAItem_Basic(TAItem_Basic.Items.NUGGET_MOONSTONE)),
-		MOONSTONEPICKAXE(new TAItem_Tool_Moonstone_Pickaxe()),
-		MOONSTONESHIELD(new TAItem_Tool_Moonstone_Shield()),
-		MOONSTONESHOVEL(new TAItem_Tool_Moonstone_Shovel()),
-		MOONSTONESICKLE(new TAItem_Tool_Moonstone_Sickle()),
-		MOONSTONESWORD(new TAItem_Tool_Moonstone_Sword()),
+		MOONSTONEPICKAXE(new TAItem_Moonstone_Pickaxe()),
+		MOONSTONESHIELD(new TAItem_Moonstone_Shield()),
+		MOONSTONESHOVEL(new TAItem_Moonstone_Shovel()),
+		MOONSTONESICKLE(new TAItem_Moonstone_Sickle()),
+		MOONSTONESWORD(new TAItem_Moonstone_Sword()),
 		MOONTEMPLECELLKEYFRAGMENT(new TAItem_Basic(TAItem_Basic.Items.MOONTEMPLECELLKEYFRAGMENT)),
 		PLANTFIBER(new TAItem_Basic(TAItem_Basic.Items.PLANTFIBER)),
-		QUEENSCHIPPER(new TAItem_Tool_QueensChipper()),
+		QUEENSCHIPPER(new TAItem_QueensChipper()),
 		SCRAPAURORIANITE(new TAItem_Basic(TAItem_Basic.Items.SCRAP_AURORIANITE)),
 		SCRAPCRYSTALLINE(new TAItem_Basic(TAItem_Basic.Items.SCRAP_CRYSTALLINE)),
 		SCRAPUMBRA(new TAItem_Basic(TAItem_Basic.Items.SCRAP_UMBRA)),
 		SEEDSLAVENDER(new TAItem_Seeds(TAItem_Seeds.ITEMNAME_LAVENDER)),
-		SILENTWOODAXE(new TAItem_Tool_Silentwood_Axe()),
-		SILENTWOODBOW(new TAItem_Tool_Silentwood_Bow()),
-		SILENTWOODHOE(new TAItem_Tool_Silentwood_Hoe()),
-		SILENTWOODPICKAXE(new TAItem_Tool_Silentwood_Pickaxe()),
-		SILENTWOODSHOVEL(new TAItem_Tool_Silentwood_Shovel()),
-		SILENTWOODSICKLE(new TAItem_Tool_Silentwood_Sickle()),
-		SILENTWOODSTICK(new TAItem_Crafting_SilentwoodStick()),
-		SILENTWOODSWORD(new TAItem_Tool_Silentwood_Sword()),
+		SILENTWOODAXE(new TAItem_Silentwood_Axe()),
+		SILENTWOODBOW(new TAItem_Silentwood_Bow()),
+		SILENTWOODHOE(new TAItem_Silentwood_Hoe()),
+		SILENTWOODPICKAXE(new TAItem_Silentwood_Pickaxe()),
+		SILENTWOODSHOVEL(new TAItem_Silentwood_Shovel()),
+		SILENTWOODSICKLE(new TAItem_Silentwood_Sickle()),
+		SILENTWOODSTICK(new TAItem_Silentwood_Stick()),
+		SILENTWOODSWORD(new TAItem_Silentwood_Sword()),
 		SILKBERRY(new TAItem_Food_Silkberry()),
 		SILKBERRYJAM(new TAItem_Food(TAItem_Food.Foods.SILKBERRYJAM)),
 		SILKBERRYJAMSANDWICH(new TAItem_Food(TAItem_Food.Foods.SILKBERRYJAMSANDWICH)),
@@ -237,8 +237,8 @@ public class TAItems {
 		SPECTRALARMORHELMET(new TAItem_Armor_Spectral(EntityEquipmentSlot.HEAD, "spectralhelmet")),
 		SPECTRALARMORLEGGINGS(new TAItem_Armor_Spectral(EntityEquipmentSlot.LEGS, "spectralleggings")),
 		SPIKEDCHESTPLATE(new TAItem_Armor_Spiked(EntityEquipmentSlot.CHEST, "spikedchestplate")),
-		STICKYSPIKER(new TAItem_Special_StickySpiker()),
-		STRANGEMEAT(new TAItem_Special_StrangeMeat()),
+		STICKYSPIKER(new TAItem_StickySpiker()),
+		STRANGEMEAT(new TAItem_StrangeMeat()),
 		TEALAVENDER(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.LAVENDER)),
 		TEAPETUNIA(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.PETUNIA)),
 		TEASEEDY(new TAItem_Food_Tea(TAItem_Food_Tea.Teas.SEEDY)),
@@ -246,11 +246,11 @@ public class TAItems {
 		TROPHYKEEPER(new TAItem_Basic(TAItem_Basic.Items.TROPHY_KEEPER)),
 		TROPHYMOONQUEEN(new TAItem_Basic(TAItem_Basic.Items.TROPHY_MOONQUEEN)),
 		TROPHYSPIDER(new TAItem_Basic(TAItem_Basic.Items.TROPHY_SPIDER)),
-		UMBRAPICKAXE(new TAItem_Tool_Umbra_Pickaxe()),
-		UMBRASHIELD(new TAItem_Tool_Umbra_Shield()),
-		UMBRASWORD(new TAItem_Tool_Umbra_Sword()),
-		WEBBING(new TAItem_Special_Webbing()),
-		WEEPINGWILLOWSAP(new TAItem_Special_WeepingWillowSap());
+		UMBRAPICKAXE(new TAItem_Umbra_Pickaxe()),
+		UMBRASHIELD(new TAItem_Umbra_Shield()),
+		UMBRASWORD(new TAItem_Umbra_Sword()),
+		WEBBING(new TAItem_Webbing()),
+		WEEPINGWILLOWSAP(new TAItem_WeepingWillowSap());
 
 		private Item modItem;
 

@@ -6,7 +6,7 @@ import java.util.Random;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Sickle;
+import com.elseytd.theaurorian.Items.TAItem_Sickle;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -71,7 +71,7 @@ public class TABlock_Plant_Tallgrass extends BlockBush implements IShearable {
 
 	@Override
 	public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
-		if (item.getItem() instanceof TAItem_Tool_Sickle) {
+		if (item.getItem() instanceof TAItem_Sickle) {
 			return NonNullList.withSize(1, new ItemStack(TAItems.Registry.PLANTFIBER.getItem()));
 		} else {
 			return NonNullList.withSize(1, new ItemStack(this));

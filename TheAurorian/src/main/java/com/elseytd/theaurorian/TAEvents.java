@@ -8,8 +8,8 @@ import com.elseytd.theaurorian.Items.TAItem_Armor_AurorianSteel;
 import com.elseytd.theaurorian.Items.TAItem_Armor_SlimeBoots;
 import com.elseytd.theaurorian.Items.TAItem_Armor_Spectral;
 import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Shield;
-import com.elseytd.theaurorian.Items.TAItem_Tool_Umbra_Pickaxe;
+import com.elseytd.theaurorian.Items.TAItem_Shield;
+import com.elseytd.theaurorian.Items.TAItem_Umbra_Pickaxe;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.SoundEvents;
@@ -54,19 +54,19 @@ public class TAEvents {
 
 	@SubscribeEvent
 	public void attackEvent(LivingAttackEvent e) {
-		TAItem_Tool_Shield.handleDamageEvent(e);
+		TAItem_Shield.handleDamageEvent(e);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void drawScreenEvent(DrawScreenEvent.Pre e) {
-		TAItem_Tool_Umbra_Pickaxe.renderSelectedBlock(e);
+		TAItem_Umbra_Pickaxe.renderSelectedBlock(e);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void drawBlockHighlightEvent(DrawBlockHighlightEvent e) {
-		TAItem_Tool_Umbra_Pickaxe.renderBlockOutline(e);
+		TAItem_Umbra_Pickaxe.renderBlockOutline(e);
 	}
 
 	@SideOnly(Side.CLIENT)
