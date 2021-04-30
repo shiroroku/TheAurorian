@@ -31,13 +31,14 @@ public class TABlock_MysticalBarrier extends BlockBreakable {
 	protected static final AxisAlignedBB AABB_EW = new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D);
 	protected static final AxisAlignedBB AABB_COLLISION_NS = new AxisAlignedBB(0.0D, 0.0D, 0.375D, 1.0D, 1.0D, 0.625D);
 	protected static final AxisAlignedBB AABB_COLLISION_EW = new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D);
-	
+
 	private double repellingForce = 0.20D;
 
 	public TABlock_MysticalBarrier() {
 		super(Material.GLASS, false);
 		this.setCreativeTab(TAMod.CREATIVE_TAB);
 		this.setBlockUnbreakable();
+		this.setResistance(6000000.0F);
 		this.setSoundType(SoundType.METAL);
 		this.setRegistryName(BLOCKNAME);
 		this.setUnlocalizedName(TAMod.MODID + "." + BLOCKNAME);
@@ -48,20 +49,20 @@ public class TABlock_MysticalBarrier extends BlockBreakable {
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		if (!entityIn.isRiding() && !entityIn.isBeingRidden()) {
-			switch ((EnumFacing) state.getValue(FACING)) {
-			default:
-			case NORTH:
-				entityIn.motionZ = entityIn.motionZ + repellingForce;
-				break;
-			case SOUTH:
-				entityIn.motionZ = entityIn.motionZ - repellingForce;
-				break;
-			case EAST:
-				entityIn.motionX = entityIn.motionX - repellingForce;
-				break;
-			case WEST:
-				entityIn.motionX = entityIn.motionX + repellingForce;
-				break;
+			switch (state.getValue(FACING)) {
+				default:
+				case NORTH:
+					entityIn.motionZ = entityIn.motionZ + this.repellingForce;
+					break;
+				case SOUTH:
+					entityIn.motionZ = entityIn.motionZ - this.repellingForce;
+					break;
+				case EAST:
+					entityIn.motionX = entityIn.motionX - this.repellingForce;
+					break;
+				case WEST:
+					entityIn.motionX = entityIn.motionX + this.repellingForce;
+					break;
 			}
 		}
 	}
@@ -73,14 +74,14 @@ public class TABlock_MysticalBarrier extends BlockBreakable {
 
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-		switch ((EnumFacing) blockState.getValue(FACING)) {
-		default:
-		case NORTH:
-		case SOUTH:
-			return AABB_NS;
-		case EAST:
-		case WEST:
-			return AABB_EW;
+		switch (blockState.getValue(FACING)) {
+			default:
+			case NORTH:
+			case SOUTH:
+				return AABB_NS;
+			case EAST:
+			case WEST:
+				return AABB_EW;
 		}
 	}
 
