@@ -132,7 +132,9 @@ public class TABlock_DungeonStoneGateKeyhole extends Block {
 				playerIn.playSound(SoundEvents.ENTITY_ITEM_BREAK, 0.5F, 1F);
 			}
 		} else {
-			playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.block.dungeonstonekeyhole1") + (this.isLockpickable() ? " " + I18n.format("string.theaurorian.block.dungeonstonekeyhole2") : "")), true);
+			if (worldIn.isRemote) {
+				playerIn.sendStatusMessage(new TextComponentString(I18n.format("string.theaurorian.block.dungeonstonekeyhole1") + (this.isLockpickable() ? " " + I18n.format("string.theaurorian.block.dungeonstonekeyhole2") : "")), true);
+			}
 		}
 		return true;
 	}
