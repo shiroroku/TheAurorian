@@ -3,8 +3,12 @@
         "icon": {
             "item": "theaurorian:silentwoodsapling"
         },
-        "title": "The Aurorian",
-        "description": "Visit The Aurorian Dimension",
+        "title": {
+            "translate": "advancement.theaurorian.root.title"
+        },
+        "description": {
+            "translate": "advancement.theaurorian.root.description"
+        },
         "background": "theaurorian:textures/blocks/aurorianstone.png"
     },
     "criteria": {

@@ -4,8 +4,12 @@
         "icon": {
             "item": "theaurorian:auroriansteel"
         },
-        "title": "Metal stew",
-        "description": "Craft Aurorian Steel"
+        "title": {
+            "translate": "advancement.theaurorian.auroriansteel.title"
+        },
+        "description": {
+            "translate": "advancement.theaurorian.auroriansteel.description"
+        }
     },
     "criteria": {
         "inventory_changed": {

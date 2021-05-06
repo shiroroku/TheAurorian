@@ -4,9 +4,13 @@
         "icon": {
             "item": "theaurorian:lockpicks"
         },
-        "title": "Pick the Lock!",
+        "title": {
+            "translate": "advancement.theaurorian.lockpicks.title"
+        },
         "frame": "goal",
-        "description": "Craft Lockpicks to enter the Runestone Dungeon"
+        "description": {
+            "translate": "advancement.theaurorian.lockpicks.description"
+        }
     },
     "criteria": {
         "inventory_changed": {

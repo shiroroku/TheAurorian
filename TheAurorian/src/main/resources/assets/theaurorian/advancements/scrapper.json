@@ -4,8 +4,12 @@
         "icon": {
             "item": "theaurorian:aurorianiteingot"
         },
-        "title": "Scrapper",
-        "description": "Create an ingot from scrapped loot!"
+        "title": {
+            "translate": "advancement.theaurorian.scrapper.title"
+        },
+        "description": {
+            "translate": "advancement.theaurorian.scrapper.description"
+        }
     },
     "criteria": {
         "inventory_changed_a": {

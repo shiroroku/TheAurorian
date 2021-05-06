@@ -4,9 +4,13 @@
         "icon": {
             "item": "theaurorian:keeperamulet"
         },
-        "title": "Liberated!",
+        "title": {
+            "translate": "advancement.theaurorian.liberated.title"
+        },
         "frame": "challenge",
-        "description": "Kill the Runestone Dungeon Keeper"
+        "description": {
+            "translate": "advancement.theaurorian.liberated.description"
+        }
     },
     "criteria": {
         "player_killed_entity": {

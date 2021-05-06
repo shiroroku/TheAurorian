@@ -4,8 +4,12 @@
         "icon": {
             "item": "theaurorian:silkberryjam"
         },
-        "title": "Not Blueberry",
-        "description": "Craft some Silkberry Jam"
+        "title": {
+            "translate": "advancement.theaurorian.silkberryjam.title"
+        },
+        "description": {
+            "translate": "advancement.theaurorian.silkberryjam.description"
+        }
     },
     "criteria": {
         "inventory_changed": {

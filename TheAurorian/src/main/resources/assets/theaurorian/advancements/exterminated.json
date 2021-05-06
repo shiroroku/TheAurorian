@@ -4,9 +4,13 @@
         "icon": {
             "item": "theaurorian:darkamulet"
         },
-        "title": "Exterminated",
+        "title": {
+            "translate": "advancement.theaurorian.exterminated.title"
+        },
         "frame": "challenge",
-        "description": "Kill the Spider Mother"
+        "description": {
+            "translate": "advancement.theaurorian.exterminated.description"
+        }
     },
     "criteria": {
         "player_killed_entity": {

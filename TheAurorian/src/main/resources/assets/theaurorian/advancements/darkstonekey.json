@@ -4,9 +4,13 @@
         "icon": {
             "item": "theaurorian:darkstonekey"
         },
-        "title": "Conquering Arachnophobia",
+        "title": {
+            "translate": "advancement.theaurorian.darkstonekey.title"
+        },
         "frame": "goal",
-        "description": "Craft the Darkstone Key to access the Darkstone Dungeon"
+        "description": {
+            "translate": "advancement.theaurorian.darkstonekey.description"
+        }
     },
     "criteria": {
         "inventory_changed": {

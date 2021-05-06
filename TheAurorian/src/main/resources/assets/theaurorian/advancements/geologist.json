@@ -4,8 +4,12 @@
         "icon": {
             "item": "theaurorian:moonstonepickaxe"
         },
-        "title": "Geologist!",
-        "description": "Obtain Crystal, Aurorian Coal, Cerulean, and Moonstone Ingots"
+        "title": {
+            "translate": "advancement.theaurorian.geologist.title"
+        },
+        "description": {
+            "translate": "advancement.theaurorian.geologist.description"
+        }
     },
     "criteria": {
         "inventory_changed": {

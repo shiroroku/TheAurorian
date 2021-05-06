@@ -4,8 +4,12 @@
         "icon": {
             "item": "theaurorian:lavenderbread"
         },
-        "title": "Blue but eatable!",
-        "description": "Craft some Lavender Bread"
+        "title": {
+            "translate": "advancement.theaurorian.lavenderbread.title"
+        },
+        "description": {
+            "translate": "advancement.theaurorian.lavenderbread.description"
+        }
     },
     "criteria": {
         "inventory_changed": {

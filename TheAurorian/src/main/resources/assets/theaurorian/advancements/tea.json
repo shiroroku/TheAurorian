@@ -4,8 +4,12 @@
         "icon": {
             "item": "theaurorian:tealavender"
         },
-        "title": "Tea!",
-        "description": "Make some tea"
+        "title": {
+            "translate": "advancement.theaurorian.tea.title"
+        },
+        "description": {
+            "translate": "advancement.theaurorian.tea.description"
+        }
     },
     "criteria": {
         "inventory_changed_a": {

@@ -4,8 +4,12 @@
         "icon": {
             "item": "theaurorian:aurorianstonesickle"
         },
-        "title": "Glorified Shears!",
-        "description": "Craft a Sickle to harvest Lavender and Silkberries"
+        "title": {
+            "translate": "advancement.theaurorian.sickle.title"
+        },
+        "description": {
+            "translate": "advancement.theaurorian.sickle.description"
+        }
     },
     "criteria": {
         "inventory_changed_a": {

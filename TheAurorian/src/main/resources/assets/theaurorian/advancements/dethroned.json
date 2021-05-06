@@ -4,9 +4,13 @@
         "icon": {
             "item": "theaurorian:trophymoonqueen"
         },
-        "title": "Dethroned",
+        "title": {
+            "translate": "advancement.theaurorian.dethroned.title"
+        },
         "frame": "challenge",
-        "description": "Kill the Moon Queen"
+        "description": {
+            "translate": "advancement.theaurorian.dethroned.description"
+        }
     },
     "criteria": {
         "player_killed_entity": {

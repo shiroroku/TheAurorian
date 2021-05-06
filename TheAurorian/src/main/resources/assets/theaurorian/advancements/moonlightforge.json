@@ -4,8 +4,12 @@
         "icon": {
             "item": "theaurorian:moonlightforge"
         },
-        "title": "By the power of Khonsu!",
-        "description": "Craft the Moonlight Forge"
+        "title": {
+            "translate": "advancement.theaurorian.moonlightforge.title"
+        },
+        "description": {
+            "translate": "advancement.theaurorian.moonlightforge.description"
+        }
     },
     "criteria": {
         "inventory_changed": {

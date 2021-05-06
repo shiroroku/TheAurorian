@@ -4,9 +4,13 @@
         "icon": {
             "item": "theaurorian:moontemplekey"
         },
-        "title": "The next §ophase§r",
+        "title": {
+            "translate": "advancement.theaurorian.moontemplekey.title"
+        },
         "frame": "goal",
-        "description": "Craft the Moon Temple Key to access the Moon Temple"
+        "description": {
+            "translate": "advancement.theaurorian.moontemplekey.description"
+        }
     },
     "criteria": {
         "inventory_changed": {
