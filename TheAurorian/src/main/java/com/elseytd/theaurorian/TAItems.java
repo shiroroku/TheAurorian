@@ -265,7 +265,7 @@ public class TAItems {
 		}
 
 		public boolean hasUniqueModel() {
-			return this.modItem instanceof IUniqueModel ? true : false;
+			return this.modItem instanceof IUniqueModel;
 		}
 
 		public void register(RegistryEvent.Register<Item> event) {
