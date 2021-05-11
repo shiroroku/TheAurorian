@@ -3,7 +3,6 @@ package com.elseytd.theaurorian;
 import com.elseytd.theaurorian.Misc.TACommandBase_TPTA;
 import com.elseytd.theaurorian.Misc.TACreativeTab;
 import com.elseytd.theaurorian.Network.CommonProxy;
-
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
