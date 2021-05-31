@@ -37,18 +37,18 @@ public class TABiomes {
 
 	public static void initBiomeManagerAndDictionary() {
 		BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(aurorianforest, 0));
-		BiomeDictionary.addTypes(aurorianforest, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MAGICAL);
+		BiomeDictionary.addTypes(aurorianforest, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.FOREST);
 
 		BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(aurorianforesthills, 0));
-		BiomeDictionary.addTypes(aurorianforesthills, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MAGICAL);
+		BiomeDictionary.addTypes(aurorianforesthills, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.HILLS);
 
 		BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(aurorianplains, 0));
-		BiomeDictionary.addTypes(aurorianplains, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MAGICAL);
+		BiomeDictionary.addTypes(aurorianplains, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.PLAINS);
 
 		BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(weepingwillowforest, 0));
-		BiomeDictionary.addTypes(weepingwillowforest, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MAGICAL);
+		BiomeDictionary.addTypes(weepingwillowforest, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.FOREST);
 
 		BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(aurorianlakes, 0));
-		BiomeDictionary.addTypes(aurorianlakes, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MAGICAL);
+		BiomeDictionary.addTypes(aurorianlakes, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.WATER);
 	}
 }
