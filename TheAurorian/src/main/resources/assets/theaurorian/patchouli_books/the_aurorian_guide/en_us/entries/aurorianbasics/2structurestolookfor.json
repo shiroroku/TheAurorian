@@ -31,7 +31,7 @@
             "type": "image",
             "border": true,
             "title": "Runestone Dungeon",
-            "text": "The dungeon you need to clear to move on to the Moon Temple Dungeon.",
+            "text": "The dungeon you need to clear to move on to the Darkstone Dungeon.",
             "images": [
                 "theaurorian:patchouli_books/the_aurorian_guide/en_us/entries/aurorianbasics/runestone.png"
             ]
@@ -39,8 +39,17 @@
         {
             "type": "image",
             "border": true,
-            "title": "Moon Temple",
+            "title": "Darkstone Dungeon",
             "text": "Second dungeon you can enter once you defeat the Runestone Dungeon boss.",
+            "images": [
+                "theaurorian:patchouli_books/the_aurorian_guide/en_us/entries/aurorianbasics/darkstonedungeon.png"
+            ]
+        },
+        {
+            "type": "image",
+            "border": true,
+            "title": "Moon Temple",
+            "text": "The final dungeon after completing the Darkstone Dungeon.",
             "images": [
                 "theaurorian:patchouli_books/the_aurorian_guide/en_us/entries/aurorianbasics/moontemple.png"
             ]
