@@ -1,16 +1,11 @@
 package com.elseytd.theaurorian.Blocks;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.elseytd.theaurorian.TABlocks.IUniqueItemBlock;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems.IUniqueModel;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TileEntities.CrystalBlock_TileEntity;
 import com.elseytd.theaurorian.TileEntities.CrystalBlock_TileEntitySpecialRenderer;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -35,6 +30,9 @@ import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class TABlock_Crystal extends Block implements ITileEntityProvider, IUniqueModel, IUniqueItemBlock {
 

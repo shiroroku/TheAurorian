@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Compat.CraftTweaker;
 
 import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipe;
-
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenRegister;

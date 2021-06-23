@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Entities.Boss;
 
 import com.elseytd.theaurorian.TAItems;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

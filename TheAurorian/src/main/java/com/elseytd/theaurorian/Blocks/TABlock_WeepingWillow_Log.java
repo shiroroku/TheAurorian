@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Blocks;
 
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;

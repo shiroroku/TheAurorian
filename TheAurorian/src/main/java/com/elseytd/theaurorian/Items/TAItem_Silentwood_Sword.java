@@ -2,7 +2,6 @@ package com.elseytd.theaurorian.Items;
 
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.item.ItemSword;
 
 public class TAItem_Silentwood_Sword extends ItemSword {

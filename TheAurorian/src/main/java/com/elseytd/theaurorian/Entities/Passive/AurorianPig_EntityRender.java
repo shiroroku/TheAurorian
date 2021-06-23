@@ -1,9 +1,6 @@
 package com.elseytd.theaurorian.Entities.Passive;
 
-import javax.annotation.Nonnull;
-
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -11,6 +8,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
 
 @SideOnly(Side.CLIENT)
 public class AurorianPig_EntityRender extends RenderLiving<AurorianPig_Entity> {

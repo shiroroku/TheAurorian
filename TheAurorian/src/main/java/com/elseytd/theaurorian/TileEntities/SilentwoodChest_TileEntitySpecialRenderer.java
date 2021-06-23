@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.TileEntities;
 
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.client.model.ModelChest;

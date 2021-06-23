@@ -2,7 +2,6 @@ package com.elseytd.theaurorian.Compat.CraftTweaker;
 
 import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipe;
 import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipeHandler;
-
 import crafttweaker.IAction;
 
 public class MoonlightForgeActionAddRecipe implements IAction {

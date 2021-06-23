@@ -1,11 +1,7 @@
 package com.elseytd.theaurorian.Util;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
@@ -16,6 +12,9 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
+
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class GenerationHelper {
 
@@ -36,10 +35,10 @@ public class GenerationHelper {
 	 * Returns true if the position is within the specified range of the
 	 * structure.
 	 *
-	 * @param structure      Structure.
-	 * @param worldIn        World.
-	 * @param pos            Position.
-	 * @param range          Range in blocks.
+	 * @param structure Structure.
+	 * @param worldIn World.
+	 * @param pos Position.
+	 * @param range Range in blocks.
 	 * @param searchdistance Search distance in chunks.
 	 */
 	public static boolean isNearStructure(IChunkSpecific structure, World worldIn, BlockPos pos, int range, int searchdistance) {
@@ -65,8 +64,8 @@ public class GenerationHelper {
 	 * specified
 	 *
 	 * @param structure Structure.
-	 * @param player    Player.
-	 * @param distance  Search distance in chunks.
+	 * @param player Player.
+	 * @param distance Search distance in chunks.
 	 * @return ChunkPos of structure.
 	 */
 	public static ChunkPos getNearestStructure(IChunkSpecific structure, EntityPlayer player, int distance) {
@@ -94,11 +93,11 @@ public class GenerationHelper {
 	 * Will fill chests that have data blocks above them using the given loot
 	 * table.
 	 *
-	 * @param world     World.
-	 * @param position  Stucture Position.
-	 * @param template  Struture Template.
-	 * @param settings  Placement Settings.
-	 * @param data      Tag Data tag of Data Blocks.
+	 * @param world World.
+	 * @param position Stucture Position.
+	 * @param template Struture Template.
+	 * @param settings Placement Settings.
+	 * @param dataTag Tag Data tag of Data Blocks.
 	 * @param lootTable Loot table to use.
 	 */
 	public static void populateChestsInTemplate(World world, BlockPos position, Template template, PlacementSettings settings, String dataTag, ResourceLocation lootTable) {
@@ -118,10 +117,10 @@ public class GenerationHelper {
 	/**
 	 * Returns true if the chunk is flat determined by maximumDifference.
 	 *
-	 * @param pos               Position of the chunk.
+	 * @param pos Position of the chunk.
 	 * @param maximumDifference Maximum number of blocks to allow between the
-	 *                          highest block and lowest block in the chunk.
-	 *                          Lower values mean flatter terrain.
+	 * highest block and lowest block in the chunk.
+	 * Lower values mean flatter terrain.
 	 */
 	public static boolean isTerrainFlat(World worldIn, BlockPos pos, int maximumDifference) {
 		int low = 255;

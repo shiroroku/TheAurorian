@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Network;
 
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;

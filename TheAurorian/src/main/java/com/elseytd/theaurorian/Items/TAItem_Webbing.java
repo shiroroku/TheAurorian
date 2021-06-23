@@ -1,8 +1,7 @@
 package com.elseytd.theaurorian.Items;
 
-import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.Entities.Projectiles.Webbing_Entity;
-
+import com.elseytd.theaurorian.TAMod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;

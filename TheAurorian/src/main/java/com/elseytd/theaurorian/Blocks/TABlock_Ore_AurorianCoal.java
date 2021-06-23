@@ -1,10 +1,7 @@
 package com.elseytd.theaurorian.Blocks;
 
-import java.util.Random;
-
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -14,6 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class TABlock_Ore_AurorianCoal extends Block {
 

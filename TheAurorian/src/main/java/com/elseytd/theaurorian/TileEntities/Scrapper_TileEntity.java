@@ -1,15 +1,12 @@
 package com.elseytd.theaurorian.TileEntities;
 
-import javax.annotation.Nullable;
-
+import com.elseytd.theaurorian.Blocks.TABlock_Scrapper;
+import com.elseytd.theaurorian.Recipes.ScrapperRecipe;
+import com.elseytd.theaurorian.Recipes.ScrapperRecipeHandler;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TAUtil;
-import com.elseytd.theaurorian.Blocks.TABlock_Scrapper;
-import com.elseytd.theaurorian.Recipes.ScrapperRecipe;
-import com.elseytd.theaurorian.Recipes.ScrapperRecipeHandler;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -28,6 +25,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
+
+import javax.annotation.Nullable;
 
 public class Scrapper_TileEntity extends TileEntityLockable implements ITickable, ISidedInventory {
 

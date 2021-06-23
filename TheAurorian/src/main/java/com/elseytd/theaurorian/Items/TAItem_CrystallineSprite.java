@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Items;
 
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.item.Item;
 
 public class TAItem_CrystallineSprite extends Item {

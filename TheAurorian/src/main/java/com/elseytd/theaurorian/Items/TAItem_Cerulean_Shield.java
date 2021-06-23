@@ -2,7 +2,6 @@ package com.elseytd.theaurorian.Items;
 
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.item.ItemStack;
 
 public class TAItem_Cerulean_Shield extends TAItem_Shield {
@@ -19,7 +18,7 @@ public class TAItem_Cerulean_Shield extends TAItem_Shield {
 
 	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-		return repair.getItem() == TAItems.Registry.INGOTCERULEAN.getItem() ? true : super.getIsRepairable(toRepair, repair);
+		return repair.getItem() == TAItems.Registry.INGOTCERULEAN.getItem() || super.getIsRepairable(toRepair, repair);
 	}
 
 }

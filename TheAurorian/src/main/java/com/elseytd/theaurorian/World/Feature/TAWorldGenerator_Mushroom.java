@@ -1,13 +1,12 @@
 package com.elseytd.theaurorian.World.Feature;
 
-import java.util.Random;
-
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAUtil;
-
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+
+import java.util.Random;
 
 public class TAWorldGenerator_Mushroom extends WorldGenAbstractTree {
 

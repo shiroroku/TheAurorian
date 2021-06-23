@@ -1,11 +1,8 @@
 package com.elseytd.theaurorian.World.Feature;
 
-import java.util.Random;
-
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TAUtil;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -17,6 +14,8 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.structure.template.BlockRotationProcessor;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
+
+import java.util.Random;
 
 public class TAWorldGenerator_Trees_WeepingWillow extends WorldGenAbstractTree {
 

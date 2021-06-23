@@ -1,17 +1,7 @@
 package com.elseytd.theaurorian;
 
-import com.elseytd.theaurorian.Blocks.TABlock_Crystal;
-import com.elseytd.theaurorian.Blocks.TABlock_Furnace;
-import com.elseytd.theaurorian.Blocks.TABlock_MoonLightForge;
-import com.elseytd.theaurorian.Blocks.TABlock_Scrapper;
-import com.elseytd.theaurorian.Blocks.TABlock_Silentwood_Chest;
-import com.elseytd.theaurorian.TileEntities.AurorianFurnace_TileEntity;
-import com.elseytd.theaurorian.TileEntities.BossSpawner_TileEntity;
-import com.elseytd.theaurorian.TileEntities.CrystalBlock_TileEntity;
-import com.elseytd.theaurorian.TileEntities.MoonLightForge_TileEntity;
-import com.elseytd.theaurorian.TileEntities.Scrapper_TileEntity;
-import com.elseytd.theaurorian.TileEntities.SilentwoodChest_TileEntity;
-
+import com.elseytd.theaurorian.Blocks.*;
+import com.elseytd.theaurorian.TileEntities.*;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;

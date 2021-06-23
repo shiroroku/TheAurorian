@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Entities.Boss;
 
 import com.elseytd.theaurorian.TAItems;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.item.ItemStack;

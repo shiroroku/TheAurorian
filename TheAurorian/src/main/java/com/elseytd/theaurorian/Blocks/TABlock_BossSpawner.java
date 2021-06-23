@@ -1,13 +1,10 @@
 package com.elseytd.theaurorian.Blocks;
 
-import java.util.Random;
-
-import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.Entities.Boss.Keeper_Entity;
 import com.elseytd.theaurorian.Entities.Boss.MoonQueen_Entity;
 import com.elseytd.theaurorian.Entities.Boss.Spider_Entity;
+import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TileEntities.BossSpawner_TileEntity;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -20,6 +17,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class TABlock_BossSpawner extends Block implements ITileEntityProvider {
 

@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Compat.TinkersConstruct;
 
 import com.elseytd.theaurorian.TAConfig;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.PlayerEvent;

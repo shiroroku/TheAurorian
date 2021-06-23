@@ -2,7 +2,6 @@ package com.elseytd.theaurorian.Compat.CraftTweaker;
 
 import com.elseytd.theaurorian.Recipes.ScrapperRecipe;
 import com.elseytd.theaurorian.Recipes.ScrapperRecipeHandler;
-
 import crafttweaker.IAction;
 
 public class ScrapperActionRemoveRecipe implements IAction {

@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Blocks;
 
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.block.BlockLadder;
 import net.minecraft.block.SoundType;
 import net.minecraft.util.EnumFacing;

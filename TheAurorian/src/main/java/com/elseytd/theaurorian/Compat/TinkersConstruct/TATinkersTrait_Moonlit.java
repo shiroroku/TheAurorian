@@ -2,7 +2,6 @@ package com.elseytd.theaurorian.Compat.TinkersConstruct;
 
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAUtil;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;

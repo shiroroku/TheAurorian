@@ -2,7 +2,6 @@ package com.elseytd.theaurorian.Blocks;
 
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAItems.IUniqueModel;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;

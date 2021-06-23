@@ -1,11 +1,8 @@
 package com.elseytd.theaurorian.Enchantments;
 
-import java.util.Map;
-
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAEnchantments;
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
@@ -16,6 +13,8 @@ import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+
+import java.util.Map;
 
 public class TAEnchantment_Lightning_Damage extends Enchantment {
 

@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Blocks;
 
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.material.Material;
 

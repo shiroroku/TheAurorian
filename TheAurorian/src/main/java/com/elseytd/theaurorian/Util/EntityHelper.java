@@ -1,13 +1,12 @@
 package com.elseytd.theaurorian.Util;
 
-import java.util.List;
-
 import com.elseytd.theaurorian.TAUtil;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityHelper {
 

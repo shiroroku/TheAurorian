@@ -1,10 +1,7 @@
 package com.elseytd.theaurorian.Entities.Hostile;
 
-import javax.annotation.Nonnull;
-
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -13,6 +10,8 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+
+import javax.annotation.Nonnull;
 
 public class CrystallineSprite_EntityRender extends Render<CrystallineSprite_Entity> {
 

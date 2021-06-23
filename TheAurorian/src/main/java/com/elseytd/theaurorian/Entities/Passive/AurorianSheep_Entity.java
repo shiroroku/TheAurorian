@@ -1,33 +1,19 @@
 package com.elseytd.theaurorian.Entities.Passive;
 
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-
-import javax.annotation.Nullable;
-
-import com.elseytd.theaurorian.TABlocks;
-import com.elseytd.theaurorian.TAConfig;
-import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.Blocks.TABlock_DungeonStone;
 import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneLamp;
 import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneSmooth;
+import com.elseytd.theaurorian.TABlocks;
+import com.elseytd.theaurorian.TAConfig;
+import com.elseytd.theaurorian.TAItems;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIFollowParent;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMate;
-import net.minecraft.entity.ai.EntityAIPanic;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAITempt;
-import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -54,6 +40,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 public class AurorianSheep_Entity extends EntityAnimal implements net.minecraftforge.common.IShearable {
 

@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Particles;
 
 import com.elseytd.theaurorian.TAItems;
-
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleBreaking;

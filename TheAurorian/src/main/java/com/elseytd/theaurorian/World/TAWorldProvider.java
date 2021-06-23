@@ -2,7 +2,6 @@ package com.elseytd.theaurorian.World;
 
 import com.elseytd.theaurorian.TADimensions;
 import com.elseytd.theaurorian.TASounds;
-
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;

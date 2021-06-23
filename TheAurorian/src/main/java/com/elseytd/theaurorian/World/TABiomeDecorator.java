@@ -1,7 +1,5 @@
 package com.elseytd.theaurorian.World;
 
-import java.util.Random;
-
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.World.Biomes.TABiome;
@@ -9,7 +7,6 @@ import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_UnderGround;
 import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_UnderWater;
 import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_Urns;
 import com.google.common.base.Predicate;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -19,6 +16,8 @@ import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class TABiomeDecorator extends BiomeDecorator {
 

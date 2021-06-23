@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Entities.Boss;
 
 import com.elseytd.theaurorian.TAItems;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.item.ItemStack;
@@ -10,7 +9,7 @@ import net.minecraft.util.EnumHand;
 public class MoonQueen_AISideStrafe extends EntityAIBase {
 
 	private enum Direction {
-		LEFT, RIGHT;
+		LEFT, RIGHT
 	}
 
 	private MoonQueen_Entity entity;
@@ -58,9 +57,7 @@ public class MoonQueen_AISideStrafe extends EntityAIBase {
 	@Override
 	public boolean shouldContinueExecuting() {
 		if (this.entity.getAttackTarget() != null && !this.entity.isCharging()) {
-			if (this.entity.getDistance(this.entity.getAttackTarget()) <= this.strafeDistance && this.strafeDirection != null) {
-				return true;
-			}
+			return this.entity.getDistance(this.entity.getAttackTarget()) <= this.strafeDistance && this.strafeDirection != null;
 		}
 		return false;
 	}

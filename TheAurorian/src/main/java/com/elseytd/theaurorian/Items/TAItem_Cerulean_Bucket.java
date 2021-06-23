@@ -1,10 +1,7 @@
 package com.elseytd.theaurorian.Items;
 
-import javax.annotation.Nullable;
-
-import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.Misc.TAFluidBucketWrapper;
-
+import com.elseytd.theaurorian.TAMod;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -17,15 +14,12 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidActionResult;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.UniversalBucket;
+import net.minecraftforge.fluids.*;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import javax.annotation.Nullable;
 
 @SuppressWarnings("deprecation")
 public class TAItem_Cerulean_Bucket extends UniversalBucket {

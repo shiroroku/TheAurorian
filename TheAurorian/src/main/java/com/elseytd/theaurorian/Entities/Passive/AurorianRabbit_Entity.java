@@ -1,35 +1,17 @@
 package com.elseytd.theaurorian.Entities.Passive;
 
-import java.util.Set;
-
-import javax.annotation.Nullable;
-
+import com.elseytd.theaurorian.Blocks.TABlock_DungeonStone;
+import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneLamp;
+import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneSmooth;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.Blocks.TABlock_DungeonStone;
-import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneLamp;
-import com.elseytd.theaurorian.Blocks.TABlock_DungeonStoneSmooth;
 import com.google.common.collect.Sets;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIMate;
-import net.minecraft.entity.ai.EntityAIMoveToBlock;
-import net.minecraft.entity.ai.EntityAIPanic;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAITempt;
-import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.ai.EntityJumpHelper;
-import net.minecraft.entity.ai.EntityMoveHelper;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityWolf;
@@ -40,11 +22,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.Path;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -55,6 +33,9 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDesert;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.Set;
 
 public class AurorianRabbit_Entity extends EntityAnimal {
 
@@ -377,11 +358,6 @@ public class AurorianRabbit_Entity extends EntityAnimal {
 		}
 	}
 
-	/**
-	 * Returns true if
-	 * {@link net.minecraft.entity.passive.EntityRabbit#carrotTicks carrotTicks}
-	 * has reached zero
-	 */
 	private boolean isCarrotEaten() {
 		return this.carrotTicks == 0;
 	}

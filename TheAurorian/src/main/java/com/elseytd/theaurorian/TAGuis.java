@@ -1,17 +1,6 @@
 package com.elseytd.theaurorian;
 
-import com.elseytd.theaurorian.TileEntities.AurorianFurnace_Container;
-import com.elseytd.theaurorian.TileEntities.AurorianFurnace_Gui;
-import com.elseytd.theaurorian.TileEntities.AurorianFurnace_TileEntity;
-import com.elseytd.theaurorian.TileEntities.MoonLightForge_Container;
-import com.elseytd.theaurorian.TileEntities.MoonLightForge_Gui;
-import com.elseytd.theaurorian.TileEntities.MoonLightForge_TileEntity;
-import com.elseytd.theaurorian.TileEntities.Scrapper_Container;
-import com.elseytd.theaurorian.TileEntities.Scrapper_Gui;
-import com.elseytd.theaurorian.TileEntities.Scrapper_TileEntity;
-import com.elseytd.theaurorian.TileEntities.SilentwoodWorkbench_Container;
-import com.elseytd.theaurorian.TileEntities.SilentwoodWorkbench_Gui;
-
+import com.elseytd.theaurorian.TileEntities.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

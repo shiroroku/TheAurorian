@@ -1,12 +1,11 @@
 package com.elseytd.theaurorian.Recipes;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.elseytd.theaurorian.TAItems;
-
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ScrapperRecipeHandler {
 

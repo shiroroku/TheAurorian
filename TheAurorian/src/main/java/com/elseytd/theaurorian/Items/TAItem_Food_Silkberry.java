@@ -2,7 +2,6 @@ package com.elseytd.theaurorian.Items;
 
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;

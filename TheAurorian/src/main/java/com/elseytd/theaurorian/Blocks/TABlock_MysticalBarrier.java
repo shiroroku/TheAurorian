@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Blocks;
 
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;

@@ -1,13 +1,12 @@
 package com.elseytd.theaurorian.World.Feature;
 
-import java.util.Random;
-
 import com.elseytd.theaurorian.TABlocks;
-
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class TAWorldGenerator_Urns extends WorldGenerator {
 

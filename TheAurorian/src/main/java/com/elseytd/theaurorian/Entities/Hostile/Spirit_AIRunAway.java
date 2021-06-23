@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Entities.Hostile;
 
 import com.elseytd.theaurorian.Util.EntityHelper;
-
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.pathfinding.Path;

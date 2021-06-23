@@ -1,9 +1,6 @@
 package com.elseytd.theaurorian.World;
 
-import java.util.Random;
-
 import com.elseytd.theaurorian.TABlocks;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -14,6 +11,8 @@ import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
+
+import java.util.Random;
 
 public class TATerrainGenerator {
 	public static final int waterLevel = 65;

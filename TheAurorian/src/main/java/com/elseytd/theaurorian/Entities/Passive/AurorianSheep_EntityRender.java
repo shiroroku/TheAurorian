@@ -1,12 +1,12 @@
 package com.elseytd.theaurorian.Entities.Passive;
 
-import javax.annotation.Nonnull;
-
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+
+import javax.annotation.Nonnull;
 
 public class AurorianSheep_EntityRender extends RenderLiving<AurorianSheep_Entity> {
 	

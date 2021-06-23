@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Entities.Projectiles;
 
 import com.elseytd.theaurorian.TAParticles;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.MobEffects;

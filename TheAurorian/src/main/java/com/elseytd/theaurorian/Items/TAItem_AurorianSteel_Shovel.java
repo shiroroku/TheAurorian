@@ -1,13 +1,8 @@
 package com.elseytd.theaurorian.Items;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.Util.AurorianSteelHelper;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,6 +12,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class TAItem_AurorianSteel_Shovel extends ItemSpade {
 

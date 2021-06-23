@@ -1,10 +1,7 @@
 package com.elseytd.theaurorian.Blocks;
 
-import java.util.Random;
-
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
@@ -15,6 +12,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+
+import java.util.Random;
 
 public class TABlock_MushroomStem extends BlockLog {
 	public static final String BLOCKNAME = "mushroomstem";

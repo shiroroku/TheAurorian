@@ -1,18 +1,7 @@
 package com.elseytd.theaurorian.World;
 
-import java.util.List;
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
-import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_DarkstoneDungeon;
-import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Graveyard;
-import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_MoonTemple;
-import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Ruins;
-import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_Runestone_Tower;
-import com.elseytd.theaurorian.World.Structures.TAWorldGenerator_UmbraTower;
+import com.elseytd.theaurorian.World.Structures.*;
 import com.fluke.worleycaves.world.WorleyCaveGenerator;
-
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -24,6 +13,10 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraftforge.event.terraingen.InitMapGenEvent.EventType;
 import net.minecraftforge.event.terraingen.TerrainGen;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
 
 public class TAChunkGenerator implements IChunkGenerator {
 

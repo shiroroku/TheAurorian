@@ -1,10 +1,7 @@
 package com.elseytd.theaurorian.Enchantments;
 
-import java.util.Map;
-
 import com.elseytd.theaurorian.TAEnchantments;
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
@@ -14,6 +11,8 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+
+import java.util.Map;
 
 public class TAEnchantment_Lightning_Resist extends Enchantment {
 

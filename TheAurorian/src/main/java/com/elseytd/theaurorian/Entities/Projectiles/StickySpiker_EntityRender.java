@@ -1,9 +1,6 @@
 package com.elseytd.theaurorian.Entities.Projectiles;
 
-import javax.annotation.Nonnull;
-
 import com.elseytd.theaurorian.TAItems;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -13,6 +10,8 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+
+import javax.annotation.Nonnull;
 
 public class StickySpiker_EntityRender extends Render<StickySpiker_Entity> {
 

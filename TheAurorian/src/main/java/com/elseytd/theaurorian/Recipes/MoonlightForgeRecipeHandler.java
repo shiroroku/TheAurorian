@@ -1,11 +1,10 @@
 package com.elseytd.theaurorian.Recipes;
 
+import com.elseytd.theaurorian.TAItems;
+import net.minecraft.item.ItemStack;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.elseytd.theaurorian.TAItems;
-
-import net.minecraft.item.ItemStack;
 
 public class MoonlightForgeRecipeHandler {
 

@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Particles;
 
 import com.elseytd.theaurorian.TASounds;
-
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

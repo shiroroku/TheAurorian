@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Entities.Boss;
 
 import com.elseytd.theaurorian.TAItems;
-
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;

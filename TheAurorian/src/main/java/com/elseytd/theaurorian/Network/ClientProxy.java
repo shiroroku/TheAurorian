@@ -1,11 +1,6 @@
 package com.elseytd.theaurorian.Network;
 
-import com.elseytd.theaurorian.TABlocks;
-import com.elseytd.theaurorian.TACompat;
-import com.elseytd.theaurorian.TAEntities;
-import com.elseytd.theaurorian.TAItems;
-import com.elseytd.theaurorian.TASounds;
-
+import com.elseytd.theaurorian.*;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

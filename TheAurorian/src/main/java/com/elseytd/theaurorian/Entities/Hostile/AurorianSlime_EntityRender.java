@@ -1,9 +1,6 @@
 package com.elseytd.theaurorian.Entities.Hostile;
 
-import javax.annotation.Nonnull;
-
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.client.model.ModelSlime;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
@@ -13,6 +10,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
 
 @SideOnly(Side.CLIENT)
 public class AurorianSlime_EntityRender extends RenderLiving<AurorianSlime_Entity> {

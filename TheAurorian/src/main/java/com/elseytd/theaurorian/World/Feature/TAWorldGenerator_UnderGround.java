@@ -1,19 +1,18 @@
 package com.elseytd.theaurorian.World.Feature;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAUtil;
 import com.elseytd.theaurorian.World.TABiomeDecorator.AurorianStonesPredicate.IAurorianStoneType;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class TAWorldGenerator_UnderGround extends WorldGenerator {
 

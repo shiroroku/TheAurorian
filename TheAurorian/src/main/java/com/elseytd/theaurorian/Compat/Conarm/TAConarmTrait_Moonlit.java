@@ -1,9 +1,8 @@
 package com.elseytd.theaurorian.Compat.Conarm;
 
+import c4.conarm.lib.traits.AbstractArmorTrait;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAUtil;
-
-import c4.conarm.lib.traits.AbstractArmorTrait;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;

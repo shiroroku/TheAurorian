@@ -1,8 +1,7 @@
 package com.elseytd.theaurorian.Items;
 
-import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.Entities.Projectiles.CrystalArrow_Entity;
-
+import com.elseytd.theaurorian.TAMod;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemArrow;

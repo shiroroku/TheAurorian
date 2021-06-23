@@ -1,19 +1,11 @@
 package com.elseytd.theaurorian.Compat.JEI;
 
-import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipe;
 import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipeHandler;
 import com.elseytd.theaurorian.Recipes.ScrapperRecipe;
 import com.elseytd.theaurorian.Recipes.ScrapperRecipeHandler;
-import com.elseytd.theaurorian.TileEntities.AurorianFurnace_Container;
-import com.elseytd.theaurorian.TileEntities.AurorianFurnace_Gui;
-import com.elseytd.theaurorian.TileEntities.MoonLightForge_Container;
-import com.elseytd.theaurorian.TileEntities.MoonLightForge_Gui;
-import com.elseytd.theaurorian.TileEntities.Scrapper_Container;
-import com.elseytd.theaurorian.TileEntities.Scrapper_Gui;
-import com.elseytd.theaurorian.TileEntities.SilentwoodWorkbench_Container;
-import com.elseytd.theaurorian.TileEntities.SilentwoodWorkbench_Gui;
-
+import com.elseytd.theaurorian.TABlocks;
+import com.elseytd.theaurorian.TileEntities.*;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;

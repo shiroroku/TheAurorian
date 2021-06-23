@@ -1,13 +1,12 @@
 package com.elseytd.theaurorian.Compat.Conarm;
 
-import com.elseytd.theaurorian.Compat.TinkersConstruct.TACompat_Tinkers;
-
 import c4.conarm.common.armor.traits.ArmorTraits;
 import c4.conarm.lib.materials.ArmorMaterialType;
 import c4.conarm.lib.materials.CoreMaterialStats;
 import c4.conarm.lib.materials.PlatesMaterialStats;
 import c4.conarm.lib.materials.TrimMaterialStats;
 import c4.conarm.lib.traits.AbstractArmorTrait;
+import com.elseytd.theaurorian.Compat.TinkersConstruct.TACompat_Tinkers;
 import slimeknights.tconstruct.library.TinkerRegistry;
 
 public class TACompat_Conarm {

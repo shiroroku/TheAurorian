@@ -1,12 +1,9 @@
 package com.elseytd.theaurorian.World.Structures;
 
-import java.util.Random;
-
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAConfig;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.Util.GenerationHelper;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -16,6 +13,8 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
+
+import java.util.Random;
 
 public class TAWorldGenerator_MoonTemple extends WorldGenerator implements GenerationHelper.IChunkSpecific {
 

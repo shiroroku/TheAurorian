@@ -1,28 +1,18 @@
 package com.elseytd.theaurorian.Network;
 
-import java.io.File;
-
-import com.elseytd.theaurorian.TABiomes;
-import com.elseytd.theaurorian.TABlocks.Fluids;
-import com.elseytd.theaurorian.TACompat;
-import com.elseytd.theaurorian.TAConfig;
-import com.elseytd.theaurorian.TADimensions;
-import com.elseytd.theaurorian.TAEntities;
-import com.elseytd.theaurorian.TAEvents;
-import com.elseytd.theaurorian.TAGuis;
-import com.elseytd.theaurorian.TAItems;
-import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.TARecipes;
 import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipeHandler;
 import com.elseytd.theaurorian.Recipes.ScrapperRecipeHandler;
+import com.elseytd.theaurorian.*;
+import com.elseytd.theaurorian.TABlocks.Fluids;
 import com.elseytd.theaurorian.Util.OreDictionaryHelper;
-
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+
+import java.io.File;
 
 public class CommonProxy {
 

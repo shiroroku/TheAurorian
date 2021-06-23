@@ -1,9 +1,6 @@
 package com.elseytd.theaurorian.TileEntities;
 
-import org.lwjgl.opengl.GL11;
-
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
@@ -12,6 +9,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class MoonLightForge_Gui extends GuiContainer {

@@ -4,13 +4,7 @@ import com.elseytd.theaurorian.Enchantments.TAEnchantment_Lightning_Damage;
 import com.elseytd.theaurorian.Enchantments.TAEnchantment_Lightning_Resist;
 import com.elseytd.theaurorian.Entities.Boss.Spider_Entity;
 import com.elseytd.theaurorian.Entities.Hostile.Spiderling_Entity;
-import com.elseytd.theaurorian.Items.TAItem_Armor_AurorianSteel;
-import com.elseytd.theaurorian.Items.TAItem_Armor_SlimeBoots;
-import com.elseytd.theaurorian.Items.TAItem_Armor_Spectral;
-import com.elseytd.theaurorian.Items.TAItem_Food_Tea;
-import com.elseytd.theaurorian.Items.TAItem_Shield;
-import com.elseytd.theaurorian.Items.TAItem_Umbra_Pickaxe;
-
+import com.elseytd.theaurorian.Items.*;
 import net.minecraft.block.Block;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundCategory;

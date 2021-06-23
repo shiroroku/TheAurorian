@@ -1,15 +1,14 @@
 package com.elseytd.theaurorian.Misc;
 
-import java.util.Comparator;
-
 import com.elseytd.theaurorian.TABlocks;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Comparator;
 
 public class TACreativeTab extends CreativeTabs {
 

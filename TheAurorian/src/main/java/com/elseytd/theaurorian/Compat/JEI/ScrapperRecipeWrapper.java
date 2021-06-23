@@ -1,16 +1,15 @@
 package com.elseytd.theaurorian.Compat.JEI;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.Recipes.ScrapperRecipe;
-
+import com.elseytd.theaurorian.TABlocks;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ScrapperRecipeWrapper implements IRecipeWrapper {
 

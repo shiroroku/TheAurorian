@@ -1,11 +1,7 @@
 package com.elseytd.theaurorian.Blocks;
 
-import java.util.List;
-import java.util.Random;
-
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
@@ -18,6 +14,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.IShearable;
+
+import java.util.List;
+import java.util.Random;
 
 public class TABlock_Plant_Petunia extends BlockBush implements IShearable {
 

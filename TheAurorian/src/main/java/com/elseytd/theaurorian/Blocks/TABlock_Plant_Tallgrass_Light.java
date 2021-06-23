@@ -1,13 +1,9 @@
 package com.elseytd.theaurorian.Blocks;
 
-import java.util.List;
-import java.util.Random;
-
+import com.elseytd.theaurorian.Items.TAItem_Sickle;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
-import com.elseytd.theaurorian.Items.TAItem_Sickle;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
@@ -20,6 +16,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.IShearable;
+
+import java.util.List;
+import java.util.Random;
 
 public class TABlock_Plant_Tallgrass_Light extends BlockBush implements IShearable {
 

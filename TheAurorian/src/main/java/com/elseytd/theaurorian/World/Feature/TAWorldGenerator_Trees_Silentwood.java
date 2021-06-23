@@ -1,9 +1,6 @@
 package com.elseytd.theaurorian.World.Feature;
 
-import java.util.Random;
-
 import com.elseytd.theaurorian.TABlocks;
-
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -11,16 +8,26 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
+import java.util.Random;
+
 public class TAWorldGenerator_Trees_Silentwood extends WorldGenAbstractTree {
 
 	private IBlockState blockStateWood = TABlocks.Registry.SILENTWOODLOG.getBlock().getDefaultState();
 	private IBlockState blockStateLeaves = TABlocks.Registry.SILENTWOODLEAVES.getBlock().getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
 
-	private final int minTreeHeight = 13;
-	private final int minLeavesHeight = 5;
+	private int minTreeHeight = 13;
+	private int minLeavesHeight = 5;
+	private int minLeavesWidth = 2;
 
 	public TAWorldGenerator_Trees_Silentwood(boolean notify) {
 		super(notify);
+	}
+
+	public TAWorldGenerator_Trees_Silentwood(boolean notify, int minTreeHeight, int minLeavesHeight, int minLeavesWidth) {
+		super(notify);
+		this.minTreeHeight = minTreeHeight;
+		this.minLeavesHeight = minLeavesHeight;
+		this.minLeavesWidth = minLeavesWidth;
 	}
 
 	@Override
@@ -28,7 +35,7 @@ public class TAWorldGenerator_Trees_Silentwood extends WorldGenAbstractTree {
 		int i = this.minTreeHeight + rand.nextInt(6);
 		int j = this.minLeavesHeight + rand.nextInt(2);
 		int k = i - j;
-		int l = 2 + rand.nextInt(2);
+		int l = minLeavesWidth + rand.nextInt(2);
 		boolean flag = true;
 
 		if (position.getY() >= 1 && position.getY() + i + 1 <= worldIn.getHeight()) {

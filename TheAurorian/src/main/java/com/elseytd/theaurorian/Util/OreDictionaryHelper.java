@@ -1,10 +1,10 @@
 package com.elseytd.theaurorian.Util;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OreDictionaryHelper {
 
@@ -46,8 +46,8 @@ public class OreDictionaryHelper {
 	 * registered as "oreMoonstone" and a type specified as "ingot" will return
 	 * the registered ore dictionary itemstack of "ingotMoonstone".
 	 *
-	 * @param Ore dictionary item
-	 * @param Ore name, Ex:("ingot", "nugget")
+	 * @param itemIn Ore dictionary item
+	 * @param type Ore name, Ex:("ingot", "nugget")
 	 */
 	public static ItemStack getTypeFromOre(ItemStack itemIn, String type) {
 		List<ItemStack> nuggets = new ArrayList<>();

@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Entities.Passive;
 
 import com.elseytd.theaurorian.TABlocks;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;

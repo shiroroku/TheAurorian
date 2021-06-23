@@ -2,7 +2,6 @@ package com.elseytd.theaurorian.World;
 
 import com.elseytd.theaurorian.TABiomes;
 import com.elseytd.theaurorian.World.Biomes.TABiome;
-
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeProvider;
@@ -14,7 +13,7 @@ import net.minecraft.world.storage.WorldInfo;
 
 public class TABiomeProvider extends BiomeProvider {
 
-	public static TABiome[] biomes = new TABiome[] { TABiomes.aurorianplains, TABiomes.aurorianforest, TABiomes.aurorianforesthills, TABiomes.aurorianlakes, TABiomes.weepingwillowforest };
+	public static TABiome[] biomes = new TABiome[] { TABiomes.aurorianplains, TABiomes.aurorianforest, TABiomes.aurorianforesthills, TABiomes.aurorianlakes, TABiomes.weepingwillowforest, TABiomes.aurorianovergrowth };
 
 	public TABiomeProvider(WorldInfo inf) {
 		super(inf);

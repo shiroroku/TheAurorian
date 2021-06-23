@@ -1,9 +1,6 @@
 package com.elseytd.theaurorian.Compat.JEI;
 
-import java.util.List;
-
 import com.elseytd.theaurorian.TAMod;
-
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
@@ -14,6 +11,8 @@ import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
+import java.util.List;
 
 public class ScrapperRecipeCategory implements IRecipeCategory<ScrapperRecipeWrapper> {
 

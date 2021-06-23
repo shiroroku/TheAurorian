@@ -1,11 +1,6 @@
 package com.elseytd.theaurorian;
 
-import com.elseytd.theaurorian.World.Biomes.TABiomeAurorianForest;
-import com.elseytd.theaurorian.World.Biomes.TABiomeAurorianForestHills;
-import com.elseytd.theaurorian.World.Biomes.TABiomeAurorianLakes;
-import com.elseytd.theaurorian.World.Biomes.TABiomeAurorianPlains;
-import com.elseytd.theaurorian.World.Biomes.TABiomeWeepingWillowForest;
-
+import com.elseytd.theaurorian.World.Biomes.*;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
@@ -25,6 +20,7 @@ public class TABiomes {
 	public final static TABiomeAurorianPlains aurorianplains = null;
 	public final static TABiomeWeepingWillowForest weepingwillowforest = null;
 	public final static TABiomeAurorianLakes aurorianlakes = null;
+	public final static TABiomeAurorianOvergrowth aurorianovergrowth = null;
 
 	@SubscribeEvent
 	public static void registerBiomes(RegistryEvent.Register<Biome> event) {
@@ -33,6 +29,7 @@ public class TABiomes {
 		event.getRegistry().register(new TABiomeAurorianPlains().setRegistryName(TAMod.MODID, TABiomeAurorianPlains.BIOMENAME));
 		event.getRegistry().register(new TABiomeWeepingWillowForest().setRegistryName(TAMod.MODID, TABiomeWeepingWillowForest.BIOMENAME));
 		event.getRegistry().register(new TABiomeAurorianLakes().setRegistryName(TAMod.MODID, TABiomeAurorianLakes.BIOMENAME));
+		event.getRegistry().register(new TABiomeAurorianOvergrowth().setRegistryName(TAMod.MODID, TABiomeAurorianOvergrowth.BIOMENAME));
 	}
 
 	public static void initBiomeManagerAndDictionary() {
@@ -50,5 +47,8 @@ public class TABiomes {
 
 		BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(aurorianlakes, 0));
 		BiomeDictionary.addTypes(aurorianlakes, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.WATER);
+
+		BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(aurorianovergrowth, 0));
+		BiomeDictionary.addTypes(aurorianovergrowth, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.FOREST);
 	}
 }

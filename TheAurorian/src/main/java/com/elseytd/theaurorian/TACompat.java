@@ -2,7 +2,6 @@ package com.elseytd.theaurorian;
 
 import com.elseytd.theaurorian.Compat.Conarm.TACompat_Conarm;
 import com.elseytd.theaurorian.Compat.TinkersConstruct.TACompat_Tinkers;
-
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;

@@ -5,7 +5,6 @@ import com.elseytd.theaurorian.TAItems.IUniqueModel;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TileEntities.SilentwoodChest_TileEntity;
 import com.elseytd.theaurorian.TileEntities.SilentwoodChest_TileEntitySpecialRenderer;
-
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.SoundType;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

@@ -1,25 +1,20 @@
 package com.elseytd.theaurorian.Compat.TinkersConstruct;
 
-import static slimeknights.tconstruct.library.utils.HarvestLevels.COBALT;
-import static slimeknights.tconstruct.library.utils.HarvestLevels.IRON;
-
-import java.awt.Color;
-
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAItems;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.client.MaterialRenderInfo;
-import slimeknights.tconstruct.library.materials.BowMaterialStats;
-import slimeknights.tconstruct.library.materials.ExtraMaterialStats;
-import slimeknights.tconstruct.library.materials.HandleMaterialStats;
-import slimeknights.tconstruct.library.materials.HeadMaterialStats;
-import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.materials.*;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.library.utils.HarvestLevels;
 import slimeknights.tconstruct.tools.TinkerTraits;
+
+import java.awt.*;
+
+import static slimeknights.tconstruct.library.utils.HarvestLevels.COBALT;
+import static slimeknights.tconstruct.library.utils.HarvestLevels.IRON;
 
 public class TACompat_Tinkers {
 

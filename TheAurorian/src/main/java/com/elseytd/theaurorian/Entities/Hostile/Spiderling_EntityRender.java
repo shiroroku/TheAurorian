@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Entities.Hostile;
 
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;

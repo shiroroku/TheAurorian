@@ -1,10 +1,9 @@
 package com.elseytd.theaurorian.Blocks;
 
+import com.elseytd.theaurorian.Items.TAItem_DungeonKey;
 import com.elseytd.theaurorian.TAItems;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.TAUtil;
-import com.elseytd.theaurorian.Items.TAItem_DungeonKey;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

@@ -1,16 +1,15 @@
 package com.elseytd.theaurorian;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.elseytd.theaurorian.TABlocks.Registry;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class TARecipes {
 

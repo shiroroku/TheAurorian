@@ -4,7 +4,6 @@ import com.elseytd.theaurorian.Particles.TAParticle_AurorianSlime;
 import com.elseytd.theaurorian.Particles.TAParticle_StickySpiker;
 import com.elseytd.theaurorian.Particles.TAParticle_Webbing;
 import com.elseytd.theaurorian.Particles.TAParticle_WeepingWillow_Drip;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraftforge.fml.relauncher.Side;

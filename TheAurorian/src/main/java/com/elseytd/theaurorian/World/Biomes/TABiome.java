@@ -1,8 +1,5 @@
 package com.elseytd.theaurorian.World.Biomes;
 
-import java.util.Random;
-
-import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.Entities.Hostile.CrystallineSprite_Entity;
 import com.elseytd.theaurorian.Entities.Hostile.DisturbedHollow_Entity;
 import com.elseytd.theaurorian.Entities.Hostile.MoonAcolyte_Entity;
@@ -10,12 +7,12 @@ import com.elseytd.theaurorian.Entities.Hostile.Spirit_Entity;
 import com.elseytd.theaurorian.Entities.Passive.AurorianPig_Entity;
 import com.elseytd.theaurorian.Entities.Passive.AurorianRabbit_Entity;
 import com.elseytd.theaurorian.Entities.Passive.AurorianSheep_Entity;
-import com.elseytd.theaurorian.World.TABiomeDecorator;
-import com.elseytd.theaurorian.World.TATerrainGenerator;
+import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_Plant;
 import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_TallGrass;
 import com.elseytd.theaurorian.World.Feature.TAWorldGenerator_Trees_Silentwood;
-
+import com.elseytd.theaurorian.World.TABiomeDecorator;
+import com.elseytd.theaurorian.World.TATerrainGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -25,6 +22,8 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class TABiome extends Biome {
 
@@ -106,29 +105,37 @@ public class TABiome extends Biome {
 				IBlockState iblockstate2 = chunkPrimerIn.getBlockState(xc, y, zc);
 				if (iblockstate2.getMaterial() == Material.AIR) {
 					j = -1;
-				} else if (iblockstate2.getBlock() == this.stoneBlock) {
-					if (j == -1) {
-						if (k <= 0) {
-							topblk = AIR;
-							fillerblk = this.stoneBlock.getDefaultState();
-						} else if (y >= i - 4 && y <= i + 1) {
-							topblk = this.topBlock;
-							fillerblk = this.fillerBlock;
-						}
-						j = k;
+				} else {
+					if (iblockstate2.getBlock() == this.stoneBlock) {
+						if (j == -1) {
+							if (k <= 0) {
+								topblk = AIR;
+								fillerblk = this.stoneBlock.getDefaultState();
+							} else {
+								if (y >= i - 4 && y <= i + 1) {
+									topblk = this.topBlock;
+									fillerblk = this.fillerBlock;
+								}
+							}
+							j = k;
 
-						if (y >= i - 1) {
-							chunkPrimerIn.setBlockState(xc, y, zc, topblk);
-						} else if (y < i - 7 - k) {
-							topblk = AIR;
-							fillerblk = this.stoneBlock.getDefaultState();
-							chunkPrimerIn.setBlockState(xc, y, zc, fillerblk);
+							if (y >= i - 1) {
+								chunkPrimerIn.setBlockState(xc, y, zc, topblk);
+							} else {
+								if (y < i - 7 - k) {
+									topblk = AIR;
+									fillerblk = this.stoneBlock.getDefaultState();
+									chunkPrimerIn.setBlockState(xc, y, zc, fillerblk);
+								} else {
+									chunkPrimerIn.setBlockState(xc, y, zc, sandblk);
+								}
+							}
 						} else {
-							chunkPrimerIn.setBlockState(xc, y, zc, sandblk);
+							if (j > 0) {
+								--j;
+								chunkPrimerIn.setBlockState(xc, y, zc, fillerblk);
+							}
 						}
-					} else if (j > 0) {
-						--j;
-						chunkPrimerIn.setBlockState(xc, y, zc, fillerblk);
 					}
 				}
 			}

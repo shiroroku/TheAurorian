@@ -1,9 +1,6 @@
 package com.elseytd.theaurorian.Entities.Hostile;
 
-import javax.annotation.Nonnull;
-
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -12,6 +9,8 @@ import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+
+import javax.annotation.Nonnull;
 
 public class UndeadKnight_EntityRender extends RenderLiving<UndeadKnight_Entity> {
 

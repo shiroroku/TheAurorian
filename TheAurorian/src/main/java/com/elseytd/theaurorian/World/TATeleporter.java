@@ -1,9 +1,8 @@
 package com.elseytd.theaurorian.World;
 
+import com.elseytd.theaurorian.Blocks.TABlock_Portal;
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TADimensions;
-import com.elseytd.theaurorian.Blocks.TABlock_Portal;
-
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;

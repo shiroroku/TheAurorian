@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Entities.Hostile;
 
 import com.elseytd.theaurorian.Util.EntityHelper;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.init.MobEffects;
@@ -10,7 +9,7 @@ import net.minecraft.potion.PotionEffect;
 public class Spirit_AIHaunt extends EntityAIBase {
 
 	private enum Direction {
-		LEFT, RIGHT;
+		LEFT, RIGHT
 	}
 
 	private Spirit_Entity entity;
@@ -34,9 +33,7 @@ public class Spirit_AIHaunt extends EntityAIBase {
 	public boolean shouldExecute() {
 		if (this.entity.getAttackTarget() != null) {
 			if (this.entity.getDistance(this.entity.getAttackTarget()) <= strafeDistance && this.entity.canEntityBeSeen(this.entity.getAttackTarget())) {
-				if (!EntityHelper.isLookingAt(this.entity, this.entity.getAttackTarget(), 0.1D)) {
-					return true;
-				}
+				return !EntityHelper.isLookingAt(this.entity, this.entity.getAttackTarget(), 0.1D);
 			}
 		}
 		return false;
@@ -52,9 +49,7 @@ public class Spirit_AIHaunt extends EntityAIBase {
 	public boolean shouldContinueExecuting() {
 		if (this.entity.getAttackTarget() != null) {
 			if (this.entity.getDistance(this.entity.getAttackTarget()) <= strafeDistance && this.strafeDirection != null && this.entity.canEntityBeSeen(this.entity.getAttackTarget())) {
-				if (!EntityHelper.isLookingAt(this.entity, this.entity.getAttackTarget(), 0.1D)) {
-					return true;
-				}
+				return !EntityHelper.isLookingAt(this.entity, this.entity.getAttackTarget(), 0.1D);
 			}
 		}
 		return false;

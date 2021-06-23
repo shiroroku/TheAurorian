@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Entities.Projectiles;
 
 import com.elseytd.theaurorian.TAItems;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityArrow;

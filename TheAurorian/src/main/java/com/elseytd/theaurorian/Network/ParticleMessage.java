@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.Network;
 
 import com.elseytd.theaurorian.TAParticles;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;

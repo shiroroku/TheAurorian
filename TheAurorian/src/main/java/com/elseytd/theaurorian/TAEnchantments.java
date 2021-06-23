@@ -2,7 +2,6 @@ package com.elseytd.theaurorian;
 
 import com.elseytd.theaurorian.Enchantments.TAEnchantment_Lightning_Damage;
 import com.elseytd.theaurorian.Enchantments.TAEnchantment_Lightning_Resist;
-
 import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;

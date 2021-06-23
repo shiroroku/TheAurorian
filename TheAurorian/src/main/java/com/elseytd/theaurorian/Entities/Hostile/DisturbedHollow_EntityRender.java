@@ -1,15 +1,14 @@
 package com.elseytd.theaurorian.Entities.Hostile;
 
-import javax.annotation.Nonnull;
-
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+
+import javax.annotation.Nonnull;
 
 public class DisturbedHollow_EntityRender extends RenderLiving<DisturbedHollow_Entity> {
 

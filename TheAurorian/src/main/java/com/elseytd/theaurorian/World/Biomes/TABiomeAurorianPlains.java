@@ -1,8 +1,8 @@
 package com.elseytd.theaurorian.World.Biomes;
 
-import java.util.Random;
-
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+
+import java.util.Random;
 
 public class TABiomeAurorianPlains extends TABiome {
 

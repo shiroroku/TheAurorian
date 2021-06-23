@@ -1,16 +1,15 @@
 package com.elseytd.theaurorian.Blocks;
 
-import java.util.Random;
-
 import com.elseytd.theaurorian.TABlocks;
 import com.elseytd.theaurorian.TAMod;
 import com.elseytd.theaurorian.World.TABiomeDecorator.AurorianStonesPredicate.IAurorianStoneType;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
+
+import java.util.Random;
 
 public class TABlock_Aurorian_Stone extends Block implements IAurorianStoneType {
 

@@ -1,9 +1,6 @@
 package com.elseytd.theaurorian.Entities.Projectiles;
 
-import javax.annotation.Nonnull;
-
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -13,6 +10,8 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+
+import javax.annotation.Nonnull;
 
 public class CrystallineBeam_EntityRender extends Render<CrystallineBeam_Entity> {
 	

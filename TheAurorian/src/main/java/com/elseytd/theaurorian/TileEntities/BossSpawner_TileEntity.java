@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian.TileEntities;
 
 import com.elseytd.theaurorian.TAMod;
-
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;

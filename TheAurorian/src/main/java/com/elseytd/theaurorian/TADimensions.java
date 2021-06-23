@@ -1,7 +1,6 @@
 package com.elseytd.theaurorian;
 
 import com.elseytd.theaurorian.World.TAWorldProvider;
-
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 
