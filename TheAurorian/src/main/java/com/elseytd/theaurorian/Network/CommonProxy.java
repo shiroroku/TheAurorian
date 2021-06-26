@@ -3,7 +3,8 @@ package com.elseytd.theaurorian.Network;
 import com.elseytd.theaurorian.Recipes.MoonlightForgeRecipeHandler;
 import com.elseytd.theaurorian.Recipes.ScrapperRecipeHandler;
 import com.elseytd.theaurorian.*;
-import com.elseytd.theaurorian.TABlocks.Fluids;
+import com.elseytd.theaurorian.Registry.*;
+import com.elseytd.theaurorian.Registry.BlockRegistry.Fluids;
 import com.elseytd.theaurorian.Util.OreDictionaryHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -18,31 +19,31 @@ public class CommonProxy {
 
 	public void preInit(FMLPreInitializationEvent e) {
 		File directory = e.getModConfigurationDirectory();
-		TAMod.CONFIG = new Configuration(new File(directory.getPath(), "theaurorian.cfg"));
-		TAConfig.readConfig();
+		AurorianMod.CONFIG = new Configuration(new File(directory.getPath(), "theaurorian.cfg"));
+		AurorianConfig.readConfig();
 		Fluids.registerFluids();
-		TADimensions.init();
-		TACompat.preInit(e);
-		TAPacketHandler.registerMessages();
+		DimensionRegistry.init();
+		AurorianCompatibility.preInit(e);
+		PacketRegistry.registerMessages();
 	}
 
 	public void init(FMLInitializationEvent e) {
-		MinecraftForge.EVENT_BUS.register(new TAEvents());
-		TARecipes.registerFurnaceRecipes();
-		NetworkRegistry.INSTANCE.registerGuiHandler(TAMod.INSTANCE, new TAGuis());
-		TABiomes.initBiomeManagerAndDictionary();
-		TAEntities.init();
-		TARecipes.registerOreDictionary();
+		MinecraftForge.EVENT_BUS.register(new AurorianEvents());
+		RecipeRegistry.registerFurnaceRecipes();
+		NetworkRegistry.INSTANCE.registerGuiHandler(AurorianMod.INSTANCE, new GUIRegistry());
+		BiomeRegistry.initBiomeManagerAndDictionary();
+		EntityRegistry.init();
+		RecipeRegistry.registerOreDictionary();
 		MoonlightForgeRecipeHandler.initRecipes();
 		ScrapperRecipeHandler.initRecipes();
-		TAItems.Materials.initRepairMaterials();
+		ItemRegistry.Materials.initRepairMaterials();
 	}
 
 	public void postInit(FMLPostInitializationEvent e) {
-		if (TAMod.CONFIG.hasChanged()) {
-			TAMod.CONFIG.save();
+		if (AurorianMod.CONFIG.hasChanged()) {
+			AurorianMod.CONFIG.save();
 		}
-		TACompat.postInit(e);
+		AurorianCompatibility.postInit(e);
 		OreDictionaryHelper.Ores = OreDictionaryHelper.populateOrelist();
 	}
 }

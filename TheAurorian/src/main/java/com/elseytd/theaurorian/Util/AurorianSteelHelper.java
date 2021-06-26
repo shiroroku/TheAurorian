@@ -1,6 +1,6 @@
 package com.elseytd.theaurorian.Util;
 
-import com.elseytd.theaurorian.TAConfig;
+import com.elseytd.theaurorian.AurorianConfig;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -20,8 +20,8 @@ import java.util.Map;
 
 public class AurorianSteelHelper {
 
-	public static int maxlevelbase = TAConfig.Config_AurorianSteel_BaseMaxLevel;
-	public static float maxlevelmultiplier = TAConfig.Config_AurorianSteel_BaseMaxLevelMultiplier;
+	public static int maxlevelbase = AurorianConfig.Config_AurorianSteel_BaseMaxLevel;
+	public static float maxlevelmultiplier = AurorianConfig.Config_AurorianSteel_BaseMaxLevelMultiplier;
 
 	/**
 	 * Tooltip for all Aurorian Steel tools.
@@ -60,19 +60,19 @@ public class AurorianSteelHelper {
 			Map<Enchantment, Integer> enchs = EnchantmentHelper.getEnchantments(stack);
 			for (Map.Entry<Enchantment, Integer> e : enchs.entrySet()) {
 				if (e.getKey().getMaxLevel() > 1 && e.getValue() < e.getKey().getMaxLevel()) {
-					switch (TAConfig.Config_AurorianSteel_Enchants_WhitelistBlacklist) {
+					switch (AurorianConfig.Config_AurorianSteel_Enchants_WhitelistBlacklist) {
 						case 0:
 						default:
 							return e.getKey().getTranslatedName(e.getValue() + 1);
 						case 1:
-							for (String enchreg : TAConfig.Config_AurorianSteel_Enchants) {
+							for (String enchreg : AurorianConfig.Config_AurorianSteel_Enchants) {
 								if (enchreg.equals(e.getKey().getRegistryName().toString()) || e.getKey().getRegistryName().getResourceDomain().equals(enchreg)) {
 									return e.getKey().getTranslatedName(e.getValue() + 1);
 								}
 							}
 							break;
 						case 2:
-							for (String enchreg : TAConfig.Config_AurorianSteel_Enchants) {
+							for (String enchreg : AurorianConfig.Config_AurorianSteel_Enchants) {
 								if (enchreg.equals(e.getKey().getRegistryName().toString()) || e.getKey().getRegistryName().getResourceDomain().equals(enchreg)) {
 									return null;
 								}
@@ -94,19 +94,19 @@ public class AurorianSteelHelper {
 			Map<Enchantment, Integer> enchs = EnchantmentHelper.getEnchantments(stack);
 			for (Map.Entry<Enchantment, Integer> e : enchs.entrySet()) {
 				if (e.getKey().getMaxLevel() > 1 && e.getValue() < e.getKey().getMaxLevel()) {
-					switch (TAConfig.Config_AurorianSteel_Enchants_WhitelistBlacklist) {
+					switch (AurorianConfig.Config_AurorianSteel_Enchants_WhitelistBlacklist) {
 						case 0:
 						default:
 							return true;
 						case 1:
-							for (String enchreg : TAConfig.Config_AurorianSteel_Enchants) {
+							for (String enchreg : AurorianConfig.Config_AurorianSteel_Enchants) {
 								if (enchreg.equals(e.getKey().getRegistryName().toString()) || e.getKey().getRegistryName().getResourceDomain().equals(enchreg)) {
 									return true;
 								}
 							}
 							break;
 						case 2:
-							for (String enchreg : TAConfig.Config_AurorianSteel_Enchants) {
+							for (String enchreg : AurorianConfig.Config_AurorianSteel_Enchants) {
 								if (enchreg.equals(e.getKey().getRegistryName().toString()) || e.getKey().getRegistryName().getResourceDomain().equals(enchreg)) {
 									return false;
 								}
@@ -131,7 +131,7 @@ public class AurorianSteelHelper {
 				Map<Enchantment, Integer> enchs = EnchantmentHelper.getEnchantments(stack);
 				for (Map.Entry<Enchantment, Integer> e : enchs.entrySet()) {
 					if (e.getKey().getMaxLevel() > 1 && e.getValue() < e.getKey().getMaxLevel()) {
-						switch (TAConfig.Config_AurorianSteel_Enchants_WhitelistBlacklist) {
+						switch (AurorianConfig.Config_AurorianSteel_Enchants_WhitelistBlacklist) {
 							case 0:
 							default:
 								enchs.put(e.getKey(), e.getValue() + 1);
@@ -140,7 +140,7 @@ public class AurorianSteelHelper {
 								setLevel(stack, 0);
 								return;
 							case 1:
-								for (String enchreg : TAConfig.Config_AurorianSteel_Enchants) {
+								for (String enchreg : AurorianConfig.Config_AurorianSteel_Enchants) {
 									if (enchreg.equals(e.getKey().getRegistryName().toString()) || e.getKey().getRegistryName().getResourceDomain().equals(enchreg)) {
 										enchs.put(e.getKey(), e.getValue() + 1);
 										EnchantmentHelper.setEnchantments(enchs, stack);
@@ -151,7 +151,7 @@ public class AurorianSteelHelper {
 								}
 								break;
 							case 2:
-								for (String enchreg : TAConfig.Config_AurorianSteel_Enchants) {
+								for (String enchreg : AurorianConfig.Config_AurorianSteel_Enchants) {
 									if (enchreg.equals(e.getKey().getRegistryName().toString()) || e.getKey().getRegistryName().getResourceDomain().equals(enchreg)) {
 										return;
 									}

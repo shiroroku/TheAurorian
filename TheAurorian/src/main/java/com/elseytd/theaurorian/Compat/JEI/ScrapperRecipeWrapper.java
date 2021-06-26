@@ -1,7 +1,7 @@
 package com.elseytd.theaurorian.Compat.JEI;
 
 import com.elseytd.theaurorian.Recipes.ScrapperRecipe;
-import com.elseytd.theaurorian.TABlocks;
+import com.elseytd.theaurorian.Registry.BlockRegistry;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
@@ -19,7 +19,7 @@ public class ScrapperRecipeWrapper implements IRecipeWrapper {
 	public ScrapperRecipeWrapper(ScrapperRecipe recipe) {
 		this.INPUTS = new ArrayList<>();
 		this.INPUTS.add(recipe.getInput());
-		this.INPUTS.add(new ItemStack(Item.getItemFromBlock(TABlocks.Registry.CRYSTAL.getBlock())));
+		this.INPUTS.add(new ItemStack(Item.getItemFromBlock(BlockRegistry.Registry.CRYSTAL.getBlock())));
 		this.OUTPUT = recipe.getOutput();
 	}
 

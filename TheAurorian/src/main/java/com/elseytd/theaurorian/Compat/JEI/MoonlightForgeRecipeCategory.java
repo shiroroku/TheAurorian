@@ -1,6 +1,6 @@
 package com.elseytd.theaurorian.Compat.JEI;
 
-import com.elseytd.theaurorian.TAMod;
+import com.elseytd.theaurorian.AurorianMod;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
@@ -19,12 +19,12 @@ public class MoonlightForgeRecipeCategory implements IRecipeCategory<MoonlightFo
 	private final IDrawable GUI_TEXTURE;
 
 	public MoonlightForgeRecipeCategory(IGuiHelper helper) {
-		this.GUI_TEXTURE = helper.createDrawable(new ResourceLocation(TAMod.MODID, "textures/gui/moonlightforge.png"), 17, 22, 152, 44);
+		this.GUI_TEXTURE = helper.createDrawable(new ResourceLocation(AurorianMod.MODID, "textures/gui/moonlightforge.png"), 17, 22, 152, 44);
 	}
 
 	@Override
 	public String getUid() {
-		return TACompat_JEI.UID_MOONLIGHTFORGE;
+		return JEICompat.UID_MOONLIGHTFORGE;
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class MoonlightForgeRecipeCategory implements IRecipeCategory<MoonlightFo
 
 	@Override
 	public String getModName() {
-		return TAMod.MODID;
+		return AurorianMod.MODID;
 	}
 
 	@Override

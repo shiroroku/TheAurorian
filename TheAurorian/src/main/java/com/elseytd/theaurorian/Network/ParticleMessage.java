@@ -1,6 +1,6 @@
 package com.elseytd.theaurorian.Network;
 
-import com.elseytd.theaurorian.TAParticles;
+import com.elseytd.theaurorian.Registry.ParticleRegistry;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -66,9 +66,9 @@ public class ParticleMessage implements IMessage {
 		}
 
 		private void spawnParticleFromPacket(ParticleMessage pm, WorldClient worldClient) {
-			for (TAParticles.Particles particle : TAParticles.Particles.values()) {
+			for (ParticleRegistry.Particles particle : ParticleRegistry.Particles.values()) {
 				if (particle.getID() == pm.particle) {
-					TAParticles.spawnParticle(particle, pm.x, pm.y, pm.z, pm.xm, pm.ym, pm.zm);
+					ParticleRegistry.spawnParticle(particle, pm.x, pm.y, pm.z, pm.xm, pm.ym, pm.zm);
 					return;
 				}
 			}

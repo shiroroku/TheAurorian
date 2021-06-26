@@ -1,6 +1,10 @@
 package com.elseytd.theaurorian.Network;
 
 import com.elseytd.theaurorian.*;
+import com.elseytd.theaurorian.Registry.BlockRegistry;
+import com.elseytd.theaurorian.Registry.EntityRegistry;
+import com.elseytd.theaurorian.Registry.ItemRegistry;
+import com.elseytd.theaurorian.Registry.SoundRegistry;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -15,14 +19,14 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void preInit(FMLPreInitializationEvent e) {
 		super.preInit(e);
-		TAEntities.initModels();
-		TACompat.clientPreInit(e);
+		EntityRegistry.initModels();
+		AurorianCompatibility.clientPreInit(e);
 	}
 
 	@Override
 	public void init(FMLInitializationEvent e) {
 		super.init(e);
-		TASounds.addMusicTypes();
+		SoundRegistry.addMusicTypes();
 	}
 
 	@Override
@@ -32,7 +36,7 @@ public class ClientProxy extends CommonProxy {
 
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
-		TAItems.initModels();
-		TABlocks.initModels();
+		ItemRegistry.initModels();
+		BlockRegistry.initModels();
 	}
 }

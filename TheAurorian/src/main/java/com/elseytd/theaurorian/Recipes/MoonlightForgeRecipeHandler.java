@@ -1,6 +1,6 @@
 package com.elseytd.theaurorian.Recipes;
 
-import com.elseytd.theaurorian.TAItems;
+import com.elseytd.theaurorian.Registry.ItemRegistry;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -12,20 +12,20 @@ public class MoonlightForgeRecipeHandler {
 	private static List<MoonlightForgeRecipe> recipesForRemoval = new ArrayList<>();
 
 	public static void initRecipes() {
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONESWORD.getItem()), new ItemStack(TAItems.Registry.INGOTAURORIANITE.getItem()), new ItemStack(TAItems.Registry.AURORIANITESWORD.getItem())));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONEAXE.getItem()), new ItemStack(TAItems.Registry.INGOTAURORIANITE.getItem()), new ItemStack(TAItems.Registry.AURORIANITEAXE.getItem())));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONEPICKAXE.getItem()), new ItemStack(TAItems.Registry.INGOTAURORIANITE.getItem()), new ItemStack(TAItems.Registry.AURORIANITEPICKAXE.getItem())));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONESWORD.getItem()), new ItemStack(TAItems.Registry.INGOTCRYSTALLINE.getItem()), new ItemStack(TAItems.Registry.CRYSTALLINESWORD.getItem())));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONEPICKAXE.getItem()), new ItemStack(TAItems.Registry.INGOTCRYSTALLINE.getItem()), new ItemStack(TAItems.Registry.CRYSTALLINEPICKAXE.getItem())));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONESWORD.getItem()), new ItemStack(TAItems.Registry.INGOTUMBRA.getItem()), new ItemStack(TAItems.Registry.UMBRASWORD.getItem())));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONEPICKAXE.getItem()), new ItemStack(TAItems.Registry.INGOTUMBRA.getItem()), new ItemStack(TAItems.Registry.UMBRAPICKAXE.getItem())));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONESHIELD.getItem()), new ItemStack(TAItems.Registry.INGOTUMBRA.getItem()), new ItemStack(TAItems.Registry.UMBRASHIELD.getItem())));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONESHIELD.getItem()), new ItemStack(TAItems.Registry.INGOTCRYSTALLINE.getItem()), new ItemStack(TAItems.Registry.CRYSTALLINESHIELD.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(ItemRegistry.Registry.MOONSTONESWORD.getItem()), new ItemStack(ItemRegistry.Registry.INGOTAURORIANITE.getItem()), new ItemStack(ItemRegistry.Registry.AURORIANITESWORD.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(ItemRegistry.Registry.MOONSTONEAXE.getItem()), new ItemStack(ItemRegistry.Registry.INGOTAURORIANITE.getItem()), new ItemStack(ItemRegistry.Registry.AURORIANITEAXE.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(ItemRegistry.Registry.MOONSTONEPICKAXE.getItem()), new ItemStack(ItemRegistry.Registry.INGOTAURORIANITE.getItem()), new ItemStack(ItemRegistry.Registry.AURORIANITEPICKAXE.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(ItemRegistry.Registry.MOONSTONESWORD.getItem()), new ItemStack(ItemRegistry.Registry.INGOTCRYSTALLINE.getItem()), new ItemStack(ItemRegistry.Registry.CRYSTALLINESWORD.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(ItemRegistry.Registry.MOONSTONEPICKAXE.getItem()), new ItemStack(ItemRegistry.Registry.INGOTCRYSTALLINE.getItem()), new ItemStack(ItemRegistry.Registry.CRYSTALLINEPICKAXE.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(ItemRegistry.Registry.MOONSTONESWORD.getItem()), new ItemStack(ItemRegistry.Registry.INGOTUMBRA.getItem()), new ItemStack(ItemRegistry.Registry.UMBRASWORD.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(ItemRegistry.Registry.MOONSTONEPICKAXE.getItem()), new ItemStack(ItemRegistry.Registry.INGOTUMBRA.getItem()), new ItemStack(ItemRegistry.Registry.UMBRAPICKAXE.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(ItemRegistry.Registry.MOONSTONESHIELD.getItem()), new ItemStack(ItemRegistry.Registry.INGOTUMBRA.getItem()), new ItemStack(ItemRegistry.Registry.UMBRASHIELD.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(ItemRegistry.Registry.MOONSTONESHIELD.getItem()), new ItemStack(ItemRegistry.Registry.INGOTCRYSTALLINE.getItem()), new ItemStack(ItemRegistry.Registry.CRYSTALLINESHIELD.getItem())));
 
 		//Boss Item Recipes
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.MOONSTONESHIELD.getItem()), new ItemStack(TAItems.Registry.TROPHYMOONQUEEN.getItem()), new ItemStack(TAItems.Registry.MOONSHIELD.getItem())));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.AURORIANSTEELPICKAXE.getItem()), new ItemStack(TAItems.Registry.TROPHYMOONQUEEN.getItem()), new ItemStack(TAItems.Registry.QUEENSCHIPPER.getItem())));
-		addRecipe(new MoonlightForgeRecipe(new ItemStack(TAItems.Registry.SILENTWOODBOW.getItem()), new ItemStack(TAItems.Registry.TROPHYKEEPER.getItem()), new ItemStack(TAItems.Registry.KEEPERSBOW.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(ItemRegistry.Registry.MOONSTONESHIELD.getItem()), new ItemStack(ItemRegistry.Registry.TROPHYMOONQUEEN.getItem()), new ItemStack(ItemRegistry.Registry.MOONSHIELD.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(ItemRegistry.Registry.AURORIANSTEELPICKAXE.getItem()), new ItemStack(ItemRegistry.Registry.TROPHYMOONQUEEN.getItem()), new ItemStack(ItemRegistry.Registry.QUEENSCHIPPER.getItem())));
+		addRecipe(new MoonlightForgeRecipe(new ItemStack(ItemRegistry.Registry.SILENTWOODBOW.getItem()), new ItemStack(ItemRegistry.Registry.TROPHYKEEPER.getItem()), new ItemStack(ItemRegistry.Registry.KEEPERSBOW.getItem())));
 
 		for (MoonlightForgeRecipe r : recipesForRemoval) {
 			MoonlightForgeRecipe rem = null;

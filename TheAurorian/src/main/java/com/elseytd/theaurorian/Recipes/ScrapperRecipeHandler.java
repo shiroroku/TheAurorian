@@ -1,6 +1,6 @@
 package com.elseytd.theaurorian.Recipes;
 
-import com.elseytd.theaurorian.TAItems;
+import com.elseytd.theaurorian.Registry.ItemRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -16,18 +16,18 @@ public class ScrapperRecipeHandler {
 		//Reminder: Basic scrap is equal to how many ingots would be needed if crafted like vanilla, this multiplies by two but no more than 9 for duplication reasons!
 		//Other tools: # of ingots * 6 = return nuggets
 
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.UMBRASWORD.getItem()), new ItemStack(TAItems.Registry.SCRAPUMBRA.getItem(), 4)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.UMBRAPICKAXE.getItem()), new ItemStack(TAItems.Registry.SCRAPUMBRA.getItem(), 6)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.UMBRASHIELD.getItem()), new ItemStack(TAItems.Registry.SCRAPUMBRA.getItem(), 9)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.SPIKEDCHESTPLATE.getItem()), new ItemStack(TAItems.Registry.SCRAPUMBRA.getItem(), 9)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.AURORIANITESWORD.getItem()), new ItemStack(TAItems.Registry.SCRAPAURORIANITE.getItem(), 4)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.AURORIANITEPICKAXE.getItem()), new ItemStack(TAItems.Registry.SCRAPAURORIANITE.getItem(), 6)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.AURORIANITEAXE.getItem()), new ItemStack(TAItems.Registry.SCRAPAURORIANITE.getItem(), 6)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.CRYSTALLINESWORD.getItem()), new ItemStack(TAItems.Registry.SCRAPCRYSTALLINE.getItem(), 4)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.CRYSTALLINEPICKAXE.getItem()), new ItemStack(TAItems.Registry.SCRAPCRYSTALLINE.getItem(), 6)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.CRYSTALLINESHIELD.getItem()), new ItemStack(TAItems.Registry.SCRAPCRYSTALLINE.getItem(), 9)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.ABSORPTIONORB.getItem()), new ItemStack(TAItems.Registry.SCRAPCRYSTALLINE.getItem(), 8)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.LIVINGDIVININGROD.getItem()), new ItemStack(TAItems.Registry.SCRAPCRYSTALLINE.getItem(), 4)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.UMBRASWORD.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPUMBRA.getItem(), 4)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.UMBRAPICKAXE.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPUMBRA.getItem(), 6)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.UMBRASHIELD.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPUMBRA.getItem(), 9)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.SPIKEDCHESTPLATE.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPUMBRA.getItem(), 9)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.AURORIANITESWORD.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPAURORIANITE.getItem(), 4)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.AURORIANITEPICKAXE.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPAURORIANITE.getItem(), 6)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.AURORIANITEAXE.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPAURORIANITE.getItem(), 6)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.CRYSTALLINESWORD.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPCRYSTALLINE.getItem(), 4)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.CRYSTALLINEPICKAXE.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPCRYSTALLINE.getItem(), 6)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.CRYSTALLINESHIELD.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPCRYSTALLINE.getItem(), 9)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.ABSORPTIONORB.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPCRYSTALLINE.getItem(), 8)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.LIVINGDIVININGROD.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPCRYSTALLINE.getItem(), 4)));
 
 		addRecipe(new ScrapperRecipe(new ItemStack(Items.IRON_SWORD), new ItemStack(Items.IRON_NUGGET, 12)));
 		addRecipe(new ScrapperRecipe(new ItemStack(Items.IRON_PICKAXE), new ItemStack(Items.IRON_NUGGET, 18)));
@@ -59,28 +59,28 @@ public class ScrapperRecipeHandler {
 		addRecipe(new ScrapperRecipe(new ItemStack(Items.DIAMOND_LEGGINGS), new ItemStack(Items.DIAMOND, 4)));
 		addRecipe(new ScrapperRecipe(new ItemStack(Items.DIAMOND_BOOTS), new ItemStack(Items.DIAMOND, 2)));
 
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.AURORIANSTEELSWORD.getItem()), new ItemStack(TAItems.Registry.AURORIANSTEELNUGGET.getItem(), 12)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.AURORIANSTEELPICKAXE.getItem()), new ItemStack(TAItems.Registry.AURORIANSTEELNUGGET.getItem(), 18)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.AURORIANSTEELAXE.getItem()), new ItemStack(TAItems.Registry.AURORIANSTEELNUGGET.getItem(), 18)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.AURORIANSTEELSHOVEL.getItem()), new ItemStack(TAItems.Registry.AURORIANSTEELNUGGET.getItem(), 6)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.AURORIANSTEELHOE.getItem()), new ItemStack(TAItems.Registry.AURORIANSTEELNUGGET.getItem(), 12)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.AURORIANSTEELARMORHELMET.getItem()), new ItemStack(TAItems.Registry.AURORIANSTEELNUGGET.getItem(), 30)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.AURORIANSTEELARMORCHESTPLATE.getItem()), new ItemStack(TAItems.Registry.AURORIANSTEELNUGGET.getItem(), 48)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.AURORIANSTEELARMORLEGGINGS.getItem()), new ItemStack(TAItems.Registry.AURORIANSTEELNUGGET.getItem(), 42)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.AURORIANSTEELARMORBOOTS.getItem()), new ItemStack(TAItems.Registry.AURORIANSTEELNUGGET.getItem(), 24)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.AURORIANSTEELSWORD.getItem()), new ItemStack(ItemRegistry.Registry.AURORIANSTEELNUGGET.getItem(), 12)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.AURORIANSTEELPICKAXE.getItem()), new ItemStack(ItemRegistry.Registry.AURORIANSTEELNUGGET.getItem(), 18)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.AURORIANSTEELAXE.getItem()), new ItemStack(ItemRegistry.Registry.AURORIANSTEELNUGGET.getItem(), 18)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.AURORIANSTEELSHOVEL.getItem()), new ItemStack(ItemRegistry.Registry.AURORIANSTEELNUGGET.getItem(), 6)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.AURORIANSTEELHOE.getItem()), new ItemStack(ItemRegistry.Registry.AURORIANSTEELNUGGET.getItem(), 12)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.AURORIANSTEELARMORHELMET.getItem()), new ItemStack(ItemRegistry.Registry.AURORIANSTEELNUGGET.getItem(), 30)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.AURORIANSTEELARMORCHESTPLATE.getItem()), new ItemStack(ItemRegistry.Registry.AURORIANSTEELNUGGET.getItem(), 48)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.AURORIANSTEELARMORLEGGINGS.getItem()), new ItemStack(ItemRegistry.Registry.AURORIANSTEELNUGGET.getItem(), 42)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.AURORIANSTEELARMORBOOTS.getItem()), new ItemStack(ItemRegistry.Registry.AURORIANSTEELNUGGET.getItem(), 24)));
 
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.MOONSTONESWORD.getItem()), new ItemStack(TAItems.Registry.MOONSTONENUGGET.getItem(), 12)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.MOONSTONEPICKAXE.getItem()), new ItemStack(TAItems.Registry.MOONSTONENUGGET.getItem(), 18)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.MOONSTONEAXE.getItem()), new ItemStack(TAItems.Registry.MOONSTONENUGGET.getItem(), 18)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.MOONSTONESHOVEL.getItem()), new ItemStack(TAItems.Registry.MOONSTONENUGGET.getItem(), 6)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.MOONSTONEHOE.getItem()), new ItemStack(TAItems.Registry.MOONSTONENUGGET.getItem(), 12)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.MOONSTONESHIELD.getItem()), new ItemStack(TAItems.Registry.MOONSTONENUGGET.getItem(), 36)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.MOONSTONESWORD.getItem()), new ItemStack(ItemRegistry.Registry.MOONSTONENUGGET.getItem(), 12)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.MOONSTONEPICKAXE.getItem()), new ItemStack(ItemRegistry.Registry.MOONSTONENUGGET.getItem(), 18)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.MOONSTONEAXE.getItem()), new ItemStack(ItemRegistry.Registry.MOONSTONENUGGET.getItem(), 18)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.MOONSTONESHOVEL.getItem()), new ItemStack(ItemRegistry.Registry.MOONSTONENUGGET.getItem(), 6)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.MOONSTONEHOE.getItem()), new ItemStack(ItemRegistry.Registry.MOONSTONENUGGET.getItem(), 12)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.MOONSTONESHIELD.getItem()), new ItemStack(ItemRegistry.Registry.MOONSTONENUGGET.getItem(), 36)));
 
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.CERULEANARMORHELMET.getItem()), new ItemStack(TAItems.Registry.CERULEANNUGGET.getItem(), 30)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.CERULEANARMORCHESTPLATE.getItem()), new ItemStack(TAItems.Registry.CERULEANNUGGET.getItem(), 48)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.CERULEANARMORLEGGINGS.getItem()), new ItemStack(TAItems.Registry.CERULEANNUGGET.getItem(), 42)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.CERULEANARMORBOOTS.getItem()), new ItemStack(TAItems.Registry.CERULEANNUGGET.getItem(), 24)));
-		addRecipe(new ScrapperRecipe(new ItemStack(TAItems.Registry.CERULEANSHIELD.getItem()), new ItemStack(TAItems.Registry.CERULEANNUGGET.getItem(), 36)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.CERULEANARMORHELMET.getItem()), new ItemStack(ItemRegistry.Registry.CERULEANNUGGET.getItem(), 30)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.CERULEANARMORCHESTPLATE.getItem()), new ItemStack(ItemRegistry.Registry.CERULEANNUGGET.getItem(), 48)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.CERULEANARMORLEGGINGS.getItem()), new ItemStack(ItemRegistry.Registry.CERULEANNUGGET.getItem(), 42)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.CERULEANARMORBOOTS.getItem()), new ItemStack(ItemRegistry.Registry.CERULEANNUGGET.getItem(), 24)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.CERULEANSHIELD.getItem()), new ItemStack(ItemRegistry.Registry.CERULEANNUGGET.getItem(), 36)));
 
 		for (ScrapperRecipe r : recipesForRemoval) {
 			ScrapperRecipe rem = null;

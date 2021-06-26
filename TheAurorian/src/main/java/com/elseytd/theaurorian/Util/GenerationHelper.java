@@ -1,7 +1,7 @@
 package com.elseytd.theaurorian.Util;
 
-import com.elseytd.theaurorian.TABlocks;
-import com.elseytd.theaurorian.TAConfig;
+import com.elseytd.theaurorian.Registry.BlockRegistry;
+import com.elseytd.theaurorian.AurorianConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
@@ -44,7 +44,7 @@ public class GenerationHelper {
 	public static boolean isNearStructure(IChunkSpecific structure, World worldIn, BlockPos pos, int range, int searchdistance) {
 		int chunkX = worldIn.getChunkFromBlockCoords(pos).x;
 		int chunkZ = worldIn.getChunkFromBlockCoords(pos).z;
-		if (worldIn.provider.getDimension() == TAConfig.Config_AurorianDimID) {
+		if (worldIn.provider.getDimension() == AurorianConfig.Config_AurorianDimID) {
 			for (int x = -(searchdistance / 2); x < (searchdistance / 2); x++) {
 				for (int z = -(searchdistance / 2); z < (searchdistance / 2); z++) {
 					if (structure.isValidChunkForGen(chunkX + x, chunkZ + z, 0, 0)) {
@@ -73,7 +73,7 @@ public class GenerationHelper {
 		int playerchunkZ = player.chunkCoordZ;
 		ChunkPos closest = null;
 		int closestdist = 0;
-		if (player.dimension == TAConfig.Config_AurorianDimID) {
+		if (player.dimension == AurorianConfig.Config_AurorianDimID) {
 			for (int x = -(distance / 2); x < (distance / 2); x++) {
 				for (int z = -(distance / 2); z < (distance / 2); z++) {
 					if (structure.isValidChunkForGen(playerchunkX + x, playerchunkZ + z, 0, 0)) {
@@ -128,7 +128,7 @@ public class GenerationHelper {
 		for (int x = 0; x <= 16; x++) {
 			for (int z = 0; z <= 16; z++) {
 				for (int y = 190; y >= 60; y--) {
-					if (worldIn.getBlockState(new BlockPos(pos.getX() + x, y, pos.getZ() + z)).getBlock() == TABlocks.Registry.AURORIANGRASS.getBlock()) {
+					if (worldIn.getBlockState(new BlockPos(pos.getX() + x, y, pos.getZ() + z)).getBlock() == BlockRegistry.Registry.AURORIANGRASS.getBlock()) {
 						if (y >= high) {
 							high = y;
 						}

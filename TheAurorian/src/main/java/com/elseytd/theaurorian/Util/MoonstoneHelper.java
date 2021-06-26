@@ -1,7 +1,7 @@
 package com.elseytd.theaurorian.Util;
 
-import com.elseytd.theaurorian.TAConfig;
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.AurorianConfig;
+import com.elseytd.theaurorian.AurorianUtil;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -23,12 +23,12 @@ public class MoonstoneHelper {
 	 * Called whenever Moonstone tools take damage.
 	 */
 	public static void handleMoonstoneDurability(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
-		if (entityLiving.dimension == TAConfig.Config_AurorianDimID || (entityLiving.dimension == 0 && !entityLiving.world.isDaytime())) {
-			if (TAUtil.randomChanceOf(0.50F)) {
+		if (entityLiving.dimension == AurorianConfig.Config_AurorianDimID || (entityLiving.dimension == 0 && !entityLiving.world.isDaytime())) {
+			if (AurorianUtil.randomChanceOf(0.50F)) {
 				stack.damageItem(1, entityLiving);
 			}
 		} else {
-			if (TAUtil.randomChanceOf(0.50F)) {
+			if (AurorianUtil.randomChanceOf(0.50F)) {
 				stack.damageItem(1, entityLiving);
 			}
 			stack.damageItem(1, entityLiving);

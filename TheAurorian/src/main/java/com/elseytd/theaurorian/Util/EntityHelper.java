@@ -1,6 +1,6 @@
 package com.elseytd.theaurorian.Util;
 
-import com.elseytd.theaurorian.TAUtil;
+import com.elseytd.theaurorian.AurorianUtil;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
@@ -31,7 +31,7 @@ public class EntityHelper {
 	public static List<EntityLivingBase> getEntitiesAround(World worldIn, double x, double y, double z, double distance, double height, boolean debugRender) {
 		AxisAlignedBB aabb = new AxisAlignedBB(x - distance, y - height, z - distance, x + distance, y + height, z + distance);
 		if (debugRender) {
-			TAUtil.renderAABBBounds(worldIn, aabb);
+			AurorianUtil.renderAABBBounds(worldIn, aabb);
 		}
 		return worldIn.getEntitiesWithinAABB(EntityLivingBase.class, aabb);
 	}
