@@ -3,7 +3,6 @@ package com.shiroroku.theaurorian.World;
 import com.shiroroku.theaurorian.Registry.BiomeRegistry;
 import com.shiroroku.theaurorian.World.Biomes.AurorianBiome;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.GenLayerSmooth;
