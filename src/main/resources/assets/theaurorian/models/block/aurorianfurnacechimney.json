@@ -1,0 +1,7 @@
+{
+    "parent": "theaurorian:block/chimney_post",
+    "textures": {
+        "wall": "theaurorian:blocks/aurorianfurnacechimney",
+        "top": "theaurorian:blocks/aurorianfurnacechimneytop"
+    }
+}
