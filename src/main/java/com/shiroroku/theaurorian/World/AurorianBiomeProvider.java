@@ -15,7 +15,7 @@ import java.util.Collections;
 
 public class AurorianBiomeProvider extends BiomeProvider {
 
-	public static AurorianBiome[] biomes = new AurorianBiome[] { BiomeRegistry.aurorianplains, BiomeRegistry.aurorianforest, BiomeRegistry.aurorianforesthills, BiomeRegistry.aurorianlakes, BiomeRegistry.weepingwillowforest, BiomeRegistry.aurorianovergrowth };
+	public static AurorianBiome[] biomes = new AurorianBiome[] { BiomeRegistry.aurorianplains, BiomeRegistry.aurorianforest, BiomeRegistry.aurorianforesthills, BiomeRegistry.aurorianlakes, BiomeRegistry.weepingwillowforest };
 
 	public AurorianBiomeProvider(WorldInfo inf) {
 		super(inf);

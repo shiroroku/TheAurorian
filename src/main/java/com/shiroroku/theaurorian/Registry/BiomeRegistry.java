@@ -21,7 +21,6 @@ public class BiomeRegistry {
 	public final static AurorianPlainsBiome aurorianplains = null;
 	public final static WeepingWillowForestBiome weepingwillowforest = null;
 	public final static AurorianLakesBiome aurorianlakes = null;
-	public final static AurorianOvergrowthBiome aurorianovergrowth = null;
 
 	@SubscribeEvent
 	public static void registerBiomes(RegistryEvent.Register<Biome> event) {
@@ -30,7 +29,6 @@ public class BiomeRegistry {
 		event.getRegistry().register(new AurorianPlainsBiome().setRegistryName(AurorianMod.MODID, AurorianPlainsBiome.BIOMENAME));
 		event.getRegistry().register(new WeepingWillowForestBiome().setRegistryName(AurorianMod.MODID, WeepingWillowForestBiome.BIOMENAME));
 		event.getRegistry().register(new AurorianLakesBiome().setRegistryName(AurorianMod.MODID, AurorianLakesBiome.BIOMENAME));
-		event.getRegistry().register(new AurorianOvergrowthBiome().setRegistryName(AurorianMod.MODID, AurorianOvergrowthBiome.BIOMENAME));
 	}
 
 	public static void initBiomeManagerAndDictionary() {
@@ -48,8 +46,5 @@ public class BiomeRegistry {
 
 		BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(aurorianlakes, 0));
 		BiomeDictionary.addTypes(aurorianlakes, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.WATER);
-
-		BiomeManager.addBiome(BiomeType.COOL, new BiomeEntry(aurorianovergrowth, 0));
-		BiomeDictionary.addTypes(aurorianovergrowth, BiomeDictionary.Type.COLD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.FOREST);
 	}
 }
