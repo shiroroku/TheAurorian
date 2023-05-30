@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "theaurorian:blocks/silentwoodlogtop",
+    "side": "theaurorian:blocks/silentwoodlogside"
+  }
+}

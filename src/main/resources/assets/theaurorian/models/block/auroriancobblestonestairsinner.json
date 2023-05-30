@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "theaurorian:blocks/auroriancobblestone",
+        "top": "theaurorian:blocks/auroriancobblestone",
+        "side": "theaurorian:blocks/auroriancobblestone"
+    }
+}
