@@ -6,9 +6,9 @@
     "pages": [
         {
             "type": "link",
-            "link_text": "Aurorian Wiki",
-            "text": "Here is where you can find the wiki for this mod, as well as the source code!",
-            "url": "https://github.com/shiroroku/TheAurorian/wiki"
+            "link_text": "Aurorian Github",
+            "text": "Here is where you can find the source code!",
+            "url": "https://github.com/shiroroku/TheAurorian"
         }
     ]
 }
