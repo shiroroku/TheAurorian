@@ -3,7 +3,7 @@
   "modid": "theaurorian",
   "name": "The Aurorian",
   "description": "Explore a land beyond this world, bathed in moonlight and shrouded in nature.",
-  "version": "${version}",
+  "version": "1.1",
   "mcversion": "${mcversion}",
   "url": "https://github.com/shiroroku/TheAurorian",
   "updateUrl": "",
