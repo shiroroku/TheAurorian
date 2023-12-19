@@ -52,7 +52,7 @@ public class SpiritEntity extends EntityMob {
 
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((AurorianConfig.Config_NIGHTMAREMODE ? 40 * AurorianConfig.Config_NIGHTMAREMODE_Multiplier : 20));
-		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((AurorianConfig.Config_NIGHTMAREMODE ? 0.5D * AurorianConfig.Config_NIGHTMAREMODE_Multiplier : 0.24D));
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((AurorianConfig.Config_NIGHTMAREMODE ? 0.5D * AurorianConfig.Config_NIGHTMAREMODE_Multiplier : 0.2D));
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue((AurorianConfig.Config_NIGHTMAREMODE ? 6D * AurorianConfig.Config_NIGHTMAREMODE_Multiplier : 3D));
 		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(0D);
 	}
