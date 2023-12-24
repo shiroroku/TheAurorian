@@ -54,7 +54,7 @@ public class DungeonKeyItem extends Item {
 		this.setRegistryName(key.getName());
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName(AurorianMod.MODID + "." + key.getName());
-		this.setMaxDamage(1);
+		this.setMaxDamage(3);
 		this.itemKey = key;
 	}
 

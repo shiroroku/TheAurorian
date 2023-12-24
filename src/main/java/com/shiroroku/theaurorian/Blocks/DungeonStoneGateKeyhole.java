@@ -105,7 +105,7 @@ public class DungeonStoneGateKeyhole extends Block {
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (!playerIn.isSneaking() && this.isKey(playerIn.getHeldItem(hand).getItem())) {
-			playerIn.getHeldItem(hand).damageItem(2, playerIn);
+			playerIn.getHeldItem(hand).damageItem(1, playerIn);
 			this.breakGateBlocks(worldIn, pos);
 			if (!worldIn.isRemote) {
 				worldIn.destroyBlock(pos, false);
