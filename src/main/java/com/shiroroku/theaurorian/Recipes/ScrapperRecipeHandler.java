@@ -23,11 +23,11 @@ public class ScrapperRecipeHandler {
 		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.AURORIANITESWORD.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPAURORIANITE.getItem(), 4)));
 		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.AURORIANITEPICKAXE.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPAURORIANITE.getItem(), 6)));
 		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.AURORIANITEAXE.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPAURORIANITE.getItem(), 6)));
+		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.LIVINGDIVININGROD.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPAURORIANITE.getItem(), 4)));
 		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.CRYSTALLINESWORD.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPCRYSTALLINE.getItem(), 4)));
 		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.CRYSTALLINEPICKAXE.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPCRYSTALLINE.getItem(), 6)));
 		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.CRYSTALLINESHIELD.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPCRYSTALLINE.getItem(), 9)));
 		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.ABSORPTIONORB.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPCRYSTALLINE.getItem(), 8)));
-		addRecipe(new ScrapperRecipe(new ItemStack(ItemRegistry.Registry.LIVINGDIVININGROD.getItem()), new ItemStack(ItemRegistry.Registry.SCRAPCRYSTALLINE.getItem(), 4)));
 
 		addRecipe(new ScrapperRecipe(new ItemStack(Items.IRON_SWORD), new ItemStack(Items.IRON_NUGGET, 12)));
 		addRecipe(new ScrapperRecipe(new ItemStack(Items.IRON_PICKAXE), new ItemStack(Items.IRON_NUGGET, 18)));
