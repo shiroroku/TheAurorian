@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "I I",
+    "I I"
+  ],
+  "key": {
+    "I": {
+      "item": "theaurorian:cerulean_ingot"
+    }
+  },
+  "result": {
+    "item": "theaurorian:cerulean_leggings"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "theaurorian:scrapper",
+  "input": {
+    "item": "theaurorian:crystalline_sword"
+  },
+  "output": {
+    "item": "theaurorian:crystalline_scrap",
+    "count": 6
+  }
+}

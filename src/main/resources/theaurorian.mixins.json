@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "shiroroku.theaurorian.Mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "theaurorian.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

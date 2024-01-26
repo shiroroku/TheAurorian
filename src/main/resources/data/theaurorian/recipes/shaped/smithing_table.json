@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "II",
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "theaurorian:silentwood_planks"
+    },
+    "I": {
+      "item": "theaurorian:cerulean_ingot"
+    }
+  },
+  "result": {
+    "item": "minecraft:smithing_table"
+  }
+}

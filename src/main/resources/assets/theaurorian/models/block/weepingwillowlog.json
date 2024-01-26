@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "end": "theaurorian:blocks/weepingwillowlogtop",
-    "side": "theaurorian:blocks/weepingwillowlogside"
-  }
-}

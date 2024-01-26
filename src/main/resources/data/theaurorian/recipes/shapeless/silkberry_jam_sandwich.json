@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "theaurorian:silkberry_jam"
+    },
+    {
+      "item": "theaurorian:lavender_bread"
+    }
+  ],
+  "result": {
+    "item": "theaurorian:silkberry_jam_sandwich"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "cookingtime": 100,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "theaurorian:cerulean_ore"
+  },
+  "result": "theaurorian:cerulean_ingot"
+}

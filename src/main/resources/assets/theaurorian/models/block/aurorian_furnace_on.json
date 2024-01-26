@@ -1,0 +1,6 @@
+{
+  "parent": "theaurorian:block/aurorian_furnace_off",
+  "textures": {
+    "front": "theaurorian:block/aurorian_furnace_front_on"
+  }
+}

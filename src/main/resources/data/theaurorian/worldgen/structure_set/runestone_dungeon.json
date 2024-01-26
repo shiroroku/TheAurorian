@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "theaurorian:runestone_dungeon",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 4244240,
+    "spacing": 24,
+    "separation": 18,
+    "type": "minecraft:random_spread"
+  }
+}

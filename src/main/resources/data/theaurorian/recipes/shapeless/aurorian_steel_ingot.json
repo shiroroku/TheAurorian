@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "theaurorian:aurorianite_ingot"
+    },
+    {
+      "item": "theaurorian:crystalline_ingot"
+    },
+    {
+      "item": "theaurorian:umbra_ingot"
+    },
+    {
+      "item": "theaurorian:moonstone_ingot"
+    },
+    {
+      "item": "theaurorian:cerulean_ingot"
+    }
+  ],
+  "result": {
+    "item": "theaurorian:aurorian_steel_ingot",
+    "count": 2
+  }
+}

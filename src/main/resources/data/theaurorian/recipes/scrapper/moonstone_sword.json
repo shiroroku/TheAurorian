@@ -1,0 +1,10 @@
+{
+  "type": "theaurorian:scrapper",
+  "input": {
+    "item": "theaurorian:moonstone_sword"
+  },
+  "output": {
+    "item": "theaurorian:moonstone_nugget",
+    "count": 12
+  }
+}

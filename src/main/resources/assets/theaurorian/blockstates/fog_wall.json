@@ -1,0 +1,20 @@
+{
+    "variants": {
+      "facing=north": {
+        "model": "theaurorian:block/fog_wall",
+        "y": 0
+      },
+      "facing=east": {
+        "model": "theaurorian:block/fog_wall",
+        "y": 90
+      },
+      "facing=south": {
+        "model": "theaurorian:block/fog_wall",
+        "y": 180
+      },
+      "facing=west": {
+        "model": "theaurorian:block/fog_wall",
+        "y": 270
+      }
+    }
+  }

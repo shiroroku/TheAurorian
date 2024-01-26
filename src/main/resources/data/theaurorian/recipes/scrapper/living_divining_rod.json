@@ -1,0 +1,10 @@
+{
+  "type": "theaurorian:scrapper",
+  "input": {
+    "item": "theaurorian:living_divining_rod"
+  },
+  "output": {
+    "item": "theaurorian:aurorianite_scrap",
+    "count": 4
+  }
+}

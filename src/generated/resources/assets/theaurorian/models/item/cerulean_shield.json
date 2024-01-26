@@ -1,0 +1,14 @@
+{
+  "parent": "theaurorian:item/shield",
+  "overrides": [
+    {
+      "model": "theaurorian:item/cerulean_shield_blocking",
+      "predicate": {
+        "minecraft:blocking": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "theaurorian:item/cerulean_shield"
+  }
+}

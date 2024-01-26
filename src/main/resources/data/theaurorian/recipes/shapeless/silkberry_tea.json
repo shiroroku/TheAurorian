@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "theaurorian:cup"
+    },
+    {
+      "item": "theaurorian:silkberry"
+    },
+    {
+      "item": "theaurorian:silkberry"
+    },
+    {
+      "item": "theaurorian:silkberry"
+    },
+    {
+      "item": "theaurorian:silkberry"
+    },
+    {
+      "item": "theaurorian:silkberry"
+    },
+    {
+      "item": "theaurorian:silkberry"
+    },
+    {
+      "item": "theaurorian:silkberry"
+    },
+    {
+      "item": "theaurorian:silkberry"
+    }
+  ],
+  "result": {
+    "item": "theaurorian:silkberry_tea"
+  }
+}

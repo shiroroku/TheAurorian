@@ -1,7 +1,0 @@
-{
-    "parent": "block/pane_post",
-    "textures": {
-        "edge": "theaurorian:blocks/aurorianglasspaneside",
-        "pane": "theaurorian:blocks/aurorianglass"
-    }
-}

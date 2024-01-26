@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "theaurorian:moon_temple_key_fragment"
+    },
+    {
+      "item": "theaurorian:moon_temple_key_fragment"
+    }
+  ],
+  "result": {
+    "item": "theaurorian:moon_temple_interior_key"
+  }
+}

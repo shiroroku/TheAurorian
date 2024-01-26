@@ -1,0 +1,84 @@
+{
+  "type": "theaurorian:the_aurorian",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "theaurorian:the_aurorian",
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "theaurorian:aurorian_forest",
+          "parameters": {
+            "temperature": 0,
+            "humidity": 0.2,
+            "continentalness": -0.5,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "theaurorian:aurorian_plains",
+          "parameters": {
+            "temperature": 0,
+            "humidity": 0.1,
+            "continentalness": -0.3,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "theaurorian:aurorian_rough_forest",
+          "parameters": {
+            "temperature": 0,
+            "humidity": 0,
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "theaurorian:aurorian_forest",
+          "parameters": {
+            "temperature": 0,
+            "humidity": 0,
+            "continentalness": 0.05,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "theaurorian:aurorian_plains",
+          "parameters": {
+            "temperature": 0,
+            "humidity": 0,
+            "continentalness": -0.2,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "theaurorian:aurorian_plains",
+          "parameters": {
+            "temperature": 0,
+            "humidity": 0,
+            "continentalness": 0.5,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        }
+      ]
+    }
+  }
+}

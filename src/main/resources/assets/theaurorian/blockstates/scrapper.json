@@ -1,19 +1,20 @@
 {
-	"variants": {
-		"facing=north": {
-			"model": "theaurorian:scrapper"
-		},
-		"facing=south": {
-			"model": "theaurorian:scrapper",
-			"y": 180
-		},
-		"facing=west": {
-			"model": "theaurorian:scrapper",
-			"y": 270
-		},
-		"facing=east": {
-			"model": "theaurorian:scrapper",
-			"y": 90
-		}
-	}
-}
+    "variants": {
+      "facing=north": {
+        "model": "theaurorian:block/scrapper",
+        "y": 0
+      },
+      "facing=east": {
+        "model": "theaurorian:block/scrapper",
+        "y": 90
+      },
+      "facing=south": {
+        "model": "theaurorian:block/scrapper",
+        "y": 180
+      },
+      "facing=west": {
+        "model": "theaurorian:block/scrapper",
+        "y": 270
+      }
+    }
+  }

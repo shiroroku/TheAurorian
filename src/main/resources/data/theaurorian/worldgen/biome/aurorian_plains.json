@@ -1,0 +1,41 @@
+{
+  "temperature": 0.8,
+  "downfall": 0.4,
+  "precipitation": "none",
+  "effects": {
+    "sky_color": 7972607,
+    "fog_color": 12638463,
+    "water_color": 16777215,
+    "water_fog_color": 10131862
+  },
+  "spawners": {
+    "monster": [
+      {
+        "type": "theaurorian:hollow",
+        "maxCount": 6,
+        "minCount": 4,
+        "weight": 100
+      }
+    ]
+  },
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:cave_extra_underground",
+      "minecraft:canyon"
+    ]
+  },
+  "features": [
+    [
+      "theaurorian:ore_moonstone",
+      "theaurorian:ore_cerulean",
+      "theaurorian:ore_geode"
+    ],
+    [
+      "theaurorian:lavender_patch",
+      "theaurorian:aurorian_grass_patch",
+      "theaurorian:aurorian_plants"
+    ]
+  ]
+}

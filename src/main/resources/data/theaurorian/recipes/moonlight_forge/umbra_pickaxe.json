@@ -1,0 +1,12 @@
+{
+  "type": "theaurorian:moonlight_forge",
+  "input": {
+    "item": "theaurorian:moonstone_pickaxe"
+  },
+  "catalyst": {
+    "item": "theaurorian:umbra_ingot"
+  },
+  "output": {
+    "item": "theaurorian:umbra_pickaxe"
+  }
+}

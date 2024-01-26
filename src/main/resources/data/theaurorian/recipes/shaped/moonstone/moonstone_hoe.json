@@ -1,0 +1,20 @@
+
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "II",
+    " S",
+    " S"
+  ],
+  "key": {
+    "S": {
+      "item": "theaurorian:silentwood_stick"
+    },
+    "I": {
+      "item": "theaurorian:moonstone_ingot"
+    }
+  },
+  "result": {
+    "item": "theaurorian:moonstone_hoe"
+  }
+}

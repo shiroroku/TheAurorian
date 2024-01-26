@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "theaurorian:crystalline_ingot"
+    }
+  ],
+  "result": {
+    "item": "theaurorian:crystalline_scrap",
+    "count": 9
+  }
+}

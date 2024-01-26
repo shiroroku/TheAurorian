@@ -1,0 +1,6 @@
+{
+  "parent": "theaurorian:item/crystalline_sword_charging",
+  "textures": {
+    "layer0": "theaurorian:item/crystalline_sword_charging_2"
+  }
+}

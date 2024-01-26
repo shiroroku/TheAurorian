@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I I",
+    "SS ",
+    "SSI"
+  ],
+  "key": {
+    "I": {
+      "item": "theaurorian:cerulean_ingot"
+    },
+    "S": {
+      "item": "theaurorian:silentwood_stick"
+    }
+  },
+  "result": {
+    "item": "theaurorian:lockpicks"
+  }
+}

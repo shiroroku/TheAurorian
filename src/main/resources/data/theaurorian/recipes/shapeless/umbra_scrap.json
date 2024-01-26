@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "theaurorian:umbra_ingot"
+    }
+  ],
+  "result": {
+    "item": "theaurorian:umbra_scrap",
+    "count": 9
+  }
+}

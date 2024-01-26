@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " IS",
+    "I S",
+    " IS"
+  ],
+  "key": {
+    "I": {
+      "item": "theaurorian:silentwood_stick"
+    },
+    "S": {
+      "item": "theaurorian:plant_fiber"
+    }
+  },
+  "result": {
+    "item": "theaurorian:silentwood_bow"
+  }
+}

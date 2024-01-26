@@ -1,6 +1,0 @@
-{
-    "parent": "theaurorian:item/silentwoodbow",
-    "textures": {
-        "layer0": "theaurorian:items/silentwoodbowpulling2"
-    }
-}

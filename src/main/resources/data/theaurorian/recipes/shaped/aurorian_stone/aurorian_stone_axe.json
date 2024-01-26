@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "II",
+    "IS",
+    " S"
+  ],
+  "key": {
+    "S": {
+      "item": "theaurorian:silentwood_stick"
+    },
+    "I": {
+      "tag": "theaurorian:aurorian_stones"
+    }
+  },
+  "result": {
+    "item": "theaurorian:aurorian_stone_axe"
+  }
+}

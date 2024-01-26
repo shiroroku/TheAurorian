@@ -1,7 +1,0 @@
-{
-    "parent": "block/pane_side_alt",
-    "textures": {
-        "edge": "theaurorian:blocks/moonglasspaneside",
-        "pane": "theaurorian:blocks/moonglass"
-    }
-}

@@ -1,0 +1,15 @@
+{
+  "parent": "item/handheld",
+  "loader": "forge:separate-perspective",
+  "base": {
+    "parent": "theaurorian:item/umbra_greatsword_handheld"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "theaurorian:item/umbra_greatsword_gui"
+    },
+    "fixed": {
+      "parent": "theaurorian:item/umbra_greatsword_gui"
+    }
+  }
+}

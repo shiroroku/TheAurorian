@@ -1,0 +1,53 @@
+{
+  "type": "minecraft:flower",
+  "config": {
+    "tries": 64,
+    "xz_spread": 6,
+    "y_spread": 2,
+    "feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:noise_threshold_provider",
+            "seed": 2345,
+            "noise": {
+              "firstOctave": 0,
+              "amplitudes": [
+                1
+              ]
+            },
+            "scale": 0.005,
+            "threshold": -0.8,
+            "high_chance": 0.33333334,
+            "default_state": {
+              "Name": "theaurorian:lavender_block"
+            },
+            "low_states": [
+              {
+                "Name": "theaurorian:lavender_block"
+              }
+            ],
+            "high_states": [
+              {
+                "Name": "theaurorian:silkberry_block"
+              },
+              {
+                "Name": "theaurorian:petunia"
+              }
+            ]
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "theaurorian:moonlight_forge",
+  "input": {
+    "item": "theaurorian:moonstone_sword"
+  },
+  "catalyst": {
+    "item": "theaurorian:aurorianite_ingot"
+  },
+  "output": {
+    "item": "theaurorian:aurorianite_sword"
+  }
+}

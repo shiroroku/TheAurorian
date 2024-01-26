@@ -1,0 +1,70 @@
+{
+  "type": "minecraft:tree",
+  "config": {
+    "force_dirt": false,
+    "ignore_vines": true,
+    "decorators": [],
+    "dirt_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "theaurorian:aurorian_dirt"
+      }
+    },
+    "trunk_placer": {
+      "type": "minecraft:straight_trunk_placer",
+      "base_height": 12,
+      "height_rand_a": 2,
+      "height_rand_b": 1
+    },
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "theaurorian:silentwood_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    },
+    "foliage_placer": {
+      "type": "minecraft:spruce_foliage_placer",
+      "radius": {
+        "type": "minecraft:uniform",
+        "value": {
+          "min_inclusive": 2,
+          "max_inclusive": 3
+        }
+      },
+      "offset": {
+        "type": "minecraft:uniform",
+        "value": {
+          "min_inclusive": 0,
+          "max_inclusive": 2
+        }
+      },
+      "trunk_height": {
+        "type": "minecraft:uniform",
+        "value": {
+          "min_inclusive": 5,
+          "max_inclusive": 7
+        }
+      }
+    },
+    "foliage_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "theaurorian:silentwood_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "minimum_size": {
+      "type": "minecraft:two_layers_feature_size",
+      "limit": 2,
+      "lower_size": 0,
+      "upper_size": 2
+    }
+  }
+}

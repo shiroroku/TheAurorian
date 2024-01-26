@@ -1,0 +1,45 @@
+{
+  "parent": "block/cube",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "wall": "theaurorian:block/chimney_side",
+    "end": "theaurorian:block/chimney_end",
+    "particle": "#wall"
+  },
+  "elements": [
+    {
+      "from": [
+        4,
+        0,
+        4
+      ],
+      "to": [
+        12,
+        16,
+        12
+      ],
+      "faces": {
+        "down": {
+          "texture": "#end",
+          "cullface": "down"
+        },
+        "up": {
+          "texture": "#end",
+          "cullface": "up"
+        },
+        "north": {
+          "texture": "#wall"
+        },
+        "south": {
+          "texture": "#wall"
+        },
+        "west": {
+          "texture": "#wall"
+        },
+        "east": {
+          "texture": "#wall"
+        }
+      }
+    }
+  ]
+}

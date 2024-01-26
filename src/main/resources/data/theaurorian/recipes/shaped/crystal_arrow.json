@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I",
+    "S",
+    "L"
+  ],
+  "key": {
+    "I": {
+      "item": "theaurorian:crystal"
+    },
+    "S": {
+      "item": "theaurorian:silentwood_stick"
+    },
+    "L": {
+      "item": "theaurorian:silentwood_leaves"
+    }
+  },
+  "result": {
+    "item": "theaurorian:crystal_arrow",
+    "count": 6
+  }
+}

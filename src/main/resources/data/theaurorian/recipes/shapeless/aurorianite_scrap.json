@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "theaurorian:aurorianite_ingot"
+    }
+  ],
+  "result": {
+    "item": "theaurorian:aurorianite_scrap",
+    "count": 9
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "theaurorian:scrapper",
+  "input": {
+    "item": "theaurorian:absorption_orb"
+  },
+  "output": {
+    "item": "theaurorian:crystalline_scrap",
+    "count": 8
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ISI",
+    "IOI",
+    "CFC"
+  ],
+  "key": {
+    "S": {
+      "item": "theaurorian:moon_gem"
+    },
+    "F": {
+      "item": "theaurorian:aurorian_furnace"
+    },
+    "I": {
+      "item": "theaurorian:silentwood_stick"
+    },
+    "O": {
+      "item": "theaurorian:silentwood_crafting_table"
+    },
+    "C": {
+      "tag": "theaurorian:aurorian_stones"
+    }
+  },
+  "result": {
+    "item": "theaurorian:moonlight_forge"
+  }
+}

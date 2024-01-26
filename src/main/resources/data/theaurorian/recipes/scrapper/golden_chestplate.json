@@ -1,0 +1,10 @@
+{
+  "type": "theaurorian:scrapper",
+  "input": {
+    "item": "minecraft:golden_chestplate"
+  },
+  "output": {
+    "item": "minecraft:gold_nugget",
+    "count": 48
+  }
+}

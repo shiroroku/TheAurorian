@@ -1,0 +1,12 @@
+{
+  "type": "theaurorian:moonlight_forge",
+  "input": {
+    "item": "theaurorian:cerulean_boots"
+  },
+  "catalyst": {
+    "item": "theaurorian:aurorian_steel_ingot"
+  },
+  "output": {
+    "item": "theaurorian:aurorian_steel_boots"
+  }
+}

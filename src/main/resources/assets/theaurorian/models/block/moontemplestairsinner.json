@@ -1,8 +1,0 @@
-{
-	"parent": "block/inner_stairs",
-	"textures": {
-		"bottom": "theaurorian:blocks/moontemplebricks",
-		"top": "theaurorian:blocks/moontemplebricks",
-		"side": "theaurorian:blocks/moontemplebricks"
-	}
-}

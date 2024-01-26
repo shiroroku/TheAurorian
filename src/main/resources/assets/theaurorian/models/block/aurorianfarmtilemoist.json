@@ -1,8 +1,0 @@
-{
-	"parent": "block/farmland",
-	"textures": {
-		"particle": "theaurorian:blocks/auroriandirt",
-		"dirt": "theaurorian:blocks/auroriandirt",
-		"top": "theaurorian:blocks/aurorianfarmtilewet"
-	}
-}

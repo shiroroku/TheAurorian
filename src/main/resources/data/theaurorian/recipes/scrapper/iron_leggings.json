@@ -1,0 +1,10 @@
+{
+  "type": "theaurorian:scrapper",
+  "input": {
+    "item": "minecraft:iron_leggings"
+  },
+  "output": {
+    "item": "minecraft:iron_nugget",
+    "count": 42
+  }
+}

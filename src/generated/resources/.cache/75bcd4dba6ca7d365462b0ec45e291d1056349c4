@@ -1,0 +1,20 @@
+// 1.19.2	2024-02-16T15:36:18.754735658	Tags for minecraft:block
+8e484aa9b838c7d27ddf3485863f09c889280e15 data/forge/tags/blocks/ores.json
+17c0cce815d32f9b3c26aec5bbf37e02a0472a4c data/minecraft/tags/blocks/deepslate_ore_replaceables.json
+7c9955f473dc23c07fa9515f7f2794d50cd1408c data/minecraft/tags/blocks/dirt.json
+67003f2f07aea2540262d5136f3000c5e186ddd8 data/minecraft/tags/blocks/flowers.json
+08aa0ddf749cbe4d23b58e535778c6ba8a9b23e4 data/minecraft/tags/blocks/leaves.json
+57f5b0ce211cd7e774040d931915386ae89a3380 data/minecraft/tags/blocks/logs_that_burn.json
+2e62e3dfe7f9a83c4711d50c38ef84e79acaa670 data/minecraft/tags/blocks/mineable/axe.json
+3bae596e7611c96523e235c9c0d42fdc1865331f data/minecraft/tags/blocks/mineable/pickaxe.json
+7c9955f473dc23c07fa9515f7f2794d50cd1408c data/minecraft/tags/blocks/mineable/shovel.json
+7474587f7cb7d3b6e75281b2b34795bace7d4779 data/minecraft/tags/blocks/needs_stone_tool.json
+1ffa81e678a299783db31023ef435426d32cb831 data/minecraft/tags/blocks/planks.json
+9628fa3137b0b76086d4422d7f4b99d8b5105940 data/minecraft/tags/blocks/replaceable_plants.json
+fc4abefa323050c3024b18f4eff7829b95125670 data/minecraft/tags/blocks/saplings.json
+43c5e5e0009011c2bf59ba7abd15fbb5584b1ae8 data/minecraft/tags/blocks/stairs.json
+96cf934ecdc65dccadd44b604209a8d364e54ec0 data/minecraft/tags/blocks/stone_ore_replaceables.json
+aa10960d590cbb00738b837fc1795e3ba65b39e3 data/theaurorian/tags/blocks/cerulean_ore.json
+8421c5570291b24d5d262009aeb91ad8ab610f9a data/theaurorian/tags/blocks/dungeon_bricks.json
+5791dcf0f4733c3a2abd1d9caabed85186bb09ab data/theaurorian/tags/blocks/dungeon_gates.json
+1b4df3617da1989dcf76114e0af4220d14d1b449 data/theaurorian/tags/blocks/moonstone_ore.json

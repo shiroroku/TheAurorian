@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "I I",
+    "I I"
+  ],
+  "key": {
+    "I": {
+      "item": "theaurorian:spectral_silk"
+    }
+  },
+  "result": {
+    "item": "theaurorian:spectral_leggings"
+  }
+}

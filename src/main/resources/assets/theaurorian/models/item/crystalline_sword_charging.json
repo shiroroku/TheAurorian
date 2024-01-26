@@ -1,0 +1,43 @@
+{
+  "parent": "item/handheld",
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [
+        0,
+        -90,
+        120
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        0,
+        90,
+        -120
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        -90,
+        110
+      ],
+      "translation": [
+        2,
+        4,
+        -4
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        0,
+        90,
+        -110
+      ],
+      "translation": [
+        2,
+        4,
+        -4
+      ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "I I",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "tag": "theaurorian:aurorian_stones"
+    }
+  },
+  "result": {
+    "item": "theaurorian:aurorian_furnace"
+  }
+}

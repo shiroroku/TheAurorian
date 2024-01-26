@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "theaurorian:block/aurorian_grass"
+      },
+      {
+        "model": "theaurorian:block/aurorian_grass",
+        "y": 90
+      },
+      {
+        "model": "theaurorian:block/aurorian_grass",
+        "y": 180
+      },
+      {
+        "model": "theaurorian:block/aurorian_grass",
+        "y": 270
+      }
+    ]
+  }
+}

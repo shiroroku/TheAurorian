@@ -1,0 +1,18 @@
+
+    - loot tables use item shears instead of shears tag, meaning sickles wont work fully as shears anymore, though i fixed it for aurorian stuff (leaves, plants)
+    - tool tier settings arent possible anymore, config registers after item registry
+    - 1.19.3 added DatapackBuiltinEntriesProvider for worldgen, so for now its manual >.>
+
+    to do:
+    - silentwood abilities
+    - aurorian moon rotation
+    - key item models
+    - spectral armor transparency
+    - dark stone dungeon and mobs
+    - moon temple dungeon and mobs
+    - ruin structures
+    - farming
+    - dungeon locator and boss weapons
+    - aurorian portal
+    - dungeon keeper
+    - probably lots more im forgetting...

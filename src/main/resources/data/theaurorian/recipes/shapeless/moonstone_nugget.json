@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "theaurorian:moonstone_ingot"
+    }
+  ],
+  "result": {
+    "item": "theaurorian:moonstone_nugget",
+    "count": 9
+  }
+}

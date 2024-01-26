@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "theaurorian:cerulean_ingot"
+    }
+  ],
+  "result": {
+    "item": "theaurorian:cerulean_nugget",
+    "count": 9
+  }
+}

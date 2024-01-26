@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "ISI",
+    "CCC"
+  ],
+  "key": {
+    "I": {
+      "item": "theaurorian:cerulean_ingot"
+    },
+    "S": {
+      "item": "theaurorian:aurorian_furnace"
+    },
+    "C": {
+      "tag": "theaurorian:aurorian_stones"
+    }
+  },
+  "result": {
+    "item": "theaurorian:scrapper"
+  }
+}

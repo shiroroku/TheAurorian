@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "theaurorian:blocks/aurorianstonebrick",
-        "top": "theaurorian:blocks/aurorianstonebrick",
-        "side": "theaurorian:blocks/aurorianstonebrick"
-    }
-}

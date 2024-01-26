@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "theaurorian:blocks/runestone",
-        "top": "theaurorian:blocks/runestone",
-        "side": "theaurorian:blocks/runestone"
-    }
-}

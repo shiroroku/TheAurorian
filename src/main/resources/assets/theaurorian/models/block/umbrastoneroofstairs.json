@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "theaurorian:blocks/umbrastonerooftiles",
-        "top": "theaurorian:blocks/umbrastonerooftiles",
-        "side": "theaurorian:blocks/umbrastonerooftiles"
-    }
-}

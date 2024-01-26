@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "theaurorian:block/cerulean_ore"
+  }
+}

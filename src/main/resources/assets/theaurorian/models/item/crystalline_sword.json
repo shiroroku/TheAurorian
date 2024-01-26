@@ -1,0 +1,42 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "theaurorian:item/crystalline_sword"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "charging": 1
+      },
+      "model": "theaurorian:item/crystalline_sword_charging_0"
+    },
+    {
+      "predicate": {
+        "charging": 1,
+        "charge": 0.20
+      },
+      "model": "theaurorian:item/crystalline_sword_charging_1"
+    },
+    {
+      "predicate": {
+        "charging": 1,
+        "charge": 0.40
+      },
+      "model": "theaurorian:item/crystalline_sword_charging_2"
+    },
+    {
+      "predicate": {
+        "charging": 1,
+        "charge": 0.60
+      },
+      "model": "theaurorian:item/crystalline_sword_charging_3"
+    },
+    {
+      "predicate": {
+        "charging": 1,
+        "charge": 0.80
+      },
+      "model": "theaurorian:item/crystalline_sword_charging_4"
+    }
+  ]
+}

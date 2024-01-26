@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "theaurorian:bright_bulb"
+    }
+  ],
+  "result": {
+    "item": "minecraft:glowstone_dust"
+  }
+}

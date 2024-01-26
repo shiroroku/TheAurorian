@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ISI",
+    "ISI",
+    "ISI"
+  ],
+  "key": {
+    "I": {
+      "tag": "theaurorian:aurorian_stones"
+    },
+    "S": {
+      "item": "theaurorian:cerulean_ingot"
+    }
+  },
+  "result": {
+    "item": "theaurorian:chimney"
+  }
+}

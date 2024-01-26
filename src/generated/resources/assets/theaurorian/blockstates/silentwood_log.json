@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "theaurorian:block/silentwood_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "theaurorian:block/silentwood_log"
+    },
+    "axis=z": {
+      "model": "theaurorian:block/silentwood_log_horizontal",
+      "x": 90
+    }
+  }
+}

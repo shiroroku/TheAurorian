@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "theaurorian:silentwood_log"
+    }
+  ],
+  "result": {
+    "item": "theaurorian:silentwood_planks",
+    "count": 4
+  }
+}

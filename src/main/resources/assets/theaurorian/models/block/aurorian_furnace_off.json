@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "particle": "theaurorian:block/aurorian_furnace_top",
+    "bottom": "theaurorian:block/aurorian_furnace_top",
+    "top": "theaurorian:block/aurorian_furnace_top",
+    "front": "theaurorian:block/aurorian_furnace_front_off",
+    "side": "theaurorian:block/aurorian_furnace_side"
+  }
+}
