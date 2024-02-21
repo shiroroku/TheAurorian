@@ -21,19 +21,14 @@ public class DungeonSlimeLayer extends RenderLayer<DungeonSlimeEntity, DungeonSl
         this.model = new SlimeModel<>(set.bakeLayer(DungeonSlimeModel.MODEL_LAYER_LOCATION_OUTER));
     }
 
-    public void render(PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight, DungeonSlimeEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-        boolean glowing = Minecraft.getInstance().shouldEntityAppearGlowing(pLivingEntity) && pLivingEntity.isInvisible();
-        if (!pLivingEntity.isInvisible() || glowing) {
-            VertexConsumer vertexconsumer;
-            if (glowing) {
-                vertexconsumer = pBuffer.getBuffer(RenderType.outline(this.getTextureLocation(pLivingEntity)));
-            } else {
-                vertexconsumer = pBuffer.getBuffer(RenderType.entityTranslucent(this.getTextureLocation(pLivingEntity)));
-            }
+    public void render(PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight, DungeonSlimeEntity dungeonSlimeEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+        boolean glowing = Minecraft.getInstance().shouldEntityAppearGlowing(dungeonSlimeEntity) && dungeonSlimeEntity.isInvisible();
+        if (!dungeonSlimeEntity.isInvisible() || glowing) {
+            VertexConsumer vertexconsumer = glowing ? pBuffer.getBuffer(RenderType.outline(this.getTextureLocation(dungeonSlimeEntity))) : pBuffer.getBuffer(RenderType.entityTranslucent(this.getTextureLocation(dungeonSlimeEntity)));
             this.getParentModel().copyPropertiesTo(this.model);
-            this.model.prepareMobModel(pLivingEntity, pLimbSwing, pLimbSwingAmount, pPartialTicks);
-            this.model.setupAnim(pLivingEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
-            this.model.renderToBuffer(pMatrixStack, vertexconsumer, pPackedLight, LivingEntityRenderer.getOverlayCoords(pLivingEntity, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
+            this.model.prepareMobModel(dungeonSlimeEntity, pLimbSwing, pLimbSwingAmount, pPartialTicks);
+            this.model.setupAnim(dungeonSlimeEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
+            this.model.renderToBuffer(pMatrixStack, vertexconsumer, pPackedLight, LivingEntityRenderer.getOverlayCoords(dungeonSlimeEntity, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
         }
     }
 }

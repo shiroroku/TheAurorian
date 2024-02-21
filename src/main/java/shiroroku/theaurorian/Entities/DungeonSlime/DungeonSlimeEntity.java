@@ -90,6 +90,6 @@ public class DungeonSlimeEntity extends Slime {
 
     @Override
     protected ParticleOptions getParticleType() {
-        return super.getParticleType();
+        return super.getParticleType(); //todo
     }
 }

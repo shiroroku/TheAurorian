@@ -17,23 +17,22 @@ public class DungeonSlimeRenderer extends MobRenderer<DungeonSlimeEntity, Dungeo
         this.addLayer(new DungeonSlimeLayer(this, context.getModelSet()));
     }
 
-    public void render(DungeonSlimeEntity pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
-        this.shadowRadius = 0.25F * (float) pEntity.getSize();
-        super.render(pEntity, pEntityYaw, pPartialTicks, pMatrixStack, pBuffer, pPackedLight);
+    public void render(DungeonSlimeEntity dungeonSlimeEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
+        this.shadowRadius = 0.25F * (float) dungeonSlimeEntity.getSize();
+        super.render(dungeonSlimeEntity, pEntityYaw, pPartialTicks, pMatrixStack, pBuffer, pPackedLight);
     }
 
-    protected void scale(DungeonSlimeEntity pLivingEntity, PoseStack pMatrixStack, float pPartialTick) {
-        float f = 0.999F;
+    protected void scale(DungeonSlimeEntity dungeonSlimeEntity, PoseStack pMatrixStack, float pPartialTick) {
         pMatrixStack.scale(0.999F, 0.999F, 0.999F);
         pMatrixStack.translate(0.0D, 0.001F, 0.0D);
-        float f1 = (float) pLivingEntity.getSize();
-        float f2 = Mth.lerp(pPartialTick, pLivingEntity.oSquish, pLivingEntity.squish) / (f1 * 0.5F + 1.0F);
-        float f3 = 1.0F / (f2 + 1.0F);
-        pMatrixStack.scale(f3 * f1, 1.0F / f3 * f1, f3 * f1);
+        float size = (float) dungeonSlimeEntity.getSize();
+        float squishLerp = Mth.lerp(pPartialTick, dungeonSlimeEntity.oSquish, dungeonSlimeEntity.squish) / (size * 0.5F + 1.0F);
+        float scale = 1.0F / (squishLerp + 1.0F);
+        pMatrixStack.scale(scale * size, 1.0F / scale * size, scale * size);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(DungeonSlimeEntity pEntity) {
+    public ResourceLocation getTextureLocation(DungeonSlimeEntity dungeonSlimeEntity) {
         return TEXTURE;
     }
 }
