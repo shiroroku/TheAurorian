@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
@@ -14,11 +15,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterItemDecorationsEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import shiroroku.theaurorian.Blocks.BossSpawner.BossSpawnerBlockRenderer;
 import shiroroku.theaurorian.Blocks.Crystal.CrystalBlockRenderer;
+import shiroroku.theaurorian.Blocks.MoonlightForge.MoonlightForgeBlockRenderer;
 import shiroroku.theaurorian.Blocks.MoonlightForge.MoonlightForgeScreen;
 import shiroroku.theaurorian.Blocks.Scrapper.ScrapperScreen;
 import shiroroku.theaurorian.Items.BaseAurorianTea;
@@ -51,6 +54,7 @@ public class EventsClient {
             // BLOCK ENTITY RENDERERS
             BlockEntityRenderers.register(BlockEntityRegistry.crystal.get(), CrystalBlockRenderer::new);
             BlockEntityRenderers.register(BlockEntityRegistry.boss_spawner.get(), BossSpawnerBlockRenderer::new);
+            BlockEntityRenderers.register(BlockEntityRegistry.moonlight_forge.get(), MoonlightForgeBlockRenderer::new);
         });
     }
 
@@ -108,6 +112,15 @@ public class EventsClient {
             RenderSystem.applyModelViewMatrix();
             return true;
         });
+    }
+
+    @SuppressWarnings("deprecation")
+    @SubscribeEvent
+    public static void onTextureStitch(TextureStitchEvent.Pre event) {
+        if (!event.getAtlas().location().equals(TextureAtlas.LOCATION_BLOCKS)) {
+            return;
+        }
+        event.addSprite(MoonlightForgeBlockRenderer.RING_OVERLAY);
     }
 
 }

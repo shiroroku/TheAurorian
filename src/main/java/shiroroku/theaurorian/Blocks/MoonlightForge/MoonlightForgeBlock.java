@@ -9,13 +9,17 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 import shiroroku.theaurorian.Blocks.AbstractRotatingBlock;
@@ -23,6 +27,8 @@ import shiroroku.theaurorian.Registry.BlockEntityRegistry;
 import shiroroku.theaurorian.Util.ModUtil;
 
 public class MoonlightForgeBlock extends AbstractRotatingBlock implements EntityBlock {
+
+    private static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 10, 16);
 
     public MoonlightForgeBlock(Properties pProperties) {
         super(pProperties);
@@ -69,6 +75,13 @@ public class MoonlightForgeBlock extends AbstractRotatingBlock implements Entity
             }
         }
         return InteractionResult.SUCCESS;
+    }
+
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return SHAPE;
     }
 
 }
