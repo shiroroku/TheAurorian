@@ -79,6 +79,9 @@ dependencies {
     // AppleSkin
     implementation fg.deobf("curse.maven:appleskin-248787:3872808")
 
+    // Neat
+    implementation fg.deobf("curse.maven:neat-238372:3878735")
+
     // Mixin
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
