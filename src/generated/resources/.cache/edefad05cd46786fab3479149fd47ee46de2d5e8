@@ -1,4 +1,4 @@
-// 1.19.2	2024-02-16T15:36:18.753683689	Block States: theaurorian
+// 1.19.2	2024-02-21T13:52:07.248272144	Block States: theaurorian
 73eebd33213159360bcff329b9ddcb72695242c1 assets/theaurorian/blockstates/aurorian_cobblestone.json
 7fdce59c6c2083945e76721aedaf6ba72c20e10d assets/theaurorian/blockstates/aurorian_deepslate.json
 8d9a61dfbd0a3ccf5b83d4ec5a126ffb2bd3ad00 assets/theaurorian/blockstates/aurorian_dirt.json
@@ -63,6 +63,7 @@ ab399734c90605bd1eb686d86d1626199a5b978f assets/theaurorian/models/block/silkber
 e01e881298c4020d7b6ab61933bcf2c7c9e87240 assets/theaurorian/models/item/aurorian_dirt.json
 a1c8e71d71c516aa417ce287662697926a88e721 assets/theaurorian/models/item/aurorian_stone.json
 ecb4eff44d991b91d0f75132aa59aa2e7d163dc1 assets/theaurorian/models/item/aurorian_tallgrass.json
+59460f7251ac3880c0c2eac5e237fa36c67ec519 assets/theaurorian/models/item/boss_spawner.json
 2f4ba1dd6de4f2ae78233ec95b9db14e3430f604 assets/theaurorian/models/item/bright_bulb.json
 e7f930cc43f971fd211159544c7de8f8cca44e68 assets/theaurorian/models/item/cerulean_ore.json
 64a36b9d1940113ff0cf4577840e0bb14bfd155b assets/theaurorian/models/item/deepslate_cerulean_ore.json

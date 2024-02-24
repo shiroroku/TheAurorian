@@ -1,11 +1,16 @@
 package shiroroku.theaurorian.Util;
 
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.ItemStackHandler;
+
+import java.util.function.Predicate;
 
 public class ModUtil {
 
@@ -44,5 +49,19 @@ public class ModUtil {
             result.setCount(handler.getStackInSlot(slot).getCount() + result.getCount());
         }
         handler.setStackInSlot(slot, result);
+    }
+
+    /**
+     * Same as level.hasNearbyAlivePlayer but checks in a dome shape
+     */
+    public static boolean hasNearbyPlayerAbove(Level level, double pX, double pY, double pZ, double pDistance, Predicate<Entity> selectors) {
+        for (Player player : level.players()) {
+            if (selectors.test(player)) {
+                if (player.distanceToSqr(pX, pY, pZ) < pDistance * pDistance && player.getY() >= pY) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

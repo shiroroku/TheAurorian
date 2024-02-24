@@ -17,6 +17,7 @@ import net.minecraftforge.client.event.RegisterItemDecorationsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import shiroroku.theaurorian.Blocks.BossSpawner.BossSpawnerBlockRenderer;
 import shiroroku.theaurorian.Blocks.Crystal.CrystalBlockRenderer;
 import shiroroku.theaurorian.Blocks.MoonlightForge.MoonlightForgeScreen;
 import shiroroku.theaurorian.Blocks.Scrapper.ScrapperScreen;
@@ -49,6 +50,7 @@ public class EventsClient {
 
             // BLOCK ENTITY RENDERERS
             BlockEntityRenderers.register(BlockEntityRegistry.crystal.get(), CrystalBlockRenderer::new);
+            BlockEntityRenderers.register(BlockEntityRegistry.boss_spawner.get(), BossSpawnerBlockRenderer::new);
         });
     }
 

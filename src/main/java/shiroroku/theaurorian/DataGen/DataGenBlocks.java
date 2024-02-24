@@ -47,11 +47,16 @@ public class DataGenBlocks extends BlockStateProvider {
         stairsBlock((StairBlock) BlockRegistry.runestone_stairs.get(), blockTexture(BlockRegistry.runestone.get()));
         simpleBlockItem(BlockRegistry.runestone_stairs.get());
         simpleBlockItem(BlockRegistry.fog_wall.get());
+        simpleBlockItem(BlockRegistry.boss_spawner.get());
     }
 
     private void simpleBlockItem(Block parent) {
         ResourceLocation location = ForgeRegistries.BLOCKS.getKey(parent);
         itemModels().getBuilder(location.getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("block/" + location.getPath())));
+    }
+    private void simpleBlockItem(Block parent, String renderType) {
+        ResourceLocation location = ForgeRegistries.BLOCKS.getKey(parent);
+        itemModels().getBuilder(location.getPath()).renderType(renderType).parent(new ModelFile.UncheckedModelFile(modLoc("block/" + location.getPath())));
     }
 
     private void barsBlock(Block block) {

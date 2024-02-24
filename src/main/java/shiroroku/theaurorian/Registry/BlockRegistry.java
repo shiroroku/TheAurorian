@@ -17,6 +17,7 @@ import shiroroku.theaurorian.Blocks.AurorianDeepslateBlock;
 import shiroroku.theaurorian.Blocks.AurorianFurnace.AurorianFurnaceBlock;
 import shiroroku.theaurorian.Blocks.AurorianFurnace.ChimneyBlock;
 import shiroroku.theaurorian.Blocks.AurorianGrassBlock;
+import shiroroku.theaurorian.Blocks.BossSpawner.BossSpawnerBlock;
 import shiroroku.theaurorian.Blocks.Crystal.CrystalBlock;
 import shiroroku.theaurorian.Blocks.DungeonGateKeyHole;
 import shiroroku.theaurorian.Blocks.FogWallBlock;
@@ -77,6 +78,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block> moonlight_forge = regBlockItem(BLOCKS, "moonlight_forge", () -> new MoonlightForgeBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
     public static final RegistryObject<Block> aurorian_furnace = regBlockItem(BLOCKS, "aurorian_furnace", () -> new AurorianFurnaceBlock(BlockBehaviour.Properties.copy(Blocks.FURNACE)));
     public static final RegistryObject<Block> silentwood_crafting_table = regBlockItem(BLOCKS, "silentwood_crafting_table", () -> new SilentwoodCraftingTableBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
+    public static final RegistryObject<Block> boss_spawner = regBlockItem(BLOCKS, "boss_spawner", () -> new BossSpawnerBlock(BlockBehaviour.Properties.copy(Blocks.SPAWNER)));
 
     // Other
     public static final RegistryObject<Block> fog_wall = regBlockItem(BLOCKS, "fog_wall", () -> new FogWallBlock(BlockBehaviour.Properties.copy(runestone.get()).noCollission().noOcclusion().lightLevel((state) -> 10)));

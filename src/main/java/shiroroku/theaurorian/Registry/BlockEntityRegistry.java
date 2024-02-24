@@ -4,6 +4,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import shiroroku.theaurorian.Blocks.AurorianFurnace.AurorianFurnaceBlockEntity;
+import shiroroku.theaurorian.Blocks.BossSpawner.BossSpawnerBlockEntity;
 import shiroroku.theaurorian.Blocks.Crystal.CrystalBlockEntity;
 import shiroroku.theaurorian.Blocks.MoonlightForge.MoonlightForgeBlockEntity;
 import shiroroku.theaurorian.Blocks.Scrapper.ScrapperBlockEntity;
@@ -19,5 +20,6 @@ public class BlockEntityRegistry {
     public static final Supplier<BlockEntityType<MoonlightForgeBlockEntity>> moonlight_forge = BLOCK_ENTITIES.register("moonlight_forge", () -> BlockEntityType.Builder.of(MoonlightForgeBlockEntity::new, BlockRegistry.moonlight_forge.get()).build(null));
     public static final Supplier<BlockEntityType<AurorianFurnaceBlockEntity>> aurorian_furnace = BLOCK_ENTITIES.register("aurorian_furnace", () -> BlockEntityType.Builder.of(AurorianFurnaceBlockEntity::new, BlockRegistry.aurorian_furnace.get()).build(null));
     public static final Supplier<BlockEntityType<CrystalBlockEntity>> crystal = BLOCK_ENTITIES.register("crystal", () -> BlockEntityType.Builder.of(CrystalBlockEntity::new, BlockRegistry.crystal.get()).build(null));
+    public static final Supplier<BlockEntityType<BossSpawnerBlockEntity>> boss_spawner = BLOCK_ENTITIES.register("boss_spawner", () -> BlockEntityType.Builder.of(BossSpawnerBlockEntity::new, BlockRegistry.boss_spawner.get()).build(null));
 
 }

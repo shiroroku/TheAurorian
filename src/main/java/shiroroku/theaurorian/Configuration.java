@@ -22,6 +22,9 @@ public class Configuration {
     public static ForgeConfigSpec.ConfigValue<Integer> umbra_pickaxe_selection_cost;
     public static ForgeConfigSpec.ConfigValue<Double> cystalline_sword_beam_damage;
     public static ForgeConfigSpec.ConfigValue<Double> cystalline_sword_beam_velocity;
+    public static ForgeConfigSpec.ConfigValue<Double> boss_speed_per_player;
+    public static ForgeConfigSpec.ConfigValue<Double> boss_damage_per_player;
+    public static ForgeConfigSpec.ConfigValue<Double> boss_health_per_player;
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -45,6 +48,11 @@ public class Configuration {
         scrapper_base_craft_duration = builder.defineInRange("scrapper_base_craft_duration", 240, 2, Integer.MAX_VALUE);
         scrapper_crystal_break_chance = builder.defineInRange("scrapper_crystal_break_chance", 0.25, 0, 1);
         scrapper_crystal_speed_discount = builder.defineInRange("scrapper_crystal_speed_discount", 0.25, 0, 1);
+        builder.pop();
+        builder.push("Scaling").comment("Boss scaling is applied when a boss spawner spawns a boss AND when there is more than 1 player. the number of players is multiplied by this, +1, then multiplied by the base value");
+        boss_speed_per_player = builder.defineInRange("boss_speed_per_player", 0.2, 0, Integer.MAX_VALUE);
+        boss_damage_per_player = builder.defineInRange("boss_damage_per_player", 0.2, 0, Integer.MAX_VALUE);
+        boss_health_per_player = builder.defineInRange("boss_health_per_player", 0.75, 0, Integer.MAX_VALUE);
         builder.pop();
         builder.pop();
         config = builder.build();
