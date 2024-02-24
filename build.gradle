@@ -82,6 +82,10 @@ dependencies {
     // Neat
     implementation fg.deobf("curse.maven:neat-238372:3878735")
 
+	// Enchantment Descriptions
+	implementation fg.deobf("curse.maven:bookshelf-228525:4556697")
+    implementation fg.deobf("curse.maven:enchantment-descriptions-250419:5015022")
+
     // Mixin
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
