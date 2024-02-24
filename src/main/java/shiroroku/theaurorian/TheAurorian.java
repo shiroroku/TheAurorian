@@ -33,6 +33,7 @@ public class TheAurorian {
         RecipeRegistry.TYPES.register(bus);
         RecipeRegistry.SERIALIZERS.register(bus);
         EntityRegistry.ENTITIES.register(bus);
+        EnchantRegistry.ENCHANTMENTS.register(bus);
     }
 
 }

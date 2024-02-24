@@ -163,5 +163,7 @@
   "string.theaurorian.tooltip.aurorian_steel.next_enchant": "Next Enchantment: ",
   "string.theaurorian.tooltip.moonstone": "Tools use less durability at night and more during the day",
   "string.theaurorian.tooltip.more_info": "Hold shift for more info",
-  "string.theaurorian.tooltip.spectral": "Has a %s%% chance to cleanse negative effects when attacking!"
+  "string.theaurorian.tooltip.spectral": "Has a %s%% chance to cleanse negative effects when attacking!",
+  "enchantment.theaurorian.lightning" : "Lightning Damage",
+  "enchantment.theaurorian.lightning.desc" : "Increases damage against armored and metallic creatures"
 }

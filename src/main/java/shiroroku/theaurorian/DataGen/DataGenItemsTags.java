@@ -19,6 +19,7 @@ import java.util.function.Supplier;
 
 public class DataGenItemsTags extends TagsProvider<Item> {
 
+    public static final TagKey<Item> LIGHTNING_IMMUNE = ItemTags.create(new ResourceLocation(TheAurorian.MODID, "lightning_immune"));
     public static final TagKey<Item> TEA = ItemTags.create(new ResourceLocation(TheAurorian.MODID, "tea"));
     public static final TagKey<Item> KEYS = ItemTags.create(new ResourceLocation(TheAurorian.MODID, "keys"));
     public static final TagKey<Item> SCRAP = ItemTags.create(new ResourceLocation(TheAurorian.MODID, "scrap"));
@@ -39,7 +40,7 @@ public class DataGenItemsTags extends TagsProvider<Item> {
     @Override
     protected void addTags() {
         ItemRegistry.ITEMS_GEN_SHIELD.getEntries().stream().map(Supplier::get).forEach((shield) -> this.tag(Tags.Items.TOOLS_SHIELDS).add(shield));
-
+        this.tag(LIGHTNING_IMMUNE).add(Items.LEATHER_BOOTS, Items.LEATHER_CHESTPLATE, Items.LEATHER_HELMET, Items.LEATHER_LEGGINGS);
         this.tag(ABSORPTION_ORB_REPAIRABLE).addTags(Tags.Items.TOOLS, Tags.Items.ARMORS, Tags.Items.SHEARS);
         this.tag(AURORIAN_STONES).add(BlockRegistry.aurorian_cobblestone.get().asItem());
         this.tag(AURORIAN_STONES).add(BlockRegistry.aurorian_deepslate.get().asItem());
