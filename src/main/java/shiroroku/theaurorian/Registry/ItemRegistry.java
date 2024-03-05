@@ -60,6 +60,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> umbra_ingot = ITEMS_GEN.register("umbra_ingot", basicItem());
     public static final RegistryObject<Item> umbra_scrap = ITEMS_GEN.register("umbra_scrap", basicItem());
     public static final RegistryObject<Item> spectral_silk = ITEMS_GEN.register("spectral_silk", basicItem(defaultProp().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> aurorian_coal = ITEMS_GEN.register("aurorian_coal", basicItemWithBurntime(defaultProp(), 1600));
     public static final RegistryObject<Item> aurorian_coal_nugget = ITEMS_GEN.register("aurorian_coal_nugget", basicItemWithBurntime(defaultProp(), 200));
     public static final RegistryObject<Item> cup = ITEMS_GEN.register("cup", basicItemWithBurntime(defaultProp(), 100));
 

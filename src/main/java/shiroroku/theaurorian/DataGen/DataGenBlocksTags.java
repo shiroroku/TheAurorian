@@ -46,6 +46,7 @@ public class DataGenBlocksTags extends TagsProvider<Block> {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockRegistry.moon_gem.get());
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockRegistry.moonlight_forge.get());
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockRegistry.moonstone_ore.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockRegistry.aurorian_coal_ore.get());
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockRegistry.scrapper.get());
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(BlockRegistry.aurorian_dirt.get());
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(BlockRegistry.aurorian_grass.get());
@@ -74,5 +75,7 @@ public class DataGenBlocksTags extends TagsProvider<Block> {
         this.tag(MOONSTONE_ORE).add(BlockRegistry.deepslate_moonstone_ore.get());
         this.tag(Tags.Blocks.ORES).addTag(MOONSTONE_ORE);
         this.tag(Tags.Blocks.ORES).addTag(CERULEAN_ORE);
+        this.tag(Tags.Blocks.ORES).add(BlockRegistry.aurorian_coal_ore.get());
+        this.tag(Tags.Blocks.ORES_COAL).add(BlockRegistry.aurorian_coal_ore.get());
     }
 }

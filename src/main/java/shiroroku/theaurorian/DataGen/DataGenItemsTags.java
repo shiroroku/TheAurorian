@@ -105,12 +105,13 @@ public class DataGenItemsTags extends TagsProvider<Item> {
         this.tag(Tags.Items.TOOLS_SWORDS).add(ItemRegistry.umbra_greatsword.get());
         this.tag(Tags.Items.TOOLS_SWORDS).add(ItemRegistry.silentwood_sword.get());
         this.tag(Tags.Items.TOOLS_BOWS).add(ItemRegistry.silentwood_bow.get());
+        this.tag(ItemTags.COALS).add(ItemRegistry.aurorian_coal.get());
         this.tag(CERULEAN_ORE).add(BlockRegistry.cerulean_ore.get().asItem());
         this.tag(CERULEAN_ORE).add(BlockRegistry.deepslate_cerulean_ore.get().asItem());
         this.tag(MOONSTONE_ORE).add(BlockRegistry.moonstone_ore.get().asItem());
         this.tag(MOONSTONE_ORE).add(BlockRegistry.deepslate_moonstone_ore.get().asItem());
         this.tag(Tags.Items.ORES).addTags(CERULEAN_ORE, MOONSTONE_ORE);
-        this.tag(Tags.Items.ORES).add(BlockRegistry.geode.get().asItem());
+        this.tag(Tags.Items.ORES).add(BlockRegistry.geode.get().asItem(), BlockRegistry.aurorian_coal_ore.get().asItem());
         this.tag(ItemTags.ARROWS).add(ItemRegistry.cerulean_arrow.get(), ItemRegistry.crystal_arrow.get());
         this.tag(TEA).add(ItemRegistry.bright_bulb_tea.get(), ItemRegistry.lavender_tea.get(), ItemRegistry.petunia_tea.get(), ItemRegistry.silkberry_tea.get());
     }

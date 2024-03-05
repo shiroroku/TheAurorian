@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "theaurorian:aurorian_coal_nugget"
+    },
+    {
+      "item": "theaurorian:aurorian_coal_nugget"
+    },
+    {
+      "item": "theaurorian:aurorian_coal_nugget"
+    },
+    {
+      "item": "theaurorian:aurorian_coal_nugget"
+    },
+    {
+      "item": "theaurorian:aurorian_coal_nugget"
+    },
+    {
+      "item": "theaurorian:aurorian_coal_nugget"
+    },
+    {
+      "item": "theaurorian:aurorian_coal_nugget"
+    },
+    {
+      "item": "theaurorian:aurorian_coal_nugget"
+    },
+    {
+      "item": "theaurorian:aurorian_coal_nugget"
+    }
+  ],
+  "result": {
+    "item": "theaurorian:aurorian_coal",
+    "count": 1
+  }
+}

@@ -1,4 +1,5 @@
-// 1.19.2	2024-02-21T13:52:07.248272144	Block States: theaurorian
+// 1.19.2	2024-03-05T03:21:15.273629502	Block States: theaurorian
+c01aff19f2d274ab755738d0fb047b9418591068 assets/theaurorian/blockstates/aurorian_coal_ore.json
 73eebd33213159360bcff329b9ddcb72695242c1 assets/theaurorian/blockstates/aurorian_cobblestone.json
 7fdce59c6c2083945e76721aedaf6ba72c20e10d assets/theaurorian/blockstates/aurorian_deepslate.json
 8d9a61dfbd0a3ccf5b83d4ec5a126ffb2bd3ad00 assets/theaurorian/blockstates/aurorian_dirt.json
@@ -25,6 +26,7 @@ c6f316d45c3872f0710ce29dae20c7b82b71dab6 assets/theaurorian/blockstates/runeston
 62af9130c8223b24766fe82bf448bc0223e8d35b assets/theaurorian/blockstates/silentwood_planks.json
 88d8747c2eeb6a58c6ea6aca7b4a8521ab00b2af assets/theaurorian/blockstates/silentwood_sapling.json
 276af7977f4a1accaa79f32d400bd0337dc4ee45 assets/theaurorian/blockstates/silkberry_block.json
+883777394b6f38b2d90a5b523b8843e321e5c91d assets/theaurorian/models/block/aurorian_coal_ore.json
 c08c878c2cb42a0e5517f138419ff1b6f240315c assets/theaurorian/models/block/aurorian_cobblestone.json
 17e92aaa2e9e261fdf2a61be58ce529ea3b5eb0c assets/theaurorian/models/block/aurorian_deepslate.json
 d0a1aa957bcb98216cfe099b1f1b5a0246ac707c assets/theaurorian/models/block/aurorian_dirt.json
@@ -58,6 +60,7 @@ f6e274813ad3ae9e134123e3c2fb92fa7be24c00 assets/theaurorian/models/block/silentw
 37119868e2366ef6fddf27a19f5b2c0678c9f8d9 assets/theaurorian/models/block/silentwood_planks.json
 e001d3dc6f2a75439ac970b6e5bee0786d38b325 assets/theaurorian/models/block/silentwood_sapling.json
 ab399734c90605bd1eb686d86d1626199a5b978f assets/theaurorian/models/block/silkberry_block.json
+498bedebe9252b71ee6569c46bf201f75079e0a5 assets/theaurorian/models/item/aurorian_coal_ore.json
 6881cbb3db9ee91bfc3f88424d9337e4faa2cae9 assets/theaurorian/models/item/aurorian_cobblestone.json
 45f3ec4f71c3c8785c1e09d1104475880649fec9 assets/theaurorian/models/item/aurorian_deepslate.json
 e01e881298c4020d7b6ab61933bcf2c7c9e87240 assets/theaurorian/models/item/aurorian_dirt.json

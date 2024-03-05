@@ -1,12 +1,13 @@
-// 1.19.2	2024-02-16T15:36:18.754735658	Tags for minecraft:block
-8e484aa9b838c7d27ddf3485863f09c889280e15 data/forge/tags/blocks/ores.json
+// 1.19.2	2024-03-05T03:24:41.017541454	Tags for minecraft:block
+8466de5ec328ffe96089d80210f4d51a2cc24aaf data/forge/tags/blocks/ores.json
+fae13353da6edb331f10f01e307c666030c75191 data/forge/tags/blocks/ores/coal.json
 17c0cce815d32f9b3c26aec5bbf37e02a0472a4c data/minecraft/tags/blocks/deepslate_ore_replaceables.json
 7c9955f473dc23c07fa9515f7f2794d50cd1408c data/minecraft/tags/blocks/dirt.json
 67003f2f07aea2540262d5136f3000c5e186ddd8 data/minecraft/tags/blocks/flowers.json
 08aa0ddf749cbe4d23b58e535778c6ba8a9b23e4 data/minecraft/tags/blocks/leaves.json
 57f5b0ce211cd7e774040d931915386ae89a3380 data/minecraft/tags/blocks/logs_that_burn.json
 2e62e3dfe7f9a83c4711d50c38ef84e79acaa670 data/minecraft/tags/blocks/mineable/axe.json
-3bae596e7611c96523e235c9c0d42fdc1865331f data/minecraft/tags/blocks/mineable/pickaxe.json
+72fb6816fd3cb6b0f3cf4ed2b45f8702f61e943c data/minecraft/tags/blocks/mineable/pickaxe.json
 7c9955f473dc23c07fa9515f7f2794d50cd1408c data/minecraft/tags/blocks/mineable/shovel.json
 7474587f7cb7d3b6e75281b2b34795bace7d4779 data/minecraft/tags/blocks/needs_stone_tool.json
 1ffa81e678a299783db31023ef435426d32cb831 data/minecraft/tags/blocks/planks.json

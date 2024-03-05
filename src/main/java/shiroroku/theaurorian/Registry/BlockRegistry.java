@@ -72,6 +72,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block> deepslate_cerulean_ore = regBlockItem(BLOCKS_GEN, "deepslate_cerulean_ore", () -> new Block(BlockBehaviour.Properties.copy(cerulean_ore.get())));
     public static final RegistryObject<Block> deepslate_moonstone_ore = regBlockItem(BLOCKS_GEN, "deepslate_moonstone_ore", () -> new Block(BlockBehaviour.Properties.copy(moonstone_ore.get())));
     public static final RegistryObject<Block> geode = regBlockItem(BLOCKS_GEN_NL, "geode", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_ORE)));
+    public static final RegistryObject<Block> aurorian_coal_ore = regBlockItem(BLOCKS_GEN_NL, "aurorian_coal_ore", () -> new Block(BlockBehaviour.Properties.copy(Blocks.COAL_ORE)));
 
     // Machines
     public static final RegistryObject<Block> scrapper = regBlockItem(BLOCKS, "scrapper", () -> new ScrapperBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));

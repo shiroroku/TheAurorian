@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "cookingtime": 100,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "theaurorian:aurorian_coal_ore"
+  },
+  "result": "theaurorian:aurorian_coal"
+}

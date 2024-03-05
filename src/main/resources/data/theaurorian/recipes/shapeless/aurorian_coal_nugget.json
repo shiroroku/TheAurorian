@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "theaurorian:aurorian_coal"
+    }
+  ],
+  "result": {
+    "item": "theaurorian:aurorian_coal_nugget",
+    "count": 9
+  }
+}

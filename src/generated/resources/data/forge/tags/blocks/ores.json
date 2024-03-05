@@ -2,6 +2,7 @@
   "values": [
     "theaurorian:geode",
     "#theaurorian:moonstone_ore",
-    "#theaurorian:cerulean_ore"
+    "#theaurorian:cerulean_ore",
+    "theaurorian:aurorian_coal_ore"
   ]
 }
