@@ -39,7 +39,7 @@ public class Configuration {
         spectral_armor_cleanse_chance = builder.comment("+% per armor piece to cleanse negative effects when attacking").defineInRange("spectral_armor_cleanse_chance", 0.06, 0, 0.25);
         umbra_pickaxe_selection_cost = builder.defineInRange("umbra_pickaxe_selection_cost", 15, 0, Integer.MAX_VALUE);
         umbra_pickaxe_speed_multiplier = builder.defineInRange("umbra_pickaxe_selection_speed_multiplier", 1.5f, 1, Integer.MAX_VALUE);
-        cystalline_sword_beam_damage = builder.defineInRange("cystalline_sword_beam_damage", 4f, 1f, Integer.MAX_VALUE);
+        cystalline_sword_beam_damage = builder.defineInRange("cystalline_sword_beam_damage", 8f, 1f, Integer.MAX_VALUE);
         cystalline_sword_beam_velocity = builder.defineInRange("cystalline_sword_beam_damage", 2f, 0.25f, Integer.MAX_VALUE);
         builder.pop();
         builder.push("Blocks");
