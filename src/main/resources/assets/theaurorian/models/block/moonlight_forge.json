@@ -5,8 +5,8 @@
 		"particle": "theaurorian:block/aurorian_furnace_top",
 		"top": "theaurorian:block/moonlight_forge_top",
 		"bottom": "theaurorian:block/aurorian_furnace_top",
-		"front": "theaurorian:block/aurorian_furnace_front_off",
-		"sides": "theaurorian:block/aurorian_furnace_side"
+		"front": "theaurorian:block/moonlight_forge_side",
+		"sides": "theaurorian:block/moonlight_forge_side"
 	},
 	"elements": [
 		{
