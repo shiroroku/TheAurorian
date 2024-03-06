@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "theaurorian:ruined_house",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 4244241,
+    "spacing": 64,
+    "separation": 6,
+    "type": "minecraft:random_spread"
+  }
+}
