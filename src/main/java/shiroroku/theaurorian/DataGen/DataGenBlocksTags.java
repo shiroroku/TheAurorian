@@ -37,6 +37,7 @@ public class DataGenBlocksTags extends TagsProvider<Block> {
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(BlockRegistry.silentwood_crafting_table.get());
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(BlockRegistry.silentwood_log.get());
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(BlockRegistry.silentwood_planks.get());
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(BlockRegistry.silentwood_chest.get());
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockRegistry.aurorian_cobblestone.get());
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockRegistry.aurorian_deepslate.get());
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockRegistry.aurorian_furnace.get());
@@ -59,6 +60,8 @@ public class DataGenBlocksTags extends TagsProvider<Block> {
         this.tag(BlockTags.SAPLINGS).add(BlockRegistry.silentwood_sapling.get());
         this.tag(BlockTags.STAIRS).add(BlockRegistry.runestone_stairs.get());
         this.tag(BlockTags.STONE_ORE_REPLACEABLES).add(BlockRegistry.aurorian_stone.get());
+        this.tag(Tags.Blocks.CHESTS_WOODEN).add(BlockRegistry.silentwood_chest.get());
+        this.tag(Tags.Blocks.CHESTS).add(BlockRegistry.silentwood_chest.get());
         this.tag(DUNGEON_BRICKS).add(BlockRegistry.runestone.get());
         this.tag(DUNGEON_BRICKS).add(BlockRegistry.runestone_bars.get());
         this.tag(DUNGEON_BRICKS).add(BlockRegistry.runestone_gate.get());

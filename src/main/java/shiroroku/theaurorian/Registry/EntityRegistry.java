@@ -11,6 +11,7 @@ import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import shiroroku.theaurorian.Blocks.SilentwoodChest.SilentwoodChestBlockRenderer;
 import shiroroku.theaurorian.Entities.AurorianArrow.AurorianArrowEntity;
 import shiroroku.theaurorian.Entities.AurorianArrow.AurorianArrowRenderer;
 import shiroroku.theaurorian.Entities.AurorianArrow.CeruleanArrowEntity;
@@ -50,17 +51,25 @@ public class EntityRegistry {
     }
 
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        // Misc
         event.registerEntityRenderer(EntityRegistry.crystalline_beam.get(), CrystallineBeamRenderer::new);
         event.registerEntityRenderer(EntityRegistry.cerulean_arrow.get(), (ctx) -> new AurorianArrowRenderer(ctx, new ResourceLocation(TheAurorian.MODID, "textures/entity/cerulean_arrow.png")));
         event.registerEntityRenderer(EntityRegistry.crystal_arrow.get(), (ctx) -> new AurorianArrowRenderer(ctx, new ResourceLocation(TheAurorian.MODID, "textures/entity/crystal_arrow.png")));
 
+        // Living
         event.registerEntityRenderer(EntityRegistry.hollow.get(), HollowRenderer::new);
         event.registerEntityRenderer(EntityRegistry.undead_knight.get(), UndeadKnightRenderer::new);
         event.registerEntityRenderer(EntityRegistry.dungeon_slime.get(), DungeonSlimeRenderer::new);
     }
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        // Misc
         event.registerLayerDefinition(CrystallineBeamModel.MODEL_LAYER_LOCATION, CrystallineBeamModel::createLayer);
+        event.registerLayerDefinition(SilentwoodChestBlockRenderer.MODEL_LAYER_NORMAL, SilentwoodChestBlockRenderer::createSingleBodyLayer);
+        event.registerLayerDefinition(SilentwoodChestBlockRenderer.MODEL_LAYER_DOUBLE_LEFT, SilentwoodChestBlockRenderer::createDoubleBodyLeftLayer);
+        event.registerLayerDefinition(SilentwoodChestBlockRenderer.MODEL_LAYER_DOUBLE_RIGHT, SilentwoodChestBlockRenderer::createDoubleBodyRightLayer);
+
+        // Living
         event.registerLayerDefinition(DungeonSlimeModel.MODEL_LAYER_LOCATION, DungeonSlimeModel::createLayer);
         event.registerLayerDefinition(DungeonSlimeModel.MODEL_LAYER_LOCATION_OUTER, DungeonSlimeModel::createOuterLayer);
     }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "S S",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "theaurorian:silentwood_planks"
+    }
+  },
+  "result": {
+    "item": "theaurorian:silentwood_chest"
+  }
+}

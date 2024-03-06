@@ -1,8 +1,10 @@
-// 1.19.2	2024-03-05T03:21:15.269045419	Tags for minecraft:item
+// 1.19.2	2024-03-05T17:40:57.427484854	Tags for minecraft:item
 43e69fd2854424b3f652227b88a6e29f40cf59e3 data/forge/tags/items/armors/boots.json
 90a2ba48331af73e933481383f7eae9a4787de94 data/forge/tags/items/armors/chestplates.json
 84e3942f69f9c083562172fe3b20e7e9ae307151 data/forge/tags/items/armors/helmets.json
 cf27326d1fdc68acf6b003bcc0998c6a84d9d589 data/forge/tags/items/armors/leggings.json
+4052cba1a2dd4624005126892af9d93ccbc0a53d data/forge/tags/items/chests.json
+4052cba1a2dd4624005126892af9d93ccbc0a53d data/forge/tags/items/chests/wooden.json
 e8df99c609753393c136a4997eec07869451f9de data/forge/tags/items/ingots.json
 8f288477630211413628eebb3e8caf202358314e data/forge/tags/items/nuggets.json
 e867f7e057542360c3922ff7cf33cd784f6c84bb data/forge/tags/items/ores.json

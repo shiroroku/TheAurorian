@@ -87,6 +87,7 @@ public class DataGenBlocksLoot extends LootTableProvider {
             this.dropSelf(BlockRegistry.moon_gem.get());
             this.dropSelf(BlockRegistry.moonlight_forge.get());
             this.dropSelf(BlockRegistry.scrapper.get());
+            this.dropSelf(BlockRegistry.silentwood_chest.get());
             this.dropSelf(BlockRegistry.aurorian_furnace.get());
             this.dropSelf(BlockRegistry.silentwood_log.get());
             this.dropSelf(BlockRegistry.silentwood_sapling.get());
@@ -125,6 +126,7 @@ public class DataGenBlocksLoot extends LootTableProvider {
             gen.add(BlockRegistry.silentwood_crafting_table.get());
             gen.add(BlockRegistry.bright_bulb.get());
             gen.add(BlockRegistry.aurorian_coal_ore.get());
+            gen.add(BlockRegistry.silentwood_chest.get());
             return gen;
         }
 

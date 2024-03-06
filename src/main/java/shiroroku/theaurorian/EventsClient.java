@@ -24,6 +24,7 @@ import shiroroku.theaurorian.Blocks.Crystal.CrystalBlockRenderer;
 import shiroroku.theaurorian.Blocks.MoonlightForge.MoonlightForgeBlockRenderer;
 import shiroroku.theaurorian.Blocks.MoonlightForge.MoonlightForgeScreen;
 import shiroroku.theaurorian.Blocks.Scrapper.ScrapperScreen;
+import shiroroku.theaurorian.Blocks.SilentwoodChest.SilentwoodChestBlockRenderer;
 import shiroroku.theaurorian.Items.BaseAurorianTea;
 import shiroroku.theaurorian.Items.Loot.UmbraPickaxe;
 import shiroroku.theaurorian.Registry.BlockEntityRegistry;
@@ -55,6 +56,8 @@ public class EventsClient {
             BlockEntityRenderers.register(BlockEntityRegistry.crystal.get(), CrystalBlockRenderer::new);
             BlockEntityRenderers.register(BlockEntityRegistry.boss_spawner.get(), BossSpawnerBlockRenderer::new);
             BlockEntityRenderers.register(BlockEntityRegistry.moonlight_forge.get(), MoonlightForgeBlockRenderer::new);
+            BlockEntityRenderers.register(BlockEntityRegistry.moonlight_forge.get(), MoonlightForgeBlockRenderer::new);
+            BlockEntityRenderers.register(BlockEntityRegistry.silentwood_chest.get(), SilentwoodChestBlockRenderer::new);
         });
     }
 
@@ -121,6 +124,9 @@ public class EventsClient {
             return;
         }
         event.addSprite(MoonlightForgeBlockRenderer.RING_OVERLAY);
+        event.addSprite(SilentwoodChestBlockRenderer.NORMAL);
+        event.addSprite(SilentwoodChestBlockRenderer.DOUBLE_LEFT);
+        event.addSprite(SilentwoodChestBlockRenderer.DOUBLE_RIGHT);
     }
 
 }
