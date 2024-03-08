@@ -169,6 +169,8 @@
   "string.theaurorian.tooltip.spectral": "Has a %s%% chance to cleanse negative effects when attacking!",
   "enchantment.theaurorian.lightning": "Lightning Damage",
   "enchantment.theaurorian.lightning.desc": "Increases damage against armored and metallic creatures",
+  "enchantment.theaurorian.lightning_resistance": "Lightning Resistance",
+  "enchantment.theaurorian.lightning_resistance.desc": "Makes the armor piece immune to the Lightning Enchantment",
   "entity.theaurorian.dungeon_slime": "Dungeon Slime",
   "entity.theaurorian.hollow": "Hollow",
   "entity.theaurorian.undead_knight": "Undead Knight",
