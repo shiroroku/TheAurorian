@@ -2,6 +2,8 @@ package shiroroku.theaurorian.Entities.UndeadKnight;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -30,15 +32,6 @@ public class UndeadKnightEntity extends Monster {
     public UndeadKnightEntity(EntityType<UndeadKnightEntity> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.xpReward = 20;
-        if(ModUtil.randomChanceOf(this.getRandom(), 0.2)) {
-            this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ItemRegistry.knight_helmet.get()));
-            this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ItemRegistry.moonstone_sword.get()));
-        }else {
-            this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ItemRegistry.aurorian_stone_sword.get()));
-        }
-        this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ItemRegistry.knight_chestplate.get()));
-        this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ItemRegistry.knight_leggings.get()));
-        this.setItemSlot(EquipmentSlot.FEET, new ItemStack(ItemRegistry.knight_boots.get()));
     }
 
     public UndeadKnightEntity(Level pLevel) {
@@ -62,6 +55,19 @@ public class UndeadKnightEntity extends Monster {
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+    }
+
+    @Override
+    protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
+        if (ModUtil.randomChanceOf(this.getRandom(), 0.2)) {
+            this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ItemRegistry.knight_helmet.get()));
+            this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ItemRegistry.moonstone_sword.get()));
+        } else {
+            this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ItemRegistry.aurorian_stone_sword.get()));
+        }
+        this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ItemRegistry.knight_chestplate.get()));
+        this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ItemRegistry.knight_leggings.get()));
+        this.setItemSlot(EquipmentSlot.FEET, new ItemStack(ItemRegistry.knight_boots.get()));
     }
 
     @Override

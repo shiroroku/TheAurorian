@@ -1,4 +1,4 @@
-// 1.19.2	2024-03-05T03:21:15.27198972	Item Models: theaurorian
+// 1.19.2	2024-03-16T18:58:53.039295372	Item Models: theaurorian
 a95bbdcaf10620b09f246c54e853176b212124ff assets/theaurorian/models/item/absorption_orb.json
 9a390d09acfa4a0621298f03a11e6a910b91f71f assets/theaurorian/models/item/aurorian_coal.json
 a7b76beb25c86b4f970a22a6356d6768f7618046 assets/theaurorian/models/item/aurorian_coal_nugget.json
@@ -40,6 +40,8 @@ fe63bb88178ab9edce43af41faf61994fbbc3907 assets/theaurorian/models/item/cerulean
 c8075fb0e11b586646bdf0a5c143ac0e017e76a6 assets/theaurorian/models/item/crystalline_shield.json
 3dfd8e891750c020cb35f345f9ed7625b29f4cfc assets/theaurorian/models/item/crystalline_shield_blocking.json
 9cdea7e95dd806bf1108b3c7414694a3282c5dca assets/theaurorian/models/item/cup.json
+5ef20c537d54aa26fd1d6461582779a77aa67e3e assets/theaurorian/models/item/darkstone_key.json
+b43f3a128d21c2d52241c3bc9e9b5dcf64796c48 assets/theaurorian/models/item/keepers_amulet.json
 4b42f79515878c203003e87991c19bbf16ca2be9 assets/theaurorian/models/item/knight_boots.json
 b638b1fa08641c3ee003cdc9669e778d6743342f assets/theaurorian/models/item/knight_chestplate.json
 bec03ef0bcbd52e2f912b4c7b303b4ad06ca75c2 assets/theaurorian/models/item/knight_helmet.json
@@ -77,6 +79,7 @@ b2522c2c9c770ee33c06effe6c0bb3e68887da63 assets/theaurorian/models/item/silkberr
 660725d5092ec80d629ac99bb7c845477f2ff7c8 assets/theaurorian/models/item/silkberry_jam.json
 c9962dcea43a8b267cbc41a1e3754a8b57b13be9 assets/theaurorian/models/item/silkberry_jam_sandwich.json
 7e09bf354060aeaa4f14aa8908e4ba0dc336874b assets/theaurorian/models/item/silkberry_tea.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/theaurorian/models/item/spawn_egg_dungeon_keeper.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/theaurorian/models/item/spawn_egg_dungeon_slime.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/theaurorian/models/item/spawn_egg_hollow.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/theaurorian/models/item/spawn_egg_undead_knight.json

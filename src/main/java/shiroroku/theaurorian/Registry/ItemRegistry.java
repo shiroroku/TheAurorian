@@ -54,12 +54,14 @@ public class ItemRegistry {
     public static final RegistryObject<Item> runestone_key = ITEMS_GEN.register("runestone_key", basicItem(defaultProp().durability(3).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> runestone_loot_key = ITEMS_GEN.register("runestone_loot_key", basicItem(defaultProp().durability(1).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> moon_temple_key = ITEMS_GEN.register("moon_temple_key", basicItem(defaultProp().durability(3).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> darkstone_key = ITEMS_GEN.register("darkstone_key", basicItem(defaultProp().durability(3).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> moon_temple_key_fragment = ITEMS_GEN.register("moon_temple_key_fragment", basicItem());
     public static final RegistryObject<Item> moon_temple_interior_key = ITEMS_GEN.register("moon_temple_interior_key", basicItem(defaultProp().durability(1).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> silentwood_stick = ITEMS_GEN_HANDHELD.register("silentwood_stick", basicItemWithBurntime(defaultProp(), 100));
     public static final RegistryObject<Item> umbra_ingot = ITEMS_GEN.register("umbra_ingot", basicItem());
     public static final RegistryObject<Item> umbra_scrap = ITEMS_GEN.register("umbra_scrap", basicItem());
     public static final RegistryObject<Item> spectral_silk = ITEMS_GEN.register("spectral_silk", basicItem(defaultProp().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> keepers_amulet = ITEMS_GEN.register("keepers_amulet", basicItem(defaultProp().rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> aurorian_coal = ITEMS_GEN.register("aurorian_coal", basicItemWithBurntime(defaultProp(), 1600));
     public static final RegistryObject<Item> aurorian_coal_nugget = ITEMS_GEN.register("aurorian_coal_nugget", basicItemWithBurntime(defaultProp(), 200));
     public static final RegistryObject<Item> cup = ITEMS_GEN.register("cup", basicItemWithBurntime(defaultProp(), 100));
@@ -144,6 +146,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> spawn_egg_hollow = ITEMS_SPAWN_EGGS.register("spawn_egg_hollow", () -> new ForgeSpawnEggItem(EntityRegistry.hollow, 8117755, 3363951, defaultProp()));
     public static final RegistryObject<Item> spawn_egg_undead_knight = ITEMS_SPAWN_EGGS.register("spawn_egg_undead_knight", () -> new ForgeSpawnEggItem(EntityRegistry.undead_knight, 8117755, 3363951, defaultProp()));
     public static final RegistryObject<Item> spawn_egg_dungeon_slime = ITEMS_SPAWN_EGGS.register("spawn_egg_dungeon_slime", () -> new ForgeSpawnEggItem(EntityRegistry.dungeon_slime, 8117755, 3363951, defaultProp()));
+    public static final RegistryObject<Item> spawn_egg_dungeon_keeper = ITEMS_SPAWN_EGGS.register("spawn_egg_dungeon_keeper", () -> new ForgeSpawnEggItem(EntityRegistry.dungeon_keeper, 8117755, 3363951, defaultProp()));
 
     public static final RegistryObject<Item> cerulean_arrow = ITEMS_GEN.register("cerulean_arrow", () -> new BaseAurorianArrow(defaultProp()) {
         @Override

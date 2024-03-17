@@ -19,6 +19,8 @@ import shiroroku.theaurorian.Entities.AurorianArrow.CrystalArrowEntity;
 import shiroroku.theaurorian.Entities.CrystallineBeam.CrystallineBeamEntity;
 import shiroroku.theaurorian.Entities.CrystallineBeam.CrystallineBeamModel;
 import shiroroku.theaurorian.Entities.CrystallineBeam.CrystallineBeamRenderer;
+import shiroroku.theaurorian.Entities.DungeonKeeper.DungeonKeeperEntity;
+import shiroroku.theaurorian.Entities.DungeonKeeper.DungeonKeeperRenderer;
 import shiroroku.theaurorian.Entities.DungeonSlime.DungeonSlimeEntity;
 import shiroroku.theaurorian.Entities.DungeonSlime.DungeonSlimeModel;
 import shiroroku.theaurorian.Entities.DungeonSlime.DungeonSlimeRenderer;
@@ -39,11 +41,13 @@ public class EntityRegistry {
     public static final RegistryObject<EntityType<HollowEntity>> hollow = ENTITIES.register("hollow", () -> EntityType.Builder.<HollowEntity>of(HollowEntity::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).build("hollow"));
     public static final RegistryObject<EntityType<UndeadKnightEntity>> undead_knight = ENTITIES.register("undead_knight", () -> EntityType.Builder.<UndeadKnightEntity>of(UndeadKnightEntity::new, MobCategory.MONSTER).sized(0.8F, 2.3F).clientTrackingRange(8).build("undead_knight"));
     public static final RegistryObject<EntityType<DungeonSlimeEntity>> dungeon_slime = ENTITIES.register("dungeon_slime", () -> EntityType.Builder.of(DungeonSlimeEntity::new, MobCategory.MONSTER).sized(2.04F, 2.04F).clientTrackingRange(10).build("dungeon_slime"));
+    public static final RegistryObject<EntityType<DungeonKeeperEntity>> dungeon_keeper = ENTITIES.register("dungeon_keeper", () -> EntityType.Builder.of(DungeonKeeperEntity::new, MobCategory.MONSTER).sized(0.8F, 2.3F).clientTrackingRange(8).sized(0.7F, 2.4F).fireImmune().build("dungeon_keeper"));
 
     public static void entityAttributeCreation(EntityAttributeCreationEvent event) {
         event.put(EntityRegistry.hollow.get(), HollowEntity.createAttributes().build());
         event.put(EntityRegistry.undead_knight.get(), UndeadKnightEntity.createAttributes().build());
         event.put(EntityRegistry.dungeon_slime.get(), DungeonSlimeEntity.createAttributes().build());
+        event.put(EntityRegistry.dungeon_keeper.get(), DungeonKeeperEntity.createAttributes().build());
     }
 
     public static void registerSpawnPlacements(SpawnPlacementRegisterEvent event) {
@@ -60,6 +64,7 @@ public class EntityRegistry {
         event.registerEntityRenderer(EntityRegistry.hollow.get(), HollowRenderer::new);
         event.registerEntityRenderer(EntityRegistry.undead_knight.get(), UndeadKnightRenderer::new);
         event.registerEntityRenderer(EntityRegistry.dungeon_slime.get(), DungeonSlimeRenderer::new);
+        event.registerEntityRenderer(EntityRegistry.dungeon_keeper.get(), DungeonKeeperRenderer::new);
     }
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
