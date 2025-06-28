@@ -1,35 +1,36 @@
 package shiroroku.theaurorian.Config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import com.electronwill.nightconfig.core.ConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class CommonConfig {
 
-    public static final ForgeConfigSpec config;
+    public static final ModConfigSpec config;
 
-    public static final ForgeConfigSpec.ConfigValue<Boolean> absorption_orb_repairs_all;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> crystalline_shield_repairs_all;
-    public static final ForgeConfigSpec.ConfigValue<Double> aurorianite_shovel_resistance_difference;
-    public static final ForgeConfigSpec.ConfigValue<Integer> aurorianite_shovel_dig_radius;
-    public static final ForgeConfigSpec.ConfigValue<Double> aurorian_steel_level_multiplier;
-    public static final ForgeConfigSpec.ConfigValue<Double> boss_damage_per_player;
-    public static final ForgeConfigSpec.ConfigValue<Double> boss_health_per_player;
-    public static final ForgeConfigSpec.ConfigValue<Double> boss_speed_per_player;
-    public static final ForgeConfigSpec.ConfigValue<Double> chimney_multiplier;
-    public static final ForgeConfigSpec.ConfigValue<Double> crystalline_pickaxe_treasure_chance;
-    public static final ForgeConfigSpec.ConfigValue<Double> cystalline_sword_beam_damage;
-    public static final ForgeConfigSpec.ConfigValue<Double> cystalline_sword_beam_velocity;
-    public static final ForgeConfigSpec.ConfigValue<Double> moonstone_damage_chance;
-    public static final ForgeConfigSpec.ConfigValue<Double> scrapper_crystal_break_chance;
-    public static final ForgeConfigSpec.ConfigValue<Double> scrapper_crystal_speed_discount;
-    public static final ForgeConfigSpec.ConfigValue<Double> spectral_armor_cleanse_chance;
-    public static final ForgeConfigSpec.ConfigValue<Double> umbra_pickaxe_speed_multiplier;
-    public static final ForgeConfigSpec.ConfigValue<Integer> aurorian_steel_base_level;
-    public static final ForgeConfigSpec.ConfigValue<Integer> chimney_max;
-    public static final ForgeConfigSpec.ConfigValue<Integer> scrapper_base_craft_duration;
-    public static final ForgeConfigSpec.ConfigValue<Integer> umbra_pickaxe_selection_cost;
+    public static final ModConfigSpec.ConfigValue<Boolean> absorption_orb_repairs_all;
+    public static final ModConfigSpec.ConfigValue<Boolean> crystalline_shield_repairs_all;
+    public static final ModConfigSpec.ConfigValue<Double> aurorianite_shovel_resistance_difference;
+    public static final ModConfigSpec.ConfigValue<Integer> aurorianite_shovel_dig_radius;
+    public static final ModConfigSpec.ConfigValue<Double> aurorian_steel_level_multiplier;
+    public static final ModConfigSpec.ConfigValue<Double> boss_damage_per_player;
+    public static final ModConfigSpec.ConfigValue<Double> boss_health_per_player;
+    public static final ModConfigSpec.ConfigValue<Double> boss_speed_per_player;
+    public static final ModConfigSpec.ConfigValue<Double> chimney_multiplier;
+    public static final ModConfigSpec.ConfigValue<Double> crystalline_pickaxe_treasure_chance;
+    public static final ModConfigSpec.ConfigValue<Double> cystalline_sword_beam_damage;
+    public static final ModConfigSpec.ConfigValue<Double> cystalline_sword_beam_velocity;
+    public static final ModConfigSpec.ConfigValue<Double> moonstone_damage_chance;
+    public static final ModConfigSpec.ConfigValue<Double> scrapper_crystal_break_chance;
+    public static final ModConfigSpec.ConfigValue<Double> scrapper_crystal_speed_discount;
+    public static final ModConfigSpec.ConfigValue<Double> spectral_armor_cleanse_chance;
+    public static final ModConfigSpec.ConfigValue<Double> umbra_pickaxe_speed_multiplier;
+    public static final ModConfigSpec.ConfigValue<Integer> aurorian_steel_base_level;
+    public static final ModConfigSpec.ConfigValue<Integer> chimney_max;
+    public static final ModConfigSpec.ConfigValue<Integer> scrapper_base_craft_duration;
+    public static final ModConfigSpec.ConfigValue<Integer> umbra_pickaxe_selection_cost;
 
     static {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
         builder.push("The Aurorian");
         builder.push("Tools and Armor");
         absorption_orb_repairs_all = builder.define("absorption_orb_repairs_all", false);

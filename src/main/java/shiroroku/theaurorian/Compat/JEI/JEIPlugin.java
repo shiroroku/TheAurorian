@@ -8,6 +8,7 @@ import mezz.jei.api.registration.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import shiroroku.theaurorian.Blocks.MoonlightForge.MoonlightForgeMenu;
 import shiroroku.theaurorian.Blocks.MoonlightForge.MoonlightForgeRecipe;
 import shiroroku.theaurorian.Blocks.MoonlightForge.MoonlightForgeScreen;
@@ -27,7 +28,7 @@ public class JEIPlugin implements IModPlugin {
 
     @Override
     public ResourceLocation getPluginUid() {
-        return new ResourceLocation(TheAurorian.MODID, "recipes");
+        return ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "recipes");
     }
 
     @Override
@@ -38,8 +39,8 @@ public class JEIPlugin implements IModPlugin {
 
     @Override
     public void registerRecipes(IRecipeRegistration registry) {
-        registry.addRecipes(scrapper, Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(RecipeRegistry.scrapper.get()));
-        registry.addRecipes(moonlight_forge, Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(RecipeRegistry.moonlight_forge.get()));
+        registry.addRecipes(scrapper, Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(RecipeRegistry.scrapper.get()).stream().map(RecipeHolder::value).toList());
+        registry.addRecipes(moonlight_forge, Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(RecipeRegistry.moonlight_forge.get()).stream().map(RecipeHolder::value).toList());
     }
 
     @Override

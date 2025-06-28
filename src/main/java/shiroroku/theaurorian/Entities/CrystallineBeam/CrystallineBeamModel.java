@@ -17,7 +17,7 @@ import shiroroku.theaurorian.TheAurorian;
 
 public class CrystallineBeamModel extends EntityModel<Entity> {
 
-    public static final ModelLayerLocation MODEL_LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(TheAurorian.MODID, "crystalline_beam"), "main");
+    public static final ModelLayerLocation MODEL_LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "crystalline_beam"), "main");
     private final ModelPart main;
 
     public CrystallineBeamModel(ModelPart modelRoot) {
@@ -39,8 +39,7 @@ public class CrystallineBeamModel extends EntityModel<Entity> {
     }
 
     @Override
-    public void renderToBuffer(PoseStack pPoseStack, VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {
-        main.render(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int i1, int i2) {
+        main.render(poseStack, vertexConsumer, i, i1, i2);
     }
-
 }

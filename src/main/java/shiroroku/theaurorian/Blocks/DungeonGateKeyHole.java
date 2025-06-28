@@ -6,6 +6,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -36,27 +38,26 @@ public class DungeonGateKeyHole extends Block {
         this.key = key;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        ItemStack usedItem = pPlayer.getItemInHand(InteractionHand.MAIN_HAND);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        ItemStack usedItem = player.getItemInHand(InteractionHand.MAIN_HAND);
         boolean hasItem = (can_lockpick && usedItem.is(ItemRegistry.lockpicks.get())) || usedItem.is(key.get());
         if (!hasItem) {
             if (can_lockpick) {
-                pPlayer.displayClientMessage(Component.translatable("string.theaurorian.gate_key_lockpick"), true);
+                player.displayClientMessage(Component.translatable("string.theaurorian.gate_key_lockpick"), true);
             } else {
-                pPlayer.displayClientMessage(Component.translatable("string.theaurorian.gate_key"), true);
+                player.displayClientMessage(Component.translatable("string.theaurorian.gate_key"), true);
             }
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
-        if (!pLevel.isClientSide()) {
-            usedItem.hurtAndBreak(1, pPlayer, (player) -> player.broadcastBreakEvent(InteractionHand.MAIN_HAND));
+        if (!level.isClientSide()) {
+            usedItem.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
 
             // Pick chance
             if (can_lockpick && usedItem.is(ItemRegistry.lockpicks.get())) {
-                if (ModUtil.randomChanceOf(pPlayer.getRandom(), pick_failure_chance)) {
-                    return InteractionResult.FAIL;
+                if (ModUtil.randomChanceOf(player.getRandom(), pick_failure_chance)) {
+                    return ItemInteractionResult.FAIL;
                 }
             }
 
@@ -64,17 +65,17 @@ public class DungeonGateKeyHole extends Block {
             for (int y = -radius; y <= radius; y++) {
                 for (int x = -radius; x <= radius; x++) {
                     for (int z = -radius; z <= radius; z++) {
-                        BlockPos posx = pPos.offset(x, y, z);
-                        if (pLevel.getBlockState(posx).is(DataGenBlocksTags.DUNGEON_GATES)) {
-                            pLevel.destroyBlock(posx, false);
+                        BlockPos posx = pos.offset(x, y, z);
+                        if (level.getBlockState(posx).is(DataGenBlocksTags.DUNGEON_GATES)) {
+                            level.destroyBlock(posx, false);
                         }
                     }
                 }
             }
 
-            pLevel.playSound(null, pPos, SoundEvents.IRON_TRAPDOOR_OPEN, SoundSource.BLOCKS, 1, 1);
-            pLevel.destroyBlock(pPos, false);
+            level.playSound(null, pos, SoundEvents.IRON_TRAPDOOR_OPEN, SoundSource.BLOCKS, 1, 1);
+            level.destroyBlock(pos, false);
         }
-        return InteractionResult.sidedSuccess(pLevel.isClientSide());
+        return ItemInteractionResult.sidedSuccess(level.isClientSide());
     }
 }

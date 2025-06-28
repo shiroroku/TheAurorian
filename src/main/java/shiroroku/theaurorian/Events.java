@@ -1,12 +1,12 @@
 package shiroroku.theaurorian;
 
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import shiroroku.theaurorian.Registry.EntityRegistry;
 
-@Mod.EventBusSubscriber(modid = TheAurorian.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = TheAurorian.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class Events {
 
     @SubscribeEvent
@@ -15,7 +15,7 @@ public class Events {
     }
 
     @SubscribeEvent
-    public static void spawnPlacementRegister(SpawnPlacementRegisterEvent event) {
+    public static void spawnPlacementRegister(RegisterSpawnPlacementsEvent event) {
         EntityRegistry.registerSpawnPlacements(event);
     }
 

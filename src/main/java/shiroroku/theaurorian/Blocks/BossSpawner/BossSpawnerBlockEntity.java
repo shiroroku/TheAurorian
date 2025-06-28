@@ -1,6 +1,9 @@
 package shiroroku.theaurorian.Blocks.BossSpawner;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
@@ -15,7 +18,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.registries.ForgeRegistries;
 import shiroroku.theaurorian.Config.CommonConfig;
 import shiroroku.theaurorian.Registry.BlockEntityRegistry;
 import shiroroku.theaurorian.TheAurorian;
@@ -56,9 +58,9 @@ public class BossSpawnerBlockEntity extends BlockEntity {
         }
 
         // Boss scaling
-        int nearbyPlayers = level.getEntitiesOfClass(Player.class, new AABB(worldPosition, worldPosition.offset(1, 1, 1)).inflate(spawnDistance * 2)).size();
+        int nearbyPlayers = level.getEntitiesOfClass(Player.class, AABB.encapsulatingFullBlocks(worldPosition, worldPosition.offset(1, 1, 1)).inflate(spawnDistance * 2)).size();
         TheAurorian.LOGGER.debug(nearbyPlayers);
-        LivingEntity boss = (LivingEntity) bossEntity.spawn((ServerLevel) this.level, null, null, null, worldPosition.above(), MobSpawnType.STRUCTURE, false, false);
+        LivingEntity boss = (LivingEntity) bossEntity.spawn((ServerLevel) this.level, worldPosition.above(), MobSpawnType.STRUCTURE);
         if (nearbyPlayers > 1) {
             boss.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(boss.getAttribute(Attributes.MOVEMENT_SPEED).getValue() * ((nearbyPlayers * CommonConfig.boss_speed_per_player.get()) + 1));
             boss.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(boss.getAttribute(Attributes.ATTACK_DAMAGE).getValue() * ((nearbyPlayers * CommonConfig.boss_damage_per_player.get()) + 1));
@@ -68,25 +70,25 @@ public class BossSpawnerBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void load(CompoundTag pTag) {
-        if (pTag.contains("boss")) {
-            this.bossEntity = ForgeRegistries.ENTITY_TYPES.getValue(ResourceLocation.tryParse(pTag.getString("boss")));
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        if (tag.contains("boss")) {
+            this.bossEntity = BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.tryParse(tag.getString("boss")));
         }
-        super.load(pTag);
+        super.loadAdditional(tag, registries);
     }
 
     @Override
-    protected void saveAdditional(CompoundTag pTag) {
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         if (bossEntity != null) {
-            pTag.putString("boss", ForgeRegistries.ENTITY_TYPES.getKey(bossEntity).toString());
+            tag.putString("boss", BuiltInRegistries.ENTITY_TYPE.getKey(bossEntity).toString());
         }
-        super.saveAdditional(pTag);
+        super.saveAdditional(tag, registries);
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
-        CompoundTag nbt = super.getUpdateTag();
-        this.saveAdditional(nbt);
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        CompoundTag nbt = super.getUpdateTag(registries);
+        this.saveAdditional(nbt, registries);
         return nbt;
     }
 

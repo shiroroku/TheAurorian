@@ -25,7 +25,7 @@ public class BaseAurorianTea extends BaseAurorianItem {
     }
 
     public static FoodProperties.Builder foodProperties() {
-        return new FoodProperties.Builder().nutrition(0).fast().saturationMod(0);
+        return new FoodProperties.Builder().nutrition(0).fast().saturationModifier(0);
     }
 
     public static Properties properties() {

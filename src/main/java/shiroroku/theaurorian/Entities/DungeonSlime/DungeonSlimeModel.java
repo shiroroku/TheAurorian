@@ -13,8 +13,8 @@ import shiroroku.theaurorian.TheAurorian;
 
 public class DungeonSlimeModel extends HierarchicalModel<DungeonSlimeEntity> {
 
-    public static final ModelLayerLocation MODEL_LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(TheAurorian.MODID, "dungeon_slime"), "main");
-    public static final ModelLayerLocation MODEL_LAYER_LOCATION_OUTER = new ModelLayerLocation(new ResourceLocation(TheAurorian.MODID, "dungeon_slime"), "outer");
+    public static final ModelLayerLocation MODEL_LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "dungeon_slime"), "main");
+    public static final ModelLayerLocation MODEL_LAYER_LOCATION_OUTER = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "dungeon_slime"), "outer");
     private final ModelPart root;
 
     public DungeonSlimeModel(ModelPart modelRoot) {

@@ -2,6 +2,7 @@ package shiroroku.theaurorian.Items.Loot;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import shiroroku.theaurorian.Config.CommonConfig;
@@ -18,7 +19,7 @@ public class CrystallineShield extends BaseAurorianShield {
     }
 
     @Override
-    public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T pEntity, Consumer<T> onBroken) {
+    public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T pEntity, Consumer<Item> onBroken) {
         Player player = (Player) pEntity;
         ItemStack mainhandItem = player.getMainHandItem();
         ItemStack shieldItem = player.getOffhandItem();

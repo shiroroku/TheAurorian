@@ -2,7 +2,7 @@ package shiroroku.theaurorian.Blocks.SilentwoodChest;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -12,6 +12,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.BrightnessCombiner;
@@ -31,20 +32,19 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.ChestType;
 import shiroroku.theaurorian.TheAurorian;
 
-@SuppressWarnings("deprecation")
 public class SilentwoodChestBlockRenderer<T extends BlockEntity & LidBlockEntity> implements BlockEntityRenderer<T> {
 
-    public static final ModelLayerLocation MODEL_LAYER_NORMAL = new ModelLayerLocation(new ResourceLocation(TheAurorian.MODID, "silentwood_chest"), "normal");
-    public static final ModelLayerLocation MODEL_LAYER_DOUBLE_LEFT = new ModelLayerLocation(new ResourceLocation(TheAurorian.MODID, "silentwood_chest"), "double_left");
-    public static final ModelLayerLocation MODEL_LAYER_DOUBLE_RIGHT = new ModelLayerLocation(new ResourceLocation(TheAurorian.MODID, "silentwood_chest"), "double_right");
+    public static final ModelLayerLocation MODEL_LAYER_NORMAL = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "silentwood_chest"), "normal");
+    public static final ModelLayerLocation MODEL_LAYER_DOUBLE_LEFT = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "silentwood_chest"), "double_left");
+    public static final ModelLayerLocation MODEL_LAYER_DOUBLE_RIGHT = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "silentwood_chest"), "double_right");
 
-    public static final ResourceLocation NORMAL = new ResourceLocation(TheAurorian.MODID, "entity/silentwood_chest/normal");
-    public static final ResourceLocation DOUBLE_LEFT = new ResourceLocation(TheAurorian.MODID, "entity/silentwood_chest/double_left");
-    public static final ResourceLocation DOUBLE_RIGHT = new ResourceLocation(TheAurorian.MODID, "entity/silentwood_chest/double_right");
+    private static final ResourceLocation NORMAL = ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "entity/silentwood_chest/normal");
+    private static final ResourceLocation DOUBLE_LEFT = ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "entity/silentwood_chest/double_left");
+    private static final ResourceLocation DOUBLE_RIGHT = ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "entity/silentwood_chest/double_right");
 
-    public static final Material MATERIAL_NORMAL = new Material(TextureAtlas.LOCATION_BLOCKS, NORMAL);
-    public static final Material MATERIAL_DOUBLE_LEFT = new Material(TextureAtlas.LOCATION_BLOCKS, DOUBLE_LEFT);
-    public static final Material MATERIAL_DOUBLE_RIGHT = new Material(TextureAtlas.LOCATION_BLOCKS, DOUBLE_RIGHT);
+    private static final Material MATERIAL_NORMAL = new Material(Sheets.CHEST_SHEET, NORMAL);
+    private static final Material MATERIAL_DOUBLE_LEFT = new Material(Sheets.CHEST_SHEET, DOUBLE_LEFT);
+    private static final Material MATERIAL_DOUBLE_RIGHT = new Material(Sheets.CHEST_SHEET, DOUBLE_RIGHT);
 
     private final ModelPart lid;
     private final ModelPart bottom;
@@ -108,7 +108,7 @@ public class SilentwoodChestBlockRenderer<T extends BlockEntity & LidBlockEntity
             pPoseStack.pushPose();
             float facing = blockstate.getValue(ChestBlock.FACING).toYRot();
             pPoseStack.translate(0.5D, 0.5D, 0.5D);
-            pPoseStack.mulPose(Vector3f.YP.rotationDegrees(-facing));
+            pPoseStack.mulPose(Axis.YP.rotationDegrees(-facing));
             pPoseStack.translate(-0.5D, -0.5D, -0.5D);
             DoubleBlockCombiner.NeighborCombineResult<? extends ChestBlockEntity> combineResult;
             if (hasLevel) {
@@ -121,7 +121,7 @@ public class SilentwoodChestBlockRenderer<T extends BlockEntity & LidBlockEntity
             lidAngle = 1.0F - lidAngle * lidAngle * lidAngle;
             int packedLight = combineResult.apply(new BrightnessCombiner<>()).applyAsInt(pPackedLight);
             boolean isDouble = chestType != ChestType.SINGLE;
-            Material material = getMaterial(chestType);
+            Material material = getMaterial(pBlockEntity, chestType);
             VertexConsumer vertexConsumer = material.buffer(pBufferSource, RenderType::entityCutout);
             if (isDouble) {
                 if (chestType == ChestType.LEFT) {
@@ -144,11 +144,17 @@ public class SilentwoodChestBlockRenderer<T extends BlockEntity & LidBlockEntity
         pBottomPart.render(pPoseStack, pConsumer, pPackedLight, pPackedOverlay);
     }
 
-    private static Material getMaterial(ChestType pChestType) {
-        return switch (pChestType) {
+    protected Material getMaterial(T blockEntity, ChestType chestType) {
+        return switch (chestType) {
             case LEFT -> SilentwoodChestBlockRenderer.MATERIAL_DOUBLE_LEFT;
             case RIGHT -> SilentwoodChestBlockRenderer.MATERIAL_DOUBLE_RIGHT;
             default -> SilentwoodChestBlockRenderer.MATERIAL_NORMAL;
         };
+    }
+
+    @Override
+    public net.minecraft.world.phys.AABB getRenderBoundingBox(T blockEntity) {
+        net.minecraft.core.BlockPos pos = blockEntity.getBlockPos();
+        return net.minecraft.world.phys.AABB.encapsulatingFullBlocks(pos.offset(-1, 0, -1), pos.offset(1, 1, 1));
     }
 }

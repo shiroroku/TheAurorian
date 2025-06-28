@@ -1,108 +1,126 @@
 plugins {
-    id 'eclipse'
-    id 'idea'
+    id 'java-library'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
-    id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
-    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    id 'net.neoforged.moddev' version '2.0.95'
+    id 'idea'
 }
 
 version = mod_version
 group = mod_group_id
-base.archivesName = mod_id
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
-minecraft {
-    mappings channel: mapping_channel, version: mapping_version
-    copyIdeResources = true
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+neoForge {
+    version = neo_version
+
+    parchment {
+        mappingsVersion = parchment_mapping_version
+        minecraftVersion = parchment_mc_version
+    }
+
+    accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
+
     runs {
-        configureEach {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                "${mod_id}" {
-                    source sourceSets.main
-                }
-            }
-        }
-
         client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
         server {
-            workingDirectory project.file('run/server')
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
         data {
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            data()
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
         }
     }
-}
 
-mixin {
-    add sourceSets.main, "${mod_id}.refmap.json"
-    config "${mod_id}.mixins.json"
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroup("software.bernie.geckolib")
+        }
+    }
+    maven {
         // Curios
         url = "https://maven.theillusivec4.top/"
     }
     maven {
         // JEI
+        // BookShelf
         url = "https://maven.blamejared.com"
     }
     maven {
         // CurseForge
         url = "https://cursemaven.com"
     }
+    maven {
+        // AppleSkin
+        url = "https://maven.ryanliptak.com/"
+    }
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-
     // Geckolib
-    implementation fg.deobf("curse.maven:geckolib-388172:4407241")
+    implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
 
     // Curios
-    implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+    implementation "top.theillusivec4.curios:curios-neoforge:${curios_version}"
 
     // JEI
-    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
-    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
-    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
+    runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
 
     // AppleSkin
-    implementation fg.deobf("curse.maven:appleskin-248787:3872808")
+    runtimeOnly "squeek.appleskin:appleskin-neoforge:mc${minecraft_base_version}-${appleskin_version}"
+    runtimeOnly "squeek.appleskin:appleskin-neoforge:mc${minecraft_base_version}-${appleskin_version}:api"
 
     // Neat
-    implementation fg.deobf("curse.maven:neat-238372:3878735")
+    runtimeOnly "curse.maven:neat-238372:5838045"
 
-	// Enchantment Descriptions
-	implementation fg.deobf("curse.maven:bookshelf-228525:4556697")
-    implementation fg.deobf("curse.maven:enchantment-descriptions-250419:5015022")
+    // Jade
+    runtimeOnly "curse.maven:jade-324717:6667790"
+
+    // Enchantment Descriptions
+    runtimeOnly "net.darkhax.bookshelf:bookshelf-neoforge-1.21.1:21.1.65"
+    runtimeOnly "net.darkhax.pricklemc:prickle-neoforge-1.21.1:21.1.8"
+    runtimeOnly "curse.maven:enchantment-descriptions-250419:6348560"
 
     // Effortless building (for making stuctures)
-    implementation fg.deobf("curse.maven:effortless-building-302113:4810762")
-
-    // Mixin
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    runtimeOnly "curse.maven:effortless-building-302113:6331031"
 }
-
 
 processResources {
     var replaceProperties = [
             minecraft_version      : minecraft_version,
             minecraft_version_range: minecraft_version_range,
-            forge_version          : forge_version,
-            forge_version_range    : forge_version_range,
+            neo_version            : neo_version,
+            neo_version_range      : neo_version_range,
             loader_version_range   : loader_version_range,
             mod_id                 : mod_id,
             mod_name               : mod_name,
@@ -115,8 +133,8 @@ processResources {
 
     inputs.properties replaceProperties
 
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
-        expand replaceProperties + [project: project]
+    filesMatching(['META-INF/neoforge.mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties
     }
 }
 
@@ -134,11 +152,9 @@ jar {
     }
 }
 
-jar.finalizedBy('reobfJar')
-
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+        register("mavenJava", MavenPublication) {
             artifact jar
         }
     }

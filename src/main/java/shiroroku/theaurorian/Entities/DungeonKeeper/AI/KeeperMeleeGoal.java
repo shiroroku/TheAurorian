@@ -1,5 +1,6 @@
 package shiroroku.theaurorian.Entities.DungeonKeeper.AI;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.item.ItemStack;
@@ -7,6 +8,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import shiroroku.theaurorian.Entities.DungeonKeeper.DungeonKeeperEntity;
 import shiroroku.theaurorian.Registry.EnchantRegistry;
 import shiroroku.theaurorian.Registry.ItemRegistry;
+import shiroroku.theaurorian.Registry.RecipeRegistry;
 
 public class KeeperMeleeGoal extends MeleeAttackGoal {
 
@@ -32,8 +34,8 @@ public class KeeperMeleeGoal extends MeleeAttackGoal {
     public void start() {
         super.start();
         ItemStack sword = new ItemStack(ItemRegistry.moonstone_sword.get());
-        sword.enchant(Enchantments.KNOCKBACK, 2);
-        sword.enchant(EnchantRegistry.lightning.get(), 3);
+        sword.enchant(mob.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.KNOCKBACK), 2);
+        sword.enchant(mob.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(EnchantRegistry.LIGHTNING), 3);
         mob.setItemInHand(InteractionHand.MAIN_HAND, sword);
     }
 

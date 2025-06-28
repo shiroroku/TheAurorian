@@ -2,12 +2,11 @@ package shiroroku.theaurorian.Blocks.MoonlightForge;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Matrix3f;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -15,6 +14,8 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.ResourceLocation;
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
 import shiroroku.theaurorian.Registry.BlockRegistry;
 import shiroroku.theaurorian.TheAurorian;
 import shiroroku.theaurorian.Util.ModUtil;
@@ -22,7 +23,7 @@ import shiroroku.theaurorian.Util.ModUtil;
 @SuppressWarnings("deprecation")
 public class MoonlightForgeBlockRenderer implements BlockEntityRenderer<MoonlightForgeBlockEntity> {
 
-    public static final ResourceLocation RING_OVERLAY = new ResourceLocation(TheAurorian.MODID, "block/moonlight_forge_overlay");
+    private static final ResourceLocation RING_OVERLAY = ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "block/moonlight_forge_overlay");
     private final BlockRenderDispatcher blockRenderer;
 
     public MoonlightForgeBlockRenderer(BlockEntityRendererProvider.Context pContext) {
@@ -42,8 +43,8 @@ public class MoonlightForgeBlockRenderer implements BlockEntityRenderer<Moonligh
 
         stack.pushPose();
         stack.translate(0.5, 0.9, 0.5D);
-        stack.mulPose(Vector3f.ZP.rotationDegrees(rotation * multiplier * 3));
-        stack.mulPose(Vector3f.YP.rotationDegrees(rotation * multiplier * 3));
+        stack.mulPose(Axis.ZP.rotationDegrees(rotation * multiplier * 3));
+        stack.mulPose(Axis.YP.rotationDegrees(rotation * multiplier * 3));
         stack.translate(-scale * 0.5, -scale * 0.5, -scale * 0.5);
         stack.scale(scale, scale, scale);
         this.blockRenderer.renderSingleBlock(BlockRegistry.moon_gem.get().defaultBlockState(), stack, pBufferSource, pPackedLight, pPackedOverlay);
@@ -53,14 +54,12 @@ public class MoonlightForgeBlockRenderer implements BlockEntityRenderer<Moonligh
         stack.pushPose();
         VertexConsumer consumer = pBufferSource.getBuffer(RenderType.endGateway());
         PoseStack.Pose last = stack.last();
-        Matrix4f pose = last.pose();
-        Matrix3f normal = last.normal();
         stack.translate(0.5, 0.6275f, 0.5);
         stack.scale(0.625f, 0, 0.625f);
-        vert(consumer, pose, normal, -0.5f, 0, -0.5f, 0, 0);
-        vert(consumer, pose, normal, -0.5f, 0, 0.5f, 0, 0);
-        vert(consumer, pose, normal, 0.5f, 0, 0.5f, 0, 0);
-        vert(consumer, pose, normal, 0.5f, 0, -0.5f, 0, 0);
+        vert(consumer, last, -0.5f, 0, -0.5f, 0, 0);
+        vert(consumer, last, -0.5f, 0, 0.5f, 0, 0);
+        vert(consumer, last, 0.5f, 0, 0.5f, 0, 0);
+        vert(consumer, last, 0.5f, 0, -0.5f, 0, 0);
         stack.popPose();
 
         // rings
@@ -69,37 +68,35 @@ public class MoonlightForgeBlockRenderer implements BlockEntityRenderer<Moonligh
         float movement = ModUtil.wave(time, 0.15f, 0.1f);
         stack.scale(0.7f, 1, 0.7f);
         stack.translate(0, 0.9 + movement, 0D);
-        stack.mulPose(Vector3f.YP.rotationDegrees(rotation));
+        stack.mulPose(Axis.YP.rotationDegrees(rotation));
         renderRing(pBufferSource, stack);
         movement += multiplier * 1;
         stack.scale(0.95f * movement, 1, 0.95f * movement);
-        stack.mulPose(Vector3f.YP.rotationDegrees(rotation));
+        stack.mulPose(Axis.YP.rotationDegrees(rotation));
         stack.translate(0, 0.15, 0D);
         renderRing(pBufferSource, stack);
         stack.scale(0.95f * movement, 1, 0.95f * movement);
-        stack.mulPose(Vector3f.YP.rotationDegrees(rotation));
+        stack.mulPose(Axis.YP.rotationDegrees(rotation));
         stack.translate(0, 0.15, 0D);
         renderRing(pBufferSource, stack);
         stack.popPose();
     }
 
-    @SuppressWarnings("resource")
+    @SuppressWarnings("resources")
     private static void renderRing(MultiBufferSource pBufferSource, PoseStack stack) {
-        TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(RING_OVERLAY);
+        TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(Sheets.CHEST_SHEET).apply(RING_OVERLAY);
         VertexConsumer builder = pBufferSource.getBuffer(RenderType.cutout());
         PoseStack.Pose last = stack.last();
-        Matrix4f pose = last.pose();
-        Matrix3f normal = last.normal();
         stack.pushPose();
-        vert(builder, pose, normal, -0.5f, 0, 0.5f, sprite.getU0(), sprite.getV1());
-        vert(builder, pose, normal, 0.5f, 0, 0.5f, sprite.getU1(), sprite.getV1());
-        vert(builder, pose, normal, 0.5f, 0, -0.5f, sprite.getU1(), sprite.getV0());
-        vert(builder, pose, normal, -0.5f, 0, -0.5f, sprite.getU0(), sprite.getV0());
+        vert(builder, last, -0.5f, 0, 0.5f, sprite.getU0(), sprite.getV1());
+        vert(builder, last, 0.5f, 0, 0.5f, sprite.getU1(), sprite.getV1());
+        vert(builder, last, 0.5f, 0, -0.5f, sprite.getU1(), sprite.getV0());
+        vert(builder, last, -0.5f, 0, -0.5f, sprite.getU0(), sprite.getV0());
         stack.popPose();
     }
 
     @SuppressWarnings("SameParameterValue")
-    private static void vert(VertexConsumer vertexConsumer, Matrix4f matrix4f, Matrix3f matrix3f, float x, float y, float z, float u, float v) {
-        vertexConsumer.vertex(matrix4f, x, y, z).color(255, 255, 255, 255).uv(u, v).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(15728880).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
+    private static void vert(VertexConsumer vertexConsumer, PoseStack.Pose pose, float x, float y, float z, float u, float v) {
+        vertexConsumer.addVertex(pose, x, y, z).setColor(255, 255, 255, 255).setUv(u, v).setOverlay(OverlayTexture.NO_OVERLAY).setLight(15728880).setNormal(pose, 0.0F, 1.0F, 0.0F);
     }
 }

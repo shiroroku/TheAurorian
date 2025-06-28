@@ -1,5 +1,6 @@
 package shiroroku.theaurorian.Blocks.Crystal;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -11,6 +12,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class CrystalBlock extends BaseEntityBlock {
 
+    public static final MapCodec<CrystalBlock> CODEC = simpleCodec(CrystalBlock::new);
+
     private static final VoxelShape SHAPE = Block.box(7.0D, 0.0D, 7.0D, 9.0D, 16.0D, 9.0D);
 
     public CrystalBlock(Properties pProperties) {
@@ -18,9 +21,13 @@ public class CrystalBlock extends BaseEntityBlock {
     }
 
     @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
+
+    @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new CrystalBlockEntity(pPos, pState);
-
     }
 
     @SuppressWarnings("deprecation")

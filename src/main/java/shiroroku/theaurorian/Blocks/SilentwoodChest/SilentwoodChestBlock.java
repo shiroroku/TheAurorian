@@ -9,7 +9,7 @@ import shiroroku.theaurorian.Registry.BlockEntityRegistry;
 public class SilentwoodChestBlock extends ChestBlock {
 
     public SilentwoodChestBlock(Properties pProperties) {
-        super(pProperties, BlockEntityRegistry.silentwood_chest);
+        super(pProperties, BlockEntityRegistry.silentwood_chest::get);
     }
 
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {

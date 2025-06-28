@@ -16,18 +16,18 @@ public class BaseAurorianHoe extends HoeItem {
 
     private int burnTime = 0;
 
-    public BaseAurorianHoe(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties, int burnTime) {
-        super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
+    public BaseAurorianHoe(Tier pTier, Properties pProperties, int burnTime) {
+        super(pTier, pProperties);
         this.burnTime = burnTime;
     }
 
-    public BaseAurorianHoe(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
-        super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
+    public BaseAurorianHoe(Tier pTier, Properties pProperties) {
+        super(pTier, pProperties);
     }
 
     @Override
-    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        super.appendHoverText(pStack, pLevel, TooltipUtil.tryAddDesc(pStack, pTooltipComponents), pIsAdvanced);
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, TooltipUtil.tryAddDesc(stack, tooltipComponents), tooltipFlag);
     }
 
     @Override

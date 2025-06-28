@@ -1,24 +1,33 @@
 package shiroroku.theaurorian.Blocks.Scrapper;
 
 import com.google.gson.JsonObject;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import shiroroku.theaurorian.Blocks.MoonlightForge.MoonlightForgeRecipe;
 import shiroroku.theaurorian.Registry.RecipeRegistry;
 
-public record ScrapperRecipe(ResourceLocation id, Ingredient input, ItemStack output) implements Recipe<Container> {
+public record ScrapperRecipe(Ingredient input, ItemStack output) implements Recipe<SingleRecipeInput> {
 
     @Override
-    public boolean matches(Container pContainer, Level pLevel) {
-        return true;
+    public boolean matches(SingleRecipeInput recipeInput, Level level) {
+        if (level.isClientSide) {
+            return false;
+        }
+        return input.test(recipeInput.item());
     }
 
     @Override
-    public ItemStack assemble(Container pContainer) {
+    public ItemStack assemble(SingleRecipeInput singleRecipeInput, HolderLookup.Provider provider) {
         return this.output.copy();
     }
 
@@ -28,13 +37,12 @@ public record ScrapperRecipe(ResourceLocation id, Ingredient input, ItemStack ou
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(HolderLookup.Provider provider) {
         return this.output.copy();
     }
 
-    @Override
-    public ResourceLocation getId() {
-        return this.id;
+    public ItemStack getResultItem() {
+        return this.output.copy();
     }
 
     @Override
@@ -49,24 +57,26 @@ public record ScrapperRecipe(ResourceLocation id, Ingredient input, ItemStack ou
 
     public static class Serializer implements RecipeSerializer<ScrapperRecipe> {
 
+        public static final MapCodec<ScrapperRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+                Ingredient.CODEC.fieldOf("input").forGetter(ScrapperRecipe::input),
+                ItemStack.CODEC.fieldOf("output").forGetter(ScrapperRecipe::output)
+        ).apply(inst, ScrapperRecipe::new));
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, ScrapperRecipe> STREAM_CODEC =
+                StreamCodec.composite(
+                        Ingredient.CONTENTS_STREAM_CODEC, ScrapperRecipe::input,
+                        ItemStack.STREAM_CODEC, ScrapperRecipe::output,
+                        ScrapperRecipe::new
+                );
+
         @Override
-        public ScrapperRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            Ingredient input = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));
-            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
-            return new ScrapperRecipe(recipeId, input, output);
+        public MapCodec<ScrapperRecipe> codec() {
+            return CODEC;
         }
 
         @Override
-        public ScrapperRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buffer) {
-            Ingredient input = Ingredient.fromNetwork(buffer);
-            ItemStack output = buffer.readItem();
-            return new ScrapperRecipe(id, input, output);
-        }
-
-        @Override
-        public void toNetwork(FriendlyByteBuf buffer, ScrapperRecipe recipe) {
-            recipe.input.toNetwork(buffer);
-            buffer.writeItem(recipe.output);
+        public StreamCodec<RegistryFriendlyByteBuf, ScrapperRecipe> streamCodec() {
+            return STREAM_CODEC;
         }
     }
 }

@@ -30,7 +30,7 @@ public class LivingDiviningRod extends BaseAurorianItem {
             }
         });
 
-        pPlayer.getItemInHand(pUsedHand).hurtAndBreak(1, pPlayer, (p) -> p.broadcastBreakEvent(pUsedHand));
+        pPlayer.getItemInHand(pUsedHand).hurtAndBreak(1, pPlayer, LivingEntity.getSlotForHand(pUsedHand));
         pPlayer.getCooldowns().addCooldown(this, 120);
         return super.use(pLevel, pPlayer, pUsedHand);
     }

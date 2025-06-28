@@ -19,7 +19,7 @@ import shiroroku.theaurorian.TheAurorian;
 public class JEIMoonlightForgeCategory implements IRecipeCategory<MoonlightForgeRecipe> {
 
     private final IDrawable bg, icon;
-    public static final ResourceLocation screen = new ResourceLocation(TheAurorian.MODID, "textures/gui/moonlight_forge.png");
+    public static final ResourceLocation screen = ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "textures/gui/moonlight_forge.png");
 
     public JEIMoonlightForgeCategory(IGuiHelper guihelper) {
         this.bg = guihelper.createDrawable(screen, 18, 27, 148, 32);

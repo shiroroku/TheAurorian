@@ -28,7 +28,7 @@ public class DungeonSlimeLayer extends RenderLayer<DungeonSlimeEntity, DungeonSl
             this.getParentModel().copyPropertiesTo(this.model);
             this.model.prepareMobModel(dungeonSlimeEntity, pLimbSwing, pLimbSwingAmount, pPartialTicks);
             this.model.setupAnim(dungeonSlimeEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
-            this.model.renderToBuffer(pMatrixStack, vertexconsumer, pPackedLight, LivingEntityRenderer.getOverlayCoords(dungeonSlimeEntity, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
+            this.model.renderToBuffer(pMatrixStack, vertexconsumer, pPackedLight, LivingEntityRenderer.getOverlayCoords(dungeonSlimeEntity, 0.0F));
         }
     }
 }

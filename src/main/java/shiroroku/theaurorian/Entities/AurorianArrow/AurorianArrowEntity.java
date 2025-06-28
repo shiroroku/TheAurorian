@@ -21,14 +21,14 @@ public class AurorianArrowEntity extends AbstractArrow {
     }
 
     public AurorianArrowEntity(EntityType<? extends AbstractArrow> pEntityType, Level pLevel, double pX, double pY, double pZ, Item arrowItem, float damage, Float weight) {
-        super(pEntityType, pX, pY, pZ, pLevel);
+        super(pEntityType, pX, pY, pZ, pLevel, arrowItem.getDefaultInstance(), null);
         this.arrowItem = arrowItem;
         this.weight = weight;
         this.setBaseDamage(damage);
     }
 
     public AurorianArrowEntity(EntityType<? extends AbstractArrow> pEntityType, Level pLevel, LivingEntity pShooter, Item arrowItem, float damage, Float weight) {
-        super(pEntityType, pShooter, pLevel);
+        super(pEntityType, pShooter, pLevel, arrowItem.getDefaultInstance(), null);
         this.arrowItem = arrowItem;
         this.weight = weight;
         this.setBaseDamage(damage);
@@ -44,7 +44,7 @@ public class AurorianArrowEntity extends AbstractArrow {
     }
 
     @Override
-    protected ItemStack getPickupItem() {
+    protected ItemStack getDefaultPickupItem() {
         return new ItemStack(arrowItem);
     }
 }

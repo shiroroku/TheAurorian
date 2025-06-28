@@ -2,6 +2,7 @@ package shiroroku.theaurorian.Entities.CrystallineBeam;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -15,6 +16,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.event.EventHooks;
 import shiroroku.theaurorian.Config.CommonConfig;
 import shiroroku.theaurorian.Registry.EntityRegistry;
 
@@ -31,7 +33,7 @@ public class CrystallineBeamEntity extends Projectile {
     }
 
     @Override
-    protected void defineSynchedData() {
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
 
     }
 
@@ -47,8 +49,8 @@ public class CrystallineBeamEntity extends Projectile {
 
         Vec3 vec3 = this.getDeltaMovement();
 
-        HitResult hitresult = ProjectileUtil.getHitResult(this, this::canHitEntity);
-        if (hitresult.getType() != HitResult.Type.MISS && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, hitresult)) {
+        HitResult hitresult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
+        if (hitresult.getType() != HitResult.Type.MISS && !EventHooks.onProjectileImpact(this, hitresult)) {
             this.onHit(hitresult);
         }
 
@@ -57,13 +59,13 @@ public class CrystallineBeamEntity extends Projectile {
         double zo = this.getZ() + vec3.z;
         this.updateRotation();
 
-        if (this.level.getBlockStates(this.getBoundingBox()).noneMatch(BlockBehaviour.BlockStateBase::isAir) || this.isInWaterOrBubble()) {
+        if (this.level().getBlockStates(this.getBoundingBox()).noneMatch(BlockBehaviour.BlockStateBase::isAir) || this.isInWaterOrBubble()) {
             this.discard();
             return;
         }
 
         //trail
-        this.level.broadcastEntityEvent(this, (byte) 1);
+        this.level().broadcastEntityEvent(this, (byte) 1);
 
         this.setPos(xo, yo, zo);
     }
@@ -74,13 +76,13 @@ public class CrystallineBeamEntity extends Projectile {
             default:
             case 0:// hit particles
                 for (int i = 0; i < 8; ++i) {
-                    this.level.addParticle(ParticleTypes.POOF, this.getX(), this.getY() + 0.15, this.getZ(), 0.0D, 0.0D, 0.0D);
+                    this.level().addParticle(ParticleTypes.POOF, this.getX(), this.getY() + 0.15, this.getZ(), 0.0D, 0.0D, 0.0D);
                 }
                 break;
             case 1:// trail particles
                 if (this.tickCount > 1) {
                     Vec3 vec3 = this.getDeltaMovement();
-                    this.level.addParticle(ParticleTypes.WAX_OFF, this.getX() + this.random.nextDouble() * 0.1, this.getY() + 0.15 + this.random.nextDouble() * 0.1, this.getZ() + this.random.nextDouble() * 0.1, vec3.x * -10, vec3.y * -10, vec3.z * -10);
+                    this.level().addParticle(ParticleTypes.WAX_OFF, this.getX() + this.random.nextDouble() * 0.1, this.getY() + 0.15 + this.random.nextDouble() * 0.1, this.getZ() + this.random.nextDouble() * 0.1, vec3.x * -10, vec3.y * -10, vec3.z * -10);
                 }
                 break;
         }
@@ -89,8 +91,8 @@ public class CrystallineBeamEntity extends Projectile {
     @Override
     protected void onHitEntity(EntityHitResult pResult) {
         if (this.getOwner() instanceof LivingEntity livingEntity) {
-            this.level.broadcastEntityEvent(this, (byte) 0);
-            pResult.getEntity().hurt(DamageSource.indirectMobAttack(this, livingEntity).setProjectile(), CommonConfig.cystalline_sword_beam_damage.get().floatValue());
+            this.level().broadcastEntityEvent(this, (byte) 0);
+            pResult.getEntity().hurt(damageSources().mobProjectile(this, livingEntity), CommonConfig.cystalline_sword_beam_damage.get().floatValue());
             this.discard();
         }
     }
@@ -98,9 +100,9 @@ public class CrystallineBeamEntity extends Projectile {
     @Override
     protected void onHitBlock(BlockHitResult pResult) {
         super.onHitBlock(pResult);
-        if (!this.level.isClientSide) {
-            this.level.broadcastEntityEvent(this, (byte) 0);
-            this.level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.FIRE_EXTINGUISH, this.getSoundSource(), 1F, 1.0F);
+        if (!this.level().isClientSide) {
+            this.level().broadcastEntityEvent(this, (byte) 0);
+            this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.FIRE_EXTINGUISH, this.getSoundSource(), 1F, 1.0F);
             this.discard();
         }
     }

@@ -12,8 +12,8 @@ import shiroroku.theaurorian.Registry.ItemRegistry;
 
 public class UmbraGreatsword extends BaseAurorianSword {
 
-    public UmbraGreatsword(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
-        super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
+    public UmbraGreatsword(Tier pTier, Properties pProperties) {
+        super(pTier, pProperties);
     }
 
     @Override

@@ -1,7 +1,9 @@
 package shiroroku.theaurorian.Entities.DungeonKeeper;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -32,6 +34,7 @@ import shiroroku.theaurorian.Entities.DungeonKeeper.AI.KeeperRangedGoal;
 import shiroroku.theaurorian.Registry.BlockRegistry;
 import shiroroku.theaurorian.Registry.EnchantRegistry;
 import shiroroku.theaurorian.Registry.ItemRegistry;
+import shiroroku.theaurorian.Registry.RecipeRegistry;
 
 public class DungeonKeeperEntity extends AbstractSkeleton {
 
@@ -66,8 +69,8 @@ public class DungeonKeeperEntity extends AbstractSkeleton {
 
     protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
         ItemStack sword = new ItemStack(ItemRegistry.moonstone_sword.get());
-        sword.enchant(Enchantments.KNOCKBACK, 2);
-        sword.enchant(EnchantRegistry.lightning.get(), 3);
+        sword.enchant(registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.KNOCKBACK), 2);
+        sword.enchant(registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(EnchantRegistry.LIGHTNING), 3);
         this.setItemInHand(InteractionHand.MAIN_HAND, sword);
     }
 
@@ -83,8 +86,8 @@ public class DungeonKeeperEntity extends AbstractSkeleton {
     }
 
     @Override
-    protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
-        super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
+    protected void dropCustomDeathLoot(ServerLevel level, DamageSource damageSource, boolean recentlyHit) {
+        super.dropCustomDeathLoot(level, damageSource, recentlyHit);
         ItemEntity amulet = this.spawnAtLocation(ItemRegistry.keepers_amulet.get());
         ItemEntity key = this.spawnAtLocation(ItemRegistry.darkstone_key.get());
         ItemEntity loot_key = this.spawnAtLocation(ItemRegistry.runestone_loot_key.get());
@@ -107,9 +110,9 @@ public class DungeonKeeperEntity extends AbstractSkeleton {
                 for (int y = 0; y <= distance; y++) {
                     for (int z = 0; z <= distance; z++) {
                         int offs = distance / 2;
-                        BlockPos p = new BlockPos(x + this.position().x() - offs, y + this.position().y() - offs, z + this.position().z() - offs);
-                        if (this.level.getBlockState(p).getBlock() == BlockRegistry.fog_wall.get()) {
-                            this.level.destroyBlock(p, false);
+                        BlockPos p = BlockPos.containing(x + this.position().x() - offs, y + this.position().y() - offs, z + this.position().z() - offs);
+                        if (this.level().getBlockState(p).getBlock() == BlockRegistry.fog_wall.get()) {
+                            this.level().destroyBlock(p, false);
                         }
                     }
                 }
@@ -132,7 +135,7 @@ public class DungeonKeeperEntity extends AbstractSkeleton {
 
     @Override
     public void checkDespawn() {
-        if (this.level.getDifficulty() == Difficulty.PEACEFUL && this.shouldDespawnInPeaceful()) {
+        if (this.level().getDifficulty() == Difficulty.PEACEFUL && this.shouldDespawnInPeaceful()) {
             this.discard();
         } else {
             this.noActionTime = 0;

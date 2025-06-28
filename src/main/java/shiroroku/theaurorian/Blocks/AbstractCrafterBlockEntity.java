@@ -1,9 +1,11 @@
 package shiroroku.theaurorian.Blocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -16,13 +18,13 @@ import java.util.function.Supplier;
 /**
  * Simple inventory with a single timer and single recipe type.
  */
-public abstract class AbstractCrafterBlockEntity extends AbstractInventoryBlockEntity {
+public abstract class AbstractCrafterBlockEntity<R extends Recipe<I>, I extends RecipeInput> extends AbstractInventoryBlockEntity {
 
     public int craftingProgress = -1;
-    public Recipe<Container> cachedRecipe = null;
-    public final Supplier<RecipeType<? extends Recipe<Container>>> recipeType;
+    public R cachedRecipe = null;
+    public final Supplier<RecipeType<R>> recipeType;
 
-    public AbstractCrafterBlockEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState, Supplier<RecipeType<? extends Recipe<Container>>> recipeType) {
+    public AbstractCrafterBlockEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState, Supplier<RecipeType<R>> recipeType) {
         super(pType, pPos, pBlockState);
         this.recipeType = recipeType;
     }
@@ -32,20 +34,19 @@ public abstract class AbstractCrafterBlockEntity extends AbstractInventoryBlockE
      */
     public abstract boolean isMissingPrerequisites();
 
-    /**
-     * How many total ticks until the current craft is finished. if you use the recipe, be sure to validateCachedRecipe() before using it. returning 0 resets the craft
-     */
-    public abstract int getCraftingTime(Recipe<Container> cachedRecipe);
+    public abstract int getCraftingTime(R cachedRecipe);
 
     /**
      * Consume inputs and set outputs here, the recipe is already validated beforehand
      */
-    public abstract void finishCraft(Recipe<Container> recipe);
+    public abstract void finishCraft(R recipe);
 
     /**
      * Check If this recipe can be crafted. Stuff like input matching and if outputs can stack.
      */
-    public abstract boolean isRecipeValid(Recipe<Container> recipe);
+    public abstract boolean isRecipeValid(R recipe);
+
+    public abstract I makeRecipeInput();
 
     public boolean isCrafting() {
         return craftingProgress != -1;
@@ -70,12 +71,12 @@ public abstract class AbstractCrafterBlockEntity extends AbstractInventoryBlockE
         }
 
         // try to get a recipe, then start the craft
-        Optional<Recipe<Container>> recipe = tryGetRecipe();
+        Optional<RecipeHolder<R>> recipe = tryGetRecipe();
         if (recipe.isEmpty()) {
             return;
         }
         updateClient();
-        cachedRecipe = recipe.get();
+        cachedRecipe = recipe.get().value();
         craftingProgress = 0;
     }
 
@@ -123,30 +124,33 @@ public abstract class AbstractCrafterBlockEntity extends AbstractInventoryBlockE
         return false;
     }
 
-    private Optional<Recipe<Container>> tryGetRecipe() {
+    private Optional<RecipeHolder<R>> tryGetRecipe() {
         if (isMissingPrerequisites()) {
             return Optional.empty();
         }
 
-        for (final Recipe<Container> recipe : level.getRecipeManager().getAllRecipesFor(recipeType.get())) {
-            if (isRecipeValid(recipe)) {
-                return Optional.of(recipe);
-            }
-        }
-        return Optional.empty();
+//        for (final RecipeHolder<? extends Recipe<? extends RecipeInput>> recipe : level.getRecipeManager().getAllRecipesFor(recipeType.get())) {
+//            if (isRecipeValid(recipe.value())) {
+//                return Optional.of(recipe.value());
+//            }
+//        }
+//        return Optional.empty();
+
+        return level.getRecipeManager().getRecipeFor(recipeType.get(), makeRecipeInput(), level);
+
     }
 
     @Override
-    public void load(CompoundTag tag) {
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         if (tag.contains("crafting_progress")) {
             craftingProgress = tag.getInt("crafting_progress");
         }
-        super.load(tag);
+        super.loadAdditional(tag, registries);
     }
 
     @Override
-    public void saveAdditional(CompoundTag tag) {
+    public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         tag.putInt("crafting_progress", craftingProgress);
-        super.saveAdditional(tag);
+        super.saveAdditional(tag, registries);
     }
 }

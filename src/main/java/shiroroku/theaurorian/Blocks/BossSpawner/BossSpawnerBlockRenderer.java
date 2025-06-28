@@ -1,7 +1,7 @@
 package shiroroku.theaurorian.Blocks.BossSpawner;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
@@ -25,8 +25,8 @@ public class BossSpawnerBlockRenderer implements BlockEntityRenderer<BossSpawner
         pPoseStack.pushPose();
         pPoseStack.translate(0.5, 0.5D, 0.5D);
         if (bossSpawnerBlockEntity.bossEntity != null) {
-            pPoseStack.mulPose(Vector3f.ZP.rotationDegrees(rotation));
-            pPoseStack.mulPose(Vector3f.YP.rotationDegrees(rotation));
+            pPoseStack.mulPose(Axis.ZP.rotationDegrees(rotation));
+            pPoseStack.mulPose(Axis.YP.rotationDegrees(rotation));
             pPoseStack.translate(-scale * 0.5, -scale * 0.5, -scale * 0.5);
             pPoseStack.scale(scale, scale, scale);
             this.blockRenderer.renderSingleBlock(bossSpawnerBlockEntity.getBlockState(), pPoseStack, pBufferSource, pPackedLight, pPackedOverlay);

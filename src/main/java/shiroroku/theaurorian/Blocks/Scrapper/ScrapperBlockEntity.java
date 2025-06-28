@@ -1,23 +1,21 @@
 package shiroroku.theaurorian.Blocks.Scrapper;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import shiroroku.theaurorian.Blocks.AbstractCrafterBlockEntity;
 import shiroroku.theaurorian.Config.CommonConfig;
 import shiroroku.theaurorian.Registry.BlockEntityRegistry;
 import shiroroku.theaurorian.Registry.BlockRegistry;
 import shiroroku.theaurorian.Registry.RecipeRegistry;
-import shiroroku.theaurorian.TheAurorian;
 import shiroroku.theaurorian.Util.ModUtil;
 
-public class ScrapperBlockEntity extends AbstractCrafterBlockEntity {
+public class ScrapperBlockEntity extends AbstractCrafterBlockEntity<ScrapperRecipe, SingleRecipeInput> {
 
     public ScrapperBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(BlockEntityRegistry.scrapper.get(), pPos, pBlockState, RecipeRegistry.scrapper::get);
+        super(BlockEntityRegistry.scrapper.get(), pPos, pBlockState, RecipeRegistry.scrapper);
     }
 
     @Override
@@ -32,16 +30,16 @@ public class ScrapperBlockEntity extends AbstractCrafterBlockEntity {
             @Override
             public boolean isItemValid(int slot, ItemStack stack) {
                 return switch (slot) {
-                    default -> true;
                     case 0 -> stack.is(BlockRegistry.crystal.get().asItem());
                     case 2 -> false;
+                    default -> true;
                 };
             }
         };
     }
 
     @Override
-    public int getCraftingTime(Recipe<Container> cachedRecipe) {
+    public int getCraftingTime(ScrapperRecipe cachedRecipe) {
         return (int) (CommonConfig.scrapper_base_craft_duration.get() * (level.getBlockState(getBlockPos().above()).is(BlockRegistry.crystal.get()) ? CommonConfig.scrapper_crystal_speed_discount.get() : 1));
     }
 
@@ -52,26 +50,18 @@ public class ScrapperBlockEntity extends AbstractCrafterBlockEntity {
     }
 
     @Override
-    public boolean isRecipeValid(Recipe<Container> recipe) {
-        if (recipe instanceof ScrapperRecipe scrapperRecipe) {
-            ItemStack inputSlot = getItemHandler().getStackInSlot(1);
-            ItemStack outputSlot = getItemHandler().getStackInSlot(2);
-
-            // Check input
-            if (!scrapperRecipe.input().test(inputSlot)) {
-                return false;
-            }
-
-            // Check if output can fit
-            return ModUtil.canItemsStack(scrapperRecipe.output(), outputSlot);
-        } else {
-            TheAurorian.LOGGER.error("Scrapper recived non-scrapper recipe!");
-            return false;
-        }
+    public boolean isRecipeValid(ScrapperRecipe recipe) {
+        // Check if output can fit
+        return recipe.matches(makeRecipeInput(), level) && ModUtil.canItemsStack(recipe.output(), getItemHandler().getStackInSlot(2));
     }
 
     @Override
-    public void finishCraft(Recipe<Container> recipe) {
+    public SingleRecipeInput makeRecipeInput() {
+        return new SingleRecipeInput(getItemHandler().getStackInSlot(1));
+    }
+
+    @Override
+    public void finishCraft(ScrapperRecipe recipe) {
         // chance to not output a result depending on damage
         // if item is more than 25% damaged, then that percent of the time itll output nothing
         // ex: 80% damaged = 80% that there will be no output, 15% damaged = 100% will output
@@ -86,7 +76,7 @@ public class ScrapperBlockEntity extends AbstractCrafterBlockEntity {
             ModUtil.setAndMergeStack(getItemHandler(), 2, cachedRecipe.getResultItem());
         }
 
-        if(level.getBlockState(getBlockPos().above()).is(BlockRegistry.crystal.get()) && ModUtil.randomChanceOf(this.level.getRandom(), CommonConfig.scrapper_crystal_break_chance.get())){
+        if (level.getBlockState(getBlockPos().above()).is(BlockRegistry.crystal.get()) && ModUtil.randomChanceOf(this.level.getRandom(), CommonConfig.scrapper_crystal_break_chance.get())) {
             level.destroyBlock(getBlockPos().above(), false);
         }
     }

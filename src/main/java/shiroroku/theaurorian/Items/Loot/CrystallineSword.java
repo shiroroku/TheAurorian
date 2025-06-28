@@ -16,15 +16,15 @@ import shiroroku.theaurorian.Items.BaseAurorianSword;
 
 public class CrystallineSword extends BaseAurorianSword {
 
-    //todo add piercing
+    // TODO: add piercing
 
-    public CrystallineSword(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
-        super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
+    public CrystallineSword(Tier pTier, Properties pProperties) {
+        super(pTier, pProperties);
     }
 
     @Override
     public void releaseUsing(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity, int pTimeCharged) {
-        if(pLevel.isClientSide || this.getUseDuration(pStack) - pTimeCharged < 19){
+        if(pLevel.isClientSide || this.getUseDuration(pStack, pLivingEntity) - pTimeCharged < 19){
             return;
         }
         CrystallineBeamEntity beam = new CrystallineBeamEntity(pLevel, pLivingEntity);
@@ -32,7 +32,7 @@ public class CrystallineSword extends BaseAurorianSword {
         pLevel.addFreshEntity(beam);
         pLevel.playSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), SoundEvents.GRINDSTONE_USE, SoundSource.PLAYERS, 1F, 2.5F);
         pLevel.playSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 1F, 5F);
-        pStack.hurtAndBreak(1, pLivingEntity, (livingEntity) -> livingEntity.broadcastBreakEvent(livingEntity.getUsedItemHand()));
+        pStack.hurtAndBreak(1, pLivingEntity, LivingEntity.getSlotForHand(pLivingEntity.getUsedItemHand()));
     }
 
     @Override
@@ -41,7 +41,7 @@ public class CrystallineSword extends BaseAurorianSword {
     }
 
     @Override
-    public int getUseDuration(ItemStack pStack) {
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
         return 72000;
     }
 

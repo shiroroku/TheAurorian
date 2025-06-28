@@ -10,7 +10,7 @@ import shiroroku.theaurorian.TheAurorian;
 
 public class DungeonSlimeRenderer extends MobRenderer<DungeonSlimeEntity, DungeonSlimeModel> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(TheAurorian.MODID, "textures/entity/dungeon_slime.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "textures/entity/dungeon_slime.png");
 
     public DungeonSlimeRenderer(EntityRendererProvider.Context context) {
         super(context, new DungeonSlimeModel(context.bakeLayer(DungeonSlimeModel.MODEL_LAYER_LOCATION)), 0.25F);

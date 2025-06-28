@@ -12,7 +12,7 @@ import shiroroku.theaurorian.TheAurorian;
 
 public class CrystallineBeamRenderer extends EntityRenderer<CrystallineBeamEntity> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(TheAurorian.MODID, "textures/entity/crystalline_beam.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "textures/entity/crystalline_beam.png");
     private final CrystallineBeamModel model;
 
     public CrystallineBeamRenderer(EntityRendererProvider.Context pContext) {
@@ -28,7 +28,8 @@ public class CrystallineBeamRenderer extends EntityRenderer<CrystallineBeamEntit
         float f1 = Mth.lerp(pPartialTick, pEntity.xRotO, pEntity.getXRot());
         this.model.setupAnim(pEntity, 0.0F, 0.0F, 0.0F, f, f1);
         VertexConsumer vertexConsumer = pBuffer.getBuffer(this.model.renderType(this.getTextureLocation(pEntity)));
-        this.model.renderToBuffer(pPoseStack, vertexConsumer, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+//        this.model.renderToBuffer(pPoseStack, vertexConsumer, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.model.renderToBuffer(pPoseStack, vertexConsumer, pPackedLight, OverlayTexture.NO_OVERLAY, 0xFFFFFF);
         pPoseStack.popPose();
         super.render(pEntity, pEntityYaw, pPartialTick, pPoseStack, pBuffer, pPackedLight);
     }

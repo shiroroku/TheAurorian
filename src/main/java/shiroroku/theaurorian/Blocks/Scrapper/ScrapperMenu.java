@@ -1,12 +1,12 @@
 package shiroroku.theaurorian.Blocks.Scrapper;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.items.SlotItemHandler;
-import net.minecraftforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.items.SlotItemHandler;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import shiroroku.theaurorian.Blocks.AbstractModContainerMenu;
 import shiroroku.theaurorian.Registry.BlockRegistry;
 import shiroroku.theaurorian.Registry.MenuRegistry;
@@ -15,17 +15,18 @@ public class ScrapperMenu extends AbstractModContainerMenu {
 
     private final ScrapperBlockEntity blockEntity;
 
-    public ScrapperMenu(int pContainerId, BlockPos pos, Inventory playerInventory, Player playerIn) {
-        super(MenuRegistry.scrapper.get(), pContainerId, 3);
-        blockEntity = (ScrapperBlockEntity) playerIn.getCommandSenderWorld().getBlockEntity(pos);
-        if (blockEntity != null) {
-            blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-                addSlot(new SlotItemHandler(handler, 0, 40, 37));
-                addSlot(new SlotItemHandler(handler, 1, 80, 17));
-                addSlot(new SlotItemHandler(handler, 2, 80, 58));
-            });
-        }
+    public ScrapperMenu(int pContainerId, Inventory playerInventory, FriendlyByteBuf extraData) {
+        this(pContainerId, playerInventory, (ScrapperBlockEntity) playerInventory.player.getCommandSenderWorld().getBlockEntity(extraData.readBlockPos()));
+    }
+
+    public ScrapperMenu(int id, Inventory playerInventory, ScrapperBlockEntity blockEntity) {
+        super(MenuRegistry.scrapper.get(), id, 3);
+        this.blockEntity = blockEntity;
         addPlayerSlots(new InvWrapper(playerInventory));
+
+        addSlot(new SlotItemHandler(this.blockEntity.getItemHandler(), 0, 40, 37));
+        addSlot(new SlotItemHandler(this.blockEntity.getItemHandler(), 1, 80, 17));
+        addSlot(new SlotItemHandler(this.blockEntity.getItemHandler(), 2, 80, 58));
     }
 
     @Override

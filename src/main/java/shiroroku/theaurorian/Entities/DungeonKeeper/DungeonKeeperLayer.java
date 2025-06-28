@@ -15,7 +15,7 @@ import shiroroku.theaurorian.TheAurorian;
 
 public class DungeonKeeperLayer<T extends Mob & RangedAttackMob, M extends EntityModel<T>> extends RenderLayer<T, M> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(TheAurorian.MODID, "textures/entity/dungeon_keeper/dungeon_keeper_layer.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "textures/entity/dungeon_keeper/dungeon_keeper_layer.png");
     private final SkeletonModel<T> layerModel;
 
     public DungeonKeeperLayer(RenderLayerParent<T, M> pRenderer, EntityModelSet model) {
@@ -23,7 +23,8 @@ public class DungeonKeeperLayer<T extends Mob & RangedAttackMob, M extends Entit
         this.layerModel = new SkeletonModel<>(model.bakeLayer(ModelLayers.STRAY_OUTER_LAYER));
     }
 
+    @Override
     public void render(PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight, T pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-        coloredCutoutModelCopyLayerRender(this.getParentModel(), this.layerModel, TEXTURE, pMatrixStack, pBuffer, pPackedLight, pLivingEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch, pPartialTicks, 1.0F, 1.0F, 1.0F);
+        coloredCutoutModelCopyLayerRender(this.getParentModel(), this.layerModel, TEXTURE, pMatrixStack, pBuffer, pPackedLight, pLivingEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch, pPartialTicks, 0xFFFFFF);
     }
 }

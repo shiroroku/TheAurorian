@@ -15,8 +15,8 @@ import java.util.List;
 
 public class AurorianiteAxe extends BaseAurorianAxe {
 
-    public AurorianiteAxe(Tier pTier, float pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
-        super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
+    public AurorianiteAxe(Tier pTier, Properties pProperties) {
+        super(pTier, pProperties);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class AurorianiteAxe extends BaseAurorianAxe {
 
         for (BlockPos p : searchedWood) {
             pLevel.destroyBlock(p, true);
-            pStack.hurtAndBreak(1, pEntityLiving, (player) -> player.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+            pStack.hurtAndBreak(1, pEntityLiving, EquipmentSlot.MAINHAND);
         }
 
         return super.mineBlock(pStack, pLevel, pState, pPos, pEntityLiving);

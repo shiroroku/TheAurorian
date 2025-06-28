@@ -1,15 +1,15 @@
 package shiroroku.theaurorian.Config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class ClientConfig {
 
-    public static final ForgeConfigSpec config;
+    public static final ModConfigSpec config;
 
-    public static final ForgeConfigSpec.ConfigValue<Boolean> enable_auroras;
+    public static final ModConfigSpec.ConfigValue<Boolean> enable_auroras;
 
     static {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
         enable_auroras = builder.define("enable_auroras", true);
         config = builder.build();
     }

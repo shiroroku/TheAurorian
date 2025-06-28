@@ -1,16 +1,17 @@
 package shiroroku.theaurorian.Blocks.MoonlightForge;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -20,18 +21,23 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 import shiroroku.theaurorian.Blocks.AbstractRotatingBlock;
+import shiroroku.theaurorian.Blocks.Scrapper.ScrapperMenu;
 import shiroroku.theaurorian.Registry.BlockEntityRegistry;
-import shiroroku.theaurorian.Util.ModUtil;
 
 public class MoonlightForgeBlock extends AbstractRotatingBlock implements EntityBlock {
 
+    public static final MapCodec<MoonlightForgeBlock> CODEC = simpleCodec(MoonlightForgeBlock::new);
     private static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 10, 16);
 
     public MoonlightForgeBlock(Properties pProperties) {
         super(pProperties);
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     @Nullable
@@ -45,40 +51,30 @@ public class MoonlightForgeBlock extends AbstractRotatingBlock implements Entity
         return blockEntity == BlockEntityRegistry.moonlight_forge.get() ? MoonlightForgeBlockEntity::updateCraft : null;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState state2, boolean b) {
         if (!state.is(state2.getBlock())) {
-            ModUtil.dropItemHandlerInWorld(level.getBlockEntity(pos));
+            if (level.getBlockEntity(pos) instanceof MoonlightForgeBlockEntity moonlightForgeBlock) {
+                moonlightForgeBlock.dropItems();
+                level.updateNeighbourForOutputSignal(pos, this);
+            }
             super.onRemove(state, level, pos, state2, b);
         }
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if (!level.isClientSide) {
-            if (level.getBlockEntity(pos) instanceof MoonlightForgeBlockEntity block) {
-                MenuProvider menuProvider = new MenuProvider() {
-                    @Override
-                    public Component getDisplayName() {
-                        return Component.translatable("block.theaurorian.moonlight_forge");
-                    }
-
-                    @Override
-                    public AbstractContainerMenu createMenu(int id, Inventory playerInventory, Player player) {
-                        return new MoonlightForgeMenu(id, pos, playerInventory, player);
-                    }
-                };
-                block.updateClient();
-                NetworkHooks.openScreen((ServerPlayer) player, menuProvider, block.getBlockPos());
+            if (level.getBlockEntity(pos) instanceof MoonlightForgeBlockEntity blockEntity) {
+                MenuProvider menuProvider = new SimpleMenuProvider((_id, _inv, _player) -> new MoonlightForgeMenu(_id, _inv, blockEntity),
+                        Component.translatable("block.theaurorian.moonlight_forge"));
+                blockEntity.updateClient();
+                player.openMenu(menuProvider, blockEntity.getBlockPos());
             }
         }
-        return InteractionResult.SUCCESS;
+        return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
-
-    @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return SHAPE;

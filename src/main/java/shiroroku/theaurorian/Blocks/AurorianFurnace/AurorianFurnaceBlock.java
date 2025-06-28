@@ -1,10 +1,12 @@
 package shiroroku.theaurorian.Blocks.AurorianFurnace;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.FurnaceBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -13,8 +15,15 @@ import shiroroku.theaurorian.Registry.BlockEntityRegistry;
 
 public class AurorianFurnaceBlock extends AbstractFurnaceBlock {
 
+    public static final MapCodec<FurnaceBlock> CODEC = simpleCodec(FurnaceBlock::new);
+
     public AurorianFurnaceBlock(Properties pProperties) {
         super(pProperties);
+    }
+
+    @Override
+    protected MapCodec<? extends AbstractFurnaceBlock> codec() {
+        return CODEC;
     }
 
     @Override

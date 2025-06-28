@@ -1,18 +1,16 @@
 package shiroroku.theaurorian.Blocks;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.Containers;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.ItemStackHandler;
-
-import javax.annotation.Nonnull;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
 public abstract class AbstractInventoryBlockEntity extends BlockEntity {
 
@@ -28,29 +26,44 @@ public abstract class AbstractInventoryBlockEntity extends BlockEntity {
         return itemHandler;
     }
 
-    @Nonnull
-    @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, Direction side) {
-        return cap == ForgeCapabilities.ITEM_HANDLER ? LazyOptional.of(() -> itemHandler).cast() : super.getCapability(cap, side);
-    }
+//    @Nonnull
+//    @Override
+//    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, Direction side) {
+//        return cap == ForgeCapabilities.ITEM_HANDLER ? LazyOptional.of(() -> itemHandler).cast() : super.getCapability(cap, side);
+//    }
 
-    @Override
-    public void load(CompoundTag tag) {
-        if (tag.contains("items")) {
-            itemHandler.deserializeNBT(tag.getCompound("items"));
+    public void clearItems() {
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            itemHandler.setStackInSlot(i, ItemStack.EMPTY);
         }
-        super.load(tag);
+    }
+
+    public void dropItems() {
+        SimpleContainer inv = new SimpleContainer(this.itemHandler.getSlots());
+        for (int i = 0; i < this.itemHandler.getSlots(); i++) {
+            inv.setItem(i, this.itemHandler.getStackInSlot(i));
+        }
+        Containers.dropContents(level, getBlockPos(), inv);
     }
 
     @Override
-    public void saveAdditional(CompoundTag tag) {
-        tag.put("items", itemHandler.serializeNBT());
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        if (tag.contains("items")) {
+            itemHandler.deserializeNBT(registries, tag.getCompound("items"));
+        }
+        super.loadAdditional(tag, registries);
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
-        CompoundTag nbt = super.getUpdateTag();
-        this.saveAdditional(nbt);
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        tag.put("items", itemHandler.serializeNBT(registries));
+    }
+
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        CompoundTag nbt = super.getUpdateTag(registries);
+        this.saveAdditional(nbt, registries);
         return nbt;
     }
 

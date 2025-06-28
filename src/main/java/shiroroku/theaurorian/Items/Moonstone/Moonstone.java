@@ -20,7 +20,7 @@ public class Moonstone {
         // 50% to -1 damage
         amount -= ModUtil.randomChanceOf(entity.getRandom(), CommonConfig.moonstone_damage_chance.get()) ? 1 : 0;
         // if day +1 damage
-        amount += (entity.level.isDay() ? 1 : 0);
+        amount += (entity.level().isDay() ? 1 : 0);
         return Math.max(0, amount);
     }
 }

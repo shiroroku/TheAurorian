@@ -9,13 +9,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.Tags;
 import shiroroku.theaurorian.Items.BaseAurorianPickaxe;
 
 public class AurorianitePickaxe extends BaseAurorianPickaxe {
 
-    public AurorianitePickaxe(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
-        super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
+    public AurorianitePickaxe(Tier pTier, Properties pProperties) {
+        super(pTier, pProperties);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class AurorianitePickaxe extends BaseAurorianPickaxe {
         // give the player haste if they mine an ore
         if (pState.getTags().anyMatch(t -> t == Tags.Blocks.ORES)) {
             if (pEntityLiving.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 100, 1))) {
-                pStack.hurtAndBreak(1, pEntityLiving, (player) -> player.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+                pStack.hurtAndBreak(1, pEntityLiving, EquipmentSlot.MAINHAND);
             }
         }
         return super.mineBlock(pStack, pLevel, pState, pPos, pEntityLiving);

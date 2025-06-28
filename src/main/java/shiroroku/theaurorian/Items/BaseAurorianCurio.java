@@ -2,9 +2,12 @@ package shiroroku.theaurorian.Items;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
+import shiroroku.theaurorian.TheAurorian;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -27,9 +30,9 @@ public class BaseAurorianCurio extends BaseAurorianItem implements ICurioItem {
     }
 
     @Override
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
-        Multimap<Attribute, AttributeModifier> map = HashMultimap.create();
-        modifiers.forEach(mod -> map.put(mod.attribute, mod.modifier));
+    public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation id, ItemStack stack) {
+        Multimap<Holder<Attribute>, AttributeModifier> map = HashMultimap.create();
+        modifiers.forEach(mod -> map.put(Holder.direct(mod.attribute), mod.modifier));
         return map;
     }
 
@@ -39,7 +42,7 @@ public class BaseAurorianCurio extends BaseAurorianItem implements ICurioItem {
 
         public SimpleAttibuteModifier(Attribute attribute, AttributeModifier.Operation operation, double amt) {
             this.attribute = attribute;
-            modifier = new AttributeModifier(UUID.nameUUIDFromBytes(this.toString().getBytes()), "Aurorian Curio", amt, operation);
+            modifier = new AttributeModifier(ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "aurorian_curios"), amt, operation);
         }
     }
 }

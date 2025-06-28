@@ -19,7 +19,7 @@ import shiroroku.theaurorian.TheAurorian;
 public class JEIScrapperCategory implements IRecipeCategory<ScrapperRecipe> {
 
     private final IDrawable bg, icon;
-    public static final ResourceLocation screen = new ResourceLocation(TheAurorian.MODID, "textures/gui/scrapper.png");
+    public static final ResourceLocation screen = ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "textures/gui/scrapper.png");
 
     public JEIScrapperCategory(IGuiHelper guihelper) {
         this.bg = guihelper.createDrawable(screen, 22, 12, 129, 66);

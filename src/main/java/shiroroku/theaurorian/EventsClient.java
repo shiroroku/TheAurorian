@@ -1,29 +1,24 @@
 package shiroroku.theaurorian;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.atlas.SpriteSourceType;
+import net.minecraft.client.renderer.texture.atlas.sources.SingleFile;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.client.event.RegisterItemDecorationsEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import shiroroku.theaurorian.Blocks.BossSpawner.BossSpawnerBlockRenderer;
-import shiroroku.theaurorian.Blocks.Crystal.CrystalBlockRenderer;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.*;
 import shiroroku.theaurorian.Blocks.MoonlightForge.MoonlightForgeBlockRenderer;
-import shiroroku.theaurorian.Blocks.MoonlightForge.MoonlightForgeScreen;
-import shiroroku.theaurorian.Blocks.Scrapper.ScrapperScreen;
 import shiroroku.theaurorian.Blocks.SilentwoodChest.SilentwoodChestBlockRenderer;
 import shiroroku.theaurorian.Items.BaseAurorianTea;
 import shiroroku.theaurorian.Items.Loot.UmbraPickaxe;
@@ -35,35 +30,25 @@ import shiroroku.theaurorian.Registry.MenuRegistry;
 import java.awt.*;
 import java.util.function.Supplier;
 
-@Mod.EventBusSubscriber(modid = TheAurorian.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = TheAurorian.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class EventsClient {
 
     @SubscribeEvent
     public static void onClientSetup(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             // ITEM PROPERTIES
-            ItemRegistry.ITEMS_GEN_SHIELD.getEntries().stream().map(Supplier::get).forEach((shield) -> ItemProperties.register(shield, new ResourceLocation("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F));
-            ItemProperties.register(ItemRegistry.crystalline_sword.get(), new ResourceLocation("charge"), (stack, level, entity, i) -> entity == null || entity.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F);
-            ItemProperties.register(ItemRegistry.crystalline_sword.get(), new ResourceLocation("charging"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-            ItemProperties.register(ItemRegistry.silentwood_bow.get(), new ResourceLocation("pull"), (stack, level, entity, i) -> entity == null || entity.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F);
-            ItemProperties.register(ItemRegistry.silentwood_bow.get(), new ResourceLocation("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-
-            // MENU SCREENS
-            MenuScreens.register(MenuRegistry.moonlight_forge.get(), MoonlightForgeScreen::new);
-            MenuScreens.register(MenuRegistry.scrapper.get(), ScrapperScreen::new);
-
-            // BLOCK ENTITY RENDERERS
-            BlockEntityRenderers.register(BlockEntityRegistry.boss_spawner.get(), BossSpawnerBlockRenderer::new);
-            BlockEntityRenderers.register(BlockEntityRegistry.crystal.get(), CrystalBlockRenderer::new);
-            BlockEntityRenderers.register(BlockEntityRegistry.moonlight_forge.get(), MoonlightForgeBlockRenderer::new);
-            BlockEntityRenderers.register(BlockEntityRegistry.moonlight_forge.get(), MoonlightForgeBlockRenderer::new);
-            BlockEntityRenderers.register(BlockEntityRegistry.silentwood_chest.get(), SilentwoodChestBlockRenderer::new);
+            ItemRegistry.ITEMS_GEN_SHIELD.getEntries().stream().map(Supplier::get).forEach((shield) -> ItemProperties.register(shield, ResourceLocation.withDefaultNamespace("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F));
+            ItemProperties.register(ItemRegistry.crystalline_sword.get(), ResourceLocation.withDefaultNamespace("charge"), (stack, level, entity, i) -> entity == null || entity.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / 20.0F);
+            ItemProperties.register(ItemRegistry.crystalline_sword.get(), ResourceLocation.withDefaultNamespace("charging"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+            ItemProperties.register(ItemRegistry.silentwood_bow.get(), ResourceLocation.withDefaultNamespace("pull"), (stack, level, entity, i) -> entity == null || entity.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / 20.0F);
+            ItemProperties.register(ItemRegistry.silentwood_bow.get(),ResourceLocation.withDefaultNamespace("pulling"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
         });
     }
 
     @SubscribeEvent
     public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
         EntityRegistry.registerRenderers(event);
+        BlockEntityRegistry.registerRenderers(event);
     }
 
     @SubscribeEvent
@@ -79,7 +64,7 @@ public class EventsClient {
         // Crystalline sword glow when charged
         event.register((stack, tintIndex) -> {
             if (tintIndex == 0) {
-                float max = (Minecraft.getInstance().player.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration() - Minecraft.getInstance().player.getUseItemRemainingTicks()) / 20.0F);
+                float max = (Minecraft.getInstance().player.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration(Minecraft.getInstance().player) - Minecraft.getInstance().player.getUseItemRemainingTicks()) / 20.0F);
                 if (max <= 0.8) {
                     return 16777215;
                 }
@@ -98,32 +83,45 @@ public class EventsClient {
      */
     @SubscribeEvent
     public static void onRegisterItemDecorations(RegisterItemDecorationsEvent event) {
-        event.register(ItemRegistry.umbra_pickaxe.get(), (font, stack, xOffset, yOffset, blitOffset) -> {
+        event.register(ItemRegistry.umbra_pickaxe.get(), (guiGraphics, font, stack, xOffset, yOffset) -> {
             Block selectedBlock = UmbraPickaxe.getSelectedBlock(stack);
             if (selectedBlock == null) {
                 return false;
             }
-            PoseStack poseStack = RenderSystem.getModelViewStack();
-            poseStack.pushPose();
-            poseStack.scale(0.5f, 0.5f, 1);
-            poseStack.translate(xOffset, yOffset + 8, 0);
-            Minecraft.getInstance().getItemRenderer().renderGuiItem(new ItemStack(selectedBlock), xOffset, yOffset);
-            poseStack.popPose();
+            guiGraphics.pose().pushPose();
+            guiGraphics.pose().scale(0.5f, 0.5f, 1);
+            guiGraphics.pose().translate(xOffset, yOffset + 8, 0);
+
+//            Minecraft.getInstance().getItemRenderer().renderGuiItem(new ItemStack(selectedBlock), xOffset, yOffset);
+            Minecraft.getInstance().getItemRenderer().renderStatic(new ItemStack(selectedBlock),
+                    ItemDisplayContext.GUI,
+                    0xF000F0,
+                    OverlayTexture.NO_OVERLAY,
+                    guiGraphics.pose(),
+                    guiGraphics.bufferSource(),
+                    Minecraft.getInstance().level,
+                    0);
+
+            guiGraphics.pose().popPose();
             RenderSystem.applyModelViewMatrix();
             return true;
         });
     }
 
-    @SuppressWarnings("deprecation")
-    @SubscribeEvent
-    public static void onTextureStitch(TextureStitchEvent.Pre event) {
-        if (!event.getAtlas().location().equals(TextureAtlas.LOCATION_BLOCKS)) {
-            return;
-        }
-        event.addSprite(MoonlightForgeBlockRenderer.RING_OVERLAY);
-        event.addSprite(SilentwoodChestBlockRenderer.DOUBLE_LEFT);
-        event.addSprite(SilentwoodChestBlockRenderer.DOUBLE_RIGHT);
-        event.addSprite(SilentwoodChestBlockRenderer.NORMAL);
-    }
+//    @SuppressWarnings("deprecation")
+//    @SubscribeEvent
+//    public static void onTextureStitch(TextureAtlasStitchedEvent event) {
+//        if (!event.getAtlas().location().equals(TextureAtlas.LOCATION_BLOCKS)) {
+//            return;
+//        }
+//        event.addSprite(MoonlightForgeBlockRenderer.RING_OVERLAY);
+//        event.addSprite(SilentwoodChestBlockRenderer.DOUBLE_LEFT);
+//        event.addSprite(SilentwoodChestBlockRenderer.DOUBLE_RIGHT);
+//        event.addSprite(SilentwoodChestBlockRenderer.NORMAL);
+//    }
 
+    @SubscribeEvent
+    public static void onRegisterScreens(RegisterMenuScreensEvent event) {
+        MenuRegistry.registerMenuScreens(event);
+    }
 }

@@ -5,7 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -23,20 +23,20 @@ public class AurorianPortalFrame extends Block {
         super(pProperties);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        ItemStack usedItem = pPlayer.getItemInHand(pHand);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+
+        ItemStack usedItem = player.getItemInHand(hand);
         if (usedItem.is(DataGenItemsTags.PORTAL_LIGHTERS)) {
-            BlockPos placePos = pPos.relative(pHit.getDirection());
-            Optional<AurorianPortalShape> optional = AurorianPortalShape.findEmptyPortalShape(pLevel, placePos, Direction.Axis.X);
+            BlockPos placePos = pos.relative(hitResult.getDirection());
+            Optional<AurorianPortalShape> optional = AurorianPortalShape.findEmptyPortalShape(level, placePos, Direction.Axis.X);
             if (optional.isPresent()) {
-                pLevel.playSound(pPlayer, pPos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, pLevel.getRandom().nextFloat() * 0.4F + 0.8F);
+                level.playSound(player, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.4F + 0.8F);
                 //usedItem.hurtAndBreak(1, pPlayer, (player) -> player.broadcastBreakEvent(pHand));
                 optional.get().createPortalBlocks();
-                return InteractionResult.sidedSuccess(pLevel.isClientSide());
+                return ItemInteractionResult.sidedSuccess(level.isClientSide());
             }
         }
-        return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
+        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
     }
 }

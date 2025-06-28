@@ -1,12 +1,15 @@
 package shiroroku.theaurorian.Items.AurorianSteel;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import shiroroku.theaurorian.Config.CommonConfig;
@@ -20,11 +23,11 @@ import java.util.stream.Collectors;
 public class AurorianSteel {
 
     public static List<Component> appendHoverText(List<Component> pTooltipComponents, ItemStack pStack) {
-        Map<Enchantment, Integer> upgradable_enchantments = getUpgradableEnchantments(pStack);
+        Map<Holder<Enchantment>, Integer> upgradable_enchantments = getUpgradableEnchantments(pStack);
         if (!upgradable_enchantments.isEmpty()) {
-            final Optional<Map.Entry<Enchantment, Integer>> selected_enchant = upgradable_enchantments.entrySet().stream().findFirst();
+            final Optional<Map.Entry<Holder<Enchantment>, Integer>> selected_enchant = upgradable_enchantments.entrySet().stream().findFirst();
             pTooltipComponents.add(Component.translatable("string.theaurorian.tooltip.aurorian_steel.level", getXP(pStack), (int) (100 * getMultiplier(pStack))).withStyle(ChatFormatting.GOLD));
-            pTooltipComponents.add((Component.translatable("string.theaurorian.tooltip.aurorian_steel.next_enchant").append(selected_enchant.get().getKey().getFullname(selected_enchant.get().getValue() + 1))).withStyle(ChatFormatting.GOLD));
+            pTooltipComponents.add((Component.translatable("string.theaurorian.tooltip.aurorian_steel.next_enchant").append(Enchantment.getFullname(selected_enchant.get().getKey(), selected_enchant.get().getValue() + 1))).withStyle(ChatFormatting.GOLD));
         }
         return TooltipUtil.shiftMoreInfo(pTooltipComponents, Component.translatable("string.theaurorian.tooltip.aurorian_steel").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
@@ -35,7 +38,7 @@ public class AurorianSteel {
             return amount;
         }
 
-        Map<Enchantment, Integer> upgradable_enchantments = getUpgradableEnchantments(stack);
+        Map<Holder<Enchantment>, Integer> upgradable_enchantments = getUpgradableEnchantments(stack);
         // if no enchants can be upgraded then return
         if (upgradable_enchantments.isEmpty()) {
             return amount;
@@ -50,21 +53,23 @@ public class AurorianSteel {
             return amount;
         }
 
+
+        final Optional<Map.Entry<Holder<Enchantment>, Integer>> selected_enchant = upgradable_enchantments.entrySet().stream().findFirst();
+
         // do the levelling up
-        Map<Enchantment, Integer> held_enchantments = EnchantmentHelper.getEnchantments(stack);
-        final Optional<Map.Entry<Enchantment, Integer>> selected_enchant = upgradable_enchantments.entrySet().stream().findFirst();
-        if (selected_enchant.isPresent()) {
-            held_enchantments.put(selected_enchant.get().getKey(), selected_enchant.get().getValue() + 1);
-            EnchantmentHelper.setEnchantments(held_enchantments, stack);
-            nextLevel(stack);
-            entity.level.playSound(null, entity, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 1, 1);
-        }
+        selected_enchant.ifPresent(enchant -> {
+            EnchantmentHelper.updateEnchantments(stack, enchantments -> {
+                enchantments.set(enchant.getKey(), enchant.getValue() + 1);
+                nextLevel(stack);
+                entity.level().playSound(null, entity, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 1, 1);
+            });
+        });
 
         return amount;
     }
 
-    private static Map<Enchantment, Integer> getUpgradableEnchantments(ItemStack aurorian_steel_item) {
-        return aurorian_steel_item.getAllEnchantments().entrySet().stream().filter((e) -> e.getValue() < e.getKey().getMaxLevel()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    private static Map<Holder<Enchantment>, Integer> getUpgradableEnchantments(ItemStack aurorian_steel_item) {
+        return aurorian_steel_item.getTagEnchantments().entrySet().stream().filter((e) -> e.getValue() < e.getKey().value().getMaxLevel()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
     /**
@@ -81,19 +86,19 @@ public class AurorianSteel {
     }
 
     private static void setMultiplier(ItemStack aurorian_steel_item, float amt) {
-        aurorian_steel_item.getOrCreateTag().putFloat("multiplier", amt);
+        aurorian_steel_item.update(DataComponents.CUSTOM_DATA, CustomData.EMPTY, data -> data.update(nbt -> nbt.putFloat("multiplier", amt)));
     }
 
     private static float getMultiplier(ItemStack aurorian_steel_item) {
-        return Math.max(1, aurorian_steel_item.getOrCreateTag().getFloat("multiplier"));
+        return Math.max(1, aurorian_steel_item.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getFloat("multiplier"));
     }
 
     private static void setXP(ItemStack aurorian_steel_item, int amt) {
-        aurorian_steel_item.getOrCreateTag().putInt("xp", amt);
+        aurorian_steel_item.update(DataComponents.CUSTOM_DATA, CustomData.EMPTY, data -> data.update(nbt -> nbt.putInt("xp", amt)));
     }
 
     private static int getXP(ItemStack aurorian_steel_item) {
-        return aurorian_steel_item.getOrCreateTag().getInt("xp");
+        return aurorian_steel_item.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getInt("xp");
     }
 
     public static int getBarColor() {

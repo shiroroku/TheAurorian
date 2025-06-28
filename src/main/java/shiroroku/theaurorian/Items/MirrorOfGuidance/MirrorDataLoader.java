@@ -4,13 +4,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.ForgeRegistries;
 import shiroroku.theaurorian.TheAurorian;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class MirrorDataLoader extends SimpleJsonResourceReloadListener {
             try {
                 JsonObject json = file.getValue().getAsJsonObject();
 
-                Item icon = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(json.get("icon").getAsString()));
+                Item icon = BuiltInRegistries.ITEM.get(ResourceLocation.tryParse(json.get("icon").getAsString()));
                 int x = json.get("x").getAsInt();
                 int y = json.get("y").getAsInt();
                 List<ResourceLocation> children = new ArrayList<>();

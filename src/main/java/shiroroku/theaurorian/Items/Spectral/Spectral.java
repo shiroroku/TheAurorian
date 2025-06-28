@@ -3,7 +3,7 @@ package shiroroku.theaurorian.Items.Spectral;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import shiroroku.theaurorian.Config.CommonConfig;
 import shiroroku.theaurorian.DataGen.DataGenItemsTags;
 import shiroroku.theaurorian.Util.ModUtil;
@@ -18,8 +18,8 @@ public class Spectral {
         return TooltipUtil.shiftMoreInfo(pTooltipComponents, Component.translatable("string.theaurorian.tooltip.spectral", CommonConfig.spectral_armor_cleanse_chance.get() * 100).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
 
-    public static void handleOnDamage(LivingDamageEvent event) {
-        if (!event.getEntity().level.isClientSide && event.getSource().getEntity() instanceof Player player) {
+    public static void handleOnDamage(LivingDamageEvent.Pre event) {
+        if (!event.getEntity().level().isClientSide && event.getSource().getEntity() instanceof Player player) {
             int spectralArmorPieces = (int) StreamSupport.stream(player.getArmorSlots().spliterator(), false).filter((a) -> a.is(DataGenItemsTags.SPECTRAL_ARMOR)).count();
             if (spectralArmorPieces == 0) {
                 return;
@@ -27,7 +27,7 @@ public class Spectral {
 
             double cleanseChance = spectralArmorPieces * CommonConfig.spectral_armor_cleanse_chance.get();
             if (ModUtil.randomChanceOf(player.getRandom(), cleanseChance)) {
-                player.getActiveEffects().stream().filter(e -> !e.getEffect().isBeneficial()).findFirst().ifPresent(mobEffectInstance -> player.removeEffect(mobEffectInstance.getEffect()));
+                player.getActiveEffects().stream().filter(e -> !e.getEffect().value().isBeneficial()).findFirst().ifPresent(mobEffectInstance -> player.removeEffect(mobEffectInstance.getEffect()));
             }
         }
     }

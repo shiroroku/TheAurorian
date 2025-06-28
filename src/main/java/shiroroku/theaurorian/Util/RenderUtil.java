@@ -4,11 +4,10 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -19,32 +18,42 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class RenderUtil {
 
-    public static void renderItem(ItemRenderer itemRenderer, PoseStack pPoseStack, Item item, int x, int y) {
-        PoseStack modelViewStack = RenderSystem.getModelViewStack();
-        modelViewStack.pushPose();
-        modelViewStack.mulPoseMatrix(pPoseStack.last().pose());
+//    public static void renderItem(ItemRenderer itemRenderer, PoseStack pPoseStack, Item item, int x, int y) {
+//        PoseStack modelViewStack = RenderSystem.getModelViewStack();
+//        modelViewStack.pushPose();
+//        modelViewStack.mulPoseMatrix(pPoseStack.last().pose());
+//        RenderSystem.enableDepthTest();
+//        itemRenderer.renderAndDecorateFakeItem(new ItemStack(item), -8, -8);
+//        modelViewStack.popPose();
+//        RenderSystem.applyModelViewMatrix();
+//        RenderSystem.enableBlend();
+//    }
+
+    public static void renderItem(GuiGraphics guiGraphics, Item item, int x, int y) {
+        PoseStack poseStack = guiGraphics.pose();
+        poseStack.pushPose();
+        poseStack.mulPose(guiGraphics.pose().last().pose());
         RenderSystem.enableDepthTest();
-        itemRenderer.renderAndDecorateFakeItem(new ItemStack(item), -8, -8);
-        modelViewStack.popPose();
+        guiGraphics.renderItem(new ItemStack(item), -8, -8);
+        poseStack.popPose();
         RenderSystem.applyModelViewMatrix();
         RenderSystem.enableBlend();
     }
 
-    public static void blit(PoseStack pPoseStack, ResourceLocation atlas, int x, int y, float pUOffset, float pVOffset, int pWidth, int pHeight, int pTextureWidth, int pTextureHeight) {
+    public static void blit(GuiGraphics guiGraphics, ResourceLocation atlas, int x, int y, float pUOffset, float pVOffset, int pWidth, int pHeight, int pTextureWidth, int pTextureHeight) {
         RenderSystem.setShaderTexture(0, atlas);
-        GuiComponent.blit(pPoseStack, x, y, pUOffset, pVOffset, pWidth, pHeight, pTextureWidth, pTextureHeight);
+        guiGraphics.blit(atlas, x, y, pUOffset, pVOffset, pWidth, pHeight, pTextureWidth, pTextureHeight);
     }
 
     public static void blitRepeating(ResourceLocation atlas, int x, int y, int w, int h, float u, float v) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
         RenderSystem.setShaderTexture(0, atlas);
-        bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        bufferbuilder.vertex(x, y, 0.0D).uv(u, v).endVertex();
-        bufferbuilder.vertex(x, y + h, 0.0D).uv(u, v + 1).endVertex();
-        bufferbuilder.vertex(x + w, y + h, 0.0D).uv(u + 1, v + 1).endVertex();
-        bufferbuilder.vertex(x + w, y, 0.0D).uv(u + 1, v).endVertex();
-        BufferUploader.drawWithShader(bufferbuilder.end());
+        BufferBuilder bufferbuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+        bufferbuilder.addVertex(x, y, 0.0f).setUv(u, v);
+        bufferbuilder.addVertex(x, y + h, 0.0f).setUv(u, v + 1);
+        bufferbuilder.addVertex(x + w, y + h, 0.0f).setUv(u + 1, v + 1);
+        bufferbuilder.addVertex(x + w, y, 0.0f).setUv(u + 1, v);
+        BufferUploader.drawWithShader(bufferbuilder.buildOrThrow());
     }
 
     public static boolean isMouseOver(int pX, int pY, int pWidth, int pHeight, double pMouseX, double pMouseY) {
@@ -67,8 +76,8 @@ public class RenderUtil {
             dx /= f3;
             dy /= f3;
             dz /= f3;
-            consumer.vertex(last.pose(), (float) (x + pX), (float) (y + pY), (float) (z + pZ)).color(r, g, b, a).normal(last.normal(), dx, dy, dz).endVertex();
-            consumer.vertex(last.pose(), (float) (x1 + pX), (float) (y1 + pY), (float) (z1 + pZ)).color(r, g, b, a).normal(last.normal(), dx, dy, dz).endVertex();
+            consumer.addVertex(last, (float) (x + pX), (float) (y + pY), (float) (z + pZ)).setColor(r, g, b, a).setNormal(last, dx, dy, dz);
+            consumer.addVertex(last, (float) (x1 + pX), (float) (y1 + pY), (float) (z1 + pZ)).setColor(r, g, b, a).setNormal(last, dx, dy, dz);
         });
         poseStack.popPose();
     }

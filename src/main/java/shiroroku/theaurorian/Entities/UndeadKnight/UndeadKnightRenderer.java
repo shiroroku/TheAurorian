@@ -12,7 +12,7 @@ import shiroroku.theaurorian.TheAurorian;
 
 public class UndeadKnightRenderer extends HumanoidMobRenderer<UndeadKnightEntity, HumanoidModel<UndeadKnightEntity>> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(TheAurorian.MODID, "textures/entity/undead_knight.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "textures/entity/undead_knight.png");
 
     public UndeadKnightRenderer(EntityRendererProvider.Context context) {
         this(context, ModelLayers.ZOMBIE, ModelLayers.ZOMBIE_INNER_ARMOR, ModelLayers.ZOMBIE_OUTER_ARMOR);
@@ -20,7 +20,7 @@ public class UndeadKnightRenderer extends HumanoidMobRenderer<UndeadKnightEntity
 
     public UndeadKnightRenderer(EntityRendererProvider.Context context, ModelLayerLocation model, ModelLayerLocation innerArmor, ModelLayerLocation outerArmor) {
         super(context, new HumanoidModel<>(context.bakeLayer(model)), 0.5F);
-        this.addLayer(new HumanoidArmorLayer<>(this, new HumanoidModel<>(context.bakeLayer(innerArmor)), new HumanoidModel<>(context.bakeLayer(outerArmor))));
+        this.addLayer(new HumanoidArmorLayer<>(this, new HumanoidModel<>(context.bakeLayer(innerArmor)), new HumanoidModel<>(context.bakeLayer(outerArmor)), context.getModelManager()));
     }
 
     @Override

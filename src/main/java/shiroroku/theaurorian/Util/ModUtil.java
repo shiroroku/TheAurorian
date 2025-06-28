@@ -2,13 +2,10 @@ package shiroroku.theaurorian.Util;
 
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
 import java.util.function.Predicate;
 
@@ -16,14 +13,6 @@ public class ModUtil {
 
     public static boolean randomChanceOf(RandomSource randomSource, Double percentChance) {
         return randomSource.nextDouble() <= Math.min(1.0d, Math.max(percentChance, 0.0d));
-    }
-
-    public static void dropItemHandlerInWorld(BlockEntity block) {
-        block.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            for (int i = 0; i < handler.getSlots(); i++) {
-                block.getLevel().addFreshEntity(new ItemEntity(block.getLevel(), block.getBlockPos().getX() + 0.5f, block.getBlockPos().getY() + 0.5f, block.getBlockPos().getZ() + 0.5f, handler.getStackInSlot(i)));
-            }
-        });
     }
 
     public static float wave(float time, float speed, float amp) {

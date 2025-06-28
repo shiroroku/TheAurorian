@@ -6,6 +6,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
@@ -18,8 +19,8 @@ import shiroroku.theaurorian.Items.BaseAurorianShovel;
 
 public class AurorianiteShovel extends BaseAurorianShovel {
 
-    public AurorianiteShovel(Tier pTier, float pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
-        super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
+    public AurorianiteShovel(Tier pTier, Properties pProperties) {
+        super(pTier, pProperties);
     }
 
 
@@ -30,7 +31,7 @@ public class AurorianiteShovel extends BaseAurorianShovel {
             return super.mineBlock(pStack, pLevel, pState, pPos, pEntityLiving);
         }
 
-        HitResult hitResult = pEntityLiving.pick(((Player) pEntityLiving).getReachDistance(), 1, false);
+        HitResult hitResult = pEntityLiving.pick(pEntityLiving.getAttribute(Attributes.BLOCK_INTERACTION_RANGE).getValue(), 1, false);
         // Make sure we hit a block
         if (hitResult.getType() != HitResult.Type.BLOCK) {
             return super.mineBlock(pStack, pLevel, pState, pPos, pEntityLiving);
@@ -51,7 +52,7 @@ public class AurorianiteShovel extends BaseAurorianShovel {
 
                 if (currentBlock.getTags().anyMatch(t -> t == BlockTags.MINEABLE_WITH_SHOVEL) && resistanceDifference <= CommonConfig.aurorianite_shovel_resistance_difference.get()) {
                     pLevel.destroyBlock(offsetHitpos, true);
-                    pStack.hurtAndBreak(1, pEntityLiving, (player) -> player.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+                    pStack.hurtAndBreak(1, pEntityLiving, EquipmentSlot.MAINHAND);
                 }
             }
         }

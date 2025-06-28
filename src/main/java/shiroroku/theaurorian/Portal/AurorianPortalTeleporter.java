@@ -6,31 +6,21 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.TicketType;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiRecord;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.border.WorldBorder;
-import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.portal.PortalInfo;
-import net.minecraft.world.level.portal.PortalShape;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.util.ITeleporter;
 import shiroroku.theaurorian.Blocks.AurorianPortal;
 import shiroroku.theaurorian.Registry.BlockRegistry;
 import shiroroku.theaurorian.Registry.POIRegistry;
-import shiroroku.theaurorian.TheAurorian;
 
 import java.util.Comparator;
 import java.util.Optional;
-import java.util.function.Function;
 
-public class AurorianPortalTeleporter implements ITeleporter {
-
+public class AurorianPortalTeleporter {
 
     protected final ServerLevel level;
 
@@ -38,45 +28,10 @@ public class AurorianPortalTeleporter implements ITeleporter {
         this.level = level;
     }
 
-    private Optional<BlockUtil.FoundRectangle> getOrMakePortal(Entity entity, BlockPos pos) {
-        Optional<BlockUtil.FoundRectangle> existingPortal = this.findPortalAround(pos);
-        return existingPortal.isPresent() ? existingPortal : this.createPortal(pos, this.level.getBlockState(entity.portalEntrancePos).getOptionalValue(AurorianPortal.FACING).orElse(Direction.NORTH));
-    }
-
-    @Override
-    public PortalInfo getPortalInfo(Entity entity, ServerLevel level, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
-        if (entity.level.dimension() != TheAurorian.the_aurorian && !(level.dimension() == TheAurorian.the_aurorian)) {
-            return null;
-        }
-
-        WorldBorder border = level.getWorldBorder();
-        double minX = Math.max(-2.9999872E7D, border.getMinX() + 16.0D);
-        double minZ = Math.max(-2.9999872E7D, border.getMinZ() + 16.0D);
-        double maxX = Math.min(2.9999872E7D, border.getMaxX() - 16.0D);
-        double maxZ = Math.min(2.9999872E7D, border.getMaxZ() - 16.0D);
-        double coordinateDifference = DimensionType.getTeleportationScale(entity.level.dimensionType(), level.dimensionType());
-        BlockPos blockPos = new BlockPos(Mth.clamp(entity.getX() * coordinateDifference, minX, maxX), entity.getY(), Mth.clamp(entity.getZ() * coordinateDifference, minZ, maxZ));
-        return this.getOrMakePortal(entity, blockPos).map((result) -> {
-            BlockState blockState = entity.level.getBlockState(entity.portalEntrancePos);
-            Direction.Axis axis;
-            Vec3 vector3d;
-            if (blockState.hasProperty(BlockStateProperties.HORIZONTAL_AXIS)) {
-                axis = blockState.getValue(BlockStateProperties.HORIZONTAL_AXIS);
-                BlockUtil.FoundRectangle rectangle = BlockUtil.getLargestRectangleAround(entity.portalEntrancePos, axis, 21, Direction.Axis.Y, 21, (pos) -> entity.level.getBlockState(pos) == blockState);
-                vector3d = PortalShape.getRelativePosition(rectangle, axis, entity.position(), entity.getDimensions(entity.getPose()));
-            } else {
-                axis = Direction.Axis.X;
-                vector3d = new Vec3(0.5D, 0.0D, 0.0D);
-            }
-            return PortalShape.createPortalInfo(level, result, axis, vector3d, entity.getDimensions(entity.getPose()), entity.getDeltaMovement(), entity.getYRot(), entity.getXRot());
-        }).orElse(null);
-    }
-
-
-    public Optional<BlockUtil.FoundRectangle> findPortalAround(BlockPos pPos) {
+    public Optional<BlockUtil.FoundRectangle> findClosestPortalPosition(BlockPos pPos) {
         PoiManager manager = this.level.getPoiManager();
         manager.ensureLoadedAndValid(this.level, pPos, 64);
-        Optional<PoiRecord> optional = manager.getInSquare((poi) -> poi.get() == POIRegistry.aurorian_portal.get(), pPos, 64, PoiManager.Occupancy.ANY)
+        Optional<PoiRecord> optional = manager.getInSquare((poi) -> poi.is(POIRegistry.aurorian_portal.getKey()), pPos, 64, PoiManager.Occupancy.ANY)
                 .sorted(Comparator.<PoiRecord>comparingDouble((poi) -> poi.getPos().distSqr(pPos)).thenComparingInt((poi) -> poi.getPos().getY()))
                 .filter((poi) -> this.level.getBlockState(poi.getPos()).is(BlockRegistry.aurorian_portal.get()))
                 .findFirst();
@@ -118,9 +73,9 @@ public class AurorianPortalTeleporter implements ITeleporter {
                             int j1 = emptyY - y;
                             if (j1 <= 0 || j1 >= 3) {
                                 mut.setY(y);
-                                if (this.validFrame(mut, blockpos$mutableblockpos, direction, 0)) {
+                                if (this.isValidFrame(mut, blockpos$mutableblockpos, direction, 0)) {
                                     double d2 = pPos.distSqr(mut);
-                                    if (this.validFrame(mut, blockpos$mutableblockpos, direction, -1) && this.validFrame(mut, blockpos$mutableblockpos, direction, 1) && (d0 == -1.0D || d0 > d2)) {
+                                    if (this.isValidFrame(mut, blockpos$mutableblockpos, direction, -1) && this.isValidFrame(mut, blockpos$mutableblockpos, direction, 1) && (d0 == -1.0D || d0 > d2)) {
                                         d0 = d2;
                                         blockpos = mut.immutable();
                                     }
@@ -186,15 +141,20 @@ public class AurorianPortalTeleporter implements ITeleporter {
         return Optional.of(new BlockUtil.FoundRectangle(blockpos.immutable(), 2, 3));
     }
 
-    private boolean validFrame(BlockPos pOriginalPos, BlockPos.MutableBlockPos pOffsetPos, Direction pDirection, int pOffsetScale) {
+    private boolean canPortalReplaceBlock(BlockPos.MutableBlockPos pos) {
+        BlockState blockstate = this.level.getBlockState(pos);
+        return blockstate.canBeReplaced() && blockstate.getFluidState().isEmpty();
+    }
+
+    private boolean isValidFrame(BlockPos pOriginalPos, BlockPos.MutableBlockPos pOffsetPos, Direction pDirection, int pOffsetScale) {
         Direction direction = pDirection.getClockWise();
         for (int xz = -1; xz < 3; ++xz) {
             for (int y = -1; y < 4; ++y) {
                 pOffsetPos.setWithOffset(pOriginalPos, pDirection.getStepX() * xz + direction.getStepX() * pOffsetScale, y, pDirection.getStepZ() * xz + direction.getStepZ() * pOffsetScale);
-                if (y < 0 && !this.level.getBlockState(pOffsetPos).getMaterial().isSolid()) {
+                if (y < 0 && !this.level.getBlockState(pOffsetPos).isSolid()) {
                     return false;
                 }
-                if (y >= 0 && !this.level.isEmptyBlock(pOffsetPos)) {
+                if (y >= 0 && !this.canPortalReplaceBlock(pOffsetPos)) {
                     return false;
                 }
             }

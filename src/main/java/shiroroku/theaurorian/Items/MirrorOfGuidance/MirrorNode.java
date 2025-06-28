@@ -2,7 +2,8 @@ package shiroroku.theaurorian.Items.MirrorOfGuidance;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -50,13 +51,13 @@ public class MirrorNode {
         this.border = border;
     }
 
-    public void render(ItemRenderer itemRenderer, PoseStack pose, int pMouseX, int pMouseY, float pPartialTick) {
-        pose.pushPose();
-        pose.translate(x, y, 0);
-        RenderUtil.renderItem(itemRenderer, pose, icon, 0, 0);
+    public void render(GuiGraphics guiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        guiGraphics.pose().pushPose();
+        guiGraphics.pose().translate(x, y, 0);
+        RenderUtil.renderItem(guiGraphics, icon, 0, 0);
         if (selected) {
             SpinTimer.tick(pPartialTick);
-            pose.mulPose(Vector3f.ZP.rotationDegrees(SpinTimer.getPercentageProgress() * 360));
+            guiGraphics.pose().mulPose(Axis.ZP.rotationDegrees(SpinTimer.getPercentageProgress() * 360));
         }
 
         int u = 160;
@@ -66,11 +67,11 @@ public class MirrorNode {
         if (border == NODE_BORDER.GOLD) {
             u += 64;
         }
-        RenderUtil.blit(pose, MirrorOGScreen.WIDGETS, -16, -16, u, 224, 32, 32, 256, 256);
-        pose.popPose();
+        RenderUtil.blit(guiGraphics, MirrorOGScreen.WIDGETS, -16, -16, u, 224, 32, 32, 256, 256);
+        guiGraphics.pose().popPose();
     }
 
-    public void renderLines(PoseStack pose, SimpleTimer lineTimer) {
+    public void renderLines(GuiGraphics guiGraphics, SimpleTimer lineTimer) {
         children.forEach(childKey -> {
             MirrorNode child = MirrorDataLoader.NODES.get(childKey);
             if (child == null) {
@@ -82,15 +83,15 @@ public class MirrorNode {
             Vec2 end = new Vec2(child.x, child.y);
             int count = (int) Math.sqrt(Mth.square(end.x - start.x) + Mth.square(end.y - start.y)) / 10;
             for (int i = 0; i < count; i++) {
-                pose.pushPose();
+                guiGraphics.pose().pushPose();
                 float lerpx = Mth.lerp((lineTimer.getPercentageProgress() + i) / count, start.x, end.x);
                 float lerpy = Mth.lerp((lineTimer.getPercentageProgress() + i) / count, start.y, end.y);
-                pose.translate(lerpx, lerpy, 0);
-                pose.scale(0.5f, 0.5f, 0);
+                guiGraphics.pose().translate(lerpx, lerpy, 0);
+                guiGraphics.pose().scale(0.5f, 0.5f, 0);
                 RenderSystem.enableBlend();
                 RenderSystem.setShaderColor(1, 1, 1, 0.5f);
-                RenderUtil.blit(pose, MirrorOGScreen.WIDGETS, -4, -4, 40, 240, 8, 8, 256, 256);
-                pose.popPose();
+                RenderUtil.blit(guiGraphics, MirrorOGScreen.WIDGETS, -4, -4, 40, 240, 8, 8, 256, 256);
+                guiGraphics.pose().popPose();
             }
         });
     }

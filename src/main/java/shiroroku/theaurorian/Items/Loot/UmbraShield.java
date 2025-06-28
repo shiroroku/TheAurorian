@@ -22,7 +22,7 @@ public class UmbraShield extends BaseAurorianShield {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
-        pPlayer.getItemInHand(pHand).hurtAndBreak(1, pPlayer, (livingEntity) -> livingEntity.broadcastBreakEvent(livingEntity.getUsedItemHand()));
+        pPlayer.getItemInHand(pHand).hurtAndBreak(1, pPlayer, LivingEntity.getSlotForHand(pPlayer.getUsedItemHand()));
         return super.use(pLevel, pPlayer, pHand);
     }
 
@@ -34,9 +34,9 @@ public class UmbraShield extends BaseAurorianShield {
         }
 
         Vec3 lookv = entity.getLookAngle();
-        pLevel.getNearbyEntities(LivingEntity.class, TargetingConditions.forCombat(), entity, entity.getBoundingBox().inflate(0.7).move(lookv.x, lookv.y, lookv.z)).forEach((e) -> e.setSecondsOnFire(1));
+        pLevel.getNearbyEntities(LivingEntity.class, TargetingConditions.forCombat(), entity, entity.getBoundingBox().inflate(0.7).move(lookv.x, lookv.y, lookv.z)).forEach((e) -> e.igniteForSeconds(1));
 
-        //todo check if this syncs correctly
+        // TODO: check if this syncs correctly
         for (int i = 0; i < 5; i++) {
             double spread = 0.5;
             double velocity = 0.2;

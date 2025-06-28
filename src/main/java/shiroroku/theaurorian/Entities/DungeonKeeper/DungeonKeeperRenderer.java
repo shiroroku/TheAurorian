@@ -13,7 +13,7 @@ import shiroroku.theaurorian.TheAurorian;
 
 public class DungeonKeeperRenderer extends HumanoidMobRenderer<AbstractSkeleton, DungeonKeeperModel> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(TheAurorian.MODID, "textures/entity/dungeon_keeper/dungeon_keeper.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "textures/entity/dungeon_keeper/dungeon_keeper.png");
 
     public DungeonKeeperRenderer(EntityRendererProvider.Context ctx) {
         this(ctx, ModelLayers.STRAY, ModelLayers.STRAY_INNER_ARMOR, ModelLayers.STRAY_OUTER_ARMOR);
@@ -21,7 +21,7 @@ public class DungeonKeeperRenderer extends HumanoidMobRenderer<AbstractSkeleton,
 
     public DungeonKeeperRenderer(EntityRendererProvider.Context pContext, ModelLayerLocation model, ModelLayerLocation p_174384_, ModelLayerLocation p_174385_) {
         super(pContext, new DungeonKeeperModel(pContext.bakeLayer(model)), 0.5F);
-        this.addLayer(new HumanoidArmorLayer<>(this, new SkeletonModel<>(pContext.bakeLayer(p_174384_)), new SkeletonModel<>(pContext.bakeLayer(p_174385_))));
+        this.addLayer(new HumanoidArmorLayer<>(this, new SkeletonModel<>(pContext.bakeLayer(p_174384_)), new SkeletonModel<>(pContext.bakeLayer(p_174385_)), pContext.getModelManager()));
         this.addLayer(new DungeonKeeperLayer<>(this, pContext.getModelSet()));
     }
 

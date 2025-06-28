@@ -3,11 +3,12 @@ package shiroroku.theaurorian.Items.MirrorOfGuidance;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.GameNarrator;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.resources.ResourceLocation;
@@ -25,9 +26,9 @@ import java.util.Random;
 
 public class MirrorOGScreen extends Screen {
 
-    public static final ResourceLocation WIDGETS = new ResourceLocation(TheAurorian.MODID, "textures/gui/mirror_of_guidance.png");
-    private static final ResourceLocation BACKGROUND_1 = new ResourceLocation(TheAurorian.MODID, "textures/gui/mirror_of_guidance_bg.png");
-    private static final ResourceLocation BACKGROUND_2 = new ResourceLocation(TheAurorian.MODID, "textures/gui/mirror_of_guidance_bg_2.png");
+    public static final ResourceLocation WIDGETS = ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "textures/gui/mirror_of_guidance.png");
+    private static final ResourceLocation BACKGROUND_1 = ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "textures/gui/mirror_of_guidance_bg.png");
+    private static final ResourceLocation BACKGROUND_2 = ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "textures/gui/mirror_of_guidance_bg_2.png");
 
     // Texture dimensions
     private static final int WIDTH = 256;
@@ -63,7 +64,7 @@ public class MirrorOGScreen extends Screen {
     }
 
     @Override
-    public void render(PoseStack pose, int pMouseX, int pMouseY, float pPartialTick) {
+    public void render(GuiGraphics guiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         SoundTimer.tick(pPartialTick);
         LineTimer.tick(pPartialTick);
         LerpTimer.tick(pPartialTick);
@@ -91,12 +92,12 @@ public class MirrorOGScreen extends Screen {
         }
 
         // Game tint
-        this.renderBackground(pose);
+        this.renderBackground(guiGraphics, pMouseX, pMouseY, pPartialTick);
 
         // Setup
         RenderSystem.enableBlend();
-        pose.pushPose();
-        enableScissor(x_gui_left, y_gui_top, x_gui_left + WIDTH - 5, y_gui_top + HEIGHT - 5);
+        guiGraphics.pose().pushPose();
+        guiGraphics.enableScissor(x_gui_left, y_gui_top, x_gui_left + WIDTH - 5, y_gui_top + HEIGHT - 5);
 
         // BACKGROUND STARS
         RenderUtil.blitRepeating(BACKGROUND_1, x_gui_left, y_gui_top, 256, 256, (float) (-ViewX / 256) * 0.25f, (float) (-ViewY / 256) * 0.25f);
@@ -105,51 +106,51 @@ public class MirrorOGScreen extends Screen {
         RenderSystem.setShaderColor(1, 1, 1, 1);
 
         // Background Moon
-        pose.pushPose();
-        pose.translate(x_gui_center, y_gui_center, 0); // align 0,0 with center
-        pose.translate(ViewX * 0.2f, ViewY * 0.2f, 0); // move to view
-        pose.mulPose(Vector3f.ZP.rotationDegrees(ModUtil.wave(Util.getMillis(), 1f / 1000f, 15)));
-        pose.scale(6, 6, 0);
+        guiGraphics.pose().pushPose();
+        guiGraphics.pose().translate(x_gui_center, y_gui_center, 0); // align 0,0 with center
+        guiGraphics.pose().translate(ViewX * 0.2f, ViewY * 0.2f, 0); // move to view
+        guiGraphics.pose().mulPose(Axis.ZP.rotationDegrees(ModUtil.wave(Util.getMillis(), 1f / 1000f, 15)));
+        guiGraphics.pose().scale(6, 6, 0);
         RenderSystem.setShaderColor(1, 1, 1, 0.2f);
-        RenderUtil.blit(pose, WIDGETS, -4, -4, 32, 240, 8, 8, 256, 256);
-        pose.popPose();
+        RenderUtil.blit(guiGraphics, WIDGETS, -4, -4, 32, 240, 8, 8, 256, 256);
+        guiGraphics.pose().popPose();
 
         // NODE CONTENT
         float fade = selectedNode != null ? LerpTimer.getPercentageProgress() : 1 - LerpTimer.getPercentageProgress();
         RenderSystem.setShaderColor(1, 1, 1, fade);
-        this.fillGradient(pose, x_gui_left, y_gui_top, x_gui_left + WIDTH, y_gui_top + HEIGHT, new Color(39, 20, 138, 255).getRGB(), new Color(0, 0, 0, 0).getRGB());
+        guiGraphics.fillGradient(x_gui_left, y_gui_top, x_gui_left + WIDTH, y_gui_top + HEIGHT, new Color(39, 20, 138, 255).getRGB(), new Color(0, 0, 0, 0).getRGB());
         if (selectedNode != null) {
             int fadeColor = new Color(1, 1, 1, Mth.clamp(fade, 0, 1)).getRGB();
-            this.font.draw(pose, selectedNode.name.copy().withStyle(ChatFormatting.ITALIC), x_gui_left + 42, y_gui_top + 14, fadeColor);
-            this.font.drawWordWrap(selectedNode.description, x_gui_left + 20, y_gui_top + 45, WIDTH - 20 * 2, fadeColor);
+            guiGraphics.drawString(this.font, selectedNode.name.copy().withStyle(ChatFormatting.ITALIC), x_gui_left + 42, y_gui_top + 14, fadeColor);
+            guiGraphics.drawWordWrap(this.font, selectedNode.description, x_gui_left + 20, y_gui_top + 45, WIDTH - 20 * 2, fadeColor);
         }
         RenderSystem.setShaderColor(1, 1, 1, 1);
 
         // NODES & LINES
-        pose.pushPose();
-        pose.translate(x_gui_center, y_gui_center, 0); // align 0,0 with center
-        pose.translate(ViewX, ViewY, 0); // move to view
+        guiGraphics.pose().pushPose();
+        guiGraphics.pose().translate(x_gui_center, y_gui_center, 0); // align 0,0 with center
+        guiGraphics.pose().translate(ViewX, ViewY, 0); // move to view
         if (selectedNode != null) {
-            selectedNode.render(itemRenderer, pose, pMouseX, pMouseY, pPartialTick);
+            selectedNode.render(guiGraphics, pMouseX, pMouseY, pPartialTick);
         } else {
-            nodes.forEach(node -> node.renderLines(pose, LineTimer));
-            nodes.forEach(node -> node.render(itemRenderer, pose, pMouseX, pMouseY, pPartialTick));
+            nodes.forEach(node -> node.renderLines(guiGraphics, LineTimer));
+            nodes.forEach(node -> node.render(guiGraphics, pMouseX, pMouseY, pPartialTick));
         }
-        pose.popPose();
+        guiGraphics.pose().popPose();
 
         // End of content
-        disableScissor();
+        guiGraphics.disableScissor();
 
 
         // BORDER
         RenderSystem.enableBlend();
-        RenderUtil.blit(pose, WIDGETS, x_gui_left - 2, y_gui_top - 2, 0, 0, WIDTH, HEIGHT, 256, 256);
+        RenderUtil.blit(guiGraphics, WIDGETS, x_gui_left - 2, y_gui_top - 2, 0, 0, WIDTH, HEIGHT, 256, 256);
 
         // TOOLTIPS
         if (selectedNode == null) {
             for (MirrorNode node : nodes) {
                 if (node.isMouseOver(mouse_x, mouse_y) && RenderUtil.isMouseOver(x_gui_left, y_gui_top, WIDTH - 8, HEIGHT, pMouseX, pMouseY)) {
-                    this.renderTooltip(pose, node.name, pMouseX, pMouseY);
+                    guiGraphics.renderTooltip(this.font, node.name, pMouseX, pMouseY);
                 }
             }
             RenderSystem.enableBlend();
@@ -161,7 +162,7 @@ public class MirrorOGScreen extends Screen {
                 if (RenderUtil.isMouseOver(x_gui_left + 4, y_gui_top + HEIGHT - 24, 16, 16, pMouseX, pMouseY)) {
                     RenderSystem.setShaderColor(1.5f, 1.5f, 1.5f, 1);
                 }
-                RenderUtil.blit(pose, WIDGETS, x_gui_left + 4, y_gui_top + HEIGHT - 24, 32, 224, 16, 16, 256, 256);
+                RenderUtil.blit(guiGraphics, WIDGETS, x_gui_left + 4, y_gui_top + HEIGHT - 24, 32, 224, 16, 16, 256, 256);
                 RenderSystem.setShaderColor(1, 1, 1, 1);
             }
         }
@@ -169,14 +170,14 @@ public class MirrorOGScreen extends Screen {
             if (RenderUtil.isMouseOver(x_gui_left + WIDTH - 28, y_gui_top + 8, 16, 16, pMouseX, pMouseY)) {
                 RenderSystem.setShaderColor(1.3f, 1.3f, 1.3f, 1);
             }
-            RenderUtil.blit(pose, WIDGETS, x_gui_left + WIDTH - 28, y_gui_top + 8, 48, 224, 16, 16, 256, 256);
+            RenderUtil.blit(guiGraphics, WIDGETS, x_gui_left + WIDTH - 28, y_gui_top + 8, 48, 224, 16, 16, 256, 256);
             RenderSystem.setShaderColor(1, 1, 1, 1);
         }
 
         // Cleanup
         RenderSystem.disableBlend();
-        pose.popPose();
-        super.render(pose, pMouseX, pMouseY, pPartialTick);
+        guiGraphics.pose().popPose();
+        super.render(guiGraphics, pMouseX, pMouseY, pPartialTick);
     }
 
     /**

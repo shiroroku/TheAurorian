@@ -1,7 +1,7 @@
 package shiroroku.theaurorian.Blocks.Crystal;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.BakedModel;
-import net.minecraftforge.client.model.data.ModelData;
+import net.neoforged.neoforge.client.model.data.ModelData;
 import shiroroku.theaurorian.Registry.BlockRegistry;
 import shiroroku.theaurorian.Util.ModUtil;
 
@@ -31,7 +31,7 @@ public class CrystalBlockRenderer implements BlockEntityRenderer<CrystalBlockEnt
         float rotation = time * 4;
         pPoseStack.pushPose();
         pPoseStack.translate(0.5, 0, 0.5);
-        pPoseStack.mulPose(Vector3f.YP.rotationDegrees(rotation));
+        pPoseStack.mulPose(Axis.YP.rotationDegrees(rotation));
         pPoseStack.translate(-0.5, 0, -0.5);
         pPoseStack.translate(0, ModUtil.wave(time, 0.25f, 0.05f), 0);
         this.blockRenderer.getModelRenderer().renderModel(

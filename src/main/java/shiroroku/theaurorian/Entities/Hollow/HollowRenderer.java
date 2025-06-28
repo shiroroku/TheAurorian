@@ -9,7 +9,7 @@ import shiroroku.theaurorian.TheAurorian;
 
 public class HollowRenderer extends ZombieRenderer {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(TheAurorian.MODID, "textures/entity/hollow.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(TheAurorian.MODID, "textures/entity/hollow.png");
 
     public HollowRenderer(EntityRendererProvider.Context context) {
         super(context);
